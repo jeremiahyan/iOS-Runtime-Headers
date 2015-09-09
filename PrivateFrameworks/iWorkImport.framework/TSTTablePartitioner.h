@@ -2,27 +2,25 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSMutableDictionary, TSDInfoGeometry, TSTLayout, TSTTableInfo, TSUPointerKeyDictionary;
-
 @interface TSTTablePartitioner : NSObject <TSDPartitioner> {
-    struct CGSize { 
-        float width; 
-        float height; 
     float mFirstPartitionWidth;
     TSUPointerKeyDictionary *mHintMatricesByCanvas;
     TSDInfoGeometry *mInfoGeometry;
     NSMutableDictionary *mPartitioningPassCache;
+    struct CGSize { 
+        float width; 
+        float height; 
     } mScaleToFit;
     TSTLayout *mScaledLayout;
     TSTTableInfo *mTableInfo;
 }
 
-@property(copy) TSDInfoGeometry * infoGeometry;
-@property(readonly) float inlineTableWidth;
-@property(readonly) BOOL scaleIsValid;
-@property struct CGSize { float x1; float x2; } scaleToFit;
-@property(readonly) TSTLayout * scaledLayout;
-@property(readonly) TSTTableInfo * tableInfo;
+@property (nonatomic, copy) TSDInfoGeometry *infoGeometry;
+@property (nonatomic, readonly) float inlineTableWidth;
+@property (nonatomic, readonly) BOOL scaleIsValid;
+@property (nonatomic) struct CGSize { float x1; float x2; } scaleToFit;
+@property (nonatomic, readonly) TSTLayout *scaledLayout;
+@property (nonatomic, readonly) TSTTableInfo *tableInfo;
 
 - (void)dealloc;
 - (BOOL)didHint:(id)arg1 syncWithNextHint:(id)arg2 horizontally:(BOOL)arg3 delta:(int)arg4;
@@ -33,7 +31,7 @@
 - (id)initWithInfo:(id)arg1;
 - (float)inlineTableWidth;
 - (id)layoutForHint:(id)arg1 parentLayout:(id)arg2;
-- (struct { struct { unsigned short x_1_1_1; unsigned char x_1_1_2; unsigned char x_1_1_3; } x1; struct { unsigned short x_2_1_1; unsigned short x_2_1_2; } x2; })measureCellRangeForNextPartitionOfSize:(struct CGSize { float x1; float x2; })arg1 previousHint:(id)arg2 horizontally:(BOOL)arg3;
+- (struct TSUColumnRowRect { struct { unsigned short x_1_1_1; unsigned char x_1_1_2; unsigned char x_1_1_3; } x1; struct { unsigned short x_2_1_1; unsigned short x_2_1_2; } x2; })measureCellRangeForNextPartitionOfSize:(struct CGSize { float x1; float x2; })arg1 previousHint:(id)arg2 horizontally:(BOOL)arg3;
 - (id)nextHintForSize:(struct CGSize { float x1; float x2; })arg1 parentLayout:(id)arg2 previousHint:(id)arg3 horizontally:(BOOL)arg4 outFinished:(out BOOL*)arg5;
 - (id)nextLayoutForSize:(struct CGSize { float x1; float x2; })arg1 parentLayout:(id)arg2 previousHint:(id)arg3 horizontally:(BOOL)arg4 outFinished:(out BOOL*)arg5;
 - (BOOL)p_didFinishPartitioningHint:(id)arg1 horizontally:(BOOL)arg2;

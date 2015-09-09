@@ -2,9 +2,7 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSDictionary, NSHashTable, NSSet;
-
-@interface _UISettings : NSObject <_UISettingsGroupObserver, _UISettingsKeyPathObserver, NSCopying> {
+@interface _UISettings : NSObject <NSCopying, _UISettingsGroupObserver, _UISettingsKeyPathObserver> {
     NSSet *_internal_childKeys;
     BOOL _internal_isObservingPropertiesAndChildren;
     NSDictionary *_internal_keyClasses;
@@ -14,12 +12,20 @@
     NSSet *_internal_leafKeys;
 }
 
-+ (id)settingsControllerModule;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+
+// Image: /System/Library/Frameworks/UIKit.framework/UIKit
+
 + (id)settingsFromArchiveDictionary:(id)arg1;
 + (id)settingsFromArchiveFile:(id)arg1 error:(id*)arg2;
 
 - (void)_addInternalEntriesToArchiveDictionary:(id)arg1;
 - (id)_allKeys;
+- (id)_associatedName;
+- (id)_associatedNameOrNilIfDefault;
 - (id)_colorForKey:(id)arg1 fromDictionary:(id)arg2;
 - (void)_completeInitByApplyingArchiveDictionary:(id)arg1;
 - (void)_continueInitBySettingDefaultValues;
@@ -35,6 +41,7 @@
 - (id)_keyForChild:(id)arg1;
 - (void)_sendKeyChanged:(id)arg1;
 - (void)_sendKeyPathChanged:(id)arg1;
+- (void)_setAssociatedName:(id)arg1;
 - (id)_startInit;
 - (void)_startObservingChild:(id)arg1;
 - (void)_startObservingPropertiesAndChildren;
@@ -52,7 +59,6 @@
 - (void)dealloc;
 - (id)init;
 - (id)initWithDefaultValues;
-- (BOOL)isSimilarToSettings:(id)arg1;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void*)arg4;
 - (void)removeKeyObserver:(id)arg1;
 - (void)removeKeyPathObserver:(id)arg1;
@@ -65,6 +71,13 @@
 - (void)settingsGroup:(id)arg1 didInsertSettings:(id)arg2 atIndex:(unsigned int)arg3;
 - (void)settingsGroup:(id)arg1 didMoveSettings:(id)arg2 fromIndex:(unsigned int)arg3 toIndex:(unsigned int)arg4;
 - (void)settingsGroup:(id)arg1 didRemoveSettings:(id)arg2 atIndex:(unsigned int)arg3;
+
+// Image: /System/Library/PrivateFrameworks/PrototypeTools.framework/PrototypeTools
+
++ (id)settingsControllerModule;
+
+- (id)archiveFilename;
+- (BOOL)isSimilarToSettings:(id)arg1;
 - (id)settingsHUDConfiguration;
 - (id)settingsHUDInfoLabelString;
 - (void)settingsResetByHUD;

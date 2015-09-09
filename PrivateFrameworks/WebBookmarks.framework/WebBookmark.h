@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/WebBookmarks.framework/WebBookmarks
  */
 
-@class NSData, NSDate, NSDictionary, NSString;
-
 @interface WebBookmark : NSObject {
     NSString *_UUID;
     int _archiveStatus;
@@ -31,48 +29,49 @@
     int _webFilterStatus;
 }
 
-@property(readonly) NSString * UUID;
-@property(retain) NSString * address;
-@property int archiveStatus;
-@property(retain) NSDate * dateAdded;
-@property(retain) NSDate * dateLastArchived;
-@property(retain) NSDate * dateLastFetched;
-@property(retain) NSDate * dateLastViewed;
-@property(getter=isDeletable,readonly) BOOL deletable;
-@property(getter=isEditable,readonly) BOOL editable;
-@property(retain) NSDictionary * extraAttributes;
-@property BOOL fetchedIconData;
-@property(getter=isFolder,readonly) BOOL folder;
-@property(getter=isHidden,readonly) BOOL hidden;
-@property(retain) NSData * iconData;
-@property(readonly) unsigned int identifier;
-@property(getter=isInserted,readonly) BOOL inserted;
-@property(retain) NSDictionary * localAttributes;
-@property(retain) NSString * localPreviewText;
-@property BOOL locallyAdded;
-@property BOOL needsSyncUpdate;
-@property(retain) NSDictionary * nextPageURLs;
-@property(readonly) unsigned int parentID;
-@property(retain) NSString * previewText;
-@property(retain) NSString * serverID;
-@property(retain) NSString * siteName;
-@property(retain) NSString * sourceBundleID;
-@property(retain) NSString * sourceLocalizedAppName;
-@property(readonly) unsigned int specialID;
-@property(retain) NSData * syncData;
-@property(retain) NSString * syncKey;
-@property(getter=isSyncable,readonly) BOOL syncable;
-@property(retain) NSString * title;
-@property int webFilterStatus;
+@property (nonatomic, readonly) NSString *UUID;
+@property (nonatomic, retain) NSString *address;
+@property (nonatomic) int archiveStatus;
+@property (nonatomic, retain) NSDate *dateAdded;
+@property (nonatomic, retain) NSDate *dateLastArchived;
+@property (nonatomic, retain) NSDate *dateLastFetched;
+@property (nonatomic, retain) NSDate *dateLastViewed;
+@property (getter=isDeletable, nonatomic, readonly) BOOL deletable;
+@property (getter=isEditable, nonatomic, readonly) BOOL editable;
+@property (nonatomic, retain) NSDictionary *extraAttributes;
+@property (nonatomic) BOOL fetchedIconData;
+@property (getter=isFolder, nonatomic, readonly) BOOL folder;
+@property (getter=isHidden, nonatomic, readonly) BOOL hidden;
+@property (nonatomic, retain) NSData *iconData;
+@property (nonatomic, readonly) unsigned int identifier;
+@property (getter=isInserted, nonatomic, readonly) BOOL inserted;
+@property (nonatomic, retain) NSDictionary *localAttributes;
+@property (nonatomic, retain) NSString *localPreviewText;
+@property (nonatomic) BOOL locallyAdded;
+@property (nonatomic) BOOL needsSyncUpdate;
+@property (nonatomic, retain) NSDictionary *nextPageURLs;
+@property (nonatomic, readonly) unsigned int parentID;
+@property (nonatomic, retain) NSString *previewText;
+@property (nonatomic, retain) NSString *serverID;
+@property (nonatomic, retain) NSString *siteName;
+@property (nonatomic, retain) NSString *sourceBundleID;
+@property (nonatomic, retain) NSString *sourceLocalizedAppName;
+@property (nonatomic, readonly) unsigned int specialID;
+@property (nonatomic, retain) NSData *syncData;
+@property (nonatomic, retain) NSString *syncKey;
+@property (getter=isSyncable, nonatomic, readonly) BOOL syncable;
+@property (nonatomic, retain) NSString *title;
+@property (nonatomic) int webFilterStatus;
 
 + (id)_trimmedPreviewText:(id)arg1;
 + (id)_trimmedTitle:(id)arg1;
 
 - (id)UUID;
 - (id)_initWithSqliteRow:(struct sqlite3_stmt { }*)arg1;
+- (id)_initWithSqliteRow:(struct sqlite3_stmt { }*)arg1 hasIcon:(BOOL)arg2;
 - (void)_markSpecial:(unsigned int)arg1;
-- (void)_modifyExtraReadingListAttributes:(id)arg1;
-- (void)_modifyLocalReadingListAttributes:(id)arg1;
+- (void)_modifyExtraReadingListAttributes:(id /* block */)arg1;
+- (void)_modifyLocalReadingListAttributes:(id /* block */)arg1;
 - (unsigned int)_orderIndex;
 - (id)_readingListPropertyNamed:(id)arg1;
 - (void)_removeDirectoryAtPath:(id)arg1;
@@ -100,6 +99,7 @@
 - (id)extraAttributes;
 - (BOOL)fetchedIconData;
 - (BOOL)fullArchiveAvailable;
+- (unsigned int)hash;
 - (id)iconData;
 - (unsigned int)identifier;
 - (id)init;
@@ -113,7 +113,10 @@
 - (BOOL)isBookmarksMenuFolder;
 - (BOOL)isDeletable;
 - (BOOL)isEditable;
+- (BOOL)isEqual:(id)arg1;
+- (BOOL)isEqualToBookmark:(id)arg1;
 - (BOOL)isFolder;
+- (BOOL)isFrequentlyVisitedSitesFolder;
 - (BOOL)isHidden;
 - (BOOL)isInserted;
 - (BOOL)isReadingListFolder;
@@ -150,8 +153,8 @@
 - (void)setSourceLocalizedAppName:(id)arg1;
 - (void)setSyncData:(id)arg1;
 - (void)setSyncKey:(id)arg1;
-- (void)setTitle:(id)arg1 previewText:(id)arg2 dateLastFetched:(id)arg3;
 - (void)setTitle:(id)arg1;
+- (void)setTitle:(id)arg1 previewText:(id)arg2 dateLastFetched:(id)arg3;
 - (void)setWebFilterStatus:(int)arg1;
 - (id)shortTypeDescription;
 - (BOOL)shouldReattemptArchive;

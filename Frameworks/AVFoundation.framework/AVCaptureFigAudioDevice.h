@@ -2,26 +2,31 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class NSDictionary, NSString;
-
 @interface AVCaptureFigAudioDevice : AVCaptureDevice {
-    struct OpaqueCMClock { } *_deviceClock;
-    NSDictionary *_deviceProperties;
+    NSDictionary *_attributes;
+    struct OpaqueFigCaptureSource { } *_fcs;
+    NSObject<OS_dispatch_queue> *_fcsQueue;
     BOOL _isConnected;
     BOOL _levelMeteringEnabled;
     NSString *_localizedName;
+    AVWeakReference *_weakReference;
 }
 
 + (id)_devices;
++ (id)alloc;
++ (void)initialize;
 
+- (id)_copyFigCaptureSourceProperty:(struct __CFString { }*)arg1;
+- (void)_handleNotification:(struct __CFString { }*)arg1 payload:(id)arg2;
+- (id)_initWithFigCaptureSource:(struct OpaqueFigCaptureSource { }*)arg1;
+- (void)_setFigCaptureSource:(struct OpaqueFigCaptureSource { }*)arg1;
 - (void)audioInputDeviceLocalizedNameDidChangeHandler:(id)arg1;
 - (void)audioInputDevicesDidChangeHandler:(id)arg1;
 - (void)dealloc;
 - (struct OpaqueCMClock { }*)deviceClock;
-- (id)devicePropertiesDictionary;
+- (struct OpaqueFigCaptureSource { }*)figCaptureSource;
 - (BOOL)hasMediaType:(id)arg1;
 - (id)init;
-- (id)initWithProperties:(id)arg1;
 - (BOOL)isConnected;
 - (BOOL)isInUseByAnotherApplication;
 - (id)localizedName;

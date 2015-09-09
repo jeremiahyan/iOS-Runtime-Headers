@@ -7,11 +7,10 @@
     float _minimumRating;
 }
 
-@property float maximumRating;
-@property float minimumRating;
+@property (nonatomic) float maximumRating;
+@property (nonatomic) float minimumRating;
 
 - (id)_mediaRemoteCommandInfoOptions;
-- (id)keyPathsForValuesTriggeringCommandsChanged;
 - (float)maximumRating;
 - (float)minimumRating;
 - (void)setMaximumRating:(float)arg1;

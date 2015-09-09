@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class ACAccountStore, NSMutableDictionary, NSTimer;
-
 @interface ABRefreshController : NSObject {
     NSMutableDictionary *_accountGroupListsToRefreshByObserver;
     ACAccountStore *_accountStore;
@@ -38,7 +36,7 @@
 - (id)refreshableAccountIdentifiersForContactsFilter:(id)arg1;
 - (void)scheduleRefreshForAccountGroupList:(id)arg1 withObserver:(void*)arg2;
 - (void)scheduleRefreshForContactsFilter:(id)arg1 withObserver:(void*)arg2;
-- (void)startRefreshingOrphanedAccountsWithAddressBook:(void*)arg1 afterDelay:(BOOL)arg2;
 - (void)startRefreshingOrphanedAccountsWithAddressBook:(void*)arg1;
+- (void)startRefreshingOrphanedAccountsWithAddressBook:(void*)arg1 afterDelay:(BOOL)arg2;
 
 @end

@@ -2,15 +2,17 @@
    Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
  */
 
-@class NSData, NSError;
-
-@interface SSPlayInfoResponse : NSObject <SSXPCCoding, NSCopying> {
+@interface SSPlayInfoResponse : NSObject <NSCopying, SSXPCCoding> {
     NSError *_error;
     NSData *_playInfoData;
 }
 
-@property(readonly) NSError * error;
-@property(readonly) NSData * playInfoData;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) NSError *error;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) NSData *playInfoData;
+@property (readonly) Class superclass;
 
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)copyXPCEncoding;

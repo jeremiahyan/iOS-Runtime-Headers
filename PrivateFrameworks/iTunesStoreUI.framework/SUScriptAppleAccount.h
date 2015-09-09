@@ -2,20 +2,19 @@
    Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
  */
 
-@class ACAccount, ACAccountStore, NSString, SUScriptAppleAccountCredential, SUScriptAppleAccountType;
-
 @interface SUScriptAppleAccount : SUScriptObject {
     ACAccount *_account;
     ACAccountStore *_accountStore;
 }
 
-@property(readonly) NSString * accountDescription;
-@property(readonly) SUScriptAppleAccountType * accountType;
-@property(readonly) SUScriptAppleAccountCredential * credential;
-@property(readonly) NSString * identifier;
-@property(readonly) ACAccount * nativeAccount;
-@property(readonly) ACAccountStore * nativeAccountStore;
-@property(readonly) NSString * username;
+@property (readonly) NSString *accountDescription;
+@property (readonly) SUScriptAppleAccountType *accountType;
+@property (readonly) SUScriptAppleAccountCredential *credential;
+@property (readonly) NSString *dsID;
+@property (readonly) NSString *identifier;
+@property (readonly) ACAccount *nativeAccount;
+@property (readonly) ACAccountStore *nativeAccountStore;
+@property (readonly) NSString *username;
 
 + (void)initialize;
 + (id)webScriptNameForKeyName:(id)arg1;
@@ -27,6 +26,7 @@
 - (id)attributeKeys;
 - (id)credential;
 - (void)dealloc;
+- (id)dsID;
 - (id)identifier;
 - (id)initWithACAccount:(id)arg1 accountStore:(id)arg2;
 - (id)nativeAccount;

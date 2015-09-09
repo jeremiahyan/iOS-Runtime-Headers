@@ -2,13 +2,12 @@
    Image: /System/Library/PrivateFrameworks/AppleAccount.framework/AppleAccount
  */
 
-@interface AADelegateResponseStore : NSObject {
-}
+@interface AADelegateResponseStore : NSObject
 
 + (void)_saveKeychainItem:(id)arg1 forUsername:(id)arg2 service:(id)arg3 itemDescription:(id)arg4;
 + (id)responseAndTokenRuntimeStore;
 + (void)restoreFinished;
 + (void)saveiCloudResponseParameters:(id)arg1;
-+ (void)saveiCloudToken:(id)arg1 faceTimeToken:(id)arg2 madridToken:(id)arg3 gameCenterToken:(id)arg4;
++ (void)saveiCloudToken:(id)arg1 hsaToken:(id)arg2 fmipToken:(id)arg3 faceTimeToken:(id)arg4 madridToken:(id)arg5 gameCenterToken:(id)arg6;
 
 @end

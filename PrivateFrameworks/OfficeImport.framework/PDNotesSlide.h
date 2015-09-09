@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class PDNotesMaster;
-
 @interface PDNotesSlide : PDSlideChild {
     PDNotesMaster *mNotesMaster;
 }
@@ -12,6 +10,7 @@
 - (void)doneWithContent;
 - (id)init;
 - (id)masterGraphicForPlaceholderType:(int)arg1 placeholderTypeIndex:(int)arg2 overrideIndex:(BOOL)arg3;
+- (id)masterPlaceholderOfType:(int)arg1;
 - (id)notesMaster;
 - (id)parentShapePropertiesForPlaceholderType:(int)arg1 placeholderTypeIndex:(int)arg2 overrideIndex:(BOOL)arg3;
 - (id)parentSlideBase;

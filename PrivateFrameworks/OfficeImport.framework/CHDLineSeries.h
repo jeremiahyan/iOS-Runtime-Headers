@@ -2,12 +2,15 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class CHDMarker;
-
 @interface CHDLineSeries : CHDSeries <CHDMarkerOwner> {
-    boolmSmooth;
     CHDMarker *mMarker;
+    bool mSmooth;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)dealloc;
 - (id)initWithChart:(id)arg1;

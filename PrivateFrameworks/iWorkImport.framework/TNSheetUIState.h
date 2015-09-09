@@ -2,54 +2,48 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
 @interface TNSheetUIState : NSObject <NSCopying> {
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
     int mDeviceIdiom;
-    unsigned char mFormFocusedFieldIndex;
-    unsigned short mFormFocusedRecordIndex;
     BOOL mHasPreviousVisibleRect;
     BOOL mHasVisibleRect;
     float mPreviousViewScale;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } mPreviousVisibleRect;
+    TSKSelectionPath *mSelectionPath;
     float mViewScale;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } mVisibleRect;
 }
 
-@property int archivedDeviceIdiom;
-@property(readonly) int currentDeviceIdiom;
-@property unsigned char formFocusedFieldIndex;
-@property unsigned short formFocusedRecordIndex;
-@property BOOL hasPreviousVisibleRect;
-@property BOOL hasVisibleRect;
-@property(readonly) struct CGPoint { float x1; float x2; } previousScrollPosition;
-@property float previousViewScale;
-@property struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } previousVisibleRect;
-@property(readonly) struct CGPoint { float x1; float x2; } scrollPosition;
-@property float viewScale;
-@property struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } visibleRect;
+@property (nonatomic) int archivedDeviceIdiom;
+@property (nonatomic) BOOL hasPreviousVisibleRect;
+@property (nonatomic) BOOL hasVisibleRect;
+@property (nonatomic, readonly) struct CGPoint { float x1; float x2; } previousScrollPosition;
+@property (nonatomic) float previousViewScale;
+@property (nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } previousVisibleRect;
+@property (nonatomic, readonly) struct CGPoint { float x1; float x2; } scrollPosition;
+@property (nonatomic, retain) TSKSelectionPath *selectionPath;
+@property (nonatomic) float viewScale;
+@property (nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } visibleRect;
 
++ (int)currentDeviceIdiom;
++ (id)sheetUIState;
 + (id)sheetUIStateWithPreviousVisibleRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 + (id)sheetUIStateWithVisibleRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 
@@ -58,27 +52,25 @@
 - (void)clearPreviousVisibleRect;
 - (void)clearVisibleRect;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (int)currentDeviceIdiom;
-- (unsigned char)formFocusedFieldIndex;
-- (unsigned short)formFocusedRecordIndex;
+- (void)dealloc;
 - (BOOL)hasPreviousVisibleRect;
 - (BOOL)hasVisibleRect;
 - (id)init;
-- (id)initWithArchive:(const struct SheetUIStateArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; struct Point {} *x3; float x4; float x5; struct Point {} *x6; boolx7; boolx8; boolx9; unsigned int x10; struct Size {} *x11; struct Size {} *x12; unsigned int x13; unsigned int x14; int x15; unsigned int x16[1]; }*)arg1 unarchiver:(id)arg2;
-- (BOOL)isDefault;
+- (id)initWithArchive:(const struct SheetUIStateArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; struct Point {} *x5; float x6; float x7; struct Point {} *x8; bool x9; bool x10; bool x11; unsigned int x12; struct Size {} *x13; struct Size {} *x14; struct SelectionPathArchive {} *x15; }*)arg1 unarchiver:(id)arg2;
 - (BOOL)isEqual:(id)arg1;
+- (id)p_persistableSelectionPath:(id)arg1;
 - (struct CGPoint { float x1; float x2; })previousScrollPosition;
 - (float)previousViewScale;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })previousVisibleRect;
-- (void)saveToArchive:(struct SheetUIStateArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; struct Point {} *x3; float x4; float x5; struct Point {} *x6; boolx7; boolx8; boolx9; unsigned int x10; struct Size {} *x11; struct Size {} *x12; unsigned int x13; unsigned int x14; int x15; unsigned int x16[1]; }*)arg1 archiver:(id)arg2;
+- (void)saveToArchive:(struct SheetUIStateArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; struct Point {} *x5; float x6; float x7; struct Point {} *x8; bool x9; bool x10; bool x11; unsigned int x12; struct Size {} *x13; struct Size {} *x14; struct SelectionPathArchive {} *x15; }*)arg1 archiver:(id)arg2 context:(id)arg3;
 - (struct CGPoint { float x1; float x2; })scrollPosition;
+- (id)selectionPath;
 - (void)setArchivedDeviceIdiom:(int)arg1;
-- (void)setFormFocusedFieldIndex:(unsigned char)arg1;
-- (void)setFormFocusedRecordIndex:(unsigned short)arg1;
 - (void)setHasPreviousVisibleRect:(BOOL)arg1;
 - (void)setHasVisibleRect:(BOOL)arg1;
 - (void)setPreviousViewScale:(float)arg1;
 - (void)setPreviousVisibleRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (void)setSelectionPath:(id)arg1;
 - (void)setViewScale:(float)arg1;
 - (void)setVisibleRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (float)viewScale;

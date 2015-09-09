@@ -2,10 +2,8 @@
    Image: /System/Library/PrivateFrameworks/WebUI.framework/WebUI
  */
 
-@interface WebUICertificateError : NSObject {
-}
+@interface WebUICertificateError : NSObject
 
-+ (id)applyAuthenticationChain:(struct __CFArray { }*)arg1 toRequest:(id)arg2;
 + (BOOL)canAuthenticateAgainstProtectionSpace:(id)arg1;
 + (BOOL)isClientCertificateError:(int)arg1;
 + (BOOL)isServerCertificateError:(int)arg1;

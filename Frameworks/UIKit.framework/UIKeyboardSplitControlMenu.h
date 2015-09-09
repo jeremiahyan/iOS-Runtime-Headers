@@ -2,25 +2,30 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSMutableArray;
-
 @interface UIKeyboardSplitControlMenu : UIKeyboardMenuView {
+    id /* block */ _finishSplitTransitionBlock;
+    NSMutableArray *m_menuOptions;
     struct CGSize { 
         float width; 
         float height; 
-    NSMutableArray *m_menuOptions;
     } m_preferredSize;
 }
+
+@property (nonatomic, copy) id /* block */ finishSplitTransitionBlock;
 
 + (id)activeInstance;
 + (id)sharedInstance;
 
 - (void)dealloc;
 - (int)defaultSelectedIndex;
+- (void)didFinishSplitTransition;
 - (void)didSelectItemAtIndex:(int)arg1;
+- (id /* block */)finishSplitTransitionBlock;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (int)numberOfItems;
 - (struct CGSize { float x1; float x2; })preferredSize;
+- (void)setFinishSplitTransitionBlock:(id /* block */)arg1;
+- (void)setSplitAndUndocked:(BOOL)arg1;
 - (id)titleForItemAtIndex:(int)arg1;
 
 @end

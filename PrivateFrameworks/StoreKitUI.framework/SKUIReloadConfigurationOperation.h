@@ -2,23 +2,21 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSObject<OS_dispatch_queue>;
-
 @interface SKUIReloadConfigurationOperation : NSOperation {
     NSObject<OS_dispatch_queue> *_dispatchQueue;
-    id _outputBlock;
+    id /* block */ _outputBlock;
+    SSURLBag *_urlBag;
 }
 
-@property(copy) id outputBlock;
+@property (retain) SSURLBag *URLBag;
+@property (copy) id /* block */ outputBlock;
 
 - (void).cxx_destruct;
+- (id)URLBag;
 - (id)init;
 - (void)main;
-- (id)outputBlock;
-- (void)setOutputBlock:(id)arg1;
+- (id /* block */)outputBlock;
+- (void)setOutputBlock:(id /* block */)arg1;
+- (void)setURLBag:(id)arg1;
 
 @end

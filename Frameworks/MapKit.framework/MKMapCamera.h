@@ -2,23 +2,22 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@class MKMapView;
-
-@interface MKMapCamera : NSObject <NSSecureCoding, NSCopying> {
+@interface MKMapCamera : NSObject <NSCopying, NSSecureCoding> {
+    double _altitude;
     struct { 
         double latitude; 
         double longitude; 
-    double _altitude;
     } _centerCoordinate;
     double _heading;
     MKMapView *_mapView;
-    float _pitch;
+    double _pitch;
 }
 
-@property double altitude;
-@property struct { double x1; double x2; } centerCoordinate;
-@property double heading;
-@property float pitch;
+@property (nonatomic) double altitude;
+@property (nonatomic) struct { double x1; double x2; } centerCoordinate;
+@property (nonatomic) double heading;
+@property (nonatomic) float pitch;
+@property (getter=_precisePitch, setter=_setPrecisePitch:, nonatomic) double precisePitch;
 
 + (id)_cameraLookingAtGEOMapRect:(const struct { struct { double x_1_1_1; double x_1_1_2; } x1; struct { double x_2_1_1; double x_2_1_2; } x2; }*)arg1 aspectRatio:(float)arg2;
 + (id)_cameraLookingAtMapRect:(struct { struct { double x_1_1_1; double x_1_1_2; } x1; struct { double x_2_1_1; double x_2_1_2; } x2; })arg1 forViewSize:(struct CGSize { float x1; float x2; })arg2;
@@ -29,7 +28,9 @@
 - (void).cxx_destruct;
 - (struct { struct { double x_1_1_1; double x_1_1_2; } x1; struct { double x_2_1_1; double x_2_1_2; } x2; })_enclosingGEOMapRectForAspectRatio:(float)arg1;
 - (id)_mapView;
+- (double)_precisePitch;
 - (void)_setMapView:(id)arg1;
+- (void)_setPrecisePitch:(double)arg1;
 - (void)_updateState;
 - (BOOL)_validate;
 - (double)altitude;

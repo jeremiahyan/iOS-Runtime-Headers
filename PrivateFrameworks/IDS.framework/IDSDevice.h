@@ -2,26 +2,84 @@
    Image: /System/Library/PrivateFrameworks/IDS.framework/IDS
  */
 
-@class NSString, _IDSDevice;
-
 @interface IDSDevice : NSObject {
     _IDSDevice *_internal;
 }
 
-@property(readonly) NSString * modelIdentifier;
-@property(readonly) NSString * name;
-@property(readonly) NSString * service;
+@property (getter=isConnected, nonatomic, readonly) BOOL connected;
+@property (nonatomic, readonly, retain) NSString *deviceColor;
+@property (nonatomic, readonly, retain) NSString *enclosureColor;
+@property (nonatomic, readonly, retain) NSArray *identities;
+@property (nonatomic, readonly) BOOL isDefaultPairedDevice;
+@property (nonatomic, readonly, retain) NSDate *lastActivityDate;
+@property (nonatomic, readonly, retain) NSArray *linkedUserURIs;
+@property (nonatomic, readonly) BOOL locallyPresent;
+@property (nonatomic, readonly, retain) NSString *modelIdentifier;
+@property (nonatomic, readonly, retain) NSString *name;
+@property (getter=isNearby, nonatomic, readonly) BOOL nearby;
+@property (setter=setNSUUID:, nonatomic, retain) NSUUID *nsuuid;
+@property (nonatomic, readonly) unsigned int pairingProtocolVersion;
+@property (nonatomic, readonly) NSString *productBuildVersion;
+@property (nonatomic, readonly) NSString *productName;
+@property (nonatomic, readonly) NSString *productVersion;
+@property (nonatomic, readonly, retain) NSData *pushToken;
+@property (nonatomic, readonly, retain) NSString *service;
+@property (nonatomic, readonly) BOOL supportsHandoff;
+@property (nonatomic, readonly) BOOL supportsMMSRelay;
+@property (nonatomic, readonly) BOOL supportsPhoneCalls;
+@property (nonatomic, readonly) BOOL supportsSMSRelay;
+@property (nonatomic, readonly) BOOL supportsTethering;
+@property (nonatomic, readonly) BOOL supportsiCloudPairing;
+@property (nonatomic, readonly, retain) NSString *uniqueID;
+
+// Image: /System/Library/PrivateFrameworks/IDS.framework/IDS
 
 - (void)_addIdentity:(id)arg1;
-- (id)_identities;
 - (id)_initWithDictionary:(id)arg1;
 - (id)_internal;
-- (id)_pushToken;
+- (void)_setAccount:(id)arg1;
+- (void)_updateNSUUID:(id)arg1;
+- (void)cleanupStreamPairWithInputStream:(id)arg1 outputStream:(id)arg2;
+- (void)closeSocket:(int)arg1;
+- (void)closeSocketForDomain:(id)arg1;
 - (void)dealloc;
 - (id)description;
+- (id)deviceColor;
+- (id)enclosureColor;
+- (void)establishStreamPairWithOptions:(id)arg1 completionHandler:(id /* block */)arg2 onQueue:(id)arg3;
+- (id)identities;
 - (id)initWithDictionary:(id)arg1;
+- (BOOL)isConnected;
+- (BOOL)isDefaultLocalDevice;
+- (BOOL)isDefaultPairedDevice;
+- (BOOL)isNearby;
+- (id)lastActivityDate;
+- (id)linkedUserURIs;
+- (BOOL)locallyPresent;
 - (id)modelIdentifier;
 - (id)name;
+- (id)nsuuid;
+- (int)openSocketForDomain:(id)arg1;
+- (int)openSocketForDomain:(id)arg1 transportType:(int)arg2;
+- (void)openSocketWithOptions:(id)arg1 completionHandler:(id /* block */)arg2 onQueue:(id)arg3;
+- (unsigned int)pairingProtocolVersion;
+- (id)productBuildVersion;
+- (id)productName;
+- (id)productVersion;
+- (id)pushToken;
 - (id)service;
+- (void)setNSUUID:(id)arg1;
+- (int)socketForDomain:(id)arg1;
+- (BOOL)supportsHandoff;
+- (BOOL)supportsMMSRelay;
+- (BOOL)supportsPhoneCalls;
+- (BOOL)supportsSMSRelay;
+- (BOOL)supportsTethering;
+- (BOOL)supportsiCloudPairing;
+- (id)uniqueID;
+
+// Image: /System/Library/PrivateFrameworks/CommunicationsSetupUI.framework/CommunicationsSetupUI
+
+- (BOOL)isWatch;
 
 @end

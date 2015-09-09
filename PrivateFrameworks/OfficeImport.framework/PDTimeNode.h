@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSMutableArray, NSString, PDIterate;
-
 @interface PDTimeNode : NSObject {
     double mAcceleration;
     int mAnimationPresetClass;
@@ -38,6 +36,7 @@
 - (BOOL)hasRestartType;
 - (BOOL)hasType;
 - (id)init;
+- (BOOL)isEqual:(id)arg1;
 - (id)iterate;
 - (int)presetId;
 - (int)presetSubType;

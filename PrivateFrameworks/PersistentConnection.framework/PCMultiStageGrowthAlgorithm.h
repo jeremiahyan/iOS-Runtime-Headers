@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/PersistentConnection.framework/PersistentConnection
  */
 
-@class NSDate, NSDictionary, NSString;
-
 @interface PCMultiStageGrowthAlgorithm : NSObject <PCGrowthAlgorithm> {
     NSString *_algorithmName;
     unsigned int _countOfGrowthActions;
@@ -19,12 +17,16 @@
     double _minimumKeepAliveInterval;
 }
 
-@property(readonly) NSDictionary * cacheInfo;
-@property(readonly) unsigned int countOfGrowthActions;
-@property(readonly) double currentKeepAliveInterval;
-@property(readonly) NSString * loggingIdentifier;
-@property double maximumKeepAliveInterval;
-@property double minimumKeepAliveInterval;
+@property (nonatomic, readonly, copy) NSDictionary *cacheInfo;
+@property (nonatomic, readonly) unsigned int countOfGrowthActions;
+@property (nonatomic, readonly) double currentKeepAliveInterval;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) NSString *loggingIdentifier;
+@property (nonatomic) double maximumKeepAliveInterval;
+@property (nonatomic) double minimumKeepAliveInterval;
+@property (readonly) Class superclass;
 
 + (void)_loadDefaultValue:(double*)arg1 forKey:(struct __CFString { }*)arg2;
 + (void)_loadDefaults;
@@ -33,8 +35,8 @@
 - (void)_processInitialGrowthAction:(int)arg1;
 - (void)_processRefinedGrowthAction:(int)arg1;
 - (void)_processSteadyStateAction:(int)arg1;
-- (void)_resetAlgorithmToInterval:(double)arg1 stage:(int)arg2;
 - (void)_resetAlgorithmToInterval:(double)arg1;
+- (void)_resetAlgorithmToInterval:(double)arg1 stage:(int)arg2;
 - (void)_setCurrentKeepAliveInterval:(double)arg1;
 - (double)_steadyStateTimeout;
 - (id)_stringForAction:(int)arg1;

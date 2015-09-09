@@ -2,11 +2,9 @@
    Image: /System/Library/PrivateFrameworks/ScreenReaderCore.framework/ScreenReaderCore
  */
 
-@class NSLock;
-
 @interface SCRCTargetSelectorTimer : SCRCTargetSelector {
     BOOL _createdTimer;
-    BOOL _isCancelled;
+    BOOL _isCanceled;
     BOOL _isPending;
     id _key;
     NSLock *_lock;
@@ -23,11 +21,12 @@
 - (void)_dispatchSCRCThread;
 - (void)cancel;
 - (void)dealloc;
-- (void)dispatchAfterDelay:(double)arg1 withObject:(id)arg2;
 - (void)dispatchAfterDelay:(double)arg1;
-- (id)initWithTarget:(id)arg1 selector:(SEL)arg2 threadKey:(id)arg3;
+- (void)dispatchAfterDelay:(double)arg1 withObject:(id)arg2;
 - (id)initWithTarget:(id)arg1 selector:(SEL)arg2;
+- (id)initWithTarget:(id)arg1 selector:(SEL)arg2 threadKey:(id)arg3;
 - (void)invalidate;
+- (BOOL)isCanceled;
 - (BOOL)isCancelled;
 - (BOOL)isPending;
 - (oneway void)release;

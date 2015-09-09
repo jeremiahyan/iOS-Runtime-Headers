@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/MediaPlayerUI.framework/MediaPlayerUI
  */
 
-@class MPVolumeController, NSTimer, UISlider, UIView;
-
 @interface MPUMediaControlsVolumeView : UIView <MPVolumeControllerDelegate> {
     UISlider *_slider;
     int _style;
@@ -15,9 +13,13 @@
     UIView *_warningView;
 }
 
-@property(readonly) UISlider * slider;
-@property(readonly) int style;
-@property(readonly) MPVolumeController * volumeController;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) UISlider *slider;
+@property (nonatomic, readonly) int style;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) MPVolumeController *volumeController;
 
 - (void).cxx_destruct;
 - (void)_beginBlinkingWarningView;
@@ -43,10 +45,10 @@
 - (id)slider;
 - (int)style;
 - (void)updateSystemVolumeLevel;
+- (id)volumeController;
 - (void)volumeController:(id)arg1 EUVolumeLimitDidChange:(float)arg2;
 - (void)volumeController:(id)arg1 EUVolumeLimitEnforcedDidChange:(BOOL)arg2;
 - (void)volumeController:(id)arg1 volumeValueDidChange:(float)arg2;
 - (void)volumeController:(id)arg1 volumeWarningStateDidChange:(int)arg2;
-- (id)volumeController;
 
 @end

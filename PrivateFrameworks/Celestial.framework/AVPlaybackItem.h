@@ -2,20 +2,18 @@
    Image: /System/Library/PrivateFrameworks/Celestial.framework/Celestial
  */
 
-@class AVItem, NSDictionary;
-
 @interface AVPlaybackItem : NSObject {
+    AVItem *_avItem;
+    double _bookmarkTime;
     struct { 
         long long value; 
         int timescale; 
         unsigned int flags; 
         long long epoch; 
+    } _currentDuration;
     struct CGSize { 
         float width; 
         float height; 
-    AVItem *_avItem;
-    double _bookmarkTime;
-    } _currentDuration;
     } _currentSize;
     BOOL _currentSizeIsValid;
     id _delegate;
@@ -29,14 +27,14 @@
     NSDictionary *_streamStateNotificationInfo;
 }
 
-@property(retain) NSDictionary * inspectionNotificationInfo;
+@property (retain) NSDictionary *inspectionNotificationInfo;
 @property BOOL isInPlayQueue;
-@property(readonly) BOOL isPreparingForInspection;
+@property (readonly) BOOL isPreparingForInspection;
 @property BOOL isPreparingForInspectionAccurateDuration;
 @property BOOL isPreparingForInspectionInitialSamples;
-@property(retain) NSDictionary * lyricsNotificationInfo;
-@property(retain) NSDictionary * playToEndNotificationInfo;
-@property(retain) NSDictionary * streamStateNotificationInfo;
+@property (retain) NSDictionary *lyricsNotificationInfo;
+@property (retain) NSDictionary *playToEndNotificationInfo;
+@property (retain) NSDictionary *streamStateNotificationInfo;
 
 + (id)convertFigTimeDictionaryToTimeIntervalWithKey:(id)arg1 stringURLToNSURLWithKey:(id)arg2 inArrayOfDictionaries:(id)arg3;
 

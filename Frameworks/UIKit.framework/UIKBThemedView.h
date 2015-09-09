@@ -2,37 +2,40 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class CALayer, NSString;
-
 @interface UIKBThemedView : UIView <UIKBCacheableView> {
+    BOOL _active;
+    CALayer *_background;
+    CALayer *_borders;
     struct UIEdgeInsets { 
         float top; 
         float left; 
         float bottom; 
         float right; 
-    BOOL _active;
-    CALayer *_background;
-    CALayer *_borders;
     } _cacheInsets;
     BOOL _lightKeyboard;
     int _style;
     BOOL _usePersistentCaching;
 }
 
-@property BOOL active;
-@property(readonly) BOOL cacheDeferable;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } cacheInsets;
-@property(readonly) NSString * cacheKey;
-@property(readonly) float cachedWidth;
-@property(readonly) BOOL keepNonPersistent;
-@property int style;
-@property BOOL usePersistentCaching;
+@property (nonatomic) BOOL active;
+@property (nonatomic, readonly) BOOL cacheDeferable;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } cacheInsets;
+@property (nonatomic, readonly) NSString *cacheKey;
+@property (nonatomic, readonly) float cachedWidth;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) BOOL keepNonPersistent;
+@property (nonatomic) int style;
+@property (readonly) Class superclass;
+@property (nonatomic) BOOL usePersistentCaching;
 
 - (BOOL)_canDrawContent;
 - (BOOL)_hasInsets;
 - (void)_popuplateLayer:(id)arg1 withContents:(id)arg2;
 - (void)_setRenderConfig:(id)arg1;
 - (BOOL)active;
+- (id)borderFilterTypeForCurrentStyle;
 - (BOOL)cacheDeferable;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })cacheInsets;
 - (id)cacheKey;

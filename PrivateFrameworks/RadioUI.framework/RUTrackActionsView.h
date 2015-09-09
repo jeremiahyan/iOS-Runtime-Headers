@@ -2,36 +2,38 @@
    Image: /System/Library/PrivateFrameworks/RadioUI.framework/RadioUI
  */
 
-@class <RUTrackActionsDelegate>, NSString, UIImage, UITableView, _RUTrackActionsHeaderView;
-
-@interface RUTrackActionsView : UIView <UITableViewDataSource, UITableViewDelegate, RUTrackActioning> {
-    NSString *_artistText;
-    UIImage *_artworkImage;
+@interface RUTrackActionsView : UIView <RUTrackActioning, UITableViewDataSource, UITableViewDelegate> {
     int _enabledActions;
     _RUTrackActionsHeaderView *_headerView;
     int _onActions;
     BOOL _presentedInPopover;
-    NSString *_songText;
     UITableView *_tableView;
     <RUTrackActionsDelegate> *_trackActionsDelegate;
 }
 
-@property(copy) NSString * artistText;
-@property(retain) UIImage * artworkImage;
-@property(readonly) int cancelIndex;
-@property(readonly) struct CGSize { float x1; float x2; } contentSize;
-@property int enabledActions;
-@property int onActions;
-@property(getter=isPresentedInPopover) BOOL presentedInPopover;
-@property(copy) NSString * songText;
-@property <RUTrackActionsDelegate> * trackActionsDelegate;
+@property (nonatomic, copy) NSString *artistText;
+@property (nonatomic, retain) UIImage *artworkImage;
+@property (nonatomic, readonly) int cancelIndex;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } contentSize;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) int enabledActions;
+@property (readonly) unsigned int hash;
+@property (nonatomic) int onActions;
+@property (getter=isPresentedInPopover, nonatomic) BOOL presentedInPopover;
+@property (nonatomic, copy) NSString *songText;
+@property (readonly) Class superclass;
+@property (nonatomic) <RUTrackActionsDelegate> *trackActionsDelegate;
 
 + (struct CGSize { float x1; float x2; })artworkSize;
 
 - (void).cxx_destruct;
 - (id)_accessoryImageForAction:(int)arg1 highlighted:(BOOL)arg2;
 - (struct UIOffset { float x1; float x2; })_accessoryImageOffsetForAction:(int)arg1;
+- (void)_contentSizeCategoryDidChangeNotification:(id)arg1;
+- (void)_didChangeContentSize;
 - (id)_titleForAction:(int)arg1;
+- (void)_updateHeaderViewHeight;
 - (int)actionForButtonIndex:(int)arg1;
 - (id)artistText;
 - (id)artworkImage;
@@ -43,6 +45,7 @@
 - (BOOL)isPresentedInPopover;
 - (void)layoutSubviews;
 - (int)onActions;
+- (void)reloadData;
 - (void)scrollViewDidScroll:(id)arg1;
 - (void)setArtistText:(id)arg1;
 - (void)setArtworkImage:(id)arg1;
@@ -61,5 +64,6 @@
 - (id)tableView:(id)arg1 willSelectRowAtIndexPath:(id)arg2;
 - (void)tableViewDidFinishReload:(id)arg1;
 - (id)trackActionsDelegate;
+- (void)traitCollectionDidChange:(id)arg1;
 
 @end

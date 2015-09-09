@@ -2,19 +2,18 @@
    Image: /System/Library/Frameworks/StoreKit.framework/StoreKit
  */
 
-@class NSData, NSDictionary, NSString;
-
 @interface SKPayment : NSObject <NSCopying, NSMutableCopying> {
     id _internal;
 }
 
-@property(readonly) NSString * applicationUsername;
-@property(readonly) NSString * partnerIdentifier;
-@property(readonly) NSString * partnerTransactionIdentifier;
-@property(readonly) NSString * productIdentifier;
-@property(readonly) int quantity;
-@property(readonly) NSData * requestData;
-@property(readonly) NSDictionary * requestParameters;
+@property (nonatomic, readonly, copy) NSString *applicationUsername;
+@property (nonatomic, readonly, copy) NSString *partnerIdentifier;
+@property (nonatomic, readonly, copy) NSString *partnerTransactionIdentifier;
+@property (nonatomic, readonly, copy) NSString *productIdentifier;
+@property (nonatomic, readonly) int quantity;
+@property (nonatomic, readonly, copy) NSData *requestData;
+@property (nonatomic, readonly, copy) NSDictionary *requestParameters;
+@property (nonatomic, readonly) BOOL simulatesAskToBuyInSandbox;
 
 + (id)paymentWithProduct:(id)arg1;
 + (id)paymentWithProductIdentifier:(id)arg1;
@@ -32,5 +31,6 @@
 - (int)quantity;
 - (id)requestData;
 - (id)requestParameters;
+- (BOOL)simulatesAskToBuyInSandbox;
 
 @end

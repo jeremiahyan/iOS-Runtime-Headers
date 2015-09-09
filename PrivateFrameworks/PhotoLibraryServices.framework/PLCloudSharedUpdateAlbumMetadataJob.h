@@ -2,13 +2,11 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
  */
 
-@class NSDictionary;
-
 @interface PLCloudSharedUpdateAlbumMetadataJob : PLCloudSharingJob {
     NSDictionary *_metadata;
 }
 
-@property(retain) NSDictionary * metadata;
+@property (nonatomic, retain) NSDictionary *metadata;
 
 + (void)updateAlbumMetadata:(id)arg1;
 
@@ -18,7 +16,7 @@
 - (void)dealloc;
 - (id)description;
 - (void)encodeToXPCObject:(id)arg1;
-- (id)initFromXPCObject:(id)arg1;
+- (id)initFromXPCObject:(id)arg1 connection:(id)arg2;
 - (id)metadata;
 - (void)run;
 - (void)runDaemonSide;

@@ -7,6 +7,11 @@
     BOOL _networkReachable;
 }
 
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+
 + (id)sharedReachability;
 
 - (void)_reachabilityChanged:(id)arg1;

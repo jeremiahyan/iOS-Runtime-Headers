@@ -6,16 +6,16 @@
     BOOL _enableSharing;
 }
 
-@property BOOL enableSharing;
+@property (nonatomic) BOOL enableSharing;
 
-+ (void)deleteAllLocalSharedAlbumsInLibrary:(id)arg1 keepPendingAlbums:(BOOL)arg2;
++ (void)deleteAllLocalSharedAlbumsInLibrary:(id)arg1 keepPendingAlbums:(BOOL)arg2 withReason:(id)arg3;
 + (void)enableCloudSharing:(BOOL)arg1;
 
 - (long long)daemonOperation;
 - (id)description;
 - (BOOL)enableSharing;
 - (void)encodeToXPCObject:(id)arg1;
-- (id)initFromXPCObject:(id)arg1;
+- (id)initFromXPCObject:(id)arg1 connection:(id)arg2;
 - (void)run;
 - (void)runDaemonSide;
 - (void)setEnableSharing:(BOOL)arg1;

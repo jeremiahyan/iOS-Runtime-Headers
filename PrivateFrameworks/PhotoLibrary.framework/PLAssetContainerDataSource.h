@@ -2,18 +2,20 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibrary.framework/PhotoLibrary
  */
 
-@class <PLAssetContainerList>;
-
-@interface PLAssetContainerDataSource : NSObject {
+@interface PLAssetContainerDataSource : NSObject <PHAssetCollectionDataSource> {
     unsigned int _allAssetsCount;
-    <PLAssetContainerList> *_assetContainerList;
+    PHFetchResult *_assetCollectionsFetchResult;
+    NSMutableDictionary *_assetsFetchResultByAssetCollection;
     BOOL _cachedValuesNeedUpdate;
     unsigned int *_containerCounts;
+    unsigned int _lastAssetCollectionIndex;
 }
 
-@property(readonly) <PLAssetContainerList> * assetContainerList;
-
-+ (id)assetInAssetContainer:(id)arg1 atIndex:(unsigned int)arg2;
+@property (nonatomic, readonly) PHFetchResult *assetCollectionsFetchResult;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (unsigned int)_indexOfNextNonEmptyAssetContainerAfterContainerIndex:(unsigned int)arg1 wrap:(BOOL)arg2;
 - (unsigned int)_indexOfPreviousNonEmptyAssetContainerBeforeContainerIndex:(unsigned int)arg1 wrap:(BOOL)arg2;
@@ -22,23 +24,21 @@
 - (unsigned int)allAssetsCount;
 - (id)assetAtGlobalIndex:(unsigned int)arg1;
 - (id)assetAtIndexPath:(id)arg1;
+- (id)assetCollectionsFetchResult;
 - (id)assetContainerAtIndex:(unsigned int)arg1;
-- (void)assetContainerDidChange:(id)arg1 updateIndexPaths:(id)arg2 preferNextAssetOnDeleteForKeys:(id)arg3;
 - (id)assetContainerForAsset:(id)arg1;
 - (id)assetContainerForAssetGlobalIndex:(unsigned int)arg1;
-- (id)assetContainerList;
-- (void)assetContainerListDidChange:(id)arg1;
-- (id)assetContainerWithObjectID:(id)arg1;
-- (id)assetContainerWithUUID:(id)arg1;
 - (unsigned int)assetCountForContainer:(id)arg1;
 - (unsigned int)assetCountForContainerAtIndex:(unsigned int)arg1;
+- (id)assetInAssetContainer:(id)arg1 atIndex:(unsigned int)arg2;
 - (id)assetWithObjectID:(id)arg1;
-- (id)assetWithUUID:(id)arg1;
-- (unsigned int)containerAssetCountForAssetIndex:(unsigned int)arg1;
+- (id)assetsInAssetCollection:(id)arg1;
+- (id)assetsInAssetCollectionAtIndex:(unsigned int)arg1;
 - (void)dealloc;
 - (id)decrementAssetIndexPath:(id)arg1 insideCurrentAssetContainer:(BOOL)arg2 andWrap:(BOOL)arg3;
 - (unsigned int)decrementGlobalIndex:(unsigned int)arg1 insideCurrentAssetContainer:(BOOL)arg2 andWrap:(BOOL)arg3;
-- (id)fetchAllAssets;
+- (id)description;
+- (id)findNearestIndexPath:(id)arg1 preferNext:(BOOL)arg2;
 - (id)firstAssetIndexPath;
 - (unsigned int)globalIndexForIndexPath:(id)arg1;
 - (unsigned int)globalIndexOfAsset:(id)arg1;
@@ -49,7 +49,10 @@
 - (unsigned int)indexOffsetForAssetContainerAtAssetIndex:(unsigned int)arg1;
 - (id)indexPathForGlobalIndex:(unsigned int)arg1;
 - (id)indexPathOfAsset:(id)arg1;
-- (id)initWithAssetContainerList:(id)arg1;
-- (void)shuffleAssets:(BOOL)arg1 startingAsset:(id)arg2;
+- (id)initWithAssetCollectionsFetchResult:(id)arg1 collectionsAssetsFetchResults:(id)arg2;
+- (id)lastAssetIndexPath;
+- (id)newAssetsFetchResults;
+- (id)pl_fetchAllAssets;
+- (void)viewControllerPhotoLibraryDidChange:(id)arg1;
 
 @end

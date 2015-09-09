@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/SpringBoardUIServices.framework/SpringBoardUIServices
  */
 
-@class SBPasscodeKeyboard, SBUIAlphanumericPasscodeEntryField, SBUIRingViewLabelButton, UILabel, UIView;
-
 @interface SBUIPasscodeLockViewWithKeyboard : SBUIPasscodeLockViewBase <SBUIPasscodeEntryFieldDelegate> {
     SBUIAlphanumericPasscodeEntryField *_alphaEntryField;
     BOOL _disableAnimationsDuringMinMax;
@@ -20,11 +18,16 @@
     UIView *_statusFieldToTopOrEmergencyCallBottomFiller;
     UILabel *_statusSubtitleView;
     BOOL _triedToMinMaxWhileRotating;
+    BOOL _usesLightStyle;
     BOOL _wasMinimizedWhenAnimationStarted;
 }
 
-@property(retain) UILabel * statusField;
-@property(retain) UILabel * statusSubtitleView;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) UILabel *statusField;
+@property (nonatomic, retain) UILabel *statusSubtitleView;
+@property (readonly) Class superclass;
 
 - (void)_acceptOrCancelReturnKeyPress;
 - (BOOL)_canMinMaxKeyboard;
@@ -50,11 +53,10 @@
 - (float)_statusTitleWidth;
 - (void)_toggleForEmergencyCall;
 - (void)_toggleForStatusField;
-- (void)_updateStatusText:(id)arg1 subtitle:(id)arg2 animated:(BOOL)arg3;
 - (float)backgroundAlpha;
 - (BOOL)becomeFirstResponder;
 - (void)dealloc;
-- (id)init;
+- (id)initWithLightStyle:(BOOL)arg1;
 - (void)layoutSubviews;
 - (id)passcode;
 - (BOOL)passcodeEntryField:(id)arg1 shouldInsertText:(id)arg2;
@@ -70,5 +72,6 @@
 - (void)setStatusSubtitleView:(id)arg1;
 - (id)statusField;
 - (id)statusSubtitleView;
+- (void)updateStatusText:(id)arg1 subtitle:(id)arg2 animated:(BOOL)arg3;
 
 @end

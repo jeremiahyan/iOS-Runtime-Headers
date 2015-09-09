@@ -2,11 +2,14 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIWebOverflowScrollView;
-
 @interface UIWebOverflowScrollListener : NSObject <UIScrollViewDelegate> {
     UIWebOverflowScrollView *_scrollView;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)_didCompleteScrolling;
 - (id)initWithScrollView:(id)arg1;

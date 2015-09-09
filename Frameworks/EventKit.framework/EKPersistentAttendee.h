@@ -2,22 +2,24 @@
    Image: /System/Library/Frameworks/EventKit.framework/EventKit
  */
 
-@class NSDate;
+@interface EKPersistentAttendee : EKPersistentParticipant
 
-@interface EKPersistentAttendee : EKPersistentParticipant {
-}
-
-@property(copy) NSDate * lastModified;
-@property int participantRole;
-@property int participantStatus;
-@property int participantType;
-@property int pendingStatus;
+@property (nonatomic) BOOL commentChanged;
+@property (nonatomic, copy) NSDate *lastModified;
+@property (nonatomic) int participantRole;
+@property (nonatomic) int participantStatus;
+@property (nonatomic) int participantType;
+@property (nonatomic) int pendingStatus;
+@property (nonatomic) BOOL statusChanged;
 
 + (id)attendeeWithEmailAddress:(id)arg1 name:(id)arg2;
 + (id)attendeeWithName:(id)arg1 emailAddress:(id)arg2 address:(id)arg3;
 + (id)defaultPropertiesToLoad;
 + (id)relations;
 
+- (void)_setFlag:(unsigned int)arg1 value:(BOOL)arg2;
+- (BOOL)_valueForFlag:(unsigned int)arg1;
+- (BOOL)commentChanged;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (int)entityType;
@@ -30,11 +32,14 @@
 - (int)participantStatus;
 - (int)participantType;
 - (int)pendingStatus;
+- (void)setCommentChanged:(BOOL)arg1;
 - (void)setLastModified:(id)arg1;
 - (void)setOwner:(id)arg1;
 - (void)setParticipantRole:(int)arg1;
 - (void)setParticipantStatus:(int)arg1;
 - (void)setParticipantType:(int)arg1;
 - (void)setPendingStatus:(int)arg1;
+- (void)setStatusChanged:(BOOL)arg1;
+- (BOOL)statusChanged;
 
 @end

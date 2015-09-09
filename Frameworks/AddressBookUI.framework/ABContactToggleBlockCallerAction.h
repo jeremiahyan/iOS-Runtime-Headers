@@ -2,12 +2,10 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@interface ABContactToggleBlockCallerAction : ABContactAction <UIActionSheetDelegate> {
-}
+@interface ABContactToggleBlockCallerAction : ABContactAction
 
-@property(readonly) BOOL isBlocked;
+@property (nonatomic, readonly) BOOL isBlocked;
 
-- (void)actionSheet:(id)arg1 clickedButtonAtIndex:(int)arg2;
 - (id)allNumbersAndEmails;
 - (void)block;
 - (BOOL)isBlocked;

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/BluetoothManager.framework/BluetoothManager
  */
 
-@class NSMutableDictionary;
-
 @interface BluetoothManager : NSObject {
     struct BTAccessoryManagerImpl { } *_accessoryManager;
     BOOL _audioConnected;
@@ -19,13 +17,16 @@
     struct BTSessionImpl { } *_session;
 }
 
+// Image: /System/Library/PrivateFrameworks/BluetoothManager.framework/BluetoothManager
+
 + (int)lastInitError;
++ (void)setSharedInstanceQueue:(id)arg1;
 + (id)sharedInstance;
 
 - (struct BTAccessoryManagerImpl { }*)_accessoryManager;
 - (void)_advertisingChanged;
 - (BOOL)_attach:(id)arg1;
-- (void)_cleanup:(BOOL)arg1;
+- (void)_cleanup;
 - (void)_connectabilityChanged;
 - (void)_connectedStatusChanged;
 - (void)_discoveryStateChanged;
@@ -43,8 +44,8 @@
 - (BOOL)audioConnected;
 - (BOOL)available;
 - (void)cancelPairing;
-- (void)connectDevice:(id)arg1 withServices:(unsigned int)arg2;
 - (void)connectDevice:(id)arg1;
+- (void)connectDevice:(id)arg1 withServices:(unsigned int)arg2;
 - (BOOL)connectable;
 - (BOOL)connected;
 - (id)connectedDevices;
@@ -61,11 +62,11 @@
 - (BOOL)isAnyoneScanning;
 - (BOOL)isDiscoverable;
 - (BOOL)isServiceSupported:(unsigned int)arg1;
-- (int)localDeviceSupportsService:(unsigned int)arg1;
+- (id)localAddress;
 - (id)pairedDevices;
 - (void)postNotification:(id)arg1;
-- (void)postNotificationName:(id)arg1 object:(id)arg2 error:(id)arg3;
 - (void)postNotificationName:(id)arg1 object:(id)arg2;
+- (void)postNotificationName:(id)arg1 object:(id)arg2 error:(id)arg3;
 - (int)powerState;
 - (BOOL)powered;
 - (void)resetDeviceScanning;
@@ -83,5 +84,9 @@
 - (void)startVoiceCommand:(id)arg1;
 - (void)unpairDevice:(id)arg1;
 - (BOOL)wasDeviceDiscovered:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/GameKitServices.framework/GameKitServices
+
+- (int)localDeviceSupportsService:(unsigned int)arg1;
 
 @end

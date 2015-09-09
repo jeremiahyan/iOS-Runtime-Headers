@@ -2,8 +2,12 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface KNBuildAppear : KNAnimationEffect <KNChunkableBuildAnimator> {
-}
+@interface KNBuildAppear : KNAnimationEffect <KNChunkableBuildAnimator>
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (int)animationCategory;
 + (id)animationFilter;

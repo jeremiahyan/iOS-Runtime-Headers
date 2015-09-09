@@ -2,13 +2,12 @@
    Image: /System/Library/PrivateFrameworks/MusicCarDisplayUI.framework/MusicCarDisplayUI
  */
 
-@class <MCDCarDisplayServiceProvider>, MCDActionSheetController, MCDButton, MCDNowPlayingViewController, MPAVController, MPMediaQuery, NSArray, NSString, NSURL, UIImage, UILabel;
-
 @interface MCDMusicNowPlayingViewController : UIViewController <AFContextProvider, MCDNowPlayingViewControllerDataSource, MCDNowPlayingViewControllerDelegate> {
-    MCDActionSheetController *_actionSheetController;
+    UIAlertController *_actionSheetAlertController;
     MPMediaQuery *_albumQuery;
     NSArray *_controlPages;
     unsigned int _currentPageIndex;
+    BOOL _isExplicitTrack;
     BOOL _isLive;
     NSString *_nowPlayingAlbum;
     UIImage *_nowPlayingAlbumArt;
@@ -16,16 +15,19 @@
     NSString *_nowPlayingTitle;
     MCDNowPlayingViewController *_nowPlayingViewController;
     MPAVController *_player;
-    NSURL *_retrievalURL;
     UILabel *_rightTitleLabel;
     <MCDCarDisplayServiceProvider> *_serviceProvider;
+    NSTimer *_updateTimer;
     int _viewMode;
-    MCDButton *_wishlistButton;
 }
 
-@property(retain) NSArray * controlPages;
-@property unsigned int currentPageIndex;
-@property int viewMode;
+@property (nonatomic, retain) NSArray *controlPages;
+@property (nonatomic) unsigned int currentPageIndex;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+@property (nonatomic) int viewMode;
 
 - (void).cxx_destruct;
 - (void)_itemChanged:(id)arg1;
@@ -33,15 +35,12 @@
 - (void)_itemStoreIDDidChangeNotification:(id)arg1;
 - (void)_itemTitlesDidChangeNotification:(id)arg1;
 - (void)_playbackContentsChanged:(id)arg1;
-- (void)_playerTick:(id)arg1;
+- (void)_playbackStateChanged:(id)arg1;
+- (void)_playerTick;
 - (void)_presentNowPlayingInfo;
 - (void)_registerForNotifications;
-- (void)_setAlbumArtWithURL:(id)arg1;
 - (void)_setPlayerRepeatType:(unsigned int)arg1;
 - (void)_unregisterForNotifications;
-- (void)_updatePlaymodesForRadio;
-- (void)_updateWishlistString;
-- (void)_wishlistPressed:(id)arg1;
 - (id)albumTextForNowPlayingController:(id)arg1;
 - (BOOL)allowContextProvider:(id)arg1;
 - (id)artistTextForNowPlayingController:(id)arg1;
@@ -65,10 +64,12 @@
 - (BOOL)nowPlayingViewControllerCanShuffle:(id)arg1;
 - (void)nowPlayingViewControllerCreate:(id)arg1;
 - (BOOL)nowPlayingViewControllerIsPlaying:(id)arg1;
+- (BOOL)nowPlayingViewControllerIsShowingExplicitTrack:(id)arg1;
 - (BOOL)nowPlayingViewControllerShouldUseWishlist:(id)arg1;
 - (void)nowPlayingViewControllerToggleRepeat:(id)arg1;
 - (void)nowPlayingViewControllerToggleShuffle:(id)arg1;
 - (double)playbackDurationForNowPlayingViewController:(id)arg1 withElapsedTime:(out double*)arg2;
+- (id)preferredFocusedItem;
 - (id)repeatStringForNowPlayingViewController:(id)arg1;
 - (unsigned int)repeatTypeForNowPlayingViewController:(id)arg1;
 - (void)setControlPages:(id)arg1;

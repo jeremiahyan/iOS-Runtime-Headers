@@ -2,23 +2,30 @@
    Image: /System/Library/PrivateFrameworks/Sharing.framework/Sharing
  */
 
-@class <SFAirDropDiscoveryActionSheetDelegate>, <SFAirDropDiscoveryControllerDelegate>, UIActionSheet;
-
 @interface SFAirDropDiscoveryController : NSObject <UIActionSheetDelegate> {
     UIActionSheet *_actionSheet;
-    <SFAirDropDiscoveryActionSheetDelegate> *_actionSheetDelegate;
+    id _actionSheetDelegate;
     struct __SFOperation { } *_controller;
-    <SFAirDropDiscoveryControllerDelegate> *_delegate;
+    id _delegate;
     int _discoverableMode;
+    BOOL _isLegacyDevice;
+    BOOL _isLegacyModeEnabled;
+    BOOL _isLegacyModeSettable;
     BOOL _isVisible;
 }
 
-@property <SFAirDropDiscoveryActionSheetDelegate> * actionSheetDelegate;
-@property <SFAirDropDiscoveryControllerDelegate> * delegate;
+@property <SFAirDropDiscoveryActionSheetDelegate> *actionSheetDelegate;
+@property (readonly, copy) NSString *debugDescription;
+@property <SFAirDropDiscoveryControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
 @property int discoverableMode;
-@property(getter=isVisible,readonly) BOOL visible;
+@property (readonly) unsigned int hash;
+@property (getter=isLegacyDevice, readonly) BOOL legacyDevice;
+@property (getter=isLegacyModeEnabled) BOOL legacyModeEnabled;
+@property (getter=isLegacyModeSettable, readonly) BOOL legacyModeSettable;
+@property (readonly) Class superclass;
+@property (getter=isVisible, readonly) BOOL visible;
 
-- (void).cxx_destruct;
 - (void)actionSheet:(id)arg1 clickedButtonAtIndex:(int)arg2;
 - (void)actionSheet:(id)arg1 didDismissWithButtonIndex:(int)arg2;
 - (void)actionSheet:(id)arg1 willDismissWithButtonIndex:(int)arg2;
@@ -30,10 +37,14 @@
 - (id)discoverableModeToString:(int)arg1;
 - (void)handleOperationCallback:(struct __SFOperation { }*)arg1 event:(long)arg2 withResults:(id)arg3;
 - (id)init;
+- (BOOL)isLegacyDevice;
+- (BOOL)isLegacyModeEnabled;
+- (BOOL)isLegacyModeSettable;
 - (BOOL)isVisible;
 - (int)operationDiscoverableModeToInteger:(id)arg1;
 - (void)setActionSheetDelegate:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setDiscoverableMode:(int)arg1;
+- (void)setLegacyModeEnabled:(BOOL)arg1;
 
 @end

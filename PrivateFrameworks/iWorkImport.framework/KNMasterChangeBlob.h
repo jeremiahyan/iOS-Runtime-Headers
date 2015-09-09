@@ -2,13 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class KNBodyPlaceholderInfo, KNMasterSlide, KNSlide, KNSlideStyle, KNTitlePlaceholderInfo, NSArray;
-
 @interface KNMasterChangeBlob : NSObject {
     KNBodyPlaceholderInfo *mBodyPlaceholder;
     NSArray *mChildInfos;
@@ -18,12 +11,12 @@
     KNTitlePlaceholderInfo *mTitlePlaceholder;
 }
 
-@property(retain) KNBodyPlaceholderInfo * bodyPlaceholder;
-@property(retain) NSArray * childInfos;
-@property(retain) KNMasterSlide * master;
-@property(retain) KNSlide * slide;
-@property(retain) KNSlideStyle * slideStyle;
-@property(retain) KNTitlePlaceholderInfo * titlePlaceholder;
+@property (nonatomic, retain) KNBodyPlaceholderInfo *bodyPlaceholder;
+@property (nonatomic, retain) NSArray *childInfos;
+@property (nonatomic, retain) KNMasterSlide *master;
+@property (nonatomic, retain) KNSlide *slide;
+@property (nonatomic, retain) KNSlideStyle *slideStyle;
+@property (nonatomic, retain) KNTitlePlaceholderInfo *titlePlaceholder;
 
 + (id)blobWithSlide:(id)arg1;
 
@@ -31,9 +24,9 @@
 - (id)childInfos;
 - (void)dealloc;
 - (id)description;
-- (id)initWithArchive:(const struct MasterChangeBlobArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; struct Reference {} *x3; struct Reference {} *x4; struct Reference {} *x5; struct Reference {} *x6; struct Reference {} *x7; struct Reference {} *x8; struct RepeatedPtrField<TSP::Reference> { void **x_9_1_1; int x_9_1_2; int x_9_1_3; int x_9_1_4; } x9; int x10; unsigned int x11[1]; }*)arg1 unarchiver:(id)arg2;
+- (id)initWithArchive:(const struct MasterChangeBlobArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; struct Reference {} *x5; struct Reference {} *x6; struct Reference {} *x7; struct Reference {} *x8; struct Reference {} *x9; struct Reference {} *x10; struct RepeatedPtrField<TSP::Reference> { void **x_11_1_1; int x_11_1_2; int x_11_1_3; int x_11_1_4; } x11; }*)arg1 unarchiver:(id)arg2;
 - (id)master;
-- (void)saveToArchive:(struct MasterChangeBlobArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; struct Reference {} *x3; struct Reference {} *x4; struct Reference {} *x5; struct Reference {} *x6; struct Reference {} *x7; struct Reference {} *x8; struct RepeatedPtrField<TSP::Reference> { void **x_9_1_1; int x_9_1_2; int x_9_1_3; int x_9_1_4; } x9; int x10; unsigned int x11[1]; }*)arg1 archiver:(id)arg2;
+- (void)saveToArchive:(struct MasterChangeBlobArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; struct Reference {} *x5; struct Reference {} *x6; struct Reference {} *x7; struct Reference {} *x8; struct Reference {} *x9; struct Reference {} *x10; struct RepeatedPtrField<TSP::Reference> { void **x_11_1_1; int x_11_1_2; int x_11_1_3; int x_11_1_4; } x11; }*)arg1 archiver:(id)arg2;
 - (void)setBodyPlaceholder:(id)arg1;
 - (void)setChildInfos:(id)arg1;
 - (void)setMaster:(id)arg1;

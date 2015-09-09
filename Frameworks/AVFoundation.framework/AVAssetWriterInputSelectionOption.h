@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class AVAssetWriterInput, NSArray, NSDictionary, NSString;
-
 @interface AVAssetWriterInputSelectionOption : AVMediaSelectionOption {
     BOOL _displaysNonForcedSubtitles;
     BOOL _enabled;
@@ -17,18 +15,18 @@
     NSDictionary *_trackReferences;
 }
 
-@property(readonly) BOOL displaysNonForcedSubtitles;
-@property(readonly) NSString * extendedLanguageTag;
-@property(readonly) AVAssetWriterInput * input;
-@property(readonly) NSString * languageCode;
-@property(readonly) NSString * mediaType;
-@property(readonly) NSArray * metadata;
-@property(readonly) NSDictionary * outputSettings;
-@property(readonly) struct opaqueCMFormatDescription { }* sourceFormatHint;
-@property(readonly) NSDictionary * trackReferences;
+@property (nonatomic, readonly) BOOL displaysNonForcedSubtitles;
+@property (nonatomic, readonly) NSString *extendedLanguageTag;
+@property (nonatomic, readonly) AVAssetWriterInput *input;
+@property (nonatomic, readonly) NSString *languageCode;
+@property (nonatomic, readonly) NSString *mediaType;
+@property (nonatomic, readonly) NSArray *metadata;
+@property (nonatomic, readonly) NSDictionary *outputSettings;
+@property (nonatomic, readonly) struct opaqueCMFormatDescription { }*sourceFormatHint;
+@property (nonatomic, readonly) NSDictionary *trackReferences;
 
-+ (id)assetWriterInputSelectionOptionWithAssetWriterInput:(id)arg1 displaysNonForcedSubtitles:(BOOL)arg2;
 + (id)assetWriterInputSelectionOptionWithAssetWriterInput:(id)arg1;
++ (id)assetWriterInputSelectionOptionWithAssetWriterInput:(id)arg1 displaysNonForcedSubtitles:(BOOL)arg2;
 
 - (id)_ancillaryDescription;
 - (BOOL)_hasEqualValueForKey:(id)arg1 asObject:(id)arg2;
@@ -45,8 +43,8 @@
 - (void)finalize;
 - (BOOL)hasMediaCharacteristic:(id)arg1;
 - (unsigned int)hash;
-- (id)initWithAssetWriterInput:(id)arg1 displaysNonForcedSubtitles:(BOOL)arg2;
 - (id)initWithAssetWriterInput:(id)arg1;
+- (id)initWithAssetWriterInput:(id)arg1 displaysNonForcedSubtitles:(BOOL)arg2;
 - (id)input;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isPlayable;

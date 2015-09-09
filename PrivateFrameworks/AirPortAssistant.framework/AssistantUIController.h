@@ -2,11 +2,9 @@
    Image: /System/Library/PrivateFrameworks/AirPortAssistant.framework/AirPortAssistant
  */
 
-@class AUSetupController, AutoGuessController, NSArray, NSDictionary, NSMutableDictionary, NSString, StepByStepController;
-
-@interface AssistantUIController : NSObject <AutoGuessUIDelegate, SetupUIDelegate, StepByStepUIDelegate, AssistantUIDelegateResult, SetupUIConfigDelegate> {
+@interface AssistantUIController : NSObject <AssistantUIDelegateResult, AutoGuessUIDelegate, SetupUIConfigDelegate, SetupUIDelegate, StepByStepUIDelegate> {
+    long _assistantResult;
     AutoGuessController *_autoGuessController;
-    BOOL _canceling;
     int _connectionStatusSelectorAwaitingResolution;
     id _delegate;
     NSDictionary *_guessCompleteDict;
@@ -24,23 +22,25 @@
     NSDictionary *_targetScanRecord;
 }
 
-@property(retain) AutoGuessController * autoGuessController;
-@property(readonly) int connectionStatusSelectorAwaitingResolution;
+@property (readonly) long assistantResult;
+@property (retain) AutoGuessController *autoGuessController;
+@property (readonly) int connectionStatusSelectorAwaitingResolution;
 @property id delegate;
-@property(retain) NSDictionary * guessCompleteDict;
-@property(retain) NSDictionary * lastAssociatedInfo;
-@property(retain) NSDictionary * lastAutoguessInstrumentation;
-@property(retain) NSDictionary * lastSetupInstrumentation;
-@property(retain) NSDictionary * lastStepByStepInstrumentation;
-@property(retain) NSArray * paramScanResults;
-@property(retain) AUSetupController * setupController;
-@property(retain) NSMutableDictionary * setupOptions;
-@property(readonly) int state;
-@property(retain) StepByStepController * stepByStepController;
-@property(retain) NSDictionary * targetBrowseRecord;
-@property(retain) NSString * targetMACAddress;
-@property(retain) NSDictionary * targetScanRecord;
+@property (retain) NSDictionary *guessCompleteDict;
+@property (retain) NSDictionary *lastAssociatedInfo;
+@property (retain) NSDictionary *lastAutoguessInstrumentation;
+@property (retain) NSDictionary *lastSetupInstrumentation;
+@property (retain) NSDictionary *lastStepByStepInstrumentation;
+@property (retain) NSArray *paramScanResults;
+@property (retain) AUSetupController *setupController;
+@property (retain) NSMutableDictionary *setupOptions;
+@property (readonly) int state;
+@property (retain) StepByStepController *stepByStepController;
+@property (retain) NSDictionary *targetBrowseRecord;
+@property (retain) NSString *targetMACAddress;
+@property (retain) NSDictionary *targetScanRecord;
 
+- (long)assistantResult;
 - (id)autoGuessController;
 - (void)autoguessProgressComplete:(id)arg1;
 - (void)autoguessProgressUpdated:(int)arg1 paramString:(id)arg2;

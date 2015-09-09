@@ -2,13 +2,11 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSMutableArray;
-
 @interface GEONameInfoList : PBCodable <NSCopying> {
     NSMutableArray *_nameInfos;
 }
 
-@property(retain) NSMutableArray * nameInfos;
+@property (nonatomic, retain) NSMutableArray *nameInfos;
 
 - (void)addNameInfo:(id)arg1;
 - (void)clearNameInfos;
@@ -19,6 +17,7 @@
 - (id)dictionaryRepresentation;
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
+- (void)mergeFrom:(id)arg1;
 - (id)nameInfoAtIndex:(unsigned int)arg1;
 - (id)nameInfos;
 - (unsigned int)nameInfosCount;

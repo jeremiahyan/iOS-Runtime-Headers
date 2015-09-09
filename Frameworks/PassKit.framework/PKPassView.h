@@ -2,50 +2,74 @@
    Image: /System/Library/Frameworks/PassKit.framework/PassKit
  */
 
-@class <WLCardViewDelegate>, NSString, PKPass, PKPassBackFaceView, PKPassColorProfile, PKPassFaceView, PKPassFrontFaceView;
-
-@interface PKPassView : UIView <PKPassFaceDelegate> {
+@interface PKPassView : UIView <PKPassFaceDelegate, UIGestureRecognizerDelegate> {
     PKPassBackFaceView *_backFace;
     BOOL _backFaceIsTall;
     PKPassColorProfile *_colorProfile;
     int _contentMode;
+    id /* block */ _delayedContentModeCanceller;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
+    } _delayedFlipFrame;
     <WLCardViewDelegate> *_delegate;
+    float _flipLayoutOvershoot;
+    float _flipOvershoot;
+    BOOL _flipping;
     PKPassFrontFaceView *_frontFace;
+    BOOL _isFrontmostPassView;
     PKPassFaceView *_otherFace;
     PKPass *_pass;
-    int _suppressedContent;
+    int _priorContentMode;
+    unsigned int _suppressedContent;
+    UITapGestureRecognizer *_tapRecognizer;
     PKPassFaceView *_visibleFace;
 }
 
-@property BOOL backFaceIsTall;
-@property int contentMode;
-@property <WLCardViewDelegate> * delegate;
-@property(readonly) BOOL frontFaceBodyContentCreated;
-@property(readonly) PKPass * pass;
-@property(readonly) BOOL showingFront;
-@property int suppressedContent;
-@property(readonly) NSString * uniqueID;
+@property (nonatomic) BOOL backFaceIsTall;
+@property (nonatomic) int contentMode;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <WLCardViewDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) BOOL frontFaceBodyContentCreated;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL isFrontmostPassView;
+@property (nonatomic, readonly, retain) PKPass *pass;
+@property (nonatomic, readonly) BOOL showingFront;
+@property (readonly) Class superclass;
+@property (nonatomic) unsigned int suppressedContent;
+@property (nonatomic, readonly) NSString *uniqueID;
 
-- (void)_applyContentMode;
+- (void)_applyContentMode:(BOOL)arg1;
 - (void)_flipPass:(BOOL)arg1 fromLeft:(BOOL)arg2 notify:(BOOL)arg3;
 - (int)_frontFaceBackgroundModeForContentMode;
-- (int)_regionsForCurrentModes;
+- (unsigned int)_regionsForCurrentModes;
 - (void)_updateBackFaceSuppressedContent;
 - (void)_updateFrontFaceSuppressedContent;
 - (BOOL)_visibleFaceShouldClipForCurrentViewMode:(float*)arg1;
-- (void)animationDidStop:(id)arg1 finished:(BOOL)arg2;
+- (void)aidUpdated:(id)arg1;
 - (void)applicationDidEnterBackground:(id)arg1;
 - (BOOL)backFaceIsTall;
+- (BOOL)canFlip;
 - (int)contentMode;
 - (void)createBackFaceIfNecessary;
 - (void)dealloc;
 - (id)delegate;
 - (void)flipPass:(BOOL)arg1 fromLeft:(BOOL)arg2 notify:(BOOL)arg3;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })frame;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })frameOfVisibleFace;
 - (BOOL)frontFaceBodyContentCreated;
+- (BOOL)gestureRecognizer:(id)arg1 shouldReceiveTouch:(id)arg2;
 - (id)hitTest:(struct CGPoint { float x1; float x2; })arg1 withEvent:(id)arg2;
-- (id)initWithPass:(id)arg1 content:(int)arg2;
 - (id)initWithPass:(id)arg1;
+- (id)initWithPass:(id)arg1 content:(int)arg2;
+- (BOOL)isFrontmostPassView;
 - (id)item;
 - (void)layoutSubviews;
 - (id)pass;
@@ -54,23 +78,26 @@
 - (void)passFaceFlipButtonPressed:(id)arg1;
 - (void)passFaceShareButtonPressed:(id)arg1;
 - (void)prepareForFlip;
-- (void)presentDiff:(id)arg1 completion:(id)arg2;
+- (void)presentDiff:(id)arg1 completion:(id /* block */)arg2;
 - (void)registerForEnterBackgroundNotification;
 - (void)setBackFaceIsTall:(BOOL)arg1;
-- (void)setContentMode:(int)arg1 withDuration:(double)arg2;
 - (void)setContentMode:(int)arg1;
+- (void)setContentMode:(int)arg1 animated:(BOOL)arg2;
+- (void)setContentMode:(int)arg1 animated:(BOOL)arg2 withDelay:(double)arg3;
 - (void)setDelegate:(id)arg1;
 - (void)setDimmer:(float)arg1 animated:(BOOL)arg2;
-- (void)setSuppressedContent:(int)arg1;
+- (void)setFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (void)setIsFrontmostPassView:(BOOL)arg1;
+- (void)setSuppressedContent:(unsigned int)arg1;
 - (BOOL)showingFront;
 - (struct CGSize { float x1; float x2; })sizeOfBackFace;
+- (struct CGSize { float x1; float x2; })sizeOfFront;
 - (struct CGSize { float x1; float x2; })sizeOfFrontFace;
 - (struct CGSize { float x1; float x2; })sizeThatFits:(struct CGSize { float x1; float x2; })arg1;
 - (id)snapshotOfFrontFace;
-- (int)suppressedContent;
-- (void)touchesBegan:(id)arg1 withEvent:(id)arg2;
-- (void)touchesCancelled:(id)arg1 withEvent:(id)arg2;
-- (void)touchesEnded:(id)arg1 withEvent:(id)arg2;
+- (id)snapshotViewOfVisibleFaceAfterScreenUpdates:(BOOL)arg1;
+- (unsigned int)suppressedContent;
+- (void)tapRecognized:(id)arg1;
 - (id)uniqueID;
 - (void)unregisterForEnterBackgroundNotification;
 - (void)updateValidityDisplay;

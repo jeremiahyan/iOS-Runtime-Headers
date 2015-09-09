@@ -2,30 +2,40 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, NSMutableArray, PKPrinter, PKPrinterBrowser, UIPrintPanelViewController, UIPrinterSearchingView;
-
 @interface UIPrinterBrowserViewController : UITableViewController <PKPrinterBrowserDelegate> {
     BOOL _clearCurrentPrinter;
+    NSMutableArray *_filteredOutPrinters;
     NSArray *_lastUsedPrinters;
     BOOL _loaded;
     PKPrinter *_lockedPrinter;
+    float _maximumPopoverHeight;
     NSMutableArray *_otherPrinters;
+    <UIPrinterBrowserOwner> *_ownerPanelViewController;
     NSMutableArray *_preferredPrinters;
-    UIPrintPanelViewController *_printPanelViewController;
     PKPrinterBrowser *_printerBrowser;
     UIPrinterSearchingView *_searchingView;
+    BOOL _shouldFilterPrinters;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property float maximumPopoverHeight;
+@property (readonly) Class superclass;
 
 - (void)addPrinter:(id)arg1 moreComing:(BOOL)arg2;
 - (void)adjustPopoverSize;
 - (void)dealloc;
-- (id)initWithPrintPanelViewController:(id)arg1;
+- (id)initWithOwnerViewController:(id)arg1;
 - (void)loadView;
+- (float)maximumPopoverHeight;
 - (int)numberOfSectionsInTableView:(id)arg1;
 - (id)printerAtIndexPath:(id)arg1;
 - (void)removePrinter:(id)arg1 moreGoing:(BOOL)arg2;
 - (void)selectPrinter:(id)arg1;
+- (void)setMaximumPopoverHeight:(float)arg1;
 - (BOOL)shouldAutorotateToInterfaceOrientation:(int)arg1;
+- (void)showCancelButton;
 - (void)startPrinterBrowser;
 - (void)stopPrinterBrowser;
 - (unsigned int)supportedInterfaceOrientations;

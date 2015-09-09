@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-@class <EKPickerTableViewDelegate>, UIDatePicker, UITableView;
-
 @interface EKPickerTableView : UIView {
     UIDatePicker *_datePicker;
     <EKPickerTableViewDelegate> *_delegate;
@@ -12,12 +10,12 @@
     BOOL _usesKeyboard;
 }
 
-@property(readonly) UIDatePicker * datePicker;
-@property <EKPickerTableViewDelegate> * delegate;
-@property BOOL showsDatePicker;
-@property(readonly) UITableView * tableView;
-@property BOOL usesBlackDatePicker;
-@property BOOL usesKeyboard;
+@property (nonatomic, readonly) UIDatePicker *datePicker;
+@property (nonatomic) <EKPickerTableViewDelegate> *delegate;
+@property (nonatomic) BOOL showsDatePicker;
+@property (nonatomic, readonly) UITableView *tableView;
+@property (nonatomic) BOOL usesBlackDatePicker;
+@property (nonatomic) BOOL usesKeyboard;
 
 - (void).cxx_destruct;
 - (void)_datePickerDoubleTapped:(id)arg1;
@@ -30,13 +28,13 @@
 - (void)dealloc;
 - (id)delegate;
 - (float)heightWithDatePickerAndTableHeight:(float)arg1;
-- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 tableViewController:(id)arg2;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 tableViewController:(id)arg2;
 - (id)inputView;
 - (void)layoutSubviews;
 - (void)setDelegate:(id)arg1;
-- (void)setShowsDatePicker:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setShowsDatePicker:(BOOL)arg1;
+- (void)setShowsDatePicker:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setUsesBlackDatePicker:(BOOL)arg1;
 - (void)setUsesKeyboard:(BOOL)arg1;
 - (BOOL)showsDatePicker;

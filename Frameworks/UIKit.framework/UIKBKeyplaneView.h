@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSMutableDictionary, NSString, NSTimer, UIKBCacheToken, UIKBKeyView, UIKBRenderConfig, UIKBSplitImageView, UIKBTree;
-
 @interface UIKBKeyplaneView : UIKBSplitImageView <UIKBCacheableView> {
     NSTimer *_activatedTimer;
     NSMutableDictionary *_activeViewIndex;
@@ -22,21 +20,26 @@
     NSMutableDictionary *_subviewIndex;
 }
 
-@property(readonly) BOOL cacheDeferable;
-@property(readonly) NSString * cacheKey;
-@property(retain) UIKBCacheToken * cacheToken;
-@property(readonly) float cachedWidth;
-@property(retain) UIKBTree * defaultKeyplane;
-@property(readonly) BOOL keepNonPersistent;
-@property(retain) UIKBTree * keyplane;
-@property(retain) UIKBRenderConfig * renderConfig;
+@property (nonatomic, readonly) BOOL cacheDeferable;
+@property (nonatomic, readonly) NSString *cacheKey;
+@property (nonatomic, retain) UIKBCacheToken *cacheToken;
+@property (nonatomic, readonly) float cachedWidth;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic, retain) UIKBTree *defaultKeyplane;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) BOOL keepNonPersistent;
+@property (nonatomic, retain) UIKBTree *keyplane;
+@property (nonatomic, retain) UIKBRenderConfig *renderConfig;
+@property (readonly) Class superclass;
 
-- (BOOL)_shouldDrawLowResBackground;
+- (BOOL)_shouldAllowKey:(id)arg1;
 - (void)activateKeys;
+- (id)activeKeyViews;
 - (void)addKeyToDelayedDeactivationSet:(id)arg1;
 - (BOOL)cacheDeferable;
-- (id)cacheIdentifierForKey:(id)arg1 withState:(int)arg2;
 - (id)cacheIdentifierForKey:(id)arg1;
+- (id)cacheIdentifierForKey:(id)arg1 withState:(int)arg2;
 - (id)cacheKey;
 - (id)cacheKeysForRenderFlags:(id)arg1;
 - (id)cacheToken;
@@ -62,6 +65,7 @@
 - (void)layoutSubviews;
 - (void)performDelayedDeactivation:(id)arg1;
 - (void)purgeKeyViews;
+- (void)purgeLayerContents;
 - (void)purgeSubviews;
 - (void)removeFromSuperview;
 - (void)removeKeyFromDelayedDeactivationSet:(id)arg1;
@@ -75,7 +79,7 @@
 - (int)stateForKey:(id)arg1;
 - (void)updateDecorationViewsIfNeeded;
 - (BOOL)validForKeyplane:(id)arg1 withVisualStyle:(int)arg2;
-- (id)viewForKey:(id)arg1 state:(int)arg2;
 - (id)viewForKey:(id)arg1;
+- (id)viewForKey:(id)arg1 state:(int)arg2;
 
 @end

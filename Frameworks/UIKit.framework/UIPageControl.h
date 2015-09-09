@@ -2,12 +2,7 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSMutableArray, UIColor, UIImage, _UILegibilitySettings;
-
 @interface UIPageControl : UIControl {
-    struct { 
-        unsigned int hideForSinglePage : 1; 
-        unsigned int defersCurrentPageDisplay : 1; 
     int _currentPage;
     UIImage *_currentPageImage;
     UIColor *_currentPageIndicatorTintColor;
@@ -15,19 +10,22 @@
     NSMutableArray *_indicators;
     int _lastUserInterfaceIdiom;
     _UILegibilitySettings *_legibilitySettings;
+    struct { 
+        unsigned int hideForSinglePage : 1; 
+        unsigned int defersCurrentPageDisplay : 1; 
     } _pageControlFlags;
     UIImage *_pageImage;
     UIColor *_pageIndicatorTintColor;
 }
 
-@property int currentPage;
-@property(retain) UIColor * currentPageIndicatorTintColor;
-@property BOOL defersCurrentPageDisplay;
-@property BOOL hidesForSinglePage;
-@property(getter=_legibilitySettings,setter=_setLegibilitySettings:) _UILegibilitySettings * legibilitySettings;
-@property(getter=_legibilityStyle,setter=_setLegibilityStyle:) int legibilityStyle;
-@property int numberOfPages;
-@property(retain) UIColor * pageIndicatorTintColor;
+@property (nonatomic) int currentPage;
+@property (nonatomic, retain) UIColor *currentPageIndicatorTintColor;
+@property (nonatomic) BOOL defersCurrentPageDisplay;
+@property (nonatomic) BOOL hidesForSinglePage;
+@property (getter=_legibilitySettings, setter=_setLegibilitySettings:, nonatomic) _UILegibilitySettings *legibilitySettings;
+@property (getter=_legibilityStyle, setter=_setLegibilityStyle:, nonatomic) int legibilityStyle;
+@property (nonatomic) int numberOfPages;
+@property (nonatomic, retain) UIColor *pageIndicatorTintColor;
 
 - (id)_activePageIndicatorImage;
 - (void)_commonPageControlInit;
@@ -43,8 +41,8 @@
 - (BOOL)_hasCustomImageForPage:(int)arg1 enabled:(BOOL)arg2;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_indicatorFrameAtIndex:(int)arg1;
 - (float)_indicatorSpacing;
-- (id)_indicatorViewEnabled:(BOOL)arg1 index:(int)arg2 legible:(BOOL)arg3;
 - (id)_indicatorViewEnabled:(BOOL)arg1 index:(int)arg2;
+- (id)_indicatorViewEnabled:(BOOL)arg1 index:(int)arg2 legible:(BOOL)arg3;
 - (void)_invalidateIndicators;
 - (id)_legibilitySettings;
 - (int)_legibilityStyle;
@@ -62,8 +60,8 @@
 - (void)_setLegibilitySettings:(id)arg1;
 - (void)_setLegibilityStyle:(int)arg1;
 - (BOOL)_shouldDrawLegibly;
-- (void)_transitionIndicator:(id)arg1 toEnabled:(BOOL)arg2 index:(int)arg3 legible:(BOOL)arg4;
 - (void)_transitionIndicator:(id)arg1 toEnabled:(BOOL)arg2 index:(int)arg3;
+- (void)_transitionIndicator:(id)arg1 toEnabled:(BOOL)arg2 index:(int)arg3 legible:(BOOL)arg4;
 - (void)_updateCurrentPageDisplay;
 - (int)currentPage;
 - (id)currentPageIndicatorTintColor;

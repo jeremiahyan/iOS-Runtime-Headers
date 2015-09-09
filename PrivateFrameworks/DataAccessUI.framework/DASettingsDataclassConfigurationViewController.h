@@ -2,15 +2,18 @@
    Image: /System/Library/PrivateFrameworks/DataAccessUI.framework/DataAccessUI
  */
 
-@class DAAccount;
-
 @interface DASettingsDataclassConfigurationViewController : ACUIDataclassConfigurationViewController <UIModalViewDelegate> {
     DAAccount *_daAccount;
     BOOL _haveRegisteredForAccountsChanged;
 }
 
-@property(retain) DAAccount * daAccount;
+@property (nonatomic, retain) DAAccount *daAccount;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
+- (void).cxx_destruct;
 - (void)_accountsChanged:(id)arg1;
 - (void)_listenForAccountsChangedNotifications;
 - (id)_navTitle;

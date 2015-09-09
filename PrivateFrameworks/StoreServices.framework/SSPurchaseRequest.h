@@ -2,31 +2,29 @@
    Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class <SSPurchaseRequestDelegate>, NSArray, NSMutableSet, SSPurchaseManager;
-
 @interface SSPurchaseRequest : SSRequest <SSPurchaseManagerDelegate, SSXPCCoding> {
-    id _completionBlock;
+    id /* block */ _completionBlock;
     BOOL _createsDownloads;
     BOOL _isBackgroundRequest;
     BOOL _needsAuthentication;
     NSMutableSet *_openPurchaseIdentifiers;
-    id _purchaseBlock;
+    id /* block */ _purchaseBlock;
     SSPurchaseManager *_purchaseManager;
-    id _purchaseResponseBlock;
+    id /* block */ _purchaseResponseBlock;
     NSArray *_purchases;
     BOOL _shouldValidatePurchases;
 }
 
-@property(getter=isBackgroundRequest) BOOL backgroundRequest;
-@property BOOL createsDownloads;
-@property <SSPurchaseRequestDelegate> * delegate;
-@property BOOL needsAuthentication;
-@property(readonly) NSArray * purchases;
-@property BOOL shouldValidatePurchases;
+@property (getter=isBackgroundRequest, nonatomic) BOOL backgroundRequest;
+@property (nonatomic) BOOL createsDownloads;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SSPurchaseRequestDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL needsAuthentication;
+@property (readonly) NSArray *purchases;
+@property (nonatomic) BOOL shouldValidatePurchases;
+@property (readonly) Class superclass;
 
 - (void)_addPurchasesToManager;
 - (void)_finishPurchasesWithResponses:(id)arg1;
@@ -48,8 +46,8 @@
 - (void)setShouldValidatePurchases:(BOOL)arg1;
 - (BOOL)shouldValidatePurchases;
 - (BOOL)start;
-- (void)startWithCompletionBlock:(id)arg1;
-- (void)startWithPurchaseBlock:(id)arg1 completionBlock:(id)arg2;
-- (void)startWithPurchaseResponseBlock:(id)arg1 completionBlock:(id)arg2;
+- (void)startWithCompletionBlock:(id /* block */)arg1;
+- (void)startWithPurchaseBlock:(id /* block */)arg1 completionBlock:(id /* block */)arg2;
+- (void)startWithPurchaseResponseBlock:(id /* block */)arg1 completionBlock:(id /* block */)arg2;
 
 @end

@@ -2,22 +2,17 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSDate, NSNumber, SAPersonAttribute;
+@interface SAPhoneCallSearchResult : SADomainObject
 
-@interface SAPhoneCallSearchResult : SADomainObject {
-}
-
-@property(copy) NSDate * callTime;
-@property(retain) SAPersonAttribute * contact;
-@property(copy) NSNumber * isNew;
-
-+ (id)callSearchResult;
-+ (id)callSearchResultWithDictionary:(id)arg1 context:(id)arg2;
+@property (nonatomic, copy) NSDate *callTime;
+@property (nonatomic, retain) SAPersonAttribute *contact;
+@property (nonatomic, copy) NSNumber *isNew;
 
 - (id)callTime;
 - (id)contact;
 - (id)encodedClassName;
 - (id)groupIdentifier;
+- (id)init;
 - (id)isNew;
 - (void)setCallTime:(id)arg1;
 - (void)setContact:(id)arg1;

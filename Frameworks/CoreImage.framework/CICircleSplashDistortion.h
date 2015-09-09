@@ -2,17 +2,15 @@
    Image: /System/Library/Frameworks/CoreImage.framework/CoreImage
  */
 
-@class CIImage, CIVector, NSNumber;
-
 @interface CICircleSplashDistortion : CIFilter {
     CIVector *inputCenter;
     CIImage *inputImage;
     NSNumber *inputRadius;
 }
 
-@property(retain) CIVector * inputCenter;
-@property(retain) CIImage * inputImage;
-@property(retain) NSNumber * inputRadius;
+@property (nonatomic, retain) CIVector *inputCenter;
+@property (nonatomic, retain) CIImage *inputImage;
+@property (nonatomic, retain) NSNumber *inputRadius;
 
 + (id)customAttributes;
 
@@ -21,7 +19,6 @@
 - (id)inputImage;
 - (id)inputRadius;
 - (id)outputImage;
-- (void)setDefaults;
 - (void)setInputCenter:(id)arg1;
 - (void)setInputImage:(id)arg1;
 - (void)setInputRadius:(id)arg1;

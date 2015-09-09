@@ -10,6 +10,7 @@
 }
 
 - (BOOL)isBackwards;
+- (BOOL)isEqual:(id)arg1;
 - (BOOL)isValuePercentage;
 - (void)setIsBackwards:(BOOL)arg1;
 - (void)setIsValuePercentage:(BOOL)arg1;

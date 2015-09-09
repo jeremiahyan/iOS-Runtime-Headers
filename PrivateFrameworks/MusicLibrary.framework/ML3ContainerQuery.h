@@ -2,20 +2,19 @@
    Image: /System/Library/PrivateFrameworks/MusicLibrary.framework/MusicLibrary
  */
 
-@class ML3Container, ML3Predicate, NSArray;
-
 @interface ML3ContainerQuery : ML3Query {
     ML3Container *_container;
     ML3Predicate *_containerPredicate;
     NSArray *_limitedPersistentIDs;
 }
 
-@property(readonly) ML3Container * container;
-@property(readonly) NSArray * limitedPersistentIDs;
-@property(readonly) BOOL requiresSmartLimiting;
+@property (nonatomic, readonly) ML3Container *container;
+@property (nonatomic, readonly) NSArray *limitedPersistentIDs;
+@property (nonatomic, readonly) BOOL requiresSmartLimiting;
 
 - (void).cxx_destruct;
 - (id)container;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (unsigned int)countOfDistinctRowsForColumn:(id)arg1;
 - (unsigned int)countOfEntities;
 - (void)encodeWithCoder:(id)arg1;
@@ -26,6 +25,7 @@
 - (id)limitedPersistentIDs;
 - (BOOL)requiresSmartLimiting;
 - (id)selectPersistentIDsSQLAndProperties:(id)arg1 ordered:(BOOL)arg2;
+- (id)selectPersistentIDsSQLAndPropertiesForResultSet:(id)arg1 ordered:(BOOL)arg2;
 - (id)valueForAggregateFunction:(id)arg1 onEntitiesForProperty:(id)arg2;
 
 @end

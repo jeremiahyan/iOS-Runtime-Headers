@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/IMFoundation.framework/IMFoundation
  */
 
-@class NSMutableSet, NSNumber, NSRecursiveLock;
-
 @interface IMMobileNetworkManager : IMNetworkManager {
     int _applySkipCount;
     BOOL _cachedAirplaneMode;
@@ -20,58 +18,55 @@
     BOOL _shouldBringUpDataContext;
     void *_suspendDormancyAssertion;
     NSMutableSet *_wiFiAutoAssociationTokens;
-    void *_wifiManager;
 }
 
-@property int _applySkipCount;
-@property BOOL _cachedAirplaneMode;
-@property void* _cellAssertion;
-@property struct __CTServerConnection { }* _ctServerConnection;
-@property BOOL _isCachedAirplaneModeValid;
-@property struct __SCPreferences { }* _prefs;
-@property void* _serverConnection;
-@property void* _suspendDormancyAssertion;
-@property(readonly) BOOL autoAssociateCellular;
-@property(readonly) BOOL autoAssociateWiFi;
-@property(retain) NSMutableSet * cellularAutoAssociationTokens;
-@property(readonly) BOOL dataConnectionExists;
-@property BOOL dataContextActive;
-@property(readonly) BOOL disableFastDormancy;
-@property(retain) NSMutableSet * disableFastDormancyTokens;
-@property(readonly) BOOL has2GDataConnection;
-@property(readonly) BOOL hasLTEDataConnection;
-@property(readonly) BOOL inValidSIMState;
-@property(readonly) BOOL isAirplaneModeEnabled;
-@property(readonly) BOOL isDataConnectionActive;
-@property(readonly) BOOL isDataSwitchEnabled;
-@property(readonly) BOOL isHostingWiFiHotSpot;
-@property(readonly) BOOL isSIMLocked;
-@property(readonly) BOOL isSIMRemoved;
-@property(readonly) BOOL isWiFiAssociated;
-@property(readonly) BOOL isWiFiCaptive;
-@property(readonly) BOOL isWiFiEnabled;
-@property(retain) NSRecursiveLock * lock;
-@property BOOL registered;
-@property BOOL shouldBringUpDataContext;
-@property(retain) NSMutableSet * wiFiAutoAssociationTokens;
-@property(readonly) NSNumber * wiFiScaledRSSI;
-@property(readonly) NSNumber * wiFiScaledRate;
-@property(readonly) NSNumber * wiFiSignalStrength;
-@property void* wifiManager;
-@property(readonly) BOOL willTryToAutoAssociateWiFiNetwork;
-@property(readonly) BOOL willTryToSearchForWiFiNetwork;
+@property (nonatomic) int _applySkipCount;
+@property (nonatomic) BOOL _cachedAirplaneMode;
+@property (nonatomic) void*_cellAssertion;
+@property (nonatomic) struct __CTServerConnection { }*_ctServerConnection;
+@property (nonatomic) BOOL _isCachedAirplaneModeValid;
+@property (nonatomic) struct __SCPreferences { }*_prefs;
+@property (nonatomic) void*_serverConnection;
+@property (nonatomic) void*_suspendDormancyAssertion;
+@property (nonatomic, readonly) BOOL autoAssociateCellular;
+@property (nonatomic, readonly) BOOL autoAssociateWiFi;
+@property (nonatomic, retain) NSMutableSet *cellularAutoAssociationTokens;
+@property (nonatomic, readonly) BOOL dataConnectionExists;
+@property (nonatomic) BOOL dataContextActive;
+@property (nonatomic, readonly) BOOL disableFastDormancy;
+@property (nonatomic, retain) NSMutableSet *disableFastDormancyTokens;
+@property (nonatomic, readonly) BOOL has2GDataConnection;
+@property (nonatomic, readonly) BOOL hasLTEDataConnection;
+@property (nonatomic, readonly) BOOL inValidSIMState;
+@property (nonatomic, readonly) BOOL isAirplaneModeEnabled;
+@property (nonatomic, readonly) BOOL isDataConnectionActive;
+@property (nonatomic, readonly) BOOL isDataSwitchEnabled;
+@property (nonatomic, readonly) BOOL isHostingWiFiHotSpot;
+@property (nonatomic, readonly) BOOL isSIMLocked;
+@property (nonatomic, readonly) BOOL isSIMRemoved;
+@property (nonatomic, readonly) BOOL isWiFiAssociated;
+@property (nonatomic, readonly) BOOL isWiFiCaptive;
+@property (nonatomic, readonly) BOOL isWiFiEnabled;
+@property (nonatomic, readonly) BOOL isWiFiUsable;
+@property (nonatomic, retain) NSRecursiveLock *lock;
+@property (nonatomic) BOOL registered;
+@property (nonatomic, readonly) BOOL requiresSIMInserted;
+@property (nonatomic) BOOL shouldBringUpDataContext;
+@property (nonatomic, retain) NSMutableSet *wiFiAutoAssociationTokens;
+@property (nonatomic, readonly, retain) NSNumber *wiFiScaledRSSI;
+@property (nonatomic, readonly, retain) NSNumber *wiFiScaledRate;
+@property (nonatomic, readonly, retain) NSNumber *wiFiSignalStrength;
+@property (nonatomic, readonly) BOOL willTryToAutoAssociateWiFiNetwork;
+@property (nonatomic, readonly) BOOL willTryToSearchForWiFiNetwork;
 
 - (void)__adjustFastDormancyTokens;
 - (void)_adjustCelluarAutoAssociation;
 - (void)_adjustCellularAutoAssociation;
 - (void)_adjustFastDormancyTokens;
-- (void)_adjustWiFiAutoAssociation;
-- (void)_adjustWiFiAutoAssociationLocked;
 - (int)_applySkipCount;
 - (BOOL)_cachedAirplaneMode;
 - (void*)_cellAssertion;
 - (void)_createCTServerConnection;
-- (void)_createWiFiManager;
 - (void)_ctServerCallBack:(id)arg1 object:(id)arg2 userInfo:(id)arg3;
 - (struct __CTServerConnection { }*)_ctServerConnection;
 - (void*)_getValueForKey:(id)arg1;
@@ -92,6 +87,7 @@
 - (BOOL)autoAssociateCellular;
 - (BOOL)autoAssociateWiFi;
 - (id)cellularAutoAssociationTokens;
+- (void)cutWiFiManagerLinkDidChange:(id)arg1 context:(id)arg2;
 - (BOOL)dataConnectionExists;
 - (BOOL)dataContextActive;
 - (void)dealloc;
@@ -110,12 +106,14 @@
 - (BOOL)isWiFiAssociated;
 - (BOOL)isWiFiCaptive;
 - (BOOL)isWiFiEnabled;
+- (BOOL)isWiFiUsable;
 - (id)lock;
 - (void)refresh;
 - (BOOL)registered;
 - (void)removeCellularAutoAssociationClientToken:(id)arg1;
 - (void)removeFastDormancyDisableToken:(id)arg1;
 - (void)removeWiFiAutoAssociationClientToken:(id)arg1;
+- (BOOL)requiresSIMInserted;
 - (void)setCellularAutoAssociationTokens:(id)arg1;
 - (void)setDataConnectionActive:(BOOL)arg1;
 - (void)setDataContextActive:(BOOL)arg1;
@@ -124,7 +122,6 @@
 - (void)setRegistered:(BOOL)arg1;
 - (void)setShouldBringUpDataContext:(BOOL)arg1;
 - (void)setWiFiAutoAssociationTokens:(id)arg1;
-- (void)setWifiManager:(void*)arg1;
 - (void)set_applySkipCount:(int)arg1;
 - (void)set_cachedAirplaneMode:(BOOL)arg1;
 - (void)set_cellAssertion:(void*)arg1;
@@ -140,7 +137,6 @@
 - (id)wiFiScaledRSSI;
 - (id)wiFiScaledRate;
 - (id)wiFiSignalStrength;
-- (void*)wifiManager;
 - (BOOL)willTryToAutoAssociateWiFiNetwork;
 - (BOOL)willTryToSearchForWiFiNetwork;
 

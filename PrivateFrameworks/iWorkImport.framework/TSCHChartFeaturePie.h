@@ -2,8 +2,7 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface TSCHChartFeaturePie : TSCHChartFeature {
-}
+@interface TSCHChartFeaturePie : TSCHChartFeature
 
 - (id)defaultDataFileName;
 - (int)deprecated3DBevelEdgesSpecificProperty;
@@ -11,8 +10,10 @@
 - (id)genericToSpecificPropertyMap;
 - (id)initialSceneWithChartInfo:(id)arg1 layoutSettings:(struct { BOOL x1; BOOL x2; BOOL x3; BOOL x4; BOOL x5; BOOL x6; unsigned int x7; })arg2;
 - (BOOL)isPie;
+- (unsigned int)maxCellsToCheckForGridValueType;
 - (void)p_initializeAxisIDs;
 - (Class)presetImagerClass;
+- (int)representativeGridValueAxisType;
 - (unsigned int)styleIndexForAxisID:(id)arg1;
 - (BOOL)supportsBackgroundFill;
 - (BOOL)supportsBorderFrame;
@@ -23,6 +24,7 @@
 - (BOOL)supportsLabelExplosion;
 - (BOOL)supportsMoreThanOneLiveCategory;
 - (BOOL)supportsPercentNumberFormatting;
+- (BOOL)supportsReferenceLines;
 - (BOOL)supportsTrendLines;
 - (void)updateTitlesForExportingModel:(id)arg1 info:(id)arg2;
 - (id)userInterfaceName;

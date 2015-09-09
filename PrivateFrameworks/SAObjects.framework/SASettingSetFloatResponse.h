@@ -2,21 +2,12 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class SASettingEntity;
-
-@interface SASettingSetFloatResponse : SASettingSetNumberResponse {
-}
-
-@property(retain) SASettingEntity * setting;
+@interface SASettingSetFloatResponse : SASettingSetNumberResponse
 
 + (id)setFloatResponse;
 + (id)setFloatResponseWithDictionary:(id)arg1 context:(id)arg2;
-+ (id)setFloatResponseWithSetting:(id)arg1;
 
 - (id)encodedClassName;
 - (id)groupIdentifier;
-- (id)initWithSetting:(id)arg1;
-- (void)setSetting:(id)arg1;
-- (id)setting;
 
 @end

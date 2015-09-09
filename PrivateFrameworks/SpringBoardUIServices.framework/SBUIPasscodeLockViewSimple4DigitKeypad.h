@@ -2,11 +2,10 @@
    Image: /System/Library/PrivateFrameworks/SpringBoardUIServices.framework/SpringBoardUIServices
  */
 
-@interface SBUIPasscodeLockViewSimple4DigitKeypad : SBUIPasscodeLockViewWithKeypad {
-}
+@interface SBUIPasscodeLockViewSimple4DigitKeypad : SBUIPasscodeLockViewWithKeypad
 
 - (float)_entryFieldBottomYDistanceFromNumberPadTopButton;
 - (id)_newEntryField;
-- (id)init;
+- (id)initWithLightStyle:(BOOL)arg1;
 
 @end

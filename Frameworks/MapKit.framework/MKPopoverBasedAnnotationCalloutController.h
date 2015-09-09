@@ -2,14 +2,8 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class MKSmallCalloutViewController, UIPopoverController, UIView, _MKPopoverEmbeddingView;
-
-@interface MKPopoverBasedAnnotationCalloutController : MKAnnotationCalloutController <_MKPopoverEmbeddingViewWindowDelegate, _UIPopoverControllerMapsTransitionDelegate, UIPopoverControllerDelegate, UIPopoverControllerDelegatePrivate> {
-    id _afterMoveToWindowBlock;
+@interface MKPopoverBasedAnnotationCalloutController : MKAnnotationCalloutController <MKSmallCalloutViewControllerDelegate, UIPopoverControllerDelegate, UIPopoverControllerDelegatePrivate, _MKPopoverEmbeddingViewWindowDelegate, _UIPopoverControllerMapsTransitionDelegate> {
+    id /* block */ _afterMoveToWindowBlock;
     BOOL _allowsPopoverWhenNotInWindow;
     BOOL _animatingIn;
     MKSmallCalloutViewController *_calloutViewController;
@@ -21,10 +15,15 @@
     UIPopoverController *_popoverController;
 }
 
-@property BOOL allowsPopoverWhenNotInWindow;
-@property(readonly) UIPopoverController * popoverController;
+@property (nonatomic) BOOL allowsPopoverWhenNotInWindow;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) UIPopoverController *popoverController;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
+- (void)_contentSizeCategoryDidChange:(id)arg1;
 - (BOOL)_isShowingCallout;
 - (void)_popoverControllerDidFinishMapsTransitionExpanding:(id)arg1;
 - (void)_popoverControllerWillBeginMapsTransitionMovingSideways:(id)arg1;
@@ -44,11 +43,13 @@
 - (void)embeddingView:(id)arg1 didMoveToWindow:(id)arg2;
 - (void)embeddingView:(id)arg1 willMoveToWindow:(id)arg2;
 - (void)hideCalloutAnimated:(BOOL)arg1;
+- (id)init;
 - (BOOL)isCalloutExpanded;
-- (void)popoverController:(id)arg1 animationCompleted:(int)arg2;
 - (id)popoverController;
+- (void)popoverController:(id)arg1 animationCompleted:(int)arg2;
 - (void)setAllowsPopoverWhenNotInWindow:(BOOL)arg1;
-- (void)setMapDisplayStyle:(int)arg1;
+- (void)setMapDisplayStyle:(unsigned int)arg1;
 - (void)showCalloutForAnnotationView:(id)arg1 animated:(BOOL)arg2 scrollToFit:(BOOL)arg3 avoid:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg4;
+- (void)smallCalloutViewControllerDidAppear:(id)arg1;
 
 @end

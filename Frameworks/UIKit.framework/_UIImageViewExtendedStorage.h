@@ -2,13 +2,13 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, UIImage;
-
 @interface _UIImageViewExtendedStorage : NSObject {
     double _animationDuration;
     NSArray *_animationImages;
     int _animationRepeatCount;
     int _defaultRenderingMode;
+    UIImage *_displayedHighlightedImage;
+    UIImage *_displayedImage;
     int _drawMode;
     BOOL _highlighted;
     NSArray *_highlightedAnimationImages;

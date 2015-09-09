@@ -8,6 +8,9 @@
     void *_reserved2;
 }
 
+@property (readonly, retain) NSInvocation *invocation;
+@property (readonly, retain) id result;
+
 - (void)dealloc;
 - (id)init;
 - (id)initWithInvocation:(id)arg1;

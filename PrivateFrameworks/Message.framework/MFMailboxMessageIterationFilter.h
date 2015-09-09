@@ -2,11 +2,14 @@
    Image: /System/Library/PrivateFrameworks/Message.framework/Message
  */
 
-@class NSIndexSet;
-
 @interface MFMailboxMessageIterationFilter : NSObject <MFMessageIterationFilter> {
     NSIndexSet *_mailboxes;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)dealloc;
 - (BOOL)filterMessageWithStatement:(struct sqlite3_stmt { }*)arg1;

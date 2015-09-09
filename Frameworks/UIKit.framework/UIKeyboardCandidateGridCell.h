@@ -2,21 +2,33 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString;
-
 @interface UIKeyboardCandidateGridCell : UICollectionViewCell {
-    struct { 
-        unsigned int idiom : 6; 
-        unsigned int landscape : 1; 
-        unsigned int split : 1; 
-        unsigned int appearance : 8; 
-        unsigned int rendering : 16; 
+    NSString *_alternativeText;
+    UILabel *_alternativeTextLabel;
+    unsigned int _candidateNumber;
+    UILabel *_candidateNumberLabel;
     struct CGSize { 
         float width; 
         float height; 
+    } _candidateNumberSize;
+    int _candidatesVisualStyle;
+    float _cellPadding;
+    BOOL _dummy;
+    unsigned int _edges;
+    BOOL _emphasizedAppearance;
+    float _minimumWidth;
+    float _rightPadding;
+    float _rowHeight;
+    BOOL _secondaryCandidateAppearance;
+    BOOL _shouldShowCandidateNumber;
     struct CGSize { 
         float width; 
         float height; 
+    } _size;
+    NSString *_text;
+    int _textAlignment;
+    UILabel *_textLabel;
+    BOOL _usesGroupHeaderAppearance;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -26,46 +38,41 @@
             float width; 
             float height; 
         } size; 
-    NSString *_alternativeText;
-    unsigned int _candidateNumber;
-    } _candidateNumberSize;
-    int _candidatesVisualStyle;
-    float _cellPadding;
-    BOOL _dummy;
-    unsigned int _edges;
-    float _minimumWidth;
-    float _rightPadding;
-    float _rowHeight;
-    BOOL _secondaryCandidateAppearance;
-    BOOL _shouldShowCandidateNumber;
-    } _size;
-    NSString *_text;
-    int _textAlignment;
-    BOOL _usesGroupHeaderAppearance;
     } _visibleBounds;
+    struct { 
+        unsigned int idiom : 6; 
+        unsigned int landscape : 1; 
+        unsigned int split : 1; 
+        unsigned int appearance : 8; 
+        unsigned int rendering : 16; 
     } _visualStyling;
 }
 
-@property(copy) NSString * alternativeText;
-@property(readonly) BOOL canShowCandidateNumber;
-@property unsigned int candidateNumber;
-@property struct CGSize { float x1; float x2; } candidateNumberSize;
-@property int candidatesVisualStyle;
-@property float cellPadding;
-@property BOOL dummy;
-@property unsigned int edges;
-@property float minimumWidth;
-@property float rightPadding;
-@property float rowHeight;
-@property BOOL secondaryCandidateAppearance;
-@property BOOL shouldShowCandidateNumber;
-@property struct CGSize { float x1; float x2; } size;
-@property(copy) NSString * text;
-@property int textAlignment;
-@property BOOL usesGroupHeaderAppearance;
-@property struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } visibleBounds;
-@property struct { unsigned int x1 : 6; unsigned int x2 : 1; unsigned int x3 : 1; unsigned int x4 : 8; unsigned int x5 : 16; } visualStyling;
+@property (nonatomic, copy) NSString *alternativeText;
+@property (nonatomic, retain) UILabel *alternativeTextLabel;
+@property (nonatomic, readonly) BOOL canShowCandidateNumber;
+@property (nonatomic) unsigned int candidateNumber;
+@property (nonatomic, retain) UILabel *candidateNumberLabel;
+@property (nonatomic) struct CGSize { float x1; float x2; } candidateNumberSize;
+@property (nonatomic) int candidatesVisualStyle;
+@property (nonatomic) float cellPadding;
+@property (nonatomic) BOOL dummy;
+@property (nonatomic) unsigned int edges;
+@property (nonatomic) BOOL emphasizedAppearance;
+@property (nonatomic) float minimumWidth;
+@property (nonatomic) float rightPadding;
+@property (nonatomic) float rowHeight;
+@property (nonatomic) BOOL secondaryCandidateAppearance;
+@property (nonatomic) BOOL shouldShowCandidateNumber;
+@property (nonatomic) struct CGSize { float x1; float x2; } size;
+@property (nonatomic, copy) NSString *text;
+@property (nonatomic) int textAlignment;
+@property (nonatomic, retain) UILabel *textLabel;
+@property (nonatomic) BOOL usesGroupHeaderAppearance;
+@property (nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } visibleBounds;
+@property (nonatomic) struct { unsigned int x1 : 6; unsigned int x2 : 1; unsigned int x3 : 1; unsigned int x4 : 8; unsigned int x5 : 16; } visualStyling;
 
++ (BOOL)drawsSideBorders;
 + (struct CGColor { }*)legacy_outlineColorForVisualStyling:(struct { unsigned int x1 : 6; unsigned int x2 : 1; unsigned int x3 : 1; unsigned int x4 : 8; unsigned int x5 : 16; })arg1 candidatesVisualStyle:(int)arg2;
 + (struct CGColor { }*)legacy_outlineShadowColorForVisualStyling:(struct { unsigned int x1 : 6; unsigned int x2 : 1; unsigned int x3 : 1; unsigned int x4 : 8; unsigned int x5 : 16; })arg1 candidatesVisualStyle:(int)arg2;
 + (id)reuseIdentifier;
@@ -74,19 +81,20 @@
 + (float)widthForCandidate:(id)arg1 candidateNumber:(unsigned int)arg2 visualStyle:(int)arg3;
 
 - (id)alternativeText;
+- (id)alternativeTextLabel;
 - (void)applyLayoutAttributes:(id)arg1;
 - (BOOL)canShowCandidateNumber;
 - (unsigned int)candidateNumber;
+- (id)candidateNumberLabel;
 - (struct CGSize { float x1; float x2; })candidateNumberSize;
 - (int)candidatesVisualStyle;
 - (float)cellPadding;
 - (void)dealloc;
 - (void)drawBackgroundAndBorders;
 - (void)drawRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
-- (void)drawText;
-- (void)drawTextWithCandidateNumber;
 - (BOOL)dummy;
 - (unsigned int)edges;
+- (BOOL)emphasizedAppearance;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (float)minimumWidth;
 - (void)prepareForReuse;
@@ -94,12 +102,15 @@
 - (float)rowHeight;
 - (BOOL)secondaryCandidateAppearance;
 - (void)setAlternativeText:(id)arg1;
+- (void)setAlternativeTextLabel:(id)arg1;
 - (void)setCandidateNumber:(unsigned int)arg1;
+- (void)setCandidateNumberLabel:(id)arg1;
 - (void)setCandidateNumberSize:(struct CGSize { float x1; float x2; })arg1;
 - (void)setCandidatesVisualStyle:(int)arg1;
 - (void)setCellPadding:(float)arg1;
 - (void)setDummy:(BOOL)arg1;
 - (void)setEdges:(unsigned int)arg1;
+- (void)setEmphasizedAppearance:(BOOL)arg1;
 - (void)setHighlighted:(BOOL)arg1;
 - (void)setMinimumWidth:(float)arg1;
 - (void)setRightPadding:(float)arg1;
@@ -110,6 +121,7 @@
 - (void)setSize:(struct CGSize { float x1; float x2; })arg1;
 - (void)setText:(id)arg1;
 - (void)setTextAlignment:(int)arg1;
+- (void)setTextLabel:(id)arg1;
 - (void)setUsesGroupHeaderAppearance:(BOOL)arg1;
 - (void)setVisibleBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)setVisualStyling:(struct { unsigned int x1 : 6; unsigned int x2 : 1; unsigned int x3 : 1; unsigned int x4 : 8; unsigned int x5 : 16; })arg1;
@@ -117,6 +129,10 @@
 - (struct CGSize { float x1; float x2; })size;
 - (id)text;
 - (int)textAlignment;
+- (id)textLabel;
+- (void)updateGroupHeaderLabelPosition;
+- (void)updateLabelColors;
+- (void)updateLabels;
 - (BOOL)usesGroupHeaderAppearance;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })visibleBounds;
 - (struct { unsigned int x1 : 6; unsigned int x2 : 1; unsigned int x3 : 1; unsigned int x4 : 8; unsigned int x5 : 16; })visualStyling;

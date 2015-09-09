@@ -2,24 +2,22 @@
    Image: /System/Library/PrivateFrameworks/MusicCarDisplayUI.framework/MusicCarDisplayUI
  */
 
-@class CALayer, NSString;
-
 @interface MCDButton : UIButton {
     CALayer *_focusColorLayer;
     NSString *_labelTemplateString;
     BOOL _showBezelInTouch;
 }
 
-@property(copy) NSString * labelTemplateString;
-@property(getter=isSelected) BOOL selected;
-@property BOOL showBezelInTouch;
+@property (nonatomic, copy) NSString *labelTemplateString;
+@property (getter=isSelected, nonatomic) BOOL selected;
+@property (nonatomic) BOOL showBezelInTouch;
 
 + (id)buttonWithType:(int)arg1;
 
 - (void).cxx_destruct;
-- (void)_focusStateDidChange;
-- (BOOL)_isFocusableElement;
 - (void)_updateButtonStyle;
+- (BOOL)canBecomeFocused;
+- (void)focusedViewDidChange;
 - (id)labelTemplateString;
 - (void)layoutSubviews;
 - (void)setLabelTemplateString:(id)arg1;

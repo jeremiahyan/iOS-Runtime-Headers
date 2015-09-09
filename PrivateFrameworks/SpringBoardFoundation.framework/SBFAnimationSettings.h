@@ -9,26 +9,30 @@
     double _delay;
     double _duration;
     float _epsilon;
+    BSAnimationSettings *_exportedSettings;
     float _mass;
     float _stiffness;
 }
 
-@property int animationType;
-@property double calculatedDuration;
-@property float damping;
-@property double delay;
-@property double duration;
-@property float epsilon;
-@property float mass;
-@property float stiffness;
+@property (nonatomic) int animationType;
+@property (nonatomic) double calculatedDuration;
+@property (nonatomic) float damping;
+@property (nonatomic) double delay;
+@property (nonatomic) double duration;
+@property (nonatomic) float epsilon;
+@property (nonatomic) float mass;
+@property (nonatomic) float stiffness;
 
-+ (id)_moduleWithSectionTitle:(id)arg1 delay:(BOOL)arg2;
 + (id)_moduleWithSectionTitle:(id)arg1;
++ (id)_moduleWithSectionTitle:(id)arg1 delay:(BOOL)arg2;
 + (id)settingsControllerModule;
 
+- (id)BSAnimationSettings;
+- (void)_invalidate;
 - (int)animationType;
 - (double)calculatedDuration;
 - (float)damping;
+- (void)dealloc;
 - (double)delay;
 - (double)duration;
 - (float)epsilon;

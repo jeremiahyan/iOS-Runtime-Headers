@@ -2,32 +2,31 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class EDColorReference, EDHeaderFooter, EDPageSetup, EDProcessors, EDString, EDWarnings, EDWorkbook, ESDContainer, NSMutableArray, TSUPointerKeyDictionary;
-
 @interface EDSheet : OCDDelayedNode {
-    boolmDisplayFormulas;
-    boolmDisplayGridlines;
-    boolmHidden;
-    boolmIsDialogSheet;
-    TSUPointerKeyDictionary *mCommentMap;
+    OITSUPointerKeyDictionary *mCommentMap;
     EDColorReference *mDefaultGridlineColorReference;
+    bool mDisplayFormulas;
+    bool mDisplayGridlines;
     NSMutableArray *mDrawables;
     ESDContainer *mEscherDrawing;
     EDHeaderFooter *mHeaderFooter;
+    bool mHidden;
+    bool mIsDialogSheet;
     EDString *mName;
     EDPageSetup *mPageSetup;
     EDProcessors *mProcessors;
-    TSUPointerKeyDictionary *mTextBoxMap;
+    OITSUPointerKeyDictionary *mTextBoxMap;
     EDWarnings *mWarnings;
     EDWorkbook *mWorkbook;
 }
 
-@property bool isDialogSheet;
+@property (nonatomic) bool isDialogSheet;
 
 + (id)sheetWithWorkbook:(id)arg1;
 
 - (void)addDrawable:(id)arg1;
 - (void)applyProcessors;
+- (unsigned int)commentCount;
 - (void)dealloc;
 - (id)defaultGridlineColor;
 - (id)defaultGridlineColorReference;

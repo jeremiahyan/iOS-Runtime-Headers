@@ -2,14 +2,12 @@
    Image: /System/Library/PrivateFrameworks/IMAVCore.framework/IMAVCore
  */
 
-@class NSString;
-
 @interface IMAVMicrophone : NSObject {
     id _internalDevice;
 }
 
-@property(readonly) NSString * name;
-@property(readonly) NSString * uniqueID;
+@property (nonatomic, readonly, retain) NSString *name;
+@property (nonatomic, readonly, retain) NSString *uniqueID;
 
 - (id)_AVAudioDevice;
 - (id)_initWithAVAudioDevice:(id)arg1;

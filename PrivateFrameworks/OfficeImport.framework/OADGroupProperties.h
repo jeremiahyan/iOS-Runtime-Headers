@@ -2,14 +2,17 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSArray, OADFill, OADScene3D, OADShape3D;
-
 @interface OADGroupProperties : OADDrawableProperties <OADEffectsParent, OADProperties3DParent> {
     NSArray *mEffects;
     OADFill *mFill;
     OADScene3D *mScene3D;
     OADShape3D *mShape3D;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)defaultProperties;
 

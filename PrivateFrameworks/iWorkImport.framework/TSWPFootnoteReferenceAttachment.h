@@ -2,22 +2,14 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class NSString, TSWPStorage;
-
 @interface TSWPFootnoteReferenceAttachment : TSWPTextualAttachment {
     TSWPStorage *_containedStorage;
     NSString *_customMarkString;
 }
 
-@property(retain) TSWPStorage * containedStorage;
-@property(retain) NSString * customMarkString;
+@property (nonatomic, retain) TSWPStorage *containedStorage;
+@property (nonatomic, retain) NSString *customMarkString;
 
-- (const struct TextualAttachmentArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > {} *x3; int x4; int x5; unsigned int x6[1]; }*)textualAttachmentArchiveFromUnarchiver:(id)arg1;
 - (void)adoptStylesheet:(id)arg1 withMapper:(id)arg2;
 - (void)applyMark;
 - (void)checkDebug;
@@ -28,10 +20,11 @@
 - (int)elementKind;
 - (unsigned int)findCharIndex;
 - (id)initFromUnarchiver:(id)arg1;
-- (id)initWithContext:(id)arg1 wpStorage:(id)arg2;
 - (id)initWithContext:(id)arg1;
+- (id)initWithContext:(id)arg1 wpStorage:(id)arg2;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isSearchable;
+- (id)objectsForStyleMigrating;
 - (void)saveToArchiver:(id)arg1;
 - (void)setContainedStorage:(id)arg1;
 - (void)setContainedStorageParentInfoToStorage:(id)arg1;
@@ -39,9 +32,11 @@
 - (void)setParentStorage:(id)arg1;
 - (BOOL)shouldArchiveStringEquivalent;
 - (id)stringEquivalent;
-- (void)wasAddedToDocumentRoot:(id)arg1 context:(id)arg2;
+- (BOOL)supportsUUID;
+- (const struct TextualAttachmentArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > {} *x5; int x6; }*)textualAttachmentArchiveFromUnarchiver:(id)arg1;
+- (void)wasAddedToDocumentRoot:(id)arg1 dolcContext:(id)arg2;
 - (void)wasRemovedFromDocumentRoot:(id)arg1;
-- (void)willBeAddedToDocumentRoot:(id)arg1 context:(id)arg2;
+- (void)willBeAddedToDocumentRoot:(id)arg1 dolcContext:(id)arg2;
 - (void)willBeRemovedFromDocumentRoot:(id)arg1;
 
 @end

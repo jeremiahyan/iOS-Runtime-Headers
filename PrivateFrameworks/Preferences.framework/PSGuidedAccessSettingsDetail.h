@@ -2,8 +2,12 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@interface PSGuidedAccessSettingsDetail : NSObject <PSSettingsDetail> {
-}
+@interface PSGuidedAccessSettingsDetail : NSObject <PSSettingsDetail>
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (void)enterGuidedAccessMode;
 + (unsigned int)guidedAccessAvailability;

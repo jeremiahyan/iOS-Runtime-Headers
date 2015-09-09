@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
  */
 
-@class NSMutableArray, NSObject<OS_dispatch_queue>;
-
-@interface SSOperationProgress : NSObject <SSXPCCoding, NSCopying> {
+@interface SSOperationProgress : NSObject <NSCopying, SSXPCCoding> {
     BOOL _canPause;
     double _changeRate;
     long long _currentValue;
@@ -22,11 +20,15 @@
 @property BOOL canPause;
 @property double changeRate;
 @property long long currentValue;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
 @property double estimatedTimeRemaining;
+@property (readonly) unsigned int hash;
 @property long long maxValue;
 @property long long normalizedCurrentValue;
 @property long long normalizedMaxValue;
 @property int operationType;
+@property (readonly) Class superclass;
 @property int units;
 
 - (void)_updateStatisticsFromSnapshots;

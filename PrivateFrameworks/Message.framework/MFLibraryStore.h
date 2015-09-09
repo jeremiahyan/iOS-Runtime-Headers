@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Message.framework/Message
  */
 
-@class MFMessageCriterion, MFMessageLibrary, NSDate;
-
 @interface MFLibraryStore : MFMailMessageStore {
     MFMessageCriterion *_criterion;
     NSDate *_earliestReceivedDate;
@@ -12,7 +10,7 @@
     unsigned int _serverMessageCount;
 }
 
-@property(retain) NSDate * earliestReceivedDate;
+@property (nonatomic, retain) NSDate *earliestReceivedDate;
 
 + (BOOL)createEmptyStoreForPath:(id)arg1;
 + (unsigned int)defaultLoadOptions;
@@ -25,7 +23,6 @@
 - (id)URLString;
 - (void)_addInvocationToQueue:(id)arg1;
 - (id)_cachedBodyDataContainerForMessage:(id)arg1 valueIfNotPresent:(id)arg2;
-- (id)_cachedBodyDataForMessage:(id)arg1 valueIfNotPresent:(id)arg2;
 - (id)_cachedBodyForMessage:(id)arg1 valueIfNotPresent:(id)arg2;
 - (id)_cachedHeaderDataForMessage:(id)arg1 valueIfNotPresent:(id)arg2;
 - (id)_cachedHeadersForMessage:(id)arg1 valueIfNotPresent:(id)arg2;
@@ -33,11 +30,10 @@
 - (id)_copyDataFromMimePart:(id)arg1 threshold:(unsigned int)arg2 downloadIfNecessary:(BOOL)arg3;
 - (id)_fetchBodyDataForMessage:(id)arg1 andHeaderDataIfReadilyAvailable:(id*)arg2 downloadIfNecessary:(BOOL)arg3 partial:(BOOL*)arg4;
 - (BOOL)_fetchDataForMimePart:(id)arg1 range:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2 isComplete:(BOOL*)arg3 consumer:(id)arg4;
-- (id)_fetchFullBodyDataForMessage:(id)arg1 andHeaderDataIfReadilyAvailable:(id*)arg2 downloadIfNecessary:(BOOL)arg3;
+- (id)_fetchFullBodyDataForMessage:(id)arg1 andHeaderDataIfReadilyAvailable:(id*)arg2 downloadIfNecessary:(BOOL)arg3 didDownload:(BOOL*)arg4;
 - (id)_fetchHeaderDataForMessage:(id)arg1 downloadIfNecessary:(BOOL)arg2;
 - (unsigned int)_fetchWindowMinimum;
 - (unsigned int)_fetchWindowMultiple;
-- (void)_flushAllCachesLocking:(BOOL)arg1;
 - (void)_handleFlagsChangedForMessages:(id)arg1 flags:(id)arg2 oldFlagsByMessage:(id)arg3;
 - (BOOL)_isSingleCoreDevice;
 - (id)_memberMessagesWithCompactionNotification:(id)arg1;
@@ -51,6 +47,7 @@
 - (BOOL)allowsAppend;
 - (unsigned int)appendMessages:(id)arg1 unsuccessfulOnes:(id)arg2 newMessageIDs:(id)arg3 newMessages:(id)arg4 flagsToSet:(id)arg5;
 - (id)bodyDataForMessage:(id)arg1 isComplete:(BOOL*)arg2 isPartial:(BOOL*)arg3 downloadIfNecessary:(BOOL)arg4;
+- (BOOL)bodyFetchRequiresNetworkActivity;
 - (BOOL)canCompact;
 - (void)compactMessages:(id)arg1;
 - (id)copyMessagesMatchingCriterion:(id)arg1 options:(unsigned int)arg2;
@@ -62,12 +59,12 @@
 - (id)copyOfMessageInfos;
 - (id)copyOfMessageInfosForConversationsContainingMessagesMatchingCriterion:(id)arg1;
 - (id)copyOfMessageInfosMatchingCriterion:(id)arg1;
-- (id)copyOfMessagesInRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1 options:(unsigned int)arg2 generation:(unsigned int*)arg3;
 - (id)copyOfMessagesInRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1 options:(unsigned int)arg2;
+- (id)copyOfMessagesInRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1 options:(unsigned int)arg2 generation:(unsigned int*)arg3;
 - (struct __CFDictionary { }*)copySendersByLibraryIDForConversation:(long long)arg1 limit:(int)arg2;
 - (id)criterion;
 - (id)dataForMimePart:(id)arg1 inRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2 isComplete:(BOOL*)arg3 downloadIfNecessary:(BOOL)arg4 didDownload:(BOOL*)arg5;
-- (BOOL)dataForMimePart:(id)arg1 inRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2 isComplete:(BOOL*)arg3 withConsumer:(id)arg4 downloadIfNecessary:(BOOL)arg5;
+- (BOOL)dataForMimePart:(id)arg1 inRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2 isComplete:(BOOL*)arg3 withConsumer:(id)arg4 downloadIfNecessary:(BOOL)arg5 didDownload:(BOOL*)arg6;
 - (id)dataPathForMessage:(id)arg1 part:(id)arg2;
 - (void)dealloc;
 - (void)deleteMessages:(id)arg1 moveToTrash:(BOOL)arg2;
@@ -76,8 +73,8 @@
 - (id)earliestReceivedDate;
 - (unsigned int)fetchWindow;
 - (id)filterMessagesByMembership:(id)arg1;
-- (id)fullBodyDataForMessage:(id)arg1 andHeaderDataIfReadilyAvailable:(id*)arg2 isComplete:(BOOL*)arg3 downloadIfNecessary:(BOOL)arg4 usePartDatas:(BOOL)arg5;
-- (id)fullBodyDataForMessage:(id)arg1 andHeaderDataIfReadilyAvailable:(id*)arg2 isComplete:(BOOL*)arg3 downloadIfNecessary:(BOOL)arg4;
+- (id)fullBodyDataForMessage:(id)arg1 andHeaderDataIfReadilyAvailable:(id*)arg2 isComplete:(BOOL*)arg3 downloadIfNecessary:(BOOL)arg4 didDownload:(BOOL*)arg5;
+- (id)fullBodyDataForMessage:(id)arg1 andHeaderDataIfReadilyAvailable:(id*)arg2 isComplete:(BOOL*)arg3 downloadIfNecessary:(BOOL)arg4 usePartDatas:(BOOL)arg5 didDownload:(BOOL*)arg6;
 - (unsigned int)growFetchWindow;
 - (void)handleMessageFlagsChanged:(id)arg1;
 - (void)handleMessagesAdded:(id)arg1 earliestReceivedDate:(id)arg2;
@@ -86,8 +83,8 @@
 - (BOOL)hasCompleteDataForMimePart:(id)arg1;
 - (BOOL)hasMessageForAccount:(id)arg1;
 - (unsigned int)indexOfMessage:(id)arg1;
-- (id)initWithCriterion:(id)arg1 mailbox:(id)arg2 readOnly:(BOOL)arg3;
 - (id)initWithCriterion:(id)arg1;
+- (id)initWithCriterion:(id)arg1 mailbox:(id)arg2 readOnly:(BOOL)arg3;
 - (id)initWithMailbox:(id)arg1;
 - (id)initWithMailboxUid:(id)arg1 readOnly:(BOOL)arg2;
 - (void)invalidateFetchWindow;
@@ -98,6 +95,7 @@
 - (id)messageWithLibraryID:(unsigned int)arg1 options:(unsigned int)arg2;
 - (void)messagesWereAdded:(id)arg1 earliestReceivedDate:(id)arg2;
 - (id)mutableCopyOfAllMessages;
+- (id)newObjectCache;
 - (unsigned int)nonDeletedCountIncludingServerSearch:(BOOL)arg1 andThreadSearch:(BOOL)arg2;
 - (long long)oldestKnownConversation;
 - (void)openSynchronously;

@@ -2,22 +2,34 @@
    Image: /System/Library/PrivateFrameworks/MediaPlayerUI.framework/MediaPlayerUI
  */
 
-@class NSObject<OS_dispatch_source>;
-
-@interface MPUTransportControlCenterButton : SBUIControlCenterButton <SBUIControlCenterButtonDelegate> {
-    BOOL _longPress;
-    NSObject<OS_dispatch_source> *_longPressTimer;
-    double _minimumPressDuration;
+@interface MPUTransportControlCenterButton : SBUIControlCenterButton <MPUTransportButton, SBUIControlCenterButtonDelegate> {
+    MPUTransportButtonEventHandler *_transportButtonEventHandler;
 }
 
+@property (nonatomic) BOOL adjustsImageWhenHighlighted;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) MPUTransportButtonEventHandler *transportButtonEventHandler;
+@property (nonatomic) int transportButtonImageViewContentMode;
+
++ (id)transportButton;
+
 - (void).cxx_destruct;
-- (void)_clearLongPressTimer;
-- (void)_longPressTimerAction;
+- (void)applyTransportButtonLayoutAttributes:(struct { struct CGRect { struct CGPoint { float x_1_2_1; float x_1_2_2; } x_1_1_1; struct CGSize { float x_2_2_1; float x_2_2_2; } x_1_1_2; } x1; struct CGRect { struct CGPoint { float x_1_2_1; float x_1_2_2; } x_2_1_1; struct CGSize { float x_2_2_1; float x_2_2_2; } x_2_1_2; } x2; })arg1;
 - (BOOL)beginTrackingWithTouch:(id)arg1 withEvent:(id)arg2;
 - (void)buttonTapped:(id)arg1;
 - (void)cancelTrackingWithEvent:(id)arg1;
-- (void)dealloc;
 - (void)endTrackingWithTouch:(id)arg1 withEvent:(id)arg2;
+- (id)hitTest:(struct CGPoint { float x1; float x2; })arg1 withEvent:(id)arg2;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (BOOL)isEnabled;
+- (void)prepareForReuse;
+- (void)setTransportButtonImageViewContentMode:(int)arg1;
+- (BOOL)shouldTrack;
+- (id)transportButtonEventHandler;
+- (int)transportButtonImageViewContentMode;
+- (BOOL)wantsCustomHighlightAppearance;
 
 @end

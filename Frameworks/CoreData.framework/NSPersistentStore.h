@@ -2,18 +2,16 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@class NSDictionary, NSPersistentStoreCoordinator, NSString, NSURL;
-
 @interface NSPersistentStore : NSObject {
+    NSString *_configurationName;
+    NSPersistentStoreCoordinator *_coordinator;
+    id _defaultFaultHandler;
+    id _externalRecordsMonitor;
     struct _objectStoreFlags { 
         unsigned int isReadOnly : 1; 
         unsigned int cleanOnRemove : 1; 
         unsigned int isMDDirty : 1; 
         unsigned int _RESERVED : 29; 
-    NSString *_configurationName;
-    NSPersistentStoreCoordinator *_coordinator;
-    id _defaultFaultHandler;
-    id _externalRecordsMonitor;
     } _flags;
     id *_oidFactories;
     NSDictionary *_options;
@@ -21,6 +19,15 @@
     void *_temporaryIDClass;
     NSURL *_url;
 }
+
+@property (retain) NSURL *URL;
+@property (readonly, copy) NSString *configurationName;
+@property (copy) NSString *identifier;
+@property (nonatomic, retain) NSDictionary *metadata;
+@property (readonly) NSDictionary *options;
+@property (nonatomic, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (getter=isReadOnly) BOOL readOnly;
+@property (readonly, copy) NSString *type;
 
 + (BOOL)_destroyPersistentStoreAtURL:(id)arg1 options:(id)arg2 error:(id*)arg3;
 + (id)_figureOutWhereExternalReferencesEndedUpRelativeTo:(id)arg1;
@@ -33,9 +40,11 @@
 + (BOOL)setMetadata:(id)arg1 forPersistentStoreWithURL:(id)arg2 error:(id*)arg3;
 
 - (id)URL;
+- (id)_allOrderKeysForDestination:(id)arg1 inRelationship:(id)arg2 error:(id*)arg3;
 - (id)_defaultMetadata;
 - (void)_didLoadMetadata;
 - (BOOL)_isMetadataDirty;
+- (id)_newOrderedRelationshipInformationForRelationship:(id)arg1 forObjectWithID:(id)arg2 withContext:(id)arg3 error:(id*)arg4;
 - (Class)_objectIDClass;
 - (void)_preflightCrossCheck;
 - (BOOL)_prepareForExecuteRequest:(id)arg1 withContext:(id)arg2 error:(id*)arg3;
@@ -46,6 +55,7 @@
 - (BOOL)_unload:(id*)arg1;
 - (void)_updateMetadata;
 - (id)_updatedMetadataWithSeed:(id)arg1 includeVersioning:(BOOL)arg2;
+- (void)clearCachedInformationForRequestWithIdentifier:(id)arg1;
 - (id)configurationName;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;

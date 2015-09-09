@@ -2,21 +2,17 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@class MPAVItem, NSString;
-
 @interface MPArrayQueueItem : NSObject {
     MPAVItem *_item;
     NSString *_path;
     double _startTime;
     double _stopTime;
-    NSString *_videoID;
 }
 
-@property(readonly) MPAVItem * item;
-@property(copy) NSString * path;
-@property double startTime;
-@property double stopTime;
-@property(copy) NSString * videoID;
+@property (nonatomic, readonly) MPAVItem *item;
+@property (nonatomic, copy) NSString *path;
+@property (nonatomic) double startTime;
+@property (nonatomic) double stopTime;
 
 - (void).cxx_destruct;
 - (id)init;
@@ -26,9 +22,7 @@
 - (void)setPath:(id)arg1;
 - (void)setStartTime:(double)arg1;
 - (void)setStopTime:(double)arg1;
-- (void)setVideoID:(id)arg1;
 - (double)startTime;
 - (double)stopTime;
-- (id)videoID;
 
 @end

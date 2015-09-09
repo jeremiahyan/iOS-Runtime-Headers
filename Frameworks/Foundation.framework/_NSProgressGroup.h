@@ -2,28 +2,26 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@class NSMutableSet, NSProgress;
-
 @interface _NSProgressGroup : NSObject {
     NSMutableSet *_children;
+    _NSProgressFraction *_childrenFraction;
     BOOL _closed;
     unsigned long long _finishedChildrenCount;
-    double _fractionCompleted;
     NSProgress *_parent;
     long long _portionOfParent;
 }
 
+- (id)_indentedDescription:(unsigned int)arg1;
 - (void)addChild:(id)arg1;
-- (id)children;
+- (void)cancel;
 - (void)close;
 - (void)dealloc;
 - (id)description;
-- (double)fractionCompleted;
-- (id)initWithParent:(id)arg1;
+- (id)initWithParent:(id)arg1 portion:(long long)arg2;
 - (id)parent;
-- (long long)portionOfParent;
-- (void)setPortionOfParent:(long long)arg1;
+- (void)pause;
+- (void)prioritize;
 - (void)stopNotifications;
-- (void)updateChild:(id)arg1 oldFractionCompleted:(double)arg2 newFractionCompleted:(double)arg3 finished:(BOOL)arg4;
+- (void)updateChildWithOldFraction:(id)arg1 newFraction:(id)arg2;
 
 @end

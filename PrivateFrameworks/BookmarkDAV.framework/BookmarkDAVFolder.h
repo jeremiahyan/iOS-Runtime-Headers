@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/BookmarkDAV.framework/BookmarkDAV
  */
 
-@class CoreDAVErrorItem, NSArray, NSData, NSDictionary, NSMutableArray, NSString, NSURL;
-
-@interface BookmarkDAVFolder : CoreDAVContainer <CoreDAVModifiedContainer, CoreDAVAddedContainer, CoreDAVLeafDataPayload> {
+@interface BookmarkDAVFolder : CoreDAVContainer <CoreDAVAddedContainer, CoreDAVLeafDataPayload, CoreDAVModifiedContainer> {
     NSDictionary *_appleAttributes;
     NSString *_bulkParsedCTag;
     NSString *_bulkParsedPTag;
@@ -12,17 +10,21 @@
     NSMutableArray *_childrenOrder;
 }
 
-@property(readonly) NSDictionary * appleAttributes;
-@property(retain) NSString * bulkParsedCTag;
-@property(retain) NSString * bulkParsedPTag;
-@property(retain) CoreDAVErrorItem * bulkUploadErrorItem;
-@property(readonly) NSArray * childrenOrder;
-@property(readonly) NSData * dataPayload;
-@property BOOL isBookmarkBarFolder;
-@property BOOL isBookmarkFolder;
-@property BOOL isBookmarkMenuFolder;
-@property(retain) NSURL * serverID;
-@property(readonly) NSString * syncKey;
+@property (nonatomic, readonly) NSDictionary *appleAttributes;
+@property (nonatomic, retain) NSString *bulkParsedCTag;
+@property (nonatomic, retain) NSString *bulkParsedPTag;
+@property (nonatomic, retain) CoreDAVErrorItem *bulkUploadErrorItem;
+@property (nonatomic, readonly) NSArray *childrenOrder;
+@property (nonatomic, readonly) NSData *dataPayload;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL isBookmarkBarFolder;
+@property (nonatomic) BOOL isBookmarkFolder;
+@property (nonatomic) BOOL isBookmarkMenuFolder;
+@property (nonatomic, retain) NSURL *serverID;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) NSString *syncKey;
 
 + (id)copyPropertyMappingsForParser;
 

@@ -2,17 +2,11 @@
    Image: /System/Library/PrivateFrameworks/DataAccess.framework/DataAccess
  */
 
-@class NSString;
+@interface DAMailboxDeleteMessageRequest : DAMailboxRequest
 
-@interface DAMailboxDeleteMessageRequest : DAMailboxRequest {
-    NSString *_messageID;
-}
-
-- (void)dealloc;
 - (id)description;
 - (unsigned int)hash;
 - (id)initRequestWithMessageID:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
-- (id)messageID;
 
 @end

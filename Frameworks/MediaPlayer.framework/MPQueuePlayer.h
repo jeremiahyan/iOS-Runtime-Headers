@@ -2,30 +2,24 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class AVPlayer, AVPlayerItem, AVQueuePlayer, MPAVRoute, MPAVRoutingController, NSArray, NSError, NSMutableArray, NSObject<OS_dispatch_queue>, NSString;
-
 @interface MPQueuePlayer : NSObject <MPAVRoutingControllerDelegate> {
+    NSObject<OS_dispatch_queue> *_accessQueue;
+    AVPlayerItem *_currentItem;
     struct { 
         long long value; 
         int timescale; 
         unsigned int flags; 
         long long epoch; 
-    AVPlayerItem *_currentItem;
     } _currentTime;
     int _defaultItemEQPresetType;
     BOOL _isExternalPlaybackActive;
     MPAVRoute *_lastPickedRoute;
     BOOL _outputObscuredDueToInsufficientExternalProtection;
     BOOL _pausedForPlaybackQueueTransaction;
-    id _playbackQueueCommitHandler;
+    id /* block */ _playbackQueueCommitHandler;
     int _playbackQueueTransactionCount;
     AVQueuePlayer *_player;
     NSMutableArray *_queuedOperations;
-    NSObject<OS_dispatch_queue> *_queuedOperationsAccessQueue;
     float _rate;
     float _rateBeforePlaybackQueueTransaction;
     BOOL _routeDidChangeDuringPlaybackQueueTransaction;
@@ -33,27 +27,32 @@
     int _status;
 }
 
-@property(readonly) int _externalProtectionStatus;
-@property(readonly) AVPlayer * _player;
-@property int actionAtItemEnd;
-@property BOOL allowsExternalPlayback;
-@property(getter=isClosedCaptionDisplayEnabled) BOOL closedCaptionDisplayEnabled;
-@property(readonly) AVPlayerItem * currentItem;
-@property int defaultItemEQPresetType;
-@property BOOL disallowsAMRAudio;
-@property(readonly) NSError * error;
-@property(getter=isExternalPlaybackActive,readonly) BOOL externalPlaybackActive;
-@property(readonly) int externalPlaybackType;
-@property(copy) NSString * externalPlaybackVideoGravity;
-@property(readonly) BOOL isPlaybackQueueTransactionActive;
-@property(readonly) NSArray * items;
-@property(readonly) BOOL outputObscuredDueToInsufficientExternalProtection;
-@property(copy) id playbackQueueCommitHandler;
-@property(readonly) id playerAVAudioSession;
-@property float rate;
-@property(readonly) int status;
-@property BOOL usesAudioOnlyModeForExternalPlayback;
-@property BOOL usesExternalPlaybackWhileExternalScreenIsActive;
+@property (nonatomic, readonly) int _externalProtectionStatus;
+@property (nonatomic, readonly) AVPlayer *_player;
+@property (nonatomic) int actionAtItemEnd;
+@property (nonatomic) BOOL allowsExternalPlayback;
+@property (getter=isClosedCaptionDisplayEnabled, nonatomic) BOOL closedCaptionDisplayEnabled;
+@property (nonatomic, readonly) AVPlayerItem *currentItem;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) int defaultItemEQPresetType;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL disallowsAMRAudio;
+@property (nonatomic, readonly) NSError *error;
+@property (getter=isExternalPlaybackActive, nonatomic, readonly) BOOL externalPlaybackActive;
+@property (nonatomic, readonly) int externalPlaybackType;
+@property (nonatomic, copy) NSString *externalPlaybackVideoGravity;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) BOOL isPlaybackQueueTransactionActive;
+@property (nonatomic, readonly) NSArray *items;
+@property (nonatomic, readonly) BOOL outputObscuredDueToInsufficientExternalProtection;
+@property (nonatomic, copy) id /* block */ playbackQueueCommitHandler;
+@property (nonatomic, readonly) id playerAVAudioSession;
+@property (nonatomic, readonly) float playerRate;
+@property (nonatomic) float rate;
+@property (nonatomic, readonly) int status;
+@property (readonly) Class superclass;
+@property (nonatomic) BOOL usesAudioOnlyModeForExternalPlayback;
+@property (nonatomic) BOOL usesExternalPlaybackWhileExternalScreenIsActive;
 
 - (void).cxx_destruct;
 - (BOOL)_CALayerDestinationIsTVOut;
@@ -71,7 +70,8 @@
 - (void)_setWantsVolumeChangesWhenPausedOrInactive:(BOOL)arg1;
 - (float)_userVolume;
 - (int)actionAtItemEnd;
-- (id)addBoundaryTimeObserverForTimes:(id)arg1 queue:(id)arg2 usingBlock:(id)arg3;
+- (id)addBoundaryTimeObserverForTimes:(id)arg1 queue:(id)arg2 usingBlock:(id /* block */)arg3;
+- (id)addPeriodicTimeObserverForInterval:(struct { long long x1; int x2; unsigned int x3; long long x4; })arg1 queue:(id)arg2 usingBlock:(id /* block */)arg3;
 - (void)advanceToNextItem;
 - (BOOL)allowsExternalPlayback;
 - (void)beginPlaybackQueueTransactionAndPause:(BOOL)arg1;
@@ -94,15 +94,17 @@
 - (BOOL)outputObscuredDueToInsufficientExternalProtection;
 - (void)pause;
 - (void)play;
-- (id)playbackQueueCommitHandler;
+- (id /* block */)playbackQueueCommitHandler;
 - (id)playerAVAudioSession;
-- (void)prepareItem:(id)arg1 withCompletionHandler:(id)arg2;
+- (float)playerRate;
+- (void)prepareItem:(id)arg1 withCompletionHandler:(id /* block */)arg2;
 - (float)rate;
+- (void)removeAllItems;
 - (void)removeItem:(id)arg1;
 - (void)removeTimeObserver:(id)arg1;
 - (void)routingControllerAvailableRoutesDidChange:(id)arg1;
-- (void)seekToTime:(struct { long long x1; int x2; unsigned int x3; long long x4; })arg1 toleranceBefore:(struct { long long x1; int x2; unsigned int x3; long long x4; })arg2 toleranceAfter:(struct { long long x1; int x2; unsigned int x3; long long x4; })arg3;
 - (void)seekToTime:(struct { long long x1; int x2; unsigned int x3; long long x4; })arg1;
+- (void)seekToTime:(struct { long long x1; int x2; unsigned int x3; long long x4; })arg1 toleranceBefore:(struct { long long x1; int x2; unsigned int x3; long long x4; })arg2 toleranceAfter:(struct { long long x1; int x2; unsigned int x3; long long x4; })arg3;
 - (void)setActionAtItemEnd:(int)arg1;
 - (void)setAllowsExternalPlayback:(BOOL)arg1;
 - (void)setClosedCaptionDisplayEnabled:(BOOL)arg1;
@@ -111,7 +113,7 @@
 - (void)setDisallowsAMRAudio:(BOOL)arg1;
 - (void)setExternalPlaybackVideoGravity:(id)arg1;
 - (void)setMediaSelectionCriteria:(id)arg1 forMediaCharacteristic:(id)arg2;
-- (void)setPlaybackQueueCommitHandler:(id)arg1;
+- (void)setPlaybackQueueCommitHandler:(id /* block */)arg1;
 - (void)setRate:(float)arg1;
 - (void)setUsesAudioOnlyModeForExternalPlayback:(BOOL)arg1;
 - (void)setUsesExternalPlaybackWhileExternalScreenIsActive:(BOOL)arg1;

@@ -2,42 +2,36 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class UIView;
-
 @interface SKUIScalingFlipView : UIView {
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
     UIView *_backView;
-    id _completionBlock;
+    id /* block */ _completionBlock;
     int _direction;
     double _duration;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } _fromFrame;
     UIView *_frontView;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } _toFrame;
 }
 
-@property int direction;
-@property double duration;
+@property (nonatomic) int direction;
+@property (nonatomic) double duration;
 
 - (void).cxx_destruct;
 - (id)_backLayerAnimation;
@@ -49,7 +43,7 @@
 - (int)direction;
 - (double)duration;
 - (id)initWithFrontView:(id)arg1 backView:(id)arg2;
-- (void)performFlipWithCompletionBlock:(id)arg1;
+- (void)performFlipWithCompletionBlock:(id /* block */)arg1;
 - (void)setDirection:(int)arg1;
 - (void)setDuration:(double)arg1;
 

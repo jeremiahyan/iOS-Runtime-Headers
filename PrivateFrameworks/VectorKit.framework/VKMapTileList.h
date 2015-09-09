@@ -2,29 +2,16 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class __end_;
-
 @interface VKMapTileList : NSObject {
-    /* Warning: unhandled struct encoding: '{vector<VKMapTile *, vk_allocator<VKMapTile *> >="__begin_"^@"__end_"^@"__end_cap_"{__compressed_pair<VKMapTile **, vk_allocator<VKMapTile *> >="__first_"^@}}' */ struct vector<VKMapTile *, vk_allocator<VKMapTile *> > { 
+    /* Warning: unhandled struct encoding: '{vector<VKMapTile *, std::__1::allocator<VKMapTile *> >="__begin_"^@"__end_"^@"__end_cap_"{__compressed_pair<VKMapTile **, std::__1::allocator<VKMapTile *> >="__first_"^@}}' */ struct vector<VKMapTile *, std::__1::allocator<VKMapTile *> > { 
         __end_ **__begin_; 
-    struct vector<VGLRect, vk_allocator<VGLRect> > { 
-        struct { /* ? */ } *__begin_; 
-        struct { /* ? */ } *__end_; 
-        struct __compressed_pair<VGLRect *, vk_allocator<VGLRect> > { 
-            struct { /* ? */ } *__first_; 
-        } __end_cap_; 
     } _list;
     float _maximumStyleZ;
-    } _rectList[29];
 }
 
-@property(readonly) float maximumStyleZ;
-@property(readonly) unsigned int numTiles;
-@property(readonly) id* tileList;
+@property (nonatomic, readonly) float maximumStyleZ;
+@property (nonatomic, readonly) unsigned int numTiles;
+@property (nonatomic, readonly) id*tileList;
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
@@ -33,10 +20,7 @@
 - (void)consolidateList;
 - (id)init;
 - (float)maximumStyleZ;
-- (unsigned int)numRectForLayer:(unsigned int)arg1;
 - (unsigned int)numTiles;
-- (const struct { float x1; float x2; float x3; float x4; }*)rectListForLayer:(unsigned int)arg1;
-- (const struct vector<VGLRect, vk_allocator<VGLRect> > { struct { /* ? */ } *x1; struct { /* ? */ } *x2; struct __compressed_pair<VGLRect *, vk_allocator<VGLRect> > { struct { /* ? */ } *x_3_1_1; } x3; }*)rectListVectorForLayer:(unsigned int)arg1;
 - (id*)tileList;
 
 @end

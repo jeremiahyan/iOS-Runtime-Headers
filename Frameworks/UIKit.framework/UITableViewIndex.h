@@ -2,20 +2,19 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, NSString, UIColor, UIFont;
-
 @interface UITableViewIndex : UIControl {
-    struct CGSize { 
-        float width; 
-        float height; 
-    struct CGSize { 
-        float width; 
-        float height; 
     float _bottomPadding;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _cachedSize;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _cachedSizeToFit;
     NSArray *_entries;
     UIFont *_font;
+    int _idiom;
     UIColor *_indexBackgroundColor;
     UIColor *_indexColor;
     UIColor *_indexTrackingBackgroundColor;
@@ -27,15 +26,15 @@
     float _verticalTextHeightEstimate;
 }
 
-@property(retain) UIFont * font;
-@property(retain) UIColor * indexBackgroundColor;
-@property(retain) UIColor * indexColor;
-@property(retain) UIColor * indexTrackingBackgroundColor;
-@property(readonly) BOOL pastBottom;
-@property(readonly) BOOL pastTop;
-@property(readonly) int selectedSection;
-@property(readonly) NSString * selectedSectionTitle;
-@property(retain) NSArray * titles;
+@property (nonatomic, retain) UIFont *font;
+@property (nonatomic, retain) UIColor *indexBackgroundColor;
+@property (nonatomic, retain) UIColor *indexColor;
+@property (nonatomic, retain) UIColor *indexTrackingBackgroundColor;
+@property (nonatomic, readonly) BOOL pastBottom;
+@property (nonatomic, readonly) BOOL pastTop;
+@property (nonatomic, readonly) int selectedSection;
+@property (nonatomic, readonly) NSString *selectedSectionTitle;
+@property (nonatomic, retain) NSArray *titles;
 
 - (void)_cacheAndMeasureTitles;
 - (id)_displayTitles;
@@ -45,9 +44,11 @@
 - (int)_idiom;
 - (float)_minLineSpacingForIdiom:(int)arg1;
 - (void)_selectSectionForTouch:(id)arg1 withEvent:(id)arg2;
+- (void)_setIdiom:(int)arg1;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_visibleBoundsForRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 stride:(float*)arg2;
 - (void)_willChangeToIdiom:(int)arg1 onScreen:(id)arg2;
 - (BOOL)beginTrackingWithTouch:(id)arg1 withEvent:(id)arg2;
+- (BOOL)canBecomeFocused;
 - (void)cancelTrackingWithEvent:(id)arg1;
 - (BOOL)continueTrackingWithTouch:(id)arg1 withEvent:(id)arg2;
 - (void)dealloc;

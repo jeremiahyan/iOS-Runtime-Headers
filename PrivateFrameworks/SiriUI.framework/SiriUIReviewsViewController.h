@@ -2,42 +2,44 @@
    Image: /System/Library/PrivateFrameworks/SiriUI.framework/SiriUI
  */
 
-@class <SiriUIReviewsViewControllerDelegate>, NSMutableArray, NSString, SALocalSearchReviewList, UICollectionView, UIView;
-
 @interface SiriUIReviewsViewController : SiriUISnippetViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout> {
+    NSMutableArray *_cellSizeForRowCache;
     struct { 
         unsigned int didLoadCollectionView : 1; 
         unsigned int viewForRatingForReview : 1; 
         unsigned int offsetForRatingView : 1; 
-    struct UIOffset { 
-        float horizontal; 
-        float vertical; 
-    struct UIOffset { 
-        float horizontal; 
-        float vertical; 
-    NSMutableArray *_cellSizeForRowCache;
     } _delegateFlags;
     NSString *_providerName;
     UIView *_providerView;
+    struct UIOffset { 
+        float horizontal; 
+        float vertical; 
     } _providerViewOffset;
     int _reviewCharacterLimit;
     SALocalSearchReviewList *_reviewList;
     <SiriUIReviewsViewControllerDelegate> *_reviewsDelegate;
     UIView *_totalRatingView;
+    struct UIOffset { 
+        float horizontal; 
+        float vertical; 
     } _totalRatingViewOffset;
     float _verticalSpaceNeededForRatingView;
 }
 
-@property(copy) NSString * providerName;
-@property(retain) UIView * providerView;
-@property struct UIOffset { float x1; float x2; } providerViewOffset;
-@property int reviewCharacterLimit;
-@property(retain) SALocalSearchReviewList * reviewList;
-@property <SiriUIReviewsViewControllerDelegate> * reviewsDelegate;
-@property(retain) UIView * totalRatingView;
-@property struct UIOffset { float x1; float x2; } totalRatingViewOffset;
-@property float verticalSpaceNeededForRatingView;
-@property(retain) UICollectionView * view;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *providerName;
+@property (nonatomic, retain) UIView *providerView;
+@property (nonatomic) struct UIOffset { float x1; float x2; } providerViewOffset;
+@property (nonatomic) int reviewCharacterLimit;
+@property (nonatomic, retain) SALocalSearchReviewList *reviewList;
+@property (nonatomic) <SiriUIReviewsViewControllerDelegate> *reviewsDelegate;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) UIView *totalRatingView;
+@property (nonatomic) struct UIOffset { float x1; float x2; } totalRatingViewOffset;
+@property (nonatomic) float verticalSpaceNeededForRatingView;
+@property (nonatomic, retain) UICollectionView *view;
 
 - (void).cxx_destruct;
 - (id)_displayStringForReviewCount:(int)arg1 providerName:(id)arg2 providerView:(id)arg3;
@@ -82,6 +84,7 @@
 - (void)siriDidLayoutSnippetView;
 - (id)totalRatingView;
 - (struct UIOffset { float x1; float x2; })totalRatingViewOffset;
+- (void)updateSubtitle;
 - (float)verticalSpaceNeededForRatingView;
 
 @end

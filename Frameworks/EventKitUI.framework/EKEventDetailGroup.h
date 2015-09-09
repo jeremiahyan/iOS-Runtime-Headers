@@ -2,17 +2,15 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-@class NSArray, NSString;
-
 @interface EKEventDetailGroup : NSObject {
     NSString *_headerTitle;
     NSArray *_items;
     int _tag;
 }
 
-@property(retain) NSString * headerTitle;
-@property(retain) NSArray * items;
-@property int tag;
+@property (nonatomic, retain) NSString *headerTitle;
+@property (nonatomic, retain) NSArray *items;
+@property (nonatomic) int tag;
 
 - (void).cxx_destruct;
 - (id)cellForSubitemAtIndex:(unsigned int)arg1;
@@ -21,13 +19,14 @@
 - (BOOL)hasSubitemForIndexPathRow:(unsigned int)arg1;
 - (id)headerTitle;
 - (id)initWithTag:(int)arg1 headerTitle:(id)arg2;
-- (id)itemAtIndex:(unsigned int)arg1 subitemIndex:(unsigned int*)arg2;
 - (id)itemAtIndex:(unsigned int)arg1;
+- (id)itemAtIndex:(unsigned int)arg1 subitemIndex:(unsigned int*)arg2;
 - (id)items;
 - (unsigned int)numberOfRows;
 - (void)setHeaderTitle:(id)arg1;
 - (void)setItems:(id)arg1;
 - (void)setTag:(int)arg1;
 - (int)tag;
+- (void)updateCellLayoutsForRowCountIfNeededUsingWidth:(float)arg1;
 
 @end

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
  */
 
-@class NSArray, NSAttributedString, NSDate, NSString;
-
 @interface CKDBMessage : NSObject {
     NSString *_address;
     NSDate *_date;
@@ -11,6 +9,7 @@
     NSString *_guid;
     BOOL _hasBeenRead;
     int _identifier;
+    BOOL _isAudioMessage;
     BOOL _isMadrid;
     BOOL _isOutgoing;
     BOOL _isVisibleByDefault;
@@ -23,7 +22,7 @@
     NSString *_madridRoomname;
     NSString *_madridService;
     long long _madridType;
-    NSArray *_messageParts;
+    NSMutableArray *_mediaObjects;
     NSString *_plainBody;
     NSArray *_recipients;
     NSString *_subject;
@@ -31,40 +30,37 @@
     NSString *_voicemailString;
 }
 
-@property(readonly) NSString * address;
-@property(readonly) NSString * attachmentText;
-@property(readonly) NSDate * date;
-@property(readonly) NSString * formattedAddress;
-@property(readonly) NSString * groupID;
-@property(readonly) NSString * guid;
-@property(readonly) BOOL hasAttachments;
-@property(readonly) BOOL hasBeenRead;
-@property int identifier;
-@property(readonly) BOOL isMadrid;
-@property(readonly) BOOL isMessageFullyLoaded;
-@property(readonly) BOOL isOutgoing;
-@property(readonly) BOOL isVisibleByDefault;
-@property(readonly) NSString * madridAccountGUID;
-@property(readonly) NSString * madridAccountLogin;
-@property(readonly) NSAttributedString * madridAttributedBody;
-@property(readonly) NSString * madridChatGUID;
-@property(readonly) NSString * madridChatIdentifier;
-@property(readonly) NSString * madridRoomname;
-@property(readonly) NSString * madridService;
-@property(readonly) long long madridType;
-@property(readonly) NSArray * messageParts;
-@property(readonly) NSString * plainBody;
-@property(readonly) NSArray * recipients;
-@property(readonly) NSString * subject;
-@property(readonly) NSString * text;
+@property (nonatomic, readonly, retain) NSString *address;
+@property (nonatomic, readonly, copy) NSString *attachmentText;
+@property (nonatomic, readonly, retain) NSDate *date;
+@property (nonatomic, readonly, retain) NSString *formattedAddress;
+@property (nonatomic, readonly, retain) NSString *groupID;
+@property (nonatomic, readonly, retain) NSString *guid;
+@property (nonatomic, readonly) BOOL hasAttachments;
+@property (nonatomic, readonly) BOOL hasBeenRead;
+@property (nonatomic) int identifier;
+@property (nonatomic, readonly) BOOL isAudioMessage;
+@property (nonatomic, readonly) BOOL isMadrid;
+@property (nonatomic, readonly) BOOL isOutgoing;
+@property (nonatomic, readonly) BOOL isVisibleByDefault;
+@property (nonatomic, readonly, retain) NSString *madridAccountGUID;
+@property (nonatomic, readonly, retain) NSString *madridAccountLogin;
+@property (nonatomic, readonly, retain) NSAttributedString *madridAttributedBody;
+@property (nonatomic, readonly) NSString *madridChatGUID;
+@property (nonatomic, readonly, retain) NSString *madridChatIdentifier;
+@property (nonatomic, readonly, retain) NSString *madridRoomname;
+@property (nonatomic, readonly, retain) NSString *madridService;
+@property (nonatomic, readonly) long long madridType;
+@property (nonatomic, readonly, retain) NSArray *mediaObjects;
+@property (nonatomic, readonly, retain) NSString *plainBody;
+@property (nonatomic, readonly, copy) NSArray *recipients;
+@property (nonatomic, readonly, retain) NSString *subject;
+@property (nonatomic, readonly, retain) NSString *text;
 
-- (struct _IMDAttachmentRecordStruct { }*)_copyMadridAttachmentRecordForGUID:(id)arg1;
-- (BOOL)_hasAttachments;
-- (void)_loadMessageParts;
 - (id)address;
 - (id)alertImage;
-- (id)attachmentText:(BOOL)arg1;
 - (id)attachmentText;
+- (id)attachmentText:(BOOL)arg1;
 - (id)date;
 - (void)dealloc;
 - (id)description;
@@ -76,8 +72,8 @@
 - (int)identifier;
 - (id)initWithMadridMessageGUID:(id)arg1;
 - (id)initWithRecordID:(int)arg1;
+- (BOOL)isAudioMessage;
 - (BOOL)isMadrid;
-- (BOOL)isMessageFullyLoaded;
 - (BOOL)isOutgoing;
 - (BOOL)isVisibleByDefault;
 - (id)madridAccountGUID;
@@ -88,7 +84,7 @@
 - (id)madridRoomname;
 - (id)madridService;
 - (long long)madridType;
-- (id)messageParts;
+- (id)mediaObjects;
 - (id)plainBody;
 - (id)previewText;
 - (id)recipients;

@@ -2,25 +2,24 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-@class NSMutableDictionary, NSMutableSet, VKLRUCache;
-
 @interface VKRasterMapTileServer : NSObject {
     NSMutableDictionary *_activeTileCreators;
+    NSObject<OS_dispatch_queue> *_homeQueue;
     NSMutableDictionary *_pendingRequests;
     BOOL _softwareRendering;
-    VKLRUCache *_superTileCache;
+    VKRasterMapTileCache *_superTileCache;
     unsigned int _superTileSize;
     NSMutableSet *_tileCreators;
 }
 
-@property(readonly) unsigned int superTileSize;
+@property (nonatomic, readonly) unsigned int superTileSize;
 
+- (void)_renderRequest:(id)arg1 completion:(id /* block */)arg2;
 - (void)dealloc;
 - (id)detailedDescription;
 - (id)init;
-- (id)initWithSuperTileSize:(unsigned int)arg1 cacheCapacity:(int)arg2 softwareRendering:(BOOL)arg3;
-- (void)renderRequest:(id)arg1 completion:(id)arg2;
-- (void)renderTile:(const struct VKRasterTileKey { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; }*)arg1 completion:(id)arg2;
+- (id)initWithSuperTileSize:(unsigned int)arg1 cache:(id)arg2 softwareRendering:(BOOL)arg3 homeQueue:(id)arg4;
+- (void)renderRequest:(id)arg1 completion:(id /* block */)arg2;
 - (unsigned int)superTileSize;
 
 @end

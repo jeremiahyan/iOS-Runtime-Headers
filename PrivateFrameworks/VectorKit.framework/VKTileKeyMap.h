@@ -8,10 +8,10 @@
 }
 
 - (id)contentsDescription;
-- (int)count;
+- (unsigned long)count;
 - (void)dealloc;
 - (id)description;
-- (void)enumerateKeysAndObjectsUsingBlock:(id)arg1;
+- (void)enumerateKeysAndObjectsUsingBlock:(id /* block */)arg1;
 - (id)initWithMapType:(int)arg1;
 - (id)objectForKey:(const struct VKTileKey { unsigned int x1; int x2; int x3; unsigned int x4; }*)arg1;
 - (void)removeAllObjects;

@@ -3,7 +3,7 @@
  */
 
 @interface SCROConnection : NSObject {
-    id _delegate;
+    SCROWeakReferenceContainer *_delegate;
     int _handlerType;
     unsigned int _identifier;
     struct __CFRunLoopSource { } *_invalidationSource;
@@ -22,8 +22,9 @@
 - (void)_startConnection;
 - (void)_stopConnection;
 - (void)dealloc;
-- (id)handlerValueForKey:(int)arg1 withObject:(id)arg2;
+- (id)handlerArrayValueForKey:(int)arg1;
 - (id)handlerValueForKey:(int)arg1;
+- (id)handlerValueForKey:(int)arg1 withObject:(id)arg2;
 - (id)initWithHandlerType:(int)arg1 delegate:(id)arg2;
 - (void)invalidate;
 - (int)performHandlerActionForKey:(int)arg1;

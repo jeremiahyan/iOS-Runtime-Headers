@@ -2,10 +2,11 @@
    Image: /System/Library/PrivateFrameworks/TelephonyUI.framework/TelephonyUI
  */
 
-@class TPRingView, UIColor, UIView;
-
 @interface TPSuperBottomBarButton : UIButton {
-    int _action;
+    struct CGSize { 
+        float width; 
+        float height; 
+    } _buttonSize;
     int _orientation;
     UIColor *_originalBackgroundColor;
     UIView *_overlayView;
@@ -13,14 +14,16 @@
     BOOL _usesSmallerFontSize;
 }
 
-@property int action;
-@property int orientation;
-@property(retain) UIColor * originalBackgroundColor;
-@property BOOL usesSmallerFontSize;
+@property (nonatomic) struct CGSize { float x1; float x2; } buttonSize;
+@property (nonatomic) int orientation;
+@property (nonatomic, retain) UIColor *originalBackgroundColor;
+@property (nonatomic) BOOL usesSmallerFontSize;
 
++ (id)defaultFont;
 + (float)defaultHeight;
++ (float)defaultWidth;
 
-- (int)action;
+- (struct CGSize { float x1; float x2; })buttonSize;
 - (void)configureForCancelAction;
 - (void)dealloc;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })imageRectForContentRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
@@ -31,7 +34,7 @@
 - (id)newOverlayView;
 - (int)orientation;
 - (id)originalBackgroundColor;
-- (void)setAction:(int)arg1;
+- (void)setButtonSize:(struct CGSize { float x1; float x2; })arg1;
 - (void)setEnabled:(BOOL)arg1;
 - (void)setHighlighted:(BOOL)arg1;
 - (void)setOrientation:(int)arg1;

@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
  */
 
-@class NSArray, NSNumber, NSString;
-
-@interface SSTonePurchase : SSPurchase <SSXPCCoding, NSCoding, NSCopying> {
+@interface SSTonePurchase : SSPurchase <NSCoding, NSCopying, SSXPCCoding> {
     NSArray *_allowedToneStyles;
     NSNumber *_assigneeIdentifier;
     NSString *_assigneeToneStyle;
@@ -12,11 +10,15 @@
     BOOL _shouldMakeDefaultTextTone;
 }
 
-@property(copy) NSArray * allowedToneStyles;
-@property(retain) NSNumber * assigneeIdentifier;
-@property(copy) NSString * assigneeToneStyle;
+@property (copy) NSArray *allowedToneStyles;
+@property (retain) NSNumber *assigneeIdentifier;
+@property (copy) NSString *assigneeToneStyle;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
 @property BOOL shouldMakeDefaultRingtone;
 @property BOOL shouldMakeDefaultTextTone;
+@property (readonly) Class superclass;
 
 - (void)_addEntriesToDatabaseEncoding:(id)arg1;
 - (void)_setValuesUsingDatabaseEncoding:(id)arg1;

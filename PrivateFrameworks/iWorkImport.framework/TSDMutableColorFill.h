@@ -2,17 +2,15 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class TSUColor;
+@interface TSDMutableColorFill : TSDColorFill <NSCopying>
 
-@interface TSDMutableColorFill : TSDColorFill {
-}
+@property (nonatomic) float brightness;
+@property (nonatomic, copy) TSUColor *color;
+@property (nonatomic) float hue;
+@property (nonatomic) float opacity;
+@property (nonatomic) float saturation;
 
-@property float brightness;
-@property(copy) TSUColor * color;
-@property float hue;
-@property float opacity;
-@property float saturation;
-
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)setBrightness:(float)arg1;
 - (void)setColor:(id)arg1;
 - (void)setHue:(float)arg1;

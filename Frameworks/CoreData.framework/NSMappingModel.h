@@ -2,19 +2,20 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@class NSMutableArray, NSMutableDictionary;
-
 @interface NSMappingModel : NSObject {
+    NSMutableArray *_entityMappings;
+    NSMutableDictionary *_entityMappingsByName;
     struct __modelMappingFlags { 
         unsigned int _isInUse : 1; 
         unsigned int _reservedModelMapping : 31; 
-    NSMutableArray *_entityMappings;
-    NSMutableDictionary *_entityMappingsByName;
     } _modelMappingFlags;
+    void *_reserved;
     void *_reserved1;
     void *_reserved2;
-    void *_reserved;
 }
+
+@property (retain) NSArray *entityMappings;
+@property (readonly, copy) NSDictionary *entityMappingsByName;
 
 + (id)_modelPathsFromBundles:(id)arg1;
 + (id)_newMappingModelFromPaths:(id)arg1 forSourceHashes:(id)arg2 destinationHashes:(id)arg3;

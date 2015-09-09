@@ -2,20 +2,21 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@class GEOSearchRequest, MKLocalSearchRequest;
-
 @interface MKLocalSearch : NSObject {
-    GEOSearchRequest *_geoRequest;
     MKLocalSearchRequest *_request;
+    <MKMapServiceTicket> *_ticket;
 }
 
-@property(getter=isSearching,readonly) BOOL searching;
+@property (getter=isSearching, nonatomic, readonly) BOOL searching;
 
 - (void).cxx_destruct;
-- (void)_handleResponse:(id)arg1 withCompletionHandler:(id)arg2;
+- (void)_handleMapItems:(id)arg1 boundingRegion:(id)arg2 error:(id)arg3 withCompletionHandler:(id /* block */)arg4 queue:(id)arg5;
+- (void)_phoneOnlyStartWithCompletionHandler:(id /* block */)arg1 queue:(id)arg2;
+- (void)_startWithCompletionHandler:(id /* block */)arg1 queue:(id)arg2;
 - (void)cancel;
+- (id)init;
 - (id)initWithRequest:(id)arg1;
 - (BOOL)isSearching;
-- (void)startWithCompletionHandler:(id)arg1;
+- (void)startWithCompletionHandler:(id /* block */)arg1;
 
 @end

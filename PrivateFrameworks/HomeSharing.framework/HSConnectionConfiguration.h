@@ -2,43 +2,44 @@
    Image: /System/Library/PrivateFrameworks/HomeSharing.framework/HomeSharing
  */
 
-@class NSDictionary, NSString, NSURL, SSAccount;
-
-@interface HSConnectionConfiguration : NSObject <HSXPCCoding, NSCopying, NSMutableCopying> {
+@interface HSConnectionConfiguration : NSObject <NSCopying, NSSecureCoding> {
     SSAccount *_account;
     NSURL *_baseURL;
     NSString *_buildIdentifier;
-    NSDictionary *_cookieHeaders;
+    NSNumber *_familyMemberStoreID;
+    NSString *_libraryBagKey;
     NSString *_purchaseClientIdentifier;
     long long _requestReason;
-    NSDictionary *_urlBag;
-    NSString *_userAgent;
 }
 
-@property(readonly) SSAccount * account;
-@property(readonly) NSURL * baseURL;
-@property(readonly) NSString * buildIdentifier;
-@property(readonly) NSDictionary * cookieHeaders;
-@property(readonly) NSString * purchaseClientIdentifier;
-@property(readonly) long long requestReason;
-@property(readonly) NSDictionary * urlBag;
-@property(readonly) NSString * userAgent;
+@property (nonatomic, retain) SSAccount *account;
+@property (nonatomic, copy) NSURL *baseURL;
+@property (nonatomic, copy) NSString *buildIdentifier;
+@property (nonatomic, retain) NSNumber *familyMemberStoreID;
+@property (nonatomic, copy) NSString *libraryBagKey;
+@property (nonatomic, copy) NSString *purchaseClientIdentifier;
+@property (nonatomic) long long requestReason;
 
-- (id)_copyXPCDictonaryFromDictonary:(id)arg1;
-- (id)_dictonaryFromXPCDictonary:(id)arg1;
++ (BOOL)supportsSecureCoding;
+
+- (void).cxx_destruct;
 - (id)account;
 - (id)baseURL;
 - (id)buildIdentifier;
-- (id)cookieHeaders;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (id)copyXPCEncoding;
-- (void)dealloc;
+- (void)encodeWithCoder:(id)arg1;
+- (id)familyMemberStoreID;
 - (id)init;
-- (id)initWithXPCEncoding:(id)arg1;
-- (id)mutableCopyWithZone:(struct _NSZone { }*)arg1;
+- (id)initWithCoder:(id)arg1;
+- (id)libraryBagKey;
 - (id)purchaseClientIdentifier;
 - (long long)requestReason;
-- (id)urlBag;
-- (id)userAgent;
+- (void)setAccount:(id)arg1;
+- (void)setBaseURL:(id)arg1;
+- (void)setBuildIdentifier:(id)arg1;
+- (void)setFamilyMemberStoreID:(id)arg1;
+- (void)setLibraryBagKey:(id)arg1;
+- (void)setPurchaseClientIdentifier:(id)arg1;
+- (void)setRequestReason:(long long)arg1;
 
 @end

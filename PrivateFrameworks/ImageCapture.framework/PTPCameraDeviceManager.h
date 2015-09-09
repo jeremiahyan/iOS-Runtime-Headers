@@ -2,12 +2,15 @@
    Image: /System/Library/PrivateFrameworks/ImageCapture.framework/ImageCapture
  */
 
-@class NSMutableArray, NSNetServiceBrowser;
-
 @interface PTPCameraDeviceManager : DeviceManager <NSNetServiceBrowserDelegate, NSNetServiceDelegate> {
     NSNetServiceBrowser *_netServiceBrowser;
     NSMutableArray *_netServices;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)closeDeviceImp:(id)arg1;
 - (void)closeSessionImp:(id)arg1;

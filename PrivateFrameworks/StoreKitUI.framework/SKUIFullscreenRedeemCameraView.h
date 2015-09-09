@@ -2,9 +2,9 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class <SKUIRedeemCameraViewDelegate>, NSString, SKUIRedeemTextField, UIImage, UIView;
-
 @interface SKUIFullscreenRedeemCameraView : UIView <UITextFieldDelegate> {
+    <SKUIRedeemCameraViewDelegate> *_delegate;
+    BOOL _enabled;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -14,18 +14,20 @@
             float width; 
             float height; 
         } size; 
-    <SKUIRedeemCameraViewDelegate> *_delegate;
-    BOOL _enabled;
     } _keyboardRect;
     UIView *_overlay;
     UIView *_redeemerView;
     SKUIRedeemTextField *_textField;
 }
 
-@property <SKUIRedeemCameraViewDelegate> * delegate;
-@property BOOL enabled;
-@property(retain) UIImage * image;
-@property(copy) NSString * text;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SKUIRedeemCameraViewDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL enabled;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) UIImage *image;
+@property (readonly) Class superclass;
+@property (nonatomic, copy) NSString *text;
 
 - (void).cxx_destruct;
 - (void)_hideKeyboard;

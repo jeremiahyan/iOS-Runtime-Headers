@@ -2,18 +2,20 @@
    Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
  */
 
-@class <SSDownloadManifestRequestDelegate>, NSURLRequest;
-
 @interface SSDownloadManifestRequest : SSRequest <SSXPCCoding> {
     int _manifestFormat;
     BOOL _shouldHideUserPrompts;
     NSURLRequest *_urlRequest;
 }
 
-@property(readonly) NSURLRequest * URLRequest;
-@property <SSDownloadManifestRequestDelegate> * delegate;
+@property (readonly) NSURLRequest *URLRequest;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SSDownloadManifestRequestDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
 @property int manifestFormat;
 @property BOOL shouldHideUserPrompts;
+@property (readonly) Class superclass;
 
 - (id)URLRequest;
 - (id)copyXPCEncoding;
@@ -26,7 +28,7 @@
 - (void)setShouldHideUserPrompts:(BOOL)arg1;
 - (BOOL)shouldHideUserPrompts;
 - (BOOL)start;
-- (void)startWithCompletionBlock:(id)arg1;
-- (void)startWithManifestResponseBlock:(id)arg1;
+- (void)startWithCompletionBlock:(id /* block */)arg1;
+- (void)startWithManifestResponseBlock:(id /* block */)arg1;
 
 @end

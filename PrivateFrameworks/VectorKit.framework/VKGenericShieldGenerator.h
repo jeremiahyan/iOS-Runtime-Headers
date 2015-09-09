@@ -2,18 +2,21 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-@class NSCache, VKGenericShieldDrawStyle;
-
 @interface VKGenericShieldGenerator : NSObject <GEOResourceManifestTileGroupObserver> {
     VKGenericShieldDrawStyle *_defaultStyle;
     NSCache *_defaultStylePacks;
+    VKResourceManager *_resourceManager;
+    unsigned int _tileGroupIdentifier;
 }
 
-+ (id)sharedGenerator;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)dealloc;
-- (id)init;
-- (id)newArtworkWithScale:(float)arg1 style:(id)arg2 size:(int)arg3 extraScale:(float)arg4 numberOfLines:(unsigned int)arg5;
+- (id)initWithTileGroupIdentifier:(unsigned int)arg1 resourceManager:(id)arg2;
+- (id)newArtworkWithScale:(float)arg1 style:(id)arg2 size:(int)arg3 numberOfLines:(unsigned int)arg4;
 - (void)resourceManifestManagerDidChangeActiveTileGroup:(id)arg1;
 - (void)resourceManifestManagerWillChangeActiveTileGroup:(id)arg1;
 

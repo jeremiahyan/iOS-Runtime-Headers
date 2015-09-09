@@ -2,23 +2,24 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class AVAudioSessionMediaPlayerOnly, AVPixelBufferAttributeMediator, AVPlayerItem, AVPropertyStorage, AVWeakReference, NSArray, NSDictionary, NSError, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>, NSString;
-
 @interface AVPlayerInternal : NSObject {
+    AVWeakKeyValueObserverProxy *KVOProxy;
+    BOOL allowsOutOfBandTextTrackRendering;
     AVAudioSessionMediaPlayerOnly *audioSessionMediaPlayerOnly;
     BOOL autoSwitchStreamVariants;
-    NSMutableSet *caLayers;
+    NSHashTable *avPlayerLayers;
+    struct CGSize { 
+        float width; 
+        float height; 
+    } cachedDisplaySize;
     NSDictionary *cachedFigMediaSelectionCriteriaProperty;
+    NSMutableSet *closedCaptionLayers;
     AVPlayerItem *currentItem;
-    NSDictionary *currentSubtitlesPayload;
     NSArray *displaysUsedForPlayback;
     NSError *error;
     NSArray *expectedAssetTypes;
     NSString *externalPlaybackVideoGravity;
+    NSObject<OS_dispatch_queue> *figConfigurationQueue;
     struct OpaqueCMClock { } *figMasterClock;
     struct OpaqueFigPlaybackItem { } *figPlaybackItemToIdentifyNextCurrentItem;
     struct OpaqueFigPlayer { } *figPlayer;
@@ -26,6 +27,7 @@
     BOOL hostApplicationInForeground;
     BOOL iapdExtendedModeIsActive;
     NSMutableSet *items;
+    NSObject<OS_dispatch_queue> *ivarAccessQueue;
     AVPlayerItem *lastItem;
     NSObject<OS_dispatch_queue> *layersQ;
     BOOL logPerformanceData;
@@ -35,14 +37,16 @@
     int pendingPrerollID;
     AVPixelBufferAttributeMediator *pixelBufferAttributeMediator;
     BOOL preparesItemsForPlaybackAsynchronously;
-    id prerollCompletionHandler;
+    id /* block */ prerollCompletionHandler;
     struct OpaqueFigSimpleMutex { } *prerollIDMutex;
     AVPropertyStorage *propertyStorage;
+    struct OpaqueCMTimebase { } *proxyTimebase;
     BOOL reevaluateBackgroundPlayback;
     NSObject<OS_dispatch_queue> *stateDispatchQueue;
     int status;
-    NSObject<OS_dispatch_queue> *subtitleQueue;
+    NSMutableSet *subtitleLayers;
     NSDictionary *vibrationPattern;
+    struct __CFDictionary { } *videoLayers;
     AVWeakReference *weakReference;
 }
 

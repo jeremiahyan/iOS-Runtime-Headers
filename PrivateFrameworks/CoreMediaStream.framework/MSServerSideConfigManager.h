@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/CoreMediaStream.framework/CoreMediaStream
  */
 
-@class MSMediaStreamDaemon, MSServerSideConfigProtocol, NSDictionary, NSString;
-
 @interface MSServerSideConfigManager : NSObject <MSServerSideConfigProtocolDelegate> {
     NSDictionary *_config;
     NSString *_configPath;
@@ -13,9 +11,13 @@
     int _state;
 }
 
-@property(retain) NSDictionary * config;
-@property MSMediaStreamDaemon * daemon;
-@property(readonly) NSString * personID;
+@property (nonatomic, retain) NSDictionary *config;
+@property (nonatomic) MSMediaStreamDaemon *daemon;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) NSString *personID;
+@property (readonly) Class superclass;
 
 + (void)abortAllActivities;
 + (id)configManagerForPersonID:(id)arg1;

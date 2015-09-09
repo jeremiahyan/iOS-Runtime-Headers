@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class OADRotation3D;
-
 @interface OADLightRig : NSObject <NSCopying> {
     int mDirection;
     OADRotation3D *mRotation;
@@ -12,6 +10,7 @@
 
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
+- (id)description;
 - (int)direction;
 - (unsigned int)hash;
 - (id)init;

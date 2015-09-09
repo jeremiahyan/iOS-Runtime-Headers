@@ -2,8 +2,10 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@interface NSPort : NSObject <NSCopying, NSCoding> {
-}
+@interface NSPort : NSObject <NSCoding, NSCopying>
+
+@property (readonly) unsigned int reservedSpaceLength;
+@property (getter=isValid, readonly) BOOL valid;
 
 + (id)allocWithZone:(struct _NSZone { }*)arg1;
 + (id)port;

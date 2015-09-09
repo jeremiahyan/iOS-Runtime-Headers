@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSLock;
-
 @interface GEONetworkObserver : NSObject {
     NSLock *_lock;
     BOOL _networkNotified;
@@ -13,6 +11,7 @@
     BOOL _networkReachable;
 }
 
++ (id)allocWithZone:(struct _NSZone { }*)arg1;
 + (id)sharedNetworkObserver;
 
 - (void)_networkObserversInitialize;

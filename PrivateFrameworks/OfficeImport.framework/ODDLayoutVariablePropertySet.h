@@ -9,6 +9,7 @@
 
 + (id)defaultProperties;
 
+- (id)description;
 - (int)direction;
 - (BOOL)hasDirection;
 - (id)initWithDefaults;

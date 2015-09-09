@@ -2,9 +2,26 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIColor, UILabel, UIToolbarButtonBadge, UIView, _UIPressedIndicatorView;
-
 @interface UIToolbarButton : UIControl {
+    struct UIEdgeInsets { 
+        float top; 
+        float left; 
+        float bottom; 
+        float right; 
+    } __additionalSelectionInsets;
+    Class _appearanceGuideClass;
+    id _appearanceStorage;
+    UIToolbarButtonBadge *_badge;
+    BOOL _badgeAnimated;
+    BOOL _barHeight;
+    int _barStyle;
+    BOOL _bezel;
+    struct UIEdgeInsets { 
+        float top; 
+        float left; 
+        float bottom; 
+        float right; 
+    } _glowAdjust;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -14,26 +31,13 @@
             float width; 
             float height; 
         } size; 
-    struct UIEdgeInsets { 
-        float top; 
-        float left; 
-        float bottom; 
-        float right; 
-    struct UIEdgeInsets { 
-        float top; 
-        float left; 
-        float bottom; 
-        float right; 
-    Class _appearanceGuideClass;
-    id _appearanceStorage;
-    UIToolbarButtonBadge *_badge;
-    BOOL _badgeAnimated;
-    BOOL _barHeight;
-    int _barStyle;
-    BOOL _bezel;
-    } _glowAdjust;
     } _hitRect;
     UIView *_info;
+    struct UIEdgeInsets { 
+        float top; 
+        float left; 
+        float bottom; 
+        float right; 
     } _infoInsets;
     BOOL _isAnimatedTrashButton;
     BOOL _isInTopBar;
@@ -47,10 +51,11 @@
     UIColor *_toolbarTintColor;
 }
 
-@property(setter=_setAppearanceGuideClass:) Class _appearanceGuideClass;
-@property(setter=_setCreatedByBarButtonItem:) BOOL _createdByBarButtonItem;
-@property(setter=_setTintColor:,retain) UIColor * _tintColor;
-@property(getter=isAnimatedTrashButton) BOOL animatedTrashButton;
+@property (setter=_setAdditionalSelectionInsets:, nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } _additionalSelectionInsets;
+@property (setter=_setAppearanceGuideClass:, nonatomic) Class _appearanceGuideClass;
+@property (setter=_setCreatedByBarButtonItem:, nonatomic) BOOL _createdByBarButtonItem;
+@property (setter=_setTintColor:, nonatomic, retain) UIColor *_tintColor;
+@property (getter=isAnimatedTrashButton, nonatomic) BOOL animatedTrashButton;
 
 + (id)_defaultLabelColor;
 + (id)_defaultLabelFont;
@@ -64,11 +69,12 @@
 - (void)_UIAppearance_setTintColor:(id)arg1;
 - (void)_UIAppearance_setTitlePositionAdjustment:(struct UIOffset { float x1; float x2; })arg1 forBarMetrics:(int)arg2;
 - (void)_UIAppearance_setTitleTextAttributes:(id)arg1 forState:(unsigned int)arg2;
+- (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })_additionalSelectionInsets;
 - (void)_adjustPushButtonForMiniBar:(BOOL)arg1 isChangingBarHeight:(BOOL)arg2;
 - (void)_adjustToolbarButtonInfo;
 - (void)_adjustToolbarButtonInfoTintColorHasChanged:(BOOL)arg1;
-- (void)_animateImage:(float)arg1 withButtonBar:(id)arg2 target:(id)arg3 didFinishSelector:(SEL)arg4;
 - (void)_animateImage:(float)arg1 withButtonBar:(id)arg2;
+- (void)_animateImage:(float)arg1 withButtonBar:(id)arg2 target:(id)arg3 didFinishSelector:(SEL)arg4;
 - (Class)_appearanceGuideClass;
 - (void)_applyBarButtonAppearanceStorage:(id)arg1 withTaggedSelectors:(id)arg2;
 - (id)_backgroundImageForState:(unsigned int)arg1 barMetrics:(int)arg2;
@@ -90,6 +96,7 @@
 - (id)_newButton;
 - (float)_paddingForLeft:(BOOL)arg1;
 - (void)_positionBadge;
+- (void)_setAdditionalSelectionInsets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
 - (void)_setAppearanceGuideClass:(Class)arg1;
 - (void)_setBackButtonBackgroundImage:(id)arg1 forState:(unsigned int)arg2 barMetrics:(int)arg3;
 - (void)_setBackButtonBackgroundVerticalPositionAdjustment:(float)arg1 forBarMetrics:(int)arg2;
@@ -129,6 +136,7 @@
 - (BOOL)_wantsAccessibilityButtonShapes;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })alignmentRectInsets;
 - (void)dealloc;
+- (BOOL)gestureRecognizerShouldBegin:(id)arg1;
 - (id)hitTest:(struct CGPoint { float x1; float x2; })arg1 forEvent:(struct __GSEvent { }*)arg2;
 - (id)hitTest:(struct CGPoint { float x1; float x2; })arg1 withEvent:(id)arg2;
 - (id)initWithImage:(id)arg1 pressedImage:(id)arg2 label:(id)arg3 labelHeight:(float)arg4 withBarStyle:(int)arg5 withStyle:(int)arg6 withInsets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg7 possibleTitles:(id)arg8 possibleSystemItems:(id)arg9 withToolbarTintColor:(id)arg10 bezel:(BOOL)arg11 imageInsets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg12 glowInsets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg13 landscape:(BOOL)arg14;

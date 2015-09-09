@@ -2,9 +2,15 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class <UIGestureRecognizerDelegate>, NSMutableArray, NSMutableSet, UIPhysicalButtonsEvent, UITouchesEvent, UIView;
-
 @interface UIGestureRecognizer : NSObject {
+    NSMutableArray *_delayedTouches;
+    <UIGestureRecognizerDelegate> *_delegate;
+    NSMutableSet *_dynamicFailureDependents;
+    NSMutableSet *_dynamicFailureRequirements;
+    NSMutableSet *_failureDependents;
+    id _failureMap;
+    NSMutableSet *_failureRequirements;
+    NSMutableSet *_friends;
     struct { 
         unsigned int delegateShouldBegin : 1; 
         unsigned int delegateCanPrevent : 1; 
@@ -40,14 +46,6 @@
         unsigned int willBeginAfterSatisfyingFailureRequirements : 1; 
         unsigned int requiresSystemGesturesToFail : 1; 
         unsigned int acceptsFailureRequirements : 1; 
-    NSMutableArray *_delayedTouches;
-    <UIGestureRecognizerDelegate> *_delegate;
-    NSMutableSet *_dynamicFailureDependents;
-    NSMutableSet *_dynamicFailureRequirements;
-    NSMutableSet *_failureDependents;
-    id _failureMap;
-    NSMutableSet *_failureRequirements;
-    NSMutableSet *_friends;
     } _gestureFlags;
     int _state;
     NSMutableArray *_targets;
@@ -56,13 +54,15 @@
     UIView *_view;
 }
 
-@property BOOL cancelsTouchesInView;
-@property BOOL delaysTouchesBegan;
-@property BOOL delaysTouchesEnded;
-@property <UIGestureRecognizerDelegate> * delegate;
-@property(getter=isEnabled) BOOL enabled;
-@property(readonly) int state;
-@property(readonly) UIView * view;
+@property (nonatomic) BOOL cancelsTouchesInView;
+@property (nonatomic) BOOL delaysTouchesBegan;
+@property (nonatomic) BOOL delaysTouchesEnded;
+@property (nonatomic) <UIGestureRecognizerDelegate> *delegate;
+@property (getter=isEnabled, nonatomic) BOOL enabled;
+@property (nonatomic, readonly) int state;
+@property (nonatomic, readonly) UIView *view;
+
+// Image: /System/Library/Frameworks/UIKit.framework/UIKit
 
 + (BOOL)_touchesBeganWasDelayedForTouch:(id)arg1;
 
@@ -143,7 +143,6 @@
 - (struct CGPoint { float x1; float x2; })locationInView:(id)arg1;
 - (struct CGPoint { float x1; float x2; })locationOfTouch:(unsigned int)arg1 inView:(id)arg2;
 - (unsigned int)numberOfTouches;
-- (void)pu_cancel;
 - (void)removeFailureRequirement:(id)arg1;
 - (void)removeTarget:(id)arg1 action:(SEL)arg2;
 - (void)requireGestureRecognizerToFail:(id)arg1;
@@ -164,5 +163,9 @@
 - (void)touchesEnded:(id)arg1 withEvent:(id)arg2;
 - (void)touchesMoved:(id)arg1 withEvent:(id)arg2;
 - (id)view;
+
+// Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
+
+- (void)pu_cancel;
 
 @end

@@ -2,7 +2,8 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@interface _UIBackgroundHitTestWindow : UIWindow {
-}
+@interface _UIBackgroundHitTestWindow : UIWindow
+
++ (BOOL)_isSystemWindow;
 
 @end

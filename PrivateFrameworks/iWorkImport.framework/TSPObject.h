@@ -2,9 +2,8 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class <TSPObjectDelegate>, NSString, TSPComponent, TSPObject, TSPObjectContext, TSPUnknownContent;
-
 @interface TSPObject : NSObject {
+    NSUUID *_UUID;
     TSPComponent *_component;
     <TSPObjectDelegate> *_delegate;
     long long _identifier;
@@ -13,47 +12,60 @@
     TSPUnknownContent *_unknownContent;
 }
 
-@property(readonly) BOOL allowsDuplicatesOutsideOfDocumentPackage;
-@property(readonly) BOOL allowsImplicitComponentOwnership;
-@property(readonly) TSPObject * componentRootObject;
-@property(readonly) TSPObjectContext * context;
-@property(readonly) unsigned int delayedArchivingPriority;
-@property(readonly) BOOL dirtiesDocumentPackage;
-@property(readonly) BOOL isCommandObject;
-@property(readonly) BOOL isComponentRoot;
-@property(readonly) BOOL needsArchiving;
-@property(readonly) NSString * packageLocator;
-@property(readonly) BOOL shouldDelayArchiving;
-@property(readonly) BOOL storeOutsideObjectArchive;
-@property TSPComponent * tsp_component;
-@property <TSPObjectDelegate> * tsp_delegate;
-@property long long tsp_identifier;
-@property long long tsp_modifyObjectToken;
-@property(readonly) long long tsp_unarchiverIdentifier;
-@property(readonly) TSPUnknownContent * tsp_unknownContent;
+@property (nonatomic, readonly) BOOL allowsImplicitComponentOwnership;
+@property (nonatomic, readonly) TSPObject *componentRootObject;
+@property (nonatomic, readonly) TSPObjectContext *context;
+@property (nonatomic, readonly) unsigned int delayedArchivingPriority;
+@property (nonatomic, readonly) BOOL isCommandObject;
+@property (nonatomic, readonly) BOOL isComponentRoot;
+@property (nonatomic, readonly) BOOL needsArchiving;
+@property (nonatomic, copy) NSUUID *objectUUID;
+@property (nonatomic, readonly) TSUUUIDPath *objectUUIDPath;
+@property (nonatomic, readonly) NSString *packageLocator;
+@property (nonatomic, readonly) BOOL shouldDelayArchiving;
+@property (nonatomic, readonly) BOOL storeOutsideObjectArchive;
+@property (nonatomic) TSPComponent *tsp_component;
+@property (nonatomic) <TSPObjectDelegate> *tsp_delegate;
+@property (nonatomic, readonly) NSString *tsp_description;
+@property (nonatomic) long long tsp_identifier;
+@property (nonatomic, readonly) BOOL tsp_isInDocument;
+@property (nonatomic) long long tsp_modifyObjectToken;
+@property (nonatomic, readonly) long long tsp_unarchiverIdentifier;
+@property (nonatomic, readonly) TSPUnknownContent *tsp_unknownContent;
 
++ (BOOL)needsObjectUUID;
 + (id)newObjectForUnarchiver:(id)arg1;
 + (BOOL)tsp_isTransientObjectIdentifier:(long long)arg1;
 
 - (void).cxx_destruct;
-- (BOOL)allowsDuplicatesOutsideOfDocumentPackage;
 - (BOOL)allowsImplicitComponentOwnership;
 - (id)componentRootObject;
 - (id)context;
+- (void)dealloc;
+- (void)deallocSOS;
 - (unsigned int)delayedArchivingPriority;
 - (void)didFinishUnarchiving;
+- (void)didInitFromSOS;
 - (void)didLoadChildObjectFromDocumentSupport:(id)arg1;
-- (BOOL)dirtiesDocumentPackage;
+- (BOOL)documentIsRTL;
 - (id)documentRoot;
 - (id)init;
+- (id)initBaseObjectWithContext:(id)arg1;
+- (id)initCommon;
 - (id)initDocumentObjectWithContext:(id)arg1;
 - (id)initFromUnarchiver:(id)arg1;
 - (id)initWithContext:(id)arg1;
 - (BOOL)isCommandObject;
 - (BOOL)isComponentRoot;
+- (BOOL)isEquivalentForCrossDocumentPasteMasterComparison:(id)arg1;
 - (BOOL)needsArchiving;
+- (id)objectLocale;
+- (id)objectUUID;
+- (id)objectUUIDPath;
+- (id)owningDocument;
 - (id)packageLocator;
 - (void)saveToArchiver:(id)arg1;
+- (void)setObjectUUID:(id)arg1;
 - (void)setTsp_component:(id)arg1;
 - (void)setTsp_delegate:(id)arg1;
 - (void)setTsp_identifier:(long long)arg1;
@@ -61,12 +73,28 @@
 - (BOOL)shouldDelayArchiving;
 - (BOOL)storeOutsideObjectArchive;
 - (id)tsp_component;
+- (void)tsp_deepCopyWithContext:(id)arg1 options:(id)arg2 completion:(id /* block */)arg3;
+- (id)tsp_deepCopyWithContext:(id)arg1 options:(id)arg2 error:(id*)arg3;
+- (id)tsp_deepCopyWithOptions:(id)arg1;
+- (void)tsp_deepCopyWithOptions:(id)arg1 completion:(id /* block */)arg2;
 - (id)tsp_delegate;
+- (id)tsp_description;
+- (id)tsp_descriptionWithDepth:(unsigned int)arg1;
 - (long long)tsp_identifier;
+- (BOOL)tsp_isInDocument;
 - (long long)tsp_modifyObjectToken;
+- (id)tsp_objectInfoWithDepth:(unsigned int)arg1;
+- (id)tsp_referencedData;
+- (id)tsp_referencedObjects;
 - (long long)tsp_unarchiverIdentifier;
 - (id)tsp_unknownContent;
+- (void)wasAddedToDocument;
+- (void)wasAddedToDocumentDuringImport;
+- (void)wasAddedToDocumentDuringUnarchive;
+- (void)wasAddedToDocumentWithOptions:(unsigned int)arg1;
+- (void)willBeRemovedFromDocument;
 - (void)willModify;
 - (void)willModifyForUpgrade;
+- (void)willModifyToComponentRootObject:(id)arg1;
 
 @end

@@ -2,10 +2,8 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSMutableArray, TSUNoCopyDictionary;
-
 @interface OADGraphicFeatureCache : NSObject {
-    TSUNoCopyDictionary *mFeatureMap;
+    OITSUNoCopyDictionary *mFeatureMap;
     NSMutableArray *mFeatureUsageArray;
 }
 

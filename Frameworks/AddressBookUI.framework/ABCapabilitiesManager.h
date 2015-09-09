@@ -2,14 +2,22 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@interface ABCapabilitiesManager : NSObject {
+@interface ABCapabilitiesManager : NSObject <IDSIDQueryControllerDelegate> {
+    NSMutableDictionary *_destinationStatus;
+    BOOL _isListeningToIDSQueryController;
     BOOL _isListeningToIDSServiceAvailability;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (void)_setDefaultCapabilitiesManager:(id)arg1;
 + (id)defaultCapabilitiesManager;
 
 - (BOOL)_isAppAvailable:(id)arg1;
+- (void)_startListeningToIDSIDQueryControllerIfNecessary;
 - (void)_startListeningToIDSServiceAvailabilityIfNecessary;
 - (void)addIDSServiceAvailabilityListener:(id)arg1 selector:(SEL)arg2;
 - (id)conferenceURLForDestinationID:(id)arg1;
@@ -19,11 +27,13 @@
 - (BOOL)hasCameraCapability;
 - (BOOL)hasCellularDataCapability;
 - (BOOL)hasCellularTelephonyCapability;
+- (BOOL)hasCellularTelephonyHardwareCapability;
 - (BOOL)hasPreviouslyConferencedWithID:(id)arg1;
 - (BOOL)hasSMSCapability;
 - (BOOL)hasSiriCapability;
 - (BOOL)hasTelephonyCapability;
 - (BOOL)hasVibratorCapability;
+- (void)idStatusUpdatedForDestinations:(id)arg1 service:(id)arg2;
 - (BOOL)isConferencingAvailable;
 - (BOOL)isConferencingEverGonnaBeAvailable;
 - (BOOL)isEmailConfigured;

@@ -7,14 +7,16 @@
     void *_reserved2;
 }
 
-+ (id)blockOperationWithBlock:(id)arg1;
+@property (readonly, copy) NSArray *executionBlocks;
 
-- (void)addExecutionBlock:(id)arg1;
++ (id)blockOperationWithBlock:(id /* block */)arg1;
+
+- (void)addExecutionBlock:(id /* block */)arg1;
 - (void)dealloc;
 - (id)executionBlocks;
 - (void)finalize;
 - (id)init;
-- (id)initWithBlock:(id)arg1;
+- (id)initWithBlock:(id /* block */)arg1;
 - (void)main;
 
 @end

@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/Social.framework/Social
  */
 
-@class NSArray, NSObject<SLMicroBlogMentionsDelegate>, NSObject<SLMicroBlogSheetDelegate>, NSString, UITableView;
-
 @interface SLMicroBlogMentionsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
     NSObject<SLMicroBlogMentionsDelegate> *_delegate;
     NSArray *_mentions;
@@ -12,14 +10,17 @@
     UITableView *_tableView;
 }
 
-@property NSObject<SLMicroBlogMentionsDelegate> * delegate;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) NSObject<SLMicroBlogMentionsDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)_blankSurrogateProfileImage;
 
 - (void).cxx_destruct;
 - (void)chooseRow:(int)arg1;
 - (void)completeWithSelectedMention:(id)arg1;
-- (struct CGSize { float x1; float x2; })contentSizeForViewInPopover;
 - (id)delegate;
 - (id)initWithSheetDelegate:(id)arg1;
 - (void)loadView;

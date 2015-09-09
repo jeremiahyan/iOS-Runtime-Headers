@@ -2,15 +2,13 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSString;
-
 @interface STStgInfo : NSObject {
+    int m_accessMode;
     struct { 
         unsigned int m_data1; 
         unsigned short m_data2; 
         unsigned short m_data3; 
         unsigned char m_data4[8]; 
-    int m_accessMode;
     } m_clsid;
     long m_creationTime;
     long m_modificationTime;

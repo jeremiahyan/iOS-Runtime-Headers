@@ -3,14 +3,14 @@
  */
 
 @interface MFRangedDataFilter : MFBaseFilterDataConsumer {
+    unsigned int _consumedLength;
     struct _NSRange { 
         unsigned int location; 
         unsigned int length; 
-    unsigned int _consumedLength;
     } _range;
 }
 
-@property struct _NSRange { unsigned int x1; unsigned int x2; } range;
+@property (nonatomic) struct _NSRange { unsigned int x1; unsigned int x2; } range;
 
 + (id)rangedFilterWithConsumer:(id)arg1 range:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2;
 + (id)rangedFilterWithConsumers:(id)arg1 range:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2;

@@ -2,30 +2,36 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class ABPeoplePickerNavigationController, CNContact;
-
 @interface ABContactAddLinkedCardAction : ABContactAction <ABPeoplePickerNavigationControllerDelegate, ABPersonViewControllerDelegate> {
     CNContact *_chosenContact;
+    NSObject<ABContactAddLinkedCardActionDelegate> *_linkedCardActionDelegate;
     ABPeoplePickerNavigationController *_peoplePicker;
     CNContact *_selectedContact;
 }
 
-@property(retain) CNContact * chosenContact;
-@property(retain) ABPeoplePickerNavigationController * peoplePicker;
-@property(retain) CNContact * selectedContact;
+@property (nonatomic, retain) CNContact *chosenContact;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) NSObject<ABContactAddLinkedCardActionDelegate> *linkedCardActionDelegate;
+@property (nonatomic, retain) ABPeoplePickerNavigationController *peoplePicker;
+@property (nonatomic, retain) CNContact *selectedContact;
+@property (readonly) Class superclass;
 
 - (id)chosenContact;
 - (void)dealloc;
+- (id)linkedCardActionDelegate;
 - (id)peoplePicker;
 - (void)peoplePickerLinkButtonTapped;
 - (BOOL)peoplePickerNavigationController:(id)arg1 shouldAllowSelectingPersonWithRecordID:(int)arg2;
-- (BOOL)peoplePickerNavigationController:(id)arg1 shouldContinueAfterSelectingPerson:(void*)arg2 property:(int)arg3 identifier:(int)arg4;
 - (BOOL)peoplePickerNavigationController:(id)arg1 shouldContinueAfterSelectingPerson:(void*)arg2;
+- (BOOL)peoplePickerNavigationController:(id)arg1 shouldContinueAfterSelectingPerson:(void*)arg2 property:(int)arg3 identifier:(int)arg4;
 - (void)peoplePickerNavigationControllerDidCancel:(id)arg1;
 - (void)performActionWithSender:(id)arg1;
 - (BOOL)personViewController:(id)arg1 shouldPerformDefaultActionForPerson:(void*)arg2 property:(int)arg3 identifier:(int)arg4;
 - (id)selectedContact;
 - (void)setChosenContact:(id)arg1;
+- (void)setLinkedCardActionDelegate:(id)arg1;
 - (void)setPeoplePicker:(id)arg1;
 - (void)setSelectedContact:(id)arg1;
 

@@ -6,7 +6,9 @@
     id _internal;
 }
 
-@property(readonly) struct { double x1; double x2; double x3; } rotationRate;
+@property (nonatomic, readonly) struct { double x1; double x2; double x3; } rotationRate;
+
++ (BOOL)supportsSecureCoding;
 
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;

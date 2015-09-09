@@ -2,18 +2,16 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class NSArray;
-
-@interface ABPropertyAction : ABContactAction <UIActionSheetDelegate> {
+@interface ABPropertyAction : ABContactAction {
     NSArray *_propertyItems;
 }
 
-@property(readonly) BOOL canPerformAction;
-@property(copy) NSArray * propertyItems;
+@property (nonatomic, readonly) BOOL canPerformAction;
+@property (nonatomic) <ABPropertyActionDelegate> *delegate;
+@property (nonatomic, copy) NSArray *propertyItems;
 
 + (void)performDefaultActionForItem:(id)arg1 sender:(id)arg2;
 
-- (void)actionSheet:(id)arg1 clickedButtonAtIndex:(int)arg2;
 - (BOOL)canPerformAction;
 - (void)dealloc;
 - (id)initWithContact:(id)arg1 propertyItem:(id)arg2;

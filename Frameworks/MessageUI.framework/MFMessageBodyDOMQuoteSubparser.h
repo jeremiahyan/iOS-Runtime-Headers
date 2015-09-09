@@ -2,15 +2,9 @@
    Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class <MFMessageBodyElement_Private>, DOMRange, NSMutableArray;
-
 @interface MFMessageBodyDOMQuoteSubparser : MFMessageBodySubparser {
-    id _foundDedentedAttributionRangeBlock;
-    id _foundTrailingEmptyQuoteRangeBlock;
+    id /* block */ _foundDedentedAttributionRangeBlock;
+    id /* block */ _foundTrailingEmptyQuoteRangeBlock;
     <MFMessageBodyElement_Private> *_lastUnindentedAttributionHint;
     <MFMessageBodyElement_Private> *_lastUnindentedElement;
     unsigned int _trailingEmptyQuoteLevel;
@@ -19,12 +13,12 @@
     NSMutableArray *_unindentedSiblingNodes;
 }
 
-- (void)_enumerateSurroundableRangesInRange:(id)arg1 withBlock:(id)arg2;
+- (void)_enumerateSurroundableRangesInRange:(id)arg1 withBlock:(id /* block */)arg2;
 - (void)copyBlocks;
 - (void)dealloc;
 - (BOOL)doesRange:(id)arg1 containAnyElementWithTagName:(id)arg2;
 - (void)messageBodyParser:(id)arg1 foundMessageBodyElement:(id)arg2;
-- (void)setFoundDedentedAttributionRangeBlock:(id)arg1;
-- (void)setFoundTrailingEmptyQuoteRangeBlock:(id)arg1;
+- (void)setFoundDedentedAttributionRangeBlock:(id /* block */)arg1;
+- (void)setFoundTrailingEmptyQuoteRangeBlock:(id /* block */)arg1;
 
 @end

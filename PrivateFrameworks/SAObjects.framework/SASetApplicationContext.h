@@ -2,14 +2,15 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSArray, NSString;
+@interface SASetApplicationContext : SABaseCommand <SAServerBoundCommand>
 
-@interface SASetApplicationContext : SABaseCommand <SAServerBoundCommand> {
-}
-
-@property(copy) NSString * aceId;
-@property(copy) NSArray * orderedContext;
-@property(copy) NSString * refId;
+@property (nonatomic, copy) NSString *aceId;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSArray *orderedContext;
+@property (nonatomic, copy) NSString *refId;
+@property (readonly) Class superclass;
 
 + (id)setApplicationContext;
 + (id)setApplicationContextWithDictionary:(id)arg1 context:(id)arg2;

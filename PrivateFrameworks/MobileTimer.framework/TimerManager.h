@@ -2,24 +2,23 @@
    Image: /System/Library/PrivateFrameworks/MobileTimer.framework/MobileTimer
  */
 
-@class NSString, UILocalNotification;
-
 @interface TimerManager : NSObject {
     UILocalNotification *_notification;
     double _remainingTime;
     int _state;
 }
 
-@property double defaultDuration;
-@property(readonly) NSString * defaultSound;
-@property(readonly) double fireTime;
-@property(readonly) double remainingTime;
-@property(readonly) int state;
+@property (nonatomic) double defaultDuration;
+@property (nonatomic, readonly) NSString *defaultSound;
+@property (nonatomic, readonly) double fireTime;
+@property (nonatomic, readonly) double remainingTime;
+@property (nonatomic, readonly) int state;
 
 + (id)copyFetchScheduledNotification;
 + (BOOL)discardOldVersion;
 + (BOOL)isTimerNotification:(id)arg1;
 + (id)newNotificationAt:(double)arg1 withSound:(id)arg2;
++ (void)setSoundID:(id)arg1 forNotification:(id)arg2;
 + (id)sharedManager;
 + (BOOL)upgrade;
 

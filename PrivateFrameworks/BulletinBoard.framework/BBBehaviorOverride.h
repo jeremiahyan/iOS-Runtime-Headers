@@ -2,17 +2,17 @@
    Image: /System/Library/PrivateFrameworks/BulletinBoard.framework/BulletinBoard
  */
 
-@class NSArray;
-
-@interface BBBehaviorOverride : NSObject <NSCopying, NSCoding> {
+@interface BBBehaviorOverride : NSObject <NSCopying, NSSecureCoding> {
     NSArray *_effectiveIntervals;
     unsigned int _mode;
     unsigned int _overrideType;
 }
 
-@property(copy) NSArray * effectiveIntervals;
-@property unsigned int mode;
-@property unsigned int overrideType;
+@property (nonatomic, copy) NSArray *effectiveIntervals;
+@property (nonatomic) unsigned int mode;
+@property (nonatomic) unsigned int overrideType;
+
++ (BOOL)supportsSecureCoding;
 
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;

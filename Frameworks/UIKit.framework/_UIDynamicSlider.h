@@ -2,21 +2,24 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIDynamicItemBehavior, UIGravityBehavior, UIPushBehavior, UIView, _UIDynamicSliderAnimator;
-
-@interface _UIDynamicSlider : UISlider <UIDynamicAnimatorDelegate, UICollisionBehaviorDelegate> {
-    struct CGPoint { 
-        float x; 
-        float y; 
+@interface _UIDynamicSlider : UISlider <UICollisionBehaviorDelegate, UIDynamicAnimatorDelegate> {
     _UIDynamicSliderAnimator *_animator;
     UIGravityBehavior *_gravityBehavior;
     UIDynamicItemBehavior *_itemBehavior;
     UIPushBehavior *_pushBehavior;
     UIView *_thumbDynamicsView;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _thumbPreviousPoint;
     double _thumbPreviousTime;
     float _thumbVelocity;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)_clearDynamics;
 - (void)_handleConversionToDynamicsTracking;

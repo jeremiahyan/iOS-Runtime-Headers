@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class <GEOVoltaireMultiTileDownloaderDelegate>, GEONetworkDataReader, GEOTileKeyList, GEOTileKeyMap, NSData, NSMutableSet, NSString, NSURL, NSURLConnection;
-
 @interface GEOVoltaireMultiTileDownloader : NSObject <NSURLConnectionDelegate> {
     int _attempts;
     NSData *_auditToken;
@@ -12,7 +10,9 @@
     <GEOVoltaireMultiTileDownloaderDelegate> *_delegate;
     NSMutableSet *_errorCodes;
     GEOTileKeyList *_keyList;
+    NSLocale *_locale;
     GEOTileKeyMap *_localizedTilesWaitingForBase;
+    GEOResourceManifestConfiguration *_manifestConfiguration;
     NSString *_postString;
     unsigned short _providerID;
     GEONetworkDataReader *_reader;
@@ -27,12 +27,16 @@
     NSString *_userAgent;
 }
 
-@property(retain) NSData * auditToken;
-@property <GEOVoltaireMultiTileDownloaderDelegate> * delegate;
-@property(readonly) NSURL * requestURL;
-@property BOOL requireWiFi;
-@property BOOL useStatusCodes;
-@property(retain) NSString * userAgent;
+@property (nonatomic, retain) NSData *auditToken;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <GEOVoltaireMultiTileDownloaderDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) NSURL *requestURL;
+@property (nonatomic) BOOL requireWiFi;
+@property (readonly) Class superclass;
+@property (nonatomic) BOOL useStatusCodes;
+@property (nonatomic, retain) NSString *userAgent;
 
 - (void)_cancelWithError:(id)arg1;
 - (void)_cleanupConnection;
@@ -52,7 +56,7 @@
 - (void)dealloc;
 - (id)delegate;
 - (double)elapsed;
-- (id)initWithURL:(id)arg1 keyList:(id)arg2;
+- (id)initWithURL:(id)arg1 keyList:(id)arg2 manifestConfiguration:(id)arg3 locale:(id)arg4;
 - (void)logDownloadDetails;
 - (id)requestURL;
 - (BOOL)requireWiFi;

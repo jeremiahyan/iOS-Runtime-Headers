@@ -2,9 +2,10 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-@class <VKRasterOverlayDelegate>, VKRasterOverlayTileSource;
-
 @interface VKRasterOverlay : NSObject {
+    <VKRasterOverlayDelegate> *_delegate;
+    unsigned int _level;
+    VKRasterOverlayTileSource *_mapModel;
     struct { 
         struct { 
             double x; 
@@ -14,17 +15,14 @@
             double width; 
             double height; 
         } size; 
-    <VKRasterOverlayDelegate> *_delegate;
-    unsigned int _level;
-    VKRasterOverlayTileSource *_mapModel;
     } _replaceMapContentInRect;
     VKRasterOverlayTileSource *_tileSource;
 }
 
-@property <VKRasterOverlayDelegate> * delegate;
-@property unsigned int level;
-@property struct { struct { double x_1_1_1; double x_1_1_2; } x1; struct { double x_2_1_1; double x_2_1_2; } x2; } replaceMapContentInRect;
-@property VKRasterOverlayTileSource * tileSource;
+@property <VKRasterOverlayDelegate> *delegate;
+@property (nonatomic) unsigned int level;
+@property (nonatomic) struct { struct { double x_1_1_1; double x_1_1_2; } x1; struct { double x_2_1_1; double x_2_1_2; } x2; } replaceMapContentInRect;
+@property (nonatomic) VKRasterOverlayTileSource *tileSource;
 
 - (id).cxx_construct;
 - (BOOL)canDrawKey:(const struct { unsigned int x1; unsigned int x2; unsigned int x3; }*)arg1;

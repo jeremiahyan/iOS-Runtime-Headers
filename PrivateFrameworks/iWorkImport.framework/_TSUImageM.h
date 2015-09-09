@@ -2,13 +2,12 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface _TSUImageM : TSUImage {
-}
+@interface _TSUImageM : TSUImage
 
 + (id)allocWithZone:(struct _NSZone { }*)arg1;
 + (id)init;
-+ (id)initWithCGImage:(struct CGImage { }*)arg1 scale:(float)arg2 orientation:(int)arg3;
 + (id)initWithCGImage:(struct CGImage { }*)arg1;
++ (id)initWithCGImage:(struct CGImage { }*)arg1 scale:(float)arg2 orientation:(int)arg3;
 + (id)initWithContentsOfFile:(id)arg1;
 + (id)initWithData:(id)arg1;
 + (id)initWithImageSourceRef:(struct CGImageSource { }*)arg1;

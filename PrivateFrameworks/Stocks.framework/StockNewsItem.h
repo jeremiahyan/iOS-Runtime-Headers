@@ -2,10 +2,7 @@
    Image: /System/Library/PrivateFrameworks/Stocks.framework/Stocks
  */
 
-@class NSDate, NSString, NSURL;
-
 @interface StockNewsItem : NSObject {
-    unsigned long long _ID;
     NSDate *_date;
     NSString *_headline;
     NSURL *_link;
@@ -14,22 +11,19 @@
     NSString *_summary;
 }
 
-@property unsigned long long ID;
-@property(retain) NSDate * date;
-@property(retain) NSString * headline;
-@property(retain) NSURL * link;
-@property(readonly) NSString * localizedDateString;
-@property(retain) NSString * source;
-@property(retain) NSString * summary;
+@property (nonatomic, retain) NSDate *date;
+@property (nonatomic, retain) NSString *headline;
+@property (nonatomic, retain) NSURL *link;
+@property (nonatomic, readonly, retain) NSString *localizedDateString;
+@property (nonatomic, retain) NSString *source;
+@property (nonatomic, retain) NSString *summary;
 
 + (id)localizedStringForDate:(id)arg1;
 
 - (void).cxx_destruct;
-- (unsigned long long)ID;
 - (id)archiveDictionary;
 - (int)chronologicalComparisonWithNewsItem:(id)arg1;
 - (id)date;
-- (void)dealloc;
 - (id)description;
 - (id)headline;
 - (id)initWithArchiveDictionary:(id)arg1;
@@ -38,7 +32,6 @@
 - (void)resetLocale;
 - (void)setDate:(id)arg1;
 - (void)setHeadline:(id)arg1;
-- (void)setID:(unsigned long long)arg1;
 - (void)setLink:(id)arg1;
 - (void)setSource:(id)arg1;
 - (void)setSummary:(id)arg1;

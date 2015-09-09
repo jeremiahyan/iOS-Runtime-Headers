@@ -7,16 +7,16 @@
         float x; 
         float y; 
         float z; 
+    } _GLPoint3DValue;
     struct { 
         float x; 
         float y; 
         float z; 
-    } _GLPoint3DValue;
     } _proposedGLPoint3DValue;
 }
 
-@property(readonly) struct { float x1; float x2; float x3; } GLPoint3DValue;
-@property struct { float x1; float x2; float x3; } proposedGLPoint3DValue;
+@property (nonatomic, readonly) struct { float x1; float x2; float x3; } GLPoint3DValue;
+@property (nonatomic) struct { float x1; float x2; float x3; } proposedGLPoint3DValue;
 
 - (struct { float x1; float x2; float x3; })GLPoint3DValue;
 - (id)description;

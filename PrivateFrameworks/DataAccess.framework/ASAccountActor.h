@@ -2,8 +2,7 @@
    Image: /System/Library/PrivateFrameworks/DataAccess.framework/DataAccess
  */
 
-@interface ASAccountActor : DADisableableObject <ASAccountActorMessages> {
-}
+@interface ASAccountActor : DADisableableObject <ASAccountActorMessages>
 
 - (oneway void)_accountPasswordChanged;
 - (oneway void)_daemonDiedNotification:(id)arg1;
@@ -37,7 +36,8 @@
 - (oneway void)performSearchQuery:(id)arg1;
 - (BOOL)reattemptInvitationLinkageForMetaData:(id)arg1 inFolderWithId:(id)arg2;
 - (BOOL)searchQueriesRunning;
-- (int)sendMessageWithRFC822Data:(id)arg1 messageID:(id)arg2 outgoingMessageType:(int)arg3 originalMessageFolderID:(id)arg4 originalMessageItemID:(id)arg5 originalMessageLongID:(id)arg6 originalAccountID:(id)arg7 useSmartTasksIfPossible:(BOOL)arg8 consumer:(id)arg9 context:(void*)arg10;
+- (int)sendMessageWithRFC822Data:(id)arg1 messageID:(id)arg2 outgoingMessageType:(int)arg3 originalMessageFolderID:(id)arg4 originalMessageItemID:(id)arg5 originalMessageLongID:(id)arg6 originalAccountID:(id)arg7 useSmartTasksIfPossible:(BOOL)arg8 consumer:(id)arg9 context:(id)arg10;
+- (int)sendMessageWithRFC822Data:(id)arg1 messageID:(id)arg2 outgoingMessageType:(int)arg3 originalMessageFolderID:(id)arg4 originalMessageItemID:(id)arg5 originalMessageLongID:(id)arg6 originalAccountID:(id)arg7 useSmartTasksIfPossible:(BOOL)arg8 isUserRequested:(BOOL)arg9 consumer:(id)arg10 context:(id)arg11;
 - (id)sentItemsFolder;
 - (oneway void)setAccount:(id)arg1;
 - (oneway void)setCustomSignature:(id)arg1;
@@ -51,6 +51,7 @@
 - (oneway void)startup;
 - (oneway void)stopMonitoringAllFolders;
 - (oneway void)stopMonitoringFoldersForUpdates:(id)arg1;
+- (int)supportsConversations;
 - (int)supportsEmailFlagging;
 - (int)supportsMailboxSearch;
 - (id)unactionableICSRepresentationForMetaData:(id)arg1 inFolderWithId:(id)arg2 outSummary:(id*)arg3;

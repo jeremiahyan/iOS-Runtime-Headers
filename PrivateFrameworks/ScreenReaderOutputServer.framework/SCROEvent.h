@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/ScreenReaderOutputServer.framework/ScreenReaderOutputServer
  */
 
-@class NSMutableArray, NSMutableDictionary;
-
 @interface SCROEvent : NSObject {
     NSMutableArray *_actions;
     NSMutableArray *_callbacks;

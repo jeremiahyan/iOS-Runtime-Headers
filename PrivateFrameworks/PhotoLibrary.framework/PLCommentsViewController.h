@@ -2,10 +2,18 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibrary.framework/PhotoLibrary
  */
 
-@class <PLCommentsViewControllerDelegate>, CAGradientLayer, NSCache, PLCloudSharedComment, PLManagedAsset, PLPhotoCommentEntryView, UIBarButtonItem, UIImageView, UITableView, UIView, _UIBackdropView;
-
-@interface PLCommentsViewController : UIViewController <PLCloudCommentsChangeObserver, PLPhotoCommentEntryViewDelegate, PLDismissableViewController, UITableViewDelegate, UITableViewDataSource> {
+@interface PLCommentsViewController : UIViewController <PLCloudCommentsChangeObserver, PLDismissableViewController, PLPhotoCommentEntryViewDelegate, UITableViewDataSource, UITableViewDelegate> {
     PLManagedAsset *_asset;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
+    } _availableBounds;
     _UIBackdropView *_backdropView;
     UIBarButtonItem *_cancelButton;
     <PLCommentsViewControllerDelegate> *_commentsControllerDelegate;
@@ -14,6 +22,7 @@
     BOOL _editMode;
     PLPhotoCommentEntryView *_entryView;
     UIImageView *_gradientView;
+    BOOL _isCompact;
     PLCloudSharedComment *_justInsertedComment;
     BOOL _justTappedSmileButton;
     float _keyboardOverlap;
@@ -24,11 +33,18 @@
     BOOL _temporaryKeyboardHideReshow;
 }
 
-@property(retain) PLManagedAsset * asset;
-@property(readonly) UIBarButtonItem * cancelButton;
-@property <PLCommentsViewControllerDelegate> * commentsControllerDelegate;
-@property BOOL editMode;
-@property(retain) PLCloudSharedComment * justInsertedComment;
+@property (nonatomic, retain) PLManagedAsset *asset;
+@property (nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } availableBounds;
+@property (nonatomic, readonly) UIBarButtonItem *cancelButton;
+@property (nonatomic) <PLCommentsViewControllerDelegate> *commentsControllerDelegate;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) NSString *draftComment;
+@property (nonatomic) BOOL editMode;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL isCompact;
+@property (nonatomic, retain) PLCloudSharedComment *justInsertedComment;
+@property (readonly) Class superclass;
 
 - (void)_addCommentButtonTapped:(id)arg1;
 - (void)_adjustInitialScrollPosition:(BOOL)arg1;
@@ -47,6 +63,7 @@
 - (void)_updateLayerMaskWithBoundsChange;
 - (id)asset;
 - (int)assetOwnerCommentSection;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })availableBounds;
 - (id)cancelButton;
 - (void)cancelCurrentAction:(id)arg1;
 - (void)cancelDeleteMode:(id)arg1;
@@ -54,8 +71,10 @@
 - (void)cloudCommentsDidChange:(id)arg1;
 - (id)commentsControllerDelegate;
 - (void)dealloc;
+- (id)draftComment;
 - (BOOL)editMode;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
+- (BOOL)isCompact;
 - (id)justInsertedComment;
 - (void)loadView;
 - (int)numberOfSectionsInTableView:(id)arg1;
@@ -65,8 +84,12 @@
 - (void)scrollToComment:(id)arg1 animated:(BOOL)arg2;
 - (void)scrollViewWillBeginDragging:(id)arg1;
 - (void)setAsset:(id)arg1;
+- (void)setAvailableBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)setCommentsControllerDelegate:(id)arg1;
+- (void)setDraftComment:(id)arg1;
 - (void)setEditMode:(BOOL)arg1;
+- (void)setEditMode:(BOOL)arg1 shouldBecomeFirstResponder:(BOOL)arg2;
+- (void)setIsCompact:(BOOL)arg1;
 - (void)setJustInsertedComment:(id)arg1;
 - (void)setRasterization:(BOOL)arg1;
 - (BOOL)shouldAutorotateToInterfaceOrientation:(int)arg1;
@@ -84,11 +107,11 @@
 - (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forRowAtIndexPath:(id)arg3;
 - (id)tableView:(id)arg1 willSelectRowAtIndexPath:(id)arg2;
 - (int)textCommentSection;
-- (void)updateViewLayoutWithDuration:(double)arg1 completion:(id)arg2;
+- (void)updateForSizeChange;
+- (void)updateViewLayoutWithDuration:(double)arg1 completion:(id /* block */)arg2;
 - (void)viewDidAppear:(BOOL)arg1;
 - (void)viewDidDisappear:(BOOL)arg1;
 - (void)viewDidLayoutSubviews;
 - (void)viewWillLayoutSubviews;
-- (void)willAnimateRotationToInterfaceOrientation:(int)arg1 duration:(double)arg2;
 
 @end

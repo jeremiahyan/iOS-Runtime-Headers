@@ -2,140 +2,149 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibrary.framework/PhotoLibrary
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class <PLPhotoTileViewControllerDelegate>, NSObject<OS_dispatch_source>, PLCommentsViewController, PLExpandableImageView, PLImageScrollView, PLManagedAsset, PLPhotoTileBadgeView, PLPhotoTilePlaceholderView, PLTileContainerView, PLVideoView, UIGestureRecognizer, UIImage, UIImageView;
-
-@interface PLPhotoTileViewController : UIViewController <UIScrollViewDelegate, UIGestureRecognizerDelegate, PLCommentsViewControllerDelegate> {
-    struct CGSize { 
-        float width; 
-        float height; 
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
-    struct UIEdgeInsets { 
-        float top; 
-        float left; 
-        float bottom; 
-        float right; 
-    unsigned int _imageIsThumbnail : 1;
-    unsigned int _isTVOut : 1;
-    unsigned int _zooming : 1;
-    unsigned int _autoZooming : 1;
-    unsigned int _zoomGesturesEnabled : 1;
-    unsigned int _userDidZoom : 1;
-    unsigned int _ignoreZoomChange : 1;
-    unsigned int _tileParentIsPageController : 1;
-    unsigned int _lockedUnderCropOverlay : 1;
-    unsigned int _viewDidAppear : 1;
-    unsigned int _viewWillAppear : 1;
-    unsigned int _didRequestFullSizeImage : 1;
-    unsigned int _useZoomScaleForCropRect : 1;
-    unsigned int _photoShouldBeHDRBadged : 1;
-    unsigned int _HDRBadgeShouldBeHidden : 1;
-    unsigned int _avalancheBadgeShouldBeHidden : 1;
-    unsigned int _photoShouldBeAvalancheBadged : 1;
-    unsigned int _badgeShouldBeVisible : 1;
-    unsigned int _didSetHDRForModelPhoto : 1;
-    unsigned int _commentsTableVisible : 1;
+@interface PLPhotoTileViewController : UIViewController <PLCommentsViewControllerDelegate, PLPhotoTileCloudPlaceholderViewDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate> {
+    PHCachingImageManager *__cachingImageManager;
+    UIView *__customCenterOverlay;
     BOOL _allowZoomToFill;
+    unsigned int _autoZooming;
+    unsigned int _avalancheBadgeShouldBeHidden;
+    unsigned int _badgeShouldBeVisible;
     PLPhotoTileBadgeView *_badgeView;
+    float _badgeViewOptimalLayoutLowestTop;
     BOOL _centerContentVertically;
     BOOL _clientIsTemporarilyWallpaper;
+    unsigned int _commentsTableVisible;
     PLCommentsViewController *_commentsViewController;
     PLTileContainerView *_containerView;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } _cropOverlayRect;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } _cropRect;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } _cropRectBeforeDragging;
     float _cropRectZoomScale;
-    id _didEndZoomingBlock;
+    BOOL _currentTileDownloadFinished;
+    NSArray *_customCenterOverlayConstraints;
+    id /* block */ _didEndZoomingBlock;
+    unsigned int _didRequestFullSizeImage;
     double _dispatchStartTime;
     double _dispatchTimeElapsed;
     NSObject<OS_dispatch_source> *_dispatchTimer;
     UIGestureRecognizer *_doubleTapGestureRecognizer;
     float _doubleTapZoomScale;
+    NSString *_draftCommentText;
     BOOL _force1XCroppedImage;
     BOOL _forceNativeScreenScale;
+    int _fullSizeImageRequestID;
     UIImageView *_gradientView;
     BOOL _hasNotedZoom;
+    unsigned int _ignoreZoomChange;
     UIImage *_image;
+    unsigned int _imageIsThumbnail;
     int _imageOrientation;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _imageSize;
     PLExpandableImageView *_imageView;
-    int _lastDisplayedOrientation;
+    BOOL _isLoadingFullSizeImage;
+    unsigned int _isTVOut;
+    unsigned int _lockedUnderCropOverlay;
     float _minZoomScale;
     int _mode;
-    PLManagedAsset *_modelPhoto;
+    PHAsset *_modelPhoto;
     id _orientationDelegate;
+    struct UIEdgeInsets { 
+        float top; 
+        float left; 
+        float bottom; 
+        float right; 
     } _overlayInsets;
     UIImage *_pendingImage;
     BOOL _picked;
-    PLPhotoTilePlaceholderView *_placeholderView;
+    UIView<PLTilePlaceholderView> *_placeholderView;
     UIImageView *_reviewCheckmarkImageView;
     BOOL _reviewing;
     PLImageScrollView *_scrollView;
+    BOOL _shouldHideProgressIndicator;
+    BOOL _shouldUpdateBadgeViewOptimalLayout;
     UIGestureRecognizer *_singleTapGestureRecognizer;
     <PLPhotoTileViewControllerDelegate> *_tileDelegate;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } _tileFrame;
+    unsigned int _tileParentIsPageController;
     UIImage *_unscaledImage;
     BOOL _useLessThanMinZoomForZoomedOutTest;
+    unsigned int _useZoomScaleForCropRect;
     BOOL _userDidAdjustWallpaper;
+    unsigned int _userDidZoom;
     PLVideoView *_videoView;
+    unsigned int _viewDidAppear;
+    unsigned int _viewWillAppear;
     float _wallpaperLandscapeZoomScale;
     float _wallpaperPortraitZoomScale;
+    BOOL _wantsCompactLayout;
+    BOOL _wasInCommentEditMode;
+    unsigned int _zoomGesturesEnabled;
     float _zoomScaleBeforeZooming;
     BOOL _zoomToFillInsteadOfToFit;
     float _zoomToFillScale;
+    unsigned int _zooming;
 }
 
-@property BOOL centerContentVertically;
-@property(readonly) BOOL commentsTableIsVisible;
-@property(readonly) PLCommentsViewController * commentsViewController;
-@property BOOL force1XCroppedImage;
-@property BOOL forceNativeScreenScale;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } overlayInsets;
-@property(readonly) PLManagedAsset * photo;
-@property BOOL picked;
-@property BOOL reviewing;
-@property(retain) UIImage * thumbnailImage;
-@property struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } tileFrame;
-@property(retain) UIImage * unscaledImage;
+@property (setter=_setCustomCenterOverlay:, nonatomic, retain) UIView *_customCenterOverlay;
+@property (nonatomic) BOOL centerContentVertically;
+@property (nonatomic, readonly) BOOL commentsTableIsVisible;
+@property (nonatomic, readonly) PLCommentsViewController *commentsViewController;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL force1XCroppedImage;
+@property (nonatomic) BOOL forceNativeScreenScale;
+@property (readonly) unsigned int hash;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } overlayInsets;
+@property (nonatomic, readonly) PHAsset *photo;
+@property (nonatomic) BOOL picked;
+@property (nonatomic) BOOL reviewing;
+@property (nonatomic) BOOL shouldHideProgressIndicator;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) UIImage *thumbnailImage;
+@property (nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } tileFrame;
+@property (nonatomic, retain) UIImage *unscaledImage;
+@property (nonatomic) BOOL wantsCompactLayout;
 
++ (BOOL)_shouldForwardViewWillTransitionToSize;
 + (id)newPhotoTileViewControllerWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 image:(id)arg2 allowZoomToFill:(BOOL)arg3 mode:(int)arg4;
 + (id)newPhotoTileViewControllerWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 imageRef:(struct CGImage { }*)arg2 imageOrientation:(int)arg3 allowZoomToFill:(BOOL)arg4 mode:(int)arg5;
 + (id)newPhotoTileViewControllerWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 modelPhoto:(id)arg2 mode:(int)arg3;
@@ -149,17 +158,23 @@
 - (void)_centerImageInScrollView;
 - (BOOL)_clientIsWallpaper;
 - (void)_configureViews;
+- (id)_customCenterOverlay;
 - (void)_handleDoubleTap:(id)arg1;
+- (void)_handleFullSizeImageRequestResult:(id)arg1 dataUTI:(id)arg2 orientation:(int)arg3;
 - (void)_handleSingleTap:(id)arg1;
 - (int)_imageOrientation;
 - (void)_installSubview:(id)arg1;
 - (id)_newOriginalImageForPickerFromCachedData;
 - (void)_performDidEndZoomBlock;
+- (void)_performRotationUpdatesWithDuration:(double)arg1 size:(struct CGSize { float x1; float x2; })arg2;
+- (void)_readOrientation:(int*)arg1 andSize:(struct CGSize { float x1; float x2; }*)arg2 fromImageData:(id)arg3;
+- (void)_removePlaceholderView;
 - (void)_repositionBadgeView;
 - (void)_requestFullSizeImage;
 - (void)_resetZoomCommon;
+- (void)_setCustomCenterOverlay:(id)arg1;
 - (void)_setDefaultZoomScale;
-- (void)_setDidEndZoomingBlock:(id)arg1;
+- (void)_setDidEndZoomingBlock:(id /* block */)arg1;
 - (void)_setImage:(id)arg1 isThumbnail:(BOOL)arg2 preserveFrame:(BOOL)arg3;
 - (void)_setPhoto:(id)arg1;
 - (void)_setupBadgeView;
@@ -169,12 +184,18 @@
 - (void)_updateAggdKeys;
 - (void)_updateContentInset;
 - (void)_updateModelPhotoWithImage:(id)arg1;
+- (void)_updatePlaceholderImageRect;
 - (void)_updatePlaceholderViewAnimated:(BOOL)arg1;
+- (void)_updatePlaceholderVisibility;
 - (void)_updateReviewCheckmark;
+- (void)_updateSubviewOrdering;
+- (void)_updateVideoViewForModelPhoto;
 - (void)_viewWillMoveToSuperView:(id)arg1;
 - (BOOL)allowsEditing;
 - (void)applicationDidBecomeActive:(id)arg1;
 - (void)applicationWillResignActive:(id)arg1;
+- (id)cachingImageManager;
+- (void)cancelFullSizeImageRequest;
 - (BOOL)centerContentVertically;
 - (void)commentsControllerDidDisplayUnreadComment:(id)arg1;
 - (void)commentsControllerDidExitEditMode:(id)arg1;
@@ -190,8 +211,7 @@
 - (float)defaultZoomScale;
 - (id)description;
 - (id)dictionaryWithCroppedImageForRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 minimalCropDimension:(float)arg2 withOptions:(int)arg3;
-- (BOOL)didRequestFullSizeImage;
-- (void)didRotateFromInterfaceOrientation:(int)arg1;
+- (void)didLoadImage;
 - (void)ensureFullSizeImageLoaded;
 - (id)expandableImageView;
 - (BOOL)force1XCroppedImage;
@@ -206,8 +226,8 @@
 - (id)imageView;
 - (id)init;
 - (id)initForPageController;
-- (id)initWithPhoto:(id)arg1 image:(id)arg2 frame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg3 isThumbnail:(BOOL)arg4 imageOrientation:(int)arg5 allowZoomToFill:(BOOL)arg6 mode:(int)arg7;
-- (id)initWithPhoto:(id)arg1 thumbnailImage:(id)arg2 size:(struct CGSize { float x1; float x2; })arg3;
+- (id)initWithModelPhoto:(id)arg1 image:(id)arg2 frame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg3 isThumbnail:(BOOL)arg4 imageOrientation:(int)arg5 allowZoomToFill:(BOOL)arg6 mode:(int)arg7;
+- (id)initWithModelPhoto:(id)arg1 thumbnailImage:(id)arg2 size:(struct CGSize { float x1; float x2; })arg3;
 - (void)initializeCommentsTable;
 - (void)installVideoOverlay:(id)arg1;
 - (BOOL)isTVOut;
@@ -223,11 +243,15 @@
 - (BOOL)photoShouldHaveAvalancheBadge;
 - (BOOL)photoShouldHaveHDRBadge;
 - (BOOL)picked;
-- (void)refreshTileWithFullScreenImage:(id)arg1;
+- (void)refreshTileWithFullScreenImage:(id)arg1 modelPhoto:(id)arg2;
+- (void)removeCommentsTable;
 - (void)resetZoom;
+- (void)restoreDraftCommentIfNecessary;
+- (void)retryDownload;
 - (BOOL)reviewing;
-- (struct CGSize { float x1; float x2; })scrollView:(id)arg1 contentSizeForZoomScale:(float)arg2 withProposedSize:(struct CGSize { float x1; float x2; })arg3;
+- (void)saveDraftCommentIfNecessary;
 - (id)scrollView;
+- (struct CGSize { float x1; float x2; })scrollView:(id)arg1 contentSizeForZoomScale:(float)arg2 withProposedSize:(struct CGSize { float x1; float x2; })arg3;
 - (void)scrollViewDidEndDecelerating:(id)arg1;
 - (void)scrollViewDidEndDragging:(id)arg1 willDecelerate:(BOOL)arg2;
 - (void)scrollViewDidEndZooming:(id)arg1 withView:(id)arg2 atScale:(float)arg3;
@@ -236,8 +260,8 @@
 - (void)scrollViewWillBeginZooming:(id)arg1 withView:(id)arg2;
 - (void)setAllowsZoomToFill:(BOOL)arg1;
 - (void)setAvalancheBadgesHidden:(BOOL)arg1;
-- (void)setBadgeVisible:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setBadgeVisible:(BOOL)arg1;
+- (void)setBadgeVisible:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setCenterContentVertically:(BOOL)arg1;
 - (void)setClientIsWallpaper:(BOOL)arg1;
 - (void)setCommentsTableVisibility:(BOOL)arg1 duration:(float)arg2;
@@ -246,31 +270,36 @@
 - (void)setForceNativeScreenScale:(BOOL)arg1;
 - (void)setFullSizeImage:(id)arg1;
 - (void)setGesturesEnabled:(BOOL)arg1;
-- (void)setHDRBadgesHidden:(BOOL)arg1;
 - (void)setLockedUnderCropOverlay:(BOOL)arg1;
 - (void)setOrientationDelegate:(id)arg1;
 - (void)setOverlayInsets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
 - (void)setPicked:(BOOL)arg1;
-- (void)setReviewing:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setReviewing:(BOOL)arg1;
+- (void)setReviewing:(BOOL)arg1 animated:(BOOL)arg2;
+- (void)setShouldHideProgressIndicator:(BOOL)arg1;
 - (void)setTVOut:(BOOL)arg1;
 - (void)setThumbnailImage:(id)arg1;
 - (void)setTileDelegate:(id)arg1;
 - (void)setTileFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)setUnscaledImage:(id)arg1;
 - (void)setVideoView:(id)arg1;
+- (void)setWantsCompactLayout:(BOOL)arg1;
 - (void)setZoomScale:(float)arg1;
 - (void)setZoomingGesturesEnabled:(BOOL)arg1;
 - (BOOL)shouldAutorotateToInterfaceOrientation:(int)arg1;
+- (BOOL)shouldHideProgressIndicator;
 - (void)showContentView;
+- (void)showErrorPlaceholderView;
 - (id)thumbnailImage;
 - (id)tileDelegate;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })tileFrame;
 - (BOOL)tileIsOnScreen;
 - (id)unscaledImage;
 - (void)updateAfterCollapse;
-- (void)updateAfterZoomTransitionWithImage:(id)arg1;
+- (void)updateCenterOverlay;
+- (void)updateCloudDownloadProgress:(float)arg1;
 - (void)updateForVisibleOverlays:(BOOL)arg1;
+- (void)updateViewConstraints;
 - (void)updateZoomScales;
 - (BOOL)userDidAdjustWallpaper;
 - (id)videoView;
@@ -279,10 +308,10 @@
 - (void)viewDidLayoutSubviews;
 - (id)viewForZoomingInScrollView:(id)arg1;
 - (void)viewWillAppear:(BOOL)arg1;
-- (void)willAnimateRotationToInterfaceOrientation:(int)arg1 duration:(double)arg2;
-- (void)willRotateToInterfaceOrientation:(int)arg1 duration:(double)arg2;
+- (void)viewWillTransitionToSize:(struct CGSize { float x1; float x2; })arg1 withTransitionCoordinator:(id)arg2;
+- (BOOL)wantsCompactLayout;
 - (float)zoomToFillScale;
 - (float)zoomToFitScale;
-- (void)zoomToScale:(float)arg1 completionBlock:(id)arg2;
+- (void)zoomToScale:(float)arg1 animated:(BOOL)arg2 completionBlock:(id /* block */)arg3;
 
 @end

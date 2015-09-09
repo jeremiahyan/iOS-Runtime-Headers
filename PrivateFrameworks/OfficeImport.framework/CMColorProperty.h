@@ -2,10 +2,8 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class TSUColor;
-
 @interface CMColorProperty : CMProperty {
-    TSUColor *wdValue;
+    OITSUColor *wdValue;
 }
 
 + (struct CGColor { }*)copyCGColorFromOADColor:(id)arg1 state:(id)arg2;

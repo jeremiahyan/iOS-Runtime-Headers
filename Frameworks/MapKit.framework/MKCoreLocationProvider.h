@@ -2,15 +2,9 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class <MKLocationProviderDelegate>, CLLocationManager, NSBundle, NSLock, NSString;
-
 @interface MKCoreLocationProvider : NSObject <CLLocationManagerDelegate, CLLocationManagerVehicleDelegate, MKLocationProvider> {
     NSLock *_authorizationLock;
-    id _authorizationRequestBlock;
+    id /* block */ _authorizationRequestBlock;
     int _authorizationStatus;
     CLLocationManager *_clLocationManager;
     <MKLocationProviderDelegate> *_delegate;
@@ -21,21 +15,27 @@
     BOOL _waitingForAuthorization;
 }
 
-@property(readonly) CLLocationManager * _clLocationManager;
-@property int activityType;
-@property(readonly) BOOL airplaneModeBlocksLocation;
-@property(copy) id authorizationRequestBlock;
-@property(readonly) int authorizationStatus;
-@property <MKLocationProviderDelegate> * delegate;
-@property double desiredAccuracy;
-@property double distanceFilter;
-@property(retain) NSBundle * effectiveBundle;
-@property(copy) NSString * effectiveBundleIdentifier;
-@property(readonly) double expectedGpsUpdateInterval;
-@property int headingOrientation;
-@property(getter=isLocationServicesPreferencesDialogEnabled) BOOL locationServicesPreferencesDialogEnabled;
-@property(getter=isMonitoringRegionsAvailable,readonly) BOOL monitoringRegionsAvailable;
-@property(readonly) BOOL usesCLMapCorrection;
+@property (nonatomic, readonly) CLLocationManager *_clLocationManager;
+@property (nonatomic) int activityType;
+@property (nonatomic, readonly) BOOL airplaneModeBlocksLocation;
+@property (nonatomic, copy) id /* block */ authorizationRequestBlock;
+@property (nonatomic, readonly) int authorizationStatus;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <MKLocationProviderDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) double desiredAccuracy;
+@property (nonatomic) double distanceFilter;
+@property (nonatomic, retain) NSBundle *effectiveBundle;
+@property (nonatomic, copy) NSString *effectiveBundleIdentifier;
+@property (nonatomic, readonly) double expectedGpsUpdateInterval;
+@property (readonly) unsigned int hash;
+@property (nonatomic) int headingOrientation;
+@property (nonatomic, readonly) BOOL isSimulation;
+@property (nonatomic, readonly) BOOL isTracePlayer;
+@property (getter=isLocationServicesPreferencesDialogEnabled, nonatomic) BOOL locationServicesPreferencesDialogEnabled;
+@property (nonatomic) BOOL matchInfoEnabled;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) BOOL usesCLMapCorrection;
 
 - (void).cxx_destruct;
 - (id)_clLocationManager;
@@ -44,7 +44,7 @@
 - (void)_updateAuthorizationStatus;
 - (int)activityType;
 - (BOOL)airplaneModeBlocksLocation;
-- (id)authorizationRequestBlock;
+- (id /* block */)authorizationRequestBlock;
 - (int)authorizationStatus;
 - (void)dealloc;
 - (id)delegate;
@@ -57,21 +57,22 @@
 - (int)headingOrientation;
 - (id)init;
 - (BOOL)isLocationServicesPreferencesDialogEnabled;
-- (BOOL)isMonitoringRegionsAvailable;
+- (BOOL)isSimulation;
+- (BOOL)isTracePlayer;
 - (void)locationManager:(id)arg1 didChangeAuthorizationStatus:(int)arg2;
-- (void)locationManager:(id)arg1 didEnterRegion:(id)arg2;
-- (void)locationManager:(id)arg1 didExitRegion:(id)arg2;
 - (void)locationManager:(id)arg1 didFailWithError:(id)arg2;
 - (void)locationManager:(id)arg1 didUpdateHeading:(id)arg2;
 - (void)locationManager:(id)arg1 didUpdateLocations:(id)arg2;
 - (void)locationManager:(id)arg1 didUpdateVehicleHeading:(id)arg2;
 - (void)locationManager:(id)arg1 didUpdateVehicleSpeed:(id)arg2;
-- (void)locationManager:(id)arg1 monitoringDidFailForRegion:(id)arg2 withError:(id)arg3;
 - (void)locationManagerDidPauseLocationUpdates:(id)arg1;
 - (void)locationManagerDidResumeLocationUpdates:(id)arg1;
 - (BOOL)locationManagerShouldDisplayHeadingCalibration:(id)arg1;
+- (BOOL)matchInfoEnabled;
+- (void)requestWhenInUseAuthorization;
+- (void)requestWhenInUseAuthorizationWithPrompt;
 - (void)setActivityType:(int)arg1;
-- (void)setAuthorizationRequestBlock:(id)arg1;
+- (void)setAuthorizationRequestBlock:(id /* block */)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setDesiredAccuracy:(double)arg1;
 - (void)setDistanceFilter:(double)arg1;
@@ -79,12 +80,11 @@
 - (void)setEffectiveBundleIdentifier:(id)arg1;
 - (void)setHeadingOrientation:(int)arg1;
 - (void)setLocationServicesPreferencesDialogEnabled:(BOOL)arg1;
-- (void)startMonitoringRegion:(id)arg1;
+- (void)setMatchInfoEnabled:(BOOL)arg1;
 - (void)startUpdatingHeading;
 - (void)startUpdatingLocation;
 - (void)startUpdatingVehicleHeading;
 - (void)startUpdatingVehicleSpeed;
-- (void)stopMonitoringRegion:(id)arg1;
 - (void)stopUpdatingHeading;
 - (void)stopUpdatingLocation;
 - (void)stopUpdatingVehicleHeading;

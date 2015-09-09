@@ -2,24 +2,22 @@
    Image: /System/Library/PrivateFrameworks/AirPortAssistant.framework/AirPortAssistant
  */
 
-@class UIFont;
-
 @interface TopoNumberBadge : CALayer {
-    struct CGSize { 
-        float width; 
-        float height; 
-    struct CGSize { 
-        float width; 
-        float height; 
     int _count;
     UIFont *_font;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _imageSize;
     id _owningView;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _textSize;
 }
 
-@property int count;
-@property id owningView;
+@property (nonatomic) int count;
+@property (nonatomic) id owningView;
 
 + (void)deallocImageCache;
 + (id)imageBadgeForCount:(int)arg1;

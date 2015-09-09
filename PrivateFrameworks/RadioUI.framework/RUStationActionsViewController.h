@@ -2,46 +2,58 @@
    Image: /System/Library/PrivateFrameworks/RadioUI.framework/RadioUI
  */
 
-@class <RUStationActionsViewControllerDelegate>, MPAVItem, NSArray, NSMutableArray, RUInnerShadowHeaderFooterView, RUStationTuningView, RadioStation, UILabel, UISwitch, UITableView, UITableViewCell, _RUStationTrackInfoView;
-
-@interface RUStationActionsViewController : UIViewController <_RUStationTrackInfoViewDelegate, MCProfileConnectionObserver, SKStoreProductViewControllerDelegate, UITableViewDataSource, UITableViewDelegate> {
+@interface RUStationActionsViewController : UIViewController <MCProfileConnectionObserver, RUStationTrackInfoViewDelegate, SKStoreProductViewControllerDelegate, UITableViewDataSource, UITableViewDelegate> {
+    BOOL _bagShowsExplicitToggle;
     UILabel *_copyrightLabel;
     int _currentAction;
     <RUStationActionsViewControllerDelegate> *_delegate;
     BOOL _isProfileExplicitContentRestricted;
     MPAVItem *_item;
     UILabel *_navigationTitleLabel;
+    BOOL _needsTrackInfoViewHeightReset;
     UISwitch *_playExplicitTracksSwitch;
     NSArray *_playbackQueue;
+    BOOL _showsDoneButton;
     RadioStation *_station;
     NSMutableArray *_stationActionGroups;
     UITableViewCell *_stationTuningCell;
     RUStationTuningView *_stationTuningView;
     UITableView *_tableView;
     RUInnerShadowHeaderFooterView *_topShadowView;
-    _RUStationTrackInfoView *_trackInfoView;
+    RUStationTrackInfoView *_trackInfoView;
 }
 
-@property <RUStationActionsViewControllerDelegate> * delegate;
-@property(readonly) MPAVItem * item;
-@property(readonly) RadioStation * station;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <RUStationActionsViewControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) MPAVItem *item;
+@property (nonatomic) BOOL showsDoneButton;
+@property (nonatomic, readonly) RadioStation *station;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
-- (void)_addDerivedStationUsingArtist:(BOOL)arg1 withCompletionHandler:(id)arg2;
+- (void)_addDerivedStationUsingArtist:(BOOL)arg1 withCompletionHandler:(id /* block */)arg2;
 - (void)_avItemStoreIDDidChangeNotification:(id)arg1;
+- (void)_contentSizeCategoryDidChangeNotification:(id)arg1;
 - (void)_didReceiveRadioAccountDidDeauthenticateNotification:(id)arg1;
 - (void)_doneAction:(id)arg1;
 - (id)_indexPathForStationAction:(int)arg1;
 - (void)_layoutTopShadowView;
 - (id)_newSectionHeaderWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 title:(id)arg2;
 - (id)_newShadowViewWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
-- (void)_playExplicitSwitchAction:(id)arg1;
+- (void)_playExplicitToggleAction:(id)arg1;
 - (void)_radioModelDidChangeNotification:(id)arg1;
+- (float)_sectionHeaderHeight;
+- (id)_sectionHeaderTitleLabelFont;
 - (void)_showStoreSheetAction:(id)arg1;
 - (int)_stationActionForIndexPath:(id)arg1;
+- (void)_storeBagDidLoadNotification:(id)arg1;
 - (void)_updateAvailableActions;
+- (void)_updateForLoadedStoreBag:(id)arg1;
 - (void)_updateIsProfileExplicitContentRestrictedForProfileConnection:(id)arg1;
 - (void)_updateTableFooterView;
+- (void)_updateViewForHorizontalSizeClassChangeAllowingTableReload:(BOOL)arg1;
 - (void)_userDefaultExplicitTracksEnabledDidChangeNotification:(id)arg1;
 - (id)contentScrollView;
 - (void)dealloc;
@@ -56,6 +68,8 @@
 - (void)profileConnectionDidReceiveRestrictionChangedNotification:(id)arg1 userInfo:(id)arg2;
 - (void)scrollViewDidScroll:(id)arg1;
 - (void)setDelegate:(id)arg1;
+- (void)setShowsDoneButton:(BOOL)arg1;
+- (BOOL)showsDoneButton;
 - (id)station;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
 - (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
@@ -69,6 +83,8 @@
 - (void)tableView:(id)arg1 willDisplayFooterView:(id)arg2 forSection:(int)arg3;
 - (void)tableViewDidFinishReload:(id)arg1;
 - (void)trackInfoViewDidTapArtwork:(id)arg1;
+- (void)trackInfoViewDidTapStoreButton:(id)arg1;
+- (void)traitCollectionDidChange:(id)arg1;
 - (void)viewDidLayoutSubviews;
 - (void)viewDidLoad;
 - (void)viewWillAppear:(BOOL)arg1;

@@ -2,13 +2,14 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class SACalendar;
+@interface SACalendarRange : AceObject <SAAceSerializable>
 
-@interface SACalendarRange : AceObject <SAAceSerializable> {
-}
-
-@property(retain) SACalendar * end;
-@property(retain) SACalendar * start;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) SACalendar *end;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) SACalendar *start;
+@property (readonly) Class superclass;
 
 + (id)calendarRange;
 + (id)calendarRangeWithDictionary:(id)arg1 context:(id)arg2;

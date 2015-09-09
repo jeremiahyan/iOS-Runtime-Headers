@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class CHDChart;
-
 @interface EDChartSheet : EDSheet {
     struct CGRect { 
         struct CGPoint { 
@@ -14,8 +12,8 @@
             float width; 
             float height; 
         } size; 
-    boolmIsBoundsSet;
     } mBounds;
+    bool mIsBoundsSet;
     CHDChart *mMainChart;
 }
 

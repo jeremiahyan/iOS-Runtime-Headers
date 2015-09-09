@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class KNOffscreenController, KNPdfHyperlinkController, KNSlideNode, NSArray, NSMutableArray, NSSet, NSString;
-
 @interface KNRenderingExporter : TSARenderingExporter <TSDCanvasDelegate> {
     unsigned int mCurrentBuildIndex;
     unsigned int mCurrentPage;
@@ -19,38 +17,48 @@
     BOOL mPrintingBorders;
     BOOL mPrintingBuilds;
     BOOL mPrintingDate;
+    BOOL mPrintingDraftQuality;
     BOOL mPrintingPageMargins;
     BOOL mPrintingSelectedSlides;
     BOOL mPrintingSkippedSlides;
     BOOL mPrintingSlideNumbers;
-    NSSet *mSelectedSlideNodes;
+    NSOrderedSet *mSelectedSlideNodes;
     unsigned int mSlidesPerPage;
 }
 
-@property(retain) KNSlideNode * currentSlideNode;
-@property(readonly) unsigned int currentSlideNumber;
-@property(readonly) float heightOfPrintedText;
-@property(retain) KNOffscreenController * offscreenController;
-@property float pageMargin;
-@property int printLayout;
-@property(copy) NSString * printTitle;
-@property id printView;
-@property(getter=isPrintingBackgrounds) BOOL printingBackgrounds;
-@property(getter=isPrintingBorders) BOOL printingBorders;
-@property(getter=isPrintingBuilds) BOOL printingBuilds;
-@property(getter=isPrintingDate) BOOL printingDate;
-@property(getter=isPrintingPageMargins) BOOL printingPageMargins;
-@property(getter=isPrintingSelectedSlides) BOOL printingSelectedSlides;
-@property(getter=isPrintingSkippedSlides) BOOL printingSkippedSlides;
-@property(getter=isPrintingSlideNumbers) BOOL printingSlideNumbers;
-@property(copy) NSSet * selectedSlideNodes;
-@property(readonly) NSArray * slidesForPrinting;
-@property unsigned int slidesPerPage;
-@property(readonly) float spaceForSlideNumbers;
-@property(readonly) BOOL usesViewForDrawing;
+@property (nonatomic, readonly) unsigned int currentBuildIndex;
+@property (nonatomic, retain) KNSlideNode *currentSlideNode;
+@property (nonatomic, readonly) unsigned int currentSlideNumber;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) float heightOfPrintedText;
+@property (nonatomic, retain) KNOffscreenController *offscreenController;
+@property (nonatomic) float pageMargin;
+@property (nonatomic) int printLayout;
+@property (nonatomic, copy) NSString *printTitle;
+@property (nonatomic) id printView;
+@property (getter=isPrintingBackgrounds, nonatomic) BOOL printingBackgrounds;
+@property (getter=isPrintingBorders, nonatomic) BOOL printingBorders;
+@property (getter=isPrintingBuilds, nonatomic) BOOL printingBuilds;
+@property (getter=isPrintingDate, nonatomic) BOOL printingDate;
+@property (getter=isPrintingDraftQuality, nonatomic) BOOL printingDraftQuality;
+@property (getter=isPrintingPageMargins, nonatomic) BOOL printingPageMargins;
+@property (getter=isPrintingSelectedSlides, nonatomic) BOOL printingSelectedSlides;
+@property (getter=isPrintingSkippedSlides, nonatomic) BOOL printingSkippedSlides;
+@property (getter=isPrintingSlideNumbers, nonatomic) BOOL printingSlideNumbers;
+@property (nonatomic, readonly) unsigned int rangeEnd;
+@property (nonatomic, readonly) unsigned int rangeStart;
+@property (nonatomic, copy) NSOrderedSet *selectedSlideNodes;
+@property (nonatomic, readonly) NSArray *slidesForPrinting;
+@property (nonatomic) unsigned int slidesPerPage;
+@property (nonatomic, readonly) float spaceForSlideNumbers;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) BOOL usesViewForDrawing;
 
 - (void)addAnchorPointForSlide:(id)arg1 context:(struct CGContext { }*)arg2;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })boundsRect;
+- (unsigned int)currentBuildIndex;
 - (id)currentInfos;
 - (id)currentSlideNode;
 - (unsigned int)currentSlideNumber;
@@ -62,6 +70,7 @@
 - (void)drawInView:(id)arg1 rect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2;
 - (void)drawNSStringDateForRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 context:(struct CGContext { }*)arg2;
 - (void)drawSlideNumberForNode:(id)arg1 index:(unsigned int)arg2 forRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg3 context:(struct CGContext { }*)arg4 position:(int)arg5;
+- (void)enableRenderAllContent;
 - (BOOL)exportToURL:(id)arg1 delegate:(id)arg2 error:(id*)arg3;
 - (BOOL)exportToURL:(id)arg1 pageNumber:(unsigned int)arg2 delegate:(id)arg3 error:(id*)arg4;
 - (float)heightOfPrintedText;
@@ -73,6 +82,7 @@
 - (BOOL)isPrintingBuilds;
 - (BOOL)isPrintingCanvas;
 - (BOOL)isPrintingDate;
+- (BOOL)isPrintingDraftQuality;
 - (BOOL)isPrintingPageMargins;
 - (BOOL)isPrintingSelectedSlides;
 - (BOOL)isPrintingSkippedSlides;
@@ -81,12 +91,16 @@
 - (unsigned int)p_slideNumberForSlideNode:(id)arg1;
 - (id)p_slideNumberStringForSlideNode:(id)arg1 buildIndex:(unsigned int)arg2;
 - (unsigned int)pageCount;
+- (int)pageIndexFromQuickLookSlideNode:(id)arg1;
 - (float)pageMargin;
 - (BOOL)preparePage:(unsigned int)arg1;
 - (int)printLayout;
 - (id)printTitle;
 - (id)printView;
 - (double)progressForCurrentPage;
+- (id)quickLookSlideNodes;
+- (unsigned int)rangeEnd;
+- (unsigned int)rangeStart;
 - (id)selectedSlideNodes;
 - (void)setCurrentSlideNode:(id)arg1;
 - (void)setOffscreenController:(id)arg1;
@@ -99,6 +113,7 @@
 - (void)setPrintingBorders:(BOOL)arg1;
 - (void)setPrintingBuilds:(BOOL)arg1;
 - (void)setPrintingDate:(BOOL)arg1;
+- (void)setPrintingDraftQuality:(BOOL)arg1;
 - (void)setPrintingPageMargins:(BOOL)arg1;
 - (void)setPrintingSelectedSlides:(BOOL)arg1;
 - (void)setPrintingSkippedSlides:(BOOL)arg1;
@@ -107,6 +122,7 @@
 - (void)setSlidesPerPage:(unsigned int)arg1;
 - (void)setup;
 - (BOOL)shouldSuppressBackgrounds;
+- (id)slideIndexesToPrint;
 - (id)slidesForPrinting;
 - (unsigned int)slidesPerPage;
 - (float)spaceForSlideNumbers;

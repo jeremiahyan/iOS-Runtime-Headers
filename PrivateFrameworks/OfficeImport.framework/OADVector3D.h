@@ -9,6 +9,7 @@
 }
 
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (id)description;
 - (float)dx;
 - (float)dy;
 - (float)dz;

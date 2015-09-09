@@ -2,9 +2,9 @@
    Image: /System/Library/PrivateFrameworks/MobileBackup.framework/MobileBackup
  */
 
-@class NSDictionary, NSSet, NSString;
-
 @interface MBDomain : NSObject {
+    int _fileDescriptor;
+    int _fileDescriptorRefCount;
     NSString *_name;
     NSDictionary *_relativePathAggregateDictionaryGroups;
     NSDictionary *_relativePathDomainRedirects;
@@ -21,6 +21,8 @@
     NSSet *_relativePathsOfSystemFilesToAlwaysRestore;
     NSSet *_relativePathsToBackgroundRestore;
     NSSet *_relativePathsToBackupAndRestore;
+    NSSet *_relativePathsToBackupIgnoringProtectionClass;
+    NSSet *_relativePathsToOnlyBackupEncrypted;
     NSSet *_relativePathsToRemoveOnRestore;
     NSSet *_relativePathsToRestoreOnly;
     NSSet *_relativePathsToRestoreOnlyFromService;
@@ -28,33 +30,38 @@
     BOOL _shouldDigest;
 }
 
-@property(getter=isAppDomain,readonly) BOOL appDomain;
-@property(readonly) NSString * bundleID;
-@property(getter=isUninstalledAppDomain,readonly) BOOL installedAppDomain;
-@property(readonly) NSString * name;
-@property(getter=isPlaceholderAppDomain,readonly) BOOL placeholderAppDomain;
-@property(retain) NSDictionary * relativePathAggregateDictionaryGroups;
-@property(retain) NSDictionary * relativePathDomainRedirects;
-@property(retain) NSSet * relativePathsNotToBackup;
-@property(retain) NSSet * relativePathsNotToBackupAndRestoreToAppleTVs;
-@property(retain) NSSet * relativePathsNotToBackupToDrive;
-@property(retain) NSSet * relativePathsNotToBackupToService;
-@property(retain) NSSet * relativePathsNotToCheckIfModifiedDuringBackup;
-@property(retain) NSSet * relativePathsNotToMigrate;
-@property(retain) NSSet * relativePathsNotToRemoveIfNotRestored;
-@property(retain) NSSet * relativePathsNotToRestore;
-@property(retain) NSSet * relativePathsNotToRestoreToIPods;
-@property(retain) NSSet * relativePathsOfSystemFilesToAlwaysRemoveOnRestore;
-@property(retain) NSSet * relativePathsOfSystemFilesToAlwaysRestore;
-@property(retain) NSSet * relativePathsToBackgroundRestore;
-@property(readonly) NSSet * relativePathsToBackup;
-@property(retain) NSSet * relativePathsToBackupAndRestore;
-@property(retain) NSSet * relativePathsToRemoveOnRestore;
-@property(readonly) NSSet * relativePathsToRestore;
-@property(retain) NSSet * relativePathsToRestoreOnly;
-@property(retain) NSSet * relativePathsToRestoreOnlyFromService;
-@property(readonly) NSString * rootPath;
-@property BOOL shouldDigest;
+@property (getter=isAppDomain, nonatomic, readonly) BOOL appDomain;
+@property (nonatomic, readonly) NSString *containerID;
+@property (nonatomic, readonly) int containerType;
+@property (getter=isGroupAppDomain, nonatomic, readonly) BOOL groupAppDomain;
+@property (getter=isUninstalledAppDomain, nonatomic, readonly) BOOL installedAppDomain;
+@property (nonatomic, readonly) NSString *name;
+@property (getter=isPlaceholderAppDomain, nonatomic, readonly) BOOL placeholderAppDomain;
+@property (getter=isPluginAppDomain, nonatomic, readonly) BOOL pluginAppDomain;
+@property (nonatomic, retain) NSDictionary *relativePathAggregateDictionaryGroups;
+@property (nonatomic, retain) NSDictionary *relativePathDomainRedirects;
+@property (nonatomic, retain) NSSet *relativePathsNotToBackup;
+@property (nonatomic, retain) NSSet *relativePathsNotToBackupAndRestoreToAppleTVs;
+@property (nonatomic, retain) NSSet *relativePathsNotToBackupToDrive;
+@property (nonatomic, retain) NSSet *relativePathsNotToBackupToService;
+@property (nonatomic, retain) NSSet *relativePathsNotToCheckIfModifiedDuringBackup;
+@property (nonatomic, retain) NSSet *relativePathsNotToMigrate;
+@property (nonatomic, retain) NSSet *relativePathsNotToRemoveIfNotRestored;
+@property (nonatomic, retain) NSSet *relativePathsNotToRestore;
+@property (nonatomic, retain) NSSet *relativePathsNotToRestoreToIPods;
+@property (nonatomic, retain) NSSet *relativePathsOfSystemFilesToAlwaysRemoveOnRestore;
+@property (nonatomic, retain) NSSet *relativePathsOfSystemFilesToAlwaysRestore;
+@property (nonatomic, retain) NSSet *relativePathsToBackgroundRestore;
+@property (nonatomic, readonly) NSSet *relativePathsToBackup;
+@property (nonatomic, retain) NSSet *relativePathsToBackupAndRestore;
+@property (nonatomic, retain) NSSet *relativePathsToBackupIgnoringProtectionClass;
+@property (nonatomic, retain) NSSet *relativePathsToOnlyBackupEncrypted;
+@property (nonatomic, retain) NSSet *relativePathsToRemoveOnRestore;
+@property (nonatomic, readonly) NSSet *relativePathsToRestore;
+@property (nonatomic, retain) NSSet *relativePathsToRestoreOnly;
+@property (nonatomic, retain) NSSet *relativePathsToRestoreOnlyFromService;
+@property (nonatomic, readonly) NSString *rootPath;
+@property (nonatomic) BOOL shouldDigest;
 
 + (BOOL)_boolFromValue:(id)arg1 forKey:(id)arg2;
 + (id)_dictionaryOfStringsToStringFromValue:(id)arg1 forKey:(id)arg2;
@@ -63,31 +70,40 @@
 + (id)_relativePathsByAddingSQLiteJournals:(id)arg1;
 + (id)_setOfStringsFromValue:(id)arg1 forKey:(id)arg2;
 + (id)_stringByRemovingCommentsFromValue:(id)arg1 forKey:(id)arg2;
-+ (id)appDomainWithBundleID:(id)arg1 rootPath:(id)arg2;
-+ (id)appPlaceholderDomainWithBundleID:(id)arg1 rootPath:(id)arg2;
-+ (id)bundleIDWithName:(id)arg1;
++ (id)appDomainWithIdentifier:(id)arg1 rootPath:(id)arg2;
++ (id)appGroupDomainWithIdentifier:(id)arg1 rootPath:(id)arg2;
++ (id)appPlaceholderDomainWithIdentifier:(id)arg1 rootPath:(id)arg2;
++ (id)appPluginDomainWithIdentifier:(id)arg1 rootPath:(id)arg2;
++ (id)containerIDWithName:(id)arg1;
++ (int)containerTypeWithName:(id)arg1;
 + (id)domainWithName:(id)arg1 rootPath:(id)arg2;
-+ (BOOL)isAppName:(id)arg1;
++ (BOOL)isAppGroupName:(id)arg1;
 + (BOOL)isAppPlaceholderName:(id)arg1;
-+ (id)nameWithAppBundleID:(id)arg1;
++ (BOOL)isAppPluginName:(id)arg1;
++ (BOOL)isContainerName:(id)arg1;
++ (id)nameWithAppID:(id)arg1;
 + (id)systemDomains;
 + (id)systemDomainsByName;
 + (double)systemDomainsMaxSupportedVersion;
 + (double)systemDomainsMinSupportedVersion;
 + (double)systemDomainsVersion;
-+ (id)uninstalledAppDomainWithBundleID:(id)arg1;
 
-- (id)bundleID;
+- (void)_releaseFileDescriptor;
 - (int)compare:(id)arg1;
+- (id)containerID;
+- (int)containerType;
 - (void)dealloc;
 - (id)description;
+- (int)fileDescriptor;
 - (unsigned int)hash;
 - (id)initWithName:(id)arg1 plist:(id)arg2;
 - (id)initWithName:(id)arg1 rootPath:(id)arg2;
 - (BOOL)isAppDomain;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isEqualToDomain:(id)arg1;
+- (BOOL)isGroupAppDomain;
 - (BOOL)isPlaceholderAppDomain;
+- (BOOL)isPluginAppDomain;
 - (BOOL)isUninstalledAppDomain;
 - (id)name;
 - (id)relativePathAggregateDictionaryGroups;
@@ -106,6 +122,8 @@
 - (id)relativePathsToBackgroundRestore;
 - (id)relativePathsToBackup;
 - (id)relativePathsToBackupAndRestore;
+- (id)relativePathsToBackupIgnoringProtectionClass;
+- (id)relativePathsToOnlyBackupEncrypted;
 - (id)relativePathsToRemoveOnRestore;
 - (id)relativePathsToRestore;
 - (id)relativePathsToRestoreOnly;
@@ -126,6 +144,8 @@
 - (void)setRelativePathsOfSystemFilesToAlwaysRestore:(id)arg1;
 - (void)setRelativePathsToBackgroundRestore:(id)arg1;
 - (void)setRelativePathsToBackupAndRestore:(id)arg1;
+- (void)setRelativePathsToBackupIgnoringProtectionClass:(id)arg1;
+- (void)setRelativePathsToOnlyBackupEncrypted:(id)arg1;
 - (void)setRelativePathsToRemoveOnRestore:(id)arg1;
 - (void)setRelativePathsToRestoreOnly:(id)arg1;
 - (void)setRelativePathsToRestoreOnlyFromService:(id)arg1;

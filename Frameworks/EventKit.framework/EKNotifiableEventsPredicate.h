@@ -2,10 +2,15 @@
    Image: /System/Library/Frameworks/EventKit.framework/EventKit
  */
 
-@interface EKNotifiableEventsPredicate : NSPredicate <EKDefaultPropertiesLoading> {
-}
+@interface EKNotifiableEventsPredicate : NSPredicate <EKDefaultPropertiesLoading, NSSecureCoding>
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)predicate;
++ (BOOL)supportsSecureCoding;
 
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)defaultPropertiesToLoad;

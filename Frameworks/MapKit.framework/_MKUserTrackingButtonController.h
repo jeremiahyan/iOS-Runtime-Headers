@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@class <MKUserTrackingButtonTarget>, <MKUserTrackingView>, UIActivityIndicatorView, UIButton, UIImageView;
-
 @interface _MKUserTrackingButtonController : NSObject {
     UIActivityIndicatorView *_activityIndicatorView;
     UIButton *_button;
@@ -13,9 +11,9 @@
     <MKUserTrackingView> *_userTrackingView;
 }
 
-@property(readonly) UIImageView * imageView;
-@property int state;
-@property(retain) <MKUserTrackingView> * userTrackingView;
+@property (nonatomic, readonly) UIImageView *imageView;
+@property (nonatomic) int state;
+@property (nonatomic, retain) <MKUserTrackingView> *userTrackingView;
 
 - (void).cxx_destruct;
 - (id)_activityIndicatorView;
@@ -27,6 +25,7 @@
 - (void)_reloadState;
 - (BOOL)_shouldAnimateFromState:(int)arg1 toState:(int)arg2;
 - (id)_shrinkAnimation;
+- (void)_updateLoading;
 - (void)_updateState;
 - (void)animationDidStop:(id)arg1 finished:(BOOL)arg2;
 - (void)dealloc;

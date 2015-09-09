@@ -2,12 +2,10 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSMutableArray;
-
 @interface UIAnimator : NSObject {
     NSMutableArray *_animations;
-    int _heartbeatClientCount[3];
-    id _heartbeat[3];
+    /* Warning: unhandled array encoding: '[3@]' */ id _heartbeat;
+    int _heartbeatClientCount;
     double _lastUpdateTime;
 }
 
@@ -26,8 +24,8 @@
 - (void)addAnimations:(id)arg1 withDuration:(double)arg2 start:(BOOL)arg3;
 - (void)dealloc;
 - (float)fractionForAnimation:(id)arg1;
-- (void)removeAnimationsForTarget:(id)arg1 ofKind:(Class)arg2;
 - (void)removeAnimationsForTarget:(id)arg1;
+- (void)removeAnimationsForTarget:(id)arg1 ofKind:(Class)arg2;
 - (void)startAnimation:(id)arg1;
 - (void)stopAnimation:(id)arg1;
 

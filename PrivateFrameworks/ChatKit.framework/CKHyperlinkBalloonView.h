@@ -2,19 +2,14 @@
    Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
  */
 
-@interface CKHyperlinkBalloonView : CKTextBalloonView {
-}
+@interface CKHyperlinkBalloonView : CKTextBalloonView <UITextViewDelegate>
 
-- (void)doubleTap:(id)arg1 forEvent:(id)arg2;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+
+- (BOOL)_gestureRecognizer:(id)arg1 canBePreventedByGestureRecognizer:(id)arg2;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
-- (BOOL)isInteractingWithLink;
-- (void)longPress:(id)arg1 forEvent:(id)arg2;
-- (void)prepareForReuse;
-- (void)tap:(id)arg1 forEvent:(id)arg2;
-- (void)touchCanceled:(id)arg1;
-- (void)touchDown:(id)arg1 forEvent:(id)arg2;
-- (void)touchDraggedInside:(id)arg1 forEvent:(id)arg2;
-- (void)touchUpInside:(id)arg1 forEvent:(id)arg2;
-- (void)touchUpOutside:(id)arg1 forEvent:(id)arg2;
 
 @end

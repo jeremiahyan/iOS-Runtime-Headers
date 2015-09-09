@@ -2,24 +2,24 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@class <MKLocationManagerOperation>, GEODirectionsRouteRequest, GEOQuickETARequest, GEOQuickETARequester, MKDirectionsRequest;
-
 @interface MKDirections : NSObject {
     GEOQuickETARequest *_etaRequest;
     GEOQuickETARequester *_etaRequester;
     GEODirectionsRouteRequest *_geoRequest;
     <MKLocationManagerOperation> *_locationOperation;
     MKDirectionsRequest *_request;
+    NSObject<OS_dispatch_group> *_waypointsDispatchGroup;
 }
 
-@property(getter=isCalculating,readonly) BOOL calculating;
+@property (getter=isCalculating, nonatomic, readonly) BOOL calculating;
 
 - (void).cxx_destruct;
-- (void)_calculateETAWithCompletionHandler:(id)arg1;
+- (void)_calculateETAWithCompletionHandler:(id /* block */)arg1;
 - (void)_cleanupLocationOperation;
-- (void)_establishCurrentLocationAndThen:(id)arg1;
-- (void)calculateDirectionsWithCompletionHandler:(id)arg1;
-- (void)calculateETAWithCompletionHandler:(id)arg1;
+- (void)_establishCurrentLocationAndThen:(id /* block */)arg1;
+- (void)_performWithValidCurrentLocationAndWaypointsForQuickETA:(BOOL)arg1 handler:(id /* block */)arg2;
+- (void)calculateDirectionsWithCompletionHandler:(id /* block */)arg1;
+- (void)calculateETAWithCompletionHandler:(id /* block */)arg1;
 - (void)cancel;
 - (void)dealloc;
 - (id)initWithRequest:(id)arg1;

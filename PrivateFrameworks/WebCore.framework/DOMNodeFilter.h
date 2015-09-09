@@ -2,8 +2,12 @@
    Image: /System/Library/PrivateFrameworks/WebCore.framework/WebCore
  */
 
-@interface DOMNodeFilter : DOMObject <DOMNodeFilter> {
-}
+@interface DOMNodeFilter : DOMObject <DOMNodeFilter>
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (short)acceptNode:(id)arg1;
 - (void)dealloc;

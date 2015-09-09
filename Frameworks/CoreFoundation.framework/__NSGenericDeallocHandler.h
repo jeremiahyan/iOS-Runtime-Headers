@@ -2,12 +2,8 @@
    Image: /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@interface __NSGenericDeallocHandler {
-    id _block;
+@interface __NSGenericDeallocHandler  {
+    id /* block */ _block;
     Class isa;
 }
 

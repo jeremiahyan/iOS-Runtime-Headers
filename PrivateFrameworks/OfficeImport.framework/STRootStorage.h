@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSMutableData;
-
 @interface STRootStorage : STStorage {
     NSMutableData *m_StorageData;
     struct _RootStorage { } *m_pCRoot;
@@ -11,8 +9,8 @@
 }
 
 - (void)dealloc;
-- (id)getDocumentProperty:(int)arg1 withId:(int)arg2 PropType:(int*)arg3 throwOnError:(BOOL)arg4;
 - (id)getDocumentProperty:(int)arg1 withId:(int)arg2 PropType:(int*)arg3;
+- (id)getDocumentProperty:(int)arg1 withId:(int)arg2 PropType:(int*)arg3 throwOnError:(BOOL)arg4;
 - (long)getLongDocumentPropertyWithId:(int)arg1 givenPropStream:(int)arg2;
 - (short)getShortDocumentPropertyWithId:(int)arg1 givenPropStream:(int)arg2;
 - (id)getStringDocumentPropertyWithId:(int)arg1 givenPropStream:(int)arg2;

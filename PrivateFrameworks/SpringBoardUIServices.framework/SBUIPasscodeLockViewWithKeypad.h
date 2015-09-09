@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/SpringBoardUIServices.framework/SpringBoardUIServices
  */
 
-@class NSString, SBUIPasscodeLockNumberPad, UILabel, UIView;
-
-@interface SBUIPasscodeLockViewWithKeypad : SBUIPasscodeLockViewBase <SBUIPasscodeLockNumberPadDelegate, SBUIPasscodeEntryFieldDelegate> {
+@interface SBUIPasscodeLockViewWithKeypad : SBUIPasscodeLockViewBase <SBUIPasscodeEntryFieldDelegate, SBUIPasscodeLockNumberPadDelegate> {
     UIView *_bottomToNumberPadFiller;
     UIView *_entryFieldToNumberPadFiller;
     NSString *_lastCharacterBeforeBackspace;
@@ -16,12 +14,17 @@
     UILabel *_statusTitleView;
     UIView *_topToStatusFieldOrEntryFieldFiller;
     BOOL _undoInputOnTouchCancellation;
+    BOOL _useLightStyle;
 }
 
-@property(retain) NSString * lastCharacterBeforeBackspace;
-@property(retain) UILabel * statusSubtitleView;
-@property(retain) UILabel * statusTitleView;
-@property(getter=_undoInputOnTouchCancellation,setter=_setUndoInputOnTouchCancellation:) BOOL undoInputOnTouchCancellation;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) NSString *lastCharacterBeforeBackspace;
+@property (nonatomic, retain) UILabel *statusSubtitleView;
+@property (nonatomic, retain) UILabel *statusTitleView;
+@property (readonly) Class superclass;
+@property (getter=_undoInputOnTouchCancellation, setter=_setUndoInputOnTouchCancellation:, nonatomic) BOOL undoInputOnTouchCancellation;
 
 - (float)_entryFieldBottomYDistanceFromNumberPadTopButton;
 - (BOOL)_includesStatusView;
@@ -44,15 +47,15 @@
 - (id)_statusSubtitleView;
 - (id)_statusSubtitleViewTitleFont;
 - (id)_statusTitleView;
-- (float)_statusTitleViewHeight;
 - (id)_statusTitleViewTitleFont;
 - (float)_statusTitleWidth;
 - (void)_toggleForStatusField;
 - (BOOL)_undoInputOnTouchCancellation;
-- (void)_updateStatusText:(id)arg1 subtitle:(id)arg2 animated:(BOOL)arg3;
+- (BOOL)_usesLightStyle;
 - (float)backgroundAlpha;
 - (void)dealloc;
 - (id)init;
+- (id)initWithLightStyle:(BOOL)arg1;
 - (id)lastCharacterBeforeBackspace;
 - (void)layoutSubviews;
 - (id)passcode;
@@ -77,5 +80,6 @@
 - (void)setStatusTitleView:(id)arg1;
 - (id)statusSubtitleView;
 - (id)statusTitleView;
+- (void)updateStatusText:(id)arg1 subtitle:(id)arg2 animated:(BOOL)arg3;
 
 @end

@@ -2,22 +2,24 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSHashTable, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSOperationQueue, NSURL, NSURLSession;
-
 @interface TSUDownloadManager : NSObject <NSURLSessionDownloadDelegate> {
     NSMutableDictionary *_activeTasks;
     NSObject<OS_dispatch_queue> *_activeTasksQueue;
     NSMutableArray *_completionHandlers;
     NSURLSession *_defaultURLSession;
+    NSMapTable *_downloadResults;
     NSHashTable *_downloadSessions;
     NSOperationQueue *_downloadSessionsQueue;
     NSMutableArray *_inProcessDownloadQueue;
     NSMutableDictionary *_inProgressDownloadItems;
 }
 
-@property(readonly) NSURL * downloadInboxDirectory;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) NSURL *downloadInboxDirectory;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
-+ (BOOL)isUnitTest;
 + (id)newFilteredDownloadItems:(id)arg1;
 + (void)registerDownloadItemClass:(Class)arg1;
 + (id)sharedManager;
@@ -33,11 +35,11 @@
 - (void)cancelTasksWithDescriptions:(id)arg1 forDownloadSession:(id)arg2;
 - (id)downloadInboxDirectory;
 - (id)downloadItems:(id)arg1 description:(id)arg2 delegate:(id)arg3;
-- (id)downloadSessionForItems:(id)arg1 description:(id)arg2 willRequestDownload:(BOOL)arg3 delegate:(id)arg4 taskHandler:(id)arg5;
-- (void)handleEventsForBackgroundURLSession:(id)arg1 completionHandler:(id)arg2;
+- (id)downloadSessionForItems:(id)arg1 description:(id)arg2 willRequestDownload:(BOOL)arg3 delegate:(id)arg4 taskHandler:(id /* block */)arg5;
+- (void)handleEventsForBackgroundURLSession:(id)arg1 completionHandler:(id /* block */)arg2;
 - (id)init;
 - (id)initPrivate;
-- (void)notifyWhenAllTasksAreCompletedWithCompletionHandler:(id)arg1;
+- (void)notifyWhenAllTasksAreCompletedWithCompletionHandler:(id /* block */)arg1;
 - (id)outstandingDownloadSessionForItems:(id)arg1 description:(id)arg2 delegate:(id)arg3;
 
 @end

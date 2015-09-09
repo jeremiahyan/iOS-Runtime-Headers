@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class <SKUIProductPageChildViewControllerDelegate>, NSOperationQueue, SKUIIncompatibleAppView, SKUIItemArtworkContext, SKUIProductPageHeaderViewController, SKUIProductPageItem, SSVLoadURLOperation, UIImage, UIScrollView;
-
 @interface SKUIIncompatibleAppViewController : SKUIViewController <SKUIProductPageChildViewController> {
     SKUIItemArtworkContext *_artworkContext;
     <SKUIProductPageChildViewControllerDelegate> *_delegate;
@@ -15,11 +13,15 @@
     NSOperationQueue *_operationQueue;
 }
 
-@property <SKUIProductPageChildViewControllerDelegate> * delegate;
-@property(retain) SKUIProductPageHeaderViewController * headerViewController;
-@property(readonly) SKUIProductPageItem * incompatibleItem;
-@property(retain) NSOperationQueue * operationQueue;
-@property(readonly) UIScrollView * scrollView;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SKUIProductPageChildViewControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) SKUIProductPageHeaderViewController *headerViewController;
+@property (nonatomic, readonly) SKUIProductPageItem *incompatibleItem;
+@property (nonatomic, retain) NSOperationQueue *operationQueue;
+@property (nonatomic, readonly) UIScrollView *scrollView;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (id)_artworkContext;

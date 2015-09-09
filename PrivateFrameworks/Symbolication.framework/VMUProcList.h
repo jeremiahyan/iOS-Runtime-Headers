@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Symbolication.framework/Symbolication
  */
 
-@class NSLock, NSMapTable;
-
 @interface VMUProcList : NSObject {
     NSMapTable *allProcs;
     BOOL appsOnly;
@@ -24,8 +22,8 @@
 - (void)finalize;
 - (id)init;
 - (id)newestProcInfo;
-- (id)newestProcInfoSatisfyingCondition:(SEL)arg1 forTarget:(id)arg2 withContext:(void*)arg3;
 - (id)newestProcInfoSatisfyingCondition:(SEL)arg1 forTarget:(id)arg2;
+- (id)newestProcInfoSatisfyingCondition:(SEL)arg1 forTarget:(id)arg2 withContext:(void*)arg3;
 - (id)newestProcInfoWithName:(id)arg1;
 - (BOOL)ownedOnly:(BOOL)arg1;
 - (id)procInfoWithPID:(int)arg1;

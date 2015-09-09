@@ -2,10 +2,9 @@
    Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
  */
 
-@class MFHeaderLabelView, UILabel;
-
 @interface MFComposeMultiView : MFComposeHeaderView {
     BOOL _accountAutoselected;
+    BOOL _accountHasUnsafeDomain;
     UILabel *_accountLabel;
     MFHeaderLabelView *_imageSizeHeaderLabelView;
     UILabel *_imageSizeLabel;
@@ -13,19 +12,22 @@
     UILabel *_placeholderImageSizeLabel;
 }
 
-@property(getter=isAccountAutoselected) BOOL accountAutoselected;
+@property (getter=isAccountAutoselected, nonatomic) BOOL accountAutoselected;
+@property (nonatomic) BOOL accountHasUnsafeDomain;
 
+- (BOOL)accountHasUnsafeDomain;
 - (id)accountLabel;
 - (void)dealloc;
 - (id)imageSizeHeaderLabelView;
 - (id)imageSizeLabel;
 - (BOOL)isAccountAutoselected;
-- (struct CGColor { }*)labelColor;
+- (id)labelColor;
 - (void)layoutSubviews;
 - (id)placeholderImageSizeLabel;
 - (void)refreshPreferredContentSize;
 - (void)setAccountAutoselected:(BOOL)arg1;
 - (void)setAccountDescription:(id)arg1;
+- (void)setAccountHasUnsafeDomain:(BOOL)arg1;
 - (void)setImageSizeDescription:(id)arg1;
 - (void)setShowsImageSize:(BOOL)arg1;
 

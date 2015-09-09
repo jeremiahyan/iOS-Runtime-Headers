@@ -2,79 +2,93 @@
    Image: /System/Library/Frameworks/CFNetwork.framework/CFNetwork
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSDictionary, NSObject<OS_dispatch_data>, __NSCFLocalDownloadFile;
-
-@interface __NSCFLocalDownloadTask : __NSCFLocalSessionTask {
+@interface __NSCFLocalDownloadTask : __NSCFLocalSessionTask <NSURLSessionDownloadTaskSubclass, __NSCFLocalDownloadFileOpener> {
+    id /* block */ __afterDidReportProgressOnQueue;
+    unsigned long __transientWriteProgress;
+    bool _canWrite;
+    bool _didIssueNeedFinish;
     __NSCFLocalDownloadFile *_downloadFile;
-    id _fileCompletion;
+    id /* block */ _fileCompletion;
     long long _initialResumeSize;
     unsigned int _ioSuspend;
+    bool _needFinish;
     NSDictionary *_originalResumeInfo;
-    id _resumeCallback;
+    id /* block */ _resumeCallback;
     int _seqNo;
+    bool _suppressProgress;
     unsigned long _totalWrote;
     NSObject<OS_dispatch_data> *_writeBuffer;
-    bool_canWrite;
-    bool_didIssueNeedFinish;
-    bool_needFinish;
 }
 
+@property (copy) id /* block */ _afterDidReportProgressOnQueue;
+@property unsigned long _transientWriteProgress;
 @property bool canWrite;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
 @property bool didIssueNeedFinish;
-@property(retain) __NSCFLocalDownloadFile * downloadFile;
-@property(copy) id fileCompletion;
+@property (retain) __NSCFLocalDownloadFile *downloadFile;
+@property (copy) id /* block */ fileCompletion;
+@property (readonly) unsigned int hash;
 @property long long initialResumeSize;
 @property unsigned int ioSuspend;
 @property bool needFinish;
-@property(retain) NSDictionary * originalResumeInfo;
-@property(copy) id resumeCallback;
+@property (retain) NSDictionary *originalResumeInfo;
+@property (copy) id /* block */ resumeCallback;
 @property int seqNo;
+@property (readonly) Class superclass;
+@property bool suppressProgress;
 @property unsigned long totalWrote;
-@property(retain) NSObject<OS_dispatch_data> * writeBuffer;
+@property NSObject<OS_dispatch_data> *writeBuffer;
 
-- (void)_onqueue_didReceiveResponse:(id)arg1;
-- (void)_onqueue_willCacheResponse:(id)arg1 withCompletion:(id)arg2;
+- (id /* block */)_afterDidReportProgressOnQueue;
+- (void)_onqueue_cancelByProducingResumeData:(id /* block */)arg1;
+- (void)_onqueue_completeInitialization;
+- (void)_onqueue_didReceiveResponse:(id)arg1 completion:(id /* block */)arg2;
+- (void)_onqueue_willCacheResponse:(id)arg1 withCompletion:(id /* block */)arg2;
 - (void)_private_errorCompletion;
 - (void)_private_fileCompletion;
 - (void)_private_posixError:(int)arg1;
 - (void)_task_onqueue_didFinish;
-- (void)_task_onqueue_didReceiveDispatchData:(id)arg1;
+- (void)_task_onqueue_didReceiveDispatchData:(id)arg1 completionHandler:(id /* block */)arg2;
+- (unsigned long)_transientWriteProgress;
 - (bool)canWrite;
-- (void)cancelByProducingResumeData:(id)arg1;
+- (void)cancelByProducingResumeData:(id /* block */)arg1;
 - (void)checkWrite;
 - (id)createResumeInformation:(id)arg1;
 - (void)dealloc;
 - (bool)didIssueNeedFinish;
 - (id)downloadFile;
-- (id)fileCompletion;
-- (id)initWithSession:(id)arg1 request:(id)arg2 ident:(unsigned int)arg3 bridge:(id)arg4;
-- (id)initWithSession:(id)arg1 resumeData:(id)arg2 ident:(unsigned int)arg3 bridge:(id)arg4;
-- (id)initWithTask:(id)arg1 suspendedConnection:(struct _CFURLConnection { }*)arg2;
+- (id /* block */)fileCompletion;
+- (id)initWithSession:(id)arg1 request:(id)arg2 filePath:(id)arg3 ident:(unsigned int)arg4;
+- (id)initWithSession:(id)arg1 request:(id)arg2 ident:(unsigned int)arg3;
+- (id)initWithSession:(id)arg1 resumeData:(id)arg2 ident:(unsigned int)arg3;
+- (id)initWithTask:(id)arg1;
 - (long long)initialResumeSize;
 - (unsigned int)ioSuspend;
 - (BOOL)isKindOfClass:(Class)arg1;
 - (bool)needFinish;
+- (int)openItemForPath:(id)arg1 mode:(int)arg2;
 - (id)originalResumeInfo;
 - (void)reportProgress:(unsigned long)arg1;
-- (id)resumeCallback;
+- (id /* block */)resumeCallback;
 - (int)seqNo;
 - (void)setCanWrite:(bool)arg1;
 - (void)setDidIssueNeedFinish:(bool)arg1;
 - (void)setDownloadFile:(id)arg1;
-- (void)setFileCompletion:(id)arg1;
+- (void)setFileCompletion:(id /* block */)arg1;
 - (void)setInitialResumeSize:(long long)arg1;
 - (void)setIoSuspend:(unsigned int)arg1;
 - (void)setNeedFinish:(bool)arg1;
 - (void)setOriginalResumeInfo:(id)arg1;
-- (void)setResumeCallback:(id)arg1;
+- (void)setResumeCallback:(id /* block */)arg1;
 - (void)setSeqNo:(int)arg1;
+- (void)setSuppressProgress:(bool)arg1;
 - (void)setTotalWrote:(unsigned long)arg1;
 - (void)setWriteBuffer:(id)arg1;
-- (bool)setupForNewDownload;
+- (void)set_afterDidReportProgressOnQueue:(id /* block */)arg1;
+- (void)set_transientWriteProgress:(unsigned long)arg1;
+- (bool)setupForNewDownload:(id)arg1;
+- (bool)suppressProgress;
 - (unsigned long)totalWrote;
 - (void)writeAndResume;
 - (id)writeBuffer;

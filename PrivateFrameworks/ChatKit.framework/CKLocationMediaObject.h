@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
  */
 
-@class NSString;
-
 @interface CKLocationMediaObject : CKContactMediaObject <MKAnnotation> {
     struct { 
         double latitude; 
@@ -11,29 +9,39 @@
     } _coordinate;
 }
 
-@property struct { double x1; double x2; } coordinate;
-@property(readonly) NSString * subtitle;
-@property(readonly) NSString * title;
+@property (nonatomic) struct { double x1; double x2; } coordinate;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly, copy) NSString *subtitle;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly, copy) NSString *title;
 
 + (id)UTITypes;
++ (Class)__ck_attachmentItemClass;
++ (id)attachmentSummary:(unsigned int)arg1;
 + (id)fallbackFilenamePrefix;
 + (BOOL)isPreviewable;
-+ (id)mapThumbnailQueue;
 + (id)placeholderPreviewCache;
-+ (id)titleBarMaskImage;
++ (id)placeholderPreviewForWidth:(float)arg1 orientation:(BOOL)arg2;
++ (id)titleBarMaskImageForWidth:(float)arg1;
++ (id)vcardDataFromCLLocation:(id)arg1;
 
 - (id)bbPreviewFillToSize:(struct CGSize { float x1; float x2; })arg1;
 - (struct CGSize { float x1; float x2; })bbSize;
 - (struct { double x1; double x2; })coordinate;
-- (id)generatePlaceholderThumbnail;
-- (id)generatePlaceholderThumbnailFillToSize:(struct CGSize { float x1; float x2; })arg1;
-- (id)generateThumbnailFillToSize:(struct CGSize { float x1; float x2; })arg1;
+- (id)generatePlaceholderThumbnailFillToSize:(struct CGSize { float x1; float x2; })arg1 contentAlignmentInsets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg2;
+- (id)generatePlaceholderThumbnailForWidth:(float)arg1 orientation:(BOOL)arg2;
+- (id)generateThumbnailFillToSize:(struct CGSize { float x1; float x2; })arg1 contentAlignmentInsets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg2;
 - (id)initWithTransfer:(id)arg1;
 - (BOOL)isDroppedPin;
+- (id)mapItem;
 - (int)mediaType;
 - (id)pin;
 - (Class)previewBalloonViewClass;
-- (id)previewForOrientation:(BOOL)arg1;
+- (id)previewCacheKeyWithOrientation:(BOOL)arg1;
+- (id)previewCachesFileURLWithOrientation:(BOOL)arg1 extension:(id)arg2;
+- (id)previewForWidth:(float)arg1 orientation:(BOOL)arg2;
 - (void)setCoordinate:(struct { double x1; double x2; })arg1;
 - (id)vCardURLProperties;
 

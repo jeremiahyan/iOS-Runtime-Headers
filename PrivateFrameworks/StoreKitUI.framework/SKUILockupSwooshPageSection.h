@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class SKUILockupSwooshArtworkLoader, SKUILockupSwooshViewController, SKUIMissingItemLoader, SKUIProductPageOverlayController, SKUISwooshPageComponent;
-
 @interface SKUILockupSwooshPageSection : SKUIStorePageSection <SKUIMissingItemDelegate, SKUIProductPageOverlayDelegate, SKUISwooshViewControllerDelegate> {
     SKUILockupSwooshArtworkLoader *_artworkLoader;
     SKUIMissingItemLoader *_missingItemLoader;
@@ -12,7 +10,11 @@
     SKUILockupSwooshViewController *_swooshViewController;
 }
 
-@property(readonly) SKUISwooshPageComponent * pageComponent;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) SKUISwooshPageComponent *pageComponent;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_addImpressionForItemIndex:(int)arg1 toSession:(id)arg2;
@@ -20,6 +22,7 @@
 - (void)_loadMissingItemsFromIndex:(int)arg1 withReason:(int)arg2;
 - (id)_missingItemLoader;
 - (id)_popSourceViewForOverlayController:(id)arg1;
+- (void)_showProductPageForItem:(id)arg1 index:(int)arg2 animated:(BOOL)arg3;
 - (id)_swooshViewController;
 - (void)addImpressionsForIndexPath:(id)arg1 toSession:(id)arg2;
 - (id)cellForIndexPath:(id)arg1;
@@ -36,6 +39,7 @@
 - (void)setImage:(id)arg1 forRequest:(id)arg2;
 - (void)swoosh:(id)arg1 didSelectCellAtIndex:(int)arg2;
 - (id)swoosh:(id)arg1 imageForCellAtIndex:(int)arg2;
+- (id)swoosh:(id)arg1 videoThumbnailForCellAtIndex:(int)arg2;
 - (void)swoosh:(id)arg1 willDisplayCellAtIndex:(int)arg2;
 - (void)swooshDidSelectSeeAll:(id)arg1;
 - (void)willAppearInContext:(id)arg1;

@@ -2,106 +2,104 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class TSCH3DCamera;
-
 @interface TSCH3DGetBoundsProjector : NSObject {
-    struct tmat4x4<float> { 
-        struct tvec4<float> { 
-            union { 
-                float x; 
-                float r; 
-                float s; 
-            } ; 
-            union { 
-                float y; 
-                float g; 
-                float t; 
-            } ; 
-            union { 
-                float z; 
-                float b; 
-                float p; 
-            } ; 
-            union { 
-                float w; 
-                float a; 
-                float q; 
-            } ; 
-        } value[4]; 
-    struct tmat4x4<float> { 
-        struct tvec4<float> { 
-            union { 
-                float x; 
-                float r; 
-                float s; 
-            } ; 
-            union { 
-                float y; 
-                float g; 
-                float t; 
-            } ; 
-            union { 
-                float z; 
-                float b; 
-                float p; 
-            } ; 
-            union { 
-                float w; 
-                float a; 
-                float q; 
-            } ; 
-        } value[4]; 
-    struct tmat4x4<float> { 
-        struct tvec4<float> { 
-            union { 
-                float x; 
-                float r; 
-                float s; 
-            } ; 
-            union { 
-                float y; 
-                float g; 
-                float t; 
-            } ; 
-            union { 
-                float z; 
-                float b; 
-                float p; 
-            } ; 
-            union { 
-                float w; 
-                float a; 
-                float q; 
-            } ; 
-        } value[4]; 
-    struct tmat4x4<float> { 
-        struct tvec4<float> { 
-            union { 
-                float x; 
-                float r; 
-                float s; 
-            } ; 
-            union { 
-                float y; 
-                float g; 
-                float t; 
-            } ; 
-            union { 
-                float z; 
-                float b; 
-                float p; 
-            } ; 
-            union { 
-                float w; 
-                float a; 
-                float q; 
-            } ; 
-        } value[4]; 
-    struct ChartScenePropertyAccessor { id x1; id x2; } *mAccessor;
+    struct ChartScenePropertyAccessor { id x1; } *mAccessor;
     TSCH3DCamera *mCamera;
+    struct tmat4x4<float> { 
+        struct tvec4<float> { 
+            union { 
+                float x; 
+                float r; 
+                float s; 
+            } ; 
+            union { 
+                float y; 
+                float g; 
+                float t; 
+            } ; 
+            union { 
+                float z; 
+                float b; 
+                float p; 
+            } ; 
+            union { 
+                float w; 
+                float a; 
+                float q; 
+            } ; 
+        } value[4]; 
     } mConstantDepthModelView;
+    struct tmat4x4<float> { 
+        struct tvec4<float> { 
+            union { 
+                float x; 
+                float r; 
+                float s; 
+            } ; 
+            union { 
+                float y; 
+                float g; 
+                float t; 
+            } ; 
+            union { 
+                float z; 
+                float b; 
+                float p; 
+            } ; 
+            union { 
+                float w; 
+                float a; 
+                float q; 
+            } ; 
+        } value[4]; 
     } mMVP;
+    struct tmat4x4<float> { 
+        struct tvec4<float> { 
+            union { 
+                float x; 
+                float r; 
+                float s; 
+            } ; 
+            union { 
+                float y; 
+                float g; 
+                float t; 
+            } ; 
+            union { 
+                float z; 
+                float b; 
+                float p; 
+            } ; 
+            union { 
+                float w; 
+                float a; 
+                float q; 
+            } ; 
+        } value[4]; 
     } mModelView;
+    struct tmat4x4<float> { 
+        struct tvec4<float> { 
+            union { 
+                float x; 
+                float r; 
+                float s; 
+            } ; 
+            union { 
+                float y; 
+                float g; 
+                float t; 
+            } ; 
+            union { 
+                float z; 
+                float b; 
+                float p; 
+            } ; 
+            union { 
+                float w; 
+                float a; 
+                float q; 
+            } ; 
+        } value[4]; 
     } mProjection;
     BOOL mUseAggressiveBackProjection;
 }
@@ -114,6 +112,6 @@
 - (void)reset;
 - (void)resetTransformsForLayoutBounds;
 - (void)resetTransformsForRenderBounds;
-- (void)setCamera:(id)arg1 accessor:(struct ChartScenePropertyAccessor { id x1; id x2; }*)arg2;
+- (void)setCamera:(id)arg1 accessor:(struct ChartScenePropertyAccessor { id x1; }*)arg2;
 
 @end

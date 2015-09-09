@@ -2,11 +2,8 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@interface OABImage : NSObject {
-}
+@interface OABImage : NSObject
 
-+ (void)basicWriteImage:(id)arg1 toShapeHolder:(id)arg2 state:(id)arg3;
 + (void)readfromShape:(id)arg1 toImage:(id)arg2 state:(id)arg3;
-+ (void)writeImage:(id)arg1 toParentContainer:(id)arg2 state:(id)arg3;
 
 @end

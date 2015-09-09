@@ -2,23 +2,17 @@
    Image: /System/Library/PrivateFrameworks/DataAccess.framework/DataAccess
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSString;
-
 @interface DAUserNotificationInfo : NSObject {
     NSString *_groupIdentifier;
-    id _handler;
+    id /* block */ _handler;
 }
 
-@property(copy) NSString * groupIdentifier;
+@property (nonatomic, copy) NSString *groupIdentifier;
 
-- (void)dealloc;
+- (void).cxx_destruct;
 - (id)groupIdentifier;
-- (id)handler;
+- (id /* block */)handler;
 - (void)setGroupIdentifier:(id)arg1;
-- (void)setHandler:(id)arg1;
+- (void)setHandler:(id /* block */)arg1;
 
 @end

@@ -2,14 +2,8 @@
    Image: /System/Library/Frameworks/GameController.framework/GameController
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class _GCControllerAxisInput;
-
 @interface _GCControllerDirectionPad : GCControllerDirectionPad {
-    id _valueChangedHandler;
+    id /* block */ _valueChangedHandler;
     _GCControllerAxisInput *_xAxis;
     _GCControllerAxisInput *_yAxis;
 }
@@ -22,9 +16,9 @@
 - (id)left;
 - (id)right;
 - (BOOL)setHIDValue:(struct __IOHIDValue { }*)arg1;
-- (void)setValueChangedHandler:(id)arg1;
+- (void)setValueChangedHandler:(id /* block */)arg1;
 - (id)up;
-- (id)valueChangedHandler;
+- (id /* block */)valueChangedHandler;
 - (id)xAxis;
 - (id)yAxis;
 

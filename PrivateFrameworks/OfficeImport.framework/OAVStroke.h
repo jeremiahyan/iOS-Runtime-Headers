@@ -2,9 +2,9 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@interface OAVStroke : NSObject {
-}
+@interface OAVStroke : NSObject
 
++ (void)initialize;
 + (int)readCapStyle:(id)arg1;
 + (int)readCompoundType:(id)arg1;
 + (void)readDashStyleFromManager:(id)arg1 toStroke:(id)arg2;

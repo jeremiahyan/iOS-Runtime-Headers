@@ -2,19 +2,13 @@
    Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class <_MFSearchResultsConsumer>;
-
 @interface _MFSearchProcessResultsOperation : NSOperation {
-    id _completionBlock;
+    id /* block */ _completionBlock;
     <_MFSearchResultsConsumer> *_consumer;
-    int _type;
+    unsigned int _type;
 }
 
-+ (id)operationWithResultsOfType:(int)arg1 completion:(id)arg2 consumer:(id)arg3;
++ (id)operationWithResultsOfType:(unsigned int)arg1 completion:(id /* block */)arg2 consumer:(id)arg3;
 
 - (void)dealloc;
 - (void)main;

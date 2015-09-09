@@ -9,6 +9,11 @@
     struct __CFString { } *mUuidStr;
 }
 
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+
 - (struct __CFDictionary { }*)attachments;
 - (struct __CFDictionary { }*)createOutputDictionary;
 - (struct __CFString { }*)createUriForResource:(struct __CFString { }*)arg1;

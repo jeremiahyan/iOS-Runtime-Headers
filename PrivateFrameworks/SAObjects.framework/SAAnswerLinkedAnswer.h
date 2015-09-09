@@ -2,26 +2,27 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSString, NSURL;
+@interface SAAnswerLinkedAnswer : AceObject <SAAceSerializable>
 
-@interface SAAnswerLinkedAnswer : AceObject <SAAceSerializable> {
-}
-
-@property(copy) NSString * description;
-@property(copy) NSURL * image;
-@property(copy) NSURL * link;
-@property(copy) NSString * name;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, copy) NSString *descriptionText;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSURL *image;
+@property (nonatomic, copy) NSURL *link;
+@property (nonatomic, copy) NSString *name;
+@property (readonly) Class superclass;
 
 + (id)linkedAnswer;
 + (id)linkedAnswerWithDictionary:(id)arg1 context:(id)arg2;
 
-- (id)description;
+- (id)descriptionText;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 - (id)image;
 - (id)link;
 - (id)name;
-- (void)setDescription:(id)arg1;
+- (void)setDescriptionText:(id)arg1;
 - (void)setImage:(id)arg1;
 - (void)setLink:(id)arg1;
 - (void)setName:(id)arg1;

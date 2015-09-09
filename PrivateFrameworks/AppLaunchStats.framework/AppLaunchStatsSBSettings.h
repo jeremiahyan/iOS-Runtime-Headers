@@ -2,27 +2,21 @@
    Image: /System/Library/PrivateFrameworks/AppLaunchStats.framework/AppLaunchStats
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class AppLaunchStatsSaveAndRestore, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSUserDefaults;
-
 @interface AppLaunchStatsSBSettings : NSObject <DuetLoggerProtocol> {
     NSUserDefaults *aplsSBSettingsDefault;
     NSObject<OS_dispatch_queue> *aplsSettingsQueue;
-    id callbackBlock;
+    id /* block */ callbackBlock;
     AppLaunchStatsSaveAndRestore *saveAndRestoreContext;
     NSMutableDictionary *settingsBlacklist;
 }
 
 - (void).cxx_destruct;
-- (id)init:(id)arg1;
+- (id)init:(id /* block */)arg1;
 - (bool)isAppDisabledInSettingsList:(id)arg1;
 - (bool)isManagedConfigurationSettingOn;
 - (void)loadSettingsBlacklist;
-- (void)logAll:(struct __aslclient { }*)arg1 withMsg:(struct __aslmsg { }*)arg2 withLevel:(int)arg3;
-- (void)logLight:(struct __aslclient { }*)arg1 withMsg:(struct __aslmsg { }*)arg2 withLevel:(int)arg3;
+- (void)logAll:(struct __asl_object_s { }*)arg1 withMsg:(struct __asl_object_s { }*)arg2 withLevel:(int)arg3;
+- (void)logLight:(struct __asl_object_s { }*)arg1 withMsg:(struct __asl_object_s { }*)arg2 withLevel:(int)arg3;
 - (void)saveContext:(id)arg1;
 
 @end

@@ -2,9 +2,12 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@class <NSFetchedResultsControllerDelegate>, NSArray, NSFetchRequest, NSManagedObjectContext, NSString;
-
 @interface NSFetchedResultsController : NSObject {
+    void *_cache;
+    NSString *_cacheName;
+    id _delegate;
+    NSFetchRequest *_fetchRequest;
+    id _fetchedObjects;
     struct _fetchResultsControllerFlags { 
         unsigned int _sendObjectChangeNotifications : 1; 
         unsigned int _sendSectionChangeNotifications : 1; 
@@ -18,11 +21,6 @@
         unsigned int _usesNonpersistedProperties : 1; 
         unsigned int _includesSubentities : 1; 
         unsigned int _reservedFlags : 21; 
-    void *_cache;
-    NSString *_cacheName;
-    id _delegate;
-    NSFetchRequest *_fetchRequest;
-    id _fetchedObjects;
     } _flags;
     NSManagedObjectContext *_managedObjectContext;
     id _sectionIndexTitles;
@@ -34,14 +32,14 @@
     id _sortKeys;
 }
 
-@property(readonly) NSString * cacheName;
-@property <NSFetchedResultsControllerDelegate> * delegate;
-@property(readonly) NSFetchRequest * fetchRequest;
-@property(readonly) NSArray * fetchedObjects;
-@property(readonly) NSManagedObjectContext * managedObjectContext;
-@property(readonly) NSArray * sectionIndexTitles;
-@property(readonly) NSString * sectionNameKeyPath;
-@property(readonly) NSArray * sections;
+@property (nonatomic, readonly) NSString *cacheName;
+@property (nonatomic) <NSFetchedResultsControllerDelegate> *delegate;
+@property (nonatomic, readonly) NSFetchRequest *fetchRequest;
+@property (nonatomic, readonly) NSArray *fetchedObjects;
+@property (nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, readonly) NSArray *sectionIndexTitles;
+@property (nonatomic, readonly) NSString *sectionNameKeyPath;
+@property (nonatomic, readonly) NSArray *sections;
 
 + (id)_CoreDataSectionCachesPath;
 + (unsigned int)_insertIndexForObject:(id)arg1 inArray:(id)arg2 lowIdx:(unsigned int)arg3 highIdx:(unsigned int)arg4 sortDescriptors:(id)arg5;

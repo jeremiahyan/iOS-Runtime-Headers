@@ -2,16 +2,18 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSString;
-
 @interface WDFont : NSObject <NSCopying> {
+    NSMutableArray *mAlternateNames;
     int mCharacterSet;
     int mFontFamily;
     NSString *mName;
     int mPitch;
-    NSString *mSecondName;
 }
 
++ (int)cpFontClassFromWdFontFamily:(int)arg1;
+
+- (void)addAlternateName:(id)arg1;
+- (id)alternateNames;
 - (int)characterSet;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
@@ -27,6 +29,5 @@
 - (void)setFontFamily:(int)arg1;
 - (void)setName:(id)arg1;
 - (void)setPitch:(int)arg1;
-- (void)setSecondName:(id)arg1;
 
 @end

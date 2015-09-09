@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/AccountsDaemon.framework/AccountsDaemon
  */
 
-@class NSManagedObjectContext, NSManagedObjectModel, NSPersistentStore, NSString;
-
 @interface ACDDatabase : NSObject {
     NSManagedObjectContext *_context;
     id _contextDidSaveNotificationObserver;
@@ -12,9 +10,9 @@
     NSPersistentStore *_store;
 }
 
-@property(readonly) NSManagedObjectContext * managedObjectContext;
-@property(readonly) NSString * path;
-@property int version;
+@property (nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, readonly) NSString *path;
+@property (nonatomic) int version;
 
 + (BOOL)_addPersistentStoreWithURL:(id)arg1 toStoreCoordinator:(id)arg2 withOptions:(id)arg3 error:(id*)arg4;
 + (struct __CFString { }*)_copyRootPath;
@@ -37,15 +35,17 @@
 - (void)dealloc;
 - (void)deleteAccountPropertyWithKey:(id)arg1 owner:(id)arg2;
 - (id)existingObjectWithURI:(id)arg1;
-- (id)fetchObjectsForEntityNamed:(id)arg1 withPredicate:(id)arg2 sortDescriptor:(id)arg3;
-- (id)fetchObjectsForEntityNamed:(id)arg1 withPredicate:(id)arg2;
 - (id)fetchObjectsForEntityNamed:(id)arg1;
+- (id)fetchObjectsForEntityNamed:(id)arg1 withPredicate:(id)arg2;
+- (id)fetchObjectsForEntityNamed:(id)arg1 withPredicate:(id)arg2 sortDescriptor:(id)arg3;
 - (id)initWithDefaultPath;
 - (id)initWithPath:(id)arg1;
 - (id)managedObjectContext;
 - (id)managedObjectIDForURI:(id)arg1;
 - (id)objectForObjectURI:(id)arg1;
 - (id)path;
+- (BOOL)saveWithError:(id*)arg1;
+- (BOOL)saveWithError:(id*)arg1 rollbackOnFailure:(BOOL)arg2;
 - (void)setAccountPropertyWithKey:(id)arg1 value:(id)arg2 owner:(id)arg3;
 - (void)setVersion:(int)arg1;
 - (int)version;

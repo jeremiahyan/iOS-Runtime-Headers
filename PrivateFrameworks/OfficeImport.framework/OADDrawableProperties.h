@@ -2,20 +2,24 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class OADHyperlink, OADOrientedBounds;
-
 @interface OADDrawableProperties : OADProperties {
-    unsigned int mHasAspectRatioLocked : 1;
-    unsigned int mAspectRatioLocked : 1;
-    unsigned int mHasWrdInline : 1;
-    unsigned int mWrdInline : 1;
+    unsigned int mAspectRatioLocked;
     OADHyperlink *mClickHyperlink;
+    NSString *mDescription;
+    unsigned int mHasAspectRatioLocked;
+    unsigned int mHasWrdInline;
     OADHyperlink *mHoverHyperlink;
     OADOrientedBounds *mOrientedBounds;
+    NSString *mTitle;
+    unsigned int mWrdInline;
 }
 
+- (id)altDescription;
+- (id)altTitle;
 - (id)clickHyperlink;
 - (void)dealloc;
+- (BOOL)hasAltDescription;
+- (BOOL)hasAltTitle;
 - (BOOL)hasAspectRatioLocked;
 - (BOOL)hasClickHyperlink;
 - (BOOL)hasHoverHyperlink;
@@ -29,6 +33,8 @@
 - (BOOL)isWrdInline;
 - (id)orientedBounds;
 - (void)removeUnnecessaryOverrides;
+- (void)setAltDescription:(id)arg1;
+- (void)setAltTitle:(id)arg1;
 - (void)setAspectRatioLocked:(BOOL)arg1;
 - (void)setClickHyperlink:(id)arg1;
 - (void)setHoverHyperlink:(id)arg1;

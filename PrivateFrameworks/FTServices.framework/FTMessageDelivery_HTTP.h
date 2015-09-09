@@ -2,11 +2,9 @@
    Image: /System/Library/PrivateFrameworks/FTServices.framework/FTServices
  */
 
-@class IMRemoteURLConnection;
-
 @interface FTMessageDelivery_HTTP : FTMessageDelivery <FTMessageQueueDelegate> {
     BOOL _pendingRetryAfterAirplaneMode;
-    IMRemoteURLConnection *_remoteConnection;
+    IDSRemoteURLConnection *_remoteConnection;
     double _retryTimeAfterAirplaneMode;
 }
 

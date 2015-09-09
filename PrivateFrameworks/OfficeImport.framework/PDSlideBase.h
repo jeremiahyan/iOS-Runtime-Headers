@@ -2,26 +2,24 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSArray, NSString, OADBackground, OADShape, OADTableStyle, PDAnimation, PDTransition;
-
 @interface PDSlideBase : NSObject {
-    unsigned int mIsHidden : 1;
-    unsigned int mIsDoneWithContent : 1;
     PDAnimation *mAnimation;
     OADBackground *mBackground;
     BOOL mCachedSlideNumberPlaceholder;
     BOOL mCachedSlideNumberShape;
     OADTableStyle *mDefaultTableStyle;
     NSArray *mDrawables;
+    unsigned int mIsDoneWithContent;
+    unsigned int mIsHidden;
     NSString *mName;
     OADShape *mSlideNumberPlaceholder;
     OADShape *mSlideNumberShape;
     PDTransition *mTransition;
 }
 
-@property(readonly) BOOL hasMappableSlideNumberShape;
-@property(readonly) OADShape * slideNumberPlaceholder;
-@property(readonly) OADShape * slideNumberShape;
+@property (nonatomic, readonly) BOOL hasMappableSlideNumberShape;
+@property (nonatomic, readonly) OADShape *slideNumberPlaceholder;
+@property (nonatomic, readonly) OADShape *slideNumberShape;
 
 + (int)inheritedPlaceholderType:(int)arg1;
 
@@ -33,6 +31,7 @@
 - (void)dealloc;
 - (id)defaultTableStyle;
 - (id)defaultTheme;
+- (id)description;
 - (void)doneWithContent;
 - (id)drawables;
 - (id)drawingTheme;
@@ -59,7 +58,7 @@
 - (void)setInheritedTextStyle:(id)arg1 placeholderType:(int)arg2 defaultTextListStyle:(id)arg3;
 - (void)setIsHidden:(BOOL)arg1;
 - (void)setName:(id)arg1;
-- (void)setPpt9AnimationDataForCacheItem:(id)arg1 order:(int)arg2;
+- (void)setPpt9AnimationDataForCacheItem:(id)arg1 order:(int)arg2 state:(id)arg3;
 - (void)setTransition:(id)arg1;
 - (id)slideNumberPlaceholder;
 - (id)slideNumberShape;

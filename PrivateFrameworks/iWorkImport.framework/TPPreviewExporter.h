@@ -2,12 +2,15 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface TPPreviewExporter : TPRenderingExporter <TSKImageExporter> {
-}
+@interface TPPreviewExporter : TPRenderingExporter <TSKImageExporter>
 
-@property unsigned int height;
-@property BOOL scaleToFit;
-@property unsigned int width;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) unsigned int height;
+@property (nonatomic) BOOL scaleToFit;
+@property (readonly) Class superclass;
+@property (nonatomic) unsigned int width;
 
 - (unsigned int)height;
 - (id)p_renderingExporterDelegate;

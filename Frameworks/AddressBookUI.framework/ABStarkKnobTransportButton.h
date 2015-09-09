@@ -2,14 +2,12 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@interface ABStarkKnobTransportButton : ABTransportButton {
-}
-
-@property int transportType;
+@interface ABStarkKnobTransportButton : ABTransportButton
 
 + (id)transportButton;
 
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })alignmentRectInsets;
+- (id)imageNameForType:(int)arg1;
 - (void)setImage:(id)arg1 forState:(unsigned int)arg2;
 - (void)setTransportType:(int)arg1;
 

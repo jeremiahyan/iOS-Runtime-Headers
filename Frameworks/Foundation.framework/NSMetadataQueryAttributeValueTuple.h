@@ -9,6 +9,10 @@
     id _value;
 }
 
+@property (readonly, copy) NSString *attribute;
+@property (readonly) unsigned int count;
+@property (readonly, retain) id value;
+
 - (id)_init:(id)arg1 attribute:(id)arg2 value:(id)arg3 count:(unsigned int)arg4;
 - (id)attribute;
 - (unsigned int)count;

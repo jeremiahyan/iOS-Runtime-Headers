@@ -2,22 +2,24 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class ABPeoplePickerNavigationController, CNContact;
-
-@interface ABContactAddToExistingContactAction : ABContactAction <ABPeoplePickerNavigationControllerDelegate, ABNewPersonViewControllerDelegate> {
+@interface ABContactAddToExistingContactAction : ABContactAction <ABNewPersonViewControllerDelegate, ABPeoplePickerNavigationControllerDelegate> {
     CNContact *_chosenContact;
     ABPeoplePickerNavigationController *_peoplePicker;
 }
 
-@property(retain) CNContact * chosenContact;
-@property(retain) ABPeoplePickerNavigationController * peoplePicker;
+@property (nonatomic, retain) CNContact *chosenContact;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) ABPeoplePickerNavigationController *peoplePicker;
+@property (readonly) Class superclass;
 
 - (id)chosenContact;
 - (void)dealloc;
 - (void)newPersonViewController:(id)arg1 didCompleteWithNewPerson:(void*)arg2;
 - (id)peoplePicker;
-- (BOOL)peoplePickerNavigationController:(id)arg1 shouldContinueAfterSelectingPerson:(void*)arg2 property:(int)arg3 identifier:(int)arg4;
 - (BOOL)peoplePickerNavigationController:(id)arg1 shouldContinueAfterSelectingPerson:(void*)arg2;
+- (BOOL)peoplePickerNavigationController:(id)arg1 shouldContinueAfterSelectingPerson:(void*)arg2 property:(int)arg3 identifier:(int)arg4;
 - (void)peoplePickerNavigationControllerDidCancel:(id)arg1;
 - (void)performActionWithSender:(id)arg1;
 - (void)setChosenContact:(id)arg1;

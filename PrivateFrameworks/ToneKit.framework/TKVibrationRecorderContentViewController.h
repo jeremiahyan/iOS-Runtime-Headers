@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/ToneKit.framework/ToneKit
  */
 
-@class <TKVibrationRecorderViewControllerDelegate>, NSDictionary, TKVibrationRecorderView, TKVibrationRecorderViewController, TKVibratorController, TLVibrationPattern, UIAlertView, UIBarButtonItem;
-
-@interface TKVibrationRecorderContentViewController : UIViewController <TKVibrationRecorderViewDelegate, UIAlertViewDelegate, UITextFieldDelegate> {
+@interface TKVibrationRecorderContentViewController : UIViewController <TKVibrationRecorderViewDelegate, UITextFieldDelegate> {
     UIBarButtonItem *_cancelButton;
     double _currentVibrationComponentDidStartTimeStamp;
     double _currentVibrationProgressDidStartTimestamp;
@@ -14,25 +12,33 @@
     TKVibrationRecorderViewController *_parentVibrationRecorderViewController;
     TLVibrationPattern *_recordedVibrationPattern;
     UIBarButtonItem *_saveButton;
-    UIAlertView *_vibrationNameAlertView;
+    UIAlertController *_vibrationNameAlertController;
+    UIAlertAction *_vibrationNameAlertSaveAction;
+    UITextField *_vibrationNameAlertTextField;
     TKVibrationRecorderView *_vibrationRecorderView;
     TKVibratorController *_vibratorController;
     BOOL _waitingForEndOfCurrentVibrationComponent;
 }
 
-@property(setter=_setCancelButton:,retain) UIBarButtonItem * _cancelButton;
-@property(setter=_setCurrentVibrationComponentDidStartTimeStamp:) double _currentVibrationComponentDidStartTimeStamp;
-@property(setter=_setCurrentVibrationProgressDidStartTimestamp:) double _currentVibrationProgressDidStartTimestamp;
-@property(setter=_setIndefiniteVibrationPattern:,retain) NSDictionary * _indefiniteVibrationPattern;
-@property(setter=_setMode:) int _mode;
-@property(setter=_setRecordedVibrationPattern:,retain) TLVibrationPattern * _recordedVibrationPattern;
-@property(setter=_setSaveButton:,retain) UIBarButtonItem * _saveButton;
-@property(setter=_setVibrationNameAlertView:,retain) UIAlertView * _vibrationNameAlertView;
-@property(setter=_setVibrationRecorderView:,retain) TKVibrationRecorderView * _vibrationRecorderView;
-@property(setter=_setVibratorController:,retain) TKVibratorController * _vibratorController;
-@property(getter=_isWaitingForEndOfCurrentVibrationComponent,setter=_setWaitingForEndOfCurrentVibrationComponent:) BOOL _waitingForEndOfCurrentVibrationComponent;
-@property <TKVibrationRecorderViewControllerDelegate> * delegate;
-@property TKVibrationRecorderViewController * parentVibrationRecorderViewController;
+@property (setter=_setCancelButton:, nonatomic, retain) UIBarButtonItem *_cancelButton;
+@property (setter=_setCurrentVibrationComponentDidStartTimeStamp:, nonatomic) double _currentVibrationComponentDidStartTimeStamp;
+@property (setter=_setCurrentVibrationProgressDidStartTimestamp:, nonatomic) double _currentVibrationProgressDidStartTimestamp;
+@property (setter=_setIndefiniteVibrationPattern:, nonatomic, retain) NSDictionary *_indefiniteVibrationPattern;
+@property (setter=_setMode:, nonatomic) int _mode;
+@property (setter=_setRecordedVibrationPattern:, nonatomic, retain) TLVibrationPattern *_recordedVibrationPattern;
+@property (setter=_setSaveButton:, nonatomic, retain) UIBarButtonItem *_saveButton;
+@property (setter=_setVibrationNameAlertController:, nonatomic, retain) UIAlertController *_vibrationNameAlertController;
+@property (setter=_setVibrationNameAlertSaveAction:, nonatomic, retain) UIAlertAction *_vibrationNameAlertSaveAction;
+@property (setter=_setVibrationNameAlertTextField:, nonatomic, retain) UITextField *_vibrationNameAlertTextField;
+@property (setter=_setVibrationRecorderView:, nonatomic, retain) TKVibrationRecorderView *_vibrationRecorderView;
+@property (setter=_setVibratorController:, nonatomic, retain) TKVibratorController *_vibratorController;
+@property (getter=_isWaitingForEndOfCurrentVibrationComponent, setter=_setWaitingForEndOfCurrentVibrationComponent:, nonatomic) BOOL _waitingForEndOfCurrentVibrationComponent;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <TKVibrationRecorderViewControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) TKVibrationRecorderViewController *parentVibrationRecorderViewController;
+@property (readonly) Class superclass;
 
 - (void)_accessibilityDidEnterRecordingMode;
 - (void)_accessibilityDidEnterReplayMode;
@@ -40,7 +46,9 @@
 - (void)_accessibilityDidExitReplayMode;
 - (void)_accessibilityMakeAnnouncementWithStringForLocalizationIdentifier:(id)arg1;
 - (id)_cancelButton;
+- (void)_cancelButtonInAlertTapped:(id)arg1;
 - (void)_cancelButtonTapped:(id)arg1;
+- (void)_cleanUpVibrationNameAlertController;
 - (double)_currentVibrationComponentDidStartTimeStamp;
 - (double)_currentVibrationProgressDidStartTimestamp;
 - (void)_eraseCurrentVibrationComponentDidStartTimeStamp;
@@ -50,6 +58,7 @@
 - (int)_mode;
 - (id)_recordedVibrationPattern;
 - (id)_saveButton;
+- (void)_saveButtonInAlertTapped:(id)arg1;
 - (void)_saveButtonTapped:(id)arg1;
 - (void)_setCancelButton:(id)arg1;
 - (void)_setCurrentVibrationComponentDidStartTimeStamp:(double)arg1;
@@ -58,18 +67,23 @@
 - (void)_setMode:(int)arg1;
 - (void)_setRecordedVibrationPattern:(id)arg1;
 - (void)_setSaveButton:(id)arg1;
-- (void)_setVibrationNameAlertView:(id)arg1;
+- (void)_setVibrationNameAlertController:(id)arg1;
+- (void)_setVibrationNameAlertSaveAction:(id)arg1;
+- (void)_setVibrationNameAlertTextField:(id)arg1;
 - (void)_setVibrationRecorderView:(id)arg1;
 - (void)_setVibratorController:(id)arg1;
 - (void)_setWaitingForEndOfCurrentVibrationComponent:(BOOL)arg1;
 - (void)_startVibratingWithVibrationPattern:(id)arg1;
 - (void)_stopVibrating;
 - (void)_storeVibrationComponentOfTypePause:(BOOL)arg1;
-- (void)_textFieldTextDidChange:(id)arg1;
-- (id)_vibrationNameAlertView;
+- (void)_updateStateSaveButtonInAlert;
+- (id)_vibrationNameAlertController;
+- (id)_vibrationNameAlertSaveAction;
+- (id)_vibrationNameAlertTextField;
+- (void)_vibrationNameTextFieldContentsDidChange:(id)arg1;
 - (id)_vibrationRecorderView;
 - (id)_vibratorController;
-- (void)alertView:(id)arg1 clickedButtonAtIndex:(int)arg2;
+- (void)applicationWillSuspend;
 - (void)dealloc;
 - (id)delegate;
 - (id)initWithVibratorController:(id)arg1;

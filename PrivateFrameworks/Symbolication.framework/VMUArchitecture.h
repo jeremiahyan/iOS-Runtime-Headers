@@ -19,7 +19,6 @@
 + (id)x86_32Architecture;
 + (id)x86_64Architecture;
 
-- (struct _VMURange { unsigned long long x1; unsigned long long x2; })commpageAddressRange;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (int)cpuSubtype;
 - (int)cpuType;
@@ -35,6 +34,5 @@
 - (BOOL)isEqualToArchitecture:(id)arg1;
 - (BOOL)isLittleEndian;
 - (BOOL)matchesArchitecture:(id)arg1;
-- (struct _VMURange { unsigned long long x1; unsigned long long x2; })objcpageAddressRange;
 
 @end

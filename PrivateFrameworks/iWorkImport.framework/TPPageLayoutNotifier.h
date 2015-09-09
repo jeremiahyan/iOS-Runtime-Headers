@@ -2,11 +2,14 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class TPPageController;
-
 @interface TPPageLayoutNotifier : NSObject <TPPageControllerLayoutObserver> {
     TPPageController *_pageController;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)dealloc;
 - (id)initWithPageController:(id)arg1;

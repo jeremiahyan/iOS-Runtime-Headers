@@ -2,41 +2,35 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class TSCH3DDiffuseMaterial, TSCH3DEmissiveMaterial, TSCH3DModulateMaterial, TSCH3DShininessMaterial, TSCH3DSpecularMaterial;
-
 @interface TSCH3DPhongMaterialPackage : TSCH3DMaterialPackage {
-    TSCH3DDiffuseMaterial *mDiffuse;
-    TSCH3DEmissiveMaterial *mEmissive;
-    TSCH3DModulateMaterial *mModulate;
-    TSCH3DShininessMaterial *mShininess;
-    TSCH3DSpecularMaterial *mSpecular;
+    TSCH3DDiffuseMaterial *_diffuse;
+    TSCH3DEmissiveMaterial *_emissive;
+    TSCH3DModulateMaterial *_modulate;
+    TSCH3DShininessMaterial *_shininess;
+    TSCH3DSpecularMaterial *_specular;
 }
 
-@property(retain) TSCH3DDiffuseMaterial * diffuse;
-@property(retain) TSCH3DEmissiveMaterial * emissive;
-@property(retain) TSCH3DModulateMaterial * modulate;
-@property(retain) TSCH3DShininessMaterial * shininess;
-@property(retain) TSCH3DSpecularMaterial * specular;
+@property (nonatomic, retain) TSCH3DDiffuseMaterial *diffuse;
+@property (nonatomic, retain) TSCH3DEmissiveMaterial *emissive;
+@property (nonatomic, retain) TSCH3DModulateMaterial *modulate;
+@property (nonatomic, retain) TSCH3DShininessMaterial *shininess;
+@property (nonatomic, retain) TSCH3DSpecularMaterial *specular;
 
-+ (id)instanceWithArchive:(const struct Chart3DPhongMaterialPackageArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; struct Chart3DEmissiveMaterialArchive {} *x3; struct Chart3DDiffuseMaterialArchive {} *x4; struct Chart3DModulateMaterialArchive {} *x5; struct Chart3DSpecularMaterialArchive {} *x6; struct Chart3DShininessMaterialArchive {} *x7; int x8; unsigned int x9[1]; }*)arg1 unarchiver:(id)arg2;
++ (id)instanceWithArchive:(const struct Chart3DPhongMaterialPackageArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; struct Chart3DEmissiveMaterialArchive {} *x5; struct Chart3DDiffuseMaterialArchive {} *x6; struct Chart3DModulateMaterialArchive {} *x7; struct Chart3DSpecularMaterialArchive {} *x8; struct Chart3DShininessMaterialArchive {} *x9; }*)arg1 unarchiver:(id)arg2;
 + (id)package;
 
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)diffuse;
 - (id)emissive;
+- (BOOL)hasCompleteData;
 - (unsigned int)hash;
 - (id)init;
-- (id)initWithArchive:(const struct Chart3DPhongMaterialPackageArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; struct Chart3DEmissiveMaterialArchive {} *x3; struct Chart3DDiffuseMaterialArchive {} *x4; struct Chart3DModulateMaterialArchive {} *x5; struct Chart3DSpecularMaterialArchive {} *x6; struct Chart3DShininessMaterialArchive {} *x7; int x8; unsigned int x9[1]; }*)arg1 unarchiver:(id)arg2;
+- (id)initWithArchive:(const struct Chart3DPhongMaterialPackageArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; struct Chart3DEmissiveMaterialArchive {} *x5; struct Chart3DDiffuseMaterialArchive {} *x6; struct Chart3DModulateMaterialArchive {} *x7; struct Chart3DSpecularMaterialArchive {} *x8; struct Chart3DShininessMaterialArchive {} *x9; }*)arg1 unarchiver:(id)arg2;
 - (BOOL)isEqual:(id)arg1;
 - (id)materialEnumerator;
 - (id)modulate;
-- (void)saveToArchive:(struct Chart3DPhongMaterialPackageArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; struct Chart3DEmissiveMaterialArchive {} *x3; struct Chart3DDiffuseMaterialArchive {} *x4; struct Chart3DModulateMaterialArchive {} *x5; struct Chart3DSpecularMaterialArchive {} *x6; struct Chart3DShininessMaterialArchive {} *x7; int x8; unsigned int x9[1]; }*)arg1 archiver:(id)arg2;
+- (void)saveToArchive:(struct Chart3DPhongMaterialPackageArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; struct Chart3DEmissiveMaterialArchive {} *x5; struct Chart3DDiffuseMaterialArchive {} *x6; struct Chart3DModulateMaterialArchive {} *x7; struct Chart3DSpecularMaterialArchive {} *x8; struct Chart3DShininessMaterialArchive {} *x9; }*)arg1 archiver:(id)arg2;
 - (void)setDiffuse:(id)arg1;
 - (void)setEmissive:(id)arg1;
 - (void)setModulate:(id)arg1;

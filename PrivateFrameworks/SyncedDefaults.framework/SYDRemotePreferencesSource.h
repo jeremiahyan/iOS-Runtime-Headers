@@ -2,12 +2,6 @@
    Image: /System/Library/PrivateFrameworks/SyncedDefaults.framework/SyncedDefaults
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, SYDClient;
-
 @interface SYDRemotePreferencesSource : NSObject {
     BOOL _forceNextSynchronization;
     long _generationCount;
@@ -23,7 +17,7 @@
     long long initialSyncChangeCount;
     unsigned char isInitialSync;
     struct __CFString { } *preferenceID;
-    id registrationBlock;
+    id /* block */ registrationBlock;
     NSObject<OS_dispatch_queue> *registrationQueue;
     long long storageChangeCount;
     struct __CFURL { } *urlOnDisk;
@@ -34,7 +28,7 @@
 + (void)initialize;
 + (void)migrateSyncedDefaultsForBundleIdentifier:(id)arg1;
 + (void)noteAccountChanges:(id)arg1;
-+ (void)resetAllApplicationsWithCompletionHandler:(id)arg1;
++ (void)resetAllApplicationsWithCompletionHandler:(id /* block */)arg1;
 
 - (void)_cachePlistFromDisk;
 - (void)_createMemoryWarningSource;
@@ -55,8 +49,8 @@
 - (void*)getValueForKey:(struct __CFString { }*)arg1;
 - (unsigned char)hasExternalChanges;
 - (id)initWithApplicationID:(struct __CFString { }*)arg1 shared:(BOOL)arg2;
-- (id)initWithApplicationID:(struct __CFString { }*)arg1 storeID:(struct __CFString { }*)arg2 shared:(BOOL)arg3 additionalSource:(BOOL)arg4;
 - (id)initWithApplicationID:(struct __CFString { }*)arg1 storeID:(struct __CFString { }*)arg2 shared:(BOOL)arg3;
+- (id)initWithApplicationID:(struct __CFString { }*)arg1 storeID:(struct __CFString { }*)arg2 shared:(BOOL)arg3 additionalSource:(BOOL)arg4;
 - (unsigned char)isInitialSync;
 - (long)maximumDataLengthPerKey;
 - (long)maximumKeyCount;
@@ -66,7 +60,7 @@
 - (void)scheduleRemoteSynchronization;
 - (id)serverSideDebugDescription;
 - (void)setValue:(void*)arg1 forKey:(struct __CFString { }*)arg2;
-- (void)synchronizationWithCompletionHandler:(id)arg1;
+- (void)synchronizationWithCompletionHandler:(id /* block */)arg1;
 - (unsigned char)synchronize;
 - (unsigned char)synchronizeForced:(unsigned char)arg1;
 - (void)unregisterForSynchronizedDefaults;

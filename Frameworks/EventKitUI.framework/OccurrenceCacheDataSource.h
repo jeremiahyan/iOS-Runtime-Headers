@@ -2,15 +2,17 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-@class EKEventStore, NSArray, NSMutableDictionary, NSSet;
-
 @interface OccurrenceCacheDataSource : NSObject <OccurrenceCacheDataSourceProtocol> {
     NSArray *_cachedDays;
     int _cachedDaysSeed;
-    NSMutableDictionary *_cachedOccurrences;
     NSSet *_calendars;
     EKEventStore *_eventStore;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (id)_cachedDays;

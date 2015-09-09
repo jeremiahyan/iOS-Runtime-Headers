@@ -2,25 +2,23 @@
    Image: /System/Library/PrivateFrameworks/Stocks.framework/Stocks
  */
 
-@class GraphRenderOperation, LineGraphView, NSArray, NSMutableArray, StockChartData, UIView<StockGraphViewContainer>, VolumeGraphView;
-
 @interface StockGraphView : UIView <GraphRenderOperationDelegate> {
+    StockChartData *_chartData;
+    UIView<StockGraphViewContainer> *_chartViewDelegate;
+    unsigned int _dataCount;
+    unsigned int _dataSize;
+    StockChartDisplayMode *_displayMode;
+    NSArray *_dottedLinePositions;
+    NSArray *_dottedLinePositionsForStyleOnly;
     struct UIEdgeInsets { 
         float top; 
         float left; 
         float bottom; 
         float right; 
-    StockChartData *_chartData;
-    UIView<StockGraphViewContainer> *_chartViewDelegate;
-    unsigned int _dataCount;
-    unsigned int _dataSize;
-    BOOL _detailedMode;
-    NSArray *_dottedLinePositions;
     } _graphInsets;
     BOOL _isRendered;
     NSMutableArray *_linePointCounts;
     LineGraphView *_lineView;
-    float _lineWidth;
     unsigned long long _maxVolume;
     struct CGPoint { float x1; float x2; } *_points;
     GraphRenderOperation *_renderOperation;
@@ -34,12 +32,11 @@
     VolumeGraphView *_volumeView;
 }
 
-@property UIView<StockGraphViewContainer> * chartViewDelegate;
-@property BOOL detailedMode;
-@property(setter=setDottedLinePositionsWithLabelInfo:,retain) NSArray * dottedLinePositions;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } graphInsets;
-@property(readonly) BOOL isRendered;
-@property(readonly) BOOL isRendering;
+@property (nonatomic) UIView<StockGraphViewContainer> *chartViewDelegate;
+@property (nonatomic, retain) StockChartDisplayMode *displayMode;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } graphInsets;
+@property (nonatomic, readonly) BOOL isRendered;
+@property (nonatomic, readonly) BOOL isRendering;
 
 - (void).cxx_destruct;
 - (void)_finishCurrentLine;
@@ -56,8 +53,7 @@
 - (void)clearData;
 - (void)clearPaths;
 - (void)dealloc;
-- (BOOL)detailedMode;
-- (id)dottedLinePositions;
+- (id)displayMode;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })graphInsets;
 - (void)graphRenderOperationDidFinish:(id)arg1;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
@@ -71,8 +67,9 @@
 - (void)resizeSelectedVolumeClipViewWithLeftX:(float)arg1 rightX:(float)arg2;
 - (struct CGPoint { float x1; float x2; })rightmostPlottedPoint;
 - (void)setChartViewDelegate:(id)arg1;
-- (void)setDetailedMode:(BOOL)arg1;
+- (void)setDisplayMode:(id)arg1;
 - (void)setDottedLinePositionsWithLabelInfo:(id)arg1;
+- (void)setEvenlySpacedDottedLinePositionsWithCount:(unsigned int)arg1;
 - (void)setFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)setGraphInsets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
 - (void)setShowingSelectedLine:(BOOL)arg1;

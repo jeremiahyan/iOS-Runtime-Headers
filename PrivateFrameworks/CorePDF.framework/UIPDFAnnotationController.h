@@ -2,41 +2,43 @@
    Image: /System/Library/PrivateFrameworks/CorePDF.framework/CorePDF
  */
 
-@class <NSObject><UIPDFAnnotationControllerDelegate>, CALayer, UIColor, UIPDFAnnotation, UIPDFMarkupAnnotation, UIPDFPageView;
-
 @interface UIPDFAnnotationController : NSObject <UIGestureRecognizerDelegate> {
-    struct CGPoint { 
-        float x; 
-        float y; 
-    struct { 
-        int location; 
-        int length; 
+    BOOL _allowEditing;
     struct CGSize { 
         float width; 
         float height; 
-    BOOL _allowEditing;
     } _cachedMarginNoteSize;
     UIPDFMarkupAnnotation *_currentAnnotation;
     UIColor *_currentColor;
     <NSObject><UIPDFAnnotationControllerDelegate> *_delegate;
     CALayer *_drawingSurface;
+    struct { 
+        int location; 
+        int length; 
     } _initialRange;
     int _lock;
     BOOL _moving;
     UIPDFPageView *_pageView;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _startPoint;
     BOOL _tracking;
     BOOL makeUnderlineAnnotation;
 }
 
-@property BOOL allowEditing;
-@property(retain) UIPDFAnnotation * currentAnnotation;
-@property UIColor * currentColor;
-@property <NSObject><UIPDFAnnotationControllerDelegate> * delegate;
-@property CALayer * drawingSurface;
-@property BOOL makeUnderlineAnnotation;
-@property(readonly) UIPDFPageView * pageView;
-@property(readonly) BOOL tracking;
+@property (nonatomic) BOOL allowEditing;
+@property (nonatomic, retain) UIPDFAnnotation *currentAnnotation;
+@property (nonatomic) UIColor *currentColor;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <NSObject><UIPDFAnnotationControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) CALayer *drawingSurface;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL makeUnderlineAnnotation;
+@property (nonatomic, readonly) UIPDFPageView *pageView;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) BOOL tracking;
 
 + (id)newAnnotation:(struct CGPDFDictionary { }*)arg1 type:(const char *)arg2;
 + (struct CGImage { }*)newMaskImage:(struct CGPDFPage { }*)arg1 size:(struct CGSize { float x1; float x2; })arg2;
@@ -99,8 +101,8 @@
 - (void)setView:(id)arg1;
 - (void)startTracking:(struct CGPoint { float x1; float x2; })arg1;
 - (BOOL)trackMoved:(struct CGPoint { float x1; float x2; })arg1;
-- (void)tracking:(struct CGPoint { float x1; float x2; })arg1;
 - (BOOL)tracking;
+- (void)tracking:(struct CGPoint { float x1; float x2; })arg1;
 - (struct CGImage { }*)underlineImageFor:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)unlock;
 - (BOOL)willDoSomethingWithTap:(struct CGPoint { float x1; float x2; })arg1;

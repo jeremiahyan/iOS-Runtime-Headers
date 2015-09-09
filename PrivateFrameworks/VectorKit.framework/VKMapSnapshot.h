@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-@class VKCamera;
-
 @interface VKMapSnapshot : NSObject {
     VKCamera *_camera;
     unsigned long _height;
@@ -12,15 +10,17 @@
     unsigned long _width;
 }
 
-@property(readonly) struct CGImage { }* image;
-@property(readonly) float scale;
+@property (nonatomic, readonly) struct CGImage { }*image;
+@property (nonatomic, readonly) float scale;
 
 - (id)_initWithImage:(struct CGImage { }*)arg1 scale:(float)arg2 camera:(id)arg3;
 - (struct { double x1; double x2; })coordinateForPoint:(struct CGPoint { float x1; float x2; })arg1;
 - (void)dealloc;
 - (id)description;
 - (struct CGImage { }*)image;
+- (id)imageDataInFormat:(unsigned int)arg1;
 - (struct CGPoint { float x1; float x2; })pointForCoordinate:(struct { double x1; double x2; })arg1;
 - (float)scale;
+- (BOOL)writeImageToFile:(id)arg1 format:(unsigned int)arg2 error:(id*)arg3;
 
 @end

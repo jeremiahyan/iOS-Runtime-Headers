@@ -2,27 +2,25 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class GEORPResolution, NSString;
-
 @interface GEORPProblemStatus : PBCodable <NSCopying> {
+    double _creationDate;
     struct { 
         unsigned int creationDate : 1; 
         unsigned int problemState : 1; 
-    double _creationDate;
     } _has;
-    NSString *_problemID;
+    NSString *_problemId;
     GEORPResolution *_problemResolution;
     int _problemState;
 }
 
-@property double creationDate;
-@property BOOL hasCreationDate;
-@property(readonly) BOOL hasProblemID;
-@property(readonly) BOOL hasProblemResolution;
-@property BOOL hasProblemState;
-@property(retain) NSString * problemID;
-@property(retain) GEORPResolution * problemResolution;
-@property int problemState;
+@property (nonatomic) double creationDate;
+@property (nonatomic) BOOL hasCreationDate;
+@property (nonatomic, readonly) BOOL hasProblemId;
+@property (nonatomic, readonly) BOOL hasProblemResolution;
+@property (nonatomic) BOOL hasProblemState;
+@property (nonatomic, retain) NSString *problemId;
+@property (nonatomic, retain) GEORPResolution *problemResolution;
+@property (nonatomic) int problemState;
 
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -31,19 +29,20 @@
 - (id)description;
 - (id)dictionaryRepresentation;
 - (BOOL)hasCreationDate;
-- (BOOL)hasProblemID;
+- (BOOL)hasProblemId;
 - (BOOL)hasProblemResolution;
 - (BOOL)hasProblemState;
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
-- (id)problemID;
+- (void)mergeFrom:(id)arg1;
+- (id)problemId;
 - (id)problemResolution;
 - (int)problemState;
 - (BOOL)readFrom:(id)arg1;
 - (void)setCreationDate:(double)arg1;
 - (void)setHasCreationDate:(BOOL)arg1;
 - (void)setHasProblemState:(BOOL)arg1;
-- (void)setProblemID:(id)arg1;
+- (void)setProblemId:(id)arg1;
 - (void)setProblemResolution:(id)arg1;
 - (void)setProblemState:(int)arg1;
 - (void)writeTo:(id)arg1;

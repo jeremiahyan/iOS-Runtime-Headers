@@ -2,12 +2,53 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class TSTCoordinateArray, TSTLayout, TSTLayoutSpaceBundle, TSTMasterLayout;
-
 @interface TSTLayoutSpace : NSObject {
-    struct { 
-        BOOL coordinates; 
-        BOOL tableOffset; 
+    TSTLayoutSpaceBezierPathCache *mBezierPathCache;
+    TSTCoordinateArray *mBodyColumnCoordinates;
+    TSTCoordinateArray *mBodyRowCoordinates;
+    TSTLayoutSpaceBundle *mBundle;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
+    } mCachedAlignedFrame;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
+    } mCachedAlignedStrokeFrame;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
+    } mCachedFrame;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
+    } mCachedStrokeFrame;
+    BOOL mDrawBlackAndWhite;
+    BOOL mDrawPreventAntialias;
     struct { 
         struct { 
             unsigned int column; 
@@ -17,134 +58,96 @@
             unsigned int column; 
             unsigned int row; 
         } bottomRight; 
-    struct CGAffineTransform { 
-        float a; 
-        float b; 
-        float c; 
-        float d; 
-        float tx; 
-        float ty; 
-    struct CGAffineTransform { 
-        float a; 
-        float b; 
-        float c; 
-        float d; 
-        float tx; 
-        float ty; 
-    struct CGAffineTransform { 
-        float a; 
-        float b; 
-        float c; 
-        float d; 
-        float tx; 
-        float ty; 
-    struct CGAffineTransform { 
-        float a; 
-        float b; 
-        float c; 
-        float d; 
-        float tx; 
-        float ty; 
-    struct CGPoint { 
-        float x; 
-        float y; 
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
-    struct _opaque_pthread_rwlock_t { 
-        long __sig; 
-        BOOL __opaque[124]; 
-    TSTCoordinateArray *mBodyColumnCoordinates;
-    TSTCoordinateArray *mBodyRowCoordinates;
-    TSTLayoutSpaceBundle *mBundle;
-    } mCachedAlignedFrame;
-    } mCachedAlignedStrokeFrame;
-    } mCachedFrame;
-    } mCachedStrokeFrame;
-    BOOL mDrawBlackAndWhite;
-    BOOL mDrawPreventAntialias;
     } mGridRange;
     TSTCoordinateArray *mHeaderColumnRowCoordinates;
     BOOL mHeaderColumnsRepeat;
     TSTCoordinateArray *mHeaderRowColumnCoordinates;
     BOOL mHeaderRowsRepeat;
-    } mInvalidFlags;
+    unsigned char mInvalidColumnIndex;
+    unsigned short mInvalidRowIndex;
+    BOOL mInvalidTableOffset;
     BOOL mLayoutDirectionIsLeftToRight;
     int mLayoutSpaceType;
+    struct _opaque_pthread_rwlock_t { 
+        long __sig; 
+        BOOL __opaque[124]; 
     } mLock;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } mTableOffset;
+    struct CGAffineTransform { 
+        float a; 
+        float b; 
+        float c; 
+        float d; 
+        float tx; 
+        float ty; 
     } mTransformFromCanvas;
+    struct CGAffineTransform { 
+        float a; 
+        float b; 
+        float c; 
+        float d; 
+        float tx; 
+        float ty; 
     } mTransformFromDevice;
+    struct CGAffineTransform { 
+        float a; 
+        float b; 
+        float c; 
+        float d; 
+        float tx; 
+        float ty; 
     } mTransformToCanvas;
+    struct CGAffineTransform { 
+        float a; 
+        float b; 
+        float c; 
+        float d; 
+        float tx; 
+        float ty; 
     } mTransformToDevice;
     float mViewScale;
 }
 
-@property(readonly) TSTLayoutSpaceBundle * bundle;
-@property BOOL drawBlackAndWhite;
-@property BOOL drawPreventAntialias;
-@property BOOL headerColumnsRepeat;
-@property BOOL headerRowsRepeat;
-@property(readonly) BOOL isColumns;
-@property(readonly) BOOL isCorner;
-@property(readonly) BOOL isFrozen;
-@property(readonly) BOOL isMain;
-@property(readonly) BOOL isRepeat;
-@property(readonly) BOOL isRows;
-@property(readonly) TSTLayout * layout;
-@property(readonly) BOOL layoutDirectionIsLeftToRight;
-@property(readonly) int layoutSpaceType;
-@property(readonly) TSTMasterLayout * masterLayout;
-@property struct CGPoint { float x1; float x2; } tableOffset;
-@property struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; } transformFromCanvas;
-@property struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; } transformFromDevice;
-@property struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; } transformToCanvas;
-@property struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; } transformToDevice;
-@property float viewScale;
+@property (nonatomic, readonly) TSTLayoutSpaceBezierPathCache *bezierPathCache;
+@property (nonatomic, readonly) TSTLayoutSpaceBundle *bundle;
+@property (nonatomic) BOOL drawBlackAndWhite;
+@property (nonatomic) BOOL drawPreventAntialias;
+@property (nonatomic) BOOL headerColumnsRepeat;
+@property (nonatomic) BOOL headerRowsRepeat;
+@property (nonatomic, readonly) BOOL isColumns;
+@property (nonatomic, readonly) BOOL isCorner;
+@property (nonatomic, readonly) BOOL isFrozen;
+@property (nonatomic, readonly) BOOL isMain;
+@property (nonatomic, readonly) BOOL isRepeat;
+@property (nonatomic, readonly) BOOL isRows;
+@property (nonatomic, readonly) TSTLayout *layout;
+@property (nonatomic, readonly) BOOL layoutDirectionIsLeftToRight;
+@property (nonatomic, readonly) int layoutSpaceType;
+@property (nonatomic, readonly) TSTMasterLayout *masterLayout;
+@property (nonatomic) struct CGPoint { float x1; float x2; } tableOffset;
+@property (nonatomic) struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; } transformFromCanvas;
+@property (nonatomic) struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; } transformFromDevice;
+@property (nonatomic) struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; } transformToCanvas;
+@property (nonatomic) struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; } transformToDevice;
+@property (nonatomic) float viewScale;
 
 - (id).cxx_construct;
+- (id)bezierPathCache;
 - (id)bundle;
 - (void)dealloc;
 - (id)description;
 - (BOOL)drawBlackAndWhite;
 - (BOOL)drawPreventAntialias;
+- (void)drawStrokesInGridRange:(struct { struct { unsigned int x_1_1_1; unsigned int x_1_1_2; } x1; struct { unsigned int x_2_1_1; unsigned int x_2_1_2; } x2; })arg1 clearStrokes:(BOOL)arg2 context:(struct CGContext { }*)arg3;
 - (BOOL)headerColumnsRepeat;
 - (BOOL)headerRowsRepeat;
 - (id)initWithLayoutSpaceBundle:(id)arg1 type:(int)arg2;
 - (void)invalidateCoordinates;
+- (void)invalidateCoordinatesAfterColumn:(unsigned char)arg1;
+- (void)invalidateCoordinatesAfterRow:(unsigned short)arg1;
 - (void)invalidateTableOffset;
 - (BOOL)isColumns;
 - (BOOL)isCorner;
@@ -158,6 +161,8 @@
 - (void)lockForRead;
 - (void)lockForWrite;
 - (id)masterLayout;
+- (void)p_drawStrokeForGridColumn:(unsigned int)arg1 strokeRect:(struct { struct { unsigned int x_1_1_1; unsigned int x_1_1_2; } x1; struct { unsigned int x_2_1_1; unsigned int x_2_1_2; } x2; })arg2 clearStroke:(BOOL)arg3 shadowType:(int)arg4 context:(struct CGContext { }*)arg5;
+- (void)p_drawStrokeForGridRow:(unsigned int)arg1 strokeRect:(struct { struct { unsigned int x_1_1_1; unsigned int x_1_1_2; } x1; struct { unsigned int x_2_1_1; unsigned int x_2_1_2; } x2; })arg2 clearStroke:(BOOL)arg3 shadowType:(int)arg4 context:(struct CGContext { }*)arg5;
 - (BOOL)p_getLayoutDirectionLeftToRight;
 - (void)setDrawBlackAndWhite:(BOOL)arg1;
 - (void)setDrawPreventAntialias:(BOOL)arg1;

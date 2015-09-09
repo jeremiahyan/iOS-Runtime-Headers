@@ -2,29 +2,27 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIScrollView;
-
 @interface UIScrollViewPanGestureRecognizer : UIPanGestureRecognizer {
+    unsigned int _caughtDeceleratingScrollView;
+    unsigned int _directionalLockEnabled;
+    unsigned int _hasChildScrollView;
+    unsigned int _hasParentScrollView;
+    unsigned int _lastLockingAxis;
+    unsigned int _lockingAxis;
     struct CGPoint { 
         float x; 
         float y; 
-    unsigned int _hasChildScrollView : 1;
-    unsigned int _hasParentScrollView : 1;
-    unsigned int _caughtDeceleratingScrollView : 1;
-    unsigned int _directionalLockEnabled : 1;
-    unsigned int _transfersTrackingFromParentScrollView : 1;
-    unsigned int _lastLockingAxis : 2;
-    unsigned int _lockingAxis : 2;
     } _reconsideredLockingLocation;
     UIScrollView *_scrollView;
     SEL _scrollViewAction;
+    unsigned int _transfersTrackingFromParentScrollView;
 }
 
-@property(getter=_caughtDeceleratingScrollView,readonly) BOOL caughtDeceleratingScrollView;
-@property(getter=isDirectionalLockEnabled) BOOL directionalLockEnabled;
-@property UIScrollView * scrollView;
+@property (getter=_caughtDeceleratingScrollView, nonatomic, readonly) BOOL caughtDeceleratingScrollView;
+@property (getter=isDirectionalLockEnabled, nonatomic) BOOL directionalLockEnabled;
+@property (nonatomic) UIScrollView *scrollView;
 
-- (struct CGPoint { float x1; float x2; })_adjustScreenLocation:(struct CGPoint { float x1; float x2; })arg1;
+- (struct CGPoint { float x1; float x2; })_adjustSceneReferenceLocation:(struct CGPoint { float x1; float x2; })arg1;
 - (BOOL)_canTransferTrackingFromParentPagingScrollView;
 - (BOOL)_caughtDeceleratingScrollView;
 - (void)_centroidMovedTo:(struct CGPoint { float x1; float x2; })arg1 atTime:(double)arg2;

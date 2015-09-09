@@ -2,9 +2,27 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-@class <VKMapLayer>, <VKTileProviderClient>, GEOTileKeyList, NSArray, NSMutableSet, NSSet, VKMapRasterizer, VKStylesheet, VKTileCache, VKTileKeyList, VKTileSelection, VKTileSource, VKTimer, _VKTileProviderTimerTarget;
-
 @interface VKTileProvider : NSObject <VKLRUCacheDelegate, VKTileSourceClient> {
+    <VKTileProviderClient> *_client;
+    float _contentScale;
+    <VKMapLayer> *_debugLayer;
+    GEOTileKeyList *_debugLayerKeys;
+    _VKTileProviderTimerTarget *_evaluationTarget;
+    VKTimer *_evaluationTimer;
+    BOOL _exclusionAreaVisible;
+    struct vector<vk::TileExclusionArea, std::__1::allocator<vk::TileExclusionArea> > { 
+        struct TileExclusionArea {} *__begin_; 
+        struct TileExclusionArea {} *__end_; 
+        struct __compressed_pair<vk::TileExclusionArea *, std::__1::allocator<vk::TileExclusionArea> > { 
+            struct TileExclusionArea {} *__first_; 
+        } __end_cap_; 
+    } _exclusionAreas;
+    BOOL _fallbackEnabled;
+    NSMutableSet *_fallbackTiles;
+    BOOL _finishedLoading;
+    BOOL _hasFailedTile;
+    NSArray *_holes;
+    VKTileKeyList *_keysInView;
     struct VKCameraState { 
         struct VKPoint { 
             double x; 
@@ -16,91 +34,81 @@
         } orientation; 
         float aspectRatio; 
         float verticalFieldOfView; 
-        double horizontalOffset; 
+        float horizontalOffset; 
+    } _lastCameraState;
     struct CGSize { 
         float width; 
         float height; 
-    struct { 
-        double x; 
-        double y; 
-    struct vector<vk::TileExclusionArea, std::__1::allocator<vk::TileExclusionArea> > { 
-        struct TileExclusionArea {} *__begin_; 
-        struct TileExclusionArea {} *__end_; 
-        struct __compressed_pair<vk::TileExclusionArea *, std::__1::allocator<vk::TileExclusionArea> > { 
-            struct TileExclusionArea {} *__first_; 
-        } __end_cap_; 
-    <VKTileProviderClient> *_client;
-    float _contentScale;
-    <VKMapLayer> *_debugLayer;
-    GEOTileKeyList *_debugLayerKeys;
-    _VKTileProviderTimerTarget *_evaluationTarget;
-    VKTimer *_evaluationTimer;
-    BOOL _exclusionAreaVisible;
-    } _exclusionAreas;
-    BOOL _fallbackEnabled;
-    BOOL _finishedLoading;
-    BOOL _hasFailedTile;
-    NSArray *_holes;
-    VKTileKeyList *_keysInView;
-    } _lastCameraState;
     } _lastCanvasSize;
     float _lastMidDisplayZoomLevel;
     float _loadingProgress;
+    NSLocale *_locale;
     NSMutableSet *_lostTiles;
+    GEOResourceManifestConfiguration *_manifestConfiguration;
     int _mode;
     VKTileKeyList *_neighborKeys;
     unsigned int _neighborMode;
     NSMutableSet *_neighborTiles;
-    VKTileSource *_optionalTileSources[29];
+    VKTileSource *_optionalTileSources;
     BOOL _prefetchEnabled;
     VKTileKeyList *_prefetchKeys;
+    unsigned int _prefetchNumberOfScreens;
     _VKTileProviderTimerTarget *_prefetchTarget;
     VKTimer *_prefetchTimer;
     VKMapRasterizer *_rasterizer;
+    struct { 
+        double x; 
+        double y; 
     } _sortPoint;
-    VKStylesheet *_stylesheet;
-    int _tileMaximumLimit;
+    VKStyleManager *_styleManager;
+    unsigned int _tileMaximumLimit;
     VKTileCache *_tilePool;
-    int _tileReserveLimit;
+    unsigned int _tileReserveLimit;
     VKTileSelection *_tileSelection;
     BOOL _tilesChanged;
-    VKTileSource *_tilesSources[29];
+    VKTileSource *_tilesSources;
     NSMutableSet *_tilesToRender;
     BOOL _useSmallTileCache;
 }
 
-@property <VKTileProviderClient> * client;
-@property float contentScale;
-@property(retain) <VKMapLayer> * debugLayer;
-@property(readonly) GEOTileKeyList * debugLayerKeys;
-@property(getter=isFallbackEnabled) BOOL fallbackEnabled;
-@property(getter=isFinishedLoading,readonly) BOOL finishedLoading;
-@property(readonly) BOOL hasFailedTile;
-@property(readonly) VKTileKeyList * keysInView;
-@property(readonly) float loadingProgress;
-@property double lodBias;
-@property int mode;
-@property(readonly) VKTileKeyList * neighborKeys;
-@property unsigned int neighborMode;
-@property(readonly) NSSet * neighborTiles;
-@property(getter=isPrefetchEnabled) BOOL prefetchEnabled;
-@property(retain) VKStylesheet * stylesheet;
-@property(readonly) NSSet * tilesToRender;
-@property BOOL useSmallTileCache;
-@property(readonly) NSArray * visibleTileSets;
+@property (nonatomic) <VKTileProviderClient> *client;
+@property (nonatomic) float contentScale;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic, retain) <VKMapLayer> *debugLayer;
+@property (nonatomic, readonly) GEOTileKeyList *debugLayerKeys;
+@property (readonly, copy) NSString *description;
+@property (getter=isFallbackEnabled, nonatomic) BOOL fallbackEnabled;
+@property (getter=isFinishedLoading, nonatomic, readonly) BOOL finishedLoading;
+@property (nonatomic, readonly) BOOL hasFailedTile;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) VKTileKeyList *keysInView;
+@property (nonatomic, readonly) float loadingProgress;
+@property (nonatomic) double lodBias;
+@property (nonatomic) int mode;
+@property (nonatomic, readonly) VKTileKeyList *neighborKeys;
+@property (nonatomic) unsigned int neighborMode;
+@property (nonatomic, readonly) NSSet *neighborTiles;
+@property (getter=isPrefetchEnabled, nonatomic) BOOL prefetchEnabled;
+@property (nonatomic, retain) VKStyleManager *styleManager;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) NSSet *tilesToRender;
+@property (nonatomic) BOOL useSmallTileCache;
+@property (nonatomic, readonly) NSArray *visibleTileSets;
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (void)_dirtyTile:(id)arg1 source:(id)arg2 layer:(unsigned int)arg3;
-- (void)_ensureTimers;
+- (void)_dirtyTile:(id)arg1 source:(id)arg2 layer:(unsigned long long)arg3;
+- (void)_disableTimers;
 - (void)_fetchAvailableTiles:(BOOL)arg1;
 - (void)_fillHoles:(id)arg1 context:(id)arg2;
 - (void)_prefetchTiles;
-- (void)_pushTimers;
 - (void)_resizeCache;
+- (void)_updateTimers:(int)arg1;
 - (BOOL)cache:(id)arg1 willEvictObject:(id)arg2 forKey:(const struct VKCacheKey { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; }*)arg3;
 - (BOOL)canRenderTile:(id)arg1;
-- (void)changeTileForKey:(const struct VKTileKey { unsigned int x1; int x2; int x3; unsigned int x4; }*)arg1 toState:(unsigned int)arg2 withMetadata:(id)arg3 withTile:(id)arg4 forLayer:(unsigned int)arg5;
+- (void)cancelLoadForMapTile:(id)arg1;
+- (void)cancelLoadingTiles;
+- (void)changeTileForKey:(const struct VKTileKey { unsigned int x1; int x2; int x3; unsigned int x4; }*)arg1 toState:(unsigned int)arg2 withMetadata:(id)arg3 withTile:(id)arg4 forLayer:(unsigned long long)arg5;
 - (void)clearScene;
 - (id)client;
 - (void)configureTileSelection;
@@ -114,19 +122,19 @@
 - (void)dirtyTilesFromTileSource:(id)arg1;
 - (BOOL)evaluateNeighborTileForRendering:(id)arg1;
 - (BOOL)evaluateSelectedTileForRendering:(id)arg1;
-- (void)flushCaches;
-- (void)foreachActiveLayer:(id)arg1;
-- (void)foreachOptionalLayer:(id)arg1;
+- (void)flushCaches:(BOOL)arg1;
+- (void)foreachActiveLayer:(id /* block */)arg1;
+- (void)foreachOptionalLayer:(id /* block */)arg1;
 - (BOOL)hasFailedTile;
 - (BOOL)hasRequiredTileData:(id)arg1;
 - (BOOL)inFailedState:(id)arg1;
-- (id)initWithClient:(id)arg1;
+- (id)initWithClient:(id)arg1 resourceManifestConfiguration:(id)arg2 locale:(id)arg3;
 - (void)invalidateTilesFromTileSource:(id)arg1;
 - (BOOL)isFallbackEnabled;
 - (BOOL)isFinishedLoading;
 - (BOOL)isPrefetchEnabled;
 - (id)keysInView;
-- (unsigned int)layerForSource:(id)arg1;
+- (unsigned long long)layerForSource:(id)arg1;
 - (float)loadingProgress;
 - (double)lodBias;
 - (int)mode;
@@ -141,7 +149,7 @@
 - (void)releaseNeighborTileForRendering:(id)arg1;
 - (BOOL)releaseParentFallbackTileForTile:(id)arg1;
 - (void)releaseTileForRendering:(id)arg1;
-- (void)removeTileSourceForMapLayer:(unsigned int)arg1;
+- (void)removeTileSourceForMapLayer:(unsigned long long)arg1;
 - (void)requireRasterization:(id)arg1;
 - (void)retireNeighborTiles:(id)arg1;
 - (void)retireRenderTiles:(id)arg1;
@@ -154,12 +162,12 @@
 - (void)setMode:(int)arg1;
 - (void)setNeighborMode:(unsigned int)arg1;
 - (void)setPrefetchEnabled:(BOOL)arg1;
-- (void)setStylesheet:(id)arg1;
+- (void)setStyleManager:(id)arg1;
 - (void)setTileExclusionAreas:(const struct vector<vk::TileExclusionArea, std::__1::allocator<vk::TileExclusionArea> > { struct TileExclusionArea {} *x1; struct TileExclusionArea {} *x2; struct __compressed_pair<vk::TileExclusionArea *, std::__1::allocator<vk::TileExclusionArea> > { struct TileExclusionArea {} *x_3_1_1; } x3; }*)arg1;
-- (void)setTileSource:(id)arg1 forMapLayer:(unsigned int)arg2 optional:(BOOL)arg3;
+- (void)setTileSource:(id)arg1 forMapLayer:(unsigned long long)arg2 optional:(BOOL)arg3;
 - (void)setUseSmallTileCache:(BOOL)arg1;
 - (id)sourceForLayer:(id)arg1;
-- (id)stylesheet;
+- (id)styleManager;
 - (BOOL)tileExclusionAreaVisible;
 - (id)tileForKey:(const struct VKTileKey { unsigned int x1; int x2; int x3; unsigned int x4; }*)arg1;
 - (BOOL)tileMatters:(id)arg1;
@@ -175,7 +183,7 @@
 - (void)tileSourcesDidChange;
 - (id)tilesToRender;
 - (void)timerFired:(id)arg1;
-- (void)updateWithContext:(id)arg1;
+- (void)updateWithContext:(id)arg1 selectionScale:(float)arg2;
 - (BOOL)useSmallTileCache;
 - (id)visibleTileSets;
 - (void)willStartLoadingTiles;

@@ -2,16 +2,10 @@
    Image: /System/Library/PrivateFrameworks/EAFirmwareUpdater.framework/EAFirmwareUpdater
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class EAAccessory, EASession, NSMutableData, NSObject<OS_dispatch_queue>, NSString, NSTimer, NSURL, iAUPServer;
-
 @interface EAFirmwareUpdater : MobileAssetUpdater <EAAccessoryDelegate, NSStreamDelegate, iAUPServerDelegate> {
     EAAccessory *_accessory;
     NSString *_appProtocol;
-    id _applyCompletion;
+    id /* block */ _applyCompletion;
     NSString *_bootloaderProtocol;
     NSObject<OS_dispatch_queue> *_eaNotificationDispatchQueue;
     NSString *_firmwareBundleFilename;
@@ -24,7 +18,7 @@
     BOOL _isExpectingReconnect;
     NSMutableData *_outputData;
     unsigned int _productIDCode;
-    id _progressHandler;
+    id /* block */ _progressHandler;
     NSString *_protocolString;
     NSTimer *_reconnectTimer;
     EASession *_session;
@@ -32,16 +26,20 @@
     NSURL *_updateBundleURL;
 }
 
-@property(retain) EAAccessory * accessory;
-@property(retain) NSString * appProtocol;
-@property(copy) id applyCompletion;
-@property(retain) NSString * bootloaderProtocol;
-@property(retain) NSString * firmwareBundleFilename;
-@property(retain) NSURL * firmwareBundleURL;
-@property unsigned int productIDCode;
-@property(retain) NSString * protocolString;
-@property(retain) iAUPServer * server;
-@property(retain) EASession * session;
+@property (nonatomic, retain) EAAccessory *accessory;
+@property (nonatomic, retain) NSString *appProtocol;
+@property (nonatomic, copy) id /* block */ applyCompletion;
+@property (nonatomic, retain) NSString *bootloaderProtocol;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) NSString *firmwareBundleFilename;
+@property (nonatomic, retain) NSURL *firmwareBundleURL;
+@property (readonly) unsigned int hash;
+@property (nonatomic) unsigned int productIDCode;
+@property (nonatomic, retain) NSString *protocolString;
+@property (nonatomic, retain) iAUPServer *server;
+@property (nonatomic, retain) EASession *session;
+@property (readonly) Class superclass;
 
 + (id)appProtocolStringWithProductIDCode:(unsigned int)arg1;
 + (id)bootloaderProtocolStringWithProductIDCode:(unsigned int)arg1;
@@ -52,8 +50,8 @@
 - (id)accessory;
 - (void)accessoryDidDisconnect:(id)arg1;
 - (id)appProtocol;
-- (id)applyCompletion;
-- (id)applyFirmware:(id)arg1 progress:(id)arg2;
+- (id /* block */)applyCompletion;
+- (id)applyFirmware:(id /* block */)arg1 progress:(id /* block */)arg2;
 - (id)assetWithMaxVersion:(id)arg1;
 - (id)bootloaderProtocol;
 - (void)dealloc;
@@ -75,7 +73,7 @@
 - (id)session;
 - (void)setAccessory:(id)arg1;
 - (void)setAppProtocol:(id)arg1;
-- (void)setApplyCompletion:(id)arg1;
+- (void)setApplyCompletion:(id /* block */)arg1;
 - (void)setBootloaderProtocol:(id)arg1;
 - (void)setFirmwareBundleFilename:(id)arg1;
 - (void)setFirmwareBundleURL:(id)arg1;

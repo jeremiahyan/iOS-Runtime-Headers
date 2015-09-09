@@ -2,35 +2,42 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class UIColor, UIFont;
+@interface ABFaceTimeStyleProvider : ABTabletStyleProvider <TKTonePickerStyleProvider, TKVibrationPickerStyleProvider>
 
-@interface ABFaceTimeStyleProvider : ABTabletStyleProvider <TKTonePickerStyleProvider, TKVibrationPickerStyleProvider> {
-}
-
-@property(readonly) UIColor * tonePickerCellBackgroundColor;
-@property(readonly) UIColor * tonePickerCellHighlightedTextColor;
-@property(readonly) UIColor * tonePickerCellTextColor;
-@property(readonly) UIFont * tonePickerCellTextFont;
-@property(readonly) UIColor * tonePickerHeaderTextColor;
-@property(readonly) UIFont * tonePickerHeaderTextFont;
-@property(readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } tonePickerHeaderTextPaddingInsets;
-@property(readonly) UIColor * tonePickerHeaderTextShadowColor;
-@property(readonly) struct UIOffset { float x1; float x2; } tonePickerHeaderTextShadowOffset;
-@property(readonly) int tonePickerTableViewSeparatorStyle;
-@property(readonly) BOOL tonePickerUsesOpaqueBackground;
-@property(readonly) UIColor * vibrationPickerCellBackgroundColor;
-@property(readonly) UIColor * vibrationPickerCellHighlightedTextColor;
-@property(readonly) UIColor * vibrationPickerCellTextColor;
-@property(readonly) UIFont * vibrationPickerCellTextFont;
-@property(readonly) UIColor * vibrationPickerHeaderTextColor;
-@property(readonly) UIFont * vibrationPickerHeaderTextFont;
-@property(readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } vibrationPickerHeaderTextPaddingInsets;
-@property(readonly) UIColor * vibrationPickerHeaderTextShadowColor;
-@property(readonly) struct UIOffset { float x1; float x2; } vibrationPickerHeaderTextShadowOffset;
-@property(readonly) int vibrationPickerTableViewSeparatorStyle;
-@property(readonly) BOOL vibrationPickerUsesOpaqueBackground;
-@property(readonly) BOOL wantsCustomTonePickerHeaderView;
-@property(readonly) BOOL wantsCustomVibrationPickerHeaderView;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) UIColor *tonePickerCellBackgroundColor;
+@property (nonatomic, readonly) UIColor *tonePickerCellHighlightedTextColor;
+@property (nonatomic, readonly) UIColor *tonePickerCellTextColor;
+@property (nonatomic, readonly) UIFont *tonePickerCellTextFont;
+@property (nonatomic, readonly) int tonePickerCustomTableSeparatorBackdropOverlayBlendMode;
+@property (nonatomic, readonly) UIColor *tonePickerCustomTableSeparatorColor;
+@property (nonatomic, readonly) UIColor *tonePickerHeaderTextColor;
+@property (nonatomic, readonly) UIFont *tonePickerHeaderTextFont;
+@property (nonatomic, readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } tonePickerHeaderTextPaddingInsets;
+@property (nonatomic, readonly) UIColor *tonePickerHeaderTextShadowColor;
+@property (nonatomic, readonly) struct UIOffset { float x1; float x2; } tonePickerHeaderTextShadowOffset;
+@property (nonatomic, readonly) BOOL tonePickerHeaderTextShouldBeUppercase;
+@property (nonatomic, readonly) int tonePickerTableViewSeparatorStyle;
+@property (nonatomic, readonly) BOOL tonePickerUsesOpaqueBackground;
+@property (nonatomic, readonly) UIColor *vibrationPickerCellBackgroundColor;
+@property (nonatomic, readonly) UIColor *vibrationPickerCellHighlightedTextColor;
+@property (nonatomic, readonly) UIColor *vibrationPickerCellTextColor;
+@property (nonatomic, readonly) UIFont *vibrationPickerCellTextFont;
+@property (nonatomic, readonly) int vibrationPickerCustomTableSeparatorBackdropOverlayBlendMode;
+@property (nonatomic, readonly) UIColor *vibrationPickerCustomTableSeparatorColor;
+@property (nonatomic, readonly) UIColor *vibrationPickerHeaderTextColor;
+@property (nonatomic, readonly) UIFont *vibrationPickerHeaderTextFont;
+@property (nonatomic, readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } vibrationPickerHeaderTextPaddingInsets;
+@property (nonatomic, readonly) UIColor *vibrationPickerHeaderTextShadowColor;
+@property (nonatomic, readonly) struct UIOffset { float x1; float x2; } vibrationPickerHeaderTextShadowOffset;
+@property (nonatomic, readonly) BOOL vibrationPickerHeaderTextShouldBeUppercase;
+@property (nonatomic, readonly) int vibrationPickerTableViewSeparatorStyle;
+@property (nonatomic, readonly) BOOL vibrationPickerUsesOpaqueBackground;
+@property (nonatomic, readonly) BOOL wantsCustomTonePickerHeaderView;
+@property (nonatomic, readonly) BOOL wantsCustomVibrationPickerHeaderView;
 
 - (id)_accessoryDisclosureIndicatorHighlightedImage;
 - (id)_accessoryDisclosureIndicatorHighlightedImageShadowed;
@@ -78,6 +85,7 @@
 - (BOOL)cardPlaceholderImageShouldApplyMaskAndOverlay;
 - (id)cardPlaceholderPersonImage;
 - (BOOL)cardSectionAlwaysWantsHeader;
+- (id)cardSectionBackgroundColor;
 - (BOOL)cardSectionDrawsDefaultTopShadow;
 - (BOOL)cardShouldUseSeparateSectionsForUnknownCardActions;
 - (id)cardTableCellBorderColor;
@@ -122,7 +130,9 @@
 - (float)membersIndexMaximumHeight;
 - (id)membersIndexTextColor;
 - (id)membersIndexTrackingBackgroundColor;
+- (id)membersSearchBackgroundColor;
 - (BOOL)membersSearchBarIsInTableHeader;
+- (id)membersSearchCellBackgroundColor;
 - (int)membersSelectionStyle;
 - (id)newAccessoryDisclosureIndicatorForCellStyle:(int)arg1;
 - (id)newAccessoryDisclosureIndicatorViewForTonePickerCell;
@@ -175,6 +185,7 @@
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })tonePickerHeaderTextPaddingInsets;
 - (id)tonePickerHeaderTextShadowColor;
 - (struct UIOffset { float x1; float x2; })tonePickerHeaderTextShadowOffset;
+- (BOOL)tonePickerHeaderTextShouldBeUppercase;
 - (int)tonePickerTableViewSeparatorStyle;
 - (BOOL)tonePickerUsesOpaqueBackground;
 - (id)vibrationPickerCellBackgroundColor;
@@ -187,6 +198,7 @@
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })vibrationPickerHeaderTextPaddingInsets;
 - (id)vibrationPickerHeaderTextShadowColor;
 - (struct UIOffset { float x1; float x2; })vibrationPickerHeaderTextShadowOffset;
+- (BOOL)vibrationPickerHeaderTextShouldBeUppercase;
 - (int)vibrationPickerTableViewSeparatorStyle;
 - (BOOL)vibrationPickerUsesOpaqueBackground;
 - (BOOL)wantsCustomTonePickerHeaderView;

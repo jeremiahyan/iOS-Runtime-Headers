@@ -2,23 +2,24 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSString, NSURL, SAUIAppPunchOut;
+@interface SAGKLinkedAnswer : AceObject <SAAceSerializable>
 
-@interface SAGKLinkedAnswer : AceObject <SAAceSerializable> {
-}
-
-@property(copy) NSString * description;
-@property(copy) NSString * displayLink;
-@property(copy) NSURL * link;
-@property(copy) NSString * name;
-@property(retain) SAUIAppPunchOut * punchOut;
-@property(copy) NSString * query;
-@property(copy) NSURL * searchUri;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, copy) NSString *descriptionText;
+@property (nonatomic, copy) NSString *displayLink;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSURL *link;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, retain) SAUIAppPunchOut *punchOut;
+@property (nonatomic, copy) NSString *query;
+@property (nonatomic, copy) NSURL *searchUri;
+@property (readonly) Class superclass;
 
 + (id)linkedAnswer;
 + (id)linkedAnswerWithDictionary:(id)arg1 context:(id)arg2;
 
-- (id)description;
+- (id)descriptionText;
 - (id)displayLink;
 - (id)encodedClassName;
 - (id)groupIdentifier;
@@ -27,7 +28,7 @@
 - (id)punchOut;
 - (id)query;
 - (id)searchUri;
-- (void)setDescription:(id)arg1;
+- (void)setDescriptionText:(id)arg1;
 - (void)setDisplayLink:(id)arg1;
 - (void)setLink:(id)arg1;
 - (void)setName:(id)arg1;

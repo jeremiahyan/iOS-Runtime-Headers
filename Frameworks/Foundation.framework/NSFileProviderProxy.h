@@ -3,11 +3,19 @@
  */
 
 @interface NSFileProviderProxy : NSFileReactorProxy {
+    BOOL _wantsWriteNotifications;
 }
 
-- (void)forwardUsingMessageSender:(id)arg1;
-- (void)observePresentationChangeOfKind:(id)arg1 withPresenterID:(id)arg2 url:(id)arg3 newURL:(id)arg4;
-- (id)provideItemAtURL:(id)arg1 forAccessClaimWithID:(id)arg2 completionHandler:(id)arg3;
+@property BOOL wantsWriteNotifications;
+
+- (void)forwardUsingMessageSender:(id /* block */)arg1;
+- (void)observeEndOfWriteAtLocation:(id)arg1 forAccessClaim:(id)arg2;
+- (void)observePresentationChangeOfKind:(id)arg1 withPresenter:(id)arg2 url:(id)arg3 newURL:(id)arg4;
+- (id /* block */)provideItemAtURL:(id)arg1 forAccessClaim:(id)arg2 completionHandler:(id /* block */)arg3;
+- (void)provideLogicalURLForURL:(id)arg1 completionHandler:(id /* block */)arg2;
+- (void)providePhysicalURLForURL:(id)arg1 completionHandler:(id /* block */)arg2;
 - (void)setItemLocation:(id)arg1;
+- (void)setWantsWriteNotifications:(BOOL)arg1;
+- (BOOL)wantsWriteNotifications;
 
 @end

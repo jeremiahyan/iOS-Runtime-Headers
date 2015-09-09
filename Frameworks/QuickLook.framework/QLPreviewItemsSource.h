@@ -2,9 +2,7 @@
    Image: /System/Library/Frameworks/QuickLook.framework/QuickLook
  */
 
-@class <QLPreviewControllerDataSource>, <QLPreviewItem>, NSMapTable, NSMutableArray, NSMutableDictionary, QLPreviewController;
-
-@interface QLPreviewItemsSource : NSObject {
+@interface QLPreviewItemsSource : NSObject <UIDocumentInteractionControllerDelegatePrivate> {
     int _UUID;
     int _archiveDataSourceIndex;
     NSMutableArray *_archiveItems;
@@ -17,39 +15,46 @@
     <QLPreviewItem> *_previewItem;
     NSMutableDictionary *_previewItemCache;
     NSMapTable *_uiItems;
+    NSURL *_unzippingURL;
 }
 
-@property(readonly) int UUID;
-@property(readonly) <QLPreviewItem> * currentPreviewItem;
+@property (readonly) int UUID;
+@property (readonly) <QLPreviewItem> *currentPreviewItem;
 @property int currentPreviewItemIndex;
-@property(readonly) int currentUIItemIndex;
-@property <QLPreviewControllerDataSource> * dataSource;
-@property(readonly) int numberOfPreviewItems;
-@property(readonly) int numberOfUIItems;
-@property(readonly) BOOL prepared;
-@property(retain) <QLPreviewItem> * previewItem;
-@property(readonly) <QLPreviewItem> * realCurrentPreviewItem;
+@property (readonly) int currentUIItemIndex;
+@property <QLPreviewControllerDataSource> *dataSource;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) int numberOfPreviewItems;
+@property (readonly) int numberOfUIItems;
+@property (readonly) BOOL prepared;
+@property (retain) <QLPreviewItem> *previewItem;
+@property (readonly) <QLPreviewItem> *realCurrentPreviewItem;
 @property int realCurrentPreviewItemIndex;
-@property(readonly) int realNumberOfPreviewItems;
-@property(readonly) BOOL shouldShowFileList;
-@property(getter=isViewingArchive,readonly) BOOL viewingArchive;
+@property (readonly) int realNumberOfPreviewItems;
+@property (readonly) BOOL shouldShowFileList;
+@property (readonly) Class superclass;
+@property (getter=isViewingArchive, readonly) BOOL viewingArchive;
 
 - (id)UIItemAtIndex:(int)arg1;
 - (int)UUID;
 - (id)_UIItemAtIndex:(int)arg1;
 - (void)_setUIItem:(id)arg1 atIndex:(int)arg2;
+- (void)addArchiveItem:(id)arg1;
 - (id)currentPreviewItem;
 - (int)currentPreviewItemIndex;
 - (int)currentUIItemIndex;
 - (id)dataSource;
 - (void)dealloc;
+- (id)documentInteractionControllerURLOfDirectoryForUnzippedDocument:(id)arg1;
 - (id)initWithPreviewController:(id)arg1;
 - (BOOL)isViewingArchive;
 - (int)numberOfPreviewItems;
 - (int)numberOfUIItems;
 - (void)prepare;
 - (BOOL)prepared;
-- (void)preparedPreviewItemAtIndex:(int)arg1 completionBlock:(id)arg2;
+- (void)preparedPreviewItemAtIndex:(int)arg1 completionBlock:(id /* block */)arg2;
 - (id)previewItem;
 - (id)previewItemAtIndex:(int)arg1;
 - (void)purgeCache;
@@ -57,7 +62,9 @@
 - (int)realCurrentPreviewItemIndex;
 - (int)realNumberOfPreviewItems;
 - (id)realPreviewItemAtIndex:(int)arg1;
+- (void)removeArchiveItemAtIndex:(int)arg1;
 - (void)reset;
+- (void)resolvePreviewItem:(id)arg1 completionBlock:(id /* block */)arg2;
 - (void)setCurrentPreviewItemIndex:(int)arg1;
 - (void)setDataSource:(id)arg1;
 - (void)setPreviewItem:(id)arg1;

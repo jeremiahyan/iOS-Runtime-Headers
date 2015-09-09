@@ -2,28 +2,26 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSMutableArray;
-
 @interface GEOBatchRevGeocodeRequest : PBRequest <NSCopying> {
     struct { 
         int *list; 
         unsigned int count; 
         unsigned int size; 
+    } _additionalPlaceTypes;
     struct { 
         unsigned int splitIntoClusters : 1; 
-    } _additionalPlaceTypes;
     } _has;
     NSMutableArray *_locations;
     NSMutableArray *_serviceTags;
     BOOL _splitIntoClusters;
 }
 
-@property(readonly) int* additionalPlaceTypes;
-@property(readonly) unsigned int additionalPlaceTypesCount;
-@property BOOL hasSplitIntoClusters;
-@property(retain) NSMutableArray * locations;
-@property(retain) NSMutableArray * serviceTags;
-@property BOOL splitIntoClusters;
+@property (nonatomic, readonly) int*additionalPlaceTypes;
+@property (nonatomic, readonly) unsigned int additionalPlaceTypesCount;
+@property (nonatomic) BOOL hasSplitIntoClusters;
+@property (nonatomic, retain) NSMutableArray *locations;
+@property (nonatomic, retain) NSMutableArray *serviceTags;
+@property (nonatomic) BOOL splitIntoClusters;
 
 - (void)addAdditionalPlaceType:(int)arg1;
 - (void)addLocation:(id)arg1;
@@ -45,6 +43,7 @@
 - (id)locationAtIndex:(unsigned int)arg1;
 - (id)locations;
 - (unsigned int)locationsCount;
+- (void)mergeFrom:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 - (unsigned int)requestTypeCode;
 - (Class)responseClass;

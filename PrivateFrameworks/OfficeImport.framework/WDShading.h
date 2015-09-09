@@ -2,16 +2,15 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class TSUColor;
-
 @interface WDShading : NSObject <NSCopying> {
-    TSUColor *mBackgroundColor;
-    TSUColor *mForegroundColor;
+    OITSUColor *mBackgroundColor;
+    OITSUColor *mForegroundColor;
     int mStyle;
 }
 
 + (id)autoBackgroundColor;
 + (id)autoForegroundColor;
++ (id)nullShading;
 
 - (id)background;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

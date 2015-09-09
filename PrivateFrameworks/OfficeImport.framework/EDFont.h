@@ -2,36 +2,36 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class EDColorReference, EDResources, NSString;
-
-@interface EDFont : NSObject <NSCopying, EDImmutableObject> {
-    boolmBold;
-    boolmBoldOverridden;
-    boolmDoNotModify;
-    boolmHeightOverridden;
-    boolmItalic;
-    boolmItalicOverridden;
-    boolmOutline;
-    boolmShadow;
-    boolmStrike;
-    boolmStrikeOverridden;
-    boolmUnderlineOverridden;
-    boolmWeightOverridden;
+@interface EDFont : NSObject <EDImmutableObject, NSCopying> {
+    bool mBold;
+    bool mBoldOverridden;
     int mCharSet;
     EDColorReference *mColorReference;
+    bool mDoNotModify;
     int mFamily;
     double mHeightInTwips;
+    bool mHeightOverridden;
+    bool mItalic;
+    bool mItalicOverridden;
     NSString *mName;
+    bool mOutline;
     EDResources *mResources;
     int mScript;
+    bool mShadow;
+    bool mStrike;
+    bool mStrikeOverridden;
     int mUnderline;
+    bool mUnderlineOverridden;
     unsigned int mWeight;
+    bool mWeightOverridden;
 }
 
-+ (id)filterFontName:(id)arg1;
-+ (id)fontNameWithFamilyName:(id)arg1 bold:(bool)arg2 italic:(bool)arg3;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+
 + (id)fontWithResources:(id)arg1;
-+ (id)lassoNameForFontName:(id)arg1 bold:(bool)arg2 italic:(bool)arg3;
 
 - (int)charSet;
 - (id)color;
@@ -39,7 +39,6 @@
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (int)family;
-- (id)filteredName;
 - (double)height;
 - (id)initWithResources:(id)arg1;
 - (bool)isBold;
@@ -55,7 +54,6 @@
 - (bool)isStrikeOverridden;
 - (bool)isUnderlineOverridden;
 - (bool)isWeightOverridden;
-- (id)lassoName;
 - (id)name;
 - (int)script;
 - (void)setBold:(bool)arg1;

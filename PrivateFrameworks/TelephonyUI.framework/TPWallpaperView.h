@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/TelephonyUI.framework/TelephonyUI
  */
 
-@class UIImage, UIImageView, _UIBackdropView;
-
 @interface TPWallpaperView : UIView {
     _UIBackdropView *_backdropEffectView;
     float _blurProportion;
@@ -15,13 +13,13 @@
     BOOL _shouldLockContactImage;
 }
 
-@property(retain) _UIBackdropView * backdropEffectView;
-@property float blurProportion;
-@property BOOL blursBackground;
-@property(retain) UIImage * contactImage;
-@property(retain) UIImageView * contactImageView;
-@property BOOL hidesContactImage;
-@property BOOL shouldBindBlurringWithPresenceOfContactImage;
+@property (retain) _UIBackdropView *backdropEffectView;
+@property (nonatomic) float blurProportion;
+@property (nonatomic) BOOL blursBackground;
+@property (nonatomic, retain) UIImage *contactImage;
+@property (retain) UIImageView *contactImageView;
+@property (nonatomic) BOOL hidesContactImage;
+@property (nonatomic) BOOL shouldBindBlurringWithPresenceOfContactImage;
 @property BOOL shouldLockContactImage;
 
 - (id)backdropEffectView;
@@ -35,8 +33,8 @@
 - (void)setBackdropEffectView:(id)arg1;
 - (void)setBlurProportion:(float)arg1;
 - (void)setBlursBackground:(BOOL)arg1;
-- (void)setContactImage:(id)arg1 animated:(BOOL)arg2;
 - (void)setContactImage:(id)arg1;
+- (void)setContactImage:(id)arg1 animated:(BOOL)arg2;
 - (void)setContactImageView:(id)arg1;
 - (void)setHidesContactImage:(BOOL)arg1;
 - (void)setShouldBindBlurringWithPresenceOfContactImage:(BOOL)arg1;

@@ -2,20 +2,24 @@
    Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
  */
 
-@class NSData, NSNumber, NSString;
-
 @interface SSMachineDataRequest : SSRequest <SSXPCCoding> {
     NSNumber *_accountID;
     NSData *_actionData;
     NSString *_actionName;
     BOOL _allowsBootstrapCellularData;
+    int _protocolVersion;
     BOOL _waitsForPurchaseOperations;
 }
 
-@property(copy) NSNumber * accountIdentifier;
-@property(copy) NSData * actionData;
-@property(copy) NSString * actionName;
+@property (copy) NSNumber *accountIdentifier;
+@property (copy) NSData *actionData;
+@property (copy) NSString *actionName;
 @property BOOL allowsBootstrapCellularData;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property int protocolVersion;
+@property (readonly) Class superclass;
 @property BOOL waitsForPurchaseOperations;
 
 - (id)accountIdentifier;
@@ -26,12 +30,14 @@
 - (void)dealloc;
 - (id)initWithURLResponse:(id)arg1;
 - (id)initWithXPCEncoding:(id)arg1;
+- (int)protocolVersion;
 - (void)setAccountIdentifier:(id)arg1;
 - (void)setActionData:(id)arg1;
 - (void)setActionName:(id)arg1;
 - (void)setAllowsBootstrapCellularData:(BOOL)arg1;
+- (void)setProtocolVersion:(int)arg1;
 - (void)setWaitsForPurchaseOperations:(BOOL)arg1;
-- (void)startWithCompletionBlock:(id)arg1;
+- (void)startWithCompletionBlock:(id /* block */)arg1;
 - (BOOL)waitsForPurchaseOperations;
 
 @end

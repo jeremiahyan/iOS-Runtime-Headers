@@ -2,21 +2,24 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class <UIMovieScrubberDataSource>, <UIMovieScrubberDelegate>, UIImage, UIImageView, UILabel, UIMovieScrubberEditingView, UIMovieScrubberTrackView;
-
 @interface UIMovieScrubber : UIControl <UIMovieScrubberTrackViewDataSource, UIMovieScrubberTrackViewDelegate> {
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
-    struct CGPoint { 
-        float x; 
-        float y; 
+    <UIMovieScrubberDataSource> *_dataSource;
+    <UIMovieScrubberDelegate> *_delegate;
+    float _edgeInset;
+    BOOL _editable;
+    UIMovieScrubberEditingView *_editingView;
+    UILabel *_elapsedLabel;
+    UIImage *_fillImage;
+    float _hitOffset;
+    UIImage *_innerShadowImage;
+    UIImage *_maskImage;
+    double _maxTrimmedLength;
+    double _maximumValue;
+    double _minTrimmedLength;
+    double _minimumValue;
+    UILabel *_remainingLabel;
+    UIImage *_shadowImage;
+    BOOL _showTimeViews;
     struct { 
         unsigned int continuous : 1; 
         unsigned int animating : 1; 
@@ -50,27 +53,22 @@
         unsigned int delegateDidEndAnimatingZoom : 1; 
         unsigned int delegateWillZoom : 1; 
         unsigned int dataSourceRequestThumbnailImageIsSummmary : 1; 
-    <UIMovieScrubberDataSource> *_dataSource;
-    <UIMovieScrubberDelegate> *_delegate;
-    float _edgeInset;
-    BOOL _editable;
-    UIMovieScrubberEditingView *_editingView;
-    UILabel *_elapsedLabel;
-    UIImage *_fillImage;
-    float _hitOffset;
-    UIImage *_innerShadowImage;
-    UIImage *_maskImage;
-    double _maxTrimmedLength;
-    double _maximumValue;
-    double _minTrimmedLength;
-    double _minimumValue;
-    UILabel *_remainingLabel;
-    UIImage *_shadowImage;
-    BOOL _showTimeViews;
     } _sliderFlags;
     UIImageView *_thumbView;
     int _timeComponents;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _touchLocationWhenTrackPressBegan;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } _trackRect;
     UIMovieScrubberTrackView *_trackView;
     double _trimEndValue;
@@ -81,26 +79,30 @@
     double _zoomDelay;
 }
 
-@property(readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } alignmentMargins;
-@property(getter=isContinuous) BOOL continuous;
-@property <UIMovieScrubberDataSource> * dataSource;
-@property <UIMovieScrubberDelegate> * delegate;
-@property double duration;
-@property float edgeInset;
-@property(getter=isEditable) BOOL editable;
-@property(getter=isEditing) BOOL editing;
-@property(readonly) BOOL isInsideNavigationBar;
-@property double maximumTrimLength;
-@property double minimumTrimLength;
-@property BOOL showTimeViews;
-@property BOOL thumbIsVisible;
-@property double trimEndValue;
-@property double trimStartValue;
-@property double value;
-@property(getter=isZoomAnimating,readonly) BOOL zoomAnimating;
-@property double zoomDelay;
-@property(readonly) double zoomMaximumValue;
-@property(readonly) double zoomMinimumValue;
+@property (nonatomic, readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } alignmentMargins;
+@property (getter=isContinuous, nonatomic) BOOL continuous;
+@property (nonatomic) <UIMovieScrubberDataSource> *dataSource;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <UIMovieScrubberDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) double duration;
+@property (nonatomic) float edgeInset;
+@property (getter=isEditable, nonatomic) BOOL editable;
+@property (getter=isEditing, nonatomic) BOOL editing;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) BOOL isInsideNavigationBar;
+@property (nonatomic) double maximumTrimLength;
+@property (nonatomic) double minimumTrimLength;
+@property (nonatomic) BOOL showTimeViews;
+@property (readonly) Class superclass;
+@property (nonatomic) BOOL thumbIsVisible;
+@property (nonatomic) double trimEndValue;
+@property (nonatomic) double trimStartValue;
+@property (nonatomic) double value;
+@property (getter=isZoomAnimating, nonatomic, readonly) BOOL zoomAnimating;
+@property (nonatomic) double zoomDelay;
+@property (nonatomic, readonly) double zoomMaximumValue;
+@property (nonatomic, readonly) double zoomMinimumValue;
 
 + (id)timeStringForSeconds:(int)arg1 forceFullWidthComponents:(BOOL)arg2 isElapsed:(BOOL)arg3;
 
@@ -177,8 +179,8 @@
 - (void)setDuration:(double)arg1;
 - (void)setEdgeInset:(float)arg1;
 - (void)setEditable:(BOOL)arg1;
-- (void)setEditing:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setEditing:(BOOL)arg1;
+- (void)setEditing:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)setMaximumTrimLength:(double)arg1;
 - (void)setMinimumTrimLength:(double)arg1;
@@ -188,8 +190,8 @@
 - (void)setThumbnailImage:(struct CGImage { }*)arg1 forTimestamp:(id)arg2;
 - (void)setTrimEndValue:(double)arg1;
 - (void)setTrimStartValue:(double)arg1;
-- (void)setValue:(double)arg1 animated:(BOOL)arg2;
 - (void)setValue:(double)arg1;
+- (void)setValue:(double)arg1 animated:(BOOL)arg2;
 - (void)setZoomAnimationDuration:(double)arg1;
 - (void)setZoomDelay:(double)arg1;
 - (BOOL)showTimeViews;

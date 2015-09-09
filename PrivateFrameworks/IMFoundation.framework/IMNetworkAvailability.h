@@ -2,14 +2,8 @@
    Image: /System/Library/PrivateFrameworks/IMFoundation.framework/IMFoundation
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSString, NSTimer;
-
 @interface IMNetworkAvailability : NSObject {
-    id _completionBlock;
+    id /* block */ _completionBlock;
     void *_context;
     unsigned int _flags;
     NSString *_guid;
@@ -20,7 +14,7 @@
     double _wifiTimeout;
 }
 
-@property void* context;
+@property (nonatomic) void*context;
 
 - (void)_cancel;
 - (void)_setTimer;
@@ -28,8 +22,8 @@
 - (void)cancel;
 - (void*)context;
 - (void)dealloc;
-- (id)initWithFlags:(unsigned int)arg1 options:(unsigned int)arg2 timeout:(double)arg3 wifiTimeout:(double)arg4 completionBlock:(id)arg5;
-- (id)initWithFlags:(unsigned int)arg1 timeout:(double)arg2 wifiTimeout:(double)arg3 completionBlock:(id)arg4;
+- (id)initWithFlags:(unsigned int)arg1 options:(unsigned int)arg2 timeout:(double)arg3 wifiTimeout:(double)arg4 completionBlock:(id /* block */)arg5;
+- (id)initWithFlags:(unsigned int)arg1 timeout:(double)arg2 wifiTimeout:(double)arg3 completionBlock:(id /* block */)arg4;
 - (void)setContext:(void*)arg1;
 - (void)start;
 

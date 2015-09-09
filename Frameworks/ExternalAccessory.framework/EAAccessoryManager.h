@@ -2,24 +2,22 @@
    Image: /System/Library/Frameworks/ExternalAccessory.framework/ExternalAccessory
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class EABluetoothAccessoryPicker, NSArray, NSMutableArray, NSObject<OS_dispatch_queue>, NSString, NSTimer;
-
 @interface EAAccessoryManager : NSObject <EABluetoothAccessoryPickerDelegate> {
     NSMutableArray *_connectedAccessories;
     NSObject<OS_dispatch_queue> *_connectionQueue;
     EABluetoothAccessoryPicker *_picker;
-    id _pickerCompletion;
+    id /* block */ _pickerCompletion;
     NSTimer *_pickerTimer;
     NSString *_selectedBluetoothAddress;
     BOOL _sequesterNewAccessories;
     NSMutableArray *_sequesteredAccessories;
 }
 
-@property(readonly) NSArray * connectedAccessories;
+@property (nonatomic, readonly) NSArray *connectedAccessories;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (void)accessibilityStartListening;
 + (void)accessibilityStopListening;
@@ -29,29 +27,27 @@
 
 - (void)_applicationDidEnterBackground:(id)arg1;
 - (void)_applicationWillEnterForeground:(id)arg1;
+- (void)_checkForConnectedAccessories;
 - (void)_cleanUpForTaskSuspend;
 - (id)_connectedAccessories;
 - (void)_ephemerisURLAvailable:(id)arg1;
 - (void)_externalAccessoryConnected:(id)arg1;
 - (void)_externalAccessoryDisconnected:(id)arg1;
-- (void)_externalAccessoryIPodOutOptionsChanged:(id)arg1;
-- (void)_externalAccessoryPortPropertyChanged:(id)arg1;
 - (void)_externalAccessoryReconnected:(id)arg1;
 - (void)_externalAccessoryUpdated:(id)arg1;
 - (void)_gpsTimeRequested:(id)arg1;
 - (void)_handleAccessoryNotificationTimeout:(id)arg1;
+- (BOOL)_iAPAccessoriesMatchEAConnectedAccessoriesList:(id)arg1;
 - (void)_iapServerDied:(id)arg1;
 - (id)_initFromSingletonCreationMethod;
 - (void)_integrateSequesteredAccessories;
-- (void)_ipAccessoryAvailable:(id)arg1;
-- (void)_ipAccessoryDidConnect:(id)arg1;
-- (void)_ipAccessoryDisconnected:(id)arg1;
-- (void)_ipAccessoryNotAvailable:(id)arg1;
 - (void)_locationNmeaDataAvailable:(id)arg1;
 - (void)_locationPointDataAvailable:(id)arg1;
 - (void)_nmeaFilteringSupportChanged:(id)arg1;
 - (void)_notifyObserversThatAccessoryDisconnectedWithUserInfo:(id)arg1;
+- (void)_pointOfInterestStatusReceived:(id)arg1;
 - (void)_removeAllAccessoriesFromArray:(id)arg1 notifyClients:(BOOL)arg2;
+- (BOOL)_shouldCheckForConnectedAccessories;
 - (void)_timeSyncInfoUpdated:(id)arg1;
 - (void)_vehicleDataUpdated:(id)arg1;
 - (void)accessibilityAction:(id)arg1;
@@ -77,7 +73,7 @@
 - (void)setShouldAllowInternalProtocols:(BOOL)arg1;
 - (BOOL)shouldAllowCppRuntime;
 - (BOOL)shouldAllowInternalProtocols;
-- (void)showBluetoothAccessoryPickerWithNameFilter:(id)arg1 completion:(id)arg2;
+- (void)showBluetoothAccessoryPickerWithNameFilter:(id)arg1 completion:(id /* block */)arg2;
 - (void)startIPAccessoryDiscovery;
 - (void)stopIPAccessoryDiscovery;
 - (void)unregisterForLocalNotifications;

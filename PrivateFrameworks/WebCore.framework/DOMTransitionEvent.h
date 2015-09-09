@@ -2,14 +2,11 @@
    Image: /System/Library/PrivateFrameworks/WebCore.framework/WebCore
  */
 
-@class NSString;
+@interface DOMTransitionEvent : DOMEvent
 
-@interface DOMTransitionEvent : DOMEvent {
-}
-
-@property(readonly) double elapsedTime;
-@property(readonly) NSString * propertyName;
-@property(readonly) NSString * pseudoElement;
+@property (readonly) double elapsedTime;
+@property (readonly, copy) NSString *propertyName;
+@property (readonly, copy) NSString *pseudoElement;
 
 - (double)elapsedTime;
 - (id)propertyName;

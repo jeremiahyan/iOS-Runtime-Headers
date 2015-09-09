@@ -2,22 +2,21 @@
    Image: /System/Library/PrivateFrameworks/Search.framework/Search
  */
 
-@class NSDictionary, NSObject<OS_xpc_object>, NSString, SPXPCConnection;
-
 @interface SPXPCMessage : NSObject {
     NSDictionary *_info;
     NSString *_name;
     SPXPCConnection *_receivingConnection;
-    unsigned int _shmemLen;
+    unsigned long _shmemLen;
     unsigned int _shmemPtr;
+    NSObject<OS_xpc_object> *_x_message;
     NSObject<OS_xpc_object> *_x_reply;
     NSObject<OS_xpc_object> *_x_reply_connection;
 }
 
-@property(copy) NSDictionary * info;
-@property(readonly) NSString * name;
-@property unsigned int sharedMemoryLength;
-@property unsigned int sharedMemoryRegion;
+@property (nonatomic, copy) NSDictionary *info;
+@property (nonatomic, readonly) NSString *name;
+@property (nonatomic) unsigned long sharedMemoryLength;
+@property (nonatomic) unsigned int sharedMemoryRegion;
 
 - (id)_createXPCMessage;
 - (id)_initWithXPCMessage:(id)arg1 onConnection:(id)arg2;
@@ -28,9 +27,9 @@
 - (BOOL)needsReply;
 - (void)sendReply:(id)arg1;
 - (void)setInfo:(id)arg1;
-- (void)setSharedMemoryLength:(unsigned int)arg1;
+- (void)setSharedMemoryLength:(unsigned long)arg1;
 - (void)setSharedMemoryRegion:(unsigned int)arg1;
-- (unsigned int)sharedMemoryLength;
+- (unsigned long)sharedMemoryLength;
 - (unsigned int)sharedMemoryRegion;
 
 @end

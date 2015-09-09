@@ -2,9 +2,13 @@
    Image: /System/Library/PrivateFrameworks/MusicCarDisplayUI.framework/MusicCarDisplayUI
  */
 
-@interface MCDComposersViewController : MCDArtistsViewController {
-}
+@interface MCDComposersViewController : MCDArtistsViewController
 
-+ (Class)musicProxyClass;
++ (int)containerItemType;
++ (id)itemPersistentIDProperty;
++ (id)persistentIDProperty;
+
+- (void)_limitedUIDidChange;
+- (void)defaultsDidChange;
 
 @end

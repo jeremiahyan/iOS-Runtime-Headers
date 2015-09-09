@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/Social.framework/Social
  */
 
-@class <SLMicroBlogAccountsTableViewControllerDelegate>, NSArray, SLMicroBlogUserRecord, UIImage;
-
 @interface SLMicroBlogAccountsTableViewController : UITableViewController {
     NSArray *_accountUserRecords;
     UIImage *_blankImage;
@@ -15,7 +13,6 @@
 - (id)_accountUserRecordForIndexPath:(id)arg1;
 - (id)_blankImage;
 - (void)cancelButtonTapped:(id)arg1;
-- (struct CGSize { float x1; float x2; })contentSizeForViewInPopover;
 - (void)didUpdateAccountUserRecord:(id)arg1;
 - (id)initWithStyle:(int)arg1;
 - (int)numberOfSectionsInTableView:(id)arg1;

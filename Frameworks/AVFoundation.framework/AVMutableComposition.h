@@ -2,20 +2,19 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class AVMutableCompositionInternal, NSArray;
-
 @interface AVMutableComposition : AVComposition {
     AVMutableCompositionInternal *_mutablePriv;
 }
 
-@property struct CGSize { float x1; float x2; } naturalSize;
-@property(readonly) NSArray * tracks;
+@property (nonatomic) struct CGSize { float x1; float x2; } naturalSize;
+@property (nonatomic, readonly) NSArray *tracks;
 
 + (id)composition;
 
 - (id)_initWithComposition:(id)arg1;
 - (id)_newTrackForIndex:(long)arg1;
 - (void)_notifyAllTracksThatSegmentsDidChange;
+- (void)_notifyAllTracksThatSegmentsWillChange;
 - (id)addMutableTrackWithMediaType:(id)arg1 preferredTrackID:(int)arg2;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)insertEmptyTimeRange:(struct { struct { long long x_1_1_1; int x_1_1_2; unsigned int x_1_1_3; long long x_1_1_4; } x1; struct { long long x_2_1_1; int x_2_1_2; unsigned int x_2_1_3; long long x_2_1_4; } x2; })arg1;

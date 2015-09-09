@@ -2,12 +2,10 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString, UILabel;
-
 @interface UIDatePickerWeekMonthDayView : UIView {
+    UILabel *_dateLabel;
     struct { 
         unsigned int weekdayLast : 1; 
-    UILabel *_dateLabel;
     } _datePickerWeekMonthDayViewFlags;
     NSString *_formattedDateString;
     BOOL _isModern;
@@ -15,12 +13,12 @@
     float _weekdayWidth;
 }
 
-@property(readonly) UILabel * dateLabel;
-@property(copy) NSString * formattedDateString;
-@property BOOL isModern;
-@property(readonly) UILabel * weekdayLabel;
-@property BOOL weekdayLast;
-@property float weekdayWidth;
+@property (nonatomic, readonly) UILabel *dateLabel;
+@property (nonatomic, copy) NSString *formattedDateString;
+@property (nonatomic) BOOL isModern;
+@property (nonatomic, readonly) UILabel *weekdayLabel;
+@property (nonatomic) BOOL weekdayLast;
+@property (nonatomic) float weekdayWidth;
 
 - (BOOL)_canBeReusedInPickerView;
 - (id)dateLabel;

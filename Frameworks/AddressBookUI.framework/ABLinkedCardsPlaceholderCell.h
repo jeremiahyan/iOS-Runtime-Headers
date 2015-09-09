@@ -2,20 +2,14 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class <ABPropertyCellDelegate>;
-
-@interface ABLinkedCardsPlaceholderCell : ABContactCell {
+@interface ABLinkedCardsPlaceholderCell : ABPropertyPlaceholderCell {
     <ABPropertyCellDelegate> *_delegate;
 }
 
-@property <ABPropertyCellDelegate> * delegate;
+@property (nonatomic) <ABPropertyCellDelegate> *delegate;
 
 - (id)delegate;
-- (id)initWithStyle:(int)arg1 reuseIdentifier:(id)arg2;
 - (void)performDefaultAction;
-- (void)setCardGroupItem:(id)arg1;
 - (void)setDelegate:(id)arg1;
-- (BOOL)shouldPerformDefaultAction;
-- (void)tintColorDidChange;
 
 @end

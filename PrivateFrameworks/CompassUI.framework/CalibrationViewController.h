@@ -2,26 +2,24 @@
    Image: /System/Library/PrivateFrameworks/CompassUI.framework/CompassUI
  */
 
-@class CAShapeLayer, CalibrationBallView, CompassBackgroundView, UILabel;
-
 @interface CalibrationViewController : UIViewController {
-    struct CGPoint { 
-        float x; 
-        float y; 
-    struct Vec3Imp<double> { 
-        double x; 
-        double y; 
-        double z; 
     double _angleOfAwesome;
     double _angleToRim;
     CalibrationBallView *_ballView;
+    NSMutableArray *_calibrationConstraints;
+    UIButton *_cancelButton;
     CompassBackgroundView *_compassBackgroundView;
     CAShapeLayer *_compassBackgroundViewMask;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _compassOriginPoint;
     float _compassRadius;
     BOOL _ignoreMotionUpdates;
     UILabel *_instructionLabel;
     unsigned int _numCompleteTics;
+    struct Matrix<double, 3, 1> { 
+        double _e[3]; 
     } _previousGravity;
     double _previousHorizontalAngle;
     double _previousTimestamp;
@@ -33,7 +31,10 @@
 }
 
 - (id).cxx_construct;
+- (void).cxx_destruct;
 - (double)_correctedAngleForCurrentOrientation:(double)arg1;
+- (void)addConstraints;
+- (void)cancel;
 - (BOOL)circleIsCompleted;
 - (double)completeCircle;
 - (void)dealloc;
@@ -48,7 +49,6 @@
 - (void)showTicAtAngle:(double)arg1 withCredit:(double)arg2;
 - (void)showTicsBetweenStartAngle:(double)arg1 endAngle:(double)arg2 withCredit:(double)arg3;
 - (void)updateMaskingPath;
-- (void)updateViewConstraints;
 - (id)updatedMaskingPath;
 - (void)userDefaultsChanged:(id)arg1;
 - (void)viewDidAppear:(BOOL)arg1;

@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/Social.framework/Social
  */
 
-@class <SLFacebookAlbumChooserViewControllerDelegate>, NSArray, NSCache, SLFacebookAlbumManager, UIButton;
-
 @interface SLFacebookAlbumChooserViewController : UITableViewController <SLFacebookAlbumManagerDelegate> {
     SLFacebookAlbumManager *_albumManager;
     NSArray *_albums;
@@ -12,19 +10,21 @@
     UIButton *_flipBackButton;
 }
 
-@property(retain) SLFacebookAlbumManager * albumManager;
-@property(retain) NSArray * albums;
-@property <SLFacebookAlbumChooserViewControllerDelegate> * delegate;
-@property(retain) UIButton * flipBackButton;
+@property (retain) SLFacebookAlbumManager *albumManager;
+@property (retain) NSArray *albums;
+@property <SLFacebookAlbumChooserViewControllerDelegate> *delegate;
+@property (retain) UIButton *flipBackButton;
+
++ (id)_blankSurrogateAlbumImage;
++ (id)_squareImageFromAlbumImage:(id)arg1;
 
 - (void).cxx_destruct;
+- (id)albumManager;
 - (void)albumManager:(id)arg1 didFailAlbumRefreshWithError:(id)arg2;
 - (void)albumManager:(id)arg1 didFailLoadingCoverImageForAlbum:(id)arg2 withError:(id)arg3;
 - (void)albumManager:(id)arg1 didLoadCoverImage:(id)arg2 forAlbum:(id)arg3;
 - (void)albumManager:(id)arg1 didRefreshAlbums:(id)arg2;
-- (id)albumManager;
 - (id)albums;
-- (struct CGSize { float x1; float x2; })contentSizeForViewInPopover;
 - (id)delegate;
 - (void)didReceiveMemoryWarning;
 - (id)flipBackButton;

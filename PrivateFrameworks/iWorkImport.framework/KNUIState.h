@@ -2,70 +2,63 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class KNMacUILayout, KNSlideCollectionSelection, NSMutableDictionary, NSSet;
-
 @interface KNUIState : NSObject <NSCopying> {
+    NSMutableDictionary *mChartUIState;
+    NSSet *mCollapsedSlideNodes;
     struct CGPoint { 
         float x; 
         float y; 
-    struct CGPoint { 
-        float x; 
-        float y; 
-    struct CGPoint { 
-        float x; 
-        float y; 
-    struct CGPoint { 
-        float x; 
-        float y; 
+    } mDesktopCanvasOffset;
+    float mDesktopCanvasViewScale;
     struct CGSize { 
         float width; 
         float height; 
-    NSMutableDictionary *mChartUIState;
-    NSSet *mCollapsedSlideNodes;
-    } mDesktopCanvasOffset;
-    float mDesktopCanvasViewScale;
     } mDesktopMainContentSize;
+    struct CGPoint { 
+        float x; 
+        float y; 
+    } mDesktopMainWindowOrigin;
     float mDesktopNavigatorViewWidth;
     float mDesktopOutlineViewWidth;
+    float mDesktopPresenterNotesViewHeight;
     KNMacUILayout *mDocumentUILayout;
-    BOOL mHasPhone568CanvasOffset;
-    BOOL mHasPhone568CanvasViewScale;
-    BOOL mHasPhoneCanvasOffset;
-    BOOL mHasPhoneCanvasViewScale;
-    } mIPadCanvasOffset;
-    float mIPadCanvasViewScale;
+    BOOL mLightTableHidesSkippedSlides;
     float mLightTableZoomScale;
-    } mPhone568CanvasOffset;
-    float mPhone568CanvasViewScale;
-    } mPhoneCanvasOffset;
-    float mPhoneCanvasViewScale;
+    struct CGPoint { 
+        float x; 
+        float y; 
+    } mMobileCanvasOffset;
+    float mMobileCanvasViewScale;
+    NSSet *mOutlineCollapsedSlideNodes;
+    NSSet *mOutlineHasBodySlideNodes;
+    TSKSelectionPath *mSelectionPath;
     BOOL mShowMasterGuides;
     BOOL mShowSlideGuides;
     BOOL mShowsComments;
     BOOL mShowsRuler;
-    KNSlideCollectionSelection *mSlideTreeSelection;
     BOOL mSlideViewFitsContentInWindow;
 }
 
-@property struct CGPoint { float x1; float x2; } canvasOffset;
-@property float canvasViewScale;
-@property(copy) NSSet * collapsedSlideNodes;
-@property struct CGSize { float x1; float x2; } desktopMainContentSize;
-@property float desktopNavigatorViewWidth;
-@property float desktopOutlineViewWidth;
-@property(copy) KNMacUILayout * documentUILayout;
-@property float lightTableZoomScale;
-@property BOOL showMasterGuides;
-@property BOOL showSlideGuides;
-@property BOOL showsComments;
-@property BOOL showsRuler;
-@property(retain) KNSlideCollectionSelection * slideTreeSelection;
-@property BOOL slideViewFitsContentInWindow;
+@property (nonatomic) struct CGPoint { float x1; float x2; } canvasOffset;
+@property (nonatomic) float canvasViewScale;
+@property (nonatomic, copy) NSSet *collapsedSlideNodes;
+@property (nonatomic) struct CGSize { float x1; float x2; } desktopMainContentSize;
+@property (nonatomic) struct CGPoint { float x1; float x2; } desktopMainWindowOrigin;
+@property (nonatomic) float desktopNavigatorViewWidth;
+@property (nonatomic) float desktopOutlineViewWidth;
+@property (nonatomic) float desktopPresenterNotesHeight;
+@property (nonatomic, copy) KNMacUILayout *documentUILayout;
+@property (nonatomic) BOOL lightTableHidesSkippedSlides;
+@property (nonatomic) float lightTableZoomScale;
+@property (nonatomic, copy) NSSet *outlineCollapsedSlideNodes;
+@property (nonatomic, copy) NSSet *outlineHasBodySlideNodes;
+@property (nonatomic, retain) TSKSelectionPath *selectionPath;
+@property (nonatomic) BOOL showMasterGuides;
+@property (nonatomic) BOOL showSlideGuides;
+@property (nonatomic) BOOL showsComments;
+@property (nonatomic) BOOL showsRuler;
+@property (nonatomic, readonly) KNSlideCollectionSelection *slideTreeSelection;
+@property (nonatomic) BOOL slideViewFitsContentInWindow;
 
 - (id).cxx_construct;
 - (id)UIStateForChart:(id)arg1;
@@ -75,27 +68,40 @@
 - (id)collapsedSlideNodes;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
+- (id)debugDescription;
 - (struct CGSize { float x1; float x2; })desktopMainContentSize;
+- (struct CGPoint { float x1; float x2; })desktopMainWindowOrigin;
 - (float)desktopNavigatorViewWidth;
 - (float)desktopOutlineViewWidth;
+- (float)desktopPresenterNotesHeight;
 - (id)documentUILayout;
 - (id)init;
+- (BOOL)lightTableHidesSkippedSlides;
 - (float)lightTableZoomScale;
-- (void)loadFromArchive:(const struct UIStateArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; struct Reference {} *x3; struct Reference {} *x4; struct Size {} *x5; struct Point {} *x6; float x7; float x8; struct RepeatedPtrField<TSP::Reference> { void **x_9_1_1; int x_9_1_2; int x_9_1_3; int x_9_1_4; } x9; struct Point {} *x10; struct Point {} *x11; struct Reference {} *x12; float x13; float x14; struct Point {} *x15; struct RepeatedPtrField<TSCH::ChartUIState> { void **x_16_1_1; int x_16_1_2; int x_16_1_3; int x_16_1_4; } x16; float x17; boolx18; boolx19; boolx20; boolx21; struct RepeatedPtrField<TSP::Reference> { void **x_22_1_1; int x_22_1_2; int x_22_1_3; int x_22_1_4; } x22; boolx23; float x24; struct Size {} *x25; float x26; int x27; unsigned int x28[1]; }*)arg1 unarchiver:(id)arg2 context:(id)arg3;
-- (void)saveToArchive:(struct UIStateArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; struct Reference {} *x3; struct Reference {} *x4; struct Size {} *x5; struct Point {} *x6; float x7; float x8; struct RepeatedPtrField<TSP::Reference> { void **x_9_1_1; int x_9_1_2; int x_9_1_3; int x_9_1_4; } x9; struct Point {} *x10; struct Point {} *x11; struct Reference {} *x12; float x13; float x14; struct Point {} *x15; struct RepeatedPtrField<TSCH::ChartUIState> { void **x_16_1_1; int x_16_1_2; int x_16_1_3; int x_16_1_4; } x16; float x17; boolx18; boolx19; boolx20; boolx21; struct RepeatedPtrField<TSP::Reference> { void **x_22_1_1; int x_22_1_2; int x_22_1_3; int x_22_1_4; } x22; boolx23; float x24; struct Size {} *x25; float x26; int x27; unsigned int x28[1]; }*)arg1 archiver:(id)arg2 context:(id)arg3;
+- (void)loadFromArchive:(const struct UIStateArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; struct Reference {} *x5; struct Reference {} *x6; struct Size {} *x7; struct Point {} *x8; float x9; float x10; struct RepeatedPtrField<TSP::Reference> { void **x_11_1_1; int x_11_1_2; int x_11_1_3; int x_11_1_4; } x11; struct Point {} *x12; struct Point {} *x13; struct Reference {} *x14; float x15; float x16; struct Point {} *x17; struct RepeatedPtrField<TSCH::ChartUIState> { void **x_18_1_1; int x_18_1_2; int x_18_1_3; int x_18_1_4; } x18; float x19; bool x20; bool x21; bool x22; bool x23; struct RepeatedPtrField<TSP::Reference> { void **x_24_1_1; int x_24_1_2; int x_24_1_3; int x_24_1_4; } x24; struct RepeatedPtrField<TSP::Reference> { void **x_25_1_1; int x_25_1_2; int x_25_1_3; int x_25_1_4; } x25; struct RepeatedPtrField<TSP::Reference> { void **x_26_1_1; int x_26_1_2; int x_26_1_3; int x_26_1_4; } x26; float x27; float x28; struct Size {} *x29; bool x30; bool x31; float x32; struct Point {} *x33; struct SelectionPathArchive {} *x34; }*)arg1 unarchiver:(id)arg2 context:(id)arg3;
+- (id)outlineCollapsedSlideNodes;
+- (id)outlineHasBodySlideNodes;
+- (void)saveToArchive:(struct UIStateArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; struct Reference {} *x5; struct Reference {} *x6; struct Size {} *x7; struct Point {} *x8; float x9; float x10; struct RepeatedPtrField<TSP::Reference> { void **x_11_1_1; int x_11_1_2; int x_11_1_3; int x_11_1_4; } x11; struct Point {} *x12; struct Point {} *x13; struct Reference {} *x14; float x15; float x16; struct Point {} *x17; struct RepeatedPtrField<TSCH::ChartUIState> { void **x_18_1_1; int x_18_1_2; int x_18_1_3; int x_18_1_4; } x18; float x19; bool x20; bool x21; bool x22; bool x23; struct RepeatedPtrField<TSP::Reference> { void **x_24_1_1; int x_24_1_2; int x_24_1_3; int x_24_1_4; } x24; struct RepeatedPtrField<TSP::Reference> { void **x_25_1_1; int x_25_1_2; int x_25_1_3; int x_25_1_4; } x25; struct RepeatedPtrField<TSP::Reference> { void **x_26_1_1; int x_26_1_2; int x_26_1_3; int x_26_1_4; } x26; float x27; float x28; struct Size {} *x29; bool x30; bool x31; float x32; struct Point {} *x33; struct SelectionPathArchive {} *x34; }*)arg1 archiver:(id)arg2 context:(id)arg3;
+- (id)selectionPath;
 - (void)setCanvasOffset:(struct CGPoint { float x1; float x2; })arg1;
 - (void)setCanvasViewScale:(float)arg1;
 - (void)setCollapsedSlideNodes:(id)arg1;
 - (void)setDesktopMainContentSize:(struct CGSize { float x1; float x2; })arg1;
+- (void)setDesktopMainWindowOrigin:(struct CGPoint { float x1; float x2; })arg1;
 - (void)setDesktopNavigatorViewWidth:(float)arg1;
 - (void)setDesktopOutlineViewWidth:(float)arg1;
+- (void)setDesktopPresenterNotesHeight:(float)arg1;
 - (void)setDocumentUILayout:(id)arg1;
+- (void)setLightTableHidesSkippedSlides:(BOOL)arg1;
 - (void)setLightTableZoomScale:(float)arg1;
+- (void)setOutlineCollapsedSlideNodes:(id)arg1;
+- (void)setOutlineHasBodySlideNodes:(id)arg1;
+- (void)setSelectionPath:(id)arg1;
 - (void)setShowMasterGuides:(BOOL)arg1;
 - (void)setShowSlideGuides:(BOOL)arg1;
 - (void)setShowsComments:(BOOL)arg1;
 - (void)setShowsRuler:(BOOL)arg1;
-- (void)setSlideTreeSelection:(id)arg1;
+- (void)setSlideTreeSelection:(id)arg1 withDocumentRoot:(id)arg2;
 - (void)setSlideViewFitsContentInWindow:(BOOL)arg1;
 - (void)setUIState:(id)arg1 forChart:(id)arg2;
 - (BOOL)showMasterGuides;
@@ -104,5 +110,6 @@
 - (BOOL)showsRuler;
 - (id)slideTreeSelection;
 - (BOOL)slideViewFitsContentInWindow;
+- (void)updateOutlineStateFromSlideTree:(id)arg1;
 
 @end

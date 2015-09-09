@@ -2,30 +2,25 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
 @interface KNRecordingEvent : NSObject <NSCopying> {
     double mStartTime;
 }
 
-@property(readonly) BOOL canPrecedeDiscontinuity;
-@property(getter=isIgnoredWhenSeeking,readonly) BOOL ignoredWhenSeeking;
-@property(readonly) double startTime;
+@property (nonatomic, readonly) BOOL canPrecedeDiscontinuity;
+@property (getter=isIgnoredWhenSeeking, nonatomic, readonly) BOOL ignoredWhenSeeking;
+@property (nonatomic, readonly) double startTime;
 
 - (BOOL)canPrecedeDiscontinuity;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (unsigned int)hash;
 - (id)init;
-- (id)initWithContext:(id)arg1 archive:(const struct RecordingEventArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; double x3; struct RecordingNavigationEventArchive {} *x4; struct RecordingLaserEventArchive {} *x5; struct RecordingPauseEventArchive {} *x6; struct RecordingMovieEventArchive {} *x7; int x8; unsigned int x9[1]; }*)arg2 unarchiver:(id)arg3;
+- (id)initWithContext:(id)arg1 archive:(const struct RecordingEventArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; double x5; struct RecordingNavigationEventArchive {} *x6; struct RecordingLaserEventArchive {} *x7; struct RecordingPauseEventArchive {} *x8; struct RecordingMovieEventArchive {} *x9; }*)arg2 unarchiver:(id)arg3;
 - (id)initWithStartTime:(double)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isIgnoredWhenSeeking;
 - (id)recordingEventByAddingTimeOffset:(double)arg1;
-- (void)saveToArchive:(struct RecordingEventArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; double x3; struct RecordingNavigationEventArchive {} *x4; struct RecordingLaserEventArchive {} *x5; struct RecordingPauseEventArchive {} *x6; struct RecordingMovieEventArchive {} *x7; int x8; unsigned int x9[1]; }*)arg1 archiver:(id)arg2;
+- (void)saveToArchive:(struct RecordingEventArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; double x5; struct RecordingNavigationEventArchive {} *x6; struct RecordingLaserEventArchive {} *x7; struct RecordingPauseEventArchive {} *x8; struct RecordingMovieEventArchive {} *x9; }*)arg1 archiver:(id)arg2;
 - (double)startTime;
 
 @end

@@ -2,14 +2,9 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSMutableArray;
-
 @interface UISwipeGestureRecognizer : UIGestureRecognizer {
-    struct CGPoint { 
-        float x; 
-        float y; 
-    unsigned int _failed : 1;
     unsigned int _direction;
+    unsigned int _failed;
     double _maximumDuration;
     float _maximumPrimaryMovement;
     float _maximumSecondaryMovement;
@@ -18,27 +13,25 @@
     unsigned int _numberOfTouchesRequired;
     float _rateOfMaximumMovementDecay;
     float _rateOfMinimumMovementDecay;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _startLocation;
     struct CGPoint { float x1; float x2; } *_startLocations;
     double _startTime;
     NSMutableArray *_touches;
 }
 
-@property unsigned int direction;
-@property double maximumDuration;
-@property float maximumPrimaryMovement;
-@property float maximumSecondaryMovement;
-@property float minimumPrimaryMovement;
-@property float minimumSecondaryMovement;
-@property unsigned int numberOfTouchesRequired;
-@property float rateOfMaximumMovementDecay;
-@property float rateOfMinimumMovementDecay;
-@property(readonly) struct CGPoint { float x1; float x2; } startPoint;
-
-+ (void)addSwipeGestureRecognizerToView:(id)arg1 withTarget:(id)arg2 action:(SEL)arg3 direction:(unsigned int)arg4 touchCount:(unsigned int)arg5;
-+ (void)addSwipeGestureRecognizerToView:(id)arg1 withTarget:(id)arg2 action:(SEL)arg3 direction:(unsigned int)arg4;
-+ (void)addSwipeGestureRecognizerToView:(id)arg1 withTarget:(id)arg2 action:(SEL)arg3 touchCount:(unsigned int)arg4;
-+ (void)addSwipeGestureRecognizerToView:(id)arg1 withTarget:(id)arg2 action:(SEL)arg3;
+@property (nonatomic) unsigned int direction;
+@property (nonatomic) double maximumDuration;
+@property (nonatomic) float maximumPrimaryMovement;
+@property (nonatomic) float maximumSecondaryMovement;
+@property (nonatomic) float minimumPrimaryMovement;
+@property (nonatomic) float minimumSecondaryMovement;
+@property (nonatomic) unsigned int numberOfTouchesRequired;
+@property (nonatomic) float rateOfMaximumMovementDecay;
+@property (nonatomic) float rateOfMinimumMovementDecay;
+@property (nonatomic, readonly) struct CGPoint { float x1; float x2; } startPoint;
 
 - (void)_appendSubclassDescription:(id)arg1;
 - (BOOL)_checkForSwipeWithDelta:(struct CGPoint { float x1; float x2; })arg1 time:(double)arg2;

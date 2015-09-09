@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/ManagedConfiguration.framework/ManagedConfiguration
  */
 
-@class NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString;
-
 @interface MCManifest : NSObject {
     NSMutableDictionary *_manifest;
     NSString *_path;
@@ -11,6 +9,7 @@
 }
 
 + (void)_setManifestPath:(id)arg1;
++ (id)installedProfileDataWithIdentifier:(id)arg1;
 + (id)installedProfileWithIdentifier:(id)arg1;
 + (id)sharedManifest;
 
@@ -22,6 +21,7 @@
 - (void)dealloc;
 - (id)identifiersOfProfilesWithFilterFlags:(int)arg1;
 - (id)init;
+- (id)installedProfileDataWithIdentifier:(id)arg1;
 - (id)installedProfileWithIdentifier:(id)arg1;
 - (void)invalidateCache;
 - (id)manifest;

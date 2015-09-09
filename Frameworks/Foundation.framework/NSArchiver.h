@@ -12,6 +12,8 @@
     void *stringTable;
 }
 
+@property (readonly, retain) NSMutableData *archiverData;
+
 + (BOOL)archiveRootObject:(id)arg1 toFile:(id)arg2;
 + (id)archivedDataWithRootObject:(id)arg1;
 + (id)classNameEncodedForTrueClassName:(id)arg1;

@@ -2,33 +2,36 @@
    Image: /System/Library/PrivateFrameworks/MusicLibrary.framework/MusicLibrary
  */
 
-@class <ML3DatabaseConnectionPoolDelegate>, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString, NSUUID, _ML3DatabaseConnectionSubPool;
-
 @interface ML3DatabaseConnectionPool : NSObject {
     unsigned int _connectionsJournalingMode;
     int _connectionsProfilingLevel;
     NSString *_databasePath;
     <ML3DatabaseConnectionPoolDelegate> *_delegate;
     NSMutableDictionary *_identifiersConnectionsMap;
+    BOOL _locked;
+    NSObject<OS_dispatch_semaphore> *_lockedSemaphore;
     unsigned int _maxReaders;
     unsigned int _maxWriters;
     NSUUID *_poolStorageKey;
     _ML3DatabaseConnectionSubPool *_readersSubPool;
     NSObject<OS_dispatch_queue> *_serialQueue;
     BOOL _useDistantWriterConnections;
+    BOOL _waitingForUnlock;
     _ML3DatabaseConnectionSubPool *_writersSubPool;
 }
 
-@property unsigned int connectionsJournalingMode;
-@property int connectionsProfilingLevel;
-@property(readonly) NSString * databasePath;
-@property <ML3DatabaseConnectionPoolDelegate> * delegate;
-@property(readonly) BOOL isCurrentThreadConnectionInTransaction;
-@property(readonly) unsigned int maxReaders;
-@property(readonly) unsigned int maxWriters;
-@property BOOL useDistantWriterConnections;
+@property (nonatomic) unsigned int connectionsJournalingMode;
+@property (nonatomic) int connectionsProfilingLevel;
+@property (nonatomic, readonly) NSString *databasePath;
+@property (nonatomic) <ML3DatabaseConnectionPoolDelegate> *delegate;
+@property (readonly) BOOL isCurrentThreadConnectionInTransaction;
+@property (getter=isLocked, nonatomic, readonly) BOOL locked;
+@property (nonatomic, readonly) unsigned int maxReaders;
+@property (nonatomic, readonly) unsigned int maxWriters;
+@property (nonatomic) BOOL useDistantWriterConnections;
 
 - (void).cxx_destruct;
+- (void)_closeAllConnectionsAndWaitForBusyConnections:(BOOL)arg1;
 - (id)_connectionForIdentifier:(id)arg1;
 - (id)_connectionForWriting:(BOOL)arg1 useThreadConnection:(BOOL)arg2;
 - (id)_localConnectionForThread:(id)arg1;
@@ -42,9 +45,11 @@
 - (void)dealloc;
 - (id)delegate;
 - (id)init;
-- (id)initWithDatabasePath:(id)arg1 maxReaders:(unsigned int)arg2 maxWriters:(unsigned int)arg3;
 - (id)initWithDatabasePath:(id)arg1 maxReaders:(unsigned int)arg2;
+- (id)initWithDatabasePath:(id)arg1 maxReaders:(unsigned int)arg2 maxWriters:(unsigned int)arg3;
 - (BOOL)isCurrentThreadConnectionInTransaction;
+- (BOOL)isLocked;
+- (void)lock;
 - (unsigned int)maxReaders;
 - (unsigned int)maxWriters;
 - (id)readerConnection;
@@ -52,6 +57,7 @@
 - (void)setConnectionsProfilingLevel:(int)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setUseDistantWriterConnections:(BOOL)arg1;
+- (void)unlock;
 - (BOOL)useDistantWriterConnections;
 - (id)writerConnection;
 

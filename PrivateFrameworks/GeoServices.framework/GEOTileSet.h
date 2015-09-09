@@ -2,12 +2,11 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSMutableArray, NSString;
-
 @interface GEOTileSet : PBCodable <NSCopying> {
-    struct { 
-        unsigned int multiTileURLUsesStatusCodes : 1; 
     NSString *_baseURL;
+    struct { 
+        unsigned int updateBehavior : 1; 
+        unsigned int multiTileURLUsesStatusCodes : 1; 
     } _has;
     NSString *_localizationURL;
     NSString *_multiTileURL;
@@ -16,22 +15,25 @@
     int _size;
     int _style;
     NSMutableArray *_supportedLanguages;
+    int _updateBehavior;
     NSMutableArray *_validVersions;
 }
 
-@property(retain) NSString * baseURL;
-@property(readonly) BOOL hasBaseURL;
-@property(readonly) BOOL hasLocalizationURL;
-@property(readonly) BOOL hasMultiTileURL;
-@property BOOL hasMultiTileURLUsesStatusCodes;
-@property(retain) NSString * localizationURL;
-@property(retain) NSString * multiTileURL;
-@property BOOL multiTileURLUsesStatusCodes;
-@property int scale;
-@property int size;
-@property int style;
-@property(retain) NSMutableArray * supportedLanguages;
-@property(retain) NSMutableArray * validVersions;
+@property (nonatomic, retain) NSString *baseURL;
+@property (nonatomic, readonly) BOOL hasBaseURL;
+@property (nonatomic, readonly) BOOL hasLocalizationURL;
+@property (nonatomic, readonly) BOOL hasMultiTileURL;
+@property (nonatomic) BOOL hasMultiTileURLUsesStatusCodes;
+@property (nonatomic) BOOL hasUpdateBehavior;
+@property (nonatomic, retain) NSString *localizationURL;
+@property (nonatomic, retain) NSString *multiTileURL;
+@property (nonatomic) BOOL multiTileURLUsesStatusCodes;
+@property (nonatomic) int scale;
+@property (nonatomic) int size;
+@property (nonatomic) int style;
+@property (nonatomic, retain) NSMutableArray *supportedLanguages;
+@property (nonatomic) int updateBehavior;
+@property (nonatomic, retain) NSMutableArray *validVersions;
 
 - (void)addSupportedLanguage:(id)arg1;
 - (void)addValidVersion:(id)arg1;
@@ -47,15 +49,18 @@
 - (BOOL)hasLocalizationURL;
 - (BOOL)hasMultiTileURL;
 - (BOOL)hasMultiTileURLUsesStatusCodes;
+- (BOOL)hasUpdateBehavior;
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)localizationURL;
+- (void)mergeFrom:(id)arg1;
 - (id)multiTileURL;
 - (BOOL)multiTileURLUsesStatusCodes;
 - (BOOL)readFrom:(id)arg1;
 - (int)scale;
 - (void)setBaseURL:(id)arg1;
 - (void)setHasMultiTileURLUsesStatusCodes:(BOOL)arg1;
+- (void)setHasUpdateBehavior:(BOOL)arg1;
 - (void)setLocalizationURL:(id)arg1;
 - (void)setMultiTileURL:(id)arg1;
 - (void)setMultiTileURLUsesStatusCodes:(BOOL)arg1;
@@ -63,12 +68,14 @@
 - (void)setSize:(int)arg1;
 - (void)setStyle:(int)arg1;
 - (void)setSupportedLanguages:(id)arg1;
+- (void)setUpdateBehavior:(int)arg1;
 - (void)setValidVersions:(id)arg1;
 - (int)size;
 - (int)style;
 - (id)supportedLanguageAtIndex:(unsigned int)arg1;
 - (id)supportedLanguages;
 - (unsigned int)supportedLanguagesCount;
+- (int)updateBehavior;
 - (id)validVersionAtIndex:(unsigned int)arg1;
 - (id)validVersions;
 - (unsigned int)validVersionsCount;

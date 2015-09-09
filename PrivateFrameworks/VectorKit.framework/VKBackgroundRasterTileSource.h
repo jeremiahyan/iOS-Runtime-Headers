@@ -2,11 +2,10 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-@interface VKBackgroundRasterTileSource : VKRasterTileSource {
-}
+@interface VKBackgroundRasterTileSource : VKRasterTileSource
 
 - (int)defaultMaximumZoomLevel;
-- (unsigned int)mapLayerForZoomLevelRange;
+- (unsigned long long)mapLayerForZoomLevelRange;
 - (BOOL)maximumZoomLevelBoundsCamera;
 
 @end

@@ -2,25 +2,23 @@
    Image: /System/Library/PrivateFrameworks/AirPortAssistant.framework/AirPortAssistant
  */
 
-@class <TableViewManagerDelegate>, TableViewManager, UITableView;
-
 @interface AUUITableViewController : UITableViewController <TableViewManagerDelegate> {
     TableViewManager *_tableManager;
 }
 
-@property <TableViewManagerDelegate> * delegate;
-@property(readonly) TableViewManager * tableManager;
-@property(retain) UITableView * tableView;
+@property (nonatomic) <TableViewManagerDelegate> *delegate;
+@property (nonatomic, readonly) TableViewManager *tableManager;
+@property (nonatomic, retain) UITableView *tableView;
 
 - (void)dealloc;
 - (id)delegate;
 - (void)initAUUITableViewControllerCommon;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
+- (void)loadView;
 - (void)setDelegate:(id)arg1;
 - (void)setTableView:(id)arg1;
 - (id)tableManager;
-- (void)viewDidLoad;
 - (void)viewWillAppear:(BOOL)arg1;
 - (void)viewWillDisappear:(BOOL)arg1;
 

@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@class NSSQLRelationship, NSString;
-
 @interface NSSQLJoinIntermediate : NSSQLIntermediate {
     NSString *_correlationAlias;
     NSString *_destinationAlias;
@@ -13,7 +11,7 @@
     unsigned int _type;
 }
 
-+ (id)createJoinIntermediatesForKeypath:(id)arg1 startEntity:(id)arg2 startAlias:(id)arg3 forScope:(id)arg4 inFetchIntermediate:(id)arg5 inContext:(id)arg6;
++ (id)createJoinIntermediatesForKeypath:(id)arg1 startEntity:(id)arg2 startAlias:(id)arg3 forScope:(id)arg4 inStatementIntermediate:(id)arg5 inContext:(id)arg6;
 + (id)createManyToManyJoinIntermediateForProperty:(id)arg1 direct:(BOOL)arg2 lastStep:(id)arg3 inScope:(id)arg4 context:(id)arg5;
 + (id)createToManyJoinIntermediateForProperty:(id)arg1 lastStep:(id)arg2 inScope:(id)arg3 context:(id)arg4;
 + (id)createToOneJoinIntermediateForProperty:(id)arg1 lastStep:(id)arg2 inScope:(id)arg3 context:(id)arg4;

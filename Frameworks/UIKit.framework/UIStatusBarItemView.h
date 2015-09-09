@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIStatusBarForegroundStyleAttributes, UIStatusBarItem, UIStatusBarLayoutManager, _UILegibilityView;
-
 @interface UIStatusBarItemView : UIView {
     BOOL _allowsUpdates;
     float _currentOverlap;
@@ -16,11 +14,11 @@
     BOOL _visible;
 }
 
-@property BOOL allowsUpdates;
-@property(readonly) UIStatusBarForegroundStyleAttributes * foregroundStyle;
-@property(readonly) UIStatusBarItem * item;
-@property UIStatusBarLayoutManager * layoutManager;
-@property(getter=isVisible) BOOL visible;
+@property (nonatomic) BOOL allowsUpdates;
+@property (nonatomic, readonly) UIStatusBarForegroundStyleAttributes *foregroundStyle;
+@property (nonatomic, readonly) UIStatusBarItem *item;
+@property (nonatomic) UIStatusBarLayoutManager *layoutManager;
+@property (getter=isVisible, nonatomic) BOOL visible;
 
 + (id)createViewForItem:(id)arg1 withData:(id)arg2 actions:(int)arg3 foregroundStyle:(id)arg4;
 
@@ -61,8 +59,8 @@
 - (void)setLayoutManager:(id)arg1;
 - (void)setPersistentAnimationsEnabled:(BOOL)arg1;
 - (float)setStatusBarData:(id)arg1 actions:(int)arg2;
-- (void)setVisible:(BOOL)arg1 frame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2 duration:(double)arg3;
 - (void)setVisible:(BOOL)arg1;
+- (void)setVisible:(BOOL)arg1 frame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2 duration:(double)arg3;
 - (float)shadowPadding;
 - (float)standardPadding;
 - (int)textAlignment;

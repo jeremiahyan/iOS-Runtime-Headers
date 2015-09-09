@@ -2,40 +2,43 @@
    Image: /System/Library/PrivateFrameworks/VUSocialUpload.framework/VUSocialUpload
  */
 
-@class ACAccount, ACAccountStore, NSArray, NSString, SLSheetAction, UIImageView, VimeoDetailsController;
-
 @interface VimeoComposeViewController : SLComposeServiceViewController <VimeoComposeOptionViewDelegate> {
     ACAccountStore *_accountStore;
-    NSString *_description;
-    SLSheetAction *_detailsAction;
+    SLComposeSheetConfigurationItem *_detailsConfigurationItem;
     VimeoDetailsController *_detailsController;
     UIImageView *_logoView;
+    NSString *_postDescription;
     int _privacySettings;
+    VimeoUploadSession *_session;
     NSArray *_tags;
     int _videoSize;
     ACAccount *_vimeoAccount;
 }
 
-@property(retain) ACAccountStore * accountStore;
-@property(retain) NSString * description;
-@property int privacySettings;
-@property(retain) NSArray * tags;
-@property int videoSize;
-@property(retain) ACAccount * vimeoAccount;
+@property (nonatomic, retain) ACAccountStore *accountStore;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) NSString *postDescription;
+@property (nonatomic) int privacySettings;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) NSArray *tags;
+@property (nonatomic) int videoSize;
+@property (nonatomic, retain) ACAccount *vimeoAccount;
 
+- (void).cxx_destruct;
 - (id)accountStore;
-- (void)dealloc;
-- (id)description;
+- (id)configurationItems;
+- (void)didSelectPost;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
+- (id)postDescription;
 - (int)privacySettings;
-- (void)send;
 - (void)setAccountStore:(id)arg1;
-- (void)setDescription:(id)arg1;
+- (void)setPostDescription:(id)arg1;
 - (void)setPrivacySettings:(int)arg1;
 - (void)setTags:(id)arg1;
 - (void)setVideoSize:(int)arg1;
 - (void)setVimeoAccount:(id)arg1;
-- (id)sheetActions;
 - (id)tags;
 - (BOOL)textView:(id)arg1 shouldChangeTextInRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2 replacementText:(id)arg3;
 - (BOOL)validateText:(id)arg1;

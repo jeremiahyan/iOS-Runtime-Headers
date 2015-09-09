@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/ScreenReaderBrailleDriver.framework/ScreenReaderBrailleDriver
  */
 
-@class <SCRDFileReaderDelegate>, NSFileHandle, NSThread;
-
 @interface SCRDFileReader : NSObject {
     <SCRDFileReaderDelegate> *_delegate;
     NSFileHandle *_fileHandle;
@@ -16,6 +14,7 @@
 - (BOOL)hasStarted;
 - (id)initWithDelegate:(id)arg1 fileHandle:(id)arg2;
 - (void)invalidate;
+- (void)invalidateWithWait:(BOOL)arg1;
 - (BOOL)isValid;
 - (void)start;
 

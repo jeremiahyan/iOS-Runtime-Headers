@@ -2,31 +2,31 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class <AVVideoCompositing>, AVAsset, AVAssetExportSessionInternal, AVAudioMix, AVMetadataItemFilter, AVVideoComposition, NSArray, NSError, NSString, NSURL;
-
 @interface AVAssetExportSession : NSObject {
     AVAssetExportSessionInternal *_exportSession;
 }
 
-@property(readonly) AVAsset * asset;
-@property(copy) AVAudioMix * audioMix;
-@property(copy) NSString * audioTimePitchAlgorithm;
-@property(readonly) <AVVideoCompositing> * customVideoCompositor;
-@property(readonly) NSError * error;
-@property(readonly) long long estimatedOutputFileLength;
-@property long long fileLengthLimit;
-@property(readonly) struct { long long x1; int x2; unsigned int x3; long long x4; } maxDuration;
-@property(copy) NSArray * metadata;
-@property(retain) AVMetadataItemFilter * metadataItemFilter;
-@property(copy) NSString * outputFileType;
-@property(copy) NSURL * outputURL;
-@property(readonly) NSString * presetName;
-@property(readonly) float progress;
-@property BOOL shouldOptimizeForNetworkUse;
-@property(readonly) int status;
-@property(readonly) NSArray * supportedFileTypes;
-@property struct { struct { long long x_1_1_1; int x_1_1_2; unsigned int x_1_1_3; long long x_1_1_4; } x1; struct { long long x_2_1_1; int x_2_1_2; unsigned int x_2_1_3; long long x_2_1_4; } x2; } timeRange;
-@property(copy) AVVideoComposition * videoComposition;
+@property (nonatomic, readonly, retain) AVAsset *asset;
+@property (nonatomic, copy) AVAudioMix *audioMix;
+@property (nonatomic, copy) NSString *audioTimePitchAlgorithm;
+@property (nonatomic) BOOL canPerformMultiplePassesOverSourceMediaData;
+@property (nonatomic, readonly) <AVVideoCompositing> *customVideoCompositor;
+@property (nonatomic, copy) NSURL *directoryForTemporaryFiles;
+@property (nonatomic, readonly) NSError *error;
+@property (nonatomic, readonly) long long estimatedOutputFileLength;
+@property (nonatomic) long long fileLengthLimit;
+@property (nonatomic, readonly) struct { long long x1; int x2; unsigned int x3; long long x4; } maxDuration;
+@property (nonatomic, copy) NSArray *metadata;
+@property (nonatomic, retain) AVMetadataItemFilter *metadataItemFilter;
+@property (nonatomic, copy) NSString *outputFileType;
+@property (nonatomic, copy) NSURL *outputURL;
+@property (nonatomic, readonly) NSString *presetName;
+@property (nonatomic, readonly) float progress;
+@property (nonatomic) BOOL shouldOptimizeForNetworkUse;
+@property (nonatomic, readonly) int status;
+@property (nonatomic, readonly) NSArray *supportedFileTypes;
+@property (nonatomic) struct { struct { long long x_1_1_1; int x_1_1_2; unsigned int x_1_1_3; long long x_1_1_4; } x1; struct { long long x_2_1_1; int x_2_1_2; unsigned int x_2_1_3; long long x_2_1_4; } x2; } timeRange;
+@property (nonatomic, copy) AVVideoComposition *videoComposition;
 
 + (id)_asynchronousDispatchQueue;
 + (id)_audioOnlyPresets;
@@ -51,9 +51,10 @@
 + (id)_utTypesForAudioOnly;
 + (id)_utTypesForDefaultPassthroughPreset;
 + (id)_utTypesForPresets;
++ (id)_utTypesForTemporalMetadataPresets;
 + (id)_videoCompressionPropertiesForVideoSetting:(id)arg1;
 + (id)allExportPresets;
-+ (void)determineCompatibilityOfExportPreset:(id)arg1 withAsset:(id)arg2 outputFileType:(id)arg3 completionHandler:(id)arg4;
++ (void)determineCompatibilityOfExportPreset:(id)arg1 withAsset:(id)arg2 outputFileType:(id)arg3 completionHandler:(id /* block */)arg4;
 + (long long)estimatedOutputFileLengthForPreset:(id)arg1 duration:(struct { long long x1; int x2; unsigned int x3; long long x4; })arg2 properties:(id)arg3;
 + (id)exportPresetsCompatibleWithAsset:(id)arg1;
 + (id)exportSessionWithAsset:(id)arg1 presetName:(id)arg2;
@@ -70,12 +71,12 @@
 - (id)_audioProcessingOptions;
 - (int)_averageBitRateForSourceAndPreset:(id)arg1 targetFrameRate:(float)arg2;
 - (BOOL)_canPassThroughAudio:(id)arg1 checkEnabled:(BOOL)arg2 checkProtected:(BOOL)arg3;
+- (BOOL)_canPassThroughTemporalMetadata;
 - (BOOL)_canPassThroughVideo:(id)arg1 remaker:(struct OpaqueFigRemaker { }*)arg2 checkEnabled:(BOOL)arg3 checkAll:(BOOL)arg4 checkProtected:(BOOL)arg5;
 - (BOOL)_canPerformFastFrameRateConversionWithPreset:(id)arg1 usingRemaker:(struct OpaqueFigRemaker { }*)arg2;
 - (id)_createFigRemaker:(struct OpaqueFigRemaker {}**)arg1;
 - (void)_createFormatWriterOptions:(id*)arg1 forFileFormat:(id)arg2;
 - (void)_createRemakerAndBeginExport;
-- (void)_createRemakerOptions:(id*)arg1 forFileFormat:(id)arg2;
 - (id)_determineCompatibleFileTypes;
 - (struct CGSize { float x1; float x2; })_getSourceDimension;
 - (float)_getSourceVideoFrameRate;
@@ -85,10 +86,12 @@
 - (void)_handleFigRemakerNotificationAsync:(id)arg1 payload:(id)arg2;
 - (BOOL)_hasProtectedNonAudioVideoTracks;
 - (BOOL)_isAudioMixdownRequired:(struct __CFString { }*)arg1 error:(id*)arg2;
+- (id)_remakerOptionsForFileFormat:(id)arg1;
 - (void)_removeListeners;
 - (id)_retrieveChannelSpecificAudioSettingForAudioTrack:(id)arg1 fromAudioSetting:(id)arg2;
 - (id)_settingForFigRemaker;
 - (BOOL)_totalSizeOfTracksIsWithinFileLengthLimit:(id)arg1 forSetting:(id)arg2;
+- (void)_transferTrackProperties:(struct OpaqueFigRemaker { }*)arg1 sourceTrackID:(int)arg2 destinationTrackID:(int)arg3;
 - (void)_transitionToStatus:(int)arg1 error:(id)arg2;
 - (void)_updateProgress;
 - (void)_validateOutputFileTypeForExport;
@@ -96,14 +99,16 @@
 - (id)asset;
 - (id)audioMix;
 - (id)audioTimePitchAlgorithm;
+- (BOOL)canPerformMultiplePassesOverSourceMediaData;
 - (void)cancelExport;
 - (id)customVideoCompositor;
 - (void)dealloc;
 - (id)description;
-- (void)determineCompatibleFileTypesWithCompletionHandler:(id)arg1;
+- (void)determineCompatibleFileTypesWithCompletionHandler:(id /* block */)arg1;
+- (id)directoryForTemporaryFiles;
 - (id)error;
 - (long long)estimatedOutputFileLength;
-- (void)exportAsynchronouslyWithCompletionHandler:(id)arg1;
+- (void)exportAsynchronouslyWithCompletionHandler:(id /* block */)arg1;
 - (long long)fileLengthLimit;
 - (void)finalize;
 - (id)init;
@@ -118,6 +123,8 @@
 - (float)progress;
 - (void)setAudioMix:(id)arg1;
 - (void)setAudioTimePitchAlgorithm:(id)arg1;
+- (void)setCanPerformMultiplePassesOverSourceMediaData:(BOOL)arg1;
+- (void)setDirectoryForTemporaryFiles:(id)arg1;
 - (void)setFileLengthLimit:(long long)arg1;
 - (void)setMetadata:(id)arg1;
 - (void)setMetadataItemFilter:(id)arg1;

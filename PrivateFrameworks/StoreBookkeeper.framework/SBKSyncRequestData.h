@@ -2,24 +2,16 @@
    Image: /System/Library/PrivateFrameworks/StoreBookkeeper.framework/StoreBookkeeper
  */
 
-@class SBKSyncTransaction;
+@interface SBKSyncRequestData : SBKRequestData
 
-@interface SBKSyncRequestData : NSObject {
-    SBKSyncTransaction *_transaction;
-}
+@property (readonly) SBKSyncTransaction *transaction;
 
-@property(readonly) SBKSyncTransaction * transaction;
-
-+ (id)serializablePropertyListPayloadWithTransaction:(id)arg1;
-
-- (void).cxx_destruct;
 - (BOOL)_needsConflictDetection;
 - (id)_serializableConflictDetectionOrdinalForKey:(id)arg1;
 - (id)_serializableConflictDetectionValue;
 - (id)_serializableDeleteItemPayloadDictionaryForKey:(id)arg1;
 - (id)_serializableUpdateItemPayloadDictionaryForKey:(id)arg1;
-- (id)initWithTransaction:(id)arg1;
 - (id)serializableRequestBodyPropertyList;
-- (id)transaction;
+- (id)syncTransaction;
 
 @end

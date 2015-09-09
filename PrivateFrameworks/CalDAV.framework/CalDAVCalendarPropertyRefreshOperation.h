@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/CalDAV.framework/CalDAV
  */
 
-@class <CalDAVCalendarPropertyRefreshDelegate>, NSError, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_group>, NSString;
-
-@interface CalDAVCalendarPropertyRefreshOperation : CalDAVOperation <CoreDAVContainerInfoTaskGroupDelegate, CoreDAVContainerInfoSyncProvider, CoreDAVPropPatchTaskDelegate, CoreDAVTaskGroupDelegate> {
+@interface CalDAVCalendarPropertyRefreshOperation : CalDAVOperation <CoreDAVContainerInfoSyncProvider, CoreDAVContainerInfoTaskGroupDelegate, CoreDAVPropPatchTaskDelegate, CoreDAVTaskGroupDelegate> {
     NSString *_calendarHomeSyncToken;
     NSMutableDictionary *_ctags;
     BOOL _didFinish;
@@ -21,9 +19,13 @@
     BOOL _useCalendarHomeSyncReport;
 }
 
-@property(retain) NSString * calendarHomeSyncToken;
-@property <CalDAVCalendarPropertyRefreshDelegate> * delegate;
-@property BOOL useCalendarHomeSyncReport;
+@property (nonatomic, retain) NSString *calendarHomeSyncToken;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <CalDAVCalendarPropertyRefreshDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+@property (nonatomic) BOOL useCalendarHomeSyncReport;
 
 - (void)_continueHandleContainerInfoTask:(id)arg1 completedWithContainers:(id)arg2 error:(id)arg3;
 - (void)_finishRefresh;

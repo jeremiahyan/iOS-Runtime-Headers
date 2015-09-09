@@ -2,49 +2,43 @@
    Image: /System/Library/PrivateFrameworks/MusicLibrary.framework/MusicLibrary
  */
 
-@class <MLMediaLibraryServiceProtocol>, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSXPCConnection;
-
-@interface MLMediaLibraryService : NSObject <MLMediaLibraryServiceClientProtocol, MLMediaLibraryServiceProtocol> {
-    NSObject<OS_dispatch_queue> *_completionQueue;
-    BOOL _connectionOpen;
-    NSMutableDictionary *_pendingServiceCompletionHandlers;
-    BOOL _processRequestsInApp;
+@interface MLMediaLibraryService : NSObject <MLMediaLibraryServiceClientProtocol> {
+    NSMutableDictionary *_progressBlocksByUUID;
+    NSObject<OS_dispatch_queue> *_replyQueue;
     NSObject<OS_dispatch_queue> *_serialQueue;
+    NSXPCConnection *_serviceConnection;
     <MLMediaLibraryServiceProtocol> *_serviceProxy;
-    NSXPCConnection *_xpcConnection;
 }
 
-@property(readonly) BOOL connectionOpen;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (void)_setDaemonProcessInfo:(id)arg1;
 + (id)sharedMediaLibraryService;
 
 - (void).cxx_destruct;
-- (void)__enqueueClientCompletionHandler:(id)arg1 forInterfaceMessage:(SEL)arg2 withBlockFacade:(id)arg3;
-- (struct NSNumber { Class x1; }*)_addPendingCompletionHandler:(id)arg1;
-- (void)_enqueueClientCompletionHandler:(id)arg1 forInterfaceMessage:(SEL)arg2 withBlockFacade:(id)arg3;
-- (void)_invalidatePendingCompletionHandlersWithError:(id)arg1;
-- (void)_onQueueCloseServiceConnection;
-- (void)_onQueueInvalidatePendingCompletionHandlersWithError:(id)arg1;
-- (id)_retrieveCompletionHandlerForToken:(struct NSNumber { Class x1; }*)arg1;
-- (oneway void)beginTransactionForDatabaseAtPath:(id)arg1 withPriorityLevel:(unsigned int)arg2 options:(unsigned int)arg3 completionHandler:(id)arg4;
-- (oneway void)cancelImportOperation:(unsigned int)arg1 completionHandler:(id)arg2;
-- (void)closeServiceConnection;
-- (BOOL)connectionOpen;
+- (id)_serviceConnection;
+- (oneway void)beginTransactionForDatabaseAtPath:(id)arg1 withPriorityLevel:(unsigned int)arg2 options:(unsigned int)arg3 completionHandler:(id /* block */)arg4;
+- (oneway void)cancelImportOperation:(unsigned int)arg1 completionHandler:(id /* block */)arg2;
 - (void)dealloc;
-- (oneway void)endTransaction:(id)arg1 shouldCommit:(BOOL)arg2 withCompletionHandler:(id)arg3;
-- (oneway void)executeQuery:(id)arg1 withParameters:(id)arg2 options:(id)arg3 onTransaction:(id)arg4 withCompletionHandler:(id)arg5;
-- (oneway void)executeTemplatedDatabaseOperation:(unsigned int)arg1 withAttributes:(id)arg2 options:(id)arg3 completionHandler:(id)arg4;
-- (oneway void)executeUpdate:(id)arg1 withParameters:(id)arg2 onTransaction:(id)arg3 withCompletionHandler:(id)arg4;
+- (oneway void)endTransaction:(id)arg1 shouldCommit:(BOOL)arg2 withCompletionHandler:(id /* block */)arg3;
+- (oneway void)executeQuery:(id)arg1 withParameters:(id)arg2 options:(id)arg3 onTransaction:(id)arg4 withCompletionHandler:(id /* block */)arg5;
+- (oneway void)executeUpdate:(id)arg1 withParameters:(id)arg2 onTransaction:(id)arg3 withCompletionHandler:(id /* block */)arg4;
+- (oneway void)getDeviceSharedLibraryPath:(id /* block */)arg1;
+- (oneway void)getLanguageResourcesWithCompletion:(id /* block */)arg1;
+- (oneway void)importOperationWithIdentifier:(id)arg1 didUpdateWithProgress:(float)arg2;
 - (id)init;
-- (void)openServiceConnection;
-- (oneway void)performImportFromSource:(unsigned int)arg1 intoDatabaseAtPath:(id)arg2 withTrackData:(id)arg3 withPlaylistData:(id)arg4 options:(id)arg5 completionHandler:(id)arg6;
-- (oneway void)pollCurrentImportStatus:(id)arg1;
-- (oneway void)recreateDatabaseAtPath:(id)arg1 withCompletionHandler:(id)arg2;
-- (id)serviceProxy;
+- (oneway void)lockDatabaseForReason:(id)arg1 withCompletion:(id /* block */)arg2;
+- (oneway void)performDatabaseOperation:(unsigned int)arg1 withAttributes:(id)arg2 options:(id)arg3 completionHandler:(id /* block */)arg4;
+- (void)performImport:(id)arg1 fromSource:(unsigned int)arg2 withProgressBlock:(id /* block */)arg3 completionHandler:(id /* block */)arg4;
+- (oneway void)pollCurrentImportStatus:(id /* block */)arg1;
+- (oneway void)recreateDatabaseAtPath:(id)arg1 withCompletionHandler:(id /* block */)arg2;
 - (oneway void)serviceTerminatedTransactionWithIdentifier:(id)arg1 error:(id)arg2;
-- (oneway void)setOptions:(id)arg1 withCompletionHandler:(id)arg2;
-- (oneway void)validateDatabaseAtPath:(id)arg1 withCompletionHandler:(id)arg2;
-- (void)validateDatabaseForLibrary:(id)arg1 withCompletionHandler:(id)arg2;
+- (oneway void)setDeviceSharedLibraryPath:(id)arg1 withCompletion:(id /* block */)arg2;
+- (oneway void)setOptions:(id)arg1 withCompletionHandler:(id /* block */)arg2;
+- (oneway void)unlockDatabaseWithCompletion:(id /* block */)arg1;
+- (oneway void)validateDatabaseAtPath:(id)arg1 withCompletionHandler:(id /* block */)arg2;
 
 @end

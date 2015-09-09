@@ -2,23 +2,12 @@
    Image: /System/Library/PrivateFrameworks/CommunicationsSetupUI.framework/CommunicationsSetupUI
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSArray, NSMutableArray, NSNumber, NSString, PSSpecifier;
-
-@interface CNFRegSettingsController : CNFRegListController <CNFRegWizardControllerDelegate, CNFRegViewAccountControllerDelegate, CNFRegFirstRunDelegate> {
-    struct { 
-        unsigned int listeningForFinishedEditingEvents : 1; 
-        unsigned int appeared : 1; 
-        unsigned int ignoringTextFieldChanges : 1; 
-        unsigned int showEnableSwitch : 1; 
-        unsigned int refreshingCallerIdValues : 1; 
+@interface CNFRegSettingsController : CNFRegListController <CNFRegFirstRunDelegate, CNFRegViewAccountControllerDelegate, CNFRegWizardControllerDelegate> {
     NSArray *_accountGroupSpecifiers;
+    TUAccountsController *_accountsController;
     PSSpecifier *_addAddressButtonSpecifier;
     NSMutableArray *_addresses;
-    id _alertHandler;
+    id /* block */ _alertHandler;
     NSArray *_aliasGroupSpecifiers;
     NSArray *_blacklistGroupSpecifiers;
     PSSpecifier *_blankAddressSpecifier;
@@ -27,13 +16,29 @@
     PSSpecifier *_faceTimeEnabledGroupSpecifier;
     PSSpecifier *_faceTimeEnabledSpecifier;
     NSString *_pendingAddress;
+    NSArray *_receiveRelayCallsGroupSpecifiers;
     NSArray *_replyWithMessageGroupSpecifiers;
+    struct { 
+        unsigned int listeningForFinishedEditingEvents : 1; 
+        unsigned int appeared : 1; 
+        unsigned int ignoringTextFieldChanges : 1; 
+        unsigned int showEnableSwitch : 1; 
+        unsigned int refreshingCallerIdValues : 1; 
     } _settingsFlags;
+    BOOL _showReceiveRelayCalls;
 }
 
-@property(copy) id alertHandler;
-@property(copy) NSString * pendingAddress;
-@property BOOL showEnableSwitch;
+@property (nonatomic, retain) TUAccountsController *accountsController;
+@property (nonatomic, copy) id /* block */ alertHandler;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *pendingAddress;
+@property (nonatomic) BOOL showEnableSwitch;
+@property (nonatomic, readonly) BOOL showReceiveRelayCalls;
+@property (readonly) Class superclass;
+
++ (BOOL)_shouldForwardViewWillTransitionToSize;
 
 - (BOOL)_allAccountsAreDeactivated;
 - (id)_appleIDAccounts;
@@ -47,6 +52,8 @@
 - (void)_handleFaceTimeEntitlementStatusChanged;
 - (void)_handleFaceTimeStateChanged;
 - (void)_handleFailedAccountReactivation:(id)arg1 error:(id)arg2;
+- (void)_handleOutgoingRelayCallerIDChanged;
+- (void)_handleRelayCapabilitiesChanged;
 - (void)_handleSuccessfulAccountReactivation:(id)arg1;
 - (void)_hideLocaleChooser;
 - (id)_localeChooserForAccount:(id)arg1;
@@ -54,7 +61,7 @@
 - (id)_operationalAccountsForService:(int)arg1;
 - (BOOL)_popFromSettingsAnimated:(BOOL)arg1;
 - (void)_refreshFaceTimeSettingsDelayed:(id)arg1;
-- (void)_reloadSpecifier:(id)arg1 withBlock:(id)arg2;
+- (void)_reloadSpecifier:(id)arg1 withBlock:(id /* block */)arg2;
 - (void)_setupAccountHandlers;
 - (void)_setupAccountHandlersForDisabledOperation;
 - (void)_setupAccountHandlersForDisabling;
@@ -77,9 +84,10 @@
 - (id)_useableAccounts;
 - (id)accountSpecifiers;
 - (void)accountTappedWithSpecifier:(id)arg1;
+- (id)accountsController;
 - (void)addAddressTapped:(id)arg1;
 - (BOOL)additionalAliasesAvailable;
-- (id)alertHandler;
+- (id /* block */)alertHandler;
 - (void)alertView:(id)arg1 didDismissWithButtonIndex:(int)arg2;
 - (id)aliasDetailControllerForSpecifier:(id)arg1;
 - (id)aliasForSpecifier:(id)arg1;
@@ -101,6 +109,7 @@
 - (id)getAccountNameForSpecifier:(id)arg1;
 - (id)getAddAliasTextForSpecifier:(id)arg1;
 - (id)getFaceTimeEnabledForSpecifier:(id)arg1;
+- (id)getReceiveRelayedCallsEnabledForSpecifier:(id)arg1;
 - (int)groupIdForSpecifier:(id)arg1;
 - (int)groupIdForSpecifierId:(id)arg1;
 - (int)indexOfLastSpecifierInGroup:(id)arg1;
@@ -124,17 +133,21 @@
 - (void)refreshEnabledStateAnimated:(BOOL)arg1;
 - (void)refreshFaceTimeSettingsAnimated:(BOOL)arg1;
 - (void)refreshFaceTimeSettingsWithDelayAnimated:(BOOL)arg1;
+- (void)refreshReceiveRelayCallsSettingsAnimated:(BOOL)arg1;
 - (void)returnKeyPressed:(id)arg1;
-- (void)setAlertHandler:(id)arg1;
+- (void)setAccountsController:(id)arg1;
+- (void)setAlertHandler:(id /* block */)arg1;
 - (void)setAliasSelected:(id)arg1;
 - (void)setCallerId:(id)arg1;
-- (void)setFaceTimeEnabled:(id)arg1 specifier:(id)arg2 animated:(BOOL)arg3;
 - (void)setFaceTimeEnabled:(id)arg1 specifier:(id)arg2;
-- (void)setPendingAddress:(id)arg1 forSpecifier:(id)arg2;
+- (void)setFaceTimeEnabled:(id)arg1 specifier:(id)arg2 animated:(BOOL)arg3;
 - (void)setPendingAddress:(id)arg1;
+- (void)setPendingAddress:(id)arg1 forSpecifier:(id)arg2;
+- (void)setReceiveRelayedCallsEnabled:(id)arg1 specifier:(id)arg2;
 - (void)setShowEnableSwitch:(BOOL)arg1;
 - (BOOL)shouldReloadSpecifiersOnResume;
 - (BOOL)shouldShowBlacklistSettings;
+- (BOOL)shouldShowReceiveRelayCalls;
 - (BOOL)shouldShowReplyWithMessage;
 - (BOOL)showAccounts:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)showAddAliasButton:(BOOL)arg1 animated:(BOOL)arg2;
@@ -144,6 +157,8 @@
 - (void)showBlankAlias:(BOOL)arg1 animated:(BOOL)arg2;
 - (BOOL)showCallerId:(BOOL)arg1 animated:(BOOL)arg2;
 - (BOOL)showEnableSwitch;
+- (BOOL)showReceiveRelayCalls;
+- (void)showReceiveRelayCallsSettings:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)showReplyWithMessage:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)showSpecifiers:(id)arg1 afterGroupId:(id)arg2 animated:(BOOL)arg3;
 - (id)specifierList;
@@ -168,6 +183,6 @@
 - (void)viewDidDisappear:(BOOL)arg1;
 - (void)viewWillAppear:(BOOL)arg1;
 - (void)viewWillDisappear:(BOOL)arg1;
-- (void)willAnimateRotationToInterfaceOrientation:(int)arg1 duration:(double)arg2;
+- (void)viewWillTransitionToSize:(struct CGSize { float x1; float x2; })arg1 withTransitionCoordinator:(id)arg2;
 
 @end

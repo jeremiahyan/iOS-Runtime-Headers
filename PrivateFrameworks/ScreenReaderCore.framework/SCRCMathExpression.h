@@ -2,41 +2,39 @@
    Image: /System/Library/PrivateFrameworks/ScreenReaderCore.framework/ScreenReaderCore
  */
 
-@class NSArray, NSString, SCRCMathExpression;
-
 @interface SCRCMathExpression : NSObject {
     unsigned int _cachedMaximumDepth;
     SCRCMathExpression *_parent;
 }
 
-@property(readonly) BOOL beginsWithSpace;
-@property(readonly) BOOL canBeUsedWithBase;
-@property(readonly) BOOL canBeUsedWithRange;
-@property(readonly) BOOL canBeWrappedInLatexMathIndicators;
-@property(readonly) NSArray * children;
-@property(readonly) BOOL endsWithSpace;
-@property(readonly) unsigned int fractionLevel;
-@property(readonly) BOOL hasSimpleArrayOfChildren;
-@property(readonly) int integerValue;
-@property(readonly) BOOL isBaseSubSuperscript;
-@property(readonly) BOOL isEllipsis;
-@property(readonly) BOOL isFenceDelimiter;
-@property(readonly) BOOL isFunctionName;
-@property(readonly) BOOL isInteger;
-@property(readonly) BOOL isMultiRowTable;
-@property(readonly) BOOL isNaturalSuperscript;
-@property(readonly) BOOL isNumber;
-@property(readonly) BOOL isOperationSymbol;
-@property(readonly) BOOL isRangeSubSuperscript;
-@property(readonly) BOOL isSimpleNumericalFraction;
-@property(readonly) BOOL isTermSeparator;
-@property(readonly) BOOL isUnlinedFraction;
-@property(readonly) BOOL isWordOrAbbreviation;
-@property(readonly) NSString * latexFormatStringAsOver;
-@property(readonly) NSString * latexFormatStringAsUnder;
-@property SCRCMathExpression * parent;
-@property(readonly) NSArray * siblings;
-@property(readonly) NSArray * subExpressions;
+@property (nonatomic, readonly) BOOL beginsWithSpace;
+@property (nonatomic, readonly) BOOL canBeUsedWithBase;
+@property (nonatomic, readonly) BOOL canBeUsedWithRange;
+@property (nonatomic, readonly) BOOL canBeWrappedInLatexMathIndicators;
+@property (nonatomic, readonly) NSArray *children;
+@property (nonatomic, readonly) BOOL endsWithSpace;
+@property (nonatomic, readonly) unsigned int fractionLevel;
+@property (nonatomic, readonly) BOOL hasSimpleArrayOfChildren;
+@property (nonatomic, readonly) int integerValue;
+@property (nonatomic, readonly) BOOL isBaseSubSuperscript;
+@property (nonatomic, readonly) BOOL isEllipsis;
+@property (nonatomic, readonly) BOOL isFenceDelimiter;
+@property (nonatomic, readonly) BOOL isFunctionName;
+@property (nonatomic, readonly) BOOL isInteger;
+@property (nonatomic, readonly) BOOL isMultiRowTable;
+@property (nonatomic, readonly) BOOL isNaturalSuperscript;
+@property (nonatomic, readonly) BOOL isNumber;
+@property (nonatomic, readonly) BOOL isOperationSymbol;
+@property (nonatomic, readonly) BOOL isRangeSubSuperscript;
+@property (nonatomic, readonly) BOOL isSimpleNumericalFraction;
+@property (nonatomic, readonly) BOOL isTermSeparator;
+@property (nonatomic, readonly) BOOL isUnlinedFraction;
+@property (nonatomic, readonly) BOOL isWordOrAbbreviation;
+@property (nonatomic, readonly) NSString *latexFormatStringAsOver;
+@property (nonatomic, readonly) NSString *latexFormatStringAsUnder;
+@property (nonatomic) SCRCMathExpression *parent;
+@property (nonatomic, readonly) NSArray *siblings;
+@property (nonatomic, readonly) NSArray *subExpressions;
 
 + (Class)_classForExpressionType:(id)arg1;
 + (id)mathExpressionWithDictionary:(id)arg1;
@@ -54,8 +52,8 @@
 - (id)dollarCodeDescription;
 - (id)dollarCodeDescriptionAsBinomialCoefficientWithTreePosition:(id)arg1 numberOfOuterRadicals:(unsigned int)arg2;
 - (id)dollarCodeDescriptionAsMixedNumberFractionWithTreePosition:(id)arg1;
-- (id)dollarCodeDescriptionWithNumberOfOuterRadicals:(unsigned int)arg1 treePosition:(id)arg2 openOperator:(id)arg3 openOperatorTreePosition:(id)arg4 closeOperator:(id)arg5 closeOperatorTreePosition:(id)arg6;
 - (id)dollarCodeDescriptionWithNumberOfOuterRadicals:(unsigned int)arg1 treePosition:(id)arg2;
+- (id)dollarCodeDescriptionWithNumberOfOuterRadicals:(unsigned int)arg1 treePosition:(id)arg2 openOperator:(id)arg3 openOperatorTreePosition:(id)arg4 closeOperator:(id)arg5 closeOperatorTreePosition:(id)arg6;
 - (BOOL)endsWithSpace;
 - (id)fenceDelimiters;
 - (unsigned int)fractionLevel;
@@ -84,8 +82,8 @@
 - (id)latexIdentifierForFenceOperator:(id)arg1 isClosingOperator:(BOOL)arg2;
 - (id)latexIdentifierForIdentifier:(id)arg1;
 - (id)latexMathModeDescription;
-- (id)localizedAttributedStringForKey:(id)arg1 treePosition:(id)arg2;
 - (id)localizedAttributedStringForKey:(id)arg1;
+- (id)localizedAttributedStringForKey:(id)arg1 treePosition:(id)arg2;
 - (id)localizedSegmentOrderingForKey:(id)arg1;
 - (id)localizedStringForKey:(id)arg1;
 - (id)localizedStringForNumber:(id)arg1;
@@ -98,17 +96,17 @@
 - (id)siblings;
 - (id)speakableDescription;
 - (id)speakableDescriptionAsBinomialCoefficientWithSpeakingStyle:(int)arg1;
-- (id)speakableDescriptionWithSpeakingStyle:(int)arg1 arePausesAllowed:(BOOL)arg2 isPartOfWord:(BOOL)arg3;
-- (id)speakableDescriptionWithSpeakingStyle:(int)arg1 arePausesAllowed:(BOOL)arg2;
 - (id)speakableDescriptionWithSpeakingStyle:(int)arg1;
+- (id)speakableDescriptionWithSpeakingStyle:(int)arg1 arePausesAllowed:(BOOL)arg2;
+- (id)speakableDescriptionWithSpeakingStyle:(int)arg1 arePausesAllowed:(BOOL)arg2 isPartOfWord:(BOOL)arg3;
 - (id)speakableSegments:(id)arg1 withLocalizablePrefix:(id)arg2 localizableSuffix:(id)arg3;
 - (id)speakableSegments:(id)arg1 withPrefix:(id)arg2 suffix:(id)arg3;
 - (id)speakableSegmentsAsBinomialCoefficientWithSpeakingStyle:(int)arg1 upToDepth:(unsigned int)arg2 treePosition:(id)arg3;
 - (id)speakableSegmentsUpToDepth:(unsigned int)arg1;
+- (id)speakableSegmentsWithSpeakingStyle:(int)arg1 upToDepth:(unsigned int)arg2;
+- (id)speakableSegmentsWithSpeakingStyle:(int)arg1 upToDepth:(unsigned int)arg2 treePosition:(id)arg3;
 - (id)speakableSegmentsWithSpeakingStyle:(int)arg1 upToDepth:(unsigned int)arg2 treePosition:(id)arg3 localizablePrefix:(id)arg4 localizableSuffix:(id)arg5;
 - (id)speakableSegmentsWithSpeakingStyle:(int)arg1 upToDepth:(unsigned int)arg2 treePosition:(id)arg3 prefix:(id)arg4 suffix:(id)arg5;
-- (id)speakableSegmentsWithSpeakingStyle:(int)arg1 upToDepth:(unsigned int)arg2 treePosition:(id)arg3;
-- (id)speakableSegmentsWithSpeakingStyle:(int)arg1 upToDepth:(unsigned int)arg2;
 - (id)speakableSummary;
 - (id)subExpressions;
 

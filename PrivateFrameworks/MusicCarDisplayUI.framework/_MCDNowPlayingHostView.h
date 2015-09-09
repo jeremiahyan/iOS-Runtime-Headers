@@ -2,17 +2,13 @@
    Image: /System/Library/PrivateFrameworks/MusicCarDisplayUI.framework/MusicCarDisplayUI
  */
 
-@class NSArray;
-
 @interface _MCDNowPlayingHostView : UIView {
     NSArray *_responderViews;
 }
 
-@property(retain) NSArray * responderViews;
+@property (nonatomic, retain) NSArray *responderViews;
 
 - (void).cxx_destruct;
-- (void)attemptToMakeAFirstResponder;
-- (void)didMoveToWindow;
 - (id)responderViews;
 - (void)setResponderViews:(id)arg1;
 

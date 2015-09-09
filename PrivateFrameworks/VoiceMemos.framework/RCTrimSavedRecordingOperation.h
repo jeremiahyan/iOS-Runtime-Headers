@@ -2,19 +2,17 @@
    Image: /System/Library/PrivateFrameworks/VoiceMemos.framework/VoiceMemos
  */
 
-@class RCSavedRecording;
-
-@interface RCTrimSavedRecordingOperation : RCTrimAudioFileOperation {
+@interface RCTrimSavedRecordingOperation : RCTrimCompositionOperation {
     RCSavedRecording *_destinationRecording;
     RCSavedRecording *_sourceRecording;
 }
 
-@property(readonly) RCSavedRecording * destinationRecording;
-@property(readonly) RCSavedRecording * sourceRecording;
+@property (nonatomic, readonly) RCSavedRecording *destinationRecording;
+@property (nonatomic, readonly) RCSavedRecording *sourceRecording;
 
 - (void).cxx_destruct;
 - (id)destinationRecording;
-- (id)initWithSourceRecording:(id)arg1 destinationRecording:(id)arg2 timeRangeToKeep:(struct { double x1; double x2; })arg3;
+- (id)initWithSourceRecording:(id)arg1 destinationRecording:(id)arg2 timeRange:(struct { double x1; double x2; })arg3 trimMode:(int)arg4;
 - (void)main;
 - (id)sourceRecording;
 

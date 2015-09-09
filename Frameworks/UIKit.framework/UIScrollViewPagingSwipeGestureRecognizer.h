@@ -2,18 +2,16 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIDelayedAction;
-
 @interface UIScrollViewPagingSwipeGestureRecognizer : UIGestureRecognizer {
-    struct CGPoint { 
-        float x; 
-        float y; 
-    struct CGPoint { 
-        float x; 
-        float y; 
     int _directionalFailureCount;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _lastLocation;
     double _lastTime;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _startLocation;
     UIDelayedAction *_swipeFailureDelay;
 }

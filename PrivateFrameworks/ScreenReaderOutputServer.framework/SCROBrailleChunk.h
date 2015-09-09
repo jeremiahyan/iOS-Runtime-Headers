@@ -2,12 +2,7 @@
    Image: /System/Library/PrivateFrameworks/ScreenReaderOutputServer.framework/ScreenReaderOutputServer
  */
 
-@class NSMutableAttributedString, NSString;
-
 @interface SCROBrailleChunk : NSObject <NSCopying> {
-    struct _NSRange { 
-        unsigned int location; 
-        unsigned int length; 
     struct _NSRange { 
         unsigned int location; 
         unsigned int length; 
@@ -18,14 +13,18 @@
     BOOL _isFocused;
     BOOL _isTechnical;
     NSString *_language;
+    NSString *_overrideText;
     BOOL _showDotsSevenAndEight;
     BOOL _showEightDot;
     NSString *_text;
+    struct _NSRange { 
+        unsigned int location; 
+        unsigned int length; 
     } _textSelection;
     int _token;
 }
 
-@property(readonly) NSString * language;
+@property (nonatomic, readonly) NSString *language;
 
 + (void)initialize;
 
@@ -38,8 +37,9 @@
 - (id)description;
 - (BOOL)focused;
 - (BOOL)hasSelection;
-- (id)initWithText:(id)arg1 language:(id)arg2 selection:(struct _NSRange { unsigned int x1; unsigned int x2; }*)arg3 token:(int)arg4 focused:(BOOL)arg5 contractionMode:(int)arg6 showEightDot:(BOOL)arg7 showDotsSevenAndEight:(BOOL)arg8 technical:(BOOL)arg9;
 - (id)initWithText:(id)arg1 language:(id)arg2 selection:(struct _NSRange { unsigned int x1; unsigned int x2; }*)arg3 token:(int)arg4 focused:(BOOL)arg5 contractionMode:(int)arg6 showEightDot:(BOOL)arg7 showDotsSevenAndEight:(BOOL)arg8;
+- (id)initWithText:(id)arg1 language:(id)arg2 selection:(struct _NSRange { unsigned int x1; unsigned int x2; }*)arg3 token:(int)arg4 focused:(BOOL)arg5 contractionMode:(int)arg6 showEightDot:(BOOL)arg7 showDotsSevenAndEight:(BOOL)arg8 technical:(BOOL)arg9;
+- (id)initWithText:(id)arg1 overrideText:(id)arg2 language:(id)arg3 selection:(struct _NSRange { unsigned int x1; unsigned int x2; }*)arg4 token:(int)arg5 focused:(BOOL)arg6 contractionMode:(int)arg7 showEightDot:(BOOL)arg8 showDotsSevenAndEight:(BOOL)arg9 technical:(BOOL)arg10;
 - (BOOL)isFocusedOrSelected;
 - (id)language;
 - (int)locationForIndex:(int)arg1;

@@ -2,15 +2,19 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-@class <EKShareePickerViewControllerDelegate>, EKCalendarShareePicker, NSArray;
-
 @interface EKShareePickerViewController : UIViewController <EKEventAttendeePickerDelegate> {
     <EKShareePickerViewControllerDelegate> *_delegate;
     EKCalendarShareePicker *_picker;
 }
 
-@property <EKShareePickerViewControllerDelegate> * delegate;
-@property(copy) NSArray * sharees;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <EKShareePickerViewControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSArray *sharees;
+@property (readonly) Class superclass;
+
++ (BOOL)_shouldForwardViewWillTransitionToSize;
 
 - (void).cxx_destruct;
 - (id)_recipientFromSharee:(id)arg1;
@@ -27,6 +31,5 @@
 - (void)setSharees:(id)arg1;
 - (id)sharees;
 - (void)viewDidLoad;
-- (void)willAnimateRotationToInterfaceOrientation:(int)arg1 duration:(double)arg2;
 
 @end

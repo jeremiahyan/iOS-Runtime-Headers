@@ -2,25 +2,23 @@
    Image: /System/Library/PrivateFrameworks/ToneKit.framework/ToneKit
  */
 
-@class NSString, UIColor, UIFont, UILabel;
-
 @interface TKLabelContainerView : UIView {
+    UILabel *_label;
     struct UIEdgeInsets { 
         float top; 
         float left; 
         float bottom; 
         float right; 
-    UILabel *_label;
     } _labelPaddingInsets;
 }
 
-@property(setter=_setLabel:,retain) UILabel * _label;
-@property(retain) UIFont * labelFont;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } labelPaddingInsets;
-@property(retain) UIColor * labelShadowColor;
-@property struct UIOffset { float x1; float x2; } labelShadowOffset;
-@property(copy) NSString * labelText;
-@property(retain) UIColor * labelTextColor;
+@property (setter=_setLabel:, nonatomic, retain) UILabel *_label;
+@property (nonatomic, retain) UIFont *labelFont;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } labelPaddingInsets;
+@property (nonatomic, retain) UIColor *labelShadowColor;
+@property (nonatomic) struct UIOffset { float x1; float x2; } labelShadowOffset;
+@property (nonatomic, copy) NSString *labelText;
+@property (nonatomic, retain) UIColor *labelTextColor;
 
 - (id)_label;
 - (void)_setLabel:(id)arg1;

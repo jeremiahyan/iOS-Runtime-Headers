@@ -2,49 +2,49 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibrary.framework/PhotoLibrary
  */
 
-@class NSString, PLPhotoTilePlaceholderView, PLVideoView, UILabel, UIView;
-
 @interface PLImageView : UIImageView {
-    struct CGSize { 
-        float width; 
-        float height; 
-    unsigned int _shadowEnabled : 1;
-    unsigned int _suppressShadowDrawing : 1;
-    unsigned int _borderViewIsVisible : 1;
-    unsigned int _drawsBorder : 1;
     float _accessoryViewsAlpha;
     float _aspectRatio;
     UIView *_borderView;
+    unsigned int _borderViewIsVisible;
     UIView *_bottomRightAccessoryView;
+    unsigned int _drawsBorder;
     BOOL _edgeAntialiasingEnabled;
+    int _fullSizeImageOrientation;
+    PLTiledLayer *_fullSizeImageTiledLayer;
     double _lastBorderAlphaTime;
     double _lastShadowAlphaTime;
     UIView *_leftAccessoryView;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _leftAccessoryViewOffset;
     NSString *_name;
     float _placeholderScale;
     PLPhotoTilePlaceholderView *_placeholderView;
+    unsigned int _shadowEnabled;
     BOOL _showsPlaceholder;
+    unsigned int _suppressShadowDrawing;
     UILabel *_textBadge;
     float _transitionProgress;
     PLVideoView *_videoView;
 }
 
-@property float accessoryViewsAlpha;
-@property float borderAndAccessoriesAlpha;
-@property(getter=isBorderAndAccessoriesVisible) BOOL borderAndAccessoriesVisible;
-@property(retain) UIView * bottomRightAccessoryView;
-@property(getter=isDimmed) BOOL dimmed;
-@property BOOL drawsBorder;
-@property(retain) UIView * leftAccessoryView;
-@property struct CGSize { float x1; float x2; } leftAccessoryViewOffset;
-@property(copy) NSString * name;
-@property float placeholderScale;
-@property(readonly) struct CGSize { float x1; float x2; } placeholderSize;
-@property(getter=isShadowEnabled) BOOL shadowEnabled;
-@property(readonly) BOOL showsPlaceholder;
-@property float transitionProgress;
-@property(retain) PLVideoView * videoView;
+@property (nonatomic) float accessoryViewsAlpha;
+@property (nonatomic) float borderAndAccessoriesAlpha;
+@property (getter=isBorderAndAccessoriesVisible, nonatomic) BOOL borderAndAccessoriesVisible;
+@property (nonatomic, retain) UIView *bottomRightAccessoryView;
+@property (getter=isDimmed, nonatomic) BOOL dimmed;
+@property (nonatomic) BOOL drawsBorder;
+@property (nonatomic, retain) UIView *leftAccessoryView;
+@property (nonatomic) struct CGSize { float x1; float x2; } leftAccessoryViewOffset;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic) float placeholderScale;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } placeholderSize;
+@property (getter=isShadowEnabled, nonatomic) BOOL shadowEnabled;
+@property (nonatomic, readonly) BOOL showsPlaceholder;
+@property (nonatomic) float transitionProgress;
+@property (nonatomic, retain) PLVideoView *videoView;
 
 + (struct CGSize { float x1; float x2; })badgeOffset;
 + (void)initialize;
@@ -54,6 +54,7 @@
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_bottomRightAccessoryViewFrame;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_leftAccessoryViewFrame;
 - (void)_setShadowEnabled:(BOOL)arg1 force:(BOOL)arg2;
+- (struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })_transformForFullSizeImageTiledLayer;
 - (void)_updatePlaceholderAlpha;
 - (void)_updatePlaceholderLayout;
 - (void)_updateShadowPath;
@@ -75,17 +76,18 @@
 - (struct CGSize { float x1; float x2; })placeholderSize;
 - (void)renderSnapshotInContext:(struct CGContext { }*)arg1;
 - (void)setAccessoryViewsAlpha:(float)arg1;
-- (void)setBorderAndAccessoriesAlpha:(float)arg1 forced:(BOOL)arg2;
 - (void)setBorderAndAccessoriesAlpha:(float)arg1;
+- (void)setBorderAndAccessoriesAlpha:(float)arg1 forced:(BOOL)arg2;
 - (void)setBorderAndAccessoriesVisible:(BOOL)arg1;
-- (void)setBottomRightAccessoryView:(id)arg1 animated:(BOOL)arg2;
 - (void)setBottomRightAccessoryView:(id)arg1;
+- (void)setBottomRightAccessoryView:(id)arg1 animated:(BOOL)arg2;
 - (void)setDimmed:(BOOL)arg1;
 - (void)setDrawsBorder:(BOOL)arg1;
 - (void)setEdgeAntialiasingEnabled:(BOOL)arg1;
+- (void)setFullSizeImageJPEGData:(id)arg1 size:(struct CGSize { float x1; float x2; })arg2 orientation:(int)arg3;
 - (void)setImage:(id)arg1;
-- (void)setLeftAccessoryView:(id)arg1 animated:(BOOL)arg2;
 - (void)setLeftAccessoryView:(id)arg1;
+- (void)setLeftAccessoryView:(id)arg1 animated:(BOOL)arg2;
 - (void)setLeftAccessoryViewOffset:(struct CGSize { float x1; float x2; })arg1;
 - (void)setName:(id)arg1;
 - (void)setPlaceholderScale:(float)arg1;
@@ -95,10 +97,11 @@
 - (void)setTransitionProgress:(float)arg1;
 - (void)setVideoView:(id)arg1;
 - (BOOL)showsPlaceholder;
-- (struct CGSize { float x1; float x2; })sizeThatFits:(struct CGSize { float x1; float x2; })arg1 allowRounding:(BOOL)arg2;
 - (struct CGSize { float x1; float x2; })sizeThatFits:(struct CGSize { float x1; float x2; })arg1;
+- (struct CGSize { float x1; float x2; })sizeThatFits:(struct CGSize { float x1; float x2; })arg1 allowRounding:(BOOL)arg2;
 - (id)textBadgeString;
 - (float)transitionProgress;
+- (void)updateFullSizeImageVisibleArea;
 - (id)videoView;
 
 @end

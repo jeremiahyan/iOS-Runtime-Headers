@@ -2,10 +2,8 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class TSDBezierPath;
-
 @interface MFPPath : NSObject {
-    TSDBezierPath *mPath;
+    OITSDBezierPath *mPath;
 }
 
 - (void)dealloc;

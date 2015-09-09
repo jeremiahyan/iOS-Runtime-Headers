@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSMutableArray, NSString;
-
 @interface GEORating : PBCodable <NSCopying> {
     struct { 
         unsigned int maxScore : 1; 
@@ -20,20 +18,19 @@
     NSString *_uRL;
 }
 
-@property BOOL hasMaxScore;
-@property BOOL hasNumberOfRatings;
-@property BOOL hasNumberOfReviews;
-@property(readonly) BOOL hasProvider;
-@property BOOL hasScore;
-@property(readonly) BOOL hasURL;
-@property double maxScore;
-@property int numberOfRatings;
-@property int numberOfReviews;
-@property(readonly) float numberOfStars;
-@property(retain) NSString * provider;
-@property(retain) NSMutableArray * reviews;
-@property double score;
-@property(retain) NSString * uRL;
+@property (nonatomic) BOOL hasMaxScore;
+@property (nonatomic) BOOL hasNumberOfRatings;
+@property (nonatomic) BOOL hasNumberOfReviews;
+@property (nonatomic, readonly) BOOL hasProvider;
+@property (nonatomic) BOOL hasScore;
+@property (nonatomic, readonly) BOOL hasURL;
+@property (nonatomic) double maxScore;
+@property (nonatomic) int numberOfRatings;
+@property (nonatomic) int numberOfReviews;
+@property (nonatomic, retain) NSString *provider;
+@property (nonatomic, retain) NSMutableArray *reviews;
+@property (nonatomic) double score;
+@property (nonatomic, retain) NSString *uRL;
 
 - (void)addReview:(id)arg1;
 - (void)clearReviews;
@@ -49,11 +46,13 @@
 - (BOOL)hasScore;
 - (BOOL)hasURL;
 - (unsigned int)hash;
+- (id)initWithPlaceDataRating:(id)arg1 reviews:(id)arg2;
+- (id)initWithSampleSizeForUserRatingScore:(unsigned int)arg1 normalizedUserRatingScore:(float)arg2;
 - (BOOL)isEqual:(id)arg1;
 - (double)maxScore;
+- (void)mergeFrom:(id)arg1;
 - (int)numberOfRatings;
 - (int)numberOfReviews;
-- (float)numberOfStars;
 - (id)provider;
 - (BOOL)readFrom:(id)arg1;
 - (id)reviewAtIndex:(unsigned int)arg1;

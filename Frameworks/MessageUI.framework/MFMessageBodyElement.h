@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
  */
 
-@class MFMessageBodyParser, NSArray;
-
 @interface MFMessageBodyElement : NSObject <MFMessageBodyElement_Private> {
     int _attributes;
     unsigned int _externalRetainCount;
@@ -13,8 +11,12 @@
     int _validAttributes;
 }
 
-@property(retain) NSArray * nodes;
-@property MFMessageBodyParser * parser;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) NSArray *nodes;
+@property (nonatomic) MFMessageBodyParser *parser;
+@property (readonly) Class superclass;
 
 - (BOOL)_hasValueForAttributes:(int)arg1;
 - (void)_setValue:(int)arg1 forAttributes:(int)arg2;

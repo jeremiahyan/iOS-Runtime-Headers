@@ -2,24 +2,25 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSArray, NSNumber, NSString;
+@interface SASportsMetadataGroup : AceObject <SAAceSerializable>
 
-@interface SASportsMetadataGroup : AceObject <SAAceSerializable> {
-}
-
-@property(copy) NSString * description;
-@property(copy) NSArray * metadata;
-@property(copy) NSNumber * selected;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, copy) NSString *groupTitle;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSArray *metadata;
+@property (nonatomic, copy) NSNumber *selected;
+@property (readonly) Class superclass;
 
 + (id)metadataGroup;
 + (id)metadataGroupWithDictionary:(id)arg1 context:(id)arg2;
 
-- (id)description;
 - (id)encodedClassName;
 - (id)groupIdentifier;
+- (id)groupTitle;
 - (id)metadata;
 - (id)selected;
-- (void)setDescription:(id)arg1;
+- (void)setGroupTitle:(id)arg1;
 - (void)setMetadata:(id)arg1;
 - (void)setSelected:(id)arg1;
 

@@ -2,24 +2,27 @@
    Image: /System/Library/PrivateFrameworks/BulletinBoard.framework/BulletinBoard
  */
 
-@class BBBulletin;
-
-@interface BBBulletinUpdate : NSObject <NSCoding> {
+@interface BBBulletinUpdate : NSObject {
     BBBulletin *_bulletin;
-    unsigned int _transactionID;
-    int _updateType;
+    unsigned int _feeds;
+    BOOL _shouldSync;
+    int _type;
 }
 
-@property(readonly) BBBulletin * bulletin;
-@property(readonly) unsigned int transactionID;
-@property(readonly) int updateType;
+@property (nonatomic, readonly, retain) BBBulletin *bulletin;
+@property (nonatomic, readonly) unsigned int feeds;
+@property (nonatomic, readonly) BOOL shouldSync;
+@property (nonatomic, readonly) int type;
+
++ (id)modifyForBulletin:(id)arg1 feeds:(unsigned int)arg2;
++ (id)removeForBulletin:(id)arg1 feeds:(unsigned int)arg2 shouldSync:(BOOL)arg3;
 
 - (id)bulletin;
 - (void)dealloc;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithBulletin:(id)arg1 updateType:(int)arg2 transactionID:(unsigned int)arg3;
-- (id)initWithCoder:(id)arg1;
-- (unsigned int)transactionID;
-- (int)updateType;
+- (unsigned int)feeds;
+- (id)initWithBulletin:(id)arg1 feeds:(unsigned int)arg2 type:(int)arg3 shouldSync:(BOOL)arg4;
+- (BOOL)shouldSync;
+- (int)type;
+- (id)typeDescription;
 
 @end

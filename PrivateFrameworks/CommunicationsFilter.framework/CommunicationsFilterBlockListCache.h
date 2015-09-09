@@ -2,9 +2,9 @@
    Image: /System/Library/PrivateFrameworks/CommunicationsFilter.framework/CommunicationsFilter
  */
 
-@class NSMutableArray;
-
 @interface CommunicationsFilterBlockListCache : NSObject {
+    BOOL _listIsEmpty;
+    int _notifyEmptyListToken;
     NSMutableArray *_recentItems;
 }
 
@@ -13,5 +13,6 @@
 - (id)init;
 - (void)removeItemFromCache:(id)arg1;
 - (void)setResponse:(BOOL)arg1 forItem:(id)arg2;
+- (void)syncListEmptyState;
 
 @end

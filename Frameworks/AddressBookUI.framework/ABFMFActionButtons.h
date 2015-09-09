@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class ABUnknownPersonViewController, UIButton;
-
 @interface ABFMFActionButtons : NSObject <ABFMFActionButtonsDelegate> {
     UIButton *_callButton;
     UIButton *_facetimeButton;
@@ -11,8 +9,12 @@
     ABUnknownPersonViewController *_upvc;
 }
 
-@property void* displayedPerson;
-@property(readonly) BOOL hasTelephonyCapability;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) void*displayedPerson;
+@property (nonatomic, readonly) BOOL hasTelephonyCapability;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)dealloc;
 - (void*)displayedPerson;

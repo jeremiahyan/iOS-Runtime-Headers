@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class KNAbstractSlide, NSObject<TSDContainerInfo>, TSDFill, TSDInfoGeometry, TSPObject<TSDOwningAttachment>, TSSPropertySetChangeDetails, TSSStylesheet;
-
-@interface KNSlideBackgroundInfo : NSObject <TSDChangeableInfo, TSKTransformableObject> {
+@interface KNSlideBackgroundInfo : NSObject <TSDChangeableInfo, TSKDocumentObject, TSKTransformableObject> {
     TSSPropertySetChangeDetails *mChanges;
     TSDInfoGeometry *mGeometry;
     NSObject<TSDContainerInfo> *mParentInfo;
@@ -12,23 +10,27 @@
     TSSStylesheet *mStylesheet;
 }
 
-@property(getter=isAnchoredToText,readonly) BOOL anchoredToText;
-@property(getter=isAttachedToBodyText,readonly) BOOL attachedToBodyText;
-@property(readonly) Class editorClass;
-@property(readonly) TSDFill * fill;
-@property(getter=isFloatingAboveText,readonly) BOOL floatingAboveText;
-@property(copy) TSDInfoGeometry * geometry;
-@property(getter=isInlineWithText,readonly) BOOL inlineWithText;
-@property(readonly) BOOL isUserModifiable;
-@property BOOL matchesObjectPlaceholderGeometry;
-@property TSPObject<TSDOwningAttachment> * owningAttachment;
-@property(readonly) TSPObject<TSDOwningAttachment> * owningAttachmentNoRecurse;
-@property NSObject<TSDContainerInfo> * parentInfo;
-@property(readonly) KNAbstractSlide * slide;
+@property (getter=isAnchoredToText, nonatomic, readonly) BOOL anchoredToText;
+@property (getter=isAttachedToBodyText, nonatomic, readonly) BOOL attachedToBodyText;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) TSDFill *fill;
+@property (getter=isFloatingAboveText, nonatomic, readonly) BOOL floatingAboveText;
+@property (nonatomic, copy) TSDInfoGeometry *geometry;
+@property (readonly) unsigned int hash;
+@property (getter=isInlineWithText, nonatomic, readonly) BOOL inlineWithText;
+@property (nonatomic, readonly) BOOL isUserModifiable;
+@property (nonatomic) BOOL matchesObjectPlaceholderGeometry;
+@property (nonatomic) TSPObject<TSDOwningAttachment> *owningAttachment;
+@property (nonatomic, readonly) TSPObject<TSDOwningAttachment> *owningAttachmentNoRecurse;
+@property (nonatomic) NSObject<TSDContainerInfo> *parentInfo;
+@property (nonatomic, readonly) KNAbstractSlide *slide;
+@property (readonly) Class superclass;
 
 + (id)backgroundWithSlide:(id)arg1 andGeometry:(id)arg2;
 
 - (void)beginCollectingChanges;
+- (void)clearBackPointerToParentInfoIfNeeded:(id)arg1;
 - (id)commandForTransformingByTransform:(struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })arg1 context:(id)arg2 transformedObjects:(id)arg3 inBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg4;
 - (id)copyWithContext:(id)arg1;
 - (void)dealloc;
@@ -51,7 +53,12 @@
 - (void)setGeometry:(id)arg1;
 - (void)setOwningAttachment:(id)arg1;
 - (void)setParentInfo:(id)arg1;
+- (void)setPrimitiveGeometry:(id)arg1;
 - (id)slide;
+- (void)wasAddedToDocumentRoot:(id)arg1 dolcContext:(id)arg2;
+- (void)wasRemovedFromDocumentRoot:(id)arg1;
+- (void)willBeAddedToDocumentRoot:(id)arg1 dolcContext:(id)arg2;
+- (void)willBeRemovedFromDocumentRoot:(id)arg1;
 - (void)willChangeProperty:(int)arg1;
 
 @end

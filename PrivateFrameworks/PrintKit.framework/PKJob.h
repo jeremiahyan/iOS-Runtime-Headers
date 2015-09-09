@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/PrintKit.framework/PrintKit
  */
 
-@class NSData, NSDate, NSString, PKPrintSettings;
-
 @interface PKJob : NSObject {
     int mediaProgress;
     int mediaSheets;
@@ -12,6 +10,7 @@
     NSString *printerDisplayName;
     int printerKind;
     NSString *printerLocation;
+    int remoteJobId;
     PKPrintSettings *settings;
     int state;
     NSData *thumbnailImage;
@@ -20,25 +19,25 @@
     NSDate *timeAtProcessing;
 }
 
-@property int mediaProgress;
-@property int mediaSheets;
-@property int mediaSheetsCompleted;
-@property int number;
-@property(retain) NSString * printerDisplayName;
-@property int printerKind;
-@property(retain) NSString * printerLocation;
-@property(retain) PKPrintSettings * settings;
-@property int state;
-@property(retain) NSData * thumbnailImage;
-@property(retain) NSDate * timeAtCompleted;
-@property(retain) NSDate * timeAtCreation;
-@property(retain) NSDate * timeAtProcessing;
+@property (nonatomic) int mediaProgress;
+@property (nonatomic) int mediaSheets;
+@property (nonatomic) int mediaSheetsCompleted;
+@property (nonatomic) int number;
+@property (nonatomic, retain) NSString *printerDisplayName;
+@property (nonatomic) int printerKind;
+@property (nonatomic, retain) NSString *printerLocation;
+@property (nonatomic) int remoteJobId;
+@property (nonatomic, retain) PKPrintSettings *settings;
+@property (nonatomic) int state;
+@property (nonatomic, retain) NSData *thumbnailImage;
+@property (nonatomic, retain) NSDate *timeAtCompleted;
+@property (nonatomic, retain) NSDate *timeAtCreation;
+@property (nonatomic, retain) NSDate *timeAtProcessing;
 
 + (id)currentJob;
 + (id)jobs;
 
 - (int)cancel;
-- (BOOL)isEqual:(id)arg1;
 - (int)mediaProgress;
 - (int)mediaSheets;
 - (int)mediaSheetsCompleted;
@@ -46,6 +45,7 @@
 - (id)printerDisplayName;
 - (int)printerKind;
 - (id)printerLocation;
+- (int)remoteJobId;
 - (void)setMediaProgress:(int)arg1;
 - (void)setMediaSheets:(int)arg1;
 - (void)setMediaSheetsCompleted:(int)arg1;
@@ -53,6 +53,7 @@
 - (void)setPrinterDisplayName:(id)arg1;
 - (void)setPrinterKind:(int)arg1;
 - (void)setPrinterLocation:(id)arg1;
+- (void)setRemoteJobId:(int)arg1;
 - (void)setSettings:(id)arg1;
 - (void)setState:(int)arg1;
 - (void)setThumbnailImage:(id)arg1;

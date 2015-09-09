@@ -2,16 +2,7 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class <NSISEngineDelegate>, NSISVariable, NSMapTable, NSMutableArray, NSMutableDictionary, NSMutableSet;
-
 @interface NSISEngine : NSObject <NSISVariableDelegate> {
-    struct CGSize { 
-        float width; 
-        float height; 
     BOOL _accumulatingRemovals;
     int _automaticOptimizationDisabledCount;
     NSMapTable *_brokenConstraintNegativeErrors;
@@ -19,6 +10,9 @@
     unsigned int _changeCountAtLastOptimization;
     <NSISEngineDelegate> *_delegate;
     int _engineDelegateCallsDisabledCount;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _engineScalingCoefficients;
     NSISVariable *_headForObjectiveRow;
     struct __CFDictionary { } *_integralizationAdjustmentsForConstraintMarkers;
@@ -31,22 +25,26 @@
     NSMapTable *_rowsCrossIndex;
     BOOL _shouldIntegralize;
     unsigned int _totalChangeCount;
-    id _unsatisfiabilityHandler;
+    id /* block */ _unsatisfiabilityHandler;
     int _variableDelegateCallsDisabledCount;
     NSMutableSet *_variablesWithIntegralizationViolations;
     NSMutableArray *_variablesWithValueRestrictionViolations;
 }
 
-@property <NSISEngineDelegate> * delegate;
-@property struct CGSize { float x1; float x2; } engineScalingCoefficients;
-@property(retain) NSISVariable * headForObjectiveRow;
-@property struct __CFDictionary { }* integralizationAdjustmentsForConstraintMarkers;
+@property (readonly, copy) NSString *debugDescription;
+@property <NSISEngineDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) struct CGSize { float x1; float x2; } engineScalingCoefficients;
+@property (readonly) unsigned int hash;
+@property (retain) NSISVariable *headForObjectiveRow;
+@property struct __CFDictionary { }*integralizationAdjustmentsForConstraintMarkers;
 @property BOOL revertsAfterUnsatisfiabilityHandler;
-@property(retain) NSMapTable * rows;
-@property(retain) NSMapTable * rowsCrossIndex;
+@property (retain) NSMapTable *rows;
+@property (retain) NSMapTable *rowsCrossIndex;
 @property BOOL shouldIntegralize;
-@property(retain) NSMutableSet * variablesWithIntegralizationViolations;
-@property(retain) NSMutableArray * variablesWithValueRestrictionViolations;
+@property (readonly) Class superclass;
+@property (retain) NSMutableSet *variablesWithIntegralizationViolations;
+@property (retain) NSMutableArray *variablesWithValueRestrictionViolations;
 
 - (id)_brokenConstraintNegativeErrors;
 - (id)_brokenConstraintNegativeErrorsIfAvailable;
@@ -74,9 +72,9 @@
 - (id)delegate;
 - (id)description;
 - (struct CGSize { float x1; float x2; })engineScalingCoefficients;
-- (void)enumerateOriginalConstraints:(id)arg1;
-- (void)enumerateRows:(id)arg1;
-- (void)enumerateRowsCrossIndex:(id)arg1;
+- (void)enumerateOriginalConstraints:(id /* block */)arg1;
+- (void)enumerateRows:(id /* block */)arg1;
+- (void)enumerateRowsCrossIndex:(id /* block */)arg1;
 - (id)errorVariableIntroducedByBreakingConstraintWithMarker:(id)arg1 errorIsPositive:(BOOL)arg2;
 - (BOOL)exerciseAmbiguityInVariable:(id)arg1;
 - (id)fallbackMarkerForConstraintToBreakInRowWithHead:(id)arg1 body:(id)arg2;
@@ -100,7 +98,7 @@
 - (unsigned int)numberOfConstraintsEligibleForAdjustmentToIntegralizeVariable:(id)arg1 ignoringConstraintsWithMarkers:(id)arg2;
 - (unsigned int)optimize;
 - (id)outgoingRowHeadForRemovingConstraintWithMarker:(id)arg1;
-- (void)performModifications:(id)arg1 withUnsatisfiableConstraintsHandler:(id)arg2;
+- (void)performModifications:(id /* block */)arg1 withUnsatisfiableConstraintsHandler:(id /* block */)arg2;
 - (unsigned int)pivotCount;
 - (void)pivotToMakeBodyVar:(id)arg1 newHeadOfRowWithHead:(id)arg2 andDropRow:(BOOL)arg3;
 - (id)positiveErrorVarForBrokenConstraintWithMarker:(id)arg1;
@@ -141,7 +139,7 @@
 - (void)substituteOutAllOccurencesOfBodyVar:(id)arg1 withExpression:(id)arg2;
 - (BOOL)tryAddingDirectly:(id)arg1;
 - (BOOL)tryToAddConstraintWithMarker:(id)arg1 expression:(id)arg2 integralizationAdjustment:(float)arg3 mutuallyExclusiveConstraints:(id*)arg4;
-- (BOOL)tryToChangeConstraintSuchThatMarker:(id)arg1 isReplacedByMarkerPlusDelta:(float)arg2 undoHandler:(id)arg3;
+- (BOOL)tryToChangeConstraintSuchThatMarker:(id)arg1 isReplacedByMarkerPlusDelta:(float)arg2 undoHandler:(id /* block */)arg3;
 - (id)tryToOptimizeReturningMutuallyExclusiveConstraints;
 - (BOOL)tryUsingArtificialVariableToAddConstraintWithMarker:(id)arg1 rowBody:(id)arg2 usingInfeasibilityHandlingBehavior:(int)arg3 mutuallyExclusiveConstraints:(id*)arg4;
 - (float)valueForVariable:(id)arg1;
@@ -151,9 +149,9 @@
 - (id)variablesWithIntegralizationViolations;
 - (id)variablesWithValueRestrictionViolations;
 - (void)verifyInternalIntegrity;
-- (void)withAutomaticOptimizationDisabled:(id)arg1;
-- (void)withBehaviors:(unsigned int)arg1 performModifications:(id)arg2;
-- (void)withDelegateCallsDisabled:(id)arg1;
-- (void)withoutOptimizingAtEndRunBlockWithAutomaticOptimizationDisabled:(id)arg1;
+- (void)withAutomaticOptimizationDisabled:(id /* block */)arg1;
+- (void)withBehaviors:(unsigned int)arg1 performModifications:(id /* block */)arg2;
+- (void)withDelegateCallsDisabled:(id /* block */)arg1;
+- (void)withoutOptimizingAtEndRunBlockWithAutomaticOptimizationDisabled:(id /* block */)arg1;
 
 @end

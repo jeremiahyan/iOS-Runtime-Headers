@@ -2,31 +2,26 @@
    Image: /System/Library/PrivateFrameworks/WebCore.framework/WebCore
  */
 
-@class DOMElement, DOMHTMLCollection, NSString;
+@interface DOMHTMLDocument : DOMDocument
 
-@interface DOMHTMLDocument : DOMDocument {
-}
+@property (copy) NSString *alinkColor;
+@property (copy) NSString *bgColor;
+@property (readonly, copy) NSString *compatMode;
+@property (copy) NSString *designMode;
+@property (copy) NSString *dir;
+@property (readonly) DOMHTMLCollection *embeds;
+@property (copy) NSString *fgColor;
+@property (readonly) int height;
+@property (copy) NSString *linkColor;
+@property (readonly) DOMHTMLCollection *plugins;
+@property (readonly) DOMHTMLCollection *scripts;
+@property (copy) NSString *vlinkColor;
+@property (readonly) int width;
 
-@property(readonly) DOMElement * activeElement;
-@property(copy) NSString * alinkColor;
-@property(copy) NSString * bgColor;
-@property(readonly) NSString * compatMode;
-@property(copy) NSString * designMode;
-@property(copy) NSString * dir;
-@property(readonly) DOMHTMLCollection * embeds;
-@property(copy) NSString * fgColor;
-@property(readonly) int height;
-@property(copy) NSString * linkColor;
-@property(readonly) DOMHTMLCollection * plugins;
-@property(readonly) DOMHTMLCollection * scripts;
-@property(copy) NSString * vlinkColor;
-@property(readonly) int width;
-
-+ (id)mf_listElements;
+// Image: /System/Library/PrivateFrameworks/WebCore.framework/WebCore
 
 - (id)_createDocumentFragmentWithMarkupString:(id)arg1 baseURLString:(id)arg2;
 - (id)_createDocumentFragmentWithText:(id)arg1;
-- (id)activeElement;
 - (id)alinkColor;
 - (id)bgColor;
 - (void)captureEvents;
@@ -39,10 +34,8 @@
 - (id)dir;
 - (id)embeds;
 - (id)fgColor;
-- (BOOL)hasFocus;
 - (int)height;
 - (id)linkColor;
-- (id)mf_createMessageQuoteElement;
 - (void)open;
 - (id)plugins;
 - (void)releaseEvents;
@@ -58,5 +51,11 @@
 - (int)width;
 - (void)write:(id)arg1;
 - (void)writeln:(id)arg1;
+
+// Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
+
++ (id)mf_listElements;
+
+- (id)mf_createMessageQuoteElement;
 
 @end

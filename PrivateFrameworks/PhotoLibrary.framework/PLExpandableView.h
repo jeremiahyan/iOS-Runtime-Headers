@@ -2,13 +2,8 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibrary.framework/PhotoLibrary
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class <PLExpandableViewDelegate>;
-
 @interface PLExpandableView : UIView {
+    id /* block */ _collapsingCompletionHandler;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -18,27 +13,8 @@
             float width; 
             float height; 
         } size; 
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
-    struct CGPoint { 
-        float x; 
-        float y; 
-    struct CGPoint { 
-        float x; 
-        float y; 
-    struct CGPoint { 
-        float x; 
-        float y; 
-    struct CGPoint { 
-        float x; 
-        float y; 
+    } _contractedFrame;
+    <PLExpandableViewDelegate> *_delegate;
     struct { 
         unsigned int state : 3; 
         unsigned int prevState : 3; 
@@ -59,26 +35,44 @@
         unsigned int delegateWillCancelCollapsing : 1; 
         unsigned int delegateDidCancelCollapsing : 1; 
         unsigned int delegateExpandedFractionChanged : 1; 
-    id _collapsingCompletionHandler;
-    } _contractedFrame;
-    <PLExpandableViewDelegate> *_delegate;
     } _expandFlags;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } _expandedFrame;
-    id _expansionCompletionHandler;
+    id /* block */ _expansionCompletionHandler;
     float _expansionFraction;
     unsigned int _leftTouchIndex;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _leftTouchLocation;
     float _pinchVelocity;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _previousLeftLocation;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _previousRightLocation;
     unsigned int _rightTouchIndex;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _rightTouchLocation;
     double _trackingTimeInterval;
 }
 
-@property BOOL allowsExpansion;
-@property struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } contractedFrame;
-@property struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } expandedFrame;
+@property (nonatomic) BOOL allowsExpansion;
+@property (nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } contractedFrame;
+@property (nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } expandedFrame;
 
 - (BOOL)_canPinch;
 - (void)_notifyDidCancelCollapsing;
@@ -104,7 +98,7 @@
 - (void)beginTrackingPinch:(id)arg1;
 - (BOOL)canCollapse;
 - (void)canceledPinch:(id)arg1;
-- (void)collapseWithAnimation:(BOOL)arg1 completion:(id)arg2;
+- (void)collapseWithAnimation:(BOOL)arg1 completion:(id /* block */)arg2;
 - (float)completeTrackingPinch:(id)arg1 toState:(int)arg2 duration:(double)arg3;
 - (float)continueTrackingPinch:(id)arg1;
 - (void)continuedPinch:(id)arg1;
@@ -112,7 +106,7 @@
 - (void)dealloc;
 - (id)delegate;
 - (void)didMoveToWindow;
-- (void)expandWithAnimation:(BOOL)arg1 completion:(id)arg2;
+- (void)expandWithAnimation:(BOOL)arg1 completion:(id /* block */)arg2;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })expandedFrame;
 - (float)expansionFraction;
 - (void)finishTransition;

@@ -2,16 +2,11 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface TSCH3DChartAreaSceneObject : TSCH3DChartSeriesSceneObject {
-}
+@interface TSCH3DChartAreaSceneObject : TSCH3DChartSeriesSceneObject
 
 + (float)chartSeriesDepth;
-+ (float)chartSeriesDepthOffsetFactor;
 + (id)chartSeriesType;
-+ (struct MeshData { id x1; id x2; })createMeshForSeries:(id)arg1;
-
-- (BOOL)alwaysRenderForElementBlendAnimationClip;
-- (id)areaClipPlaneEffect;
-- (void)postAddDataToGeometryResourceAnimationData:(id)arg1;
++ (struct MeshData { id x1; })createMeshForSeries:(id)arg1;
++ (BOOL)supportsChartSeriesDepthOffset;
 
 @end

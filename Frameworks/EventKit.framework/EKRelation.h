@@ -2,26 +2,30 @@
    Image: /System/Library/Frameworks/EventKit.framework/EventKit
  */
 
-@class NSString;
-
 @interface EKRelation : NSObject {
     NSString *_entityName;
-    NSString *_inversePropertyName;
+    id /* block */ _inversePropertyIsApplicable;
+    NSSet *_inversePropertyNames;
     BOOL _ownsRelated;
     BOOL _toMany;
 }
 
-@property(readonly) NSString * inversePropertyName;
-@property(readonly) BOOL ownsRelatedObject;
-@property(readonly) BOOL toMany;
+@property (nonatomic, copy) id /* block */ inversePropertyIsApplicable;
+@property (nonatomic, readonly) NSSet *inversePropertyNames;
+@property (nonatomic, readonly) BOOL ownsRelatedObject;
+@property (nonatomic, readonly) BOOL toMany;
 
-+ (id)relationWithEntityName:(id)arg1 toMany:(BOOL)arg2 inversePropertyName:(id)arg3 ownsRelated:(BOOL)arg4;
-+ (id)relationWithEntityName:(id)arg1 toMany:(BOOL)arg2 inversePropertyName:(id)arg3;
++ (id)relationWithEntityName:(id)arg1 toMany:(BOOL)arg2 inversePropertyNames:(id)arg3;
++ (id)relationWithEntityName:(id)arg1 toMany:(BOOL)arg2 inversePropertyNames:(id)arg3 ownsRelated:(BOOL)arg4;
 
 - (void)dealloc;
-- (id)initWithEntityName:(id)arg1 toMany:(BOOL)arg2 inversePropertyName:(id)arg3 ownsRelated:(BOOL)arg4;
-- (id)inversePropertyName;
+- (id)description;
+- (id)initWithEntityName:(id)arg1 toMany:(BOOL)arg2 inversePropertyNames:(id)arg3 ownsRelated:(BOOL)arg4;
+- (id /* block */)inversePropertyIsApplicable;
+- (id)inversePropertyNames;
 - (BOOL)ownsRelatedObject;
+- (void)setInversePropertyIsApplicable:(id /* block */)arg1;
+- (BOOL)shouldSetInverseProperty:(id)arg1 onObject:(id)arg2 forObject:(id)arg3;
 - (BOOL)toMany;
 
 @end

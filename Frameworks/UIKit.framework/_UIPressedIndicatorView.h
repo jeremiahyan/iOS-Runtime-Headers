@@ -2,9 +2,8 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIImage;
-
 @interface _UIPressedIndicatorView : UIView {
+    UIImage *_image;
     struct { 
         struct { 
             struct CGRect { 
@@ -102,7 +101,6 @@
                 } size; 
             } right; 
         } bottom; 
-    UIImage *_image;
     } _slices;
 }
 

@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray;
-
 @interface _UIAnimatedImage : UIImage {
     double _duration;
     NSArray *_images;
@@ -21,17 +19,21 @@
 - (BOOL)_isResizable;
 - (BOOL)_isTiledWhenStretchedToSize:(struct CGSize { float x1; float x2; })arg1;
 - (id)_selectedTabBarItemImageWithTintColor:(id)arg1 metrics:(int)arg2 style:(int)arg3 forScreenScale:(float)arg4;
+- (void)_setAlignmentRectInsets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
 - (void)_setAlwaysStretches:(BOOL)arg1;
 - (id)_unselectedTabBarItemImageWithTintColor:(id)arg1 metrics:(int)arg2 style:(int)arg3 forScreenScale:(float)arg4;
+- (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })alignmentRectInsets;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })capInsets;
 - (void)dealloc;
 - (double)duration;
 - (void)encodeWithCoder:(id)arg1;
+- (unsigned int)hash;
 - (id)images;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithImages:(id)arg1 duration:(double)arg2;
-- (id)resizableImageWithCapInsets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1 resizingMode:(int)arg2;
+- (BOOL)isEqual:(id)arg1;
 - (id)resizableImageWithCapInsets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
+- (id)resizableImageWithCapInsets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1 resizingMode:(int)arg2;
 - (int)resizingMode;
 
 @end

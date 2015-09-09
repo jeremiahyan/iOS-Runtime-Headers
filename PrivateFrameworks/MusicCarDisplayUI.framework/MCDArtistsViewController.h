@@ -6,11 +6,14 @@
     BOOL _allowsActions;
 }
 
-@property BOOL allowsActions;
+@property (nonatomic) BOOL allowsActions;
 
-+ (id)actionCellConfigurationClasses;
-+ (Class)musicProxyClass;
++ (id)actionCellConfigurationClassesForLocation:(unsigned int)arg1;
++ (int)groupingType;
++ (id)itemPersistentIDProperty;
++ (id)persistentIDProperty;
 
+- (void)_limitedUIDidChange;
 - (BOOL)allowsActions;
 - (void)setAllowsActions:(BOOL)arg1;
 - (BOOL)shouldShowActionCellConfiguration:(Class)arg1;

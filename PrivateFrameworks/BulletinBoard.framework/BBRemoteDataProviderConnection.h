@@ -2,30 +2,43 @@
    Image: /System/Library/PrivateFrameworks/BulletinBoard.framework/BulletinBoard
  */
 
-@class <BBRemoteDataProviderConnectionDelegate>, BBXPCIncomingConnection, NSMutableSet, NSString;
-
-@interface BBRemoteDataProviderConnection : NSObject <BBXPCConnectionDelegate, XPCProxyTarget, BBRemoteDataProviderRegistration> {
-    NSString *_appBundleID;
+@interface BBRemoteDataProviderConnection : NSObject <BBDataProviderConnectionServerProxy, BBDataProviderStore, BBRemoteDataProviderDelegate> {
+    NSString *_bundleID;
+    BOOL _clientReady;
     BOOL _connected;
-    BBXPCIncomingConnection *_connection;
-    <BBRemoteDataProviderConnectionDelegate> *_delegate;
-    NSMutableSet *_pendingProviders;
-    BOOL _registered;
+    NSMutableDictionary *_dataProvidersBySectionID;
+    NSMutableDictionary *_dataProvidersByUniversalSectionID;
+    <BBRemoteDataProviderStoreDelegate> *_delegate;
+    NSObject<OS_dispatch_queue> *_queue;
     NSString *_serviceName;
 }
 
-- (void)_noteConnectionStateChanged;
-- (void)addDataProviderWithSectionID:(id)arg1;
-- (id)appBundleID;
-- (void)connection:(id)arg1 connectionStateDidChange:(BOOL)arg2;
+@property (nonatomic, readonly) NSString *bundleID;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) BOOL isConnected;
+@property (nonatomic, readonly) NSString *serviceName;
+@property (readonly) Class superclass;
+
+- (void)_queue_removeDataProvider:(id)arg1;
+- (void)addDataProviderWithSectionID:(id)arg1 clientProxy:(id)arg2 identity:(id)arg3 completion:(id /* block */)arg4;
+- (void)addParentSectionFactory:(id)arg1;
+- (id)bundleID;
+- (void)clientIsReady:(id /* block */)arg1;
+- (id)dataProviderForSectionID:(id)arg1;
+- (id)dataProviderForUniversalSectionID:(id)arg1;
 - (void)dealloc;
-- (id)initWithConnection:(id)arg1 onQueue:(id)arg2 delegate:(id)arg3;
-- (void)invalidate;
-- (void)ping:(id)arg1;
-- (id)proxy:(id)arg1 detailedSignatureForSelector:(SEL)arg2;
-- (void)registerServiceName:(id)arg1 appBundleID:(id)arg2;
+- (id)debugDescription;
+- (id)debugDescriptionWithChildren:(unsigned int)arg1;
+- (id)initWithServiceName:(id)arg1 bundleID:(id)arg2 delegate:(id)arg3;
+- (BOOL)isConnected;
+- (void)loadAllDataProviders;
+- (void)performBlockOnDataProviders:(id /* block */)arg1;
+- (void)remoteDataProviderNeedsToWakeClient:(id)arg1;
+- (void)removeDataProvider:(id)arg1;
 - (void)removeDataProviderWithSectionID:(id)arg1;
-- (void)resume;
 - (id)serviceName;
+- (void)setConnected:(BOOL)arg1 completion:(id /* block */)arg2;
 
 @end

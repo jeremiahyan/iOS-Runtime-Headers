@@ -2,16 +2,19 @@
    Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
  */
 
-@class SKStoreProductViewController, SKUIIPhoneProductPageViewController, SKUIStorePageViewController, UIViewController;
-
-@interface SUSKUIStorePageViewController : SUViewController <SKUIIPhoneProductPageDelegate, SKStoreProductViewControllerDelegatePrivate> {
+@interface SUSKUIStorePageViewController : SUViewController <SKStoreProductViewControllerDelegatePrivate, SKUIIPhoneProductPageDelegate> {
     UIViewController *_activeChildViewController;
     SKUIIPhoneProductPageViewController *_iphoneProductPageViewController;
     SKStoreProductViewController *_remoteProductViewController;
     SKUIStorePageViewController *_storePageViewController;
 }
 
-- (void)_loadClientContextWithCompletionBlock:(id)arg1;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+
+- (void)_loadClientContextWithCompletionBlock:(id /* block */)arg1;
 - (void)_setActiveChildViewController:(id)arg1;
 - (void)_showIPhoneProductPageWithPage:(id)arg1 clientContext:(id)arg2;
 - (void)_showProductPageWithPageDictionary:(id)arg1;

@@ -2,22 +2,20 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSDictionary, NSMutableArray, NSString;
-
 @interface TSMTraceController : NSObject {
     NSMutableArray *mBuffers;
     NSDictionary *mBuildInfo;
-    unsigned long mFilterCache[256];
+    unsigned long mFilterCache;
     long mLastBufferID;
-    int mModuleCache[256];
+    int mModuleCache;
     NSString *mTraceDirectory;
 }
 
-@property(readonly) NSString * traceDirectory;
+@property (nonatomic, readonly) NSString *traceDirectory;
 
 + (void)addBuffer:(id)arg1;
-+ (long)addBufferWithTag:(id)arg1 size:(long)arg2 synchronized:(BOOL)arg3;
 + (long)addBufferWithTag:(id)arg1 size:(long)arg2;
++ (long)addBufferWithTag:(id)arg1 size:(long)arg2 synchronized:(BOOL)arg3;
 + (id)bufferByID:(long)arg1;
 + (void)closeBufferWithID:(long)arg1;
 + (void)flushAllBuffers;

@@ -2,19 +2,17 @@
    Image: /System/Library/PrivateFrameworks/WebUI.framework/WebUI
  */
 
-@class NSString;
-
 @interface WBSAutomaticReadingListSinaWeiboItem : WBSAutomaticReadingListItem {
     NSString *_originatorProfileImageURLString;
     NSString *_profileURLComponent;
 }
 
-@property(copy) NSString * originatorProfileImageURLString;
-@property(copy) NSString * profileURLComponent;
+@property (nonatomic, copy) NSString *originatorProfileImageURLString;
+@property (nonatomic, copy) NSString *profileURLComponent;
 
+- (void).cxx_destruct;
 - (id)_profileImageURLWithImageSizeString:(id)arg1;
 - (id)biggerOriginatorProfileImageURL;
-- (void)dealloc;
 - (id)initWithDictionary:(id)arg1 socialSourceAccountIdentifier:(id)arg2;
 - (id)originatorProfileImageURL;
 - (id)originatorProfileImageURLString;

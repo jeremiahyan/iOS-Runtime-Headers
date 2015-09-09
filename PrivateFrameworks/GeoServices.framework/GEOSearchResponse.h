@@ -2,19 +2,12 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSMapTable, NSString;
-
 @interface GEOSearchResponse : GEOPlaceSearchResponse {
     NSMapTable *_attributionKeysToInfo;
-    NSString *_businessQuery;
 }
-
-@property(retain) NSString * businessQuery;
 
 - (void)_addAttributionInfo:(id)arg1;
 - (id)attributionInfoForSourceIdentifier:(id)arg1 sourceVersion:(unsigned int)arg2;
-- (id)businessQuery;
 - (void)dealloc;
-- (void)setBusinessQuery:(id)arg1;
 
 @end

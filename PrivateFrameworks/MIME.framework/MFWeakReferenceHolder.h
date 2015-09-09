@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/MIME.framework/MIME
  */
 
-@class <NSObject>;
-
 @interface MFWeakReferenceHolder : NSObject {
     <NSObject> *_reference;
 }
@@ -13,6 +11,7 @@
 - (id)_initWithObject:(id)arg1;
 - (void)dealloc;
 - (id)init;
+- (id)reference;
 - (id)retainedReference;
 
 @end

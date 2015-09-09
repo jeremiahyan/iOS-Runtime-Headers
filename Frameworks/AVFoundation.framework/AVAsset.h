@@ -2,31 +2,36 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class AVAssetInternal, NSArray;
-
-@interface AVAsset : NSObject <NSCopying, AVAsynchronousKeyValueLoading> {
-    AVAssetInternal *_assetInternal;
+@interface AVAsset : NSObject <AVAsynchronousKeyValueLoading, NSCopying> {
+    AVAssetInternal *_asset;
 }
 
-@property(getter=MP_canAffectNetworkPlayability,setter=MP_setCanAffectNetworkPlayability:) BOOL MP_canAffectNetworkPlayability;
-@property(readonly) NSArray * availableChapterLocales;
-@property(readonly) struct { long long x1; int x2; unsigned int x3; long long x4; } duration;
-@property(readonly) struct CGSize { float x1; float x2; } naturalSize;
-@property(readonly) struct CGSize { float x1; float x2; } naturalSizeWithPreferredTransforms;
-@property(readonly) float preferredRate;
-@property(readonly) struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; } preferredTransform;
-@property(readonly) float preferredVolume;
+@property (getter=MP_canAffectNetworkPlayability, setter=MP_setCanAffectNetworkPlayability:, nonatomic) BOOL MP_canAffectNetworkPlayability;
+@property (readonly) NSArray *availableChapterLocales;
+@property (nonatomic, readonly) struct { long long x1; int x2; unsigned int x3; long long x4; } duration;
+@property (nonatomic, readonly) BOOL isProxy;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } naturalSize;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } naturalSizeWithPreferredTransforms;
+@property (nonatomic, readonly) float preferredRate;
+@property (nonatomic, readonly) struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; } preferredTransform;
+@property (nonatomic, readonly) float preferredVolume;
+@property (nonatomic, readonly) id propertyListForProxy;
 
-+ (id)assetWithURL:(id)arg1 figPlaybackItem:(struct OpaqueFigPlaybackItem { }*)arg2 trackIDs:(id)arg3 dynamicBehavior:(BOOL)arg4;
+// Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
+
++ (id)assetProxyWithPropertyList:(id)arg1;
 + (id)assetWithURL:(id)arg1;
-+ (id)keyPathsForValuesAffectingNaturalSizeWithPreferredTransforms;
++ (id)assetWithURL:(id)arg1 figPlaybackItem:(struct OpaqueFigPlaybackItem { }*)arg2 trackIDs:(id)arg3 dynamicBehavior:(BOOL)arg4;
 
-- (BOOL)MP_canAffectNetworkPlayability;
-- (void)MP_setCanAffectNetworkPlayability:(BOOL)arg1;
+- (id)_ID3Metadata;
 - (id)_absoluteURL;
+- (unsigned int)_addChapterMetadataItem:(id)arg1 timeRange:(struct { struct { long long x_1_1_1; int x_1_1_2; unsigned int x_1_1_3; long long x_1_1_4; } x1; struct { long long x_2_1_1; int x_2_1_2; unsigned int x_2_1_3; long long x_2_1_4; } x2; })arg2 toChapters:(id)arg3 fromIndex:(unsigned int)arg4;
 - (id)_assetInspector;
 - (id)_assetInspectorLoader;
+- (id)_chapterDataTypeForMediaSubType:(long)arg1;
+- (id)_chapterMetadataGroupsWithFigChapterGroups:(id)arg1 titleLocale:(id)arg2 containingItemsWithCommonKeys:(id)arg3;
 - (id)_chapterTracks;
+- (Class)_classForTrackInspectors;
 - (id)_comparisonToken;
 - (BOOL)_containsAtLeastOnePlayableAudioTrack;
 - (BOOL)_containsAtLeastOnePlayableVideoTrack;
@@ -34,7 +39,10 @@
 - (struct OpaqueFigAsset { }*)_figAsset;
 - (id)_firstTrackGroupWithMediaType:(id)arg1;
 - (struct OpaqueFigFormatReader { }*)_formatReader;
+- (BOOL)_hasResourceLoaderDelegate;
 - (BOOL)_isStreaming;
+- (void)_loadChapterInfo;
+- (struct OpaqueFigMutableComposition { }*)_mutableComposition;
 - (struct OpaqueFigPlaybackItem { }*)_playbackItem;
 - (void)_serverHasDied;
 - (void)_tracksDidChange;
@@ -44,11 +52,13 @@
 - (id)availableChapterLocales;
 - (id)availableMediaCharacteristicsWithMediaSelectionOptions;
 - (id)availableMetadataFormats;
+- (BOOL)canContainMovieFragments;
 - (void)cancelLoading;
 - (id)chapterMetadataGroupsBestMatchingPreferredLanguages:(id)arg1;
 - (id)chapterMetadataGroupsWithTitleLocale:(id)arg1 containingItemsWithCommonKeys:(id)arg2;
 - (id)commonMetadata;
 - (id)compatibleTrackForCompositionTrack:(id)arg1;
+- (BOOL)containsMovieFragments;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)creationDate;
 - (void)dealloc;
@@ -61,27 +71,27 @@
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isExportable;
 - (BOOL)isPlayable;
+- (BOOL)isProxy;
 - (BOOL)isReadable;
-- (void)loadValuesAsynchronouslyForKeys:(id)arg1 completionHandler:(id)arg2;
-- (void)loadValuesAsynchronouslyForKeys:(id)arg1 keysForCollectionKeys:(id)arg2 completionHandler:(id)arg3;
+- (void)loadValuesAsynchronouslyForKeys:(id)arg1 completionHandler:(id /* block */)arg2;
+- (void)loadValuesAsynchronouslyForKeys:(id)arg1 keysForCollectionKeys:(id)arg2 completionHandler:(id /* block */)arg3;
 - (id)lyrics;
 - (id)mediaSelectionGroupForMediaCharacteristic:(id)arg1;
 - (id)mediaSelectionGroupForPropertyList:(id)arg1 mediaSelectionOption:(id*)arg2;
 - (id)mediaSelectionGroups;
 - (id)metadata;
 - (id)metadataForFormat:(id)arg1;
-- (void)mpLoadValuesAsynchronouslyForKeys:(id)arg1 completionQueue:(id)arg2 completionHandler:(id)arg3;
 - (struct CGSize { float x1; float x2; })naturalSize;
-- (struct CGSize { float x1; float x2; })naturalSizeWithPreferredTransforms;
 - (int)naturalTimeScale;
 - (float)preferredRate;
 - (float)preferredSoundCheckVolumeNormalization;
 - (struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })preferredTransform;
 - (float)preferredVolume;
+- (id)propertyListForProxy;
 - (BOOL)providesPreciseDurationAndTiming;
 - (unsigned int)referenceRestrictions;
-- (int)statusOfValueForKey:(id)arg1 error:(id*)arg2;
 - (int)statusOfValueForKey:(id)arg1;
+- (int)statusOfValueForKey:(id)arg1 error:(id*)arg2;
 - (id)subtitleAlternatesTrackGroup;
 - (id)trackGroups;
 - (id)trackReferences;
@@ -92,5 +102,17 @@
 - (id)tracksWithMediaType:(id)arg1;
 - (int)unusedTrackID;
 - (id)valueForUndefinedKey:(id)arg1;
+
+// Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
+
+- (BOOL)MP_canAffectNetworkPlayability;
+- (void)MP_setCanAffectNetworkPlayability:(BOOL)arg1;
+- (void)mpLoadValuesAsynchronouslyForKeys:(id)arg1 completionQueue:(id)arg2 completionHandler:(id /* block */)arg3;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
+
++ (id)keyPathsForValuesAffectingNaturalSizeWithPreferredTransforms;
+
+- (struct CGSize { float x1; float x2; })naturalSizeWithPreferredTransforms;
 
 @end

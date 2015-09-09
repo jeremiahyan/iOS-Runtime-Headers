@@ -2,47 +2,51 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class <UITapRecognizerDelegate>, NSArray, NSMutableArray, NSMutableSet;
-
 @interface UITapRecognizer : NSObject <NSCoding> {
-    struct CGPoint { 
-        float x; 
-        float y; 
-    struct CGPoint { 
-        float x; 
-        float y; 
-    unsigned int _timerOn : 1;
-    unsigned int _noNewTouches : 1;
     NSMutableSet *_activeTouches;
     float _allowableMovement;
     int _currentNumberOfTaps;
     int _currentNumberOfTouches;
     id _delegate;
+    struct CGPoint { 
+        float x; 
+        float y; 
+    } _digitizerLocation;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _location;
     double _maximumIntervalBetweenSuccessiveTaps;
     double _maximumSingleTapDuration;
+    unsigned int _noNewTouches;
     unsigned int _numberOfTapsRequired;
     unsigned int _numberOfTouchesRequired;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _startPoint;
+    unsigned int _timerOn;
     NSMutableArray *_touches;
 }
 
-@property float allowableMovement;
-@property <UITapRecognizerDelegate> * delegate;
-@property double maximumIntervalBetweenSuccessiveTaps;
-@property double maximumSingleTapDuration;
-@property unsigned int numberOfTapsRequired;
-@property unsigned int numberOfTouchesRequired;
-@property(readonly) NSArray * touches;
+@property (nonatomic) float allowableMovement;
+@property (nonatomic) <UITapRecognizerDelegate> *delegate;
+@property (nonatomic) double maximumIntervalBetweenSuccessiveTaps;
+@property (nonatomic) double maximumSingleTapDuration;
+@property (nonatomic) unsigned int numberOfTapsRequired;
+@property (nonatomic) unsigned int numberOfTouchesRequired;
+@property (nonatomic, readonly) NSArray *touches;
 
 - (void)_beginInteraction;
+- (struct CGPoint { float x1; float x2; })_digitizerLocation;
 - (float)_effectiveAllowableMovement;
 - (void)_interactionEndedTouch:(BOOL)arg1;
-- (struct CGPoint { float x1; float x2; })_locationOnScreen;
+- (struct CGPoint { float x1; float x2; })_locationInSceneReferenceSpace;
 - (void)_physicalButtonsBegan:(id)arg1 withEvent:(id)arg2;
 - (void)_physicalButtonsCancelled:(id)arg1 withEvent:(id)arg2;
 - (void)_physicalButtonsEnded:(id)arg1 withEvent:(id)arg2;
 - (void)_reset;
+- (void)_updateDigitizerLocationForEvent:(id)arg1;
 - (float)allowableMovement;
 - (void)clearTapTimer;
 - (void)dealloc;

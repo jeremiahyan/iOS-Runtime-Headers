@@ -2,14 +2,15 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSArray, NSString;
+@interface SADomainObjectRetrieveCompleted : SABaseCommand <SADomainObjectCommand, SAServerBoundCommand>
 
-@interface SADomainObjectRetrieveCompleted : SABaseCommand <SAServerBoundCommand, SADomainObjectCommand> {
-}
-
-@property(copy) NSString * aceId;
-@property(copy) NSArray * objects;
-@property(copy) NSString * refId;
+@property (nonatomic, copy) NSString *aceId;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSArray *objects;
+@property (nonatomic, copy) NSString *refId;
+@property (readonly) Class superclass;
 
 + (id)domainObjectRetrieveCompleted;
 + (id)domainObjectRetrieveCompletedWithDictionary:(id)arg1 context:(id)arg2;

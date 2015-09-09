@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSString, NSThread;
-
 @interface GEORequester : PBRequester {
     NSString *_debugRequestName;
     BOOL _disableReplay;
@@ -12,10 +10,11 @@
     BOOL _usePersistentConnection;
 }
 
-@property(retain) NSString * debugRequestName;
+@property (nonatomic, retain) NSString *debugRequestName;
 @property BOOL disableReplay;
 
 + (id)_logRequestResponseDirectory;
++ (void)enablePersistentConnection;
 + (void)replayRequests;
 + (void)setAppID:(id)arg1;
 + (void)setLogRequestResponseDirectory:(id)arg1;
@@ -32,9 +31,8 @@
 - (void)dealloc;
 - (id)debugRequestName;
 - (BOOL)disableReplay;
-- (id)initWithURL:(id)arg1 andDelegate:(id)arg2 usePersistentConnection:(BOOL)arg3 useBackgroundConnection:(BOOL)arg4;
-- (id)initWithURL:(id)arg1 andDelegate:(id)arg2 usePersistentConnection:(BOOL)arg3;
 - (id)initWithURL:(id)arg1 andDelegate:(id)arg2;
+- (id)initWithURL:(id)arg1 andDelegate:(id)arg2 useBackgroundConnection:(BOOL)arg3;
 - (id)logRequestToFile;
 - (id)logResponseToFile;
 - (struct _CFURLRequest { }*)newCFMutableURLRequestWithURL:(id)arg1;

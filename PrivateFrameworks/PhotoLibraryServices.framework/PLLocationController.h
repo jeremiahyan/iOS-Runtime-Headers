@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
  */
 
-@class CLLocationManager, NSDictionary, NSMutableArray, NSString;
-
 @interface PLLocationController : NSObject <CLLocationManagerDelegate> {
     NSDictionary *_exifDictionary;
     BOOL _isEnabled;
@@ -13,6 +11,11 @@
     NSMutableArray *_locationPendingAssets;
     NSString *_locationStr;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (void)setUsesEffectiveBundleIdentifier:(BOOL)arg1;
 + (id)sharedInstance;

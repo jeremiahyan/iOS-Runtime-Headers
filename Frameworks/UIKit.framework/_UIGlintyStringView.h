@@ -2,21 +2,7 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class <_UIGlintyStringViewDelegate>, NSMutableSet, NSString, UIColor, UIFont, UIImage, UILabel, UIView, _UILegibilitySettings, _UIVibrantSettings;
-
 @interface _UIGlintyStringView : UIView {
-    struct CGSize { 
-        float width; 
-        float height; 
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
     BOOL _adjustsFontSizeToFitWidth;
     BOOL _allowsLuminanceAdjustments;
     BOOL _animating;
@@ -28,6 +14,15 @@
     UIView *_blurView;
     UIImage *_chevron;
     UIColor *_chevronBackgroundColor;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } _chevronFrame;
     int _chevronStyle;
     <_UIGlintyStringViewDelegate> *_delegate;
@@ -39,9 +34,14 @@
     UIView *_highlightView;
     float _horizontalPadding;
     UILabel *_label;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _labelSize;
     _UILegibilitySettings *_legibilitySettings;
     BOOL _needsTextUpdate;
+    UIView *_reflectionImageView;
+    UIView *_shimmerImageView;
     BOOL _showing;
     UIView *_spotlightView;
     NSString *_text;
@@ -51,39 +51,41 @@
     _UIVibrantSettings *_vibrantSettings;
 }
 
-@property BOOL adjustsFontSizeToFitWidth;
-@property BOOL allowsLuminanceAdjustments;
-@property BOOL animating;
-@property BOOL animationRepeats;
-@property(retain) UIColor * backgroundColor;
-@property(retain) UIView * backgroundView;
-@property float blurAlpha;
-@property(retain) NSMutableSet * blurHiddenRequesters;
-@property(retain) UIView * blurView;
-@property(retain) UIImage * chevron;
-@property(retain) UIColor * chevronBackgroundColor;
-@property struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } chevronFrame;
-@property int chevronStyle;
-@property <_UIGlintyStringViewDelegate> * delegate;
-@property(retain) UIView * effectView;
-@property BOOL fading;
-@property(retain) UIFont * font;
-@property BOOL hasCustomBackgroundColor;
-@property BOOL highlight;
-@property(retain) UIView * highlightView;
-@property float horizontalPadding;
-@property(retain) UILabel * label;
-@property(readonly) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } labelFrame;
-@property struct CGSize { float x1; float x2; } labelSize;
-@property(retain) _UILegibilitySettings * legibilitySettings;
-@property BOOL needsTextUpdate;
-@property BOOL showing;
-@property(retain) UIView * spotlightView;
-@property(copy) NSString * text;
-@property int textIndex;
-@property(copy) NSString * textLanguage;
-@property BOOL usesBackgroundDimming;
-@property(retain) _UIVibrantSettings * vibrantSettings;
+@property (nonatomic) BOOL adjustsFontSizeToFitWidth;
+@property (nonatomic) BOOL allowsLuminanceAdjustments;
+@property (nonatomic) BOOL animating;
+@property (nonatomic) BOOL animationRepeats;
+@property (nonatomic, retain) UIColor *backgroundColor;
+@property (nonatomic, retain) UIView *backgroundView;
+@property (nonatomic) float blurAlpha;
+@property (nonatomic, retain) NSMutableSet *blurHiddenRequesters;
+@property (nonatomic, retain) UIView *blurView;
+@property (nonatomic, retain) UIImage *chevron;
+@property (nonatomic, retain) UIColor *chevronBackgroundColor;
+@property (nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } chevronFrame;
+@property (nonatomic) int chevronStyle;
+@property (nonatomic) <_UIGlintyStringViewDelegate> *delegate;
+@property (nonatomic, retain) UIView *effectView;
+@property (nonatomic) BOOL fading;
+@property (nonatomic, retain) UIFont *font;
+@property (nonatomic) BOOL hasCustomBackgroundColor;
+@property (nonatomic) BOOL highlight;
+@property (nonatomic, retain) UIView *highlightView;
+@property (nonatomic) float horizontalPadding;
+@property (nonatomic, retain) UILabel *label;
+@property (nonatomic, readonly) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } labelFrame;
+@property (nonatomic) struct CGSize { float x1; float x2; } labelSize;
+@property (nonatomic, retain) _UILegibilitySettings *legibilitySettings;
+@property (nonatomic) BOOL needsTextUpdate;
+@property (nonatomic, retain) UIView *reflectionImageView;
+@property (nonatomic, retain) UIView *shimmerImageView;
+@property (nonatomic) BOOL showing;
+@property (nonatomic, retain) UIView *spotlightView;
+@property (nonatomic, copy) NSString *text;
+@property (nonatomic) int textIndex;
+@property (nonatomic, copy) NSString *textLanguage;
+@property (nonatomic) BOOL usesBackgroundDimming;
+@property (nonatomic, retain) _UIVibrantSettings *vibrantSettings;
 
 - (float)_chevronHeightWithMaxOffset;
 - (id)_chevronImageForStyle:(int)arg1;
@@ -93,8 +95,12 @@
 - (float)_chevronWidthWithPaddingCompression:(float)arg1;
 - (id)_highlightColor;
 - (id)_highlightCompositingFilter;
+- (struct CGSize { float x1; float x2; })_labelSizeThatFits:(struct CGSize { float x1; float x2; })arg1;
 - (void)_updateHighlight;
 - (void)_updateLabelWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (void)addGlintyAnimations;
+- (void)addReflectionAnimationToLayer:(id)arg1;
+- (void)addShimmerAnimationToLayer:(id)arg1;
 - (BOOL)adjustsFontSizeToFitWidth;
 - (BOOL)allowsLuminanceAdjustments;
 - (BOOL)animating;
@@ -135,6 +141,8 @@
 - (void)layoutSubviews;
 - (id)legibilitySettings;
 - (BOOL)needsTextUpdate;
+- (id)reflectionImageView;
+- (void)removeGlintyAnimations;
 - (void)setAdjustsFontSizeToFitWidth:(BOOL)arg1;
 - (void)setAllowsLuminanceAdjustments:(BOOL)arg1;
 - (void)setAnimating:(BOOL)arg1;
@@ -161,6 +169,8 @@
 - (void)setLabelSize:(struct CGSize { float x1; float x2; })arg1;
 - (void)setLegibilitySettings:(id)arg1;
 - (void)setNeedsTextUpdate:(BOOL)arg1;
+- (void)setReflectionImageView:(id)arg1;
+- (void)setShimmerImageView:(id)arg1;
 - (void)setShowing:(BOOL)arg1;
 - (void)setSpotlightView:(id)arg1;
 - (void)setText:(id)arg1;
@@ -169,6 +179,7 @@
 - (void)setUsesBackgroundDimming:(BOOL)arg1;
 - (void)setVibrantSettings:(id)arg1;
 - (id)shapeViewForCharactersInString:(id)arg1 withFont:(id)arg2 centeredInFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg3;
+- (id)shimmerImageView;
 - (void)show;
 - (void)showBlur;
 - (void)showEffects;

@@ -2,17 +2,12 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class <UIPrintInteractionControllerDelegate>, NSArray, PKPrinter, UIPrintFormatter, UIPrintInfo, UIPrintPageRenderer, UIPrintPaper;
-
 @interface UIPrintInteractionController : NSObject {
     unsigned int _backgroundTaskIdentifier;
-    id _completionHandler;
+    id /* block */ _completionHandler;
     <UIPrintInteractionControllerDelegate> *_delegate;
     BOOL _hidesNumberOfCopies;
+    <UIPrintInteractionControllerDelegate> *_printActivityDelegate;
     UIPrintFormatter *_printFormatter;
     UIPrintInfo *_printInfo;
     UIPrintPageRenderer *_printPageRenderer;
@@ -21,21 +16,24 @@
     id _printingItem;
     NSArray *_printingItems;
     BOOL _showsPageRange;
+    BOOL _showsPaperSelectionForLoadedPapers;
 }
 
-@property <UIPrintInteractionControllerDelegate> * delegate;
-@property(readonly) int pageCount;
-@property struct _NSRange { unsigned int x1; unsigned int x2; } pageRange;
-@property(retain) UIPrintPaper * paper;
-@property(retain) UIPrintFormatter * printFormatter;
-@property(retain) UIPrintInfo * printInfo;
-@property(retain) UIPrintPageRenderer * printPageRenderer;
-@property(readonly) UIPrintPaper * printPaper;
-@property(retain) PKPrinter * printer;
-@property(copy) id printingItem;
-@property(copy) NSArray * printingItems;
-@property BOOL showsNumberOfCopies;
-@property BOOL showsPageRange;
+@property (nonatomic) <UIPrintInteractionControllerDelegate> *delegate;
+@property (nonatomic, readonly) int pageCount;
+@property (nonatomic) struct _NSRange { unsigned int x1; unsigned int x2; } pageRange;
+@property (nonatomic, retain) UIPrintPaper *paper;
+@property (nonatomic) <UIPrintInteractionControllerDelegate> *printActivityDelegate;
+@property (nonatomic, retain) UIPrintFormatter *printFormatter;
+@property (nonatomic, retain) UIPrintInfo *printInfo;
+@property (nonatomic, retain) UIPrintPageRenderer *printPageRenderer;
+@property (nonatomic, readonly) UIPrintPaper *printPaper;
+@property (nonatomic, retain) PKPrinter *printer;
+@property (nonatomic, copy) id printingItem;
+@property (nonatomic, copy) NSArray *printingItems;
+@property (nonatomic) BOOL showsNumberOfCopies;
+@property (nonatomic) BOOL showsPageRange;
+@property (nonatomic) BOOL showsPaperSelectionForLoadedPapers;
 
 + (BOOL)canPrintData:(id)arg1;
 + (BOOL)canPrintURL:(id)arg1;
@@ -65,7 +63,7 @@
 - (void)_printPanelDidPresent;
 - (void)_printPanelWillDismiss:(BOOL)arg1;
 - (void)_setPrintInfoState:(int)arg1;
-- (BOOL)_setupPrintPanel:(id)arg1;
+- (BOOL)_setupPrintPanel:(id /* block */)arg1;
 - (void)_startPrinting;
 - (void)_updatePageCount;
 - (void)_updatePrintPaper;
@@ -76,13 +74,15 @@
 - (int)pageCount;
 - (struct _NSRange { unsigned int x1; unsigned int x2; })pageRange;
 - (id)paper;
-- (BOOL)presentAnimated:(BOOL)arg1 completionHandler:(id)arg2;
-- (BOOL)presentFromBarButtonItem:(id)arg1 animated:(BOOL)arg2 completionHandler:(id)arg3;
-- (BOOL)presentFromRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 inView:(id)arg2 animated:(BOOL)arg3 completionHandler:(id)arg4;
+- (BOOL)presentAnimated:(BOOL)arg1 completionHandler:(id /* block */)arg2;
+- (BOOL)presentFromBarButtonItem:(id)arg1 animated:(BOOL)arg2 completionHandler:(id /* block */)arg3;
+- (BOOL)presentFromRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 inView:(id)arg2 animated:(BOOL)arg3 completionHandler:(id /* block */)arg4;
+- (id)printActivityDelegate;
 - (id)printFormatter;
 - (id)printInfo;
 - (id)printPageRenderer;
 - (id)printPaper;
+- (BOOL)printToPrinter:(id)arg1 completionHandler:(id /* block */)arg2;
 - (id)printer;
 - (id)printingItem;
 - (id)printingItems;
@@ -90,6 +90,7 @@
 - (void)setDelegate:(id)arg1;
 - (void)setPageRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1;
 - (void)setPaper:(id)arg1;
+- (void)setPrintActivityDelegate:(id)arg1;
 - (void)setPrintFormatter:(id)arg1;
 - (void)setPrintInfo:(id)arg1;
 - (void)setPrintPageRenderer:(id)arg1;
@@ -98,7 +99,9 @@
 - (void)setPrintingItems:(id)arg1;
 - (void)setShowsNumberOfCopies:(BOOL)arg1;
 - (void)setShowsPageRange:(BOOL)arg1;
+- (void)setShowsPaperSelectionForLoadedPapers:(BOOL)arg1;
 - (BOOL)showsNumberOfCopies;
 - (BOOL)showsPageRange;
+- (BOOL)showsPaperSelectionForLoadedPapers;
 
 @end

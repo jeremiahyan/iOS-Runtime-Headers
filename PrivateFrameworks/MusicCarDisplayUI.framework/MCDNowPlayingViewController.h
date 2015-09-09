@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/MusicCarDisplayUI.framework/MusicCarDisplayUI
  */
 
-@class <MCDNowPlayingViewControllerDataSource>, <MCDNowPlayingViewControllerDelegate>, MCDNowPlayingView, MCDPlayModeControlView, MCDTransportControlView, UIColor, UITapGestureRecognizer, UIViewController, _MCDNowPlayingHostView;
-
 @interface MCDNowPlayingViewController : UIViewController {
     UITapGestureRecognizer *_backPressRecognizer;
     <MCDNowPlayingViewControllerDataSource> *_dataSource;
@@ -19,16 +17,15 @@
     UIViewController *_playModeViewController;
     MCDTransportControlView *_transportControlView;
     UIViewController *_transportViewController;
-    _MCDNowPlayingHostView *_viewForSelectingAFirstResponderForKnobSupport;
 }
 
-@property(readonly) UITapGestureRecognizer * backPressRecognizer;
-@property <MCDNowPlayingViewControllerDataSource> * dataSource;
-@property <MCDNowPlayingViewControllerDelegate> * delegate;
-@property(readonly) UITapGestureRecognizer * knobPressRecognizer;
-@property(readonly) MCDNowPlayingView * nowPlayingView;
-@property(readonly) MCDPlayModeControlView * playModeControlView;
-@property(readonly) MCDTransportControlView * transportControlView;
+@property (nonatomic, readonly) UITapGestureRecognizer *backPressRecognizer;
+@property (nonatomic) <MCDNowPlayingViewControllerDataSource> *dataSource;
+@property (nonatomic) <MCDNowPlayingViewControllerDelegate> *delegate;
+@property (nonatomic, readonly) UITapGestureRecognizer *knobPressRecognizer;
+@property (nonatomic, readonly) MCDNowPlayingView *nowPlayingView;
+@property (nonatomic, readonly) MCDPlayModeControlView *playModeControlView;
+@property (nonatomic, readonly) MCDTransportControlView *transportControlView;
 
 - (void).cxx_destruct;
 - (void)_fastForwardButtonTouchDown:(id)arg1;
@@ -47,7 +44,6 @@
 - (void)_updateRepeatStateWithType:(unsigned int)arg1;
 - (void)_updateShuffleStateWithType:(unsigned int)arg1;
 - (void)_updateTransportControl:(id)arg1 withDefaultImage:(id)arg2 actionType:(int)arg3;
-- (void)attemptFirstResponderThing;
 - (id)backPressRecognizer;
 - (id)dataSource;
 - (id)delegate;

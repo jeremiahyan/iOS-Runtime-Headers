@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
  */
 
-@class UIColor, UILabel;
-
 @interface MFRecipientTableViewCellDetailView : UIView <MFTinting> {
     UILabel *_detailLabel;
     BOOL _highlighted;
@@ -13,10 +11,14 @@
     UIColor *_tintColor;
 }
 
-@property(readonly) UILabel * detailLabel;
-@property BOOL highlighted;
-@property(readonly) UILabel * labelLabel;
-@property BOOL shouldDim;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) UILabel *detailLabel;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL highlighted;
+@property (nonatomic, readonly) UILabel *labelLabel;
+@property (nonatomic) BOOL shouldDim;
+@property (readonly) Class superclass;
 
 + (id)defaultStringAttributes;
 + (id)groupStringAttributes;

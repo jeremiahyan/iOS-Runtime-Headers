@@ -2,14 +2,15 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@class NSManagedObjectID;
-
 @interface NSIncrementalStoreNode : NSObject {
     NSManagedObjectID *_objectID;
     id _propertyCache;
     void *_reserved1;
     unsigned long long _versionNumber;
 }
+
+@property (nonatomic, readonly) NSManagedObjectID *objectID;
+@property (nonatomic, readonly) unsigned long long version;
 
 + (void)initialize;
 

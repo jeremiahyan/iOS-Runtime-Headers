@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
  */
 
-@class NSMutableArray, NSMutableDictionary, NSMutableSet, PLPhotoLibrary;
-
 @interface PLDupeManager : NSObject {
     NSMutableArray *_assetsWithUpdatedVisibility;
     NSMutableDictionary *_cloudAssetsToAnalyze;
@@ -13,12 +11,13 @@
     NSMutableArray *_normalAssetsObjectIDsToAnalyze;
     NSMutableSet *_normalInserts;
     long _once;
-    int _pauseCount;
+    NSCountedSet *_pauseReasons;
     PLPhotoLibrary *_photoLibrary;
     double _rebuildStartTime;
+    NSSet *_softPauseReasons;
 }
 
-@property(readonly) PLPhotoLibrary * photoLibrary;
+@property (nonatomic, readonly) PLPhotoLibrary *photoLibrary;
 
 + (BOOL)_computeHashForAsset:(id)arg1;
 + (id)_hashForFileAtPath:(id)arg1 utiType:(id)arg2;
@@ -44,17 +43,19 @@
 - (void)_continueAnalysisForRebuildOrPause;
 - (id)_duplicateCloudAssetForHash:(id)arg1 orPublicGlobalUUID:(id)arg2;
 - (void)_noteAssetVisibilityDidChange:(id)arg1;
-- (void)_performAnalysisTransaction:(id)arg1 completionHandler:(id)arg2;
+- (void)_performAnalysisTransaction:(id /* block */)arg1 completionHandler:(id /* block */)arg2;
 - (BOOL)_prepareCloudAssetsToAnalyzeForManagedObjectContext:(id)arg1;
 - (void)_removeCloudAssetFromAnalysis:(id)arg1;
+- (void)_resetSoftPauseReasons;
 - (void)_updateVisibilityState:(short)arg1 forAsset:(id)arg2;
-- (void)analyzeDupesWithNormalInserts:(id)arg1 cloudInserts:(id)arg2 completionHandler:(id)arg3;
+- (void)analyzeDupesWithNormalInserts:(id)arg1 cloudInserts:(id)arg2 completionHandler:(id /* block */)arg3;
 - (void)dealloc;
+- (id)init;
 - (void)launchDupeAnalysisIfNeeded;
-- (void)pauseAnalysis;
-- (void)persistPublicGlobalUUIDsForAssets:(id)arg1 completionHandler:(id)arg2;
+- (void)pauseAnalysisWithReason:(id)arg1;
+- (void)persistPublicGlobalUUIDsForAssets:(id)arg1 completionHandler:(id /* block */)arg2;
 - (id)photoLibrary;
 - (void)resetDupesAnalysisResetHashes:(BOOL)arg1;
-- (void)resumeAnalysis;
+- (void)resumeAnalysisWithReason:(id)arg1;
 
 @end

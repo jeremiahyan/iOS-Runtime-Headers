@@ -2,34 +2,32 @@
    Image: /System/Library/PrivateFrameworks/CertInfo.framework/CertInfo
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class CertInfoCertificateHeaderCell, CertInfoCertificateSummaryDescriptionCell, NSDate, NSString, UITableView;
-
 @interface CertInfoCertificateSummaryView : UIView <UITableViewDataSource, UITableViewDelegate> {
     CertInfoCertificateSummaryDescriptionCell *_descriptionCell;
     NSDate *_expirationDate;
     CertInfoCertificateHeaderCell *_headerCell;
-    id _moreDetailsSelectedBlock;
+    id /* block */ _moreDetailsSelectedBlock;
     NSString *_purpose;
     UITableView *_tableView;
     NSString *_trustSubtitle;
     NSString *_trustTitle;
 }
 
-@property(retain) CertInfoCertificateSummaryDescriptionCell * descriptionCell;
-@property(retain) NSDate * expirationDate;
-@property(retain) CertInfoCertificateHeaderCell * headerCell;
-@property(retain) NSString * purpose;
-@property(readonly) UITableView * tableView;
-@property(retain) NSString * trustSubtitle;
-@property(retain) NSString * trustTitle;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) CertInfoCertificateSummaryDescriptionCell *descriptionCell;
+@property (nonatomic, retain) NSDate *expirationDate;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) CertInfoCertificateHeaderCell *headerCell;
+@property (nonatomic, retain) NSString *purpose;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) UITableView *tableView;
+@property (nonatomic, retain) NSString *trustSubtitle;
+@property (nonatomic, retain) NSString *trustTitle;
 
+- (void).cxx_destruct;
 - (id)_cellForReuseIdentifier:(id)arg1;
 - (void)_configureCell:(id)arg1;
-- (void)dealloc;
 - (id)descriptionCell;
 - (id)expirationDate;
 - (id)headerCell;
@@ -38,15 +36,15 @@
 - (void)setDescriptionCell:(id)arg1;
 - (void)setExpirationDate:(id)arg1;
 - (void)setHeaderCell:(id)arg1;
-- (void)setMoreDetailsSelectedBlock:(id)arg1;
+- (void)setMoreDetailsSelectedBlock:(id /* block */)arg1;
 - (void)setPurpose:(id)arg1;
 - (void)setTrustSubtitle:(id)arg1;
 - (void)setTrustTitle:(id)arg1;
+- (id)tableView;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
 - (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
 - (float)tableView:(id)arg1 heightForRowAtIndexPath:(id)arg2;
 - (int)tableView:(id)arg1 numberOfRowsInSection:(int)arg2;
-- (id)tableView;
 - (id)trustSubtitle;
 - (id)trustTitle;
 

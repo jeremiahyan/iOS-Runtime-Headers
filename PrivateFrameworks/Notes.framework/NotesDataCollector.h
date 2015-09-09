@@ -2,23 +2,19 @@
    Image: /System/Library/PrivateFrameworks/Notes.framework/Notes
  */
 
-@class ACAccountStore, NSDictionary, NSObject<OS_dispatch_group>, NSString, NotesDataCollectorLogger;
-
 @interface NotesDataCollector : NSObject {
     ACAccountStore *_accountStore;
     NSDictionary *_accountTypesPerIdentifierCache;
     BOOL _automaticCollectionOn;
     NSObject<OS_dispatch_group> *_logDispatchGroup;
     NotesDataCollectorLogger *_logger;
-    NSString *_testFilePrefix;
 }
 
-@property(retain) ACAccountStore * accountStore;
-@property(copy) NSDictionary * accountTypesPerIdentifierCache;
-@property(getter=isAutomaticCollectionOn) BOOL automaticCollectionOn;
-@property(retain) NSObject<OS_dispatch_group> * logDispatchGroup;
-@property(retain) NotesDataCollectorLogger * logger;
-@property(retain) NSString * testFilePrefix;
+@property (nonatomic, retain) ACAccountStore *accountStore;
+@property (copy) NSDictionary *accountTypesPerIdentifierCache;
+@property (getter=isAutomaticCollectionOn, nonatomic) BOOL automaticCollectionOn;
+@property (nonatomic, retain) NSObject<OS_dispatch_group> *logDispatchGroup;
+@property (nonatomic, retain) NotesDataCollectorLogger *logger;
 
 + (void)clearSharedCollector;
 + (id)sharedCollector;
@@ -26,7 +22,7 @@
 - (void).cxx_destruct;
 - (id)accountStore;
 - (id)accountTypesPerIdentifierCache;
-- (void)browseAddedAndDeletedObjectsWithEntity:(id)arg1 inManagedObjectContext:(id)arg2 objectHandler:(id)arg3;
+- (void)browseAddedAndDeletedObjectsWithEntity:(id)arg1 inManagedObjectContext:(id)arg2 objectHandler:(id /* block */)arg3;
 - (id)classifyStoresByType:(id)arg1;
 - (void)dealloc;
 - (id)existingAccountForStore:(id)arg1;
@@ -42,8 +38,8 @@
 - (void)logNoteActivityType:(id)arg1;
 - (void)logNoteCountPerStore;
 - (void)logNoteCreationDeltaCountWithAppIdentifier:(int)arg1;
-- (void)logNoteDeltaCount:(int)arg1 forStoreType:(id)arg2;
 - (void)logNoteDeltaCount:(int)arg1;
+- (void)logNoteDeltaCount:(int)arg1 forStoreType:(id)arg2;
 - (void)logStoreCount;
 - (void)logStoreDeltaCount:(int)arg1 forType:(id)arg2;
 - (void)logTotalNoteCount;
@@ -55,10 +51,8 @@
 - (void)setAutomaticCollectionOn:(BOOL)arg1;
 - (void)setLogDispatchGroup:(id)arg1;
 - (void)setLogger:(id)arg1;
-- (void)setTestFilePrefix:(id)arg1;
 - (void)startAutomaticCollection;
 - (void)stopAutomaticCollection;
 - (id)storeTypeForAccountType:(int)arg1 accountIdentifier:(id)arg2;
-- (id)testFilePrefix;
 
 @end

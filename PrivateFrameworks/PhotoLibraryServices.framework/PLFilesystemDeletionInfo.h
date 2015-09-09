@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
  */
 
-@class NSArray, NSString, NSURL;
-
 @interface PLFilesystemDeletionInfo : NSObject {
     NSString *_directory;
     NSArray *_fileURLs;
@@ -15,14 +13,14 @@
     NSString *_uuid;
 }
 
-@property(readonly) NSString * directory;
-@property(retain) NSArray * fileURLs;
-@property(readonly) NSString * filename;
-@property(readonly) NSURL * objectIDURI;
-@property(retain) NSString * thumbnailIdentifier;
-@property(readonly) unsigned int thumbnailIndex;
-@property(readonly) unsigned long long timestamp;
-@property(readonly) NSString * uuid;
+@property (readonly, retain) NSString *directory;
+@property (retain) NSArray *fileURLs;
+@property (readonly, retain) NSString *filename;
+@property (readonly, retain) NSURL *objectIDURI;
+@property (retain) NSString *thumbnailIdentifier;
+@property (readonly) unsigned int thumbnailIndex;
+@property (readonly) unsigned long long timestamp;
+@property (readonly, retain) NSString *uuid;
 
 + (id)deletionInfoWithAsset:(id)arg1;
 

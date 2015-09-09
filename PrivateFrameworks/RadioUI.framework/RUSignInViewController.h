@@ -2,18 +2,7 @@
    Image: /System/Library/PrivateFrameworks/RadioUI.framework/RadioUI
  */
 
-@class <RUSignInViewControllerDelegate>, MPUShapeView, SKUICircleProgressIndicator, UIBarButtonItem, UIButton, UILabel, UITapGestureRecognizer, UITextField;
-
 @interface RUSignInViewController : UIViewController <UIGestureRecognizerDelegate, UITextFieldDelegate> {
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
     int _accountChangeIgnoreCount;
     SKUICircleProgressIndicator *_activityIndicatorView;
     UITextField *_appleIDTextField;
@@ -27,6 +16,15 @@
     UIButton *_forgotPasswordButton;
     BOOL _isAuthenticating;
     BOOL _isLoading;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } _keyboardFrame;
     UILabel *_loadingLabel;
     UITextField *_passwordTextField;
@@ -34,7 +32,11 @@
     UILabel *_titleLabel;
 }
 
-@property <RUSignInViewControllerDelegate> * delegate;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <RUSignInViewControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_accountStoreDidChangeNotification:(id)arg1;

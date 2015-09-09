@@ -2,18 +2,20 @@
    Image: /System/Library/PrivateFrameworks/PrototypeTools.framework/PrototypeTools
  */
 
-@class PTSModule, _UISettings;
-
 @interface PTSModuleController : UITableViewController <PTSModuleObserver, PTSRowTableViewCellDelegate> {
     PTSModule *_module;
 }
 
-@property(readonly) _UISettings * settings;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) _UISettings *settings;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (id)additionalToolbarItems;
-- (id)initWithSettings:(id)arg1 presentingRow:(id)arg2;
 - (id)initWithSettings:(id)arg1;
+- (id)initWithSettings:(id)arg1 presentingRow:(id)arg2;
 - (void)module:(id)arg1 didInsertRows:(id)arg2 deleteRows:(id)arg3;
 - (void)module:(id)arg1 didInsertSections:(id)arg2 deleteSections:(id)arg3;
 - (void)moduleDidReload:(id)arg1;
@@ -25,6 +27,7 @@
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
 - (void)tableView:(id)arg1 commitEditingStyle:(int)arg2 forRowAtIndexPath:(id)arg3;
 - (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
+- (int)tableView:(id)arg1 editingStyleForRowAtIndexPath:(id)arg2;
 - (float)tableView:(id)arg1 heightForRowAtIndexPath:(id)arg2;
 - (void)tableView:(id)arg1 moveRowAtIndexPath:(id)arg2 toIndexPath:(id)arg3;
 - (int)tableView:(id)arg1 numberOfRowsInSection:(int)arg2;

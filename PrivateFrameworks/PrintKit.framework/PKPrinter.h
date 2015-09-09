@@ -2,18 +2,8 @@
    Image: /System/Library/PrivateFrameworks/PrintKit.framework/PrintKit
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class NSArray, NSDictionary, NSMutableArray, NSMutableDictionary, NSMutableSet, NSNumber, NSString;
-
 @interface PKPrinter : NSObject {
+    PKPaperList *_paperList;
     int accessState;
     BOOL connectionShouldNotBeTrusted;
     BOOL hasIdentifyPrinterOp;
@@ -27,65 +17,69 @@
     int maxJPEGXDimension;
     int maxJPEGYDimension;
     int maxPDFKBytes;
-    NSMutableSet *mediaReady;
     NSString *name;
     int preferred_landscape;
     NSDictionary *printInfoSupported;
     NSArray *printScalingSupported;
+    int printerStateReasons;
     NSMutableDictionary *privateData;
     NSString *quotaManagementURL;
-    NSMutableArray *rolls;
     NSMutableDictionary *specialFeedOrientation;
     int type;
 }
 
-@property(retain) NSDictionary * TXTRecord;
+@property (retain) NSDictionary *TXTRecord;
 @property int accessState;
-@property(readonly) int accessState;
-@property(readonly) BOOL hasIdentifyPrinterOp;
-@property(readonly) BOOL hasPrintInfoSupported;
-@property(retain) NSString * hostname;
-@property(readonly) BOOL isAdobeRGBSupported;
+@property (readonly) int accessState;
+@property (readonly) BOOL hasIdentifyPrinterOp;
+@property (readonly) BOOL hasPrintInfoSupported;
+@property (retain) NSString *hostname;
+@property (readonly) BOOL isAdobeRGBSupported;
 @property BOOL isFromMCProfile;
-@property(readonly) BOOL isIPPS;
+@property (readonly) BOOL isIPPS;
 @property BOOL isLocal;
-@property(readonly) int jobTypesSupported;
-@property(readonly) int kind;
-@property(readonly) NSString * name;
-@property(readonly) BOOL needsSetup;
-@property(retain) NSNumber * port;
-@property(readonly) NSDictionary * printInfoSupported;
-@property(readonly) NSString * scheme;
-@property(readonly) BOOL setupSupportsPasswordScope;
-@property(readonly) int type;
-@property(readonly) NSString * uuid;
+@property (readonly) int jobTypesSupported;
+@property (readonly) int kind;
+@property (readonly) NSString *name;
+@property (readonly) BOOL needsSetup;
+@property (retain) PKPaperList *paperList;
+@property (retain) NSNumber *port;
+@property (readonly) NSDictionary *printInfoSupported;
+@property (readonly) NSURL *printerURL;
+@property (readonly, retain) NSString *scheme;
+@property (readonly) BOOL setupSupportsPasswordScope;
+@property (readonly) int type;
+@property (readonly) NSString *uuid;
 
-+ (struct _ipp_s { int x1; union _ipp_request_u { struct { unsigned char x_1_2_1[2]; int x_1_2_2; int x_1_2_3; } x_2_1_1; struct { unsigned char x_2_2_1[2]; int x_2_2_2; int x_2_2_3; } x_2_1_2; struct { unsigned char x_3_2_1[2]; int x_3_2_2; int x_3_2_3; } x_2_1_3; struct { unsigned char x_4_2_1[2]; int x_4_2_2; int x_4_2_3; } x_2_1_4; } x2; struct _ipp_attribute_s {} *x3; struct _ipp_attribute_s {} *x4; struct _ipp_attribute_s {} *x5; int x6; struct _ipp_attribute_s {} *x7; int x8; }*)getAttributes:(const char **)arg1 count:(int)arg2 fromURI:(id)arg3;
++ (struct _ipp_s { int x1; union _ipp_request_u { struct { unsigned char x_1_2_1[2]; int x_1_2_2; int x_1_2_3; } x_2_1_1; struct { unsigned char x_2_2_1[2]; int x_2_2_2; int x_2_2_3; } x_2_1_2; struct { unsigned char x_3_2_1[2]; int x_3_2_2; int x_3_2_3; } x_2_1_3; struct { unsigned char x_4_2_1[2]; int x_4_2_2; int x_4_2_3; } x_2_1_4; } x2; struct _ipp_attribute_s {} *x3; struct _ipp_attribute_s {} *x4; struct _ipp_attribute_s {} *x5; int x6; struct _ipp_attribute_s {} *x7; int x8; int x9; int x10; }*)getAttributes:(const char **)arg1 count:(int)arg2 fromURI:(id)arg3;
 + (id)hardcodedURIs;
 + (id)nameForHardcodedURI:(id)arg1;
 + (BOOL)printerLookupWithName:(id)arg1 andTimeout:(double)arg2;
 + (id)printerWithName:(id)arg1;
++ (id)printerWithName:(id)arg1 discoveryTimeout:(double)arg2;
 + (id)requiredPDL;
 + (BOOL)urfIsOptional;
 
 - (id)TXTRecord;
+- (id)TXTRecordWithTimeout:(int)arg1;
 - (int)abortJob;
 - (int)accessState;
 - (void)aggdAppsAndPrinters;
 - (id)availableRollPapersPreferBorderless:(BOOL)arg1;
 - (void)cancelUnlock;
-- (void)checkOperations:(struct _ipp_s { int x1; union _ipp_request_u { struct { unsigned char x_1_2_1[2]; int x_1_2_2; int x_1_2_3; } x_2_1_1; struct { unsigned char x_2_2_1[2]; int x_2_2_2; int x_2_2_3; } x_2_1_2; struct { unsigned char x_3_2_1[2]; int x_3_2_2; int x_3_2_3; } x_2_1_3; struct { unsigned char x_4_2_1[2]; int x_4_2_2; int x_4_2_3; } x_2_1_4; } x2; struct _ipp_attribute_s {} *x3; struct _ipp_attribute_s {} *x4; struct _ipp_attribute_s {} *x5; int x6; struct _ipp_attribute_s {} *x7; int x8; }*)arg1;
-- (void)createMediaReadyFromAttrs:(struct _ipp_s { int x1; union _ipp_request_u { struct { unsigned char x_1_2_1[2]; int x_1_2_2; int x_1_2_3; } x_2_1_1; struct { unsigned char x_2_2_1[2]; int x_2_2_2; int x_2_2_3; } x_2_1_2; struct { unsigned char x_3_2_1[2]; int x_3_2_2; int x_3_2_3; } x_2_1_3; struct { unsigned char x_4_2_1[2]; int x_4_2_2; int x_4_2_3; } x_2_1_4; } x2; struct _ipp_attribute_s {} *x3; struct _ipp_attribute_s {} *x4; struct _ipp_attribute_s {} *x5; int x6; struct _ipp_attribute_s {} *x7; int x8; }*)arg1;
-- (struct _ipp_s { int x1; union _ipp_request_u { struct { unsigned char x_1_2_1[2]; int x_1_2_2; int x_1_2_3; } x_2_1_1; struct { unsigned char x_2_2_1[2]; int x_2_2_2; int x_2_2_3; } x_2_1_2; struct { unsigned char x_3_2_1[2]; int x_3_2_2; int x_3_2_3; } x_2_1_3; struct { unsigned char x_4_2_1[2]; int x_4_2_2; int x_4_2_3; } x_2_1_4; } x2; struct _ipp_attribute_s {} *x3; struct _ipp_attribute_s {} *x4; struct _ipp_attribute_s {} *x5; int x6; struct _ipp_attribute_s {} *x7; int x8; }*)createRequest:(id)arg1 ofType:(id)arg2 url:(id)arg3;
+- (void)checkOperations:(struct _ipp_s { int x1; union _ipp_request_u { struct { unsigned char x_1_2_1[2]; int x_1_2_2; int x_1_2_3; } x_2_1_1; struct { unsigned char x_2_2_1[2]; int x_2_2_2; int x_2_2_3; } x_2_1_2; struct { unsigned char x_3_2_1[2]; int x_3_2_2; int x_3_2_3; } x_2_1_3; struct { unsigned char x_4_2_1[2]; int x_4_2_2; int x_4_2_3; } x_2_1_4; } x2; struct _ipp_attribute_s {} *x3; struct _ipp_attribute_s {} *x4; struct _ipp_attribute_s {} *x5; int x6; struct _ipp_attribute_s {} *x7; int x8; int x9; int x10; }*)arg1;
+- (struct _ipp_s { int x1; union _ipp_request_u { struct { unsigned char x_1_2_1[2]; int x_1_2_2; int x_1_2_3; } x_2_1_1; struct { unsigned char x_2_2_1[2]; int x_2_2_2; int x_2_2_3; } x_2_1_2; struct { unsigned char x_3_2_1[2]; int x_3_2_2; int x_3_2_3; } x_2_1_3; struct { unsigned char x_4_2_1[2]; int x_4_2_2; int x_4_2_3; } x_2_1_4; } x2; struct _ipp_attribute_s {} *x3; struct _ipp_attribute_s {} *x4; struct _ipp_attribute_s {} *x5; int x6; struct _ipp_attribute_s {} *x7; int x8; int x9; int x10; }*)createRequest:(id)arg1 ofType:(id)arg2 url:(id)arg3;
 - (void)dealloc;
 - (id)description;
 - (id)displayName;
+- (void)doMedia2:(struct _ipp_s { int x1; union _ipp_request_u { struct { unsigned char x_1_2_1[2]; int x_1_2_2; int x_1_2_3; } x_2_1_1; struct { unsigned char x_2_2_1[2]; int x_2_2_2; int x_2_2_3; } x_2_1_2; struct { unsigned char x_3_2_1[2]; int x_3_2_2; int x_3_2_3; } x_2_1_3; struct { unsigned char x_4_2_1[2]; int x_4_2_2; int x_4_2_3; } x_2_1_4; } x2; struct _ipp_attribute_s {} *x3; struct _ipp_attribute_s {} *x4; struct _ipp_attribute_s {} *x5; int x6; struct _ipp_attribute_s {} *x7; int x8; int x9; int x10; }*)arg1;
 - (int)feedOrientation:(id)arg1;
 - (int)finalizeJob:(int)arg1;
 - (int)finishJob;
-- (struct _ipp_s { int x1; union _ipp_request_u { struct { unsigned char x_1_2_1[2]; int x_1_2_2; int x_1_2_3; } x_2_1_1; struct { unsigned char x_2_2_1[2]; int x_2_2_2; int x_2_2_3; } x_2_1_2; struct { unsigned char x_3_2_1[2]; int x_3_2_2; int x_3_2_3; } x_2_1_3; struct { unsigned char x_4_2_1[2]; int x_4_2_2; int x_4_2_3; } x_2_1_4; } x2; struct _ipp_attribute_s {} *x3; struct _ipp_attribute_s {} *x4; struct _ipp_attribute_s {} *x5; int x6; struct _ipp_attribute_s {} *x7; int x8; }*)getPrinterAttributes;
+- (struct _ipp_s { int x1; union _ipp_request_u { struct { unsigned char x_1_2_1[2]; int x_1_2_2; int x_1_2_3; } x_2_1_1; struct { unsigned char x_2_2_1[2]; int x_2_2_2; int x_2_2_3; } x_2_1_2; struct { unsigned char x_3_2_1[2]; int x_3_2_2; int x_3_2_3; } x_2_1_3; struct { unsigned char x_4_2_1[2]; int x_4_2_2; int x_4_2_3; } x_2_1_4; } x2; struct _ipp_attribute_s {} *x3; struct _ipp_attribute_s {} *x4; struct _ipp_attribute_s {} *x5; int x6; struct _ipp_attribute_s {} *x7; int x8; int x9; int x10; }*)getAttributes:(const char **)arg1 count:(int)arg2;
+- (struct _ipp_s { int x1; union _ipp_request_u { struct { unsigned char x_1_2_1[2]; int x_1_2_2; int x_1_2_3; } x_2_1_1; struct { unsigned char x_2_2_1[2]; int x_2_2_2; int x_2_2_3; } x_2_1_2; struct { unsigned char x_3_2_1[2]; int x_3_2_2; int x_3_2_3; } x_2_1_3; struct { unsigned char x_4_2_1[2]; int x_4_2_2; int x_4_2_3; } x_2_1_4; } x2; struct _ipp_attribute_s {} *x3; struct _ipp_attribute_s {} *x4; struct _ipp_attribute_s {} *x5; int x6; struct _ipp_attribute_s {} *x7; int x8; int x9; int x10; }*)getPrinterAttributes;
+- (void)handlePrinterStateReasonsFromResponse:(struct _ipp_s { int x1; union _ipp_request_u { struct { unsigned char x_1_2_1[2]; int x_1_2_2; int x_1_2_3; } x_2_1_1; struct { unsigned char x_2_2_1[2]; int x_2_2_2; int x_2_2_3; } x_2_1_2; struct { unsigned char x_3_2_1[2]; int x_3_2_2; int x_3_2_3; } x_2_1_3; struct { unsigned char x_4_2_1[2]; int x_4_2_2; int x_4_2_3; } x_2_1_4; } x2; struct _ipp_attribute_s {} *x3; struct _ipp_attribute_s {} *x4; struct _ipp_attribute_s {} *x5; int x6; struct _ipp_attribute_s {} *x7; int x8; int x9; int x10; }*)arg1;
 - (BOOL)hasIdentifyPrinterOp;
-- (BOOL)hasMatchingLoadedRoll:(id)arg1;
 - (BOOL)hasPrintInfoSupported;
 - (id)hostname;
 - (void)identifySelf;
@@ -93,7 +87,6 @@
 - (id)initWithName:(id)arg1 TXTRecord:(id)arg2;
 - (BOOL)isAdobeRGBSupported;
 - (BOOL)isBonjour;
-- (BOOL)isEqual:(id)arg1;
 - (BOOL)isFromMCProfile;
 - (BOOL)isIPPS;
 - (BOOL)isLocal;
@@ -102,41 +95,46 @@
 - (int)kind;
 - (BOOL)knowsReadyPaperList;
 - (id)localName;
+- (id)localizedPrinterWarnings;
 - (id)location;
+- (id)makeAndModel;
 - (id)matchedPaper:(id)arg1 preferBorderless:(BOOL)arg2 withDuplexMode:(id)arg3 didMatch:(BOOL*)arg4;
 - (id)name;
 - (BOOL)needsSetup;
+- (id)paperList;
 - (id)paperListForDuplexMode:(id)arg1;
+- (id)papersForDocumentWithSize:(struct CGSize { float x1; float x2; })arg1 andDuplex:(BOOL)arg2;
+- (id)papersForPhotoWithSize:(struct CGSize { float x1; float x2; })arg1;
 - (id)port;
 - (id)printInfoSupported;
 - (int)printURL:(id)arg1 ofType:(id)arg2 printSettings:(id)arg3;
+- (id)printerURL;
 - (id)privateObjectForKey:(id)arg1;
 - (void)reconfirmWithForce:(BOOL)arg1;
 - (void)resolve;
 - (BOOL)resolveWithTimeout:(int)arg1;
-- (id)rollFromAttrs:(struct _ipp_s { int x1; union _ipp_request_u { struct { unsigned char x_1_2_1[2]; int x_1_2_2; int x_1_2_3; } x_2_1_1; struct { unsigned char x_2_2_1[2]; int x_2_2_2; int x_2_2_3; } x_2_1_2; struct { unsigned char x_3_2_1[2]; int x_3_2_2; int x_3_2_3; } x_2_1_3; struct { unsigned char x_4_2_1[2]; int x_4_2_2; int x_4_2_3; } x_2_1_4; } x2; struct _ipp_attribute_s {} *x3; struct _ipp_attribute_s {} *x4; struct _ipp_attribute_s {} *x5; int x6; struct _ipp_attribute_s {} *x7; int x8; }*)arg1;
-- (id)rollReadyPaperListForDocumentWithContentSize:(struct CGSize { float x1; float x2; })arg1;
-- (id)rollReadyPaperListForPhotoWithContentSize:(struct CGSize { float x1; float x2; })arg1;
-- (id)rollReadyPaperListWithContentSize:(struct CGSize { float x1; float x2; })arg1 forPhoto:(BOOL)arg2;
 - (id)rollReadyPaperListWithContentSize:(struct CGSize { float x1; float x2; })arg1;
+- (id)rollReadyPaperListWithContentSize:(struct CGSize { float x1; float x2; })arg1 forPhoto:(BOOL)arg2;
 - (id)scheme;
 - (int)sendData:(const char *)arg1 ofLength:(int)arg2;
 - (void)setAccessState:(int)arg1;
-- (void)setAccessStateFromTXT:(id)arg1;
+- (void)setAccessStateFromTXT;
 - (void)setHostname:(id)arg1;
 - (void)setIsFromMCProfile:(BOOL)arg1;
 - (void)setIsLocal:(BOOL)arg1;
+- (void)setPaperList:(id)arg1;
 - (void)setPort:(id)arg1;
 - (void)setPrivateObject:(id)arg1 forKey:(id)arg2;
 - (void)setTXTRecord:(id)arg1;
 - (BOOL)setupSupportsPasswordScope;
-- (void)setupWithOptions:(id)arg1 completionHandler:(id)arg2;
-- (void)showPassCodeForSetupWithCompletionHandler:(id)arg1;
+- (void)setupWithOptions:(id)arg1 completionHandler:(id /* block */)arg2;
+- (void)showPassCodeForSetupWithCompletionHandler:(id /* block */)arg1;
 - (int)startJob:(id)arg1 ofType:(id)arg2;
+- (id)txtRecordObjectForKey:(id)arg1;
 - (int)type;
-- (void)unlockWithCompletionHandler:(id)arg1;
+- (void)unlockWithCompletionHandler:(id /* block */)arg1;
 - (void)updateType;
 - (id)uuid;
-- (void)validatePassCode:(id)arg1 withCompletionHandler:(id)arg2;
+- (void)validatePassCode:(id)arg1 withCompletionHandler:(id /* block */)arg2;
 
 @end

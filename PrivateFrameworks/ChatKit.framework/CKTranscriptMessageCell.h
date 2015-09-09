@@ -2,21 +2,20 @@
    Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
  */
 
-@class UIButton, UIImage, UIImageView;
-
 @interface CKTranscriptMessageCell : CKTranscriptCell {
-    UIImageView *_contactImageView;
+    CKBalloonImageView *_contactImageView;
     UIButton *_failureButton;
     BOOL _wantsContactImageLayout;
 }
 
-@property(retain) UIImage * contactImage;
-@property(retain) UIImageView * contactImageView;
-@property BOOL failed;
-@property(retain) UIButton * failureButton;
-@property BOOL wantsContactImageLayout;
+@property (nonatomic, retain) UIImage *contactImage;
+@property (nonatomic, retain) CKBalloonImageView *contactImageView;
+@property (nonatomic) BOOL failed;
+@property (nonatomic, retain) UIButton *failureButton;
+@property (nonatomic) BOOL wantsContactImageLayout;
 
-- (void)configureForRow:(id)arg1;
++ (float)failureButtonWidthPlusSpacing;
+
 - (id)contactImage;
 - (id)contactImageView;
 - (void)dealloc;

@@ -2,14 +2,8 @@
    Image: /System/Library/PrivateFrameworks/IMFoundation.framework/IMFoundation
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSString;
-
 @interface _IMNotificationObservationHelper : NSObject {
-    id _block;
+    id /* block */ _block;
     NSString *_name;
     id _object;
     id _observer;
@@ -17,6 +11,6 @@
 
 - (void)_notification:(id)arg1;
 - (void)dealloc;
-- (id)initWithObserver:(id)arg1 name:(id)arg2 object:(id)arg3 block:(id)arg4;
+- (id)initWithObserver:(id)arg1 name:(id)arg2 object:(id)arg3 block:(id /* block */)arg4;
 
 @end

@@ -2,14 +2,17 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class EDCollection, EDDifferentialStyle;
-
 @interface EDTableStyleElement : NSObject <EDKeyedObject, NSCopying> {
     unsigned int mBandSize;
     EDDifferentialStyle *mDifferentialStyle;
     EDCollection *mDifferentialStyles;
     int mType;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)tableStyleElementWithResources:(id)arg1;
 

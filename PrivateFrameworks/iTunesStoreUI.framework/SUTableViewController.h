@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
  */
 
-@class NSIndexPath, SUTableDataSource, SUTableView, UITableView;
-
 @interface SUTableViewController : SUViewController <UITableViewDataSource, UITableViewDelegate> {
     SUTableDataSource *_dataSource;
     int _disappearOrientation;
@@ -14,10 +12,14 @@
     int _tableViewStyle;
 }
 
-@property(retain) SUTableDataSource * dataSource;
-@property(readonly) unsigned int numberOfRows;
-@property(readonly) UITableView * tableView;
-@property int tableViewStyle;
+@property (nonatomic, retain) SUTableDataSource *dataSource;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) unsigned int numberOfRows;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) UITableView *tableView;
+@property (nonatomic) int tableViewStyle;
 
 - (void)_deliverTapCount:(int)arg1 forIndexPath:(id)arg2;
 - (void)_doubleTapTimeout;
@@ -49,6 +51,7 @@
 - (void)setDataSource:(id)arg1;
 - (void)setScriptProperties:(id)arg1;
 - (void)setTableViewStyle:(int)arg1;
+- (id)tableView;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
 - (void)tableView:(id)arg1 commitEditingStyle:(int)arg2 forRowAtIndexPath:(id)arg3;
 - (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
@@ -63,7 +66,6 @@
 - (id)tableView:(id)arg1 viewForHeaderInSection:(int)arg2;
 - (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forRowAtIndexPath:(id)arg3;
 - (id)tableView:(id)arg1 willSelectRowAtIndexPath:(id)arg2;
-- (id)tableView;
 - (int)tableViewStyle;
 - (void)viewDidAppear:(BOOL)arg1;
 - (void)viewWillAppear:(BOOL)arg1;

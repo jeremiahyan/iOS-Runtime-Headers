@@ -2,14 +2,11 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class NSWeakCallback;
-
 @interface NSConcreteHashTable : NSHashTable {
+    unsigned int capacity;
+    unsigned int count;
+    unsigned int mutations;
+    unsigned int options;
     struct NSSlice { 
         void **items; 
         BOOL wantsStrong; 
@@ -35,10 +32,6 @@
         int (*readAt)(); 
         int (*clearAt)(); 
         int (*storeAt)(); 
-    unsigned int capacity;
-    unsigned int count;
-    unsigned int mutations;
-    unsigned int options;
     } slice;
 }
 
@@ -49,7 +42,7 @@
 - (Class)classForCoder;
 - (id)copy;
 - (unsigned int)count;
-- (unsigned int)countByEnumeratingWithState:(struct { unsigned long x1; id *x2; unsigned long *x3; unsigned long x4[5]; }*)arg1 objects:(id*)arg2 count:(unsigned int)arg3;
+- (unsigned int)countByEnumeratingWithState:(struct { unsigned long x1; id *x2; unsigned long x3; unsigned long x4[5]; }*)arg1 objects:(id*)arg2 count:(unsigned int)arg3;
 - (void)dealloc;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;

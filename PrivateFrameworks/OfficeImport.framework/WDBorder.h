@@ -2,10 +2,8 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class TSUColor;
-
 @interface WDBorder : NSObject <NSCopying> {
-    TSUColor *mColor;
+    OITSUColor *mColor;
     BOOL mFrame;
     BOOL mShadow;
     unsigned char mSpace;
@@ -16,6 +14,7 @@
 - (id)color;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
+- (id)description;
 - (BOOL)frame;
 - (id)init;
 - (BOOL)isEqual:(id)arg1;

@@ -2,29 +2,27 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-@class <VKLabelNavFeature>, NSString;
-
 @interface VKLabelNavRoadLabel : NSObject {
-    struct shared_ptr<vk::NavLabel> { 
-        struct NavLabel {} *__ptr_; 
-        struct __shared_weak_count {} *__cntrl_; 
     int _alignment;
     float _desiredOffsetDistance;
     NSString *_displayGroup;
     unsigned int _displayID;
+    struct shared_ptr<vk::NavLabel> { 
+        struct NavLabel {} *__ptr_; 
+        struct __shared_weak_count {} *__cntrl_; 
     } _label;
     <VKLabelNavFeature> *_navFeature;
     int _navLabelType;
 }
 
-@property int alignment;
-@property float desiredOffsetDistance;
-@property unsigned int displayID;
-@property(readonly) BOOL isJunctionLabel;
-@property(readonly) BOOL isRoadLabel;
-@property(readonly) BOOL isShieldLabel;
-@property(readonly) const struct shared_ptr<vk::NavLabel> { struct NavLabel {} *x1; struct __shared_weak_count {} *x2; }* label;
-@property <VKLabelNavFeature> * navFeature;
+@property (nonatomic) int alignment;
+@property (nonatomic) float desiredOffsetDistance;
+@property (nonatomic) unsigned int displayID;
+@property (nonatomic, readonly) BOOL isJunctionLabel;
+@property (nonatomic, readonly) BOOL isRoadLabel;
+@property (nonatomic, readonly) BOOL isShieldLabel;
+@property (nonatomic, readonly) const struct shared_ptr<vk::NavLabel> { struct NavLabel {} *x1; struct __shared_weak_count {} *x2; }*label;
+@property (nonatomic) <VKLabelNavFeature> *navFeature;
 
 - (id).cxx_construct;
 - (void).cxx_destruct;

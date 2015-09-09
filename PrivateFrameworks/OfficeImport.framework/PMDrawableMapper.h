@@ -2,15 +2,11 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class CMDrawingContext, OADShape;
-
 @interface PMDrawableMapper : CMDrawableMapper {
     CMDrawingContext *mDrawingContext;
     OADShape *mShape;
     BOOL mTopLevelMapper;
 }
-
-+ (id)orientedBoundsForDrawable:(id)arg1;
 
 - (void)dealloc;
 - (id)drawingContext;

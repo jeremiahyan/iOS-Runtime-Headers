@@ -2,59 +2,63 @@
    Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
  */
 
-@class NSArray, NSData, NSDate, NSDictionary, NSLock, NSMutableDictionary, NSNumber, NSString, NSURL, SSItemImageCollection;
-
-@interface SSDownloadMetadata : NSObject <SSXPCCoding, NSCoding, NSCopying> {
+@interface SSDownloadMetadata : NSObject <NSCoding, NSCopying, SSXPCCoding> {
     NSMutableDictionary *_dictionary;
     int _keyStyle;
     NSLock *_lock;
 }
 
-@property(readonly) NSArray * MD5HashStrings;
-@property(readonly) NSData * appReceiptData;
+@property (readonly) NSArray *MD5HashStrings;
+@property (readonly, retain) NSData *appReceiptData;
 @property unsigned long long artistIdentifier;
-@property(copy) NSString * artistName;
-@property(getter=isAutomaticDownload) BOOL automaticDownload;
-@property(retain) NSURL * cancelDownloadURL;
-@property(getter=isContentRestricted,readonly) BOOL contentRestricted;
-@property(retain) NSString * copyright;
-@property(retain) NSDictionary * dictionary;
-@property(retain) NSString * downloadKey;
-@property(retain) NSData * epubRightsData;
-@property(retain) NSString * fileExtension;
-@property(retain) NSURL * fullSizeImageURL;
-@property(retain) NSString * genre;
+@property (copy) NSString *artistName;
+@property (getter=isAutomaticDownload) BOOL automaticDownload;
+@property (retain) NSURL *cancelDownloadURL;
+@property (getter=isContentRestricted, readonly) BOOL contentRestricted;
+@property (retain) NSString *copyright;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (retain) NSDictionary *dictionary;
+@property (retain) NSString *downloadKey;
+@property (readonly) NSNumber *downloaderAccountIdentifier;
+@property (retain) NSData *epubRightsData;
+@property (retain) NSString *fileExtension;
+@property (retain) NSURL *fullSizeImageURL;
+@property (retain) NSString *genre;
 @property unsigned long long genreIdentifier;
+@property (readonly) unsigned int hash;
 @property unsigned long long itemIdentifier;
 @property int keyStyle;
-@property(retain) NSString * kind;
-@property(copy) NSString * longDescription;
-@property(readonly) NSNumber * numberOfBytesToHash;
-@property(copy) NSString * pageProgressionDirection;
+@property (retain) NSString *kind;
+@property (retain) NSURL *launchExtrasUrl;
+@property (copy) NSString *longDescription;
+@property (readonly) NSNumber *numberOfBytesToHash;
+@property (copy) NSString *pageProgressionDirection;
 @property unsigned long long preOrderIdentifier;
-@property(copy) NSString * preferredAssetFlavor;
-@property(readonly) NSDictionary * primaryAssetDictionary;
-@property(retain) NSURL * primaryAssetURL;
-@property(copy) NSString * redownloadActionParameters;
-@property(getter=isRedownloadDownload) BOOL redownloadDownload;
-@property(retain) NSDate * releaseDate;
-@property(retain) NSString * releaseDateString;
-@property(retain) NSNumber * releaseYear;
-@property(copy) id requiredDeviceCapabilities;
-@property(copy) NSString * shortDescription;
+@property (copy) NSString *preferredAssetFlavor;
+@property (readonly) NSDictionary *primaryAssetDictionary;
+@property (retain) NSURL *primaryAssetURL;
+@property (copy) NSString *redownloadActionParameters;
+@property (getter=isRedownloadDownload) BOOL redownloadDownload;
+@property (retain) NSDate *releaseDate;
+@property (retain) NSString *releaseDateString;
+@property (retain) NSNumber *releaseYear;
+@property (copy) id requiredDeviceCapabilities;
+@property (copy) NSString *shortDescription;
 @property BOOL shouldDownloadAutomatically;
-@property(retain) NSArray * sinfs;
-@property(retain) NSString * sortArtistName;
-@property(retain) NSString * sortCollectionName;
-@property(retain) NSString * sortTitle;
-@property(retain) NSString * subtitle;
-@property(readonly) SSItemImageCollection * thumbnailImageCollection;
-@property(retain) NSURL * thumbnailImageURL;
-@property(retain) NSString * thumbnailNewsstandBindingEdge;
-@property(retain) NSString * thumbnailNewsstandBindingType;
-@property(retain) NSString * title;
-@property(retain) NSString * transactionIdentifier;
-@property(copy) NSURL * transitMapDataURL;
+@property (retain) NSArray *sinfs;
+@property (retain) NSString *sortArtistName;
+@property (retain) NSString *sortCollectionName;
+@property (retain) NSString *sortTitle;
+@property (retain) NSString *subtitle;
+@property (readonly) Class superclass;
+@property (readonly) SSItemImageCollection *thumbnailImageCollection;
+@property (retain) NSURL *thumbnailImageURL;
+@property (retain) NSString *thumbnailNewsstandBindingEdge;
+@property (retain) NSString *thumbnailNewsstandBindingType;
+@property (retain) NSString *title;
+@property (retain) NSString *transactionIdentifier;
+@property (copy) NSURL *transitMapDataURL;
 
 - (id)MD5HashStrings;
 - (id)_assetDictionary;
@@ -91,6 +95,7 @@
 - (id)dictionary;
 - (id)documentTargetIdentifier;
 - (id)downloadKey;
+- (id)downloaderAccountIdentifier;
 - (id)durationInMilliseconds;
 - (void)encodeWithCoder:(id)arg1;
 - (id)episodeIdentifier;
@@ -104,8 +109,8 @@
 - (id)init;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithDictionary:(id)arg1;
-- (id)initWithItem:(id)arg1 offer:(id)arg2;
 - (id)initWithItem:(id)arg1;
+- (id)initWithItem:(id)arg1 offer:(id)arg2;
 - (id)initWithKind:(id)arg1;
 - (id)initWithXPCEncoding:(id)arg1;
 - (BOOL)isAutomaticDownload;
@@ -119,6 +124,7 @@
 - (unsigned long long)itemIdentifier;
 - (int)keyStyle;
 - (id)kind;
+- (id)launchExtrasUrl;
 - (id)longDescription;
 - (id)longSeasonDescription;
 - (id)networkName;
@@ -176,6 +182,7 @@
 - (void)setItemIdentifier:(unsigned long long)arg1;
 - (void)setKeyStyle:(int)arg1;
 - (void)setKind:(id)arg1;
+- (void)setLaunchExtrasUrl:(id)arg1;
 - (void)setLongDescription:(id)arg1;
 - (void)setLongSeasonDescription:(id)arg1;
 - (void)setMD5HashStrings:(id)arg1 numberOfBytesToHash:(id)arg2;

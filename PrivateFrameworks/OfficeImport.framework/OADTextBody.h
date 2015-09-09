@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSMutableArray, OADTextBodyProperties, OADTextListStyle;
-
 @interface OADTextBody : NSObject {
     NSMutableArray *mParagraphs;
     OADTextBodyProperties *mProperties;
@@ -18,10 +16,12 @@
 - (void)flattenProperties;
 - (id)init;
 - (BOOL)isEmpty;
+- (unsigned int)nonEmptyParagraphCount;
 - (id)overrideTextListStyle;
 - (id)paragraphAtIndex:(unsigned int)arg1;
 - (unsigned int)paragraphCount;
 - (id)plainText;
+- (void)propagateActualTextStyleToTextListStyle;
 - (id)properties;
 - (void)removeAllParagraphs;
 - (void)removeLeadingNewlines;

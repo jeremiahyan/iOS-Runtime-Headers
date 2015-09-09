@@ -2,15 +2,13 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-@class NSMapTable, VKObjectPool, VKPShieldPack;
-
 @interface VKShieldAtlas : NSObject {
-    VKObjectPool *_artworkPool;
     NSMapTable *_atlasToImages;
+    NSLock *_atlasToImagesLock;
     VKPShieldPack *_shieldPack;
 }
 
-- (id)artworkForShieldIdentifier:(id)arg1 textLength:(unsigned int)arg2 contentScale:(float)arg3 extraScale:(float)arg4 size:(int)arg5 numberOfLines:(unsigned int)arg6;
+- (id)artworkForShieldIdentifier:(id)arg1 textLength:(unsigned int)arg2 contentScale:(float)arg3 size:(int)arg4 numberOfLines:(unsigned int)arg5 genericShieldGenerator:(id)arg6 colors:(struct { struct Matrix<float, 4, 1> { float x_1_1_1[4]; } x1; }*)arg7;
 - (void)dealloc;
 - (id)initWithShieldPack:(id)arg1;
 - (void)purge;

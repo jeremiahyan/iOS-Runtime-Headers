@@ -2,51 +2,85 @@
    Image: /System/Library/Frameworks/SpriteKit.framework/SpriteKit
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class UIColor;
-
 @interface SKShapeNode : SKNode {
-    struct SKCShapeSprite { int (**x1)(); id x2; unsigned int x3 : 1; unsigned int x4 : 1; unsigned int x5 : 1; unsigned int x6 : 1; unsigned int x7 : 1; unsigned int x8 : 1; unsigned int x9 : 1; unsigned int x10 : 1; unsigned int x11 : 1; unsigned int x12 : 1; unsigned int x13 : 1; unsigned int x14 : 1; unsigned int x15 : 1; unsigned int x16 : 1; unsigned int x17 : 1; unsigned int x18 : 1; unsigned int x19 : 1; unsigned int x20 : 1; unsigned int x21 : 1; unsigned int x22 : 1; unsigned int x23 : 1; unsigned int x24 : 1; unsigned int x25 : 1; unsigned int x26 : 1; boolx27; unsigned int x28 : 1; unsigned int x29 : 1; unsigned int x30 : 1; unsigned int x31 : 1; unsigned int x32 : 1; unsigned int x33 : 1; unsigned int x34 : 1; unsigned int x35 : 1; unsigned int x36 : 1; unsigned int x37 : 1; float x38; struct SKCSprite {} *x39; id x40; boolx41; boolx42; struct __CVBuffer {} *x43; struct __CVBuffer {} *x44; struct __CVOpenGLESTextureCache {} *x45; id x46; id x47; unsigned int x48; unsigned int x49; unsigned int x50; struct { float x_51_1_1; float x_51_1_2; } x51; struct { float x_52_1_1; float x_52_1_2; } x52; struct { float x_53_1_1; float x_53_1_2; } x53; struct { struct { float x_1_2_1; float x_1_2_2; } x_54_1_1; struct { float x_2_2_1; float x_2_2_2; } x_54_1_2; } x54; boolx55; struct __CVBuffer {} *x56; struct __CVBuffer {} *x57; boolx58; struct { struct { union _GLKVector4 { struct { float x_1_4_1; float x_1_4_2; float x_1_4_3; float x_1_4_4; } x_1_3_1; struct { float x_2_4_1; float x_2_4_2; float x_2_4_3; float x_2_4_4; } x_1_3_2; struct { float x_3_4_1; float x_3_4_2; float x_3_4_3; float x_3_4_4; } x_1_3_3; float x_1_3_4[4]; } x_1_2_1; unsigned char x_1_2_2[4]; float x_1_2_3[3]; } x_59_1_1[4]; } x59; struct { /* ? */ } *x60; struct { /* ? */ } *x61; struct { struct { float x_1_2_1; float x_1_2_2; } x_62_1_1; struct { float x_2_2_1; float x_2_2_2; } x_62_1_2; struct { float x_3_2_1; float x_3_2_2; } x_62_1_3; struct { float x_4_2_1; float x_4_2_2; } x_62_1_4; } x62; struct { struct { float x_1_2_1; float x_1_2_2; } x_63_1_1; struct { float x_2_2_1; float x_2_2_2; } x_63_1_2; } x63; int x64; struct { struct { float x_1_2_1; float x_1_2_2; } x_65_1_1; struct { float x_2_2_1; float x_2_2_2; } x_65_1_2; } x65; struct SKCSprite {} *x66; union _GLKMatrix4 { struct { float x_1_2_1; float x_1_2_2; float x_1_2_3; float x_1_2_4; float x_1_2_5; float x_1_2_6; float x_1_2_7; float x_1_2_8; float x_1_2_9; float x_1_2_10; float x_1_2_11; float x_1_2_12; float x_1_2_13; float x_1_2_14; float x_1_2_15; float x_1_2_16; } x_67_1_1; float x_67_1_2[16]; } x67; struct list<SKCSprite *, std::__1::allocator<SKCSprite *> > { struct __list_node_base<SKCSprite *, void *> { struct __list_node<SKCSprite *, void *> {} *x_1_2_1; struct __list_node<SKCSprite *, void *> {} *x_1_2_2; } x_68_1_1; struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__list_node<SKCSprite *, void *> > > { unsigned long x_2_2_1; } x_68_1_2; } x68; struct set<SKCSprite *, std::__1::less<SKCSprite *>, std::__1::allocator<SKCSprite *> > {} *x69; struct list<SKCSprite *, std::__1::allocator<SKCSprite *> > {} *x70; unsigned int x71; unsigned int x72; boolx73; struct list<SKCAction *, std::__1::allocator<SKCAction *> > { struct __list_node_base<SKCAction *, void *> { struct __list_node<SKCAction *, void *> {} *x_1_2_1; struct __list_node<SKCAction *, void *> {} *x_1_2_2; } x_74_1_1; struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__list_node<SKCAction *, void *> > > { unsigned long x_2_2_1; } x_74_1_2; } x74; struct set<SKCSprite *, std::__1::less<SKCSprite *>, std::__1::allocator<SKCSprite *> > { struct __tree<SKCSprite *, std::__1::less<SKCSprite *>, std::__1::allocator<SKCSprite *> > { struct __tree_node<SKCSprite *, void *> {} *x_1_2_1; struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *> *>, std::__1::allocator<std::__1::__tree_node<SKCSprite *, void *> > > { struct __tree_end_node<std::__1::__tree_node_base<void *> *> { struct __tree_node_base<void *> {} *x_1_4_1; } x_2_3_1; } x_1_2_2; struct __compressed_pair<unsigned long, std::__1::less<SKCSprite *> > { unsigned long x_3_3_1; } x_1_2_3; } x_75_1_1; } x75; struct unordered_set<SKCAction *, std::__1::hash<SKCAction *>, std::__1::equal_to<SKCAction *>, std::__1::allocator<SKCAction *> > { struct __hash_table<SKCAction *, std::__1::hash<SKCAction *>, std::__1::equal_to<SKCAction *>, std::__1::allocator<SKCAction *> > { struct unique_ptr<std::__1::__hash_node<SKCAction *, void *> *[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<SKCAction *, void *> *> > > { struct __compressed_pair<std::__1::__hash_node<SKCAction *, void *> **, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<SKCAction *, void *> *> > > { struct __hash_node<SKCAction *, void *> {} **x_1_4_1; struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<SKCAction *, void *> *> > { struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<SKCAction *, void *> *> > { unsigned long x_1_6_1; } x_2_5_1; } x_1_4_2; } x_1_3_1; } x_1_2_1; struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<SKCAction *, void *> *>, std::__1::allocator<std::__1::__hash_node<SKCAction *, void *> > > { struct __hash_node_base<std::__1::__hash_node<SKCAction *, void *> *> { struct __hash_node<SKCAction *, void *> {} *x_1_4_1; } x_2_3_1; } x_1_2_2; struct __compressed_pair<unsigned long, std::__1::hash<SKCAction *> > { unsigned long x_3_3_1; } x_1_2_3; struct __compressed_pair<float, std::__1::equal_to<SKCAction *> > { float x_4_3_1; } x_1_2_4; } x_76_1_1; } x76; float x77; float x78; float x79; id x80; struct { float x_81_1_1; float x_81_1_2; } x81; id x82; boolx83; struct { struct { float x_1_2_1; float x_1_2_2; } x_84_1_1; struct { float x_2_2_1; float x_2_2_2; } x_84_1_2; } x84; struct { float x_85_1_1; float x_85_1_2; } x85; unsigned int x86; struct { float x_87_1_1; float x_87_1_2; } x87; struct { float x_88_1_1; float x_88_1_2; } x88; float x89; float x90; float x91; float x92; float x93; float x94; struct { float x_95_1_1; float x_95_1_2; float x_95_1_3; float x_95_1_4; } x95; struct { float x_96_1_1; float x_96_1_2; float x_96_1_3; float x_96_1_4; } x96; float x97; float x98; float x99; struct { struct { float x_1_2_1; float x_1_2_2; } x_100_1_1; struct { float x_2_2_1; float x_2_2_2; } x_100_1_2; } x100; id x101; float x102; struct { /* ? */ } *x103; struct { float x_104_1_1; float x_104_1_2; float x_104_1_3; float x_104_1_4; } x104; struct { float x_105_1_1; float x_105_1_2; float x_105_1_3; float x_105_1_4; } x105; int x106; float x107; BOOL x108; struct CGPath {} *x109; float x110; BOOL x111; } *ss;
+    struct SKCShapeSprite { int (**x1)(); struct list<SKCAction *, std::__1::allocator<SKCAction *> > { struct __list_node_base<SKCAction *, void *> { struct __list_node<SKCAction *, void *> {} *x_1_2_1; struct __list_node<SKCAction *, void *> {} *x_1_2_2; } x_2_1_1; struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__list_node<SKCAction *, void *> > > { unsigned long x_2_2_1; } x_2_1_2; } x2; struct shared_ptr<PKPath> { struct PKPath {} *x_3_1_1; struct __shared_weak_count {} *x_3_1_2; } x3; id x4; /* Warning: Unrecognized filer type: '1' using 'void*' */ void*x5; unsigned int x6 : 1; unsigned int x7 : 1; unsigned int x8 : 1; unsigned int x9 : 1; unsigned int x10 : 1; unsigned int x11 : 1; unsigned int x12 : 1; unsigned int x13 : 1; unsigned int x14 : 1; unsigned int x15 : 1; unsigned int x16 : 1; unsigned int x17 : 1; unsigned int x18 : 1; unsigned int x19 : 1; unsigned int x20 : 1; unsigned int x21 : 1; unsigned int x22 : 1; unsigned int x23 : 1; unsigned int x24 : 1; unsigned int x25 : 1; unsigned int x26 : 1; unsigned int x27 : 1; unsigned int x28 : 1; unsigned int x29 : 1; unsigned int x30 : 1; bool x31; unsigned int x32 : 1; unsigned int x33 : 1; unsigned int x34 : 1; unsigned int x35 : 1; unsigned int x36 : 1; unsigned int x37 : 1; unsigned int x38 : 1; unsigned int x39 : 1; unsigned int x40 : 1; unsigned int x41 : 1; float x42; struct SKCSprite {} *x43; unsigned int x44; unsigned int x45; unsigned int x46; id x47; bool x48; bool x49; struct __CVBuffer {} *x50; struct __CVBuffer {} *x51; struct __CVOpenGLESTextureCache {} *x52; id x53; id x54; unsigned int x55; unsigned int x56; struct { float x_57_1_1; float x_57_1_2; } x57; struct { float x_58_1_1; float x_58_1_2; } x58; struct { float x_59_1_1; float x_59_1_2; } x59; struct { struct { float x_1_2_1; float x_1_2_2; } x_60_1_1; struct { float x_2_2_1; float x_2_2_2; } x_60_1_2; } x60; struct __CVBuffer {} *x61; struct __CVBuffer {} *x62; bool x63; struct { struct { union _GLKVector4 { struct { float x_1_4_1; float x_1_4_2; float x_1_4_3; float x_1_4_4; } x_1_3_1; struct { float x_2_4_1; float x_2_4_2; float x_2_4_3; float x_2_4_4; } x_1_3_2; struct { float x_3_4_1; float x_3_4_2; float x_3_4_3; float x_3_4_4; } x_1_3_3; float x_1_3_4[4]; } x_1_2_1; unsigned char x_1_2_2[4]; float x_1_2_3[3]; } x_64_1_1[4]; } x64; struct { /* ? */ } *x65; struct { /* ? */ } *x66; struct { struct { float x_1_2_1; float x_1_2_2; } x_67_1_1; struct { float x_2_2_1; float x_2_2_2; } x_67_1_2; struct { float x_3_2_1; float x_3_2_2; } x_67_1_3; struct { float x_4_2_1; float x_4_2_2; } x_67_1_4; } x67; struct { struct { float x_1_2_1; float x_1_2_2; } x_68_1_1; struct { float x_2_2_1; float x_2_2_2; } x_68_1_2; } x68; int x69; struct { struct { float x_1_2_1; float x_1_2_2; } x_70_1_1; struct { float x_2_2_1; float x_2_2_2; } x_70_1_2; } x70; struct SKCSprite {} *x71; union _GLKMatrix4 { struct { float x_1_2_1; float x_1_2_2; float x_1_2_3; float x_1_2_4; float x_1_2_5; float x_1_2_6; float x_1_2_7; float x_1_2_8; float x_1_2_9; float x_1_2_10; float x_1_2_11; float x_1_2_12; float x_1_2_13; float x_1_2_14; float x_1_2_15; float x_1_2_16; } x_72_1_1; float x_72_1_2[16]; } x72; struct list<SKCSprite *, std::__1::allocator<SKCSprite *> > { struct __list_node_base<SKCSprite *, void *> { struct __list_node<SKCSprite *, void *> {} *x_1_2_1; struct __list_node<SKCSprite *, void *> {} *x_1_2_2; } x_73_1_1; struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__list_node<SKCSprite *, void *> > > { unsigned long x_2_2_1; } x_73_1_2; } x73; struct set<SKCSprite *, std::__1::less<SKCSprite *>, std::__1::allocator<SKCSprite *> > {} *x74; struct list<SKCSprite *, std::__1::allocator<SKCSprite *> > {} *x75; unsigned int x76; unsigned int x77; bool x78; struct set<SKCSprite *, std::__1::less<SKCSprite *>, std::__1::allocator<SKCSprite *> > { struct __tree<SKCSprite *, std::__1::less<SKCSprite *>, std::__1::allocator<SKCSprite *> > { struct __tree_node<SKCSprite *, void *> {} *x_1_2_1; struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *> *>, std::__1::allocator<std::__1::__tree_node<SKCSprite *, void *> > > { struct __tree_end_node<std::__1::__tree_node_base<void *> *> { struct __tree_node_base<void *> {} *x_1_4_1; } x_2_3_1; } x_1_2_2; struct __compressed_pair<unsigned long, std::__1::less<SKCSprite *> > { unsigned long x_3_3_1; } x_1_2_3; } x_79_1_1; } x79; struct unordered_set<SKCAction *, std::__1::hash<SKCAction *>, std::__1::equal_to<SKCAction *>, std::__1::allocator<SKCAction *> > { struct __hash_table<SKCAction *, std::__1::hash<SKCAction *>, std::__1::equal_to<SKCAction *>, std::__1::allocator<SKCAction *> > { struct unique_ptr<std::__1::__hash_node<SKCAction *, void *> *[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<SKCAction *, void *> *> > > { struct __compressed_pair<std::__1::__hash_node<SKCAction *, void *> **, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<SKCAction *, void *> *> > > { struct __hash_node<SKCAction *, void *> {} **x_1_4_1; struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<SKCAction *, void *> *> > { struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<SKCAction *, void *> *> > { unsigned long x_1_6_1; } x_2_5_1; } x_1_4_2; } x_1_3_1; } x_1_2_1; struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<SKCAction *, void *> *>, std::__1::allocator<std::__1::__hash_node<SKCAction *, void *> > > { struct __hash_node_base<std::__1::__hash_node<SKCAction *, void *> *> { struct __hash_node<SKCAction *, void *> {} *x_1_4_1; } x_2_3_1; } x_1_2_2; struct __compressed_pair<unsigned long, std::__1::hash<SKCAction *> > { unsigned long x_3_3_1; } x_1_2_3; struct __compressed_pair<float, std::__1::equal_to<SKCAction *> > { float x_4_3_1; } x_1_2_4; } x_80_1_1; } x80; float x81; float x82; float x83; id x84; void*x85; void*x86; float x87; float x88; } *ss;
 }
 
-@property(getter=isAntialiased) BOOL antialiased;
-@property int blendMode;
-@property(retain) UIColor * fillColor;
-@property float glowWidth;
-@property float lineWidth;
-@property struct CGPath { }* path;
-@property float renderQualityRatio;
-@property(retain) UIColor * strokeColor;
+@property (getter=isAntialiased, nonatomic) BOOL antialiased;
+@property (nonatomic) int blendMode;
+@property (nonatomic, retain) UIColor *fillColor;
+@property (nonatomic, retain) SKShader *fillShader;
+@property (nonatomic, retain) SKTexture *fillTexture;
+@property (nonatomic) float glowWidth;
+@property (nonatomic) int lineCap;
+@property (nonatomic) int lineJoin;
+@property (nonatomic, readonly) float lineLength;
+@property (nonatomic) float lineWidth;
+@property (nonatomic) float miterLimit;
+@property (nonatomic) struct CGPath { }*path;
+@property (nonatomic) float renderQualityRatio;
+@property (nonatomic, retain) UIColor *strokeColor;
+@property (nonatomic, retain) SKShader *strokeShader;
+@property (nonatomic, retain) SKTexture *strokeTexture;
 
++ (id)shapeNodeWithCircleOfRadius:(float)arg1;
++ (id)shapeNodeWithEllipseInRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
++ (id)shapeNodeWithEllipseOfSize:(struct CGSize { float x1; float x2; })arg1;
++ (id)shapeNodeWithPath:(struct CGPath { }*)arg1;
++ (id)shapeNodeWithPath:(struct CGPath { }*)arg1 centered:(BOOL)arg2;
++ (id)shapeNodeWithPoints:(struct CGPoint { float x1; float x2; }*)arg1 count:(unsigned long)arg2;
++ (id)shapeNodeWithRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
++ (id)shapeNodeWithRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 cornerRadius:(float)arg2;
++ (id)shapeNodeWithRectOfSize:(struct CGSize { float x1; float x2; })arg1;
++ (id)shapeNodeWithRectOfSize:(struct CGSize { float x1; float x2; })arg1 cornerRadius:(float)arg2;
++ (id)shapeNodeWithSplinePoints:(struct CGPoint { float x1; float x2; }*)arg1 count:(unsigned long)arg2;
++ (id)shapeNodeWithTriangleA:(struct CGPoint { float x1; float x2; })arg1 B:(struct CGPoint { float x1; float x2; })arg2 C:(struct CGPoint { float x1; float x2; })arg3;
+
+- (id)_copyImageData;
+- (void)_initialize;
+- (void)_scaleFactorChangedFrom:(float)arg1 to:(float)arg2;
 - (int)blendMode;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })calculateAccumulatedFrame;
+- (BOOL)containsPoint:(struct CGPoint { float x1; float x2; })arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)fillColor;
 - (BOOL)fillPath;
+- (id)fillShader;
+- (id)fillTexture;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })frame;
 - (float)glowWidth;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
 - (BOOL)isAntialiased;
+- (BOOL)isEqualToNode:(id)arg1;
+- (int)lineCap;
+- (int)lineJoin;
+- (float)lineLength;
 - (float)lineWidth;
+- (float)miterLimit;
 - (struct CGPath { }*)path;
 - (float)renderQualityRatio;
 - (void)setAntialiased:(BOOL)arg1;
 - (void)setBlendMode:(int)arg1;
 - (void)setFillColor:(id)arg1;
 - (void)setFillPath:(BOOL)arg1;
+- (void)setFillShader:(id)arg1;
+- (void)setFillTexture:(id)arg1;
 - (void)setGlowWidth:(float)arg1;
+- (void)setLineCap:(int)arg1;
+- (void)setLineJoin:(int)arg1;
 - (void)setLineWidth:(float)arg1;
+- (void)setMiterLimit:(float)arg1;
 - (void)setPath:(struct CGPath { }*)arg1;
 - (void)setRenderQualityRatio:(float)arg1;
 - (void)setStrokeColor:(id)arg1;
+- (void)setStrokeShader:(id)arg1;
+- (void)setStrokeTexture:(id)arg1;
 - (id)strokeColor;
+- (id)strokeShader;
+- (id)strokeTexture;
 
 @end

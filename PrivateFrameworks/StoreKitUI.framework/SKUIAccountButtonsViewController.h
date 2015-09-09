@@ -2,22 +2,22 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class <SKUIAccountButtonsDelegate>, SKUIAccountButtonsView, SKUIClientContext, SKUIColorScheme, SKUILink, UIAlertView;
-
-@interface SKUIAccountButtonsViewController : UIViewController <UIAlertViewDelegate> {
-    UIAlertView *_alertView;
+@interface SKUIAccountButtonsViewController : UIViewController <UINavigationControllerDelegate> {
     SKUIAccountButtonsView *_buttonsView;
     SKUIClientContext *_clientContext;
     <SKUIAccountButtonsDelegate> *_delegate;
     SKUILink *_ecommerceLink;
 }
 
-@property(retain) SKUILink * ECommerceLink;
-@property(retain) SKUIClientContext * clientContext;
-@property(copy) SKUIColorScheme * colorScheme;
-@property <SKUIAccountButtonsDelegate> * delegate;
-@property(getter=isGiftingHidden) BOOL giftingHidden;
-@property(getter=isTermsAndConditionsHidden) BOOL termsAndConditionsHidden;
+@property (nonatomic, retain) SKUILink *ECommerceLink;
+@property (nonatomic, retain) SKUIClientContext *clientContext;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SKUIAccountButtonsDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (getter=isGiftingHidden, nonatomic) BOOL giftingHidden;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+@property (getter=isTermsAndConditionsHidden, nonatomic) BOOL termsAndConditionsHidden;
 
 - (void).cxx_destruct;
 - (id)ECommerceLink;
@@ -38,20 +38,17 @@
 - (void)_viewAppleID;
 - (void)alertView:(id)arg1 clickedButtonAtIndex:(int)arg2;
 - (id)clientContext;
-- (id)colorScheme;
 - (void)dealloc;
 - (id)delegate;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (BOOL)isGiftingHidden;
 - (BOOL)isTermsAndConditionsHidden;
 - (void)loadView;
+- (unsigned int)navigationControllerSupportedInterfaceOrientations:(id)arg1;
 - (void)setClientContext:(id)arg1;
-- (void)setColorScheme:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setECommerceLink:(id)arg1;
 - (void)setGiftingHidden:(BOOL)arg1;
 - (void)setTermsAndConditionsHidden:(BOOL)arg1;
-- (void)viewWillAppear:(BOOL)arg1;
-- (void)willRotateToInterfaceOrientation:(int)arg1 duration:(double)arg2;
 
 @end

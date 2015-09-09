@@ -2,15 +2,14 @@
    Image: /System/Library/Frameworks/ExternalAccessory.framework/ExternalAccessory
  */
 
-@class EAAccessory, EASession, NSCondition, NSMutableData, NSRecursiveLock, NSThread;
-
 @interface EAInputStream : NSInputStream {
     EAAccessory *_accessory;
     id _delegate;
     BOOL _hasNewBytesAvailable;
+    char *_inputFromAccBuffer;
     NSCondition *_inputFromAccCondition;
     NSMutableData *_inputFromAccData;
-    NSThread *_inputFromAccThread;
+    NSObject<OS_dispatch_queue> *_inputFromAccQueue;
     BOOL _isAtEndEventSent;
     BOOL _isOpenCompletedEventSent;
     struct __CFRunLoop { } *_runLoop;
@@ -18,13 +17,13 @@
     NSRecursiveLock *_runloopLock;
     EASession *_session;
     int _sock;
+    NSObject<OS_dispatch_source> *_sockListenSource;
     NSRecursiveLock *_statusLock;
     unsigned int _streamStatus;
 }
 
 - (void)_accessoryDidDisconnect:(id)arg1;
 - (void)_performAtEndOfStreamValidation;
-- (void)_readInputFromAccThread;
 - (void)_scheduleCallback;
 - (void)_streamEventTrigger;
 - (void)close;

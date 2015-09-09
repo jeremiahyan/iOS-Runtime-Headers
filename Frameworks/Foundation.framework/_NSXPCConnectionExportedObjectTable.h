@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@class NSLock;
-
 @interface _NSXPCConnectionExportedObjectTable : NSObject {
     NSLock *_lock;
     unsigned long long _next;
@@ -13,6 +11,7 @@
 }
 
 - (void)dealloc;
+- (id)description;
 - (id)exportedObjectForProxyNumber:(unsigned long long)arg1;
 - (void)finalize;
 - (id)init;

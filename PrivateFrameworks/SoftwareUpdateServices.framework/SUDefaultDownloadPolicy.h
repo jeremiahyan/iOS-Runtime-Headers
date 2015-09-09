@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/SoftwareUpdateServices.framework/SoftwareUpdateServices
  */
 
-@class SUCarrierDownloadPolicyProperties, SUDescriptor, SUNetworkMonitor;
-
 @interface SUDefaultDownloadPolicy : NSObject <SUDownloadPolicy> {
     SUCarrierDownloadPolicyProperties *_carrierPolicy;
     BOOL _cellularCapable;
@@ -11,10 +9,14 @@
     SUNetworkMonitor *_networkMonitor;
 }
 
-@property(retain) SUCarrierDownloadPolicyProperties * carrierPolicy;
-@property(getter=isCellularCapable) BOOL cellularCapable;
-@property(retain) SUDescriptor * descriptor;
-@property(retain) SUNetworkMonitor * networkMonitor;
+@property (nonatomic, retain) SUCarrierDownloadPolicyProperties *carrierPolicy;
+@property (getter=isCellularCapable, nonatomic) BOOL cellularCapable;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) SUDescriptor *descriptor;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) SUNetworkMonitor *networkMonitor;
+@property (readonly) Class superclass;
 
 - (BOOL)_isCellularCapable;
 - (BOOL)_isDownloadableForNetworkType:(int)arg1 error:(int*)arg2 cellularFeesApply:(BOOL*)arg3 powerRequired:(BOOL*)arg4;
@@ -26,14 +28,14 @@
 - (BOOL)hasEnoughDiskSpace;
 - (id)initWithDescriptor:(id)arg1;
 - (BOOL)isCellularCapable;
-- (BOOL)isDownloadAllowableForCellular2G;
 - (BOOL)isDownloadAllowableForCellular;
+- (BOOL)isDownloadAllowableForCellular2G;
 - (BOOL)isDownloadAllowableForCellularRoaming;
 - (BOOL)isDownloadAllowableForWiFi;
 - (BOOL)isDownloadFreeForCellular;
 - (BOOL)isDownloadable;
-- (BOOL)isDownloadableForCurrentNetworkConditions:(int*)arg1 cellularFeesApply:(BOOL*)arg2 powerRequired:(BOOL*)arg3;
 - (BOOL)isDownloadableForCurrentNetworkConditions:(int*)arg1 cellularFeesApply:(BOOL*)arg2;
+- (BOOL)isDownloadableForCurrentNetworkConditions:(int*)arg1 cellularFeesApply:(BOOL*)arg2 powerRequired:(BOOL*)arg3;
 - (BOOL)isPowerRequired;
 - (BOOL)isSamePolicy:(id)arg1;
 - (id)networkMonitor;

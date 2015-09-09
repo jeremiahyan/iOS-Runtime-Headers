@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/IDS.framework/IDS
  */
 
-@class NSArray, NSData, NSDate, NSDictionary, NSMapTable, NSMutableArray, NSString;
-
 @interface _IDSAccount : NSObject <IDSDaemonListenerProtocol> {
     NSDictionary *_accountConfig;
     id _delegateContext;
@@ -11,40 +9,53 @@
     NSMutableArray *_devices;
     BOOL _devicesLoaded;
     BOOL _isEnabled;
+    IDSDevice *_localDevice;
     NSMapTable *_registrationDelegateToInfo;
     NSString *_service;
     NSString *_serviceToken;
     NSString *_uniqueID;
 }
 
-@property(setter=_setIsEnabled:) BOOL _isEnabled;
-@property(retain) NSDictionary * accountInfo;
-@property(readonly) int accountType;
-@property(readonly) NSArray * aliasStrings;
-@property(readonly) NSArray * aliases;
-@property(readonly) BOOL canSend;
-@property(readonly) NSDate * dateRegistered;
-@property(readonly) NSArray * devices;
-@property(readonly) BOOL isActive;
-@property(retain) NSString * loginID;
-@property(readonly) NSDate * nextRegistrationDate;
-@property(readonly) NSString * profileID;
-@property(readonly) NSDictionary * profileInfo;
-@property(readonly) NSData * pushToken;
-@property(readonly) NSString * regionBasePhoneNumber;
-@property(readonly) NSString * regionID;
-@property(readonly) NSDictionary * regionServerContext;
-@property(readonly) NSArray * registeredURIs;
-@property(readonly) NSData * registrationCertificate;
-@property(readonly) int registrationStatus;
-@property(readonly) NSString * serviceName;
-@property(readonly) NSString * uniqueID;
-@property(readonly) NSArray * vettedAliases;
+@property (setter=_setIsEnabled:, nonatomic) BOOL _isEnabled;
+@property (nonatomic, retain) NSDictionary *accountInfo;
+@property (nonatomic, readonly) int accountType;
+@property (nonatomic, readonly, retain) NSArray *aliasStrings;
+@property (nonatomic, readonly, retain) NSArray *aliases;
+@property (nonatomic, readonly) BOOL canSend;
+@property (nonatomic, readonly) NSDate *dateRegistered;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly, retain) NSArray *devices;
+@property (nonatomic, readonly, retain) NSString *displayName;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) BOOL isActive;
+@property (nonatomic, retain) NSString *loginID;
+@property (nonatomic, readonly, retain) NSArray *nearbyDevices;
+@property (nonatomic, readonly) NSDate *nextRegistrationDate;
+@property (nonatomic, readonly, retain) NSString *primaryServiceName;
+@property (nonatomic, readonly) NSString *profileID;
+@property (nonatomic, readonly, retain) NSDictionary *profileInfo;
+@property (nonatomic, readonly) NSData *pushToken;
+@property (nonatomic, readonly, retain) NSString *pushTopic;
+@property (nonatomic, readonly) NSString *regionBasePhoneNumber;
+@property (nonatomic, readonly) NSString *regionID;
+@property (nonatomic, readonly) NSDictionary *regionServerContext;
+@property (nonatomic, readonly) NSArray *registeredURIs;
+@property (nonatomic, readonly) NSData *registrationCertificate;
+@property (nonatomic, readonly) int registrationStatus;
+@property (nonatomic, readonly, retain) NSString *serviceName;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly, retain) NSString *uniqueID;
+@property (nonatomic, readonly, retain) NSArray *vettedAliases;
 
-- (void)_callDelegatesWithBlock:(id)arg1;
-- (void)_callRegistrationDelegatesWithBlock:(id)arg1;
+- (void)_callDelegatesWithBlock:(id /* block */)arg1;
+- (void)_callDelegatesWithBlock:(id /* block */)arg1 group:(id)arg2;
+- (void)_callDevicesChanged;
+- (void)_callNearbyDevicesChanged;
+- (void)_callRegistrationDelegatesWithBlock:(id /* block */)arg1;
 - (void)_connect;
 - (BOOL)_isEnabled;
+- (BOOL)_isiCloudPairingService;
 - (id)_keychainRegistration;
 - (void)_loadCachedDevices;
 - (id)_objectForKey:(id)arg1;
@@ -55,14 +66,16 @@
 - (void)_updateDependentDevicesWithDevicesInfo:(id)arg1;
 - (void)account:(id)arg1 aliasesChanged:(id)arg2;
 - (void)account:(id)arg1 dependentDevicesUpdated:(id)arg2;
+- (void)account:(id)arg1 dependentDevicesUpdatedUponReconnect:(id)arg2;
 - (void)account:(id)arg1 displayNameChanged:(id)arg2;
+- (void)account:(id)arg1 localDeviceAdded:(id)arg2;
+- (void)account:(id)arg1 localDeviceRemoved:(id)arg2;
 - (void)account:(id)arg1 loginChanged:(id)arg2;
 - (void)account:(id)arg1 profileChanged:(id)arg2;
 - (void)account:(id)arg1 registrationStatusInfoChanged:(id)arg2;
 - (void)account:(id)arg1 vettedAliasesChanged:(id)arg2;
 - (id)accountInfo;
 - (int)accountType;
-- (void)activeDevicesUpdatedForAccount:(id)arg1;
 - (void)addAliases:(id)arg1;
 - (void)addDelegate:(id)arg1 queue:(id)arg2;
 - (void)addRegistrationDelegate:(id)arg1 queue:(id)arg2;
@@ -74,16 +87,22 @@
 - (void)deactivateAndPurgeIdentify;
 - (void)dealloc;
 - (id)description;
+- (void)device:(id)arg1 nsuuidChanged:(id)arg2;
 - (id)devices;
+- (id)displayName;
+- (id)init;
 - (id)initWithDictionary:(id)arg1 uniqueID:(id)arg2 serviceName:(id)arg3 delegateContext:(id)arg4;
 - (id)initWithLoginID:(id)arg1 uniqueID:(id)arg2 serviceName:(id)arg3 delegateContext:(id)arg4;
 - (BOOL)isActive;
 - (id)loginID;
+- (id)nearbyDevices;
 - (id)nextRegistrationDate;
 - (void)passwordUpdated;
+- (id)primaryServiceName;
 - (id)profileID;
 - (id)profileInfo;
 - (id)pushToken;
+- (id)pushTopic;
 - (void)refreshRegistrationForAccount:(id)arg1;
 - (id)regionBasePhoneNumber;
 - (id)regionID;

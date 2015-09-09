@@ -2,16 +2,19 @@
    Image: /System/Library/PrivateFrameworks/SpringBoardFoundation.framework/SpringBoardFoundation
  */
 
-@class _UIViewAnimationAttributes;
-
 @interface _SBFAnimationAttributesFactory : SBFAnimationFactory {
     _UIViewAnimationAttributes *_attributes;
 }
 
-+ (id)_factoryWithAttributes:(id)arg1;
-
+- (void)_animateWithAdditionalDelay:(double)arg1 options:(unsigned int)arg2 actions:(id /* block */)arg3 completion:(id /* block */)arg4;
 - (id)_initWithAttributes:(id)arg1;
-- (void)animateWithDelay:(double)arg1 options:(unsigned int)arg2 animations:(id)arg3 completion:(id)arg4;
+- (id)_initWithSettings:(id)arg1;
 - (void)dealloc;
+- (double)delay;
+- (id)description;
+- (double)duration;
+- (id)factoryWithTimingFunction:(id)arg1;
+- (unsigned int)hash;
+- (BOOL)isEqual:(id)arg1;
 
 @end

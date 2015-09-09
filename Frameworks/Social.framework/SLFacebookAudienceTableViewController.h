@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/Social.framework/Social
  */
 
-@class <SLFacebookAudienceViewControllerDelegate>, NSArray, SLFacebookPostPrivacySetting, UINavigationItem;
-
 @interface SLFacebookAudienceTableViewController : UITableViewController <SLFacebookAudienceViewController> {
     UINavigationItem *_navigationItem;
     NSArray *_privacySettings;
@@ -14,7 +12,6 @@
 - (void).cxx_destruct;
 - (id)_privacySettingForIndexPath:(id)arg1;
 - (void)cancelButtonTapped:(id)arg1;
-- (struct CGSize { float x1; float x2; })contentSizeForViewInPopover;
 - (void)didReceiveMemoryWarning;
 - (id)initWithStyle:(int)arg1;
 - (void)loadView;

@@ -2,10 +2,7 @@
    Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
  */
 
-@interface MFHeaderLabelView : UILabel {
-    unsigned int _highlighted : 1;
-    unsigned int _drawsLetterPress : 1;
-}
+@interface MFHeaderLabelView : UILabel
 
 + (id)_defaultColor;
 

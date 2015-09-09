@@ -2,13 +2,12 @@
    Image: /System/Library/PrivateFrameworks/CoreRecents.framework/CoreRecents
  */
 
-@class NSArray, NSDate, NSDictionary, NSMutableArray, NSNumber, NSString;
-
-@interface CRRecentContact : NSObject {
+@interface CRRecentContact : NSObject <NSSecureCoding> {
     NSString *_address;
     long long _contactID;
     NSNumber *_decayedWeight;
     NSString *_displayName;
+    unsigned int _groupKind;
     NSString *_groupName;
     NSString *_kind;
     NSString *_lastSendingAddress;
@@ -22,49 +21,53 @@
     NSNumber *_weight;
 }
 
-@property(copy) NSString * address;
-@property long long contactID;
-@property(readonly) unsigned int countOfRecents;
-@property(retain) NSNumber * decayedWeight;
-@property(copy) NSString * displayName;
-@property(getter=isGroup,readonly) BOOL group;
-@property(copy) NSString * groupName;
-@property(copy) NSString * kind;
-@property(copy) NSString * lastSendingAddress;
-@property(readonly) NSDate * leastRecentDate;
-@property(copy) NSArray * members;
-@property(copy) NSDictionary * metadata;
-@property(readonly) NSDate * mostRecentDate;
-@property(copy) NSString * originalSource;
-@property(copy) NSString * rawAddress;
-@property(copy) NSArray * recentDates;
-@property long long recentID;
-@property(copy) NSString * recentsDomain;
-@property(retain) NSNumber * weight;
+@property (nonatomic, copy) NSString *address;
+@property (nonatomic) long long contactID;
+@property (nonatomic, readonly) unsigned int countOfRecents;
+@property (nonatomic, retain) NSNumber *decayedWeight;
+@property (nonatomic, copy) NSString *displayName;
+@property (getter=isGroup, nonatomic, readonly) BOOL group;
+@property (nonatomic) unsigned int groupKind;
+@property (nonatomic, copy) NSString *groupName;
+@property (nonatomic, copy) NSString *kind;
+@property (nonatomic, copy) NSString *lastSendingAddress;
+@property (nonatomic, readonly, copy) NSDate *leastRecentDate;
+@property (nonatomic, copy) NSArray *members;
+@property (nonatomic, copy) NSDictionary *metadata;
+@property (nonatomic, readonly, copy) NSDate *mostRecentDate;
+@property (nonatomic, copy) NSString *originalSource;
+@property (nonatomic, copy) NSString *rawAddress;
+@property (nonatomic, copy) NSArray *recentDates;
+@property (nonatomic) long long recentID;
+@property (nonatomic, copy) NSString *recentsDomain;
+@property (nonatomic, retain) NSNumber *weight;
 
-- (id)_addressBookContext;
-- (void)_setAddressBookContext:(id)arg1;
+// Image: /System/Library/PrivateFrameworks/CoreRecents.framework/CoreRecents
+
++ (BOOL)supportsSecureCoding;
+
 - (id)address;
 - (void)applyWeight:(id)arg1;
 - (id)archivableContactID;
+- (id)archivableGroupKind;
 - (id)archivableGroupMembers;
 - (id)archivableMetadata;
 - (id)archivableRecentID;
 - (long long)contactID;
-- (id)copyDictionaryRepresentation;
 - (unsigned int)countOfRecents;
 - (void)dealloc;
 - (id)decayedWeight;
 - (id)description;
 - (id)displayName;
-- (void)enumerateArchivablePropertiesWithBlock:(id)arg1;
-- (void*)existingPerson;
+- (void)encodeWithCoder:(id)arg1;
+- (void)enumerateArchivablePropertiesWithBlock:(id /* block */)arg1;
+- (unsigned int)groupKind;
 - (id)groupName;
 - (BOOL)hasFullTextMatch:(id)arg1;
 - (unsigned int)hash;
 - (id)initWithAddress:(id)arg1 displayName:(id)arg2 kind:(id)arg3 recentDate:(id)arg4 recentsDomain:(id)arg5;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithContactID:(long long)arg1;
-- (id)initWithDictionary:(id)arg1;
 - (id)initWithMembers:(id)arg1 displayName:(id)arg2 recentDate:(id)arg3 recentsDomain:(id)arg4;
 - (void)insertDate:(id)arg1 atIndex:(unsigned int)arg2 required:(BOOL)arg3;
 - (unsigned int)insertionIndexForDate:(id)arg1 wouldBeUnique:(BOOL*)arg2;
@@ -74,13 +77,10 @@
 - (id)lastSendingAddress;
 - (void)lazilyCreateRecentDates;
 - (id)leastRecentDate;
-- (int)matchedIdentifier;
 - (id)members;
 - (id)metadata;
 - (id)mostRecentDate;
 - (id)originalSource;
-- (void*)person;
-- (int)property;
 - (id)rawAddress;
 - (id)recentDates;
 - (long long)recentID;
@@ -88,12 +88,14 @@
 - (void)recordRecentEventForDate:(id)arg1 userInitiated:(BOOL)arg2;
 - (void)setAddress:(id)arg1;
 - (void)setArchivableContactID:(id)arg1;
+- (void)setArchivableGroupKind:(id)arg1;
 - (void)setArchivableGroupMembers:(id)arg1;
 - (void)setArchivableMetadata:(id)arg1;
 - (void)setArchivableRecentID:(id)arg1;
 - (void)setContactID:(long long)arg1;
 - (void)setDecayedWeight:(id)arg1;
 - (void)setDisplayName:(id)arg1;
+- (void)setGroupKind:(unsigned int)arg1;
 - (void)setGroupName:(id)arg1;
 - (void)setKind:(id)arg1;
 - (void)setLastSendingAddress:(id)arg1;
@@ -106,5 +108,18 @@
 - (void)setRecentsDomain:(id)arg1;
 - (void)setWeight:(id)arg1;
 - (id)weight;
+
+// Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
+
+- (id)_addressBookContext;
+- (void)_setAddressBookContext:(id)arg1;
+- (void*)existingPerson;
+- (int)matchedIdentifier;
+- (void*)person;
+- (int)property;
+
+// Image: /System/Library/Frameworks/PassKit.framework/PassKit
+
+- (id)contactForPropertyID:(int)arg1;
 
 @end

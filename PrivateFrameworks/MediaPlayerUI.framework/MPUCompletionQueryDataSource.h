@@ -2,11 +2,10 @@
    Image: /System/Library/PrivateFrameworks/MediaPlayerUI.framework/MediaPlayerUI
  */
 
-@class <MPUCompletionQueryDataSourceDelegate>, NSMutableDictionary, NSMutableSet;
-
 @interface MPUCompletionQueryDataSource : MPUQueryDataSource {
     <MPUCompletionQueryDataSourceDelegate> *_completionDelegate;
     NSMutableDictionary *_completions;
+    BOOL _hasAutomaticallyLoadedCompletions;
     NSMutableSet *_overlayedSectionEntityPIDs;
     BOOL _shouldAutomaticallyLoadCompletions;
     BOOL _shouldShowCompletions;
@@ -15,16 +14,18 @@
     NSMutableDictionary *_variants;
 }
 
-@property <MPUCompletionQueryDataSourceDelegate> * completionDelegate;
-@property BOOL shouldAutomaticallyLoadCompletions;
-@property(readonly) BOOL shouldLoadCompletionArtwork;
-@property BOOL shouldShowCompletions;
+@property (nonatomic) <MPUCompletionQueryDataSourceDelegate> *completionDelegate;
+@property (nonatomic) BOOL shouldAutomaticallyLoadCompletions;
+@property (nonatomic, readonly) BOOL shouldLoadCompletionArtwork;
+@property (nonatomic) BOOL shouldShowCompletions;
 
 - (void).cxx_destruct;
+- (void)_didInvalidateWithContext:(id)arg1;
 - (long long)_pidForSectionAtIndex:(int)arg1;
 - (void)_setCompletion:(id)arg1 forSectionAtIndex:(int)arg2;
 - (void)_setToken:(unsigned int)arg1 forSectionAtIndex:(int)arg2;
 - (int)_tokenForSectionAtIndex:(int)arg1;
+- (void)_willInvalidateWithContext:(id)arg1;
 - (void)cancelCompletionOfferingWithToken:(unsigned int)arg1;
 - (id)completionDelegate;
 - (int)completionOfferStatusForSectionAtIndex:(int)arg1;
@@ -32,8 +33,6 @@
 - (BOOL)hasCompletionOfferForSectionAtIndex:(unsigned int)arg1;
 - (BOOL)hasVariantsForSectionAtIndex:(int)arg1;
 - (unsigned int)indexOfSectionForCompletionOffering:(id)arg1;
-- (id)initWithQuery:(id)arg1 entityType:(int)arg2;
-- (void)invalidate;
 - (BOOL)isShowingCompletionOverlayForSectionAtIndex:(unsigned int)arg1;
 - (void)loadCompletionOfferingForSectionAtIndex:(unsigned int)arg1;
 - (void)loadCompletionOfferings;

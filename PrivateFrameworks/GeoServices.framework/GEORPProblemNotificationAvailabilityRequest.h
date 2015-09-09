@@ -2,51 +2,49 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class GEOClientCapabilities, NSData, NSString;
-
 @interface GEORPProblemNotificationAvailabilityRequest : PBRequest <NSCopying> {
     struct { 
         unsigned long long *list; 
         unsigned int count; 
         unsigned int size; 
+    } _businessIds;
+    GEOClientCapabilities *_clientCapabilities;
+    NSString *_countryCode;
+    NSData *_devicePushToken;
+    struct { 
+        unsigned int pinType : 1; 
+        unsigned int placeType : 1; 
+    } _has;
+    int _pinType;
+    int _placeType;
     struct { 
         int *list; 
         unsigned int count; 
         unsigned int size; 
-    struct { 
-        unsigned int pinType : 1; 
-        unsigned int placeType : 1; 
-    } _businessIDs;
-    GEOClientCapabilities *_clientCapabilities;
-    NSString *_countryCode;
-    NSData *_devicePushToken;
-    } _has;
-    int _pinType;
-    int _placeType;
     } _problemTypes;
 }
 
-@property(readonly) unsigned long long* businessIDs;
-@property(readonly) unsigned int businessIDsCount;
-@property(retain) GEOClientCapabilities * clientCapabilities;
-@property(retain) NSString * countryCode;
-@property(retain) NSData * devicePushToken;
-@property(readonly) BOOL hasClientCapabilities;
-@property(readonly) BOOL hasCountryCode;
-@property(readonly) BOOL hasDevicePushToken;
-@property BOOL hasPinType;
-@property BOOL hasPlaceType;
-@property int pinType;
-@property int placeType;
-@property(readonly) int* problemTypes;
-@property(readonly) unsigned int problemTypesCount;
+@property (nonatomic, readonly) unsigned long long*businessIds;
+@property (nonatomic, readonly) unsigned int businessIdsCount;
+@property (nonatomic, retain) GEOClientCapabilities *clientCapabilities;
+@property (nonatomic, retain) NSString *countryCode;
+@property (nonatomic, retain) NSData *devicePushToken;
+@property (nonatomic, readonly) BOOL hasClientCapabilities;
+@property (nonatomic, readonly) BOOL hasCountryCode;
+@property (nonatomic, readonly) BOOL hasDevicePushToken;
+@property (nonatomic) BOOL hasPinType;
+@property (nonatomic) BOOL hasPlaceType;
+@property (nonatomic) int pinType;
+@property (nonatomic) int placeType;
+@property (nonatomic, readonly) int*problemTypes;
+@property (nonatomic, readonly) unsigned int problemTypesCount;
 
-- (void)addBusinessIDs:(unsigned long long)arg1;
-- (void)addProblemTypes:(int)arg1;
-- (unsigned long long*)businessIDs;
-- (unsigned long long)businessIDsAtIndex:(unsigned int)arg1;
-- (unsigned int)businessIDsCount;
-- (void)clearBusinessIDs;
+- (void)addBusinessId:(unsigned long long)arg1;
+- (void)addProblemType:(int)arg1;
+- (unsigned long long)businessIdAtIndex:(unsigned int)arg1;
+- (unsigned long long*)businessIds;
+- (unsigned int)businessIdsCount;
+- (void)clearBusinessIds;
 - (void)clearProblemTypes;
 - (id)clientCapabilities;
 - (void)copyTo:(id)arg1;
@@ -63,15 +61,16 @@
 - (BOOL)hasPlaceType;
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
+- (void)mergeFrom:(id)arg1;
 - (int)pinType;
 - (int)placeType;
+- (int)problemTypeAtIndex:(unsigned int)arg1;
 - (int*)problemTypes;
-- (int)problemTypesAtIndex:(unsigned int)arg1;
 - (unsigned int)problemTypesCount;
 - (BOOL)readFrom:(id)arg1;
 - (unsigned int)requestTypeCode;
 - (Class)responseClass;
-- (void)setBusinessIDs:(unsigned long long*)arg1 count:(unsigned int)arg2;
+- (void)setBusinessIds:(unsigned long long*)arg1 count:(unsigned int)arg2;
 - (void)setClientCapabilities:(id)arg1;
 - (void)setCountryCode:(id)arg1;
 - (void)setDevicePushToken:(id)arg1;

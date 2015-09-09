@@ -2,39 +2,51 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSMutableDictionary, TSKSelection, TSPObject<TSKModel>;
-
 @interface TPArchivedViewState : TSPObject {
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
+    TSWPSelection *_bodySelection;
+    BOOL _changeTrackingPaused;
     NSMutableDictionary *_chartUIState;
+    BOOL _hasShowsCTDeletions;
+    BOOL _hasShowsCTMarkup;
+    BOOL _inspectorHidden;
     BOOL _layoutBordersVisible;
     BOOL _masterDrawablesSelectable;
     BOOL _rulerVisible;
-    TSKSelection *_selection;
-    TSPObject<TSKModel> *_selectionModel;
+    NSString *_selectedInspectorSwitchSegmentIdentifier;
+    TSKSelectionPath *_selectionPath;
+    BOOL _showUserDefinedGuides;
+    BOOL _showsActivitySidebar;
+    BOOL _showsCTDeletions;
+    BOOL _showsCTMarkup;
     BOOL _showsComments;
     BOOL _showsPageNavigator;
     float _viewScale;
     int _viewScaleMode;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } _visibleRect;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } _windowFrame;
+    struct CGPoint { 
+        float x; 
+        float y; 
+    } _wordCountHUDPosition;
+    int _wordCountHUDType;
     BOOL _wordCountHUDVisible;
 }
 

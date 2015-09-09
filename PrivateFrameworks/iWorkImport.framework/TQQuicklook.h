@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class <TSKRenderingExporter>, NSString, TSABaseApplicationDelegate, TSACirrusDocument, TSUTemporaryDirectory;
-
 @interface TQQuicklook : NSObject {
     TSABaseApplicationDelegate *mBaseAppDelegate;
     TSACirrusDocument *mDocument;
@@ -20,6 +18,7 @@
 - (Class)appDelegateClass;
 - (void)close;
 - (void)dealloc;
+- (struct __CFString { }*)getIdentifierForApp:(id)arg1;
 - (id)initWithPath:(id)arg1 passphrase:(id)arg2;
 - (BOOL)load;
 - (id)newPDFForPageNumber:(unsigned int)arg1;

@@ -2,13 +2,11 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@class NSArray;
-
 @interface NSGrammarCheckingResult : NSTextCheckingResult {
+    NSArray *_details;
     struct _NSRange { 
         unsigned int location; 
         unsigned int length; 
-    NSArray *_details;
     } _range;
 }
 

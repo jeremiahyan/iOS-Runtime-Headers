@@ -2,84 +2,89 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-@class NSString;
-
-@interface VKRouteDrawStyle : VKDrawStyle {
-    struct _VGLColor { 
-        float r; 
-        float g; 
-        float b; 
-        float a; 
-    struct _VGLColor { 
-        float r; 
-        float g; 
-        float b; 
-        float a; 
-    struct _VGLColor { 
-        float r; 
-        float g; 
-        float b; 
-        float a; 
-    struct _VGLColor { 
-        float r; 
-        float g; 
-        float b; 
-        float a; 
-    float _arrowMinZoom;
-    float _brightness;
-    float _enlargementMaxScale;
-    float _enlargementScale;
-    float _enlargementStartZoom;
+@interface VKRouteDrawStyle : VKRenderStyle {
+    struct VKProfileSparseRamp<_VGLColor> { 
+        union _u { 
+            struct VKProfileSparseRampValue { 
+                struct _VGLColor { 
+                    float r; 
+                    float g; 
+                    float b; 
+                    float a; 
+                } value; 
+                unsigned char hi; 
+            } v[2]; 
+            struct _VGLColor {} *extra; 
+        } u; 
+        unsigned char count; 
     } _fillColor;
-    } _glossColor;
-    BOOL _hasBrightness;
-    NSString *_obscuredTexture;
-    float _selectedArrowMinZoom;
-    } _strokeColor;
-    float _strokeWidth;
-    NSString *_texture;
+    struct VKProfileSparseRamp<_VGLColor> { 
+        union _u { 
+            struct VKProfileSparseRampValue { 
+                struct _VGLColor { 
+                    float r; 
+                    float g; 
+                    float b; 
+                    float a; 
+                } value; 
+                unsigned char hi; 
+            } v[2]; 
+            struct _VGLColor {} *extra; 
+        } u; 
+        unsigned char count; 
     } _travelledColor;
-    NSString *_travelledTexture;
-    float _width;
+    struct VKProfileSparseRamp<float> { 
+        union _u { 
+            struct VKProfileSparseRampValue { 
+                float value; 
+                unsigned char hi; 
+            } v[2]; 
+            float *extra; 
+        } u; 
+        unsigned char count; 
+    } _width;
 }
 
-@property(readonly) float arrowMinZoom;
-@property(readonly) float brightness;
-@property(readonly) float enlargementMaxScale;
-@property(readonly) float enlargementScale;
-@property(readonly) float enlargementStartZoom;
-@property(readonly) struct _VGLColor { float x1; float x2; float x3; float x4; } fillColor;
-@property(readonly) struct _VGLColor { float x1; float x2; float x3; float x4; } glossColor;
-@property(readonly) BOOL hasBrightness;
-@property(readonly) NSString * obscuredTexture;
-@property(readonly) float selectedArrowMinZoom;
-@property(readonly) struct _VGLColor { float x1; float x2; float x3; float x4; } strokeColor;
-@property(readonly) float strokeWidth;
-@property(readonly) NSString * texture;
-@property(readonly) struct _VGLColor { float x1; float x2; float x3; float x4; } travelledColor;
-@property(readonly) NSString * travelledTexture;
-@property(readonly) float width;
+@property (nonatomic, readonly) float arrowMinZoom;
+@property (nonatomic, readonly) float brightness;
+@property (nonatomic, readonly) float enlargementMaxScale;
+@property (nonatomic, readonly) float enlargementScale;
+@property (nonatomic, readonly) float enlargementStartZoom;
+@property (nonatomic, readonly) BOOL hasBrightness;
+@property (nonatomic, readonly) BOOL hasFillColor;
+@property (nonatomic, readonly) BOOL hasObscuredTexture;
+@property (nonatomic, readonly) BOOL hasTexture;
+@property (nonatomic, readonly) BOOL hasTravelledTexture;
+@property (nonatomic, readonly) NSString *obscuredTexture;
+@property (nonatomic, readonly) float selectedArrowMinZoom;
+@property (nonatomic, readonly) NSString *texture;
+@property (nonatomic, readonly) NSString *travelledTexture;
+
++ (int)renderStyleID;
 
 - (id).cxx_construct;
+- (void).cxx_destruct;
 - (float)arrowMinZoom;
 - (float)brightness;
-- (void)dealloc;
 - (float)enlargementMaxScale;
 - (float)enlargementScale;
 - (float)enlargementStartZoom;
-- (struct _VGLColor { float x1; float x2; float x3; float x4; })fillColor;
-- (struct _VGLColor { float x1; float x2; float x3; float x4; })glossColor;
+- (struct Matrix<float, 4, 1> { float x1[4]; })fillColor;
+- (unsigned long long)fillDashPatternAtZoom:(float)arg1;
+- (struct Matrix<float, 4, 1> { float x1[4]; })glossColor;
 - (BOOL)hasBrightness;
+- (BOOL)hasDashAtAnyZ;
+- (BOOL)hasFillColor;
+- (BOOL)hasObscuredTexture;
+- (BOOL)hasTexture;
+- (BOOL)hasTravelledTexture;
 - (id)obscuredTexture;
 - (float)selectedArrowMinZoom;
-- (struct _VGLColor { float x1; float x2; float x3; float x4; })strokeColor;
+- (struct Matrix<float, 4, 1> { float x1[4]; })strokeColor;
 - (float)strokeWidth;
-- (void)takeFromStyleProperties:(id)arg1 atZoom:(unsigned int)arg2 globals:(id)arg3;
-- (void)takeFromZoomInvariantProperties:(id)arg1;
 - (id)texture;
-- (struct _VGLColor { float x1; float x2; float x3; float x4; })travelledColor;
+- (struct Matrix<float, 4, 1> { float x1[4]; })travelledColor;
 - (id)travelledTexture;
-- (id)variant;
 - (float)width;
 
 @end

@@ -2,23 +2,27 @@
    Image: /System/Library/PrivateFrameworks/iTunesStore.framework/iTunesStore
  */
 
-@class NSString;
-
-@interface ISDialogTextField : NSObject {
+@interface ISDialogTextField : NSObject <SSXPCCoding> {
     int _keyboardType;
     BOOL _secure;
     NSString *_title;
     NSString *_value;
 }
 
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
 @property int keyboardType;
-@property(getter=isSecure) BOOL secure;
-@property(retain) NSString * title;
-@property(retain) NSString * value;
+@property (getter=isSecure) BOOL secure;
+@property (readonly) Class superclass;
+@property (retain) NSString *title;
+@property (retain) NSString *value;
 
 + (id)textFieldWithTitle:(id)arg1;
 
+- (id)copyXPCEncoding;
 - (void)dealloc;
+- (id)initWithXPCEncoding:(id)arg1;
 - (BOOL)isSecure;
 - (int)keyboardType;
 - (void)setKeyboardType:(int)arg1;

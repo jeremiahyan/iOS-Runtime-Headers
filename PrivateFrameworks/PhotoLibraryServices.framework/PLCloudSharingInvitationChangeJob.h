@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
  */
 
-@class NSArray, NSDictionary, NSString;
-
 @interface PLCloudSharingInvitationChangeJob : PLCloudSharingJob {
     NSArray *_MSASSharingRelationships;
     NSString *_albumGUID;
@@ -13,12 +11,12 @@
     NSString *_resendInvitationGUID;
 }
 
-@property(retain) NSArray * MSASSharingRelationships;
-@property(retain) NSString * albumGUID;
-@property long long jobType;
-@property(retain) NSDictionary * mstreamdInfoDictionary;
-@property long long relationshipChangeType;
-@property(retain) NSString * resendInvitationGUID;
+@property (nonatomic, retain) NSArray *MSASSharingRelationships;
+@property (nonatomic, retain) NSString *albumGUID;
+@property (nonatomic) long long jobType;
+@property (nonatomic, retain) NSDictionary *mstreamdInfoDictionary;
+@property (nonatomic) long long relationshipChangeType;
+@property (nonatomic, retain) NSString *resendInvitationGUID;
 
 + (void)resendPendingInvitationWithGUID:(id)arg1 albumGUID:(id)arg2;
 + (void)saveServerStateLocallyForSharingACLRelationships:(id)arg1 changeType:(long long)arg2 info:(id)arg3;
@@ -34,7 +32,7 @@
 - (void)executeSaveServerStateLocallyForSharingACLRelationships;
 - (void)executeSaveServerStateLocallyForSharingInvitationRelationships;
 - (void)executeSendServerPendingInvitationsForAlbumWithGUID;
-- (id)initFromXPCObject:(id)arg1;
+- (id)initFromXPCObject:(id)arg1 connection:(id)arg2;
 - (long long)jobType;
 - (id)mstreamdInfoDictionary;
 - (long long)relationshipChangeType;

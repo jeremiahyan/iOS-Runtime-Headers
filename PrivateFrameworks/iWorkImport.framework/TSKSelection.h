@@ -2,11 +2,12 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface TSKSelection : NSObject {
-}
+@interface TSKSelection : NSObject <NSCopying>
 
 + (Class)archivedSelectionClass;
 
+- (id)archivedSelectionWithContext:(id)arg1;
 - (int)compare:(id)arg1;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 
 @end

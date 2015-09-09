@@ -2,15 +2,11 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class TSCHChartValueAxisLabelsLayoutItem;
-
 @interface TSCHChartValueAxisLayoutItem : TSCHChartAxisLayoutItem {
     TSCHChartValueAxisLabelsLayoutItem *mValueLabels;
 }
 
-@property(readonly) TSCHChartValueAxisLabelsLayoutItem * axisValueLabelsLayoutItem;
-
-+ (id)selectionPathType;
+@property (nonatomic, readonly) TSCHChartValueAxisLabelsLayoutItem *axisValueLabelsLayoutItem;
 
 - (id)axisValueLabelsLayoutItem;
 - (void)buildSubTree;

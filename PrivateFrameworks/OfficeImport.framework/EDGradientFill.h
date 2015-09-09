@@ -2,9 +2,8 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSMutableDictionary;
-
 @interface EDGradientFill : EDFill {
+    double mDegree;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -14,7 +13,6 @@
             float width; 
             float height; 
         } size; 
-    double mDegree;
     } mFocusRect;
     NSMutableDictionary *mStops;
     int mType;

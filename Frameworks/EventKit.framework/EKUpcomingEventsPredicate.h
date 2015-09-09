@@ -2,13 +2,14 @@
    Image: /System/Library/Frameworks/EventKit.framework/EventKit
  */
 
-@interface EKUpcomingEventsPredicate : NSPredicate {
+@interface EKUpcomingEventsPredicate : NSPredicate <NSSecureCoding> {
     int _limit;
 }
 
-@property(readonly) int limit;
+@property (nonatomic, readonly) int limit;
 
 + (id)predicateWithLimit:(int)arg1;
++ (BOOL)supportsSecureCoding;
 
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)encodeWithCoder:(id)arg1;

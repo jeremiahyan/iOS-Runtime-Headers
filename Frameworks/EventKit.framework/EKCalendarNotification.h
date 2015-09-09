@@ -2,45 +2,55 @@
    Image: /System/Library/Frameworks/EventKit.framework/EventKit
  */
 
-@class EKObjectID, NSString, NSURL;
-
 @interface EKCalendarNotification : NSObject <EKIdentityProtocol> {
     NSURL *_URI;
     BOOL _alerted;
     struct CGColor { } *_dotColor;
     NSString *_emailAddress;
+    NSString *_firstName;
     BOOL _hiddenFromNotificationCenter;
+    NSString *_lastName;
     NSString *_name;
     EKObjectID *_objectID;
     NSString *_title;
     int _type;
 }
 
-@property(retain) NSURL * URI;
-@property BOOL alerted;
-@property struct CGColor { }* dotColor;
-@property(retain) NSString * emailAddress;
-@property BOOL hiddenFromNotificationCenter;
-@property(retain) NSString * name;
-@property(readonly) BOOL needsAlert;
-@property(retain) EKObjectID * objectID;
-@property(retain) NSString * title;
-@property int type;
+@property (nonatomic, retain) NSURL *URI;
+@property (nonatomic) BOOL alerted;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) struct CGColor { }*dotColor;
+@property (nonatomic, retain) NSString *emailAddress;
+@property (nonatomic, retain) NSString *firstName;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL hiddenFromNotificationCenter;
+@property (nonatomic, retain) NSString *lastName;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, readonly) BOOL needsAlert;
+@property (nonatomic, retain) EKObjectID *objectID;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) NSString *title;
+@property (nonatomic) int type;
 
 - (id)URI;
 - (BOOL)alerted;
 - (void)dealloc;
 - (struct CGColor { }*)dotColor;
 - (id)emailAddress;
+- (id)firstName;
 - (BOOL)hiddenFromNotificationCenter;
 - (id)initWithType:(int)arg1;
+- (id)lastName;
 - (id)name;
 - (BOOL)needsAlert;
 - (id)objectID;
 - (void)setAlerted:(BOOL)arg1;
 - (void)setDotColor:(struct CGColor { }*)arg1;
 - (void)setEmailAddress:(id)arg1;
+- (void)setFirstName:(id)arg1;
 - (void)setHiddenFromNotificationCenter:(BOOL)arg1;
+- (void)setLastName:(id)arg1;
 - (void)setName:(id)arg1;
 - (void)setObjectID:(id)arg1;
 - (void)setTitle:(id)arg1;

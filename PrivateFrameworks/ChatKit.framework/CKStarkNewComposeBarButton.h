@@ -2,10 +2,9 @@
    Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
  */
 
-@interface CKStarkNewComposeBarButton : UIButton {
-}
+@interface CKStarkNewComposeBarButton : UIButton
 
-- (void)_focusStateDidChange;
-- (BOOL)_isFocusableElement;
+- (BOOL)canBecomeFocused;
+- (void)focusedViewDidChange;
 
 @end

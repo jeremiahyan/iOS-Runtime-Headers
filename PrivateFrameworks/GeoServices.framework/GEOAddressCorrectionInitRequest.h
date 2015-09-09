@@ -2,17 +2,15 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSString;
-
 @interface GEOAddressCorrectionInitRequest : PBRequest <NSCopying> {
     NSString *_personID;
     NSString *_token;
 }
 
-@property(readonly) BOOL hasPersonID;
-@property(readonly) BOOL hasToken;
-@property(retain) NSString * personID;
-@property(retain) NSString * token;
+@property (nonatomic, readonly) BOOL hasPersonID;
+@property (nonatomic, readonly) BOOL hasToken;
+@property (nonatomic, retain) NSString *personID;
+@property (nonatomic, retain) NSString *token;
 
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -23,6 +21,7 @@
 - (BOOL)hasToken;
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
+- (void)mergeFrom:(id)arg1;
 - (id)personID;
 - (BOOL)readFrom:(id)arg1;
 - (unsigned int)requestTypeCode;

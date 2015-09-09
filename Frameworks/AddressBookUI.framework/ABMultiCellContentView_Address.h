@@ -2,15 +2,13 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class NSArray, NSMutableArray;
-
 @interface ABMultiCellContentView_Address : ABMultiCellContentView_DisplayAlternate {
-    struct _NSRange { 
-        unsigned int location; 
-        unsigned int length; 
     unsigned int _entryFieldIndexOfFirstStreetField;
     NSArray *_lineInfos;
     NSMutableArray *_lineSubviews;
+    struct _NSRange { 
+        unsigned int location; 
+        unsigned int length; 
     } _streetRange;
     NSMutableArray *_verticalDividers;
 }

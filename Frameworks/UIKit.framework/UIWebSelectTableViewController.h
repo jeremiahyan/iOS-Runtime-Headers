@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class DOMHTMLSelectElement, NSArray, UIWebSelectPopover;
-
 @interface UIWebSelectTableViewController : UITableViewController <UIKeyInput> {
     BOOL _allowsMultipleSelection;
     NSArray *_cachedItems;
@@ -17,18 +15,22 @@
     int _textAlignment;
 }
 
-@property(retain) NSArray * _cachedItems;
-@property(retain) NSArray * _groupsAndOptions;
-@property UIWebSelectPopover * _popover;
-@property(retain) DOMHTMLSelectElement * _selectionNode;
-@property int autocapitalizationType;
-@property int autocorrectionType;
-@property BOOL enablesReturnKeyAutomatically;
-@property int keyboardAppearance;
-@property int keyboardType;
-@property int returnKeyType;
-@property(getter=isSecureTextEntry) BOOL secureTextEntry;
-@property int spellCheckingType;
+@property (nonatomic, retain) NSArray *_cachedItems;
+@property (nonatomic, retain) NSArray *_groupsAndOptions;
+@property (nonatomic) UIWebSelectPopover *_popover;
+@property (nonatomic, retain) DOMHTMLSelectElement *_selectionNode;
+@property (nonatomic) int autocapitalizationType;
+@property (nonatomic) int autocorrectionType;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL enablesReturnKeyAutomatically;
+@property (readonly) unsigned int hash;
+@property (nonatomic) int keyboardAppearance;
+@property (nonatomic) int keyboardType;
+@property (nonatomic) int returnKeyType;
+@property (getter=isSecureTextEntry, nonatomic) BOOL secureTextEntry;
+@property (nonatomic) int spellCheckingType;
+@property (readonly) Class superclass;
 
 - (id)_cachedItems;
 - (id)_groupsAndOptions;
@@ -40,7 +42,6 @@
 - (void)dealloc;
 - (void)deleteBackward;
 - (BOOL)hasText;
-- (float)heightForItems;
 - (id)initWithDOMHTMLSelectNode:(id)arg1 cachedItems:(id)arg2 singleSelectionIndex:(unsigned int)arg3 multipleSelection:(BOOL)arg4;
 - (void)insertText:(id)arg1;
 - (int)numberOfSectionsInTableView:(id)arg1;

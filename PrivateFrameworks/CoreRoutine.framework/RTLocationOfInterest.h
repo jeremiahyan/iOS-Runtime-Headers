@@ -2,28 +2,27 @@
    Image: /System/Library/PrivateFrameworks/CoreRoutine.framework/CoreRoutine
  */
 
-@class GEOPlaceResult, NSArray, NSUUID;
-
 @interface RTLocationOfInterest : NSObject <NSCopying, NSSecureCoding> {
     double _confidence;
+    <GEOMapItem> *_geoMapItem;
     NSUUID *_identifier;
     double _latitude;
     double _longitude;
-    GEOPlaceResult *_placeResult;
     int _type;
     double _uncertainty;
     NSArray *_visits;
 }
 
-@property(readonly) double confidence;
-@property(readonly) NSUUID * identifier;
-@property(readonly) double latitude;
-@property(readonly) double longitude;
-@property(readonly) GEOPlaceResult * placeResult;
-@property(readonly) int type;
-@property(readonly) double uncertainty;
-@property(readonly) NSArray * visits;
+@property (nonatomic, readonly) double confidence;
+@property (nonatomic, readonly) <GEOMapItem> *geoMapItem;
+@property (nonatomic, readonly) NSUUID *identifier;
+@property (nonatomic, readonly) double latitude;
+@property (nonatomic, readonly) double longitude;
+@property (nonatomic, readonly) int type;
+@property (nonatomic, readonly) double uncertainty;
+@property (nonatomic, readonly) NSArray *visits;
 
++ (id)locationOfInterestTypeToString:(int)arg1;
 + (BOOL)supportsSecureCoding;
 
 - (void).cxx_destruct;
@@ -32,18 +31,20 @@
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (int)frequencyCompare:(id)arg1;
+- (id)geoMapItem;
 - (id)identifier;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithLatitude:(double)arg1 longitude:(double)arg2 uncertainty:(double)arg3 confidence:(double)arg4 identifier:(id)arg5 type:(int)arg6 placeResult:(id)arg7 visits:(id)arg8;
+- (id)initWithLatitude:(double)arg1 longitude:(double)arg2 uncertainty:(double)arg3 confidence:(double)arg4 identifier:(id)arg5 type:(int)arg6 geoMapItem:(id)arg7 visits:(id)arg8;
 - (BOOL)isEqual:(id)arg1;
 - (double)latitude;
 - (id)localizedAllVisitsDescription;
 - (id)localizedLastVisitDescription;
 - (double)longitude;
+- (id)mapItem;
 - (id)name;
-- (id)placeResult;
+- (id)preciseName;
 - (int)recentCompare:(id)arg1;
-- (id)relativeNameToPlaceResult:(id)arg1;
+- (id)relativeNameToMapItem:(id)arg1;
 - (int)type;
 - (double)uncertainty;
 - (id)visits;

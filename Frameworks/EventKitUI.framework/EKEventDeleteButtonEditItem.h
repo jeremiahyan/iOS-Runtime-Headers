@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-@class UITableViewCell;
-
 @interface EKEventDeleteButtonEditItem : EKEventEditItem {
     UITableViewCell *_cell;
     SEL _deleteButtonAction;
@@ -11,8 +9,8 @@
 }
 
 - (void).cxx_destruct;
-- (id)cellForSubitemAtIndex:(unsigned int)arg1 inSubsection:(unsigned int)arg2;
-- (void)editor:(id)arg1 didSelectSubitem:(unsigned int)arg2 inSubsection:(unsigned int)arg3;
+- (id)cellForSubitemAtIndex:(unsigned int)arg1;
+- (void)editor:(id)arg1 didSelectSubitem:(unsigned int)arg2;
 - (void)setDeleteButtonTarget:(id)arg1 action:(SEL)arg2;
 - (BOOL)shouldAppearWithVisibility:(int)arg1;
 

@@ -2,25 +2,21 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-@class UIImage, UIImageView, UILabel;
-
-@interface EKCalendarChooserCell : UITableViewCell {
+@interface EKCalendarChooserCell : EKUIConstrainedFontsTableViewCell {
     BOOL _checked;
     UIImageView *_checkmarkView;
     UIImage *_colorDot;
     UIImage *_colorDotHighlighted;
     UIImageView *_colorDotView;
-    UILabel *_customDetailTextLabel;
-    UILabel *_customTitleTextLabel;
     BOOL _shouldAnimate;
     BOOL _showCheckmarksOnLeft;
     BOOL _showsColorDot;
 }
 
-@property BOOL checked;
-@property BOOL shouldAnimate;
-@property BOOL showCheckmarksOnLeft;
-@property BOOL showsColorDot;
+@property (nonatomic) BOOL checked;
+@property (nonatomic) BOOL shouldAnimate;
+@property (nonatomic) BOOL showCheckmarksOnLeft;
+@property (nonatomic) BOOL showsColorDot;
 
 - (void).cxx_destruct;
 - (BOOL)checked;
@@ -33,11 +29,12 @@
 - (void)setContentAlpha:(float)arg1;
 - (void)setHighlighted:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setShouldAnimate:(BOOL)arg1;
-- (void)setShowCheckmarksOnLeft:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setShowCheckmarksOnLeft:(BOOL)arg1;
+- (void)setShowCheckmarksOnLeft:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setShowsColorDot:(BOOL)arg1;
 - (BOOL)shouldAnimate;
 - (BOOL)showCheckmarksOnLeft;
 - (BOOL)showsColorDot;
+- (float)textLeftIndent;
 
 @end

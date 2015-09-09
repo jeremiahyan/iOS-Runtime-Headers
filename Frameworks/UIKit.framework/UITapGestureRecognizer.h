@@ -2,32 +2,27 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray;
-
 @interface UITapGestureRecognizer : UIGestureRecognizer {
-    struct CGPoint { 
-        float x; 
-        float y; 
     int _buttonType;
     unsigned int _delaysRecognitionForGreaterTapCounts;
     id _imp;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _locationInView;
 }
 
-@property(setter=_setButtonType:) int _buttonType;
-@property(readonly) struct CGPoint { float x1; float x2; } centroid;
-@property(readonly) struct CGPoint { float x1; float x2; } location;
-@property unsigned int numberOfTapsRequired;
-@property unsigned int numberOfTouchesRequired;
-@property(readonly) NSArray * touches;
-
-+ (void)addTapGestureRecognizerToView:(id)arg1 withTarget:(id)arg2 action:(SEL)arg3 tapCount:(unsigned int)arg4 touchCount:(unsigned int)arg5;
-+ (void)addTapGestureRecognizerToView:(id)arg1 withTarget:(id)arg2 action:(SEL)arg3 tapCount:(unsigned int)arg4;
-+ (void)addTapGestureRecognizerToView:(id)arg1 withTarget:(id)arg2 action:(SEL)arg3;
+@property (setter=_setButtonType:, nonatomic) int _buttonType;
+@property (nonatomic, readonly) struct CGPoint { float x1; float x2; } centroid;
+@property (nonatomic, readonly) struct CGPoint { float x1; float x2; } location;
+@property (nonatomic) unsigned int numberOfTapsRequired;
+@property (nonatomic) unsigned int numberOfTouchesRequired;
+@property (nonatomic, readonly) NSArray *touches;
 
 - (void)_appendSubclassDescription:(id)arg1;
 - (int)_buttonType;
 - (BOOL)_delaysRecognitionForGreaterTapCounts;
+- (struct CGPoint { float x1; float x2; })_digitizerLocation;
 - (void)_physicalButtonsBegan:(id)arg1 withEvent:(id)arg2;
 - (void)_physicalButtonsCancelled:(id)arg1 withEvent:(id)arg2;
 - (void)_physicalButtonsEnded:(id)arg1 withEvent:(id)arg2;

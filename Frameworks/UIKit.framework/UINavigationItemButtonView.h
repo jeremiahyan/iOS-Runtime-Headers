@@ -2,9 +2,7 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIColor, UIImageView, _UIBarButtonItemAppearanceStorage;
-
-@interface UINavigationItemButtonView : UINavigationItemView {
+@interface UINavigationItemButtonView : UINavigationItemView <UIGestureRecognizerDelegate> {
     unsigned int _abbreviatedTitleIndex;
     _UIBarButtonItemAppearanceStorage *_appearanceStorage;
     UIImageView *_backgroundImageView;
@@ -15,9 +13,13 @@
     BOOL _wantsBlendModeForAccessibilityBackgrounds;
 }
 
-@property(setter=_setAbbreviatedTitleIndex:) unsigned int _abbreviatedTitleIndex;
-@property(setter=_setTintColor:,retain) UIColor * _tintColor;
-@property(setter=_setWantsBlendModeForAccessibilityBackgrounds:) BOOL _wantsBlendModeForAccessibilityBackgrounds;
+@property (setter=_setAbbreviatedTitleIndex:, nonatomic) unsigned int _abbreviatedTitleIndex;
+@property (setter=_setTintColor:, nonatomic, retain) UIColor *_tintColor;
+@property (setter=_setWantsBlendModeForAccessibilityBackgrounds:, nonatomic) BOOL _wantsBlendModeForAccessibilityBackgrounds;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)_UIAppearance_setBackButtonBackgroundImage:(id)arg1 forState:(unsigned int)arg2 barMetrics:(int)arg3;
 - (void)_UIAppearance_setBackButtonBackgroundVerticalPositionAdjustment:(float)arg1 forBarMetrics:(int)arg2;
@@ -37,6 +39,7 @@
 - (id)_backButtonBackgroundImageForState:(unsigned int)arg1 barMetrics:(int)arg2;
 - (float)_backButtonBackgroundVerticalPositionAdjustmentForBarMetrics:(int)arg1;
 - (struct UIOffset { float x1; float x2; })_backButtonTitlePositionAdjustmentForBarMetrics:(int)arg1;
+- (void)_backSelectGestureChanged:(id)arg1;
 - (float)_backgroundVerticalPositionAdjustmentForBarMetrics:(int)arg1;
 - (BOOL)_canDrawContent;
 - (id)_currentCustomBackgroundNeedsDarkening:(BOOL*)arg1;
@@ -45,7 +48,10 @@
 - (struct CGSize { float x1; float x2; })_currentTextShadowOffsetForBarStyle:(int)arg1;
 - (id)_defaultFont;
 - (void)_didChangeFromIdiom:(int)arg1 onScreen:(id)arg2 traverseHierarchy:(BOOL)arg3;
-- (void)_drawBackground;
+- (void)_drawBackground_legacy;
+- (void)_focusedViewDidChange:(id)arg1;
+- (void)_focusedViewWillChange:(id)arg1;
+- (void)_installBackSelectGestureRecognizer;
 - (id)_scriptingInfo;
 - (void)_setAbbreviatedTitleIndex:(unsigned int)arg1;
 - (void)_setBackButtonBackgroundImage:(id)arg1 forState:(unsigned int)arg2 barMetrics:(int)arg3;
@@ -64,27 +70,32 @@
 - (id)_tintColor;
 - (id)_titleTextAttributesForState:(unsigned int)arg1;
 - (float)_titleYAdjustmentCustomization;
+- (void)_uninstallBackSelectGestureRecognizer;
 - (BOOL)_useSilverLookForBarStyle:(int)arg1;
 - (BOOL)_wantsAccessibilityButtonShapes;
 - (BOOL)_wantsBlendModeForAccessibilityBackgrounds;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })alignmentRectInsets;
 - (void)backIndicatorViewHasRespondedToCustomBackgroundImageChange;
 - (id)backgroundImageView;
+- (BOOL)canBecomeFocused;
 - (BOOL)customBackgroundImageChangedToOrFromNil;
 - (void)dealloc;
 - (void)drawRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (BOOL)gestureRecognizer:(id)arg1 shouldReceiveTouch:(id)arg2;
 - (BOOL)hasCustomBackgroundImage;
 - (id)image;
 - (struct CGSize { float x1; float x2; })imageSize;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)layoutSubviews;
+- (BOOL)pointInside:(struct CGPoint { float x1; float x2; })arg1 withEvent:(id)arg2;
 - (BOOL)pressed;
-- (void)setPressed:(BOOL)arg1 initialPress:(BOOL)arg2;
 - (void)setPressed:(BOOL)arg1;
-- (void)setStyle:(int)arg1 animated:(BOOL)arg2;
+- (void)setPressed:(BOOL)arg1 initialPress:(BOOL)arg2;
 - (void)setStyle:(int)arg1;
+- (void)setStyle:(int)arg1 animated:(BOOL)arg2;
 - (struct CGSize { float x1; float x2; })sizeThatFits:(struct CGSize { float x1; float x2; })arg1;
 - (void)tintColorDidChange;
 - (id)title;
+- (void)traitCollectionDidChange:(id)arg1;
 
 @end

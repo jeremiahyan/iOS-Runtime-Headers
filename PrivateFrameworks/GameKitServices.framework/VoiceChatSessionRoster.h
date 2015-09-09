@@ -2,12 +2,7 @@
    Image: /System/Library/PrivateFrameworks/GameKitServices.framework/GameKitServices
  */
 
-@class GKSessionInternal, GKVoiceChatSessionInternal, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString;
-
 @interface VoiceChatSessionRoster : NSObject {
-    struct _opaque_pthread_mutex_t { 
-        long __sig; 
-        BOOL __opaque[40]; 
     unsigned int _chosenFocusRating;
     NSMutableArray *_connectedPeers;
     unsigned int _deviceRating;
@@ -22,6 +17,9 @@
     NSMutableDictionary *_peerStateTable;
     NSObject<OS_dispatch_queue> *_sendQueue;
     BOOL _waitingToCalculateFocus;
+    struct _opaque_pthread_mutex_t { 
+        long __sig; 
+        BOOL __opaque[40]; 
     } resMutex;
 }
 

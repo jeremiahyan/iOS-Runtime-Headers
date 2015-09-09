@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/UIFoundation.framework/UIFoundation
  */
 
-@class NSMutableArray;
-
 @interface _UITextTiledLayer : CALayer {
     struct CGRect { 
         struct CGPoint { 
@@ -14,21 +12,21 @@
             float width; 
             float height; 
         } size; 
+    } _gridBounds;
+    NSMutableArray *_reusableTiles;
     struct { 
         unsigned int disableTiling : 1; 
         unsigned int ditchAllTiles : 1; 
         unsigned int suspendLayout : 4; 
+    } _tcTiledLayerFlags;
     struct CGSize { 
         float width; 
         float height; 
-    } _gridBounds;
-    NSMutableArray *_reusableTiles;
-    } _tcTiledLayerFlags;
     } _tileSize;
 }
 
-@property struct CGSize { float x1; float x2; } tileSize;
-@property BOOL usesTiledLayers;
+@property (nonatomic) struct CGSize { float x1; float x2; } tileSize;
+@property (nonatomic) BOOL usesTiledLayers;
 
 - (void)_buildTilesForRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)_cullAndAddLayers:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;

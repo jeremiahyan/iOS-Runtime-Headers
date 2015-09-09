@@ -2,50 +2,57 @@
    Image: /System/Library/PrivateFrameworks/MediaPlayerUI.framework/MediaPlayerUI
  */
 
-@class <MPUSystemMediaControlsDelegate>, MPAVRoutingController, MPUNowPlayingController, NSArray, NSDictionary, NSString, NSTimer, RUTrackActionsModalItem, RUTrackActionsViewController, UIImageView, UIPopoverController, UIView, _MPUSystemMediaControlsView;
-
-@interface MPUSystemMediaControlsViewController : UIViewController <MPUNowPlayingDelegate, MPUTransportControlsViewDelegate, MPURemoteViewControllerPresentation, MPUChronologicalProgressViewDelegate, MPUMediaControlsTitlesViewDelegate, MPAVRoutingControllerDelegate, RUTrackActionsDelegate, UIModalItemDelegate, UIPopoverControllerDelegate> {
+@interface MPUSystemMediaControlsViewController : UIViewController <MPAVRoutingControllerDelegate, MPUChronologicalProgressViewDelegate, MPUMediaControlsTitlesViewDelegate, MPUNowPlayingDelegate, MPURemoteViewControllerPresentation, MPUSystemMediaControlsViewDelegate, MPUTransportControlMediaRemoteControllerDelegate, MPUTransportControlsViewDataSource, MPUTransportControlsViewDelegate, MPUTransportControlsViewLayoutDelegate> {
     UIImageView *_artworkImageView;
     NSString *_audioCategoryForDisabledHUD;
     NSArray *_currentlySupportedCommands;
     <MPUSystemMediaControlsDelegate> *_delegate;
     double _lastDurationFromUpdate;
     BOOL _lockscreenDisabledForScreenTurnOff;
-    _MPUSystemMediaControlsView *_mediaControlsView;
+    MPUSystemMediaControlsView *_mediaControlsView;
+    NSArray *_notificationObservers;
     MPUNowPlayingController *_nowPlayingController;
-    NSDictionary *_nowPlayingInfoForPresentedTrackActions;
-    BOOL _nowPlayingInfoIsOverridingSupportedCommands;
+    BOOL _nowPlayingIsRadioStation;
     BOOL _persistentUpdatesEnabled;
     MPAVRoutingController *_routingController;
-    unsigned int _runningLongPressCommand;
     double _scrubbedTimeDestination;
     NSTimer *_scrubberCommitTimer;
+    NSTimer *_skipInformationRevealTimer;
     int _style;
-    RUTrackActionsModalItem *_trackActionsModalItem;
-    UIPopoverController *_trackActionsPopoverController;
-    RUTrackActionsViewController *_trackActionsViewController;
+    MPUTransportControlMediaRemoteController *_transportControlMediaRemoteController;
     BOOL _wantsToLaunchNowPlayingApp;
 }
 
-@property(readonly) UIView * artworkView;
-@property <MPUSystemMediaControlsDelegate> * delegate;
-@property BOOL persistentUpdatesEnabled;
-@property(readonly) int style;
+@property (nonatomic, readonly) UIView *artworkView;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <MPUSystemMediaControlsDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL persistentUpdatesEnabled;
+@property (nonatomic, readonly) int style;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
-- (void)_applyNowPlayingInformation:(id)arg1 toTrackActioningController:(id)arg2;
 - (void)_backlightLevelChangedNotification:(id)arg1;
 - (void)_beginScrubberCommitTimer;
-- (void)_cancelRunningLongPressCommand;
+- (void)_buyButtonActionForSender:(id)arg1 command:(unsigned int)arg2;
 - (void)_commitCurrentScrubberValue;
-- (void)_infoButtonTapped:(id)arg1;
+- (id)_imageForTransportButtonWithControlType:(int)arg1;
+- (void)_invalidateSkipInformationRevealTimer;
 - (void)_launchCurrentNowPlayingApp;
-- (void)_likeBanButtonTapped:(id)arg1;
+- (void)_launchFirstPartyMusicAppForShareCommand;
+- (BOOL)_mediaRemoteCommandIsSupportedAndEnabled:(unsigned int)arg1;
+- (void)_revealSkipInformation;
+- (void)_scheduleSkipInformationRevealTimer;
 - (void)_setupNotifications;
+- (BOOL)_shouldUseExtendedTransportControls;
 - (void)_stopScrubberCommitTimer;
 - (void)_supportedCommandsDidChangeNotification:(id)arg1;
+- (void)_systemAppDidSkipTrackNotification:(id)arg1;
 - (void)_tearDownNotifications;
+- (void)_updateBuyButtonsWithNowPlayingInfo:(id)arg1;
 - (void)_updateSupportedCommands;
+- (void)_updateTransportControlCount;
 - (id)artworkView;
 - (void)dealloc;
 - (id)delegate;
@@ -53,13 +60,15 @@
 - (id)initWithStyle:(int)arg1;
 - (void)loadView;
 - (void)mediaControlsTitlesViewWasTapped:(id)arg1;
-- (void)modalItem:(id)arg1 didDismissWithButtonIndex:(int)arg2;
+- (void)mediaControlsViewDidCancelBuyTrackDownloadAction:(id)arg1;
+- (void)mediaControlsViewDidConfirmBuyAlbumAction:(id)arg1;
+- (void)mediaControlsViewDidConfirmBuyTrackAction:(id)arg1;
 - (void)nowPlayingController:(id)arg1 elapsedTimeDidChange:(double)arg2;
 - (void)nowPlayingController:(id)arg1 nowPlayingApplicationDidChange:(id)arg2;
 - (void)nowPlayingController:(id)arg1 nowPlayingInfoDidChange:(id)arg2;
 - (void)nowPlayingController:(id)arg1 playbackStateDidChange:(BOOL)arg2;
 - (BOOL)persistentUpdatesEnabled;
-- (void)popoverControllerDidDismissPopover:(id)arg1;
+- (id)presentingViewControllerForLikeBanActionSheetForTransportControlMediaRemoteController:(id)arg1;
 - (void)progressViewDidBeginScrubbing:(id)arg1;
 - (void)progressViewDidEndScrubbing:(id)arg1;
 - (void)remoteViewControllerDidFinish;
@@ -67,12 +76,14 @@
 - (void)setDelegate:(id)arg1;
 - (void)setPersistentUpdatesEnabled:(BOOL)arg1;
 - (int)style;
-- (void)trackActioningObject:(id)arg1 didSelectAction:(int)arg2 atIndex:(int)arg3;
-- (id)trackActioningObject:(id)arg1 localizedTitleForAction:(int)arg2;
+- (void)transportControlMediaRemoteController:(id)arg1 requestsPushingMediaRemoteCommand:(unsigned int)arg2 withOptions:(id)arg3 shouldLaunchApplication:(BOOL)arg4;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })transportControlsView:(id)arg1 adjustedFrameOfTransportButtonWithControlType:(int)arg2 proposedFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg3;
+- (struct CGSize { float x1; float x2; })transportControlsView:(id)arg1 adjustedMaximumTransportButtonSizeWithProposedSize:(struct CGSize { float x1; float x2; })arg2;
+- (id)transportControlsView:(id)arg1 buttonForControlType:(int)arg2;
 - (void)transportControlsView:(id)arg1 longPressBeginOnControlType:(int)arg2;
 - (void)transportControlsView:(id)arg1 longPressEndOnControlType:(int)arg2;
-- (void)transportControlsView:(id)arg1 tapOnAccessoryButtonType:(int)arg2;
 - (void)transportControlsView:(id)arg1 tapOnControlType:(int)arg2;
+- (double)transportControlsView:(id)arg1 transportButtonUnhighlightAnimationDurationForControlType:(int)arg2;
 - (void)viewWillAppear:(BOOL)arg1;
 - (void)viewWillDisappear:(BOOL)arg1;
 

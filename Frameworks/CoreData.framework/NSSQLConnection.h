@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@class NSArray, NSSQLAdapter, NSSQLStatement;
-
 @interface NSSQLConnection : NSObject {
     NSSQLAdapter *_adapter;
     NSArray *_columnsToFetch;
@@ -25,7 +23,10 @@
 - (void)awake;
 - (void)beginTransaction;
 - (void)bindTempTableForBindIntarray:(id)arg1;
+- (void)cacheStatement:(id)arg1 forRequestWithIdentifier:(id)arg2;
+- (id)cachedStatementForRequestWithIdentifier:(id)arg1;
 - (BOOL)canConnect;
+- (void)clearCachedStatementForRequestWithIdentifier:(id)arg1;
 - (id)columnsToFetch;
 - (void)commitTransaction;
 - (void)connect;
@@ -41,8 +42,8 @@
 - (void)createTablesForEntities:(id)arg1;
 - (BOOL)databaseIsEmpty;
 - (void)dealloc;
-- (void)deleteCorrelation:(id)arg1;
 - (void)deleteRow:(id)arg1;
+- (id)deleteTransactionEntriesAfterPeerState:(id)arg1 forStoreName:(id)arg2;
 - (id)describeResults;
 - (void)didCreateSchema;
 - (void)disconnect;
@@ -63,15 +64,12 @@
 - (BOOL)hasOpenTransaction;
 - (BOOL)hasPrimaryKeyTable;
 - (id)initWithAdapter:(id)arg1;
-- (void)insertCorrelation:(id)arg1;
 - (void)insertRow:(id)arg1;
 - (BOOL)isFetchInProgress;
 - (BOOL)isOpen;
 - (id)metadataColumns;
 - (id)newFetchUUIDSForSubentitiesRootedAt:(id)arg1;
 - (id)newFetchedArray;
-- (void)performAdapterOperation:(id)arg1;
-- (void)performAdapterOperations:(id)arg1;
 - (void)prepareAndExecuteSQLStatement:(id)arg1;
 - (void)prepareForPrimaryKeyGeneration;
 - (void)prepareSQLStatement:(id)arg1;
@@ -91,10 +89,10 @@
 - (void)transactionDidRollback;
 - (id)ubiquityTableKeysAndValues;
 - (id)ubiquityTableValueForKey:(id)arg1;
-- (void)updateCorrelation:(id)arg1;
 - (void)updateRow:(id)arg1;
 - (void)updateUbiquityKnowledgeForPeerWithID:(id)arg1 andTransactionNumber:(id)arg2;
 - (void)updateUbiquityKnowledgeVector:(id)arg1;
 - (void)willCreateSchema;
+- (void)writeCorrelationChangesFromTracker:(id)arg1;
 
 @end

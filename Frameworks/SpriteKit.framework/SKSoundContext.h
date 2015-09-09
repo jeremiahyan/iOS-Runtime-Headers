@@ -5,10 +5,12 @@
 @interface SKSoundContext : NSObject {
     struct ALCcontext_struct { } *_context;
     struct ALCdevice_struct { } *_device;
+    BOOL _suspended;
 }
 
-@property double gain;
-@property struct CGPoint { float x1; float x2; } listenerPosition;
+@property (nonatomic) double gain;
+@property (nonatomic) struct CGPoint { float x1; float x2; } listenerPosition;
+@property (nonatomic) BOOL suspended;
 
 + (id)context;
 + (id)currentContext;
@@ -20,5 +22,7 @@
 - (void)makeCurrentContext;
 - (void)setGain:(double)arg1;
 - (void)setListenerPosition:(struct CGPoint { float x1; float x2; })arg1;
+- (void)setSuspended:(BOOL)arg1;
+- (BOOL)suspended;
 
 @end

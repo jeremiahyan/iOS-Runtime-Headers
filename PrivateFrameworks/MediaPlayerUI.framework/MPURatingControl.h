@@ -2,15 +2,13 @@
    Image: /System/Library/PrivateFrameworks/MediaPlayerUI.framework/MediaPlayerUI
  */
 
-@class <MPURatingControlDelegate>, NSMutableArray, UIPanGestureRecognizer, UITapGestureRecognizer;
-
 @interface MPURatingControl : UIControl {
+    <MPURatingControlDelegate> *_delegate;
     struct UIEdgeInsets { 
         float top; 
         float left; 
         float bottom; 
         float right; 
-    <MPURatingControlDelegate> *_delegate;
     } _hitTestEdgeInsets;
     NSMutableArray *_imageViews;
     UIPanGestureRecognizer *_panGestureRecognizer;
@@ -18,9 +16,9 @@
     UITapGestureRecognizer *_tapGestureRecognizer;
 }
 
-@property <MPURatingControlDelegate> * delegate;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } hitTestEdgeInsets;
-@property float rating;
+@property (nonatomic) <MPURatingControlDelegate> *delegate;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } hitTestEdgeInsets;
+@property (nonatomic) float rating;
 
 + (id)ratingDotImage;
 + (id)ratingStarImage;
@@ -38,7 +36,8 @@
 - (float)ratingValueForLocationInView:(struct CGPoint { float x1; float x2; })arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setHitTestEdgeInsets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
-- (void)setRating:(float)arg1 animated:(BOOL)arg2;
 - (void)setRating:(float)arg1;
+- (void)setRating:(float)arg1 animated:(BOOL)arg2;
+- (struct CGSize { float x1; float x2; })sizeThatFits:(struct CGSize { float x1; float x2; })arg1;
 
 @end

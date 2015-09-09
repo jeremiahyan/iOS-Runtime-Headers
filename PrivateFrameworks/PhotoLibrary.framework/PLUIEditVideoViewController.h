@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibrary.framework/PhotoLibrary
  */
 
-@class NSDictionary, UIImagePickerController, UINavigationItem;
-
 @interface PLUIEditVideoViewController : PLUIImageViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
     unsigned int _canCreateMetadata;
     id _delegate;
@@ -14,7 +12,11 @@
     Class _viewClass;
 }
 
-@property BOOL parentInPopoverException;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL parentInPopoverException;
+@property (readonly) Class superclass;
 
 - (void)_cancelTrim:(id)arg1;
 - (BOOL)_displaysFullScreen;
@@ -29,6 +31,7 @@
 - (void)didChooseVideoAtURL:(id)arg1 options:(id)arg2;
 - (id)initWithPhoto:(id)arg1 trimTitle:(id)arg2;
 - (id)initWithProperties:(id)arg1;
+- (id)initWithVideoURL:(id)arg1 trimTitle:(id)arg2;
 - (void)loadView;
 - (id)navigationItem;
 - (BOOL)parentInPopoverException;

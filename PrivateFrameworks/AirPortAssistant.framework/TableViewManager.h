@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/AirPortAssistant.framework/AirPortAssistant
  */
 
-@class <TableViewManagerDelegate>, ManagedTableViewCell, NSIndexPath, NSMutableDictionary, UIColor, UITableView, UIView;
-
-@interface TableViewManager : NSObject <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource> {
+@interface TableViewManager : NSObject <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate> {
     float _cellContentWidth;
     float _cellLeftEdgeOrigin;
     UIView *_currentFirstResponder;
@@ -21,17 +19,20 @@
     NSMutableDictionary *_tableDescriptorDict;
 }
 
-@property <TableViewManagerDelegate> * delegate;
-@property(retain) UITableView * managedTableView;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <TableViewManagerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) UITableView *managedTableView;
+@property (readonly) Class superclass;
 
 + (id)boldSystemLabelFont;
-+ (void)initialize;
 + (id)smallSystemLabelFont;
 + (id)systemLabelFont;
 
 - (id)activityView:(id)arg1;
-- (void)addSectionInfo:(id)arg1 animated:(BOOL)arg2;
 - (void)addSectionInfo:(id)arg1;
+- (void)addSectionInfo:(id)arg1 animated:(BOOL)arg2;
 - (void)appendNewRow:(id)arg1 forSection:(unsigned int)arg2;
 - (void)awakeFromNib;
 - (BOOL)becomeFirstResponderAtIndexPath:(id)arg1;
@@ -70,8 +71,8 @@
 - (void)deleteRowInSection:(unsigned int)arg1 withTag:(int)arg2;
 - (void)deleteRowsAtIndexPaths:(id)arg1 withRowAnimation:(int)arg2;
 - (void)deleteSection:(unsigned int)arg1;
-- (void)deleteSectionWithIdentifier:(id)arg1 animated:(BOOL)arg2;
 - (void)deleteSectionWithIdentifier:(id)arg1;
+- (void)deleteSectionWithIdentifier:(id)arg1 animated:(BOOL)arg2;
 - (void)deleteSections:(id)arg1 withRowAnimation:(int)arg2;
 - (id)editTextView:(id)arg1;
 - (void)endEditing;
@@ -154,8 +155,8 @@
 - (id)switchView:(id)arg1;
 - (void)tableView:(id)arg1 accessoryButtonTappedForRowWithIndexPath:(id)arg2;
 - (BOOL)tableView:(id)arg1 canPerformAction:(SEL)arg2 forRowAtIndexPath:(id)arg3 withSender:(id)arg4;
-- (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2 layoutMode:(BOOL)arg3;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
+- (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2 layoutMode:(BOOL)arg3;
 - (void)tableView:(id)arg1 commitEditingStyle:(int)arg2 forRowAtIndexPath:(id)arg3;
 - (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
 - (int)tableView:(id)arg1 editingStyleForRowAtIndexPath:(id)arg2;

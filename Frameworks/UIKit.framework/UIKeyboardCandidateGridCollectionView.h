@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, UIKeyboardCandidateGridCollectionViewController, UITableViewIndex, UIView;
-
 @interface UIKeyboardCandidateGridCollectionView : UIKBCandidateCollectionView {
     UIView *_headerView;
     UITableViewIndex *_index;
@@ -12,11 +10,11 @@
     float _previousGroupBarStartingY;
 }
 
-@property(retain) UIView * headerView;
-@property(readonly) UITableViewIndex * index;
-@property(retain) NSArray * indexTitles;
-@property UIKeyboardCandidateGridCollectionViewController * parentViewController;
-@property float previousGroupBarStartingY;
+@property (nonatomic, retain) UIView *headerView;
+@property (nonatomic, readonly) UITableViewIndex *index;
+@property (nonatomic, retain) NSArray *indexTitles;
+@property (nonatomic) UIKeyboardCandidateGridCollectionViewController *parentViewController;
+@property (nonatomic) float previousGroupBarStartingY;
 
 - (void)dealloc;
 - (void)delayUpdateIndex;
@@ -25,7 +23,7 @@
 - (id)headerView;
 - (id)index;
 - (id)indexTitles;
-- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 collectionViewLayout:(id)arg2;
 - (BOOL)isCellVisible:(id)arg1;
 - (void)keyboardDidHideNotification:(id)arg1;
 - (void)keyboardWillShowNotification:(id)arg1;
@@ -42,7 +40,7 @@
 - (void)setPreviousGroupBarStartingY:(float)arg1;
 - (BOOL)shouldShowIndex;
 - (void)showIndex:(BOOL)arg1;
-- (void)updateIndex:(BOOL)arg1;
 - (void)updateIndex;
+- (void)updateIndex:(BOOL)arg1;
 
 @end

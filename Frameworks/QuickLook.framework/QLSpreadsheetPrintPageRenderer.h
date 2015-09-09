@@ -2,9 +2,7 @@
    Image: /System/Library/Frameworks/QuickLook.framework/QuickLook
  */
 
-@class NSMutableArray, UIWebBrowserView, UIWebPaginationInfo;
-
-@interface QLSpreadsheetPrintPageRenderer : QLRemotePrintPageHelper {
+@interface QLSpreadsheetPrintPageRenderer : QLWebViewPrintPageHelper {
     unsigned int _currentPageIndex;
     unsigned int _currentURLIndex;
     BOOL _frameLoaded;
@@ -21,7 +19,7 @@
 - (void)dealloc;
 - (id)initWithWebBrowserView:(id)arg1 request:(id)arg2 documentType:(id)arg3;
 - (int)numberOfPages;
-- (id)pdfDataForPageAtIndex:(int)arg1 withSize:(struct CGSize { float x1; float x2; })arg2 printingDone:(BOOL*)arg3;
+- (id)pdfDataForPageAtIndex:(int)arg1 printingDone:(BOOL*)arg2;
 - (void)prepareForDrawingPages:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1;
 - (void)webView:(id)arg1 didFailLoadWithError:(id)arg2 forFrame:(id)arg3;
 - (void)webView:(id)arg1 didFinishLoadForFrame:(id)arg2;

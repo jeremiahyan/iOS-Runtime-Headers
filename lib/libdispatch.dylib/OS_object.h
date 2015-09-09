@@ -2,8 +2,7 @@
    Image: /usr/lib/system/libdispatch.dylib
  */
 
-@interface OS_object : NSObject {
-}
+@interface OS_object : NSObject
 
 - (void)_dispose;
 - (void)_xref_dispose;

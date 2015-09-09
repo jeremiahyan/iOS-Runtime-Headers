@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/AssistantUI.framework/AssistantUI
  */
 
-@class <AFUIVoicemailPlayerDelegate>, AVAudioPlayer, SAPhonePlayVoiceMail, VMVoicemail;
-
 @interface AFUIVoicemailPlayer : NSObject <AVAudioPlayerDelegate> {
     <AFUIVoicemailPlayerDelegate> *_delegate;
     AVAudioPlayer *_player;
@@ -11,10 +9,14 @@
     VMVoicemail *_voicemailObject;
 }
 
-@property <AFUIVoicemailPlayerDelegate> * delegate;
-@property(getter=_player,setter=_setPlayer:,retain) AVAudioPlayer * player;
-@property(retain) SAPhonePlayVoiceMail * voicemail;
-@property(getter=_voicemailObject,setter=_setVoicemailObject:,retain) VMVoicemail * voicemailObject;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <AFUIVoicemailPlayerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (getter=_player, setter=_setPlayer:, nonatomic, retain) AVAudioPlayer *player;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) SAPhonePlayVoiceMail *voicemail;
+@property (getter=_voicemailObject, setter=_setVoicemailObject:, nonatomic, retain) VMVoicemail *voicemailObject;
 
 - (void).cxx_destruct;
 - (id)_player;

@@ -2,15 +2,17 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UICompletionTablePrivate;
-
-@interface UICompletionTable : UIView <UITableViewDelegate, UITableViewDataSource> {
+@interface UICompletionTable : UIView <UITableViewDataSource, UITableViewDelegate> {
     UICompletionTablePrivate *_private;
 }
 
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } contentInset;
-@property id delegate;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } scrollIndicatorInsets;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } contentInset;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) id delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } scrollIndicatorInsets;
+@property (readonly) Class superclass;
 
 + (id)_cellFont;
 + (id)_shadowImage;

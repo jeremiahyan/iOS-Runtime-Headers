@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibrary.framework/PhotoLibrary
  */
 
-@class <PLSlideshowSettingsViewControllerDelegate>, MPMediaItemCollection, MPMediaPickerController, NSArray, NSString, PLSlideshowAirPlayRoutesViewController, PLSlideshowTransitionsViewController, UITableView, UITableViewCell;
-
-@interface PLSlideshowSettingsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, MPMediaPickerControllerDelegate> {
+@interface PLSlideshowSettingsViewController : UIViewController <MPMediaPickerControllerDelegate, UITableViewDataSource, UITableViewDelegate> {
     PLSlideshowAirPlayRoutesViewController *_airPlayRoutesController;
     NSArray *_airplayRoutes;
     NSArray *_alternateTransitionLocalizations;
@@ -22,10 +20,14 @@
     PLSlideshowTransitionsViewController *_transitionsController;
 }
 
-@property <PLSlideshowSettingsViewControllerDelegate> * delegate;
-@property(copy) NSString * selectedTransition;
-@property(retain) MPMediaItemCollection * slideshowMusicCollection;
-@property BOOL slideshowShouldPlayMusic;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <PLSlideshowSettingsViewControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *selectedTransition;
+@property (nonatomic, retain) MPMediaItemCollection *slideshowMusicCollection;
+@property (nonatomic) BOOL slideshowShouldPlayMusic;
+@property (readonly) Class superclass;
 
 + (id)AppleTVPushTransitions;
 + (id)TVOutTransitions;

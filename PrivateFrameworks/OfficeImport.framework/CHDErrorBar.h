@@ -2,14 +2,12 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class CHDChart, CHDData, OADGraphicProperties;
-
 @interface CHDErrorBar : NSObject {
-    boolmNoEndCap;
     CHDChart *mChart;
     int mDirection;
     OADGraphicProperties *mGraphicProperties;
     CHDData *mMinusValues;
+    bool mNoEndCap;
     CHDData *mPlusValues;
     int mType;
     double mValue;

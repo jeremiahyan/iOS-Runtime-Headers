@@ -2,37 +2,43 @@
    Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
  */
 
-@class CKBalloonView, NSAttributedString, UILabel;
-
 @interface CKTranscriptBalloonCell : CKTranscriptMessageCell {
     CKBalloonView *_balloonView;
-    NSAttributedString *_drawerAttributedText;
     UILabel *_drawerLabel;
+    NSAttributedString *_drawerText;
     BOOL _drawerTextChanged;
+    struct CGSize { 
+        float width; 
+        float height; 
+    } _drawerTextSize;
     BOOL _drawerWasVisible;
 }
 
-@property(retain) CKBalloonView * balloonView;
-@property(copy) NSAttributedString * drawerAttributedText;
-@property(retain) UILabel * drawerLabel;
-@property BOOL drawerTextChanged;
-@property BOOL drawerWasVisible;
+@property (nonatomic, retain) CKBalloonView *balloonView;
+@property (nonatomic, retain) UILabel *drawerLabel;
+@property (nonatomic, copy) NSAttributedString *drawerText;
+@property (nonatomic) BOOL drawerTextChanged;
+@property (nonatomic) struct CGSize { float x1; float x2; } drawerTextSize;
+@property (nonatomic) BOOL drawerWasVisible;
 
 - (id)balloonView;
-- (void)configureForRow:(id)arg1;
-- (void)configureForRowObject:(id)arg1;
+- (void)configureForChatItem:(id)arg1;
 - (void)dealloc;
-- (id)drawerAttributedText;
+- (id)description;
 - (id)drawerLabel;
+- (id)drawerText;
 - (BOOL)drawerTextChanged;
+- (struct CGSize { float x1; float x2; })drawerTextSize;
 - (BOOL)drawerWasVisible;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
-- (void)layoutSubviewsForContents;
+- (void)layoutSubviewsForAlignmentContents;
 - (void)layoutSubviewsForDrawer;
 - (void)setBalloonView:(id)arg1;
-- (void)setDrawerAttributedText:(id)arg1;
 - (void)setDrawerLabel:(id)arg1;
+- (void)setDrawerText:(id)arg1;
 - (void)setDrawerTextChanged:(BOOL)arg1;
+- (void)setDrawerTextSize:(struct CGSize { float x1; float x2; })arg1;
 - (void)setDrawerWasVisible:(BOOL)arg1;
+- (void)setEditing:(BOOL)arg1 animated:(BOOL)arg2;
 
 @end

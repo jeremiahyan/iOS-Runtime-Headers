@@ -2,45 +2,43 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class TSCHChartFeature;
-
-@interface TSCHChartType : NSObject {
+@interface TSCHChartType : NSObject <TSDMixing> {
     TSCHChartFeature *mFeature;
 }
 
 + (id)allChartTypes;
-+ (id)areaChart3D;
 + (id)areaChart;
-+ (id)barChart3D;
++ (id)areaChart3D;
 + (id)barChart;
++ (id)barChart3D;
 + (id)bubbleChart;
-+ (id)columnChart3D;
++ (id)chartTypePlaceholderForDefault3DScaleProperty;
 + (id)columnChart;
++ (id)columnChart3D;
 + (id)constantDepthInfoChartScaleForInfoChartScale:(id)arg1 chartType:(id)arg2 barShape:(int)arg3;
-+ (id)lineChart3D;
 + (id)lineChart;
++ (id)lineChart3D;
 + (id)mixedChart;
 + (id)multiDataBarChart;
 + (id)multiDataBubbleChart;
 + (id)multiDataColumnChart;
 + (id)multiDataScatterChart;
-+ (id)pieChart3D;
 + (id)pieChart;
++ (id)pieChart3D;
 + (float)sageDepthFactorForExportingChartInfo:(id)arg1;
 + (id)scatterChart;
-+ (id)stackedAreaChart3D;
 + (id)stackedAreaChart;
-+ (id)stackedBarChart3D;
++ (id)stackedAreaChart3D;
 + (id)stackedBarChart;
-+ (id)stackedColumnChart3D;
++ (id)stackedBarChart3D;
 + (id)stackedColumnChart;
++ (id)stackedColumnChart3D;
 + (id)twoYAxisChart;
 
 - (id)allCDESectionLabels;
 - (id)animationDeliveryStylesForFilter:(id)arg1;
 - (id)animationFiltersWithDefaultFilters:(id)arg1;
 - (BOOL)approximatesTitleAccommodationUsingLegendSize;
-- (id)cascadeTimeSliceWithChartInfo:(id)arg1 renderSeriesProvider:(id)arg2 animationClass:(Class)arg3;
 - (id)categoryAxisIDs;
 - (float)categoryAxisTitleRotation;
 - (int)chartBodyBoundsDefinition;
@@ -54,6 +52,7 @@
 - (int)deprecated3DShadowSpecificProperty;
 - (BOOL)drawValueLabelsForZero;
 - (BOOL)explosionAffectsChartBodyBounds;
+- (id)filteredStyleOwnersFromStyleOwners:(id)arg1;
 - (id)g_genericToSpecificPropertyMapArea;
 - (id)g_genericToSpecificPropertyMapBar;
 - (id)g_genericToSpecificPropertyMapBubble;
@@ -67,23 +66,28 @@
 - (id)g_genericToSpecificPropertyMapStackedColumn;
 - (id)g_genericToSpecificPropertyMapTwoAxis;
 - (id)genericToSpecificPropertyMap;
-- (id)imageWithPreset:(id)arg1 target:(int)arg2 imageSize:(struct CGSize { float x1; float x2; })arg3 imageScale:(float)arg4 swatchFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg5 documentRoot:(id)arg6;
+- (unsigned int)gridOffsetToSeriesForScatterFormat:(int)arg1;
+- (id)imageWithPreset:(id)arg1 target:(int)arg2 imageSize:(struct CGSize { float x1; float x2; })arg3 imageScale:(float)arg4 swatchFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg5 documentRoot:(id)arg6 shouldCache:(BOOL*)arg7;
 - (id)init;
 - (id)initWithFeatureClass:(Class)arg1;
 - (BOOL)isHorizontal;
 - (BOOL)isMultiData;
 - (BOOL)isPie;
 - (Class)layoutClass;
-- (id)linearTimeSliceWithChartInfo:(id)arg1 renderSeriesProvider:(id)arg2 animationClass:(Class)arg3;
+- (BOOL)layoutFrameShouldEncloseInfoGeometry;
+- (unsigned int)maxCellsToCheckForGridValueType;
 - (struct CGSize { float x1; float x2; })minimumChartBodySize;
+- (id)mixedObjectWithFraction:(float)arg1 ofObject:(id)arg2;
+- (int)mixingTypeWithObject:(id)arg1 context:(id)arg2;
 - (struct CGSize { float x1; float x2; })mungeBodySize:(struct CGSize { float x1; float x2; })arg1;
 - (id)otherDimensionChartType;
 - (id)p_debugDescription;
 - (unsigned int)presentationDimension;
 - (Class)presetImagerClass;
 - (Class)repClass;
-- (BOOL)requiresAxisOrdinal;
+- (int)representativeGridValueAxisType;
 - (BOOL)requiresSeparateLabelsRenderPass;
+- (BOOL)requiresYAxisOrdinal;
 - (BOOL)reverseSingleColumnLegendOrder;
 - (struct TSCH3DChartRotationLimit { float x1; float x2; float x3; float x4; })rotation3DLimit;
 - (float)rotation3DMaxX;
@@ -121,6 +125,7 @@
 - (BOOL)supportsMultipleSeriesTypes;
 - (BOOL)supportsMultipleValueScales;
 - (BOOL)supportsPercentNumberFormatting;
+- (BOOL)supportsReferenceLines;
 - (BOOL)supportsReverseChunking;
 - (BOOL)supportsSeriesFill;
 - (BOOL)supportsSeriesLabels;
@@ -128,13 +133,13 @@
 - (BOOL)supportsSeriesStroke;
 - (BOOL)supportsShadowOffset;
 - (BOOL)supportsSharedAndSeparateX;
+- (BOOL)supportsShowLabelsInFrontOption;
 - (BOOL)supportsSymbolOverhang;
 - (BOOL)supportsTickmarks;
 - (BOOL)supportsTrendLines;
 - (BOOL)supportsValueAxisLabelsPosition;
 - (BOOL)supportsValueLabels;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })swatchImageEdgeInsetsForSize:(struct CGSize { float x1; float x2; })arg1;
-- (id)timeSliceWithChartInfo:(id)arg1 renderSeriesProvider:(id)arg2 animationClass:(Class)arg3 deliveryStyle:(unsigned int)arg4;
 - (id)titlePositionerWithInfo:(id)arg1 scene:(id)arg2;
 - (void)updateTitlesForExportingModel:(id)arg1 info:(id)arg2;
 - (id)userInterfaceName;

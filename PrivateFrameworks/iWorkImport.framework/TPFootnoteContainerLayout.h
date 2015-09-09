@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class <TSWPFootnoteMarkProvider>, TSWPPadding;
-
-@interface TPFootnoteContainerLayout : TSDLayout <TSWPColumnMetrics, TSWPLayoutParent, TSWPFootnoteMarkProvider> {
+@interface TPFootnoteContainerLayout : TSDLayout <TSWPColumnMetrics, TSWPFootnoteMarkProvider, TSWPLayoutParent> {
     <TSWPFootnoteMarkProvider> *_footnoteMarkProvider;
     float _footnoteSpacing;
     BOOL _includeFootnoteSeparatorLine;
@@ -12,20 +10,23 @@
     float _width;
 }
 
-@property(readonly) struct CGSize { float x1; float x2; } adjustedInsets;
-@property(readonly) BOOL alwaysStartsNewTarget;
-@property(readonly) unsigned int columnCount;
-@property(readonly) BOOL columnsAreLeftToRight;
-@property(readonly) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } footnoteSeparatorLineFrame;
-@property(readonly) float height;
-@property BOOL includeFootnoteSeparatorLine;
-@property(readonly) BOOL isEmpty;
-@property(readonly) TSWPPadding * layoutMargins;
-@property(readonly) BOOL shrinkTextToFit;
-@property(readonly) float textScaleFactor;
+@property (nonatomic, readonly) BOOL alwaysStartsNewTarget;
+@property (nonatomic, readonly) unsigned int columnCount;
+@property (nonatomic, readonly) BOOL columnsAreLeftToRight;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } footnoteSeparatorLineFrame;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) float height;
+@property (nonatomic) BOOL includeFootnoteSeparatorLine;
+@property (nonatomic, readonly) BOOL isEmpty;
+@property (nonatomic, readonly) TSWPPadding *layoutMargins;
+@property (nonatomic, readonly) BOOL shrinkTextToFit;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) float textScaleFactor;
 
 - (void)addFootnoteLayout:(id)arg1;
-- (struct CGSize { float x1; float x2; })adjustedInsets;
+- (struct CGSize { float x1; float x2; })adjustedInsetsForTarget:(id)arg1;
 - (BOOL)alwaysStartsNewTarget;
 - (unsigned int)autosizeFlagsForTextLayout:(id)arg1;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })autosizedFrameForTextLayout:(id)arg1 textSize:(struct CGSize { float x1; float x2; })arg2;
@@ -44,7 +45,7 @@
 - (id)markStringForFootnoteReferenceStorage:(id)arg1;
 - (float)maxAutoGrowHeightForTextLayout:(id)arg1;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })nonAutosizedFrameForTextLayout:(id)arg1;
-- (float)positionForColumnIndex:(unsigned int)arg1 bodyWidth:(float)arg2 outWidth:(float*)arg3 outGap:(float*)arg4;
+- (float)positionForColumnIndex:(unsigned int)arg1 bodyWidth:(float)arg2 target:(id)arg3 outWidth:(float*)arg4 outGap:(float*)arg5;
 - (void)removeAllFootnoteLayouts;
 - (void)removeFootnoteLayout:(id)arg1;
 - (void)removeFootnoteLayoutWithInfo:(id)arg1;

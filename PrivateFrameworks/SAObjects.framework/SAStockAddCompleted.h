@@ -2,18 +2,19 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSArray, NSString, NSURL, SAStockObject;
+@interface SAStockAddCompleted : SABaseCommand <SAServerBoundCommand>
 
-@interface SAStockAddCompleted : SABaseCommand <SAServerBoundCommand> {
-}
-
-@property(copy) NSString * aceId;
-@property(retain) SAStockObject * aceStock;
-@property(copy) NSURL * identifier;
-@property(copy) NSString * refId;
-@property(copy) NSArray * results;
-@property(copy) NSArray * stockReferences;
-@property(copy) NSArray * stocks;
+@property (nonatomic, copy) NSString *aceId;
+@property (nonatomic, retain) SAStockObject *aceStock;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSURL *identifier;
+@property (nonatomic, copy) NSString *refId;
+@property (nonatomic, copy) NSArray *results;
+@property (nonatomic, copy) NSArray *stockReferences;
+@property (nonatomic, copy) NSArray *stocks;
+@property (readonly) Class superclass;
 
 + (id)addCompleted;
 + (id)addCompletedWithDictionary:(id)arg1 context:(id)arg2;

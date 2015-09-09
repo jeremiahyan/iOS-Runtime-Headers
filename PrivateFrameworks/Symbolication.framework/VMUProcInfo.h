@@ -2,14 +2,8 @@
    Image: /System/Library/PrivateFrameworks/Symbolication.framework/Symbolication
  */
 
-@class NSArray, NSString;
-
-@interface VMUProcInfo : NSObject <SafeVMUProcInfoProtocol> {
-    struct timeval { 
-        int tv_sec; 
-        int tv_usec; 
+@interface VMUProcInfo : NSObject {
     NSArray *_arguments;
-    int _cpuType;
     NSArray *_envVars;
     NSString *_firstArg;
     NSString *_name;
@@ -19,6 +13,9 @@
     NSString *_procTableName;
     NSString *_realAppName;
     NSString *_requestedAppName;
+    struct timeval { 
+        int tv_sec; 
+        int tv_usec; 
     } _startTime;
     unsigned int _task;
 }

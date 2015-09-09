@@ -2,14 +2,12 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSMutableArray;
-
 @interface GEOBusinessOptions : PBCodable <NSCopying> {
+    NSMutableArray *_attributeKeys;
     struct { 
         unsigned int maxBusinessResults : 1; 
         unsigned int includeBusinessHours : 1; 
         unsigned int includeCenter : 1; 
-    NSMutableArray *_attributeKeys;
     } _has;
     BOOL _includeBusinessHours;
     BOOL _includeCenter;
@@ -17,14 +15,14 @@
     NSMutableArray *_photoOptions;
 }
 
-@property(retain) NSMutableArray * attributeKeys;
-@property BOOL hasIncludeBusinessHours;
-@property BOOL hasIncludeCenter;
-@property BOOL hasMaxBusinessResults;
-@property BOOL includeBusinessHours;
-@property BOOL includeCenter;
-@property int maxBusinessResults;
-@property(retain) NSMutableArray * photoOptions;
+@property (nonatomic, retain) NSMutableArray *attributeKeys;
+@property (nonatomic) BOOL hasIncludeBusinessHours;
+@property (nonatomic) BOOL hasIncludeCenter;
+@property (nonatomic) BOOL hasMaxBusinessResults;
+@property (nonatomic) BOOL includeBusinessHours;
+@property (nonatomic) BOOL includeCenter;
+@property (nonatomic) int maxBusinessResults;
+@property (nonatomic, retain) NSMutableArray *photoOptions;
 
 - (void)addAttributeKey:(id)arg1;
 - (void)addPhotoOptions:(id)arg1;
@@ -46,6 +44,7 @@
 - (BOOL)includeCenter;
 - (BOOL)isEqual:(id)arg1;
 - (int)maxBusinessResults;
+- (void)mergeFrom:(id)arg1;
 - (id)photoOptions;
 - (id)photoOptionsAtIndex:(unsigned int)arg1;
 - (unsigned int)photoOptionsCount;

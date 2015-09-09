@@ -2,22 +2,25 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@interface UIKBRenderFactory10Key : UIKBRenderFactory {
-}
+@interface UIKBRenderFactory10Key : UIKBRenderFactory
+
++ (BOOL)_isActiveKeyplaneSwitchKey:(id)arg1;
 
 - (id)_preferredScriptFontForRendering:(int)arg1;
 - (id)_traitsForKey:(id)arg1 onKeyplane:(id)arg2;
 - (struct CGPoint { float x1; float x2; })abcKeyTextOffset;
 - (id)activeControlKeyTraits;
-- (id)backgroundTraitsForKeyplane:(id)arg1;
 - (id)controlKeyBackgroundColorName;
+- (id)controlKeyDividerColorName;
+- (id)controlKeyForegroundColorName;
 - (id)controlKeyTraits;
-- (id)defaultKeyBackgroundColorName;
+- (id)defaultKeyDividerColorName;
 - (struct CGPoint { float x1; float x2; })dictationKeyTextOffset;
 - (id)displayContentsForKey:(id)arg1;
 - (unsigned int)edgesAdjustedForTranslucentGapsForGeometry:(id)arg1 key:(id)arg2 onKeyplane:(id)arg3;
 - (struct CGPoint { float x1; float x2; })globeKeyTextOffset;
 - (float)interkeyGapsCenterXOfKeyplaneFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (int)lightHighQualityEnabledBlendForm;
 - (float)numberPadKeyPrimarySymbolSize;
 - (struct CGPoint { float x1; float x2; })numberPadKeyPrimaryTextOffset;
 - (struct CGPoint { float x1; float x2; })numberPadKeySecondaryTextOffset;

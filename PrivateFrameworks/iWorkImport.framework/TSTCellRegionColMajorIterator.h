@@ -3,6 +3,22 @@
  */
 
 @interface TSTCellRegionColMajorIterator : NSObject <TSTCellRegionIterating> {
+    struct TSUColumnRowRect { 
+        struct { 
+            unsigned short row; 
+            unsigned char column; 
+            unsigned char reserved; 
+        } origin; 
+        struct { 
+            unsigned short numberOfColumns; 
+            unsigned short numberOfRows; 
+        } size; 
+    } mBoundingCellRange;
+    struct { 
+        unsigned short row; 
+        unsigned char column; 
+        unsigned char reserved; 
+    } mCellID;
     struct set<TSUColumnRowRect, TSTCellRangeColumnMajorLess, std::__1::allocator<TSUColumnRowRect> > { 
         struct __tree<TSUColumnRowRect, TSTCellRangeColumnMajorLess, std::__1::allocator<TSUColumnRowRect> > { 
             struct __tree_node<TSUColumnRowRect, void *> {} *__begin_node_; 
@@ -15,24 +31,13 @@
                 unsigned long __first_; 
             } __pair3_; 
         } __tree_; 
-    struct { 
-        unsigned short row; 
-        unsigned char column; 
-        unsigned char reserved; 
-    struct { 
-        struct { 
-            unsigned short row; 
-            unsigned char column; 
-            unsigned char reserved; 
-        } origin; 
-        struct { 
-            unsigned short numberOfColumns; 
-            unsigned short numberOfRows; 
-        } size; 
-    } mBoundingCellRange;
-    } mCellID;
     } mCellRangeSet;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (id).cxx_construct;
 - (void).cxx_destruct;

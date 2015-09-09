@@ -2,23 +2,7 @@
    Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
  */
 
-@class <MFComposeRecipientTextViewDelegate>, <MFMailComposeViewDelegate>, <MFMailPopoverManagerDelegate>, MFComposeBodyField, MFComposeFromView, MFComposeImageSizeView, MFComposeMultiView, MFComposeScrollView, MFComposeSubjectView, MFComposeTextContentView, MFFromAddressViewController, MFMailComposeContactsSearchController, MFMailComposeRecipientView, MFSearchResultsViewController, NSArray, NSInvocation, UIPickerView, UIResponder, UITableView, UIView;
-
-@interface MFMailComposeView : UITransitionView <UITextContentViewDelegate, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, MFMailComposeContactsSearchControllerDelegate, MFComposeBodyFieldDelegate, MFDragContext> {
-    struct CGSize { 
-        float width; 
-        float height; 
-    unsigned int _isChangingRecipients : 1;
-    unsigned int _isLoading : 1;
-    unsigned int _isShowingPeoplePicker : 1;
-    unsigned int _isRotating : 1;
-    unsigned int _isClosing : 1;
-    unsigned int _isShowingFromAddressPickerWheel : 1;
-    unsigned int _isForEditing : 1;
-    unsigned int _isAnimationDisabled : 1;
-    unsigned int _shouldShowOptionalHeaders : 1;
-    unsigned int _isDraggingRecipients : 1;
-    unsigned int _hasAppeared : 1;
+@interface MFMailComposeView : UITransitionView <MFComposeBodyFieldDelegate, MFComposeHeaderViewDelegate, MFDragContext, MFMailComposeContactsSearchControllerDelegate, UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate, UITextContentViewDelegate> {
     MFMailComposeRecipientView *_activeRecipientView;
     MFMailComposeRecipientView *_bccField;
     MFComposeBodyField *_bodyField;
@@ -26,6 +10,9 @@
     MFMailComposeRecipientView *_ccField;
     <MFComposeRecipientTextViewDelegate> *_composeRecipientViewDelegate;
     UIView *_contentView;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _currentContentSize;
     NSInvocation *_delayedPopoverInvocation;
     UIResponder *_firstResponderBeforeSheet;
@@ -33,8 +20,18 @@
     UIPickerView *_fromAddressPickerView;
     MFFromAddressViewController *_fromAddressViewController;
     MFComposeFromView *_fromField;
+    unsigned int _hasAppeared;
     UIView *_headerView;
     MFComposeImageSizeView *_imageSizeField;
+    unsigned int _isAnimationDisabled;
+    unsigned int _isChangingRecipients;
+    unsigned int _isClosing;
+    unsigned int _isDraggingRecipients;
+    unsigned int _isForEditing;
+    unsigned int _isLoading;
+    unsigned int _isRotating;
+    unsigned int _isShowingFromAddressPickerWheel;
+    unsigned int _isShowingPeoplePicker;
     float _keyboardIntersection;
     MFMailComposeRecipientView *_lastChangedRecipientView;
     <MFMailComposeViewDelegate> *_mailComposeViewDelegate;
@@ -49,30 +46,38 @@
     UITableView *_searchResultsTable;
     MFSearchResultsViewController *_searchViewController;
     UIView *_shadowView;
+    unsigned int _shouldShowOptionalHeaders;
     MFComposeSubjectView *_subjectField;
     MFComposeTextContentView *_textView;
     MFMailComposeRecipientView *_toField;
+    <MFMailComposeToFieldDelegate> *_toFieldDelegate;
 }
 
-@property(getter=isAnimationDisabled) BOOL animationDisabled;
-@property(readonly) MFMailComposeRecipientView * bccField;
-@property(readonly) MFComposeBodyField * bodyField;
-@property(readonly) MFComposeScrollView * bodyScroller;
-@property(readonly) MFComposeTextContentView * bodyTextView;
-@property(readonly) MFMailComposeRecipientView * ccField;
-@property(getter=isChangingRecipients) BOOL changingRecipients;
-@property <MFComposeRecipientTextViewDelegate> * composeRecipientDelegate;
-@property <MFMailComposeViewDelegate> * composeViewDelegate;
-@property(readonly) MFComposeFromView * fromField;
-@property(readonly) MFComposeImageSizeView * imageSizeField;
-@property BOOL isForEditing;
-@property(getter=isLoading) BOOL loading;
-@property(readonly) MFComposeMultiView * multiField;
-@property <MFMailPopoverManagerDelegate> * popoverOwner;
-@property(getter=isSearching,readonly) BOOL searching;
-@property(getter=isShowingPeoplePicker) BOOL showingPeoplePicker;
-@property(readonly) MFComposeSubjectView * subjectField;
-@property(readonly) MFMailComposeRecipientView * toField;
+@property (getter=isAnimationDisabled, nonatomic) BOOL animationDisabled;
+@property (nonatomic, readonly) MFMailComposeRecipientView *bccField;
+@property (nonatomic, readonly) MFComposeBodyField *bodyField;
+@property (nonatomic, readonly) MFComposeScrollView *bodyScroller;
+@property (nonatomic, readonly) MFComposeTextContentView *bodyTextView;
+@property (nonatomic, readonly) MFMailComposeRecipientView *ccField;
+@property (getter=isChangingRecipients, nonatomic) BOOL changingRecipients;
+@property (nonatomic) <MFComposeRecipientTextViewDelegate> *composeRecipientDelegate;
+@property (nonatomic) <MFMailComposeViewDelegate> *composeViewDelegate;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) MFComposeFromView *fromField;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) MFComposeImageSizeView *imageSizeField;
+@property (nonatomic) BOOL isForEditing;
+@property (getter=isLoading, nonatomic) BOOL loading;
+@property (nonatomic, readonly) MFComposeMultiView *multiField;
+@property (nonatomic) <MFMailPopoverManagerDelegate> *popoverOwner;
+@property (nonatomic, readonly) MFSearchResultsViewController *searchViewController;
+@property (getter=isSearching, nonatomic, readonly) BOOL searching;
+@property (getter=isShowingPeoplePicker, nonatomic) BOOL showingPeoplePicker;
+@property (nonatomic, readonly) MFComposeSubjectView *subjectField;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) MFMailComposeRecipientView *toField;
+@property (nonatomic) <MFMailComposeToFieldDelegate> *toFieldDelegate;
 
 - (void)_adjustHeaderFieldsPreferredContentSize;
 - (void)_adjustScrollerContentSize;
@@ -87,9 +92,9 @@
 - (void)_layoutComposeHeaderViewsWithChangingHeader:(id)arg1 toSize:(struct CGSize { float x1; float x2; })arg2 withPinFrame:(out struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; }*)arg3;
 - (void)_layoutFromFieldWithChangingView:(id)arg1 toSize:(struct CGSize { float x1; float x2; })arg2 fieldFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg3;
 - (void)_layoutMultiFieldWithChangingView:(id)arg1 toSize:(struct CGSize { float x1; float x2; })arg2 fieldFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg3;
-- (void)_layoutSubviews:(BOOL)arg1 changingView:(id)arg2 toSize:(struct CGSize { float x1; float x2; })arg3 searchResultsWereDismissed:(BOOL)arg4;
-- (void)_layoutSubviews:(BOOL)arg1 changingView:(id)arg2 toSize:(struct CGSize { float x1; float x2; })arg3;
 - (void)_layoutSubviews:(BOOL)arg1;
+- (void)_layoutSubviews:(BOOL)arg1 changingView:(id)arg2 toSize:(struct CGSize { float x1; float x2; })arg3;
+- (void)_layoutSubviews:(BOOL)arg1 changingView:(id)arg2 toSize:(struct CGSize { float x1; float x2; })arg3 searchResultsWereDismissed:(BOOL)arg4;
 - (void)_layoutSubviewsWithActiveRecipientView:(BOOL)arg1 changingView:(id)arg2 toSize:(struct CGSize { float x1; float x2; })arg3;
 - (void)_multiFieldClicked;
 - (void)_presentDelayedPopover;
@@ -154,8 +159,8 @@
 - (void)parentDidClose;
 - (void)parentWillClose;
 - (id)popoverOwner;
-- (BOOL)presentSearchResults:(id)arg1;
 - (BOOL)presentSearchResults;
+- (BOOL)presentSearchResults:(id)arg1;
 - (void)removeFromSuperview;
 - (void)resetContentSize;
 - (void)restoreFirstResponder;
@@ -168,6 +173,7 @@
 - (void)scrollViewDidScroll:(id)arg1;
 - (void)scrollViewWillBeginDragging:(id)arg1;
 - (void)searchResultsPopoverWasDismissed;
+- (id)searchViewController;
 - (void)selectNextSearchResult;
 - (void)selectPreviousSearchResult;
 - (void)selectSearchResultsRecipientAtIndexPath:(id)arg1;
@@ -177,8 +183,8 @@
 - (void)setChangingRecipients:(BOOL)arg1;
 - (void)setComposeRecipientDelegate:(id)arg1;
 - (void)setComposeViewDelegate:(id)arg1;
-- (void)setFromAddressPickerVisible:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setFromAddressPickerVisible:(BOOL)arg1;
+- (void)setFromAddressPickerVisible:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setIsForEditing:(BOOL)arg1;
 - (void)setKeyboardVisible:(BOOL)arg1 animate:(BOOL)arg2;
 - (void)setLoading:(BOOL)arg1;
@@ -186,6 +192,7 @@
 - (void)setRecipientFieldsEditable:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setScrollsToTop:(BOOL)arg1;
 - (void)setShowingPeoplePicker:(BOOL)arg1;
+- (void)setToFieldDelegate:(id)arg1;
 - (id)subjectField;
 - (void)tableView:(id)arg1 accessoryButtonTappedForRowWithIndexPath:(id)arg2;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
@@ -197,6 +204,7 @@
 - (BOOL)textContentView:(id)arg1 shouldChangeSizeForContentSize:(struct CGSize { float x1; float x2; })arg2;
 - (BOOL)textContentView:(id)arg1 shouldScrollForPendingContentSize:(struct CGSize { float x1; float x2; })arg2;
 - (id)toField;
+- (id)toFieldDelegate;
 - (void)toggleImageSizeFieldIfNecessary;
 - (void)updateOptionalHeaderVisibility;
 - (void)viewDidBecomeFirstResponder:(id)arg1;

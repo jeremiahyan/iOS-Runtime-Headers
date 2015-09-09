@@ -2,26 +2,94 @@
    Image: /System/Library/PrivateFrameworks/IDS.framework/IDS
  */
 
-@class NSArray, NSData, NSDictionary, NSString;
-
-@interface _IDSDevice : NSObject {
+@interface _IDSDevice : NSObject <IDSDaemonListenerProtocol> {
+    CUTWeakReference *_account;
+    BOOL _connected;
     NSDictionary *_info;
+    NSInputStream *_inputStreamForSocket;
+    int _lastActivityToken;
+    BOOL _nearby;
+    int _nearbyToken;
+    id /* block */ _openSocketCompletionHandler;
+    NSString *_openSocketCompletionHandlerID;
+    NSObject<OS_dispatch_queue> *_openSocketCompletionHandlerQueue;
+    NSOutputStream *_outputStreamForSocket;
+    NSString *_serviceToken;
+    int _socket;
 }
 
-@property(readonly) NSArray * _identities;
-@property(readonly) NSData * _pushToken;
-@property(readonly) NSString * modelIdentifier;
-@property(readonly) NSString * name;
-@property(readonly) NSString * service;
+@property (getter=isConnected, nonatomic, readonly) BOOL connected;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly, retain) NSString *deviceColor;
+@property (nonatomic, readonly, retain) NSString *enclosureColor;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly, retain) NSArray *identities;
+@property (nonatomic, readonly) BOOL isDefaultLocalDevice;
+@property (nonatomic, readonly) BOOL isDefaultPairedDevice;
+@property (nonatomic, readonly, retain) NSDate *lastActivityDate;
+@property (nonatomic, readonly, retain) NSArray *linkedUserURIs;
+@property (nonatomic, readonly) BOOL locallyPresent;
+@property (nonatomic, readonly, retain) NSString *modelIdentifier;
+@property (nonatomic, readonly, retain) NSString *name;
+@property (getter=isNearby, nonatomic, readonly) BOOL nearby;
+@property (setter=setNSUUID:, nonatomic, retain) NSUUID *nsuuid;
+@property (nonatomic, readonly) unsigned int pairingProtocolVersion;
+@property (nonatomic, readonly) NSString *productBuildVersion;
+@property (nonatomic, readonly) NSString *productName;
+@property (nonatomic, readonly) NSString *productVersion;
+@property (nonatomic, readonly, retain) NSData *pushToken;
+@property (nonatomic, readonly, retain) NSString *service;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) BOOL supportsHandoff;
+@property (nonatomic, readonly) BOOL supportsMMSRelay;
+@property (nonatomic, readonly) BOOL supportsPhoneCalls;
+@property (nonatomic, readonly) BOOL supportsSMSRelay;
+@property (nonatomic, readonly) BOOL supportsTethering;
+@property (nonatomic, readonly) BOOL supportsiCloudPairing;
+@property (nonatomic, readonly, retain) NSString *uniqueID;
 
 - (void)_addIdentity:(id)arg1;
-- (id)_identities;
-- (id)_pushToken;
+- (void)_connect;
+- (void)_nearbyStateChanged;
+- (void)_setAccount:(id)arg1;
+- (void)_updateNSUUID:(id)arg1;
+- (void)closeSocket:(int)arg1;
+- (void)closeSocketForDomain:(id)arg1;
+- (void)closeStreamPairWithInputStream:(id)arg1 outputStream:(id)arg2;
 - (void)dealloc;
 - (id)description;
+- (id)deviceColor;
+- (id)enclosureColor;
+- (id)identities;
 - (id)initWithDictionary:(id)arg1;
+- (BOOL)isConnected;
+- (BOOL)isDefaultLocalDevice;
+- (BOOL)isDefaultPairedDevice;
+- (BOOL)isNearby;
+- (id)lastActivityDate;
+- (id)linkedUserURIs;
+- (BOOL)locallyPresent;
 - (id)modelIdentifier;
 - (id)name;
+- (id)nsuuid;
+- (void)openSocketWithOptions:(id)arg1 completionHandler:(id /* block */)arg2 onQueue:(id)arg3;
+- (unsigned int)pairingProtocolVersion;
+- (id)productBuildVersion;
+- (id)productName;
+- (id)productVersion;
+- (id)pushToken;
 - (id)service;
+- (void)setNSUUID:(id)arg1;
+- (void)setStreamPairWithInputStream:(id)arg1 outputStream:(id)arg2;
+- (int)socketForDomain:(id)arg1;
+- (BOOL)supportsHandoff;
+- (BOOL)supportsMMSRelay;
+- (BOOL)supportsPhoneCalls;
+- (BOOL)supportsSMSRelay;
+- (BOOL)supportsTethering;
+- (BOOL)supportsiCloudPairing;
+- (id)uniqueID;
+- (void)xpcObject:(id)arg1 objectContext:(id)arg2;
 
 @end

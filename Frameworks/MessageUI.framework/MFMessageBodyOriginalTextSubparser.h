@@ -2,17 +2,11 @@
    Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class <MFMessageBodyElement_Private>, NSMutableArray;
-
 @interface MFMessageBodyOriginalTextSubparser : MFMessageBodySubparser {
     BOOL _foundForwardSeparator;
     BOOL _foundText;
-    id _foundTextBlock;
-    id _foundWhitespaceBlock;
+    id /* block */ _foundTextBlock;
+    id /* block */ _foundWhitespaceBlock;
     <MFMessageBodyElement_Private> *_lastNonWhitespaceTextElement;
     NSMutableArray *_lastTextElements;
 }
@@ -23,7 +17,7 @@
 - (void)dealloc;
 - (void)messageBodyParser:(id)arg1 foundMessageBodyElement:(id)arg2;
 - (void)messageBodyParserDidFinishParsing:(id)arg1;
-- (void)setFoundTextBlock:(id)arg1;
-- (void)setFoundWhitespaceBlock:(id)arg1;
+- (void)setFoundTextBlock:(id /* block */)arg1;
+- (void)setFoundWhitespaceBlock:(id /* block */)arg1;
 
 @end

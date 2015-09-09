@@ -2,57 +2,57 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class TSDBezierPath, TSDConnectionLinePathSource, TSDInfoGeometry, TSDLayout;
-
 @interface TSDConnectionLineAbstractLayout : TSDShapeLayout {
-    struct CGPoint { 
-        float x; 
-        float y; 
-    struct CGPoint { 
-        float x; 
-        float y; 
     struct CGPoint { 
         float x; 
         float y; 
     } mAcumulatedDrag;
     float mCachedFromOutset;
-    TSDBezierPath *mCachedFromOutsetWrapPath;
-    TSDBezierPath *mCachedFromWrapPath;
+    TSUBezierPath *mCachedFromOutsetWrapPath;
+    TSUBezierPath *mCachedFromWrapPath;
     float mCachedToOutset;
-    TSDBezierPath *mCachedToOutsetWrapPath;
-    TSDBezierPath *mCachedToWrapPath;
-    TSDBezierPath *mClippedBezierPath;
+    TSUBezierPath *mCachedToOutsetWrapPath;
+    TSUBezierPath *mCachedToWrapPath;
+    TSUBezierPath *mClippedBezierPath;
     TSDLayout *mConnectedFrom;
+    NSObject<TSDInfo> *mConnectedFromInfo;
     TSDInfoGeometry *mConnectedInfoGeometry;
     TSDConnectionLinePathSource *mConnectedPathSource;
     TSDLayout *mConnectedTo;
+    NSObject<TSDInfo> *mConnectedToInfo;
     float mDynamicOutsetFrom;
     float mDynamicOutsetTo;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } mLooseEndPosition;
     TSDLayout *mOldConnectedFrom;
     TSDLayout *mOldConnectedTo;
     TSDConnectionLinePathSource *mOriginalPathSource;
-    } mResizeControlPoints[3];
+    struct CGPoint { 
+        float x; 
+        float y; 
+    } mResizeControlPoints;
     BOOL mUseDynamicOutsets;
-    BOOL mUseResizePoints[3];
+    BOOL mUseResizePoints;
     BOOL mValidConnections;
     BOOL mValidLine;
     BOOL mVisibleLine;
 }
 
-@property TSDLayout * connectedFrom;
-@property(readonly) TSDConnectionLinePathSource * connectedPathSource;
-@property TSDLayout * connectedTo;
-@property float dynamicOutsetFrom;
-@property float dynamicOutsetTo;
-@property(readonly) float outsetFrom;
-@property(readonly) float outsetTo;
-@property BOOL useDynamicOutsets;
-@property(readonly) BOOL validLine;
+@property (nonatomic) TSDLayout *connectedFrom;
+@property (nonatomic) NSObject<TSDInfo> *connectedFromInfo;
+@property (nonatomic, readonly) TSDConnectionLinePathSource *connectedPathSource;
+@property (nonatomic) TSDLayout *connectedTo;
+@property (nonatomic) NSObject<TSDInfo> *connectedToInfo;
+@property (nonatomic) float dynamicOutsetFrom;
+@property (nonatomic) float dynamicOutsetTo;
+@property (nonatomic, readonly) float outsetFrom;
+@property (nonatomic, readonly) float outsetTo;
+@property (nonatomic) BOOL useDynamicOutsets;
+@property (nonatomic, readonly) BOOL validLine;
 
 - (id)additionalLayoutsForRepCreation;
-- (void)beginDynamicOperation;
-- (void)beginDynamicOutsetChange;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })boundsForStandardKnobs;
 - (BOOL)canBeIntersected;
 - (BOOL)canEndpointsCoincide;
@@ -61,41 +61,42 @@
 - (void)checkConnections;
 - (id)clipPath:(id)arg1 onLayout:(id)arg2 outset:(float)arg3 reversed:(BOOL)arg4 isValid:(BOOL*)arg5;
 - (id)connectedFrom;
+- (id)connectedFromInfo;
 - (void)connectedLayoutInvalidated:(id)arg1;
 - (id)connectedPathSource;
 - (id)connectedTo;
+- (id)connectedToInfo;
 - (id)connectionLineInfo;
-- (int)connectionType;
 - (struct CGPoint { float x1; float x2; })controlPointForPointA:(struct CGPoint { float x1; float x2; })arg1 pointB:(struct CGPoint { float x1; float x2; })arg2 andOriginalA:(struct CGPoint { float x1; float x2; })arg3 originalB:(struct CGPoint { float x1; float x2; })arg4;
-- (id)createConnectedPathFrom:(id)arg1 to:(id)arg2 withControlPoints:(struct CGPoint { float x1; float x2; }[3])arg3;
+- (id)createConnectedPathFrom:(id)arg1 to:(id)arg2 withControlPoints:(struct CGPoint { float x1; float x2; })arg3;
 - (void)dealloc;
 - (float)dynamicOutsetFrom;
 - (float)dynamicOutsetTo;
-- (void)dynamicallyMovedSmartShapeKnobTo:(struct CGPoint { float x1; float x2; })arg1 withTracker:(id)arg2;
-- (void)endDynamicOperation;
-- (void)endDynamicOutsetChange;
 - (struct CGPoint { float x1; float x2; })getControlKnobPosition:(unsigned int)arg1;
-- (struct CGPoint { float x1; float x2; })i_accumulatedDrag;
 - (void)invalidateConnections;
 - (void)invalidatePath;
 - (void)invalidatePosition;
+- (BOOL)isDraggable;
 - (BOOL)isInvisible;
+- (BOOL)isSelectable;
 - (BOOL)isStraightLine;
 - (id)layoutInfoGeometry;
 - (float)outsetFrom;
 - (float)outsetTo;
 - (id)p_infoForConnectingToInfo:(id)arg1;
+- (BOOL)p_isConnectedToLockedObjects;
 - (void)parentDidChange;
 - (id)path;
 - (BOOL)pathIsLineSegment;
 - (BOOL)pathIsOpen;
 - (id)pathSource;
-- (void)pauseDynamicTransformation;
 - (void)processChangedProperty:(int)arg1;
 - (id)reliedOnLayouts;
 - (void)removeConnections;
 - (void)setConnectedFrom:(id)arg1;
+- (void)setConnectedFromInfo:(id)arg1;
 - (void)setConnectedTo:(id)arg1;
+- (void)setConnectedToInfo:(id)arg1;
 - (void)setDynamicOutsetFrom:(float)arg1;
 - (void)setDynamicOutsetTo:(float)arg1;
 - (void)setUseDynamicOutsets:(BOOL)arg1;

@@ -2,21 +2,19 @@
    Image: /System/Library/PrivateFrameworks/WebUI.framework/WebUI
  */
 
-@class NSURLCredential, NSURLProtectionSpace;
-
 @interface WBSCredentialMatch : WBSFormAutoFillItem {
     NSURLCredential *_credential;
     NSURLProtectionSpace *_protectionSpace;
 }
 
-@property(readonly) NSURLCredential * credential;
-@property(readonly) NSURLProtectionSpace * protectionSpace;
+@property (nonatomic, readonly) NSURLCredential *credential;
+@property (nonatomic, readonly) NSURLProtectionSpace *protectionSpace;
 
+- (void).cxx_destruct;
 - (id)completion;
 - (id)credential;
-- (void)dealloc;
-- (id)initWithCredential:(id)arg1 protectionSpace:(id)arg2;
 - (id)initWithCredential:(id)arg1;
+- (id)initWithCredential:(id)arg1 protectionSpace:(id)arg2;
 - (id)protectionSpace;
 
 @end

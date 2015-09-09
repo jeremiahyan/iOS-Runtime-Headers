@@ -2,17 +2,20 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class SASettingEntity;
+@interface SASettingGetValueResponse : SASettingResponse <SASettingSupplier>
 
-@interface SASettingGetValueResponse : SASettingResponse <SASettingSupplier> {
-}
-
-@property(retain) SASettingEntity * setting;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) SASettingEntity *setting;
+@property (readonly) Class superclass;
 
 + (id)getValueResponse;
 + (id)getValueResponseWithDictionary:(id)arg1 context:(id)arg2;
 
 - (id)encodedClassName;
 - (id)groupIdentifier;
+- (void)setSetting:(id)arg1;
+- (id)setting;
 
 @end

@@ -2,15 +2,18 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class TSKSelection, TSKSelection<TSDCanvasSelection>;
-
 @interface TSDArchivedCanvasSelection : TSPObject <TSKArchivedSelection> {
     TSKSelection<TSDCanvasSelection> *mSelection;
 }
 
-@property(retain) TSKSelection * selection;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) TSKSelection *selection;
+@property (readonly) Class superclass;
 
 - (void)dealloc;
+- (id)description;
 - (id)initFromUnarchiver:(id)arg1;
 - (id)initWithContext:(id)arg1;
 - (void)saveToArchiver:(id)arg1;

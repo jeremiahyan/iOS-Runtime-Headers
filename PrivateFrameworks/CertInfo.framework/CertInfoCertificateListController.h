@@ -2,13 +2,11 @@
    Image: /System/Library/PrivateFrameworks/CertInfo.framework/CertInfo
  */
 
-@class <CertInfoTrustDescription>;
-
 @interface CertInfoCertificateListController : UITableViewController {
     <CertInfoTrustDescription> *_description;
 }
 
-- (void)dealloc;
+- (void).cxx_destruct;
 - (id)initWithTrustDescription:(id)arg1;
 - (int)numberOfSectionsInTableView:(id)arg1;
 - (BOOL)shouldAutorotateToInterfaceOrientation:(int)arg1;

@@ -2,16 +2,14 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@class NSDictionary;
-
 @interface PFUbiquityKnowledgeVector : NSObject <NSCoding, NSCopying> {
     unsigned int _hash;
     NSDictionary *_kv;
     NSDictionary *_storeKVDict;
 }
 
-@property(readonly) unsigned int hash;
-@property(readonly) unsigned int length;
+@property (nonatomic, readonly) unsigned int hash;
+@property (nonatomic, readonly) unsigned int length;
 
 + (id)createKnowledgeVectorDictionaryFromString:(id)arg1;
 + (id)createSetOfAllPeerIDsInKnowledgeVectors:(id)arg1;
@@ -35,8 +33,8 @@
 - (id)init;
 - (id)initFromCopy:(id)arg1 storeKVDict:(id)arg2 hash:(unsigned int)arg3;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithKnowledgeVectorDictionary:(id)arg1 andStoreKnowledgeVectorDictionary:(id)arg2;
 - (id)initWithKnowledgeVectorDictionary:(id)arg1;
+- (id)initWithKnowledgeVectorDictionary:(id)arg1 andStoreKnowledgeVectorDictionary:(id)arg2;
 - (id)initWithKnowledgeVectorString:(id)arg1;
 - (id)initWithStoreKnowledgeVectorDictionary:(id)arg1;
 - (BOOL)isAncestorOfKnowledgeVector:(id)arg1;

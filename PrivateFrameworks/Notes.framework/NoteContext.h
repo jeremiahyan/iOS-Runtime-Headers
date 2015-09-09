@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Notes.framework/Notes
  */
 
-@class AccountUtilities, CPExclusiveLock, NSManagedObjectContext, NSManagedObjectModel, NSMutableDictionary, NSNumber, NSPersistentStoreCoordinator, NSPredicate, NSString, NoteAccountObject, NoteStoreObject;
-
 @interface NoteContext : NSObject {
     struct __CXIndex { } *__SharedNoteStoreSearchIndex;
     int __SharedNoteStoreSearchIndexCount;
@@ -26,15 +24,18 @@
     CPExclusiveLock *_objectCreationLock;
     NSPersistentStoreCoordinator *_persistentStoreCoordinator;
     NSPredicate *_searchPredicate;
-    NSString *_testingFilePath;
-    NSString *_testingFilePrefix;
 }
 
-@property(retain) AccountUtilities * accountUtilities;
-@property(readonly) BOOL isIndexing;
-@property(readonly) NSManagedObjectContext * managedObjectContext;
+@property (nonatomic, retain) AccountUtilities *accountUtilities;
+@property (nonatomic, readonly) BOOL isIndexing;
+@property (nonatomic, readonly, retain) NSManagedObjectContext *managedObjectContext;
 
++ (void)clearTestsNotesRootPath;
 + (BOOL)databaseIsCorrupt:(id)arg1;
++ (id)defaultNotesSortDescriptors;
++ (id)fileProtectionOption;
++ (id)generateGUID;
++ (void)setTestsNotesRootPath:(id)arg1;
 + (BOOL)shouldLogIndexing;
 
 - (void).cxx_destruct;
@@ -51,7 +52,10 @@
 - (id)allStores;
 - (id)allVisibleNotes;
 - (id)allVisibleNotesInCollection:(id)arg1;
+- (id)allVisibleNotesInCollection:(id)arg1 sorted:(BOOL)arg2;
 - (id)allVisibleNotesMatchingPredicate:(id)arg1;
+- (id)allVisibleNotesMatchingPredicate:(id)arg1 sorted:(BOOL)arg2;
+- (void)batchFaultNotes:(id)arg1;
 - (void)cleanUpLocks;
 - (void)clearCaches;
 - (id)collectionForInfo:(id)arg1;
@@ -87,10 +91,8 @@
 - (void)indexNotes:(id)arg1;
 - (id)init;
 - (id)initForMigrator;
-- (id)initWithTestingFilePrefix:(id)arg1 atPath:(id)arg2 inMigrator:(BOOL)arg3 accountUtilities:(id)arg4;
-- (id)initWithTestingFilePrefix:(id)arg1 atPath:(id)arg2 inMigrator:(BOOL)arg3;
-- (id)initWithTestingFilePrefix:(id)arg1 inMigrator:(BOOL)arg2;
-- (id)initWithTestingFilePrefix:(id)arg1;
+- (id)initWithAccountUtilities:(id)arg1;
+- (id)initWithAccountUtilities:(id)arg1 inMigrator:(BOOL)arg2;
 - (void)invalidate;
 - (BOOL)isIndexing;
 - (id)liveNotesNeedingBodiesPredicate;
@@ -99,16 +101,18 @@
 - (id)managedObjectContext;
 - (void)managedObjectContextWillSaveNotification:(id)arg1;
 - (id)managedObjectModel;
+- (id)mostRecentlyModifiedNoteInCollection:(id)arg1;
 - (id)newFRCForCollection:(id)arg1 delegate:(id)arg2;
 - (id)newFetchRequestForNotes;
 - (void*)newSearchContextWithText:(id)arg1;
 - (id)newlyAddedAccount;
+- (id)newlyAddedAttachment;
 - (id)newlyAddedNote;
+- (id)newlyAddedNoteWithGUID:(id)arg1;
 - (id)newlyAddedStore;
 - (id)nextIndex;
 - (id)noteChangeWithType:(int)arg1 store:(id)arg2;
 - (id)noteForObjectID:(id)arg1;
-- (BOOL)noteIsSafeToAccess:(id)arg1;
 - (id)notesForIntegerIds:(id)arg1;
 - (id)notesToResumeIndexing;
 - (id)pathForIndex;
@@ -120,7 +124,6 @@
 - (void)removeSqliteAndIdxFiles;
 - (void)resetNotificationCount;
 - (void)resumeIndexing;
-- (id)rootDirectory;
 - (BOOL)save:(id*)arg1;
 - (void)saveNotesToResumeIndexing:(id)arg1;
 - (BOOL)saveOutsideApp:(id*)arg1;
@@ -129,7 +132,7 @@
 - (void)setAccountUtilities:(id)arg1;
 - (void)setHasPriorityInSaveConflicts:(BOOL)arg1;
 - (void)setPropertyValue:(id)arg1 forKey:(id)arg2;
-- (void)setUpCoreDataStack;
+- (BOOL)setUpCoreDataStack;
 - (BOOL)setUpLastIndexTid;
 - (BOOL)setUpLocalAccountAndStore;
 - (void)setUpUniqueObjects;

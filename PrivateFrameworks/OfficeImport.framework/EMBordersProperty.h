@@ -2,17 +2,15 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class EDBorders, TSUColor;
-
 @interface EMBordersProperty : CMProperty <NSCopying> {
     EDBorders *edValue;
-    TSUColor *mBorderBottomColor;
-    TSUColor *mBorderColor;
-    TSUColor *mBorderLeftColor;
-    TSUColor *mBorderRightColor;
-    int mBorderStyle[5];
-    TSUColor *mBorderTopColor;
-    int mBorderWidth[5];
+    OITSUColor *mBorderBottomColor;
+    OITSUColor *mBorderColor;
+    OITSUColor *mBorderLeftColor;
+    OITSUColor *mBorderRightColor;
+    int mBorderStyle;
+    OITSUColor *mBorderTopColor;
+    int mBorderWidth;
 }
 
 - (id)borderColor;

@@ -2,49 +2,51 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSDictionary, NSLayoutManager, NSTextContainer, NSTextStorage;
-
 @interface _UITextContainerView : UIView <NSUITextViewCommonMethods> {
-    struct UIEdgeInsets { 
-        float top; 
-        float left; 
-        float bottom; 
-        float right; 
-    struct CGPoint { 
-        float x; 
-        float y; 
+    NSDictionary *_linkTextAttributes;
     struct CGSize { 
         float width; 
         float height; 
+    } _maxSize;
     struct CGSize { 
         float width; 
         float height; 
+    } _minSize;
     struct { 
         unsigned int textContainerOriginInvalid : 1; 
         unsigned int verticalLayout : 2; 
         unsigned int horizontallyResizable : 1; 
         unsigned int verticallyResizable : 1; 
-    NSDictionary *_linkTextAttributes;
-    } _maxSize;
-    } _minSize;
     } _tcvFlags;
     NSTextContainer *_textContainer;
+    struct UIEdgeInsets { 
+        float top; 
+        float left; 
+        float bottom; 
+        float right; 
     } _textContainerInset;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _textContainerOrigin;
 }
 
-@property(getter=isHorizontallyResizable) BOOL horizontallyResizable;
-@property(readonly) NSLayoutManager * layoutManager;
-@property int layoutOrientation;
-@property(copy) NSDictionary * linkTextAttributes;
-@property struct _NSRange { unsigned int x1; unsigned int x2; } markedRange;
-@property struct CGSize { float x1; float x2; } maxSize;
-@property struct CGSize { float x1; float x2; } minSize;
-@property NSTextContainer * textContainer;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } textContainerInset;
-@property(readonly) NSTextStorage * textStorage;
-@property BOOL usesTiledViews;
-@property(getter=isVerticallyResizable) BOOL verticallyResizable;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (getter=isHorizontallyResizable, nonatomic) BOOL horizontallyResizable;
+@property (nonatomic, readonly) NSLayoutManager *layoutManager;
+@property (nonatomic) int layoutOrientation;
+@property (nonatomic, copy) NSDictionary *linkTextAttributes;
+@property (nonatomic) struct _NSRange { unsigned int x1; unsigned int x2; } markedRange;
+@property (nonatomic) struct CGSize { float x1; float x2; } maxSize;
+@property (nonatomic) struct CGSize { float x1; float x2; } minSize;
+@property (readonly) Class superclass;
+@property (nonatomic) NSTextContainer *textContainer;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } textContainerInset;
+@property (nonatomic, readonly) NSTextStorage *textStorage;
+@property (nonatomic) BOOL usesTiledViews;
+@property (getter=isVerticallyResizable, nonatomic) BOOL verticallyResizable;
 
 + (Class)layerClass;
 
@@ -58,8 +60,8 @@
 - (id)delegate;
 - (id)description;
 - (void)drawRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
-- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 textContainer:(id)arg2;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 textContainer:(id)arg2;
 - (void)invalidateTextContainerOrigin;
 - (BOOL)isHorizontallyResizable;
 - (BOOL)isVerticallyResizable;

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class OADColor;
-
 @interface OADFontReference : NSObject <NSCopying> {
     OADColor *mColor;
     int mIndex;
@@ -13,6 +11,7 @@
 - (id)color;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
+- (id)description;
 - (unsigned int)hash;
 - (int)index;
 - (BOOL)isEqual:(id)arg1;

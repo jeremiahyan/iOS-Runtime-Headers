@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
  */
 
-@class CKSMSComposeQueuingRemoteViewControllerProxy, CKSMSComposeRemoteViewController, UINavigationController, _UIAsyncInvocation;
-
 @interface CKSMSComposeController : UIViewController <CKSMSCompose, CKSMSComposeRemoteViewControllerDelegate> {
     _UIAsyncInvocation *_cancellationInvocation;
     UINavigationController *_clientNavigationController;
@@ -16,9 +14,13 @@
     int _savedStatusBarStyle;
 }
 
-@property id delegate;
-@property(retain) CKSMSComposeRemoteViewController * remoteViewController;
-@property(retain) CKSMSComposeQueuingRemoteViewControllerProxy * remoteViewControllerProxy;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) id delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) CKSMSComposeRemoteViewController *remoteViewController;
+@property (nonatomic, retain) CKSMSComposeQueuingRemoteViewControllerProxy *remoteViewControllerProxy;
+@property (readonly) Class superclass;
 
 + (BOOL)acceptsMIMEType:(id)arg1;
 + (BOOL)canSendPhotos:(int)arg1 videos:(int)arg2 audioClips:(int)arg3;
@@ -37,8 +39,6 @@
 - (BOOL)insertAttachmentWithURL:(id)arg1 andDescription:(id)arg2;
 - (BOOL)insertData:(id)arg1 MIMEType:(id)arg2 exportedFilename:(id)arg3;
 - (BOOL)insertFilename:(id)arg1 MIMEType:(id)arg2 exportedFilename:(id)arg3 options:(id)arg4;
-- (BOOL)insertFilename:(id)arg1 MIMEType:(id)arg2 exportedFilename:(id)arg3;
-- (BOOL)insertTextPart:(id)arg1;
 - (id)remoteViewController;
 - (id)remoteViewControllerProxy;
 - (void)setCanEditRecipients:(BOOL)arg1;
@@ -46,7 +46,6 @@
 - (void)setPendingAddresses:(id)arg1;
 - (void)setRemoteViewController:(id)arg1;
 - (void)setRemoteViewControllerProxy:(id)arg1;
-- (void)setText:(id)arg1 addresses:(id)arg2;
 - (void)setText:(id)arg1 subject:(id)arg2 addresses:(id)arg3;
 - (void)setTextEntryContentsVisible:(BOOL)arg1;
 - (void)setUICustomizationData:(id)arg1;

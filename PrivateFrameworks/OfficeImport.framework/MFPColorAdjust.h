@@ -2,12 +2,7 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSDictionary, TSUColor;
-
 @interface MFPColorAdjust : NSObject {
-    struct { 
-        TSUColor *mLow; 
-        TSUColor *mHigh; 
     struct MFPColorMatrix { float x1[5][5]; } *mColorMatrix;
     int mColorMatrixFlags;
     BOOL mEnabled;
@@ -15,6 +10,9 @@
     struct MFPColorMatrix { float x1[5][5]; } *mGrayMatrix;
     NSDictionary *mRecolorMap;
     float mThreshold;
+    struct { 
+        OITSUColor *mLow; 
+        OITSUColor *mHigh; 
     } mTransparentRange;
 }
 

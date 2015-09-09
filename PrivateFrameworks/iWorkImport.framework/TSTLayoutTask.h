@@ -2,19 +2,21 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSMutableArray, TSTMasterLayout;
-
-@interface TSTLayoutTask : NSObject {
+@interface TSTLayoutTask : NSObject <NSCopying> {
     NSMutableArray *mCellStatesToLayout;
     TSTMasterLayout *mMasterLayout;
 }
 
-@property(retain) NSMutableArray * cellStatesToLayout;
+@property (nonatomic, readonly) unsigned int numberOfCellStates;
 
-- (id)cellStatesToLayout;
+- (void)addCellState:(id)arg1;
+- (void)clear;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
-- (void)flushToGlobalCaches;
+- (void)enumerateCellStatesUsingBlock:(id /* block */)arg1;
+- (id)initWithLayoutTask:(id)arg1;
 - (id)initWithMasterLayout:(id)arg1;
-- (void)setCellStatesToLayout:(id)arg1;
+- (unsigned int)numberOfCellStates;
+- (void)writeToMasterLayoutCaches;
 
 @end

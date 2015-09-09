@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
  */
 
-@class CLLocation, NSMutableDictionary, NSNumber, NSString;
-
 @interface SSLookupProperties : NSObject <NSCopying, SSXPCCoding> {
     int _localizationStyle;
     CLLocation *_location;
@@ -11,10 +9,14 @@
     NSNumber *_timeoutInterval;
 }
 
-@property(copy) NSString * keyProfile;
-@property int localizationStyle;
-@property(copy) CLLocation * location;
-@property(copy) NSNumber * timeoutInterval;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *keyProfile;
+@property (nonatomic) int localizationStyle;
+@property (nonatomic, copy) CLLocation *location;
+@property (readonly) Class superclass;
+@property (nonatomic, copy) NSNumber *timeoutInterval;
 
 - (id)copyRequestParameters;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

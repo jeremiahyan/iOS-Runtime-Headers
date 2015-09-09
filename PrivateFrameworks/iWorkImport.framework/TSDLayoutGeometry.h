@@ -6,6 +6,7 @@
     struct CGSize { 
         float width; 
         float height; 
+    } mSize;
     struct CGAffineTransform { 
         float a; 
         float b; 
@@ -13,12 +14,11 @@
         float d; 
         float tx; 
         float ty; 
-    } mSize;
     } mTransform;
 }
 
-@property(readonly) struct CGSize { float x1; float x2; } size;
-@property(readonly) struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; } transform;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } size;
+@property (nonatomic, readonly) struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; } transform;
 
 + (id)geometryFromFullTransform:(struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })arg1;
 

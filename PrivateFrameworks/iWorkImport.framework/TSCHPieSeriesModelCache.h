@@ -2,18 +2,17 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSString, TSCHChartInfo, TSCHChartModel, TSCHChartSeries, TSDFill, TSDShadow, TSDStroke, TSWPParagraphStyle;
-
 @interface TSCHPieSeriesModelCache : NSObject {
+    TSCHChartAxis *mAxis;
     TSCHChartInfo *mChartInfo;
     TSCHChartModel *mChartModel;
     TSCHChartSeries *mCurrentSeries;
     double mCurrentSeriesAngleSweep;
+    double mCurrentSeriesAxisValue;
     unsigned int mCurrentSeriesIndex;
     BOOL mCurrentSeriesNullData;
     double mCurrentSeriesPercentage;
     double mCurrentSeriesStartAngle;
-    double mCurrentSeriesValue;
     float mEffectiveLabelExplosion;
     float mEffectiveWedgeExplosion;
     double mEndAngle;
@@ -33,28 +32,30 @@
     float mWedgeExplosion;
 }
 
-@property(readonly) float effectiveLabelExplosion;
-@property(readonly) float effectiveWedgeExplosion;
-@property(readonly) double endAngle;
-@property(readonly) BOOL groupedShadow;
-@property(readonly) float labelExplosion;
-@property(readonly) NSString * labelString;
-@property(readonly) double midAngle;
-@property(readonly) BOOL nullData;
-@property(readonly) TSWPParagraphStyle * paragraphStyle;
-@property(readonly) double percentage;
-@property(readonly) TSCHChartSeries * series;
-@property(readonly) TSDFill * seriesFill;
-@property(readonly) unsigned int seriesIndex;
-@property(readonly) float seriesOpacity;
-@property(readonly) TSDShadow * seriesShadow;
-@property(readonly) TSDStroke * seriesStroke;
-@property(readonly) double seriesValue;
-@property(readonly) BOOL shouldRenderLabel;
-@property(readonly) double startAngle;
-@property(readonly) double totalValue;
-@property(readonly) float wedgeExplosion;
+@property (readonly) TSCHChartAxis *axis;
+@property (readonly) float effectiveLabelExplosion;
+@property (readonly) float effectiveWedgeExplosion;
+@property (readonly) double endAngle;
+@property (readonly) BOOL groupedShadow;
+@property (readonly) float labelExplosion;
+@property (readonly) NSString *labelString;
+@property (readonly) double midAngle;
+@property (readonly) BOOL nullData;
+@property (readonly) TSWPParagraphStyle *paragraphStyle;
+@property (readonly) double percentage;
+@property (readonly) TSCHChartSeries *series;
+@property (readonly) double seriesAxisValue;
+@property (readonly) TSDFill *seriesFill;
+@property (readonly) unsigned int seriesIndex;
+@property (readonly) float seriesOpacity;
+@property (readonly) TSDShadow *seriesShadow;
+@property (readonly) TSDStroke *seriesStroke;
+@property (readonly) BOOL shouldRenderLabel;
+@property (readonly) double startAngle;
+@property (readonly) double totalValue;
+@property (readonly) float wedgeExplosion;
 
+- (id)axis;
 - (void)dealloc;
 - (float)effectiveLabelExplosion;
 - (float)effectiveWedgeExplosion;
@@ -69,12 +70,12 @@
 - (id)paragraphStyle;
 - (double)percentage;
 - (id)series;
+- (double)seriesAxisValue;
 - (id)seriesFill;
 - (unsigned int)seriesIndex;
 - (float)seriesOpacity;
 - (id)seriesShadow;
 - (id)seriesStroke;
-- (double)seriesValue;
 - (BOOL)shouldRenderLabel;
 - (double)startAngle;
 - (double)totalValue;

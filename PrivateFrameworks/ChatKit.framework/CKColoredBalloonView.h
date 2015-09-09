@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
  */
 
-@class CKBalloonImageView, CKGradientView, UIView<CKGradientReferenceView>;
-
 @interface CKColoredBalloonView : CKBalloonView {
     BOOL _color;
     CKGradientView *_gradientView;
@@ -11,11 +9,11 @@
     BOOL _wantsGradient;
 }
 
-@property BOOL color;
-@property(retain) UIView<CKGradientReferenceView> * gradientReferenceView;
-@property(retain) CKGradientView * gradientView;
-@property(retain) CKBalloonImageView * mask;
-@property BOOL wantsGradient;
+@property (nonatomic) BOOL color;
+@property (nonatomic, retain) UIView<CKGradientReferenceView> *gradientReferenceView;
+@property (nonatomic, retain) CKGradientView *gradientView;
+@property (nonatomic, retain) CKBalloonImageView *mask;
+@property (nonatomic) BOOL wantsGradient;
 
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })alignmentRectInsets;
 - (BOOL)color;
@@ -27,6 +25,7 @@
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)layoutSubviews;
 - (id)mask;
+- (BOOL)needsGroupOpacity;
 - (id)overlayColor;
 - (void)prepareForDisplay;
 - (void)prepareForReuse;

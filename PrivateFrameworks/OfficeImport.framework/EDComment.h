@@ -3,16 +3,25 @@
  */
 
 @interface EDComment : NSObject {
-    boolmVisible;
-    int mColumnIndex;
-    int mRowIndex;
+    EDString *_author;
+    int _columnIndex;
+    int _rowIndex;
+    BOOL _visible;
 }
 
+@property (nonatomic, retain) EDString *author;
+@property (nonatomic) int columnIndex;
+@property (nonatomic) int rowIndex;
+@property (nonatomic) BOOL visible;
+
+- (id)author;
 - (int)columnIndex;
-- (bool)isVisible;
+- (void)dealloc;
 - (int)rowIndex;
+- (void)setAuthor:(id)arg1;
 - (void)setColumnIndex:(int)arg1;
 - (void)setRowIndex:(int)arg1;
-- (void)setVisible:(bool)arg1;
+- (void)setVisible:(BOOL)arg1;
+- (BOOL)visible;
 
 @end

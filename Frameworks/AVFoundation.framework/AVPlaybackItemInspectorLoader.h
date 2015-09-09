@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class NSArray;
-
 @interface AVPlaybackItemInspectorLoader : AVAssetMakeReadyForInspectionLoader {
     struct { 
         long long value; 
@@ -16,9 +14,10 @@
     NSArray *_trackIDs;
 }
 
-@property(getter=_playbackItem,readonly) struct OpaqueFigPlaybackItem { }* playbackItem;
+@property (getter=_playbackItem, nonatomic, readonly) struct OpaqueFigPlaybackItem { }*playbackItem;
 
 - (void)_addFigObjectNotifications;
+- (Class)_classForTrackInspectors;
 - (struct OpaqueFigFormatReader { }*)_copyFormatReaderFromFigObjectWithFigErrorCode:(int*)arg1;
 - (id)_dictionaryOfSpecialGettersForKeyValueStatus;
 - (BOOL)_inspectionRequiresAFormatReader;

@@ -2,23 +2,23 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class NSMutableDictionary, NSString;
-
 @interface CNPostalAddress : NSObject <NSCopying, NSMutableCopying> {
     NSMutableDictionary *_addressDictionary;
 }
 
-@property(readonly) NSString * ISOCountryCode;
-@property(retain) NSMutableDictionary * addressDictionary;
-@property(readonly) NSString * city;
-@property(readonly) NSString * country;
-@property(readonly) NSString * formattedAddress;
-@property(readonly) NSString * formattedAddressSinleLine;
-@property(readonly) NSString * postalCode;
-@property(readonly) NSString * state;
-@property(readonly) NSString * street;
-@property(readonly) NSString * subAdministrativeArea;
-@property(readonly) NSString * subLocality;
+@property (readonly, copy) NSString *ISOCountryCode;
+@property (retain) NSMutableDictionary *addressDictionary;
+@property (readonly, copy) NSString *city;
+@property (readonly, copy) NSString *country;
+@property (nonatomic, readonly) NSString *formattedAddress;
+@property (nonatomic, readonly) NSString *formattedAddressSingleLine;
+@property (readonly, copy) NSString *postalCode;
+@property (readonly, copy) NSString *state;
+@property (readonly, copy) NSString *street;
+@property (readonly, copy) NSString *subAdministrativeArea;
+@property (readonly, copy) NSString *subLocality;
+
+// Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
 
 + (id)addressFormatsDictionary;
 + (id)defaultCountryCode;
@@ -36,7 +36,7 @@
 - (void)dealloc;
 - (id)description;
 - (id)formattedAddress;
-- (id)formattedAddressSinleLine;
+- (id)formattedAddressSingleLine;
 - (id)init;
 - (id)initWithDictionary:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
@@ -48,5 +48,12 @@
 - (id)street;
 - (id)subAdministrativeArea;
 - (id)subLocality;
+
+// Image: /System/Library/Frameworks/PassKit.framework/PassKit
+
++ (id)pkPostalAddressWithDictionary:(id)arg1;
+
+- (id)pkAddressDictionary;
+- (id)pkFormattedAddressSingleLine;
 
 @end

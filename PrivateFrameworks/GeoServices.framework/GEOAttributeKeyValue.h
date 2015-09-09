@@ -2,15 +2,13 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSString;
-
 @interface GEOAttributeKeyValue : PBCodable <NSCopying> {
     NSString *_attributeKey;
     NSString *_attributeValue;
 }
 
-@property(retain) NSString * attributeKey;
-@property(retain) NSString * attributeValue;
+@property (nonatomic, retain) NSString *attributeKey;
+@property (nonatomic, retain) NSString *attributeValue;
 
 - (id)attributeKey;
 - (id)attributeValue;
@@ -21,6 +19,7 @@
 - (id)dictionaryRepresentation;
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
+- (void)mergeFrom:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 - (void)setAttributeKey:(id)arg1;
 - (void)setAttributeValue:(id)arg1;

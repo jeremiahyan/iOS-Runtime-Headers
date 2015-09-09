@@ -2,9 +2,8 @@
    Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
  */
 
-@class <SSRequestDelegate>, NSObject<OS_dispatch_queue>, SSXPCConnection;
-
 @interface SSRequest : NSObject <SSXPCCoding> {
+    NSObject<OS_dispatch_source> *_backgroundTaskExpirationTimer;
     int _backgroundTaskIdentifier;
     BOOL _cancelAfterTaskExpiration;
     <SSRequestDelegate> *_delegate;
@@ -13,18 +12,24 @@
     SSXPCConnection *_responseConnection;
 }
 
-@property <SSRequestDelegate> * delegate;
-@property BOOL shouldCancelAfterTaskExpiration;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SSRequestDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL shouldCancelAfterTaskExpiration;
+@property (readonly) Class superclass;
 
 - (void)__beginBackgroundTask;
 - (void)__endBackgroundTask;
 - (BOOL)__shouldUseBackgroundTaskAssertions;
 - (void)_beginBackgroundTask;
+- (void)_cancelBackgroundTaskExpirationTimer;
 - (void)_endBackgroundTask;
+- (void)_expireBackgroundTask;
 - (id)_initSSRequest;
 - (void)_shutdownRequest;
 - (void)_shutdownRequestWithMessageID:(long long)arg1;
-- (void)_startWithMessageID:(long long)arg1 messageBlock:(id)arg2;
+- (void)_startWithMessageID:(long long)arg1 messageBlock:(id /* block */)arg2;
 - (void)cancel;
 - (void)dealloc;
 - (id)delegate;
@@ -34,6 +39,6 @@
 - (void)setShouldCancelAfterTaskExpiration:(BOOL)arg1;
 - (BOOL)shouldCancelAfterTaskExpiration;
 - (BOOL)start;
-- (void)startWithCompletionBlock:(id)arg1;
+- (void)startWithCompletionBlock:(id /* block */)arg1;
 
 @end

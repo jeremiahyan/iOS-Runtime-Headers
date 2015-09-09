@@ -2,18 +2,19 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class AVAssetCache, AVAssetResourceLoader, AVURLAssetInternal, NSString, NSURL;
-
 @interface AVURLAsset : AVAsset {
-    AVURLAssetInternal *_asset;
+    AVURLAssetInternal *_URLAsset;
 }
 
-@property(readonly) NSURL * URL;
-@property(readonly) AVAssetCache * assetCache;
-@property(readonly) NSString * cacheKey;
-@property(readonly) AVAssetResourceLoader * resourceLoader;
-@property(readonly) BOOL shouldMatchDataInCacheByURLPathComponentOnly;
-@property(readonly) BOOL shouldMatchDataInCacheByURLWithoutQueryComponent;
+@property (nonatomic, readonly, copy) NSURL *URL;
+@property (nonatomic, readonly) AVAssetCache *assetCache;
+@property (nonatomic, readonly) NSString *cacheKey;
+@property (nonatomic, readonly) double rc_durationInSeconds;
+@property (nonatomic, readonly) AVAssetResourceLoader *resourceLoader;
+@property (nonatomic, readonly) BOOL shouldMatchDataInCacheByURLPathComponentOnly;
+@property (nonatomic, readonly) BOOL shouldMatchDataInCacheByURLWithoutQueryComponent;
+
+// Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
 
 + (id)URLAssetWithURL:(id)arg1 options:(id)arg2;
 + (id)_UTTypes;
@@ -31,27 +32,25 @@
 - (id)SHA1Digest;
 - (id)URL;
 - (id)_absoluteURL;
-- (unsigned int)_addChapterMetadataItem:(id)arg1 timeRange:(struct { struct { long long x_1_1_1; int x_1_1_2; unsigned int x_1_1_3; long long x_1_1_4; } x1; struct { long long x_2_1_1; int x_2_1_2; unsigned int x_2_1_3; long long x_2_1_4; } x2; })arg2 toChapters:(id)arg3 fromIndex:(unsigned int)arg4;
 - (void)_addFigAssetNotifications;
 - (id)_assetInspector;
 - (id)_assetInspectorLoader;
-- (id)_chapterGroupInfo;
+- (Class)_classForTrackInspectors;
 - (id)_errorForFigNotificationPayload:(struct __CFDictionary { }*)arg1 key:(struct __CFString { }*)arg2;
 - (void)_finishLoadingCustomURLProviderRequestWithResponseProperties:(id)arg1 context:(id)arg2;
 - (struct OpaqueFigFormatReader { }*)_formatReader;
+- (id)_handleURLAssetInitializationOptionsReturningFigAssetCreationOptions:(id)arg1 selector:(SEL)arg2;
 - (void)_handleURLRequest:(id)arg1;
 - (BOOL)_hasResourceLoaderDelegate;
+- (struct OpaqueFigPlaybackItem { }*)_playbackItem;
 - (void)_removeFigAssetNotifications;
 - (void)_setAssetInspectorLoader:(id)arg1;
 - (BOOL)_shouldOptimizeAccessForLinearMoviePlayback;
 - (id)_tracks;
 - (void)_tracksDidChange;
 - (id)assetCache;
-- (id)availableChapterLocales;
 - (id)cacheKey;
 - (void)cancelLoading;
-- (id)chapterMetadataGroupsBestMatchingPreferredLanguages:(id)arg1;
-- (id)chapterMetadataGroupsWithTitleLocale:(id)arg1 containingItemsWithCommonKeys:(id)arg2;
 - (void)dealloc;
 - (id)description;
 - (id)downloadDestinationURL;
@@ -60,10 +59,17 @@
 - (id)init;
 - (id)initWithURL:(id)arg1 options:(id)arg2;
 - (id)lyrics;
+- (unsigned int)referenceRestrictions;
 - (id)resolvedURL;
 - (id)resourceLoader;
 - (BOOL)shouldMatchDataInCacheByURLPathComponentOnly;
 - (BOOL)shouldMatchDataInCacheByURLWithoutQueryComponent;
 - (id)tracks;
+
+// Image: /System/Library/PrivateFrameworks/VoiceMemos.framework/VoiceMemos
+
++ (id)rc_preciseTimingAssetWithURL:(id)arg1;
+
+- (double)rc_durationInSeconds;
 
 @end

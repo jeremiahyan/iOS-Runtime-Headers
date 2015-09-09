@@ -2,72 +2,84 @@
    Image: /System/Library/PrivateFrameworks/PassKitCore.framework/PassKitCore
  */
 
-@class <PKPassLibraryDelegate>, NSXPCConnection, PKAsyncCache, PKPassLibraryExportedProxy;
-
 @interface PKPassLibrary : NSObject <PKPassLibraryExportedInterface> {
-    NSXPCConnection *_connection;
     <PKPassLibraryDelegate> *_delegate;
-    PKPassLibraryExportedProxy *_exportedProxy;
     PKAsyncCache *_libraryCache;
+    PKXPCService *_remoteService;
 }
 
-@property <PKPassLibraryDelegate> * delegate;
+@property (nonatomic) <PKPassLibraryDelegate> *delegate;
 
 + (BOOL)isPassLibraryAvailable;
++ (BOOL)isPaymentPassActivationAvailable;
 
-- (id)_errorHandlerWithCompletion:(id)arg1;
-- (id)_errorHandlerWithSemaphore:(id)arg1;
-- (void)_establishPassLibraryConnection;
-- (void)_getArchivedPassWithUniqueID:(id)arg1 completion:(id)arg2;
-- (void)_getPassWithUniqueID:(id)arg1 completion:(id)arg2;
+- (void)_applyDataAccessorToObject:(id)arg1;
+- (void)_applyDataAccessorToObjects:(id)arg1;
+- (id /* block */)_errorHandlerWithCompletion:(id /* block */)arg1;
+- (id /* block */)_errorHandlerWithSemaphore:(id)arg1;
+- (void)_getArchivedObjectWithUniqueID:(id)arg1 completion:(id /* block */)arg2;
+- (void)_getPassWithUniqueID:(id)arg1 completion:(id /* block */)arg2;
+- (void)_getPassesAndCatalogOfPassTypes:(unsigned int)arg1 limitResults:(BOOL)arg2 withRetries:(unsigned int)arg3 handler:(id /* block */)arg4;
+- (BOOL)_isPaymentPassActivationAvailable;
+- (id)_passesOfType:(unsigned int)arg1 withRetries:(unsigned int)arg2;
 - (id)_passesWithRetries:(unsigned int)arg1;
 - (void)_postLibraryChangeWithUserInfo:(id)arg1;
-- (void)_registerForApplicationLifeCycleNotifications;
-- (void)_registerPass:(id)arg1;
-- (void)_registerPasses:(id)arg1;
-- (void)_sendResumed;
-- (void)_sendSuspended;
-- (void)_tearDownPassLibraryConnection;
-- (void)_unregisterForApplicationLifeCycleNotifications;
+- (id)_remoteObjectProxy;
+- (id)_remoteObjectProxyWithErrorHandler:(id /* block */)arg1;
+- (id)_remoteObjectProxyWithFailureHandler:(id /* block */)arg1;
+- (id)_remoteObjectProxyWithSemaphore:(id)arg1;
+- (void)activatePaymentPass:(id)arg1 withActivationCode:(id)arg2 completion:(id /* block */)arg3;
+- (void)activatePaymentPass:(id)arg1 withActivationData:(id)arg2 completion:(id /* block */)arg3;
 - (void)addFakeBulletin;
-- (void)addPasses:(id)arg1 withCompletionHandler:(id)arg2;
-- (id)archivedPassForUniqueID:(id)arg1;
-- (id)bulletinDictWithRecordID:(id)arg1;
-- (id)bulletinDictsForPassTypeID:(id)arg1 count:(unsigned int)arg2 sinceDate:(id)arg3;
-- (id)bulletinSectionInfoForRecordID:(id)arg1;
+- (void)addPasses:(id)arg1 withCompletionHandler:(id /* block */)arg2;
+- (id)archiveForObjectWithUniqueID:(id)arg1;
+- (BOOL)canAddPassOfType:(unsigned int)arg1;
 - (void)catalogChanged:(id)arg1 withNewPasses:(id)arg2;
-- (void)clearBulletinRecordsForPassTypeID:(id)arg1 beforeDate:(id)arg2;
 - (BOOL)containsPass:(id)arg1;
 - (void)dealloc;
 - (id)delegate;
-- (id)diffForBulletinRecordID:(id)arg1;
-- (void)fetchContentForUniqueID:(id)arg1 withCompletion:(id)arg2;
-- (void)fetchImageSet:(int)arg1 forUniqueID:(id)arg2 displayProfile:(id)arg3 withCompletion:(id)arg4;
-- (void)getContainmentStatusAndSettingsForPass:(id)arg1 withHandler:(id)arg2;
-- (void)getPassesAndCatalog:(BOOL)arg1 withHandler:(id)arg2;
-- (void)getPassesAndCatalog:(BOOL)arg1 withRetries:(unsigned int)arg2 withHandler:(id)arg3;
-- (void)getRouteRelevantPassesFromLocation:(id)arg1 handler:(id)arg2;
-- (void)ingestPassData:(id)arg1 settings:(id)arg2 completion:(id)arg3;
+- (id)diffForPassBulletinWithRecordID:(id)arg1;
+- (void)fetchContentForUniqueID:(id)arg1 withCompletion:(id /* block */)arg2;
+- (void)fetchCurrentRelevantPassInfo:(id /* block */)arg1;
+- (void)fetchHasCandidatePasses:(id /* block */)arg1;
+- (void)fetchImageSetForUniqueID:(id)arg1 ofType:(int)arg2 displayProfile:(id)arg3 withCompletion:(id /* block */)arg4;
+- (void)getContainmentStatusAndSettingsForPass:(id)arg1 withHandler:(id /* block */)arg2;
+- (void)getPassesAndCatalog:(BOOL)arg1 withHandler:(id /* block */)arg2;
+- (void)getPassesAndCatalogOfPassTypes:(unsigned int)arg1 withHandler:(id /* block */)arg2;
+- (void)getRouteRelevantPassesFromLocation:(id)arg1 handler:(id /* block */)arg2;
+- (void)hasInAppPaymentPassesForNetworks:(id)arg1 withHandler:(id /* block */)arg2;
+- (BOOL)hasPassesOfType:(unsigned int)arg1;
+- (void)inAppPaymentPassesForNetworks:(id)arg1 withHandler:(id /* block */)arg2;
+- (void)ingestPassData:(id)arg1 settings:(id)arg2 completion:(id /* block */)arg3;
 - (id)init;
 - (void)introduceDatabaseIntegrityProblem;
+- (BOOL)isRemovingPassesOfType:(unsigned int)arg1;
 - (void)logDelayExitReasons;
 - (BOOL)migrateData;
 - (void)noteAccountChanged;
-- (void)notePassShared:(id)arg1;
+- (void)noteAccountDeleted;
+- (void)noteObjectSharedWithUniqueID:(id)arg1;
 - (void)nukeDatabaseAndExit;
+- (void)openPaymentSetup;
 - (void)passAdded:(id)arg1;
 - (void)passRemoved:(id)arg1;
 - (void)passUpdated:(id)arg1;
 - (id)passWithPassTypeIdentifier:(id)arg1 serialNumber:(id)arg2;
 - (id)passWithUniqueID:(id)arg1;
 - (id)passes;
+- (id)passesOfType:(unsigned int)arg1;
+- (void)recomputeRelevantPassesWithSearchMode:(int)arg1;
 - (void)removePass:(id)arg1;
 - (void)removePassWithUniqueID:(id)arg1;
+- (void)removePassesOfType:(unsigned int)arg1;
+- (void)removingPassesOfType:(unsigned int)arg1 didFinishWithSuccess:(BOOL)arg2;
+- (void)removingPassesOfType:(unsigned int)arg1 didUpdateWithProgress:(double)arg2;
 - (BOOL)replacePassWithPass:(id)arg1;
+- (void)requestUpdateOfObjectWithUniqueID:(id)arg1 completion:(id /* block */)arg2;
+- (void)sendPassbookUIServiceLaunched;
 - (void)sendUserEditedCatalog:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)shuffleGroups:(int)arg1;
-- (void)updatePassWithUniqueID:(id)arg1 completion:(id)arg2;
-- (void)updateSettings:(int)arg1 forPassWithUniqueID:(id)arg2;
+- (void)updateSettings:(int)arg1 forObjectWithUniqueID:(id)arg2;
 
 @end

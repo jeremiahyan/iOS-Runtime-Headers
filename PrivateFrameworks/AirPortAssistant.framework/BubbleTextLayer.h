@@ -2,90 +2,88 @@
    Image: /System/Library/PrivateFrameworks/AirPortAssistant.framework/AirPortAssistant
  */
 
-@class CALayer, NSMutableArray;
-
 @interface BubbleTextLayer : CALayer {
-    struct CGSize { 
-        float width; 
-        float height; 
-    struct CGSize { 
-        float width; 
-        float height; 
-    struct CGSize { 
-        float width; 
-        float height; 
-    struct CGSize { 
-        float width; 
-        float height; 
-    struct CGSize { 
-        float width; 
-        float height; 
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
-    struct CGSize { 
-        float width; 
-        float height; 
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
     NSMutableArray *_annotationPoints;
     float _ascent;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _boundsSizeConstraint;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } _bubbleFrame;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _bubbleSize;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _contentSize;
     struct __CTFont { } *_curCTFont;
     float _descent;
     void *_font;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } _fontBounds;
     struct CGColor { } *_generalShadowColor;
     float _leading;
     CALayer *_leftImageLayer;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _leftImageLayerSize;
     id _owningView;
     CALayer *_rightAccessoryLayer;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _rightAccessoryLayerSize;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } _textFrame;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _textSize;
     struct __CTLine { } *_theLine;
     struct CGColor { } *_whiteShadowColor;
 }
 
-@property struct CGSize { float x1; float x2; } boundsSizeConstraint;
-@property(retain) struct CGColor { }* fillColor2;
-@property(retain) struct CGColor { }* fillColor;
-@property float fontSize;
-@property(retain) struct CGColor { }* foregroundColor;
-@property(retain) struct CGColor { }* frameColor;
-@property float frameWidth;
-@property(retain) struct CGImage { }* image;
-@property id owningView;
-@property(retain) CALayer * rightAccessoryLayer;
-@property(retain) id string;
-@property(readonly) float textBaselineOffset;
-@property(readonly) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } textFrame;
+@property (nonatomic) struct CGSize { float x1; float x2; } boundsSizeConstraint;
+@property (nonatomic, retain) struct CGColor { }*fillColor;
+@property (nonatomic, retain) struct CGColor { }*fillColor2;
+@property (nonatomic) float fontSize;
+@property (nonatomic, retain) struct CGColor { }*foregroundColor;
+@property (nonatomic, retain) struct CGColor { }*frameColor;
+@property (nonatomic) float frameWidth;
+@property (nonatomic, retain) struct CGImage { }*image;
+@property (nonatomic) id owningView;
+@property (nonatomic, retain) CALayer *rightAccessoryLayer;
+@property (nonatomic, retain) id string;
+@property (nonatomic, readonly) float textBaselineOffset;
+@property (nonatomic, readonly) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } textFrame;
 
 + (BOOL)needsDisplayForKey:(id)arg1;
 

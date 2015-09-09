@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/StoreBookkeeper.framework/StoreBookkeeper
  */
 
-@class <SBKUniversalPlaybackPositionDataSource>, <SBKUniversalPlaybackPositionTransactionContext>, NSDictionary, NSError, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString, SBKSyncBagContext, SBKSyncTransaction, SBKTransactionController;
-
-@interface SBKPlaybackPositionSyncRequestHandler : SBKSyncRequestHandler <SBKTransactionControllerDelegate, SBKSyncTransactionProcessing> {
+@interface SBKPlaybackPositionSyncRequestHandler : SBKSyncRequestHandler <SBKSyncTransactionProcessing, SBKTransactionControllerDelegate> {
     BOOL _canceled;
     SBKSyncTransaction *_currentKVSTransaction;
     <SBKUniversalPlaybackPositionDataSource> *_dataSource;
@@ -22,19 +20,22 @@
     NSObject<OS_dispatch_queue> *_syncOperationQueue;
 }
 
-@property(retain) SBKSyncBagContext * bagContext;
 @property BOOL canceled;
-@property(retain) SBKSyncTransaction * currentKVSTransaction;
-@property(retain) <SBKUniversalPlaybackPositionDataSource> * dataSource;
-@property(retain) <SBKUniversalPlaybackPositionTransactionContext> * dataSourceTransactionContext;
-@property(retain) NSError * fatalSyncError;
-@property(retain) SBKTransactionController * kvsController;
-@property(retain) NSMutableDictionary * metadataItemsFromDataSource;
-@property(retain) NSDictionary * metadataItemsToCommitToDataSource;
-@property(retain) NSDictionary * metadataItemsToCommitToKVSStorage;
-@property(retain) NSString * overrideSyncAnchor;
-@property(retain) NSMutableDictionary * responseMetadataItemsMergedToCommitBackToKVSStorage;
-@property(retain) NSMutableDictionary * responseMetadataItemsToCommitToDataSource;
+@property (retain) SBKSyncTransaction *currentKVSTransaction;
+@property (retain) <SBKUniversalPlaybackPositionDataSource> *dataSource;
+@property (retain) <SBKUniversalPlaybackPositionTransactionContext> *dataSourceTransactionContext;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (retain) NSError *fatalSyncError;
+@property (readonly) unsigned int hash;
+@property (retain) SBKTransactionController *kvsController;
+@property (retain) NSMutableDictionary *metadataItemsFromDataSource;
+@property (retain) NSDictionary *metadataItemsToCommitToDataSource;
+@property (retain) NSDictionary *metadataItemsToCommitToKVSStorage;
+@property (retain) NSString *overrideSyncAnchor;
+@property (retain) NSMutableDictionary *responseMetadataItemsMergedToCommitBackToKVSStorage;
+@property (retain) NSMutableDictionary *responseMetadataItemsToCommitToDataSource;
+@property (readonly) Class superclass;
 @property BOOL syncInProgress;
 
 - (void).cxx_destruct;
@@ -42,8 +43,8 @@
 - (int)_mergeConflictedItemFromSyncResponse:(id)arg1;
 - (void)_mergeMetadataItemsFromSyncResponse;
 - (BOOL)_shouldStop;
-- (void)_signalKVSTransactionCompletion:(id)arg1 withError:(id)arg2;
 - (void)_signalKVSTransactionCompletion:(id)arg1;
+- (void)_signalKVSTransactionCompletion:(id)arg1 withError:(id)arg2;
 - (BOOL)_synchronize:(id*)arg1;
 - (id)_synchronouslyRunKVSTransaction:(id)arg1;
 - (void)cancel;
@@ -77,7 +78,7 @@
 - (void)setResponseMetadataItemsToCommitToDataSource:(id)arg1;
 - (void)setSyncInProgress:(BOOL)arg1;
 - (BOOL)syncInProgress;
-- (void)synchronizeWithCompletionHandler:(id)arg1;
+- (void)synchronizeWithCompletionHandler:(id /* block */)arg1;
 - (void)timeout;
 - (id)transaction:(id)arg1 conflictDetectionOrdinalForKey:(id)arg2;
 - (void)transaction:(id)arg1 didProcessResponseData:(id)arg2;

@@ -2,19 +2,17 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIImageView, UILabel;
-
 @interface UIPickerContentView : UIView {
+    UIImageView *_checkView;
     struct { 
         unsigned int checked : 1; 
         unsigned int highlighted : 1; 
-    UIImageView *_checkView;
     } _pickerContentViewFlags;
     UILabel *_titleLabel;
 }
 
-@property(getter=isChecked) BOOL checked;
-@property(readonly) UILabel * titleLabel;
+@property (getter=isChecked, nonatomic) BOOL checked;
+@property (nonatomic, readonly) UILabel *titleLabel;
 
 + (float)_checkmarkOffset;
 

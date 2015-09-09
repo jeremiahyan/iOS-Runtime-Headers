@@ -2,10 +2,8 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class CHXState;
-
 @interface CHXDrawingState : OAXDrawingState {
-    CHXState *mCHXState;
+    CHXReadState *mCHXState;
 }
 
 - (id)chxState;

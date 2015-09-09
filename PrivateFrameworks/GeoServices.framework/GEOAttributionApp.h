@@ -2,15 +2,13 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSMutableArray, NSString;
-
 @interface GEOAttributionApp : PBCodable <NSCopying> {
     NSString *_appBundleIdentifier;
     NSMutableArray *_handledSchemes;
 }
 
-@property(retain) NSString * appBundleIdentifier;
-@property(retain) NSMutableArray * handledSchemes;
+@property (nonatomic, retain) NSString *appBundleIdentifier;
+@property (nonatomic, retain) NSMutableArray *handledSchemes;
 
 - (void)addHandledSchemes:(id)arg1;
 - (id)appBundleIdentifier;
@@ -25,6 +23,7 @@
 - (unsigned int)handledSchemesCount;
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
+- (void)mergeFrom:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 - (void)setAppBundleIdentifier:(id)arg1;
 - (void)setHandledSchemes:(id)arg1;

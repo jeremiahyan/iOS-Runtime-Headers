@@ -2,11 +2,8 @@
    Image: /System/Library/PrivateFrameworks/DataDetectorsUI.framework/DataDetectorsUI
  */
 
-@class NSMutableArray;
-
 @interface DDResultTracker : NSObject {
-    boolsortByProximity;
-    unsigned int countRemainingByCategory[6];
+    unsigned int countRemainingByCategory;
     struct __DDResult { } *existingAddressResult;
     unsigned int maximumDistance;
     unsigned int maximumDistanceForEmails;
@@ -14,12 +11,13 @@
     unsigned int referenceResultLocation;
     NSMutableArray *resultsAfter;
     NSMutableArray *resultsBefore;
+    bool sortByProximity;
     unsigned int totalCountRemaining;
 }
 
 @property unsigned int maximumDistance;
 @property unsigned int maximumDistanceForEmails;
-@property(readonly) unsigned int totalCountRemaining;
+@property (readonly) unsigned int totalCountRemaining;
 
 - (BOOL)addResultIfAppropriate:(struct __DDResult { }*)arg1;
 - (void)dealloc;

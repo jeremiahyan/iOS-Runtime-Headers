@@ -9,6 +9,7 @@
 + (void)initialize;
 + (id)opacityStopWithLocation:(float)arg1 opacity:(float)arg2;
 
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

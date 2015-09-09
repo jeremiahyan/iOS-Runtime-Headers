@@ -2,14 +2,17 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-@class NSDate, PreferencesDoubleTwoPartValueCell;
-
 @interface EKEventDateDetailItem : EKEventDetailItem <EKCellShortener> {
     PreferencesDoubleTwoPartValueCell *_cell;
     NSDate *_endDate;
     BOOL _indent;
     NSDate *_startDate;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (id)cellForSubitemAtIndex:(unsigned int)arg1;

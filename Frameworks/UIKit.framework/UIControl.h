@@ -2,12 +2,7 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSMutableArray;
-
 @interface UIControl : UIView {
-    struct CGPoint { 
-        float x; 
-        float y; 
     struct { 
         unsigned int disabled : 1; 
         unsigned int tracking : 1; 
@@ -26,18 +21,23 @@
         unsigned int touchHasHighlighted : 1; 
     } _controlFlags;
     double _downTime;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _previousPoint;
     NSMutableArray *_targetActions;
 }
 
-@property int contentHorizontalAlignment;
-@property int contentVerticalAlignment;
-@property(getter=isEnabled) BOOL enabled;
-@property(getter=isHighlighted) BOOL highlighted;
-@property(getter=isSelected) BOOL selected;
-@property(readonly) unsigned int state;
-@property(getter=isTouchInside,readonly) BOOL touchInside;
-@property(getter=isTracking,readonly) BOOL tracking;
+@property (nonatomic) int contentHorizontalAlignment;
+@property (nonatomic) int contentVerticalAlignment;
+@property (getter=isEnabled, nonatomic) BOOL enabled;
+@property (getter=isHighlighted, nonatomic) BOOL highlighted;
+@property (getter=isSelected, nonatomic) BOOL selected;
+@property (nonatomic, readonly) unsigned int state;
+@property (getter=isTouchInside, nonatomic, readonly) BOOL touchInside;
+@property (getter=isTracking, nonatomic, readonly) BOOL tracking;
+
+// Image: /System/Library/Frameworks/UIKit.framework/UIKit
 
 - (void)_cancelDelayedActions;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_clippedHighlightBounds;
@@ -47,8 +47,8 @@
 - (BOOL)_hasActionForEventMask:(int)arg1;
 - (float)_highlightCornerRadius;
 - (void)_sendActionsForEvents:(int)arg1 withEvent:(id)arg2;
-- (void)_sendDelayedActions:(BOOL)arg1;
 - (void)_sendDelayedActions;
+- (void)_sendDelayedActions:(BOOL)arg1;
 - (void)_setHighlightOnMouseDown:(BOOL)arg1;
 - (void)_setLastHighlightSuccessful:(BOOL)arg1;
 - (void)_setTouchHasHighlighted:(BOOL)arg1;
@@ -62,6 +62,7 @@
 - (id)allTargets;
 - (BOOL)beginTrackingWithTouch:(id)arg1 withEvent:(id)arg2;
 - (BOOL)canBecomeFirstResponder;
+- (BOOL)canBecomeFocused;
 - (BOOL)cancelMouseTracking;
 - (BOOL)cancelTouchTracking;
 - (void)cancelTrackingWithEvent:(id)arg1;
@@ -101,5 +102,9 @@
 - (void)touchesCancelled:(id)arg1 withEvent:(id)arg2;
 - (void)touchesEnded:(id)arg1 withEvent:(id)arg2;
 - (void)touchesMoved:(id)arg1 withEvent:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/FuseUI.framework/FuseUI
+
+- (void)music_configureControlWithTextDescriptor:(id)arg1;
 
 @end

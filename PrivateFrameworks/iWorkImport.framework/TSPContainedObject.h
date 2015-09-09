@@ -2,17 +2,16 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class TSPObject;
-
 @interface TSPContainedObject : NSObject {
     TSPObject *_owner;
 }
 
-@property TSPObject * owner;
+@property (nonatomic) TSPObject *owner;
 
 - (void).cxx_destruct;
 - (id)documentRoot;
 - (id)initWithOwner:(id)arg1;
+- (id)objectLocale;
 - (id)owner;
 - (void)setOwner:(id)arg1;
 - (void)willModify;

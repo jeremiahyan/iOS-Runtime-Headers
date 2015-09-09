@@ -2,9 +2,12 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class CALayer, NSMutableDictionary, UIKBCacheToken;
-
 @interface UIKeyboardSliceTransitionView : UIKeyboardSplitTransitionView {
+    NSMutableDictionary *_controlKeys;
+    struct CGImage { } *_defaultKeyplaneImage;
+    UIKBCacheToken *_keyplaneToken;
+    CALayer *_leftKeys;
+    int _orientation;
     struct { 
         unsigned int position : 1; 
         unsigned int slices : 1; 
@@ -14,11 +17,6 @@
         unsigned int shiftKeys : 1; 
         unsigned int returnKeys : 1; 
         unsigned int moreIntlKeys : 1; 
-    NSMutableDictionary *_controlKeys;
-    struct CGImage { } *_defaultKeyplaneImage;
-    UIKBCacheToken *_keyplaneToken;
-    CALayer *_leftKeys;
-    int _orientation;
     } _rebuildFlags;
     CALayer *_rightKeys;
     CALayer *_spaceFill;
@@ -39,7 +37,7 @@
 - (id)meshTransformForProgress:(float)arg1;
 - (void)rebuildBackgroundAndShadowTransitions;
 - (void)rebuildBackgroundGradientTransitions;
-- (void)rebuildControlKeys:(int)arg1;
+- (void)rebuildControlKeys:(unsigned long long)arg1;
 - (void)rebuildFromKeyplane:(id)arg1 toKeyplane:(id)arg2 keyboardType:(int)arg3 orientation:(int)arg4;
 - (void)rebuildMoreIntlKeys;
 - (void)rebuildPositionTransition;
@@ -54,7 +52,6 @@
 - (void)setHidden:(BOOL)arg1;
 - (void)setRebuildFlags;
 - (struct CGImage { }*)splitKeyboardImage;
-- (id)timingFunctionForSlice:(id)arg1;
 - (void)transformForProgress:(float)arg1;
 - (void)updateTransition;
 - (void)updateTransitionForSlice:(id)arg1 withStart:(id)arg2 startContents:(id)arg3 end:(id)arg4 endContents:(id)arg5 updateContents:(BOOL)arg6;

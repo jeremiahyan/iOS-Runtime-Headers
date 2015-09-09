@@ -2,25 +2,23 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class <OCCancelDelegate>, <OCDReaderDelegate>, CPImportTracing, NSData, NSError, NSString;
-
 @interface OCDReader : NSObject {
-    <OCCancelDelegate> *mCancelDelegate;
+    <TCCancelDelegate> *mCancelDelegate;
     NSData *mData;
     <OCDReaderDelegate> *mDelegate;
     NSString *mFileName;
     BOOL mIsThumbnail;
     NSError *mStartError;
-    CPImportTracing *mTracing;
+    TCImportTracing *mTracing;
 }
 
-@property(retain) <OCCancelDelegate> * cancelDelegate;
-@property(retain) NSData * data;
-@property <OCDReaderDelegate> * delegate;
-@property(retain) NSString * fileName;
-@property BOOL isThumbnail;
-@property(retain) NSError * startError;
-@property(retain) CPImportTracing * tracing;
+@property (nonatomic, retain) <TCCancelDelegate> *cancelDelegate;
+@property (nonatomic, retain) NSData *data;
+@property (nonatomic) <OCDReaderDelegate> *delegate;
+@property (nonatomic, retain) NSString *fileName;
+@property (nonatomic) BOOL isThumbnail;
+@property (nonatomic, retain) NSError *startError;
+@property (nonatomic, retain) TCImportTracing *tracing;
 
 - (id)cancelDelegate;
 - (id)data;

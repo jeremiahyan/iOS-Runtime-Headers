@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
  */
 
-@class <MFMailComposeContactsSearchControllerDelegate>, MFContactsSearchManager, MFContactsSearchResultsModel, NSNumber;
-
 @interface MFMailComposeContactsSearchController : NSObject <MFContactsSearchConsumer> {
     NSNumber *_corecipientSearchTaskID;
     <MFMailComposeContactsSearchControllerDelegate> *_delegate;
@@ -14,23 +12,27 @@
     unsigned int _waitingOnSearchResultsCount;
 }
 
-@property <MFMailComposeContactsSearchControllerDelegate> * delegate;
-@property(retain) NSNumber * taskID;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <MFMailComposeContactsSearchControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) NSNumber *taskID;
 
 - (void)_cancelSearchAndNotify:(BOOL)arg1;
 - (void)_finishSearch;
 - (void)beganNetworkActivity;
 - (void)cancelSearch;
-- (void)consumeSearchResults:(id)arg1 type:(int)arg2 taskID:(id)arg3;
+- (void)consumeSearchResults:(id)arg1 type:(unsigned int)arg2 taskID:(id)arg3;
 - (void)dealloc;
 - (id)delegate;
 - (void)endedNetworkActivity;
 - (void)findCorecipientsWithRecipients:(id)arg1;
-- (void)finishedSearchingForType:(int)arg1;
+- (void)finishedSearchingForType:(unsigned int)arg1;
 - (void)finishedTaskWithID:(id)arg1;
 - (id)init;
-- (void)searchWithString:(id)arg1 enteredRecipients:(id)arg2;
 - (void)searchWithString:(id)arg1;
+- (void)searchWithString:(id)arg1 enteredRecipients:(id)arg2;
 - (void)setDelegate:(id)arg1;
 - (void)setTaskID:(id)arg1;
 - (id)taskID;

@@ -2,13 +2,11 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSMutableArray;
-
 @interface GEOSupportedTileSets : PBCodable <NSCopying> {
     NSMutableArray *_tileSets;
 }
 
-@property(retain) NSMutableArray * tileSets;
+@property (nonatomic, retain) NSMutableArray *tileSets;
 
 - (void)addTileSet:(id)arg1;
 - (void)clearTileSets;
@@ -19,6 +17,7 @@
 - (id)dictionaryRepresentation;
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
+- (void)mergeFrom:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 - (void)setTileSets:(id)arg1;
 - (id)tileSetAtIndex:(unsigned int)arg1;

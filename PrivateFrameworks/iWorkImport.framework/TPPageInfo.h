@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class <TPPageLayoutInfoProvider>, NSObject<TSDContainerInfo>, TPBodyInfo, TPDocumentRoot, TSDInfoGeometry, TSPObject<TSDOwningAttachment>;
-
 @interface TPPageInfo : NSObject <TSDContainerInfo> {
     TPBodyInfo *_bodyInfo;
     TPDocumentRoot *_documentRoot;
@@ -11,26 +9,32 @@
     unsigned int _pageIndex;
 }
 
-@property(getter=isAnchoredToText,readonly) BOOL anchoredToText;
-@property(getter=isAttachedToBodyText,readonly) BOOL attachedToBodyText;
-@property(readonly) TPBodyInfo * bodyInfo;
-@property(readonly) TPDocumentRoot * documentRoot;
-@property(getter=isFloatingAboveText,readonly) BOOL floatingAboveText;
-@property(copy) TSDInfoGeometry * geometry;
-@property(getter=isInlineWithText,readonly) BOOL inlineWithText;
-@property(readonly) <TPPageLayoutInfoProvider> * layoutInfoProvider;
-@property BOOL matchesObjectPlaceholderGeometry;
-@property TSPObject<TSDOwningAttachment> * owningAttachment;
-@property(readonly) TSPObject<TSDOwningAttachment> * owningAttachmentNoRecurse;
-@property(readonly) unsigned int pageIndex;
-@property NSObject<TSDContainerInfo> * parentInfo;
+@property (getter=isAnchoredToText, nonatomic, readonly) BOOL anchoredToText;
+@property (getter=isAttachedToBodyText, nonatomic, readonly) BOOL attachedToBodyText;
+@property (nonatomic, readonly, retain) TPBodyInfo *bodyInfo;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) TPDocumentRoot *documentRoot;
+@property (getter=isFloatingAboveText, nonatomic, readonly) BOOL floatingAboveText;
+@property (nonatomic, copy) TSDInfoGeometry *geometry;
+@property (readonly) unsigned int hash;
+@property (getter=isInlineWithText, nonatomic, readonly) BOOL inlineWithText;
+@property (nonatomic, readonly) <TPPageLayoutInfoProvider> *layoutInfoProvider;
+@property (nonatomic) BOOL matchesObjectPlaceholderGeometry;
+@property (nonatomic) TSPObject<TSDOwningAttachment> *owningAttachment;
+@property (nonatomic, readonly) TSPObject<TSDOwningAttachment> *owningAttachmentNoRecurse;
+@property (nonatomic, readonly) unsigned int pageIndex;
+@property (nonatomic) NSObject<TSDContainerInfo> *parentInfo;
+@property (readonly) Class superclass;
 
 - (id)bodyInfo;
 - (id)childInfos;
+- (void)clearBackPointerToParentInfoIfNeeded:(id)arg1;
 - (id)copyWithContext:(id)arg1;
 - (void)dealloc;
 - (id)documentRoot;
 - (id)geometry;
+- (id)infoForSelectionPath:(id)arg1;
 - (id)initWithPageIndex:(unsigned int)arg1 documentRoot:(id)arg2 layoutInfoProvider:(id)arg3;
 - (BOOL)isAnchoredToText;
 - (BOOL)isAttachedToBodyText;
@@ -47,5 +51,6 @@
 - (void)setGeometry:(id)arg1;
 - (void)setOwningAttachment:(id)arg1;
 - (void)setParentInfo:(id)arg1;
+- (void)setPrimitiveGeometry:(id)arg1;
 
 @end

@@ -2,13 +2,46 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@interface GEORPProblemRequest : GEORPProblemCollectionRequest {
-    unsigned short _providerID;
+@interface GEORPProblemRequest : PBRequest <NSCopying> {
+    GEOPDAnalyticMetadata *_analyticMetadata;
+    GEOPDClientMetadata *_clientMetadata;
+    GEORPProblem *_problem;
+    GEORPUserCredentials *_userCredentials;
 }
 
-@property unsigned short providerID;
+@property (nonatomic, retain) GEOPDAnalyticMetadata *analyticMetadata;
+@property (nonatomic, retain) GEOPDClientMetadata *clientMetadata;
+@property (nonatomic, readonly) BOOL hasAnalyticMetadata;
+@property (nonatomic, readonly) BOOL hasClientMetadata;
+@property (nonatomic, readonly) BOOL hasProblem;
+@property (nonatomic, readonly) BOOL hasUserCredentials;
+@property (nonatomic, retain) GEORPProblem *problem;
+@property (nonatomic, retain) GEORPUserCredentials *userCredentials;
 
-- (unsigned short)providerID;
-- (void)setProviderID:(unsigned short)arg1;
+- (id)analyticMetadata;
+- (id)clientMetadata;
+- (void)copyTo:(id)arg1;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (void)dealloc;
+- (id)description;
+- (id)dictionaryRepresentation;
+- (BOOL)hasAnalyticMetadata;
+- (BOOL)hasClientMetadata;
+- (BOOL)hasProblem;
+- (BOOL)hasUserCredentials;
+- (unsigned int)hash;
+- (id)initWithProblem:(id)arg1 traits:(id)arg2;
+- (BOOL)isEqual:(id)arg1;
+- (void)mergeFrom:(id)arg1;
+- (id)problem;
+- (BOOL)readFrom:(id)arg1;
+- (unsigned int)requestTypeCode;
+- (Class)responseClass;
+- (void)setAnalyticMetadata:(id)arg1;
+- (void)setClientMetadata:(id)arg1;
+- (void)setProblem:(id)arg1;
+- (void)setUserCredentials:(id)arg1;
+- (id)userCredentials;
+- (void)writeTo:(id)arg1;
 
 @end

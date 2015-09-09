@@ -2,32 +2,30 @@
    Image: /System/Library/Frameworks/PassKit.framework/PassKit
  */
 
-@class PKPassGroupView, UIPanGestureRecognizer, _UIDynamicValueAnimation;
-
 @interface PKPassGroupViewVerticalPanAnimator : NSObject {
-    struct CGPoint { 
-        float x; 
-        float y; 
-    struct CGPoint { 
-        float x; 
-        float y; 
     UIPanGestureRecognizer *_gestureRecognizer;
     _UIDynamicValueAnimation *_panningAnimation;
     PKPassGroupView *_panningGroupView;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _panningViewStartPosition;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _panningViewTargetPosition;
     float _panningViewTargetScale;
 }
 
-@property(retain) UIPanGestureRecognizer * gestureRecognizer;
-@property(retain) PKPassGroupView * panningGroupView;
-@property struct CGPoint { float x1; float x2; } panningViewStartPosition;
-@property struct CGPoint { float x1; float x2; } panningViewTargetPosition;
-@property float panningViewTargetScale;
+@property (nonatomic, retain) UIPanGestureRecognizer *gestureRecognizer;
+@property (nonatomic, retain) PKPassGroupView *panningGroupView;
+@property (nonatomic) struct CGPoint { float x1; float x2; } panningViewStartPosition;
+@property (nonatomic) struct CGPoint { float x1; float x2; } panningViewTargetPosition;
+@property (nonatomic) float panningViewTargetScale;
 
 - (id)_dynamicAnimationWithStart:(float)arg1 target:(float)arg2 initialVelocity:(float)arg3;
 - (void)dealloc;
-- (void)dismissWithStartVelocity:(float)arg1 completion:(id)arg2;
+- (void)dismissWithStartVelocity:(float)arg1 alongSideApplier:(id /* block */)arg2 completion:(id /* block */)arg3;
 - (id)gestureRecognizer;
 - (id)initWithGroupView:(id)arg1;
 - (void)layoutViewsWithY:(float)arg1;

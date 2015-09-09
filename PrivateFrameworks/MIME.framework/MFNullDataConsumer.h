@@ -2,8 +2,12 @@
    Image: /System/Library/PrivateFrameworks/MIME.framework/MIME
  */
 
-@interface MFNullDataConsumer : NSObject <MFDataConsumer> {
-}
+@interface MFNullDataConsumer : NSObject <MFDataConsumer>
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (int)appendData:(id)arg1;
 - (id)description;

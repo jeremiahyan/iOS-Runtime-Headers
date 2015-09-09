@@ -2,22 +2,20 @@
    Image: /System/Library/PrivateFrameworks/CorePDF.framework/CorePDF
  */
 
-@class UIPDFPage;
-
 @interface UIPDFSelection : NSObject {
-    struct { 
-        int location; 
-        int length; 
     int _cachedEndIndex;
     int _cachedStartIndex;
     struct CGPDFSelection { } *_cgSelection;
     BOOL _dirty;
     UIPDFPage *_page;
     struct __CFString { } *_string;
+    struct { 
+        int location; 
+        int length; 
     } stringRange;
 }
 
-@property struct { int x1; int x2; } stringRange;
+@property (nonatomic) struct { int x1; int x2; } stringRange;
 
 - (struct CGPDFSelection { }*)CGSelection;
 - (id)archive;

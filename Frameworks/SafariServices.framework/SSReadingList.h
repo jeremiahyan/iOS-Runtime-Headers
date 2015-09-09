@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/SafariServices.framework/SafariServices
  */
 
-@class NSObject<OS_dispatch_queue>, NSObject<OS_xpc_object>, WebBookmarksXPCConnection;
-
 @interface SSReadingList : NSObject <WebBookmarksXPCConnectionDelegate> {
     BOOL _batchScheduled;
     NSObject<OS_xpc_object> *_batchedReadingListItems;
@@ -11,9 +9,15 @@
     NSObject<OS_dispatch_queue> *_serialQueue;
 }
 
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+
 + (id)defaultReadingList;
 + (BOOL)supportsURL:(id)arg1;
 
+- (void).cxx_destruct;
 - (void)_addReadingListItemWithURL:(id)arg1 title:(id)arg2 previewText:(id)arg3;
 - (id)_init;
 - (void)_sendBatchedReadingListItems;

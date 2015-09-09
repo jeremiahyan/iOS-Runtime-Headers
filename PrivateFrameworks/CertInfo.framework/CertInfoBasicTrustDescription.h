@@ -7,6 +7,11 @@
     struct __SecTrust { } *_trust;
 }
 
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+
 - (id)_expirationDate;
 - (unsigned int)certificateCount;
 - (id)certificateExpirationDateAtIndex:(unsigned int)arg1;
@@ -15,6 +20,7 @@
 - (id)certificateSubjectSummaryAtIndex:(unsigned int)arg1;
 - (void)dealloc;
 - (id)initWithTrust:(struct __SecTrust { }*)arg1 action:(int)arg2;
+- (BOOL)isRootCertificate;
 - (BOOL)isTrusted;
 - (id)summaryDescriptionItems;
 - (id)summarySubtitle;

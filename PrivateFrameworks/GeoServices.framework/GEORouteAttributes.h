@@ -2,20 +2,13 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSString;
-
 @interface GEORouteAttributes : PBCodable <NSCopying> {
     struct { 
         int *list; 
         unsigned int count; 
         unsigned int size; 
-    struct { 
-        double _time; 
-        int _type; 
-        struct { 
-            unsigned int time : 1; 
-            unsigned int type : 1; 
-        } _has; 
+    } _additionalTransportTypes;
+    int _basicPointsToBeIncluded;
     struct { 
         unsigned int timepoint : 1; 
         unsigned int basicPointsToBeIncluded : 1; 
@@ -31,8 +24,6 @@
         unsigned int includeTrafficAlongRoute : 1; 
         unsigned int includeTrafficIncidents : 1; 
         unsigned int includeZilchPoints : 1; 
-    } _additionalTransportTypes;
-    int _basicPointsToBeIncluded;
     } _has;
     BOOL _includeContingencyRoutes;
     BOOL _includeHistoricTravelTime;
@@ -45,43 +36,52 @@
     BOOL _includeZilchPoints;
     int _mainTransportType;
     NSString *_phoneticLocaleIdentifier;
+    struct { 
+        double _time; 
+        int _flexibility; 
+        int _type; 
+        struct { 
+            unsigned int time : 1; 
+            unsigned int flexibility : 1; 
+            unsigned int type : 1; 
+        } _has; 
     } _timepoint;
     int _trafficType;
     unsigned int _walkingLimitMeters;
 }
 
-@property(readonly) int* additionalTransportTypes;
-@property(readonly) unsigned int additionalTransportTypesCount;
-@property int basicPointsToBeIncluded;
-@property BOOL hasBasicPointsToBeIncluded;
-@property BOOL hasIncludeContingencyRoutes;
-@property BOOL hasIncludeHistoricTravelTime;
-@property BOOL hasIncludeLaneGuidance;
-@property BOOL hasIncludeManeuverIcons;
-@property BOOL hasIncludePhonetics;
-@property BOOL hasIncludeSubsteps;
-@property BOOL hasIncludeTrafficAlongRoute;
-@property BOOL hasIncludeTrafficIncidents;
-@property BOOL hasIncludeZilchPoints;
-@property BOOL hasMainTransportType;
-@property(readonly) BOOL hasPhoneticLocaleIdentifier;
-@property BOOL hasTimepoint;
-@property BOOL hasTrafficType;
-@property BOOL hasWalkingLimitMeters;
-@property BOOL includeContingencyRoutes;
-@property BOOL includeHistoricTravelTime;
-@property BOOL includeLaneGuidance;
-@property BOOL includeManeuverIcons;
-@property BOOL includePhonetics;
-@property BOOL includeSubsteps;
-@property BOOL includeTrafficAlongRoute;
-@property BOOL includeTrafficIncidents;
-@property BOOL includeZilchPoints;
-@property int mainTransportType;
-@property(retain) NSString * phoneticLocaleIdentifier;
-@property struct { double x1; int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; } timepoint;
-@property int trafficType;
-@property unsigned int walkingLimitMeters;
+@property (nonatomic, readonly) int*additionalTransportTypes;
+@property (nonatomic, readonly) unsigned int additionalTransportTypesCount;
+@property (nonatomic) int basicPointsToBeIncluded;
+@property (nonatomic) BOOL hasBasicPointsToBeIncluded;
+@property (nonatomic) BOOL hasIncludeContingencyRoutes;
+@property (nonatomic) BOOL hasIncludeHistoricTravelTime;
+@property (nonatomic) BOOL hasIncludeLaneGuidance;
+@property (nonatomic) BOOL hasIncludeManeuverIcons;
+@property (nonatomic) BOOL hasIncludePhonetics;
+@property (nonatomic) BOOL hasIncludeSubsteps;
+@property (nonatomic) BOOL hasIncludeTrafficAlongRoute;
+@property (nonatomic) BOOL hasIncludeTrafficIncidents;
+@property (nonatomic) BOOL hasIncludeZilchPoints;
+@property (nonatomic) BOOL hasMainTransportType;
+@property (nonatomic, readonly) BOOL hasPhoneticLocaleIdentifier;
+@property (nonatomic) BOOL hasTimepoint;
+@property (nonatomic) BOOL hasTrafficType;
+@property (nonatomic) BOOL hasWalkingLimitMeters;
+@property (nonatomic) BOOL includeContingencyRoutes;
+@property (nonatomic) BOOL includeHistoricTravelTime;
+@property (nonatomic) BOOL includeLaneGuidance;
+@property (nonatomic) BOOL includeManeuverIcons;
+@property (nonatomic) BOOL includePhonetics;
+@property (nonatomic) BOOL includeSubsteps;
+@property (nonatomic) BOOL includeTrafficAlongRoute;
+@property (nonatomic) BOOL includeTrafficIncidents;
+@property (nonatomic) BOOL includeZilchPoints;
+@property (nonatomic) int mainTransportType;
+@property (nonatomic, retain) NSString *phoneticLocaleIdentifier;
+@property (nonatomic) struct { double x1; int x2; int x3; struct { unsigned int x_4_1_1 : 1; unsigned int x_4_1_2 : 1; unsigned int x_4_1_3 : 1; } x4; } timepoint;
+@property (nonatomic) int trafficType;
+@property (nonatomic) unsigned int walkingLimitMeters;
 
 - (void)addAdditionalTransportType:(int)arg1;
 - (int)additionalTransportTypeAtIndex:(unsigned int)arg1;
@@ -121,6 +121,7 @@
 - (BOOL)includeZilchPoints;
 - (BOOL)isEqual:(id)arg1;
 - (int)mainTransportType;
+- (void)mergeFrom:(id)arg1;
 - (id)phoneticLocaleIdentifier;
 - (BOOL)readFrom:(id)arg1;
 - (void)setAdditionalTransportTypes:(int*)arg1 count:(unsigned int)arg2;
@@ -150,10 +151,10 @@
 - (void)setIncludeZilchPoints:(BOOL)arg1;
 - (void)setMainTransportType:(int)arg1;
 - (void)setPhoneticLocaleIdentifier:(id)arg1;
-- (void)setTimepoint:(struct { double x1; int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; })arg1;
+- (void)setTimepoint:(struct { double x1; int x2; int x3; struct { unsigned int x_4_1_1 : 1; unsigned int x_4_1_2 : 1; unsigned int x_4_1_3 : 1; } x4; })arg1;
 - (void)setTrafficType:(int)arg1;
 - (void)setWalkingLimitMeters:(unsigned int)arg1;
-- (struct { double x1; int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; })timepoint;
+- (struct { double x1; int x2; int x3; struct { unsigned int x_4_1_1 : 1; unsigned int x_4_1_2 : 1; unsigned int x_4_1_3 : 1; } x4; })timepoint;
 - (int)trafficType;
 - (unsigned int)walkingLimitMeters;
 - (void)writeTo:(id)arg1;

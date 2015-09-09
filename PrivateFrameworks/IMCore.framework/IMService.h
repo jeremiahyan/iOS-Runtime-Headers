@@ -2,8 +2,9 @@
    Image: /System/Library/PrivateFrameworks/IMCore.framework/IMCore
  */
 
-@interface IMService : NSObject <CKTranscriptDataRowObject> {
-}
+@interface IMService : NSObject
+
+// Image: /System/Library/PrivateFrameworks/IMCore.framework/IMCore
 
 + (id)aimService;
 + (id)allServices;
@@ -11,7 +12,6 @@
 + (id)callService;
 + (id)canonicalFormOfID:(id)arg1 withIDSensitivity:(int)arg2;
 + (id)facetimeService;
-+ (void)flushAttributedTranscriptText;
 + (void)forgetStatusImageAppearance;
 + (id)iMessageService;
 + (id)imageNameForStatus:(unsigned int)arg1;
@@ -27,23 +27,6 @@
 + (unsigned int)statusForIMPerson:(id)arg1;
 + (id)subnetService;
 
-- (Class)__ck_displayCellClass;
-- (id)__ck_displayCellIdentifier;
-- (BOOL)__ck_displayColor;
-- (id)__ck_displayContactImage;
-- (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })__ck_displayContentAlignmentInsets;
-- (BOOL)__ck_displayDuringSend;
-- (id)__ck_displayGUIDWithMessage:(id)arg1;
-- (id)__ck_displayName;
-- (struct CGSize { float x1; float x2; })__ck_displaySize:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; }*)arg1;
-- (BOOL)__ck_displayTranscriptOrientation;
-- (BOOL)__ck_isSMS;
-- (BOOL)__ck_isiMessage;
-- (int)__ck_maxRecipientCount;
-- (void)__ck_prewarmForDisplay;
-- (BOOL)__ck_transcriptUsesTextAlignmentInsets;
-- (BOOL)__ck_wantsDrawerLayout;
-- (id)attributedTranscriptText;
 - (id)canonicalFormOfID:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)infoForAllPeople;
@@ -63,5 +46,13 @@
 - (id)peopleWithScreenName:(id)arg1;
 - (id)screenNamesForPerson:(id)arg1;
 - (unsigned int)status;
+
+// Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
+
+- (BOOL)__ck_displayColor;
+- (id)__ck_displayName;
+- (BOOL)__ck_isSMS;
+- (BOOL)__ck_isiMessage;
+- (int)__ck_maxRecipientCount;
 
 @end

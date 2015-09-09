@@ -2,9 +2,17 @@
    Image: /System/Library/PrivateFrameworks/ProtocolBuffer.framework/ProtocolBuffer
  */
 
-@class <PBRequesterDelegate>, NSArray, NSDictionary, NSMutableArray, NSMutableData, NSMutableDictionary, NSRunLoop, NSString, NSThread, NSURL, NSURLConnection, PBDataReader;
-
 @interface PBRequester : NSObject <NSURLConnectionDelegate> {
+    NSURL *_URL;
+    NSArray *_clientCertificates;
+    NSURLConnection *_connection;
+    NSDictionary *_connectionProperties;
+    NSRunLoop *_connectionRunLoop;
+    NSMutableData *_data;
+    PBDataReader *_dataReader;
+    <PBRequesterDelegate> *_delegate;
+    BOOL _didNotifyRequestCompleted;
+    unsigned int _downloadPayloadSize;
     struct { 
         unsigned int ignoresResponse : 1; 
         unsigned int loading : 1; 
@@ -17,16 +25,6 @@
         unsigned int delegateDidFailWithError : 1; 
         unsigned int paused : 1; 
         unsigned int resuming : 1; 
-    NSURL *_URL;
-    NSArray *_clientCertificates;
-    NSURLConnection *_connection;
-    NSDictionary *_connectionProperties;
-    NSRunLoop *_connectionRunLoop;
-    NSMutableData *_data;
-    PBDataReader *_dataReader;
-    <PBRequesterDelegate> *_delegate;
-    BOOL _didNotifyRequestCompleted;
-    unsigned int _downloadPayloadSize;
     } _flags;
     NSMutableDictionary *_httpRequestHeaders;
     NSDictionary *_httpResponseHeaders;
@@ -47,23 +45,29 @@
     unsigned int _uploadPayloadSize;
 }
 
-@property(retain) NSURL * URL;
-@property(retain) NSArray * clientCertificates;
-@property(retain) NSURLConnection * connection;
-@property(retain) NSRunLoop * connectionRunLoop;
-@property id delegate;
-@property(readonly) unsigned int downloadPayloadSize;
-@property(copy) NSDictionary * httpRequestHeaders;
-@property(retain) NSDictionary * httpResponseHeaders;
-@property BOOL ignoresResponse;
-@property(retain) NSString * logRequestToFile;
-@property(retain) NSString * logResponseToFile;
+@property (nonatomic, retain) NSURL *URL;
+@property (nonatomic, retain) NSArray *clientCertificates;
+@property (nonatomic, retain) NSURLConnection *connection;
+@property (nonatomic, retain) NSRunLoop *connectionRunLoop;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <PBRequesterDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) unsigned int downloadPayloadSize;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSDictionary *httpRequestHeaders;
+@property (nonatomic, retain) NSDictionary *httpResponseHeaders;
+@property (nonatomic) BOOL ignoresResponse;
+@property (nonatomic, retain) NSString *logRequestToFile;
+@property (nonatomic, retain) NSString *logResponseToFile;
 @property BOOL needsCancel;
-@property(readonly) unsigned int requestResponseTime;
-@property(readonly) NSArray * requests;
-@property BOOL shouldHandleCookies;
-@property double timeoutSeconds;
-@property(readonly) unsigned int uploadPayloadSize;
+@property (nonatomic, readonly) unsigned int requestResponseTime;
+@property (nonatomic, readonly) NSArray *requests;
+@property (nonatomic) BOOL shouldHandleCookies;
+@property (readonly) Class superclass;
+@property (nonatomic) double timeoutSeconds;
+@property (nonatomic, readonly) unsigned int uploadPayloadSize;
+
+// Image: /System/Library/PrivateFrameworks/ProtocolBuffer.framework/ProtocolBuffer
 
 + (BOOL)usesEncodedMessages;
 
@@ -82,9 +86,8 @@
 - (id)_osVersion;
 - (void)_removeTimeoutTimer;
 - (void)_resetTimeoutTimer;
-- (void)_scheduleThrottlingError;
-- (void)_sendPayload:(id)arg1;
-- (void)_serializePayload:(id)arg1;
+- (BOOL)_sendPayload:(id)arg1 error:(id*)arg2;
+- (void)_serializePayload:(id /* block */)arg1;
 - (void)_start;
 - (void)_startTimeoutTimer;
 - (void)_timeoutTimerFired;
@@ -95,18 +98,18 @@
 - (void)cancelWithErrorCode:(int)arg1;
 - (void)clearRequests;
 - (id)clientCertificates;
+- (id)connection;
 - (void)connection:(id)arg1 didFailWithError:(id)arg2;
 - (void)connection:(id)arg1 didReceiveData:(id)arg2;
 - (void)connection:(id)arg1 didReceiveResponse:(id)arg2;
 - (id)connection:(id)arg1 willSendRequestForEstablishedConnection:(id)arg2 properties:(id)arg3;
-- (id)connection;
 - (void)connectionDidFinishLoading:(id)arg1;
 - (id)connectionRunLoop;
 - (void)dealloc;
 - (id)decodeResponseData:(id)arg1;
 - (id)delegate;
 - (unsigned int)downloadPayloadSize;
-- (void)encodeRequestData:(id)arg1 startRequestCallback:(id)arg2;
+- (void)encodeRequestData:(id)arg1 startRequestCallback:(id /* block */)arg2;
 - (void)handleResponse:(id)arg1 forInternalRequest:(id)arg2;
 - (id)httpRequestHeaders;
 - (id)httpResponseHeaders;
@@ -118,8 +121,8 @@
 - (id)logResponseToFile;
 - (BOOL)needsCancel;
 - (struct _CFURLRequest { }*)newCFMutableURLRequestWithURL:(id)arg1;
-- (id)newConnectionWithCFURLRequest:(struct _CFURLRequest { }*)arg1 delegate:(id)arg2 connectionProperties:(id)arg3;
 - (id)newConnectionWithCFURLRequest:(struct _CFURLRequest { }*)arg1 delegate:(id)arg2;
+- (id)newConnectionWithCFURLRequest:(struct _CFURLRequest { }*)arg1 delegate:(id)arg2 connectionProperties:(id)arg3;
 - (void)pause;
 - (BOOL)readResponsePreamble:(id)arg1;
 - (id)requestPreamble;
@@ -138,8 +141,8 @@
 - (void)setIgnoresResponse:(BOOL)arg1;
 - (void)setLogRequestToFile:(id)arg1;
 - (void)setLogResponseToFile:(id)arg1;
-- (void)setNeedsCancel:(BOOL)arg1;
 - (void)setNeedsCancel;
+- (void)setNeedsCancel:(BOOL)arg1;
 - (void)setShouldHandleCookies:(BOOL)arg1;
 - (void)setTimeoutSeconds:(double)arg1;
 - (void)setURL:(id)arg1;
@@ -150,5 +153,9 @@
 - (id)tryReadResponseData:(id)arg1 forRequest:(id)arg2 forResponseClass:(Class)arg3;
 - (unsigned int)uploadPayloadSize;
 - (void)writeRequest:(id)arg1 into:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
+
+- (void)_scheduleThrottlingError;
 
 @end

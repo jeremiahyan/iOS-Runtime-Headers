@@ -2,14 +2,7 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class NSObject<OS_dispatch_queue>, NSString, TSPData, TSUColor, TSUFlushableCachedImage;
-
-@interface TSDImageFill : TSDFill <TSDMixing, TSSPreset, TSSPresetSource, NSCopying, NSMutableCopying> {
+@interface TSDImageFill : TSDFill <NSCopying, NSMutableCopying, TSDMixing, TSSPreset, TSSPresetSource> {
     struct CGSize { 
         float width; 
         float height; 
@@ -17,6 +10,7 @@
     TSUFlushableCachedImage *mHalfSizeTintedImage;
     BOOL mHasIndicatedInterestInProvider;
     TSPData *mImageData;
+    BOOL mInterpretsUntaggedImageDataAsGeneric;
     TSPData *mOriginalImageData;
     TSUFlushableCachedImage *mQuarterSizeTintedImage;
     TSUColor *mReferenceColor;
@@ -29,19 +23,20 @@
     TSUColor *mTintColor;
 }
 
-@property(readonly) struct CGSize { float x1; float x2; } fillSize;
-@property(readonly) TSPData * imageData;
-@property(readonly) TSPData * originalImageData;
-@property(readonly) NSString * presetKind;
-@property(readonly) float scale;
-@property int technique;
-@property(readonly) TSUColor * tintColor;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } fillSize;
+@property (nonatomic, readonly, retain) TSPData *imageData;
+@property (nonatomic, readonly) BOOL interpretsUntaggedImageDataAsGeneric;
+@property (nonatomic, readonly, retain) TSPData *originalImageData;
+@property (nonatomic, readonly) NSString *presetKind;
+@property (nonatomic, readonly) float scale;
+@property (nonatomic) int technique;
+@property (nonatomic, readonly, copy) TSUColor *tintColor;
 
 + (void)bootstrapPresetsOfKind:(id)arg1 inTheme:(id)arg2 alternate:(int)arg3;
-+ (id)instanceWithArchive:(const struct FillArchive { int (**x1)(); struct ExtensionSet { struct map<int, google::protobuf::internal::ExtensionSet::Extension, std::__1::less<int>, std::__1::allocator<std::__1::pair<const int, google::protobuf::internal::ExtensionSet::Extension> > > { struct __tree<std::__1::pair<int, google::protobuf::internal::ExtensionSet::Extension>, std::__1::__map_value_compare<int, google::protobuf::internal::ExtensionSet::Extension, std::__1::less<int>, true>, std::__1::allocator<std::__1::pair<int, google::protobuf::internal::ExtensionSet::Extension> > > { struct __tree_node<std::__1::pair<int, google::protobuf::internal::ExtensionSet::Extension>, void *> {} *x_1_3_1; struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *> *>, std::__1::allocator<std::__1::__tree_node<std::__1::pair<int, google::protobuf::internal::ExtensionSet::Extension>, void *> > > { struct __tree_end_node<std::__1::__tree_node_base<void *> *> { struct __tree_node_base<void *> {} *x_1_5_1; } x_2_4_1; } x_1_3_2; struct __compressed_pair<unsigned long, std::__1::__map_value_compare<int, google::protobuf::internal::ExtensionSet::Extension, std::__1::less<int>, true> > { unsigned long x_3_4_1; } x_1_3_3; } x_1_2_1; } x_2_1_1; } x2; struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_3_1_1; } x3; struct Color {} *x4; struct GradientArchive {} *x5; struct ImageFillArchive {} *x6; int x7; unsigned int x8[1]; }*)arg1 unarchiver:(id)arg2;
++ (id)imageFillDataFromURL:(id)arg1 withContext:(id)arg2 error:(id*)arg3;
++ (id)instanceWithArchive:(const struct FillArchive { int (**x1)(); struct ExtensionSet { struct map<int, google::protobuf::internal::ExtensionSet::Extension, std::__1::less<int>, std::__1::allocator<std::__1::pair<const int, google::protobuf::internal::ExtensionSet::Extension> > > { struct __tree<std::__1::__value_type<int, google::protobuf::internal::ExtensionSet::Extension>, std::__1::__map_value_compare<int, std::__1::__value_type<int, google::protobuf::internal::ExtensionSet::Extension>, std::__1::less<int>, true>, std::__1::allocator<std::__1::__value_type<int, google::protobuf::internal::ExtensionSet::Extension> > > { struct __tree_node<std::__1::__value_type<int, google::protobuf::internal::ExtensionSet::Extension>, void *> {} *x_1_3_1; struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *> *>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<int, google::protobuf::internal::ExtensionSet::Extension>, void *> > > { struct __tree_end_node<std::__1::__tree_node_base<void *> *> { struct __tree_node_base<void *> {} *x_1_5_1; } x_2_4_1; } x_1_3_2; struct __compressed_pair<unsigned long, std::__1::__map_value_compare<int, std::__1::__value_type<int, google::protobuf::internal::ExtensionSet::Extension>, std::__1::less<int>, true> > { unsigned long x_3_4_1; } x_1_3_3; } x_1_2_1; } x_2_1_1; } x2; struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_3_1_1; } x3; unsigned int x4[1]; int x5; struct Color {} *x6; struct GradientArchive {} *x7; struct ImageFillArchive {} *x8; }*)arg1 unarchiver:(id)arg2;
 + (id)presetKinds;
 
-- (void)addBitmapsToRenderingQualityInfo:(id)arg1 forShapeRep:(id)arg2 inContext:(struct CGContext { }*)arg3;
 - (void)applyToCALayer:(id)arg1 withScale:(float)arg2;
 - (BOOL)canApplyToCALayer;
 - (BOOL)canApplyToCALayerByAddingSublayers;
@@ -54,13 +49,15 @@
 - (unsigned int)hash;
 - (id)imageData;
 - (id)imageDataAtFillSize;
-- (id)initWithArchive:(const struct FillArchive { int (**x1)(); struct ExtensionSet { struct map<int, google::protobuf::internal::ExtensionSet::Extension, std::__1::less<int>, std::__1::allocator<std::__1::pair<const int, google::protobuf::internal::ExtensionSet::Extension> > > { struct __tree<std::__1::pair<int, google::protobuf::internal::ExtensionSet::Extension>, std::__1::__map_value_compare<int, google::protobuf::internal::ExtensionSet::Extension, std::__1::less<int>, true>, std::__1::allocator<std::__1::pair<int, google::protobuf::internal::ExtensionSet::Extension> > > { struct __tree_node<std::__1::pair<int, google::protobuf::internal::ExtensionSet::Extension>, void *> {} *x_1_3_1; struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *> *>, std::__1::allocator<std::__1::__tree_node<std::__1::pair<int, google::protobuf::internal::ExtensionSet::Extension>, void *> > > { struct __tree_end_node<std::__1::__tree_node_base<void *> *> { struct __tree_node_base<void *> {} *x_1_5_1; } x_2_4_1; } x_1_3_2; struct __compressed_pair<unsigned long, std::__1::__map_value_compare<int, google::protobuf::internal::ExtensionSet::Extension, std::__1::less<int>, true> > { unsigned long x_3_4_1; } x_1_3_3; } x_1_2_1; } x_2_1_1; } x2; struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_3_1_1; } x3; struct Color {} *x4; struct GradientArchive {} *x5; struct ImageFillArchive {} *x6; int x7; unsigned int x8[1]; }*)arg1 unarchiver:(id)arg2;
+- (id)initWithArchive:(const struct FillArchive { int (**x1)(); struct ExtensionSet { struct map<int, google::protobuf::internal::ExtensionSet::Extension, std::__1::less<int>, std::__1::allocator<std::__1::pair<const int, google::protobuf::internal::ExtensionSet::Extension> > > { struct __tree<std::__1::__value_type<int, google::protobuf::internal::ExtensionSet::Extension>, std::__1::__map_value_compare<int, std::__1::__value_type<int, google::protobuf::internal::ExtensionSet::Extension>, std::__1::less<int>, true>, std::__1::allocator<std::__1::__value_type<int, google::protobuf::internal::ExtensionSet::Extension> > > { struct __tree_node<std::__1::__value_type<int, google::protobuf::internal::ExtensionSet::Extension>, void *> {} *x_1_3_1; struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *> *>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<int, google::protobuf::internal::ExtensionSet::Extension>, void *> > > { struct __tree_end_node<std::__1::__tree_node_base<void *> *> { struct __tree_node_base<void *> {} *x_1_5_1; } x_2_4_1; } x_1_3_2; struct __compressed_pair<unsigned long, std::__1::__map_value_compare<int, std::__1::__value_type<int, google::protobuf::internal::ExtensionSet::Extension>, std::__1::less<int>, true> > { unsigned long x_3_4_1; } x_1_3_3; } x_1_2_1; } x_2_1_1; } x2; struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_3_1_1; } x3; unsigned int x4[1]; int x5; struct Color {} *x6; struct GradientArchive {} *x7; struct ImageFillArchive {} *x8; }*)arg1 unarchiver:(id)arg2;
+- (id)initWithGenericImageData:(id)arg1 technique:(int)arg2 tintColor:(id)arg3 size:(struct CGSize { float x1; float x2; })arg4 originalImageData:(id)arg5;
 - (id)initWithImageData:(id)arg1 technique:(int)arg2 tintColor:(id)arg3 size:(struct CGSize { float x1; float x2; })arg4 originalImageData:(id)arg5;
+- (BOOL)interpretsUntaggedImageDataAsGeneric;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isOpaque;
 - (SEL)mapThemeAssetSelector;
 - (id)mixedObjectWithFraction:(float)arg1 ofObject:(id)arg2;
-- (int)mixingTypeWithObject:(id)arg1;
+- (int)mixingTypeWithObject:(id)arg1 context:(id)arg2;
 - (id)mutableCopyWithZone:(struct _NSZone { }*)arg1;
 - (id)originalImageData;
 - (id)p_cachedImageForSize:(struct CGSize { float x1; float x2; })arg1 inContext:(struct CGContext { }*)arg2 orLayer:(id)arg3;
@@ -85,11 +82,12 @@
 - (id)presetKind;
 - (id)referenceColor;
 - (struct CGSize { float x1; float x2; })renderedImageSizeForObjectSize:(struct CGSize { float x1; float x2; })arg1;
-- (void)saveToArchive:(struct FillArchive { int (**x1)(); struct ExtensionSet { struct map<int, google::protobuf::internal::ExtensionSet::Extension, std::__1::less<int>, std::__1::allocator<std::__1::pair<const int, google::protobuf::internal::ExtensionSet::Extension> > > { struct __tree<std::__1::pair<int, google::protobuf::internal::ExtensionSet::Extension>, std::__1::__map_value_compare<int, google::protobuf::internal::ExtensionSet::Extension, std::__1::less<int>, true>, std::__1::allocator<std::__1::pair<int, google::protobuf::internal::ExtensionSet::Extension> > > { struct __tree_node<std::__1::pair<int, google::protobuf::internal::ExtensionSet::Extension>, void *> {} *x_1_3_1; struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *> *>, std::__1::allocator<std::__1::__tree_node<std::__1::pair<int, google::protobuf::internal::ExtensionSet::Extension>, void *> > > { struct __tree_end_node<std::__1::__tree_node_base<void *> *> { struct __tree_node_base<void *> {} *x_1_5_1; } x_2_4_1; } x_1_3_2; struct __compressed_pair<unsigned long, std::__1::__map_value_compare<int, google::protobuf::internal::ExtensionSet::Extension, std::__1::less<int>, true> > { unsigned long x_3_4_1; } x_1_3_3; } x_1_2_1; } x_2_1_1; } x2; struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_3_1_1; } x3; struct Color {} *x4; struct GradientArchive {} *x5; struct ImageFillArchive {} *x6; int x7; unsigned int x8[1]; }*)arg1 archiver:(id)arg2;
+- (void)saveToArchive:(struct FillArchive { int (**x1)(); struct ExtensionSet { struct map<int, google::protobuf::internal::ExtensionSet::Extension, std::__1::less<int>, std::__1::allocator<std::__1::pair<const int, google::protobuf::internal::ExtensionSet::Extension> > > { struct __tree<std::__1::__value_type<int, google::protobuf::internal::ExtensionSet::Extension>, std::__1::__map_value_compare<int, std::__1::__value_type<int, google::protobuf::internal::ExtensionSet::Extension>, std::__1::less<int>, true>, std::__1::allocator<std::__1::__value_type<int, google::protobuf::internal::ExtensionSet::Extension> > > { struct __tree_node<std::__1::__value_type<int, google::protobuf::internal::ExtensionSet::Extension>, void *> {} *x_1_3_1; struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *> *>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<int, google::protobuf::internal::ExtensionSet::Extension>, void *> > > { struct __tree_end_node<std::__1::__tree_node_base<void *> *> { struct __tree_node_base<void *> {} *x_1_5_1; } x_2_4_1; } x_1_3_2; struct __compressed_pair<unsigned long, std::__1::__map_value_compare<int, std::__1::__value_type<int, google::protobuf::internal::ExtensionSet::Extension>, std::__1::less<int>, true> > { unsigned long x_3_4_1; } x_1_3_3; } x_1_2_1; } x_2_1_1; } x2; struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_3_1_1; } x3; unsigned int x4[1]; int x5; struct Color {} *x6; struct GradientArchive {} *x7; struct ImageFillArchive {} *x8; }*)arg1 archiver:(id)arg2;
 - (float)scale;
 - (void)setTechnique:(int)arg1;
 - (BOOL)shouldBeReappliedToCALayer:(id)arg1;
 - (int)technique;
 - (id)tintColor;
+- (BOOL)tsch_hasAllResources;
 
 @end

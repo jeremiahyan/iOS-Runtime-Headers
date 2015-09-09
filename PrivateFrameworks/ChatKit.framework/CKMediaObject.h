@@ -2,58 +2,69 @@
    Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
  */
 
-@class <CKFileTransfer>, NSData, NSDictionary, NSString, NSURL;
-
-@interface CKMediaObject : NSObject <CKPreviewDispatchCachePolicyDelegate, QLPreviewItem> {
+@interface CKMediaObject : NSObject <QLPreviewItem> {
     <CKFileTransfer> *_transfer;
 }
 
-@property(readonly) NSString * UTIType;
-@property(readonly) NSData * data;
-@property(readonly) NSURL * fileURL;
-@property(readonly) NSString * filename;
-@property(readonly) int mediaType;
-@property(readonly) NSString * mimeType;
-@property(readonly) NSString * previewItemTitle;
-@property(readonly) NSURL * previewItemURL;
-@property(readonly) NSDictionary * transcoderUserInfo;
-@property(retain) <CKFileTransfer> * transfer;
-@property(readonly) NSString * transferGUID;
+@property (nonatomic, readonly, copy) NSString *UTIType;
+@property (nonatomic, readonly, copy) NSData *data;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly, copy) NSURL *fileURL;
+@property (nonatomic, readonly, copy) NSString *filename;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) int mediaType;
+@property (nonatomic, readonly, copy) NSString *mimeType;
+@property (readonly) NSString *previewItemTitle;
+@property (readonly) NSURL *previewItemURL;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly, copy) NSDictionary *transcoderUserInfo;
+@property (nonatomic, retain) <CKFileTransfer> *transfer;
+@property (nonatomic, readonly, copy) NSString *transferGUID;
 
 + (id)UTITypes;
++ (Class)__ck_attachmentItemClass;
++ (id)attachmentSummary:(unsigned int)arg1;
 + (id)fallbackFilenamePrefix;
 + (id)iconCache;
 + (BOOL)isPreviewable;
-+ (id)previewDispatchCache;
++ (BOOL)shouldScaleUpPreview;
++ (BOOL)shouldShadePreview;
 
-- (id)PNGDataFromImage:(id)arg1;
+- (id)JPEGDataFromImage:(id)arg1;
 - (id)UTIType;
 - (void)_sampleImageEdges:(id)arg1 usingRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2 forMostlyWhitePixels:(unsigned int*)arg3 otherPixels:(unsigned int*)arg4;
-- (Class)balloonViewClass;
+- (Class)balloonViewClassForWidth:(float)arg1 orientation:(BOOL)arg2;
 - (id)bbPreviewFillToSize:(struct CGSize { float x1; float x2; })arg1;
 - (struct CGSize { float x1; float x2; })bbSize;
+- (BOOL)canExport;
+- (Class)coloredBalloonViewClass;
+- (id)composeImages;
 - (id)data;
 - (void)dealloc;
 - (id)description;
 - (id)downloadProgressImage;
 - (id)downloadProgressString;
+- (void)export:(id)arg1;
 - (id)fileManager;
 - (id)fileSizeString;
 - (id)fileURL;
 - (id)filename;
-- (id)generatePreviewFromThumbnail:(id)arg1 forOrientation:(BOOL)arg2;
-- (id)generateThumbnail;
-- (id)generateThumbnailFillToSize:(struct CGSize { float x1; float x2; })arg1;
+- (id)generatePreviewFromThumbnail:(id)arg1 width:(float)arg2 orientation:(BOOL)arg3;
+- (id)generateThumbnailFillToSize:(struct CGSize { float x1; float x2; })arg1 contentAlignmentInsets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg2;
+- (id)generateThumbnailForWidth:(float)arg1 orientation:(BOOL)arg2;
 - (id)icon;
 - (id)initWithTransfer:(id)arg1;
 - (BOOL)isPreviewable;
+- (id)location;
 - (int)mediaType;
 - (id)mimeType;
 - (id)pasteboardItem;
 - (Class)previewBalloonViewClass;
-- (BOOL)previewDispatchCache:(id)arg1 shouldReplaceCachedPreview:(id)arg2 withPreview:(id)arg3;
+- (id)previewCacheKeyWithOrientation:(BOOL)arg1;
+- (id)previewCachesFileURLWithOrientation:(BOOL)arg1 extension:(id)arg2;
 - (id)previewDispatchCache;
-- (id)previewForOrientation:(BOOL)arg1;
+- (id)previewForWidth:(float)arg1 orientation:(BOOL)arg2;
 - (id)previewItemURL;
 - (void)savePreview:(id)arg1 toURL:(id)arg2 forOrientation:(BOOL)arg3;
 - (id)savedPreviewFromURL:(id)arg1 forOrientation:(BOOL)arg2;

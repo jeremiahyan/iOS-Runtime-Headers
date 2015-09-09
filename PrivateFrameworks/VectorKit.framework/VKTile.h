@@ -2,28 +2,8 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-@class VKTilePool;
-
 @interface VKTile : NSObject {
-    struct VKTileKey { 
-        unsigned int z; 
-        int x; 
-        int y; 
-        unsigned int pointSize; 
-    struct { 
-        double x0; 
-        double x1; 
-        double y0; 
-        double y1; 
-        double z0; 
-        double z1; 
-    struct { 
-        double v[4][4]; 
-    struct { 
-        double x0; 
-        double x1; 
-        double y0; 
-        double y1; 
+    double _birthdate;
     struct VKCameraState { 
         struct VKPoint { 
             double x; 
@@ -35,7 +15,30 @@
         } orientation; 
         float aspectRatio; 
         float verticalFieldOfView; 
-        double horizontalOffset; 
+        float horizontalOffset; 
+    } _cameraState;
+    struct Matrix<double, 4, 4> { 
+        double _e[16]; 
+    } _gmInverseMatrix;
+    struct Matrix<double, 4, 4> { 
+        double _e[16]; 
+    } _gmMatrix;
+    struct Matrix<float, 4, 4> { 
+        float _e[16]; 
+    } _gmShaderMatrix;
+    struct { 
+        double v[4][4]; 
+    } _inverseMatrix;
+    struct VKTileKey { 
+        unsigned int z; 
+        int x; 
+        int y; 
+        unsigned int pointSize; 
+    } _key;
+    struct { 
+        double v[4][4]; 
+    } _matrix;
+    VKTilePool *_pool;
     union { 
         struct { 
             float m00; 
@@ -56,29 +59,36 @@
             float m33; 
         } ; 
         float m[16]; 
-    double _birthdate;
-    } _box;
-    } _cameraState;
-    struct { double x1[4][4]; } *_inverseMatrix;
-    } _key;
-    } _matrix;
-    VKTilePool *_pool;
     } _shaderMatrix;
+    struct shared_ptr<ggl::Tile::ViewUniformData> { 
+        struct ViewUniformData {} *__ptr_; 
+        struct __shared_weak_count {} *__cntrl_; 
+    } _viewUniformData;
+    struct { 
+        double x0; 
+        double x1; 
+        double y0; 
+        double y1; 
     } bounds;
 }
 
-@property(readonly) double birthdate;
-@property(readonly) const struct { double x1[4][4]; }* inverseMatrix;
-@property(readonly) struct VKTileKey { unsigned int x1; int x2; int x3; unsigned int x4; } key;
-@property(readonly) const struct { double x1[4][4]; }* matrix;
-@property(readonly) union { struct { float x_1_1_1; float x_1_1_2; float x_1_1_3; float x_1_1_4; float x_1_1_5; float x_1_1_6; float x_1_1_7; float x_1_1_8; float x_1_1_9; float x_1_1_10; float x_1_1_11; float x_1_1_12; float x_1_1_13; float x_1_1_14; float x_1_1_15; float x_1_1_16; } x1; float x2[16]; } shaderMatrix;
-@property(readonly) double tileWidth;
+@property (nonatomic, readonly) double birthdate;
+@property (nonatomic, readonly) const struct { double x1[4][4]; }*inverseMatrix;
+@property (nonatomic, readonly) struct VKTileKey { unsigned int x1; int x2; int x3; unsigned int x4; } key;
+@property (nonatomic, readonly) const struct { double x1[4][4]; }*matrix;
+@property (nonatomic, readonly) union { struct { float x_1_1_1; float x_1_1_2; float x_1_1_3; float x_1_1_4; float x_1_1_5; float x_1_1_6; float x_1_1_7; float x_1_1_8; float x_1_1_9; float x_1_1_10; float x_1_1_11; float x_1_1_12; float x_1_1_13; float x_1_1_14; float x_1_1_15; float x_1_1_16; } x1; float x2[16]; } shaderMatrix;
+@property (nonatomic, readonly) double tileWidth;
+@property (readonly) struct shared_ptr<ggl::Tile::ViewUniformData> { struct ViewUniformData {} *x1; struct __shared_weak_count {} *x2; } viewUniformData;
 
 - (id).cxx_construct;
+- (void).cxx_destruct;
 - (double)birthdate;
 - (void)dealloc;
 - (id)description;
 - (unsigned int)geometryCount;
+- (const struct Matrix<double, 4, 4> { double x1[16]; }*)gmInverseMatrix;
+- (const struct Matrix<double, 4, 4> { double x1[16]; }*)gmMatrix;
+- (const struct Matrix<float, 4, 4> { float x1[16]; }*)gmShaderMatrix;
 - (id)initWithKey:(const struct VKTileKey { unsigned int x1; int x2; int x3; unsigned int x4; }*)arg1;
 - (const struct { double x1[4][4]; }*)inverseMatrix;
 - (struct VKTileKey { unsigned int x1; int x2; int x3; unsigned int x4; })key;
@@ -88,6 +98,8 @@
 - (void)setPool:(id)arg1;
 - (union { struct { float x_1_1_1; float x_1_1_2; float x_1_1_3; float x_1_1_4; float x_1_1_5; float x_1_1_6; float x_1_1_7; float x_1_1_8; float x_1_1_9; float x_1_1_10; float x_1_1_11; float x_1_1_12; float x_1_1_13; float x_1_1_14; float x_1_1_15; float x_1_1_16; } x1; float x2[16]; })shaderMatrix;
 - (double)tileWidth;
+- (void)updateViewDependentStateIfNecessaryWithContext:(id)arg1;
 - (void)updateViewDependentStateWithContext:(id)arg1;
+- (struct shared_ptr<ggl::Tile::ViewUniformData> { struct ViewUniformData {} *x1; struct __shared_weak_count {} *x2; })viewUniformData;
 
 @end

@@ -2,13 +2,14 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSString;
+@interface SAMPSetQueueQueueOrder : AceObject <SAAceSerializable>
 
-@interface SAMPSetQueueQueueOrder : AceObject <SAAceSerializable> {
-}
-
-@property BOOL descending;
-@property(copy) NSString * mediaItemProperty;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) BOOL descending;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *mediaItemProperty;
+@property (readonly) Class superclass;
 
 + (id)setQueueQueueOrder;
 + (id)setQueueQueueOrderWithDictionary:(id)arg1 context:(id)arg2;

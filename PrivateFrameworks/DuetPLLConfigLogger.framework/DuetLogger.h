@@ -2,28 +2,26 @@
    Image: /System/Library/PrivateFrameworks/DuetPLLConfigLogger.framework/DuetPLLConfigLogger
  */
 
-@class NSFileManager, NSMutableArray, NSObject<OS_dispatch_queue>, NSString;
-
 @interface DuetLogger : NSObject {
     NSString *binaryName;
-    boolcanWriteToFile;
-    boolfirstTime;
+    bool canWriteToFile;
     NSMutableArray *duetLoggerSource;
     int fd;
     NSFileManager *fileMgr;
     NSString *fileName;
     NSString *filePath;
+    bool firstTime;
     NSString *homeDir;
     NSObject<OS_dispatch_queue> *logQueue;
     NSString *logState;
-    struct __aslclient { } *log_client;
-    struct __aslmsg { } *log_msg;
+    struct __asl_object_s { } *log_client;
+    struct __asl_object_s { } *log_msg;
 }
 
-@property(readonly) bool canWriteToFile;
+@property (nonatomic, readonly) bool canWriteToFile;
 
-+ (id)instance:(int)arg1;
 + (id)instance;
++ (id)instance:(int)arg1;
 
 - (void).cxx_destruct;
 - (void)addDataSource:(id)arg1;

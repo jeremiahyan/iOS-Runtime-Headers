@@ -2,19 +2,17 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, NSString;
-
 @interface _UIActivityIndicatorViewArtworkItem : NSObject <NSDiscardableContent> {
+    NSString *_artKey;
     struct { 
         unsigned int isDiscarded : 1; 
         unsigned int useCount; 
-    NSString *_artKey;
     } _flags;
     NSArray *_images;
 }
 
-@property(readonly) NSString * artKey;
-@property(retain) NSArray * images;
+@property (nonatomic, readonly) NSString *artKey;
+@property (nonatomic, retain) NSArray *images;
 
 - (id)artKey;
 - (BOOL)beginContentAccess;

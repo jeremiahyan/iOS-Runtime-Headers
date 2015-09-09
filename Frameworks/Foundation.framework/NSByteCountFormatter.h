@@ -7,17 +7,19 @@
     unsigned int _allowedUnits;
     BOOL _allowsNonnumericFormatting;
     BOOL _countStyle;
+    int _formattingContext;
     BOOL _includesActualByteCount;
     BOOL _includesCount;
     BOOL _includesUnit;
-    int _reserved[6];
+    int _reserved;
     BOOL _zeroPadsFractionDigits;
 }
 
-@property(getter=isAdaptive) BOOL adaptive;
+@property (getter=isAdaptive) BOOL adaptive;
 @property unsigned int allowedUnits;
 @property BOOL allowsNonnumericFormatting;
 @property int countStyle;
+@property int formattingContext;
 @property BOOL includesActualByteCount;
 @property BOOL includesCount;
 @property BOOL includesUnit;
@@ -31,6 +33,7 @@
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (int)countStyle;
 - (void)encodeWithCoder:(id)arg1;
+- (int)formattingContext;
 - (BOOL)getObjectValue:(out id*)arg1 forString:(id)arg2 errorDescription:(out id*)arg3;
 - (BOOL)includesActualByteCount;
 - (BOOL)includesCount;
@@ -43,6 +46,7 @@
 - (void)setAllowedUnits:(unsigned int)arg1;
 - (void)setAllowsNonnumericFormatting:(BOOL)arg1;
 - (void)setCountStyle:(int)arg1;
+- (void)setFormattingContext:(int)arg1;
 - (void)setIncludesActualByteCount:(BOOL)arg1;
 - (void)setIncludesCount:(BOOL)arg1;
 - (void)setIncludesUnit:(BOOL)arg1;

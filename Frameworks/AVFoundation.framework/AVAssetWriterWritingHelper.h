@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class AVAssetWriterFigAssetWriterNotificationHandler, AVWeakReference, NSObject<OS_dispatch_queue>;
-
 @interface AVAssetWriterWritingHelper : AVAssetWriterHelper <AVAssetWriterFigAssetWriterNotificationHandlerDelegate> {
     struct OpaqueFigAssetWriter { } *_figAssetWriter;
     NSObject<OS_dispatch_queue> *_figAssetWriterAccessQueue;
@@ -11,6 +9,11 @@
     BOOL _startSessionCalled;
     AVWeakReference *_weakReference;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (struct OpaqueFigAssetWriter { }*)_retainedFigAssetWriter;
 - (void)cancelWriting;
@@ -20,9 +23,9 @@
 - (id)figTrackReferences;
 - (void)finalize;
 - (void)finishWriting;
-- (void)finishWritingWithCompletionHandler:(id)arg1;
-- (id)initWithConfigurationState:(id)arg1 error:(id*)arg2;
+- (void)finishWritingWithCompletionHandler:(id /* block */)arg1;
 - (id)initWithConfigurationState:(id)arg1;
+- (id)initWithConfigurationState:(id)arg1 error:(id*)arg2;
 - (void)startSessionAtSourceTime:(struct { long long x1; int x2; unsigned int x3; long long x4; })arg1;
 - (int)status;
 

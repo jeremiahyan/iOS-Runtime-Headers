@@ -2,37 +2,37 @@
    Image: /System/Library/PrivateFrameworks/StoreBookkeeper.framework/StoreBookkeeper
  */
 
-@class <SBKUniversalPlaybackPositionDataSource>, NSDate, NSObject<OS_dispatch_queue>, NSTimer, SBKAsynchronousTask, SBKPlaybackPositionSyncRequestHandler;
-
 @interface SBKUniversalPlaybackPositionStore : NSObject {
     id _accountsObserver;
     unsigned int _automaticSynchronizeOptions;
     double _autorefreshInterval;
     SBKAsynchronousTask *_bagLookupTask;
+    SBKAsynchronousTask *_currentTask;
+    SBKRequestHandler *_currentTaskRequestHandler;
     <SBKUniversalPlaybackPositionDataSource> *_dataSource;
     NSDate *_dateToFireNextTimer;
+    NSString *_domain;
     BOOL _hasLocalChangesToSync;
     double _initialAutosyncInterval;
     BOOL _isActive;
     SBKAsynchronousTask *_lookupDomainVersionTask;
+    NSMutableArray *_pendingTaskBlocks;
     double _pollingLimitFromBag;
     id _prefsObserver;
     NSObject<OS_dispatch_queue> *_queue;
     BOOL _refreshTimerActive;
-    SBKPlaybackPositionSyncRequestHandler *_syncHandler;
-    SBKAsynchronousTask *_synchronizeTask;
     NSTimer *_timer;
 }
 
 @property unsigned int automaticSynchronizeOptions;
-@property(retain) SBKAsynchronousTask * bagLookupTask;
-@property(readonly) <SBKUniversalPlaybackPositionDataSource> * dataSource;
-@property(retain) NSDate * dateToFireNextTimer;
+@property (retain) SBKAsynchronousTask *bagLookupTask;
+@property (retain) SBKAsynchronousTask *currentTask;
+@property (retain) SBKRequestHandler *currentTaskRequestHandler;
+@property (readonly) <SBKUniversalPlaybackPositionDataSource> *dataSource;
+@property (retain) NSDate *dateToFireNextTimer;
 @property BOOL hasLocalChangesToSync;
-@property(retain) SBKAsynchronousTask * lookupDomainVersionTask;
-@property(retain) SBKPlaybackPositionSyncRequestHandler * syncHandler;
-@property(retain) SBKAsynchronousTask * synchronizeTask;
-@property(retain) NSTimer * timer;
+@property (retain) SBKAsynchronousTask *lookupDomainVersionTask;
+@property (retain) NSTimer *timer;
 
 + (id)keyValueStoreItemIdentifierForItem:(id)arg1;
 
@@ -41,16 +41,20 @@
 - (BOOL)_automaticallySynchronizeLocalChangesOnResignActive;
 - (BOOL)_automaticallySynchronizeOnBecomeActive;
 - (double)_effectiveAutorefreshRate;
-- (void)_onQueueLoadBagContextWithCompletionHandler:(id)arg1;
-- (void)_onQueueLoadRemoteDomainVersionWithCompletionBlock:(id)arg1;
+- (void)_onQueueLoadBagContextWithCompletionHandler:(id /* block */)arg1;
+- (void)_onQueueLoadRemoteDomainVersionWithCompletionBlock:(id /* block */)arg1;
+- (void)_onQueuePullMetadataItemWithItemIdentifier:(id)arg1 completionBlock:(id /* block */)arg2;
+- (void)_onQueuePushMetadataItem:(id)arg1 completionBlock:(id /* block */)arg2;
 - (void)_onQueueResumeTimer;
+- (void)_onQueueRunNextPendingTaskBlock;
+- (void)_onQueueRunTaskWithName:(id)arg1 taskCompletionHandler:(id /* block */)arg2 runTaskBlock:(id /* block */)arg3;
 - (void)_onQueueScheduleTimer;
 - (void)_onQueueStartNewTimer;
 - (void)_onQueueStartNewTimerWithTimeIntervalSinceNow:(double)arg1;
 - (void)_onQueueStopTimer;
 - (void)_onQueueSuspendTimer;
-- (void)_onQueueSynchronizeImmediatelyWithCompletionHandler:(id)arg1;
-- (void)_onQueueSynchronizeWithAutosynchronizeMask:(unsigned int)arg1 withCompletionBlock:(id)arg2;
+- (void)_onQueueSynchronizeImmediatelyWithCompletionHandler:(id /* block */)arg1;
+- (void)_onQueueSynchronizeWithAutosynchronizeMask:(unsigned int)arg1 withCompletionBlock:(id /* block */)arg2;
 - (void)_onQueueUpdateTimerForActiveChanges;
 - (void)_onQueueUpdateTimerForAutomaticSyncOptionChanges;
 - (void)_timerFired:(id)arg1;
@@ -63,35 +67,35 @@
 - (BOOL)automaticallySynchronizeOnBecomeActive;
 - (id)bagLookupTask;
 - (void)becomeActive;
-- (void)checkForAvailabilityWithCompletionBlock:(id)arg1;
+- (void)checkForAvailabilityWithCompletionBlock:(id /* block */)arg1;
+- (id)currentTask;
+- (id)currentTaskRequestHandler;
 - (id)dataSource;
 - (id)dateToFireNextTimer;
 - (void)dealloc;
 - (void)deprecated_setDataSource:(id)arg1;
 - (BOOL)hasLocalChangesToSync;
 - (id)init;
-- (id)initWithDataSource:(id)arg1 automaticSynchronizeOptions:(unsigned int)arg2 isActive:(BOOL)arg3;
-- (id)initWithInitialUpdateDelay:(double)arg1 allowAutorefresh:(BOOL)arg2 isActive:(BOOL)arg3;
-- (id)initWithInitialUpdateDelay:(double)arg1 isActive:(BOOL)arg2;
+- (id)initWithDomain:(id)arg1 dataSource:(id)arg2 automaticSynchronizeOptions:(unsigned int)arg3 isActive:(BOOL)arg4;
 - (id)initWithInitialUpdateDelay:(double)arg1;
-- (void)loadRemoteDomainVersionWithCompletionBlock:(id)arg1;
-- (void)loadSyncBagContextWithCompletionBlock:(id)arg1;
+- (void)loadBagContextWithCompletionBlock:(id /* block */)arg1;
+- (void)loadRemoteDomainVersionWithCompletionBlock:(id /* block */)arg1;
 - (id)lookupDomainVersionTask;
+- (void)pullMetadataItemWithItemIdentifier:(id)arg1 completionBlock:(id /* block */)arg2;
+- (void)pushMetadataItem:(id)arg1 completionBlock:(id /* block */)arg2;
 - (void)resignActive;
 - (void)setAutomaticSynchronizeOptions:(unsigned int)arg1;
 - (void)setAutomaticallySynchronizeLocalChangesOnResignActive:(BOOL)arg1;
 - (void)setAutomaticallySynchronizeOnBecomeActive:(BOOL)arg1;
 - (void)setBagLookupTask:(id)arg1;
+- (void)setCurrentTask:(id)arg1;
+- (void)setCurrentTaskRequestHandler:(id)arg1;
 - (void)setDateToFireNextTimer:(id)arg1;
 - (void)setHasLocalChangesToSync:(BOOL)arg1;
 - (void)setLookupDomainVersionTask:(id)arg1;
-- (void)setSyncHandler:(id)arg1;
-- (void)setSynchronizeTask:(id)arg1;
 - (void)setTimer:(id)arg1;
-- (id)syncHandler;
-- (void)synchronizeImmediatelyWithCompletionBlock:(id)arg1;
-- (void)synchronizeImmediatelyWithCompletionHandler:(id)arg1;
-- (id)synchronizeTask;
+- (void)synchronizeImmediatelyWithCompletionBlock:(id /* block */)arg1;
+- (void)synchronizeImmediatelyWithCompletionHandler:(id /* block */)arg1;
 - (id)timer;
 
 @end

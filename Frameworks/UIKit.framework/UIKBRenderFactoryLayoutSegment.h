@@ -2,9 +2,11 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString, UIKBRenderTraits;
-
 @interface UIKBRenderFactoryLayoutSegment : NSObject {
+    NSString *_cachedKeyNames;
+    int _edgeCount;
+    unsigned int _edges;
+    int _rectCount;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -14,20 +16,16 @@
             float width; 
             float height; 
         } size; 
-    NSString *_cachedKeyNames[3];
-    int _edgeCount;
-    unsigned int _edges[3];
-    int _rectCount;
-    } _rects[3];
+    } _rects;
     BOOL _requireAllMatches;
     int _states;
     UIKBRenderTraits *_traits;
-    int _triangleCorners[3];
+    int _triangleCorners;
 }
 
-@property int keyStates;
-@property BOOL requireAllMatches;
-@property(readonly) UIKBRenderTraits * traits;
+@property (nonatomic) int keyStates;
+@property (nonatomic) BOOL requireAllMatches;
+@property (nonatomic, readonly) UIKBRenderTraits *traits;
 
 + (id)segmentWithTraits:(id)arg1;
 

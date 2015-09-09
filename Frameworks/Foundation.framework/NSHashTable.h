@@ -2,8 +2,15 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@interface NSHashTable : NSObject <NSCopying, NSCoding, NSFastEnumeration> {
-}
+@interface NSHashTable : NSObject <NSCoding, NSCopying, NSFastEnumeration>
+
+@property (readonly, copy) NSArray *allObjects;
+@property (nonatomic, readonly) id anyObject;
+@property (readonly) unsigned int count;
+@property (readonly, copy) NSPointerFunctions *pointerFunctions;
+@property (readonly, copy) NSSet *setRepresentation;
+
+// Image: /System/Library/Frameworks/Foundation.framework/Foundation
 
 + (id)alloc;
 + (id)allocWithZone:(struct _NSZone { }*)arg1;
@@ -11,7 +18,6 @@
 + (id)hashTableWithWeakObjects;
 + (id)weakObjectsHashTable;
 
-- (void)_mapkit_removeObjects:(id)arg1;
 - (void)addObject:(id)arg1;
 - (id)allObjects;
 - (id)anyObject;
@@ -19,7 +25,7 @@
 - (id)copy;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (unsigned int)count;
-- (unsigned int)countByEnumeratingWithState:(struct { unsigned long x1; id *x2; unsigned long *x3; unsigned long x4[5]; }*)arg1 objects:(id*)arg2 count:(unsigned int)arg3;
+- (unsigned int)countByEnumeratingWithState:(struct { unsigned long x1; id *x2; unsigned long x3; unsigned long x4[5]; }*)arg1 objects:(id*)arg2 count:(unsigned int)arg3;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (void*)getItem:(const void*)arg1;
@@ -46,5 +52,9 @@
 - (id)setRepresentation;
 - (void)unionHashTable:(id)arg1;
 - (unsigned int)weakCount;
+
+// Image: /System/Library/Frameworks/MapKit.framework/MapKit
+
+- (void)_mapkit_removeObjects:(id)arg1;
 
 @end

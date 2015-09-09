@@ -2,14 +2,12 @@
    Image: /System/Library/PrivateFrameworks/ManagedConfiguration.framework/ManagedConfiguration
  */
 
-@class NSMutableDictionary, NSString;
-
 @interface MCRestrictionsPayload : MCPayload {
     NSString *_iCloudPassword;
     NSMutableDictionary *_restrictions;
 }
 
-@property(retain) NSString * iCloudPassword;
+@property (nonatomic, retain) NSString *iCloudPassword;
 
 + (id)localizedPluralForm;
 + (id)localizedSingularForm;
@@ -26,9 +24,9 @@
 - (id)iCloudPassword;
 - (id)initWithDictionary:(id)arg1 profile:(id)arg2 outError:(id*)arg3;
 - (id)installationWarnings;
+- (id)localizedRestrictionStrings;
 - (id)restrictions;
 - (void)setICloudPassword:(id)arg1;
 - (id)stubDictionary;
-- (id)subtitle1Description;
 
 @end

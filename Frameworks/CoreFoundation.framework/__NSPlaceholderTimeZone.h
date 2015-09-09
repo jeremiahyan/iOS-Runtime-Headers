@@ -2,8 +2,7 @@
    Image: /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
  */
 
-@interface __NSPlaceholderTimeZone : NSTimeZone {
-}
+@interface __NSPlaceholderTimeZone : NSTimeZone
 
 + (id)immutablePlaceholder;
 + (void)initialize;
@@ -15,8 +14,8 @@
 - (double)daylightSavingTimeOffsetForDate:(id)arg1;
 - (void)dealloc;
 - (id)init;
-- (id)initWithName:(id)arg1 data:(id)arg2;
 - (id)initWithName:(id)arg1;
+- (id)initWithName:(id)arg1 data:(id)arg2;
 - (BOOL)isDaylightSavingTimeForDate:(id)arg1;
 - (id)name;
 - (id)nextDaylightSavingTimeTransitionAfterDate:(id)arg1;

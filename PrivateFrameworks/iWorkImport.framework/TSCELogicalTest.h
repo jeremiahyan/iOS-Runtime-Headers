@@ -2,14 +2,12 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class <TSUMultipleChoiceListChoiceProviding>, NSDate, NSString, TSCERegexMatcher;
-
 @interface TSCELogicalTest : NSObject {
+    NSDate *mDate;
+    struct TSCEEvaluationContext { id x1; /* Warning: Unrecognized filer type: 'T' using 'void*' */ void*x2; unsigned short x3; unsigned char x4; void*x5; void*x6; void x7; void*x8; long x9; void*x10; void*x11; void*x12; int x13; out in unsigned short x14; void*x15; void*x16; BOOL x17; void*x18; void*x19; struct vector<TSCEValue, std::__1::allocator<TSCEValue> > { struct TSCEValue {} *x_20_1_1; struct TSCEValue {} *x_20_1_2; struct __compressed_pair<TSCEValue *, std::__1::allocator<TSCEValue> > { struct TSCEValue {} *x_3_2_1; } x_20_1_3; } x20; int x21; } *mEvaluationContext;
+    TSCERegexMatcher *mMatcher;
+    int mOperation;
+    NSString *mString;
     struct TSCENumberValue { 
         int (**_vptr$TSCEAbstractValue)(); 
         double mDouble; 
@@ -17,10 +15,10 @@
         struct TSUFormat { 
             int (**_vptr$TSUFormat)(); 
             int mFormatType; 
-            boolmIsImplicitFormat; 
+            bool mIsImplicitFormat; 
             union { 
                 struct { 
-                    NSString *mCurrencyCode; 
+                    unsigned int mCurrencyCodeIndex : 16; 
                     unsigned int mDecimalPlaces : 8; 
                     unsigned int mNegativeStyle : 3; 
                     unsigned int mShowThousandsSeparator : 1; 
@@ -46,8 +44,10 @@
                     int mDurationStyle; 
                 } mDurationFormatStruct; 
                 struct { 
-                    unsigned int mCustomFormatID; 
-                    struct { /* ? */ } *mData; 
+                    NSUUID *mCustomFormatKey; 
+                    TSUCustomFormat *mCustomFormat; 
+                    unsigned int mLegacyID; 
+                    unsigned char mAppliedConditionKey; 
                 } mCustomFormatStruct; 
                 struct { 
                     double mMinimum; 
@@ -63,24 +63,21 @@
                     <TSUMultipleChoiceListChoiceProviding> *mData; 
                 } mMultipleChoiceListFormatStruct; 
             } mData; 
-            struct TSUCustomFormat {} *mCustomFormat; 
         } mFormat; 
         BOOL mIsUnitlessZero; 
-    NSDate *mDate;
-    TSCERegexMatcher *mMatcher;
-    int mOperation;
-    NSString *mString;
     } mValue;
 }
 
-+ (id)logicalTestWithCriterion:(struct TSCEValue { unsigned int x1[68]; int x2; })arg1 functionSpec:(id)arg2 warningReportingContext:(struct TSCEWarningReportingContext { BOOL x1; BOOL x2; struct ObjcSharedPtr<NSMutableSet> { id x_3_1_1; } x3; }*)arg3;
++ (id)logicalTestWithCriterion:(struct TSCEValue { unsigned int x1[64]; int x2; })arg1 functionSpec:(id)arg2 evaluationContext:(struct TSCEEvaluationContext { id x1; /* Warning: Unrecognized filer type: 'T' using 'void*' */ void*x2; unsigned short x3; unsigned char x4; void*x5; void*x6; void x7; void*x8; long x9; void*x10; void*x11; void*x12; int x13; out in unsigned short x14; void*x15; void*x16; BOOL x17; void*x18; void*x19; struct vector<TSCEValue, std::__1::allocator<TSCEValue> > { struct TSCEValue {} *x_20_1_1; struct TSCEValue {} *x_20_1_2; struct __compressed_pair<TSCEValue *, std::__1::allocator<TSCEValue> > { struct TSCEValue {} *x_3_2_1; } x_20_1_3; } x20; int x21; }*)arg3;
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (BOOL)compare:(struct TSCEValue { unsigned int x1[68]; int x2; })arg1;
+- (BOOL)compare:(struct TSCEValue { unsigned int x1[64]; int x2; })arg1 withContext:(struct TSCEEvaluationContext { id x1; /* Warning: Unrecognized filer type: 'T' using 'void*' */ void*x2; unsigned short x3; unsigned char x4; void*x5; void*x6; void x7; void*x8; long x9; void*x10; void*x11; void*x12; int x13; out in unsigned short x14; void*x15; void*x16; BOOL x17; void*x18; void*x19; struct vector<TSCEValue, std::__1::allocator<TSCEValue> > { struct TSCEValue {} *x_20_1_1; struct TSCEValue {} *x_20_1_2; struct __compressed_pair<TSCEValue *, std::__1::allocator<TSCEValue> > { struct TSCEValue {} *x_3_2_1; } x_20_1_3; } x20; int x21; }*)arg2;
+- (unsigned int)cost;
 - (int)criteriaParser:(id)arg1;
 - (void)dealloc;
-- (id)initWithCriterion:(struct TSCEValue { unsigned int x1[68]; int x2; })arg1 functionSpec:(id)arg2 warningReportingContext:(struct TSCEWarningReportingContext { BOOL x1; BOOL x2; struct ObjcSharedPtr<NSMutableSet> { id x_3_1_1; } x3; }*)arg3;
+- (id)description;
+- (id)initWithCriterion:(struct TSCEValue { unsigned int x1[64]; int x2; })arg1 functionSpec:(id)arg2 evaluationContext:(struct TSCEEvaluationContext { id x1; /* Warning: Unrecognized filer type: 'T' using 'void*' */ void*x2; unsigned short x3; unsigned char x4; void*x5; void*x6; void x7; void*x8; long x9; void*x10; void*x11; void*x12; int x13; out in unsigned short x14; void*x15; void*x16; BOOL x17; void*x18; void*x19; struct vector<TSCEValue, std::__1::allocator<TSCEValue> > { struct TSCEValue {} *x_20_1_1; struct TSCEValue {} *x_20_1_2; struct __compressed_pair<TSCEValue *, std::__1::allocator<TSCEValue> > { struct TSCEValue {} *x_3_2_1; } x_20_1_3; } x20; int x21; }*)arg3;
 - (BOOL)isEqual:(id)arg1;
 - (void)setDate:(id)arg1;
 - (void)setRegexMatcher:(id)arg1;

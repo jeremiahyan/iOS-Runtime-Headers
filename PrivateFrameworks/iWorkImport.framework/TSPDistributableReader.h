@@ -2,14 +2,17 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class TSPDatabase, TSPDistributableFileManager;
-
 @interface TSPDistributableReader : NSObject <TSPStreamingDistributableUnarchiver> {
     TSPDatabase *_database;
     TSPDistributableFileManager *_fileManager;
     BOOL _hasReadTangierVersionRoot;
     BOOL _isCancelled;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (BOOL)readCheckCrcFromArchiveInputStream:(id)arg1 crc:(unsigned int*)arg2 error:(id*)arg3;
 

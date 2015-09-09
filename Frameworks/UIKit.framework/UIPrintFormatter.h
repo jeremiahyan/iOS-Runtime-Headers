@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIPrintPageRenderer;
-
 @interface UIPrintFormatter : NSObject <NSCopying> {
     struct UIEdgeInsets { 
         float top; 
@@ -15,16 +13,23 @@
     float _maximumContentWidth;
     BOOL _needsRecalc;
     int _pageCount;
+    struct UIEdgeInsets { 
+        float top; 
+        float left; 
+        float bottom; 
+        float right; 
+    } _perPageContentInsets;
     UIPrintPageRenderer *_printPageRenderer;
     int _startPage;
 }
 
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } contentInsets;
-@property float maximumContentHeight;
-@property float maximumContentWidth;
-@property(readonly) int pageCount;
-@property UIPrintPageRenderer * printPageRenderer;
-@property int startPage;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } contentInsets;
+@property (nonatomic) float maximumContentHeight;
+@property (nonatomic) float maximumContentWidth;
+@property (nonatomic, readonly) int pageCount;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } perPageContentInsets;
+@property (nonatomic) UIPrintPageRenderer *printPageRenderer;
+@property (nonatomic) int startPage;
 
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_pageContentRect:(BOOL)arg1;
 - (void)_recalcIfNecessary;
@@ -37,12 +42,14 @@
 - (float)maximumContentHeight;
 - (float)maximumContentWidth;
 - (int)pageCount;
+- (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })perPageContentInsets;
 - (id)printPageRenderer;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })rectForPageAtIndex:(int)arg1;
 - (void)removeFromPrintPageRenderer;
 - (void)setContentInsets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
 - (void)setMaximumContentHeight:(float)arg1;
 - (void)setMaximumContentWidth:(float)arg1;
+- (void)setPerPageContentInsets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
 - (void)setPrintPageRenderer:(id)arg1;
 - (void)setStartPage:(int)arg1;
 - (int)startPage;

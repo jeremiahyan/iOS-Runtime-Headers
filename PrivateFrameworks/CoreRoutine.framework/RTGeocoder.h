@@ -2,23 +2,20 @@
    Image: /System/Library/PrivateFrameworks/CoreRoutine.framework/CoreRoutine
  */
 
-@class GEOGeocodeRequest;
-
 @interface RTGeocoder : NSObject {
-    GEOGeocodeRequest *_geocodeRequest;
+    <GEOMapServiceTicket> *_ticket;
 }
 
-@property(retain) GEOGeocodeRequest * geocodeRequest;
+@property (nonatomic, retain) <GEOMapServiceTicket> *ticket;
 
 - (void).cxx_destruct;
-- (void)_cancelRequest:(id)arg1;
+- (void)_cancelTicket:(id)arg1;
 - (void)dealloc;
-- (void)geocodeAddressDictionary:(id)arg1 withHandler:(id)arg2;
 - (id)geocodeAddressDictionary:(id)arg1;
-- (void)geocodeLatitude:(double)arg1 longitude:(double)arg2 handler:(id)arg3;
+- (void)geocodeAddressDictionary:(id)arg1 withHandler:(id /* block */)arg2;
 - (id)geocodeLatitude:(double)arg1 longitude:(double)arg2;
-- (id)geocodeRequest;
-- (id)init;
-- (void)setGeocodeRequest:(id)arg1;
+- (void)geocodeLatitude:(double)arg1 longitude:(double)arg2 handler:(id /* block */)arg3;
+- (void)setTicket:(id)arg1;
+- (id)ticket;
 
 @end

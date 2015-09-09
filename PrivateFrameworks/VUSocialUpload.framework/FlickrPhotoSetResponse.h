@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/VUSocialUpload.framework/VUSocialUpload
  */
 
-@class FlickrPhotoSet, NSMutableArray, NSMutableString, NSString;
-
 @interface FlickrPhotoSetResponse : NSObject <NSXMLParserDelegate> {
     FlickrPhotoSet *_currentPhotoSet;
     NSMutableString *_dataString;
@@ -13,12 +11,16 @@
     BOOL _success;
 }
 
-@property(retain) NSMutableArray * photoSets;
-@property int stage;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) NSMutableArray *photoSets;
+@property (nonatomic) int stage;
+@property (readonly) Class superclass;
 
 + (id)responseWithData:(id)arg1;
 
-- (void)dealloc;
+- (void).cxx_destruct;
 - (id)initWithData:(id)arg1;
 - (void)parser:(id)arg1 didEndElement:(id)arg2 namespaceURI:(id)arg3 qualifiedName:(id)arg4;
 - (void)parser:(id)arg1 didStartElement:(id)arg2 namespaceURI:(id)arg3 qualifiedName:(id)arg4 attributes:(id)arg5;

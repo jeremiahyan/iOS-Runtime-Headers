@@ -2,25 +2,21 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@class GEOSearchRequest, NSArray, NSTimer;
-
 @interface MKLocalSearchCompleter : MKSearchCompleter {
     BOOL _dirty;
     double _lastRequestTime;
-    GEOSearchRequest *_request;
     NSArray *_results;
+    <MKLocationManagerOperation> *_singleLocationUpdate;
     int _source;
+    <GEOMapServiceCompletionTicket> *_ticket;
     NSTimer *_timer;
 }
 
-+ (void)initialize;
-
 - (void).cxx_destruct;
-- (void)_cancelRequest;
 - (void)_cancelTimer;
 - (void)_fireRequest;
-- (void)_handleError:(id)arg1 forRequest:(id)arg2;
-- (void)_handleResponse:(id)arg1 forRequest:(id)arg2;
+- (void)_handleCompletion:(id)arg1 forTicket:(id)arg2;
+- (void)_handleError:(id)arg1 forTicket:(id)arg2;
 - (void)_markDirty;
 - (void)_schedulePendingRequest;
 - (void)_scheduleRequest;

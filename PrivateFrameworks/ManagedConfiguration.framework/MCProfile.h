@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/ManagedConfiguration.framework/ManagedConfiguration
  */
 
-@class NSArray, NSDate, NSDictionary, NSObject<OS_dispatch_queue>, NSString;
-
 @interface MCProfile : NSObject {
     NSString *_UUID;
     NSString *_displayName;
@@ -32,46 +30,48 @@
     int _version;
 }
 
-@property(readonly) NSString * UUID;
-@property(retain) NSString * displayName;
-@property(readonly) NSDate * earliestCertificateExpiryDate;
-@property(getter=isEncrypted) BOOL encrypted;
-@property(readonly) NSDate * expiryDate;
-@property(readonly) NSString * friendlyName;
-@property(readonly) NSString * identifier;
-@property(retain) NSDate * installDate;
-@property(retain) NSDictionary * installOptions;
-@property(readonly) NSArray * installationWarnings;
-@property(readonly) BOOL isManagedByProfileService;
-@property(readonly) BOOL isSigned;
-@property(readonly) BOOL isStub;
-@property(readonly) NSString * localizedConsentText;
-@property(readonly) NSArray * localizedPayloadSummaryByType;
-@property(getter=isLocked) BOOL locked;
-@property BOOL mustInstallNonInteractively;
-@property(readonly) BOOL needsReboot;
-@property(readonly) NSString * organization;
-@property(readonly) NSArray * payloads;
-@property(readonly) NSString * productBuildVersion;
-@property(readonly) NSString * productVersion;
-@property(readonly) NSString * profileDescription;
-@property(readonly) NSString * profileIDHashFileName;
-@property(readonly) NSDate * removalDate;
-@property(retain) NSString * removalPasscode;
-@property(readonly) struct __SecCertificate { }* signerCertificate;
-@property(retain) NSArray * signerCertificates;
-@property(readonly) NSString * signerSummary;
-@property(readonly) NSString * stubFileName;
-@property(readonly) int trustLevel;
-@property(readonly) int version;
+@property (nonatomic, readonly, retain) NSString *UUID;
+@property (nonatomic, retain) NSString *displayName;
+@property (nonatomic, readonly, retain) NSDate *earliestCertificateExpiryDate;
+@property (getter=isEncrypted, nonatomic) BOOL encrypted;
+@property (nonatomic, readonly, retain) NSDate *expiryDate;
+@property (nonatomic, readonly, retain) NSString *friendlyName;
+@property (nonatomic, readonly, retain) NSString *identifier;
+@property (nonatomic, retain) NSDate *installDate;
+@property (nonatomic, retain) NSDictionary *installOptions;
+@property (nonatomic, readonly, retain) NSArray *installationWarnings;
+@property (nonatomic, readonly) BOOL isManagedByProfileService;
+@property (nonatomic, readonly) BOOL isSigned;
+@property (nonatomic, readonly) BOOL isStub;
+@property (nonatomic, readonly) NSString *localizedConsentText;
+@property (nonatomic, readonly, retain) NSArray *localizedManagedPayloadSummaryByType;
+@property (nonatomic, readonly, retain) NSArray *localizedPayloadSummaryByType;
+@property (getter=isLocked, nonatomic) BOOL locked;
+@property (nonatomic, readonly, retain) NSArray *managedPayloads;
+@property (nonatomic) BOOL mustInstallNonInteractively;
+@property (nonatomic, readonly) BOOL needsReboot;
+@property (nonatomic, readonly, retain) NSString *organization;
+@property (nonatomic, readonly, retain) NSArray *payloads;
+@property (nonatomic, readonly, retain) NSString *productBuildVersion;
+@property (nonatomic, readonly, retain) NSString *productVersion;
+@property (nonatomic, readonly, retain) NSString *profileDescription;
+@property (nonatomic, readonly, retain) NSString *profileIDHashFileName;
+@property (nonatomic, readonly) NSDate *removalDate;
+@property (nonatomic, retain) NSString *removalPasscode;
+@property (nonatomic, readonly) struct __SecCertificate { }*signerCertificate;
+@property (nonatomic, retain) NSArray *signerCertificates;
+@property (nonatomic, readonly) NSString *signerSummary;
+@property (nonatomic, readonly, retain) NSString *stubFileName;
+@property (nonatomic, readonly) int trustLevel;
+@property (nonatomic, readonly) int version;
 
 + (id)_malformedProfileError;
 + (id)badFieldTypeErrorWithField:(id)arg1;
 + (BOOL)checkString:(id)arg1 isOneOfStrings:(id)arg2 key:(id)arg3 errorDomain:(id)arg4 errorCode:(int)arg5 errorString:(id)arg6 outError:(id*)arg7;
 + (id)dataFromCMSEncodedData:(id)arg1 outSignerCertificates:(id*)arg2;
 + (int)evaluateTrust:(struct __SecTrust { }*)arg1;
-+ (int)evaluateTrustOfCertificateChain:(id)arg1 outIsAllowedToWriteDefaults:(BOOL*)arg2;
 + (int)evaluateTrustOfCertificateChain:(id)arg1;
++ (int)evaluateTrustOfCertificateChain:(id)arg1 outIsAllowedToWriteDefaults:(BOOL*)arg2;
 + (id)missingFieldErrorWithField:(id)arg1;
 + (id)profileDictionaryFromProfileData:(id)arg1 outError:(id*)arg2;
 + (id)profileWithData:(id)arg1 fileName:(id)arg2 allowEmptyPayload:(BOOL)arg3 outError:(id*)arg4;
@@ -86,13 +86,16 @@
 
 - (void).cxx_destruct;
 - (id)UUID;
+- (id)appAccessibilityParameters;
 - (BOOL)containsPayloadOfClass:(Class)arg1;
+- (struct __SecCertificate { }*)copyCertificateFromPayloadWithUUID:(id)arg1;
+- (struct __SecCertificate { }*)copyCertificateWithPersistentID:(id)arg1;
 - (unsigned int)countOfPayloadsOfClass:(Class)arg1;
 - (id)description;
 - (id)displayName;
 - (id)earliestCertificateExpiryDate;
 - (void)evaluateSignerTrust;
-- (void)evaluateSignerTrustAsynchronouslyWithCompletion:(id)arg1;
+- (void)evaluateSignerTrustAsynchronouslyWithCompletion:(id /* block */)arg1;
 - (id)expiryDate;
 - (id)friendlyName;
 - (id)identifier;
@@ -107,8 +110,10 @@
 - (BOOL)isSigned;
 - (BOOL)isStub;
 - (id)localizedConsentText;
+- (id)localizedManagedPayloadSummaryByType;
 - (id)localizedPayloadSummaryByType;
 - (id)malformedProfileErrorWithError:(id)arg1;
+- (id)managedPayloads;
 - (BOOL)mayInstallWithOptions:(id)arg1 hasInteractionClient:(BOOL)arg2 outError:(id*)arg3;
 - (BOOL)mustInstallNonInteractively;
 - (BOOL)needsReboot;
@@ -121,6 +126,7 @@
 - (id)profileIDHashFileName;
 - (id)removalDate;
 - (id)removalPasscode;
+- (id)restrictionsWithHeuristicsAppliedOutError:(id*)arg1;
 - (void)setDisplayName:(id)arg1;
 - (void)setEncrypted:(BOOL)arg1;
 - (void)setInstallDate:(id)arg1;
@@ -134,6 +140,8 @@
 - (id)signerSummary;
 - (id)stubDictionary;
 - (id)stubFileName;
+- (id)subjectSummaryFromCertificatePayloadWithUUID:(id)arg1;
+- (id)subjectSummaryFromCertificateWithPersistentID:(id)arg1;
 - (int)trustLevel;
 - (int)version;
 - (BOOL)writeStubToDirectory:(id)arg1;

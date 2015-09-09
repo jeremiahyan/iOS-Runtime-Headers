@@ -2,29 +2,29 @@
    Image: /System/Library/PrivateFrameworks/RadioUI.framework/RadioUI
  */
 
-@class <RUTrackActionsDelegate>, NSString, RUTrackActionsView, UIImage;
-
-@interface RUTrackActionsViewController : UIViewController <RUTrackActionsDelegate, RUTrackActioning> {
+@interface RUTrackActionsViewController : UIViewController <RUTrackActioning, RUTrackActionsDelegate> {
     <RUTrackActionsDelegate> *_trackActionsDelegate;
     RUTrackActionsView *_trackActionsView;
 }
 
-@property(copy) NSString * artistText;
-@property(retain) UIImage * artworkImage;
-@property(readonly) int cancelIndex;
-@property(readonly) struct CGSize { float x1; float x2; } contentSize;
-@property int enabledActions;
-@property int onActions;
-@property(copy) NSString * songText;
-@property <RUTrackActionsDelegate> * trackActionsDelegate;
+@property (nonatomic, copy) NSString *artistText;
+@property (nonatomic, retain) UIImage *artworkImage;
+@property (nonatomic, readonly) int cancelIndex;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } contentSize;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) int enabledActions;
+@property (readonly) unsigned int hash;
+@property (nonatomic) int onActions;
+@property (nonatomic, copy) NSString *songText;
+@property (readonly) Class superclass;
+@property (nonatomic) <RUTrackActionsDelegate> *trackActionsDelegate;
 
 + (struct CGSize { float x1; float x2; })artworkSize;
 
 - (void).cxx_destruct;
 - (void)_didReceiveRadioAccountDidDeauthenticateNotification:(id)arg1;
-- (void)_didResignContentViewControllerOfPopover:(id)arg1;
 - (id)_trackActionsView;
-- (void)_willBecomeContentViewControllerOfPopover:(id)arg1;
 - (int)actionForButtonIndex:(int)arg1;
 - (id)artistText;
 - (id)artworkImage;

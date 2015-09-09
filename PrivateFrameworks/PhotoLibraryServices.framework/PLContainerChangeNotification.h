@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
  */
 
-@class NSArray, NSIndexSet, NSString, PLManagedObject, PLObjectSnapshot;
-
 @interface PLContainerChangeNotification : PLChangeNotification {
     NSIndexSet *_changedIndexes;
     NSArray *_changedObjects;
@@ -18,22 +16,22 @@
     PLObjectSnapshot *_snapshot;
 }
 
-@property(readonly) NSArray * _changedObjects;
-@property(readonly) NSString * _contentRelationshipName;
-@property(setter=_setDidCalculateDiffs:) BOOL _didCalculateDiffs;
-@property(readonly) NSString * _diffDescription;
-@property(readonly) PLManagedObject * _managedObject;
-@property(readonly) NSIndexSet * changedIndexes;
-@property(readonly) NSIndexSet * changedIndexesRelativeToSnapshot;
-@property(readonly) NSArray * changedObjects;
-@property(readonly) BOOL countDidChange;
-@property(readonly) NSIndexSet * deletedIndexes;
-@property(readonly) NSArray * deletedObjects;
-@property(readonly) BOOL hasMoves;
-@property(readonly) NSIndexSet * insertedIndexes;
-@property(readonly) NSArray * insertedObjects;
-@property(readonly) BOOL shouldReload;
-@property(readonly) PLObjectSnapshot * snapshot;
+@property (nonatomic, readonly, retain) NSArray *_changedObjects;
+@property (nonatomic, readonly, retain) NSString *_contentRelationshipName;
+@property (setter=_setDidCalculateDiffs:, nonatomic) BOOL _didCalculateDiffs;
+@property (nonatomic, readonly, retain) NSString *_diffDescription;
+@property (nonatomic, readonly, retain) PLManagedObject *_managedObject;
+@property (nonatomic, readonly, retain) NSIndexSet *changedIndexes;
+@property (nonatomic, readonly, retain) NSIndexSet *changedIndexesRelativeToSnapshot;
+@property (nonatomic, readonly, retain) NSArray *changedObjects;
+@property (nonatomic, readonly) BOOL countDidChange;
+@property (nonatomic, readonly, retain) NSIndexSet *deletedIndexes;
+@property (nonatomic, readonly, retain) NSArray *deletedObjects;
+@property (nonatomic, readonly) BOOL hasMoves;
+@property (nonatomic, readonly, retain) NSIndexSet *insertedIndexes;
+@property (nonatomic, readonly, retain) NSArray *insertedObjects;
+@property (nonatomic, readonly) BOOL shouldReload;
+@property (nonatomic, readonly, retain) PLObjectSnapshot *snapshot;
 
 - (void)_calculateDiffs;
 - (void)_calculateDiffsIfNecessary;
@@ -53,7 +51,7 @@
 - (void)dealloc;
 - (id)deletedIndexes;
 - (id)deletedObjects;
-- (void)enumerateMovesWithBlock:(id)arg1;
+- (void)enumerateMovesWithBlock:(id /* block */)arg1;
 - (BOOL)hasMoves;
 - (id)init;
 - (id)insertedIndexes;

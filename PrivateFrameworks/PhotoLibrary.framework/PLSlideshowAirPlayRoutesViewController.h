@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibrary.framework/PhotoLibrary
  */
 
-@class NSArray, UITableView, UIView;
-
 @interface PLSlideshowAirPlayRoutesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
     NSArray *_airplayRoutes;
     UIView *_containerView;
@@ -11,7 +9,11 @@
     UITableView *_table;
 }
 
-@property unsigned int selectedRouteIndex;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) unsigned int selectedRouteIndex;
+@property (readonly) Class superclass;
 
 - (struct CGSize { float x1; float x2; })contentSizeForViewInPopoverView;
 - (void)dealloc;

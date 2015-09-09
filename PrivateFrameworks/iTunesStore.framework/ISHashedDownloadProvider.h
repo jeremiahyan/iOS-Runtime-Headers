@@ -2,9 +2,11 @@
    Image: /System/Library/PrivateFrameworks/iTunesStore.framework/iTunesStore
  */
 
-@class ISHashError, NSArray, NSString;
-
 @interface ISHashedDownloadProvider : ISDataProvider <NSCopying> {
+    int _fileDescriptor;
+    NSArray *_hashes;
+    ISHashError *_lastHashError;
+    NSString *_localFilePath;
     struct CC_MD5state_st { 
         unsigned int A; 
         unsigned int B; 
@@ -14,10 +16,6 @@
         unsigned int Nh; 
         unsigned int data[16]; 
         int num; 
-    int _fileDescriptor;
-    NSArray *_hashes;
-    ISHashError *_lastHashError;
-    NSString *_localFilePath;
     } _md5Context;
     long long _numberOfBytesToHash;
     BOOL _shouldResumeFromLocalBytes;
@@ -25,9 +23,9 @@
     long long _validatedBytes;
 }
 
-@property(retain) NSArray * hashes;
-@property(copy) ISHashError * lastHashError;
-@property(retain) NSString * localFilePath;
+@property (retain) NSArray *hashes;
+@property (copy) ISHashError *lastHashError;
+@property (retain) NSString *localFilePath;
 @property long long numberOfBytesToHash;
 @property BOOL shouldResumeFromLocalBytes;
 @property long long streamedBytes;

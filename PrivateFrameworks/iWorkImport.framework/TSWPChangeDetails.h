@@ -2,38 +2,49 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class <TSKModel>, NSDate, NSString, TSDCommentStorage, TSKAnnotationAuthor, TSWPChange;
-
 @interface TSWPChangeDetails : NSObject <TSDAnnotationHosting> {
     TSWPChange *_change;
-    NSString *mChangeString;
-    <TSKModel> *model;
+    NSString *mChangeTrackingContentString;
+    NSString *mChangeTrackingTitleString;
 }
 
-@property(readonly) int annotationDisplayStringType;
-@property(readonly) int annotationType;
-@property(retain) TSKAnnotationAuthor * author;
-@property(retain) TSWPChange * change;
-@property(readonly) NSString * changeTrackingString;
-@property(readonly) NSDate * date;
-@property <TSKModel> * model;
-@property(copy) TSDCommentStorage * storage;
+@property (nonatomic, readonly) int annotationDisplayStringType;
+@property (nonatomic, readonly) int annotationType;
+@property (nonatomic, readonly) TSKAnnotationAuthor *author;
+@property (nonatomic, retain) TSWPChange *change;
+@property (nonatomic, readonly) NSString *changeTrackingContentFormatString;
+@property (nonatomic, readonly) NSString *changeTrackingContentString;
+@property (nonatomic, readonly) NSString *changeTrackingTitleString;
+@property (nonatomic, readonly) NSDate *date;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) <TSKModel> *hostingModel;
+@property (nonatomic, copy) TSDCommentStorage *storage;
+@property (readonly) Class superclass;
 
 - (int)annotationDisplayStringType;
 - (int)annotationType;
 - (id)author;
 - (id)change;
-- (id)changeTrackingString;
+- (id)changeTrackingContentFormatString;
+- (id)changeTrackingContentString;
+- (id)changeTrackingTitleString;
+- (void)commentWillBeAddedToDocumentRoot;
 - (void)commitText:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)date;
 - (void)dealloc;
-- (id)initWithChange:(id)arg1 changeString:(id)arg2;
+- (id)description;
+- (unsigned int)hash;
+- (id)hostingModel;
+- (id)initWithChange:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isEqualToChangeDetails:(id)arg1;
-- (id)model;
+- (struct _NSRange { unsigned int x1; unsigned int x2; })p_rangeInStorage;
+- (void)p_updateChangeStrings;
 - (void)setAuthor:(id)arg1;
 - (void)setChange:(id)arg1;
-- (void)setModel:(id)arg1;
+- (void)setHostingModel:(id)arg1;
 
 @end

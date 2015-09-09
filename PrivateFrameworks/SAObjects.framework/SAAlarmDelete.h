@@ -2,12 +2,13 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSArray;
+@interface SAAlarmDelete : SADomainCommand <SAAlarmAlarmAction>
 
-@interface SAAlarmDelete : SADomainCommand {
-}
-
-@property(copy) NSArray * alarmIds;
+@property (nonatomic, copy) NSArray *alarmIds;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)delete;
 + (id)deleteWithDictionary:(id)arg1 context:(id)arg2;

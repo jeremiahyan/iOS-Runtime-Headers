@@ -2,11 +2,11 @@
    Image: /System/Library/Frameworks/EventKit.framework/EventKit
  */
 
-@class NSString;
-
-@interface EKCalendarItemsWithExternalIdentifierPredicate : NSPredicate {
+@interface EKCalendarItemsWithExternalIdentifierPredicate : EKEventPredicate <NSSecureCoding> {
     NSString *_externalIdentifier;
 }
+
++ (BOOL)supportsSecureCoding;
 
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;

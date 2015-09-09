@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIFoundation.framework/UIFoundation
  */
 
-@class NSData, NSFileWrapper, NSString, UIImage, UITextAttachmentView, UIView;
-
-@interface NSTextAttachment : NSObject <NSTextAttachmentContainer, NSCoding> {
+@interface NSTextAttachment : NSObject <NSCoding, NSTextAttachmentContainer> {
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -23,12 +21,16 @@
     UITextAttachmentView *_wrapperView;
 }
 
-@property struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } bounds;
-@property(retain) UIView * contentView;
-@property(retain) NSData * contents;
-@property(retain) NSString * fileType;
-@property(retain) NSFileWrapper * fileWrapper;
-@property(retain) UIImage * image;
+@property (nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } bounds;
+@property (retain) UIView *contentView;
+@property (nonatomic, retain) NSData *contents;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) NSString *fileType;
+@property (nonatomic, retain) NSFileWrapper *fileWrapper;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) UIImage *image;
+@property (readonly) Class superclass;
 
 + (id)imageCache;
 + (void)initialize;
@@ -41,6 +43,7 @@
 - (id)contentView;
 - (id)contents;
 - (void)dealloc;
+- (id)description;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })drawingBounds;
 - (void)encodeWithCoder:(id)arg1;
 - (id)fileType;

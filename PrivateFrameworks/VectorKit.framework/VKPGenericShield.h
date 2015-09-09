@@ -2,15 +2,13 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-@class NSMutableArray;
-
 @interface VKPGenericShield : PBCodable <NSCopying> {
     int _style;
     NSMutableArray *_variants;
 }
 
-@property int style;
-@property(retain) NSMutableArray * variants;
+@property (nonatomic) int style;
+@property (nonatomic, retain) NSMutableArray *variants;
 
 - (void)addVariant:(id)arg1;
 - (void)clearVariants;
@@ -21,6 +19,7 @@
 - (id)dictionaryRepresentation;
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
+- (void)mergeFrom:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 - (void)setStyle:(int)arg1;
 - (void)setVariants:(id)arg1;

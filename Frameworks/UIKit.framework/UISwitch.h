@@ -2,9 +2,7 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIColor, UIImage, UILongPressGestureRecognizer, UIPanGestureRecognizer, UIView<_UISwitchInternalViewProtocol>;
-
-@interface UISwitch : UIControl <UIGestureRecognizerDelegate, NSCoding> {
+@interface UISwitch : UIControl <NSCoding, UIGestureRecognizerDelegate> {
     UIView<_UISwitchInternalViewProtocol> *_control;
     float _enabledAlpha;
     BOOL _on;
@@ -14,15 +12,21 @@
     UILongPressGestureRecognizer *_pressGesture;
 }
 
-@property(getter=_alwaysShowOnOffLabel,setter=_setAlwaysShowsOnOffLabel:) BOOL alwaysShowOnOffLabel;
-@property float enabledAlpha;
-@property(retain) UIImage * offImage;
-@property(getter=isOn) BOOL on;
-@property(getter=_onColor,setter=_setOnColor:,retain) UIColor * onColor;
-@property(retain) UIImage * onImage;
-@property(retain) UIColor * onTintColor;
-@property(retain) UIColor * thumbTintColor;
-@property(retain) UIColor * tintColor;
+@property (getter=_alwaysShowOnOffLabel, setter=_setAlwaysShowsOnOffLabel:, nonatomic) BOOL alwaysShowOnOffLabel;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) float enabledAlpha;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) UIImage *offImage;
+@property (getter=isOn, nonatomic) BOOL on;
+@property (getter=_onColor, setter=_setOnColor:, nonatomic, retain) UIColor *onColor;
+@property (nonatomic, retain) UIImage *onImage;
+@property (nonatomic, retain) UIColor *onTintColor;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) UIColor *thumbTintColor;
+@property (nonatomic, retain) UIColor *tintColor;
+
++ (Class)_internalViewClass;
 
 - (BOOL)_alwaysShowOnOffLabel;
 - (void)_animateToOn:(BOOL)arg1 withDuration:(float)arg2 sendAction:(BOOL)arg3;
@@ -53,7 +57,7 @@
 - (void)_setKnobBounceStiffness:(float)arg1;
 - (void)_setOnColor:(id)arg1;
 - (void)_setOnTintColor:(id)arg1;
-- (void)_setPressed:(BOOL)arg1 on:(BOOL)arg2 animated:(BOOL)arg3 completion:(id)arg4;
+- (void)_setPressed:(BOOL)arg1 on:(BOOL)arg2 animated:(BOOL)arg3 completion:(id /* block */)arg4;
 - (BOOL)_shouldAlterCodedFrame;
 - (BOOL)_useOldSize;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })alignmentRectInsets;
@@ -76,8 +80,8 @@
 - (void)setEnabledAlpha:(float)arg1;
 - (void)setFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)setOffImage:(id)arg1;
-- (void)setOn:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setOn:(BOOL)arg1;
+- (void)setOn:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setOnImage:(id)arg1;
 - (void)setOnTintColor:(id)arg1;
 - (void)setThumbTintColor:(id)arg1;

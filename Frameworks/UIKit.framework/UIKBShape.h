@@ -2,27 +2,7 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIKBGeometry;
-
 @interface UIKBShape : NSObject <NSCoding, NSCopying> {
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -34,25 +14,36 @@
         } size; 
     } m_frame;
     UIKBGeometry *m_geometry;
-    } m_originalFrame;
+    UIKBShape *m_originalShape;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } m_paddedFrame;
     BOOL m_scaled;
     unsigned int m_uid;
 }
 
-@property struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } frame;
-@property(retain) UIKBGeometry * geometry;
-@property(readonly) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } originalFrame;
-@property struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } paddedFrame;
-@property BOOL scaled;
-@property(readonly) unsigned int uid;
+@property (nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } frame;
+@property (nonatomic, retain) UIKBGeometry *geometry;
+@property (nonatomic, retain) UIKBShape *originalShape;
+@property (nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } paddedFrame;
+@property (nonatomic) BOOL scaled;
+@property (nonatomic, readonly) unsigned int uid;
 
 + (id)shape;
 + (id)shapeByCombining:(id)arg1 withShape:(id)arg2;
 
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_scaleRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 inYAxis:(BOOL)arg2;
-- (void)addRectFrom:(id)arg1 widthFraction:(float)arg2 adjustOriginFactor:(float)arg3;
 - (void)addRectFrom:(id)arg1;
+- (void)addRectFrom:(id)arg1 mergeActionFactors:(id)arg2;
+- (void)addRectFrom:(id)arg1 widthFraction:(float)arg2 heightFraction:(float)arg3 adjustOriginXFactor:(float)arg4 adjustOriginYFactor:(float)arg5;
+- (void)addRectFrom:(id)arg1 widthFraction:(float)arg2 heightFraction:(float)arg3 adjustOriginXFactor:(float)arg4 adjustOriginYFactor:(float)arg5 absoluteOriginFactors:(BOOL)arg6;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)description;
@@ -66,15 +57,14 @@
 - (BOOL)isEmpty;
 - (BOOL)isEqual:(id)arg1;
 - (void)makeLikeOther:(id)arg1;
-- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })originalFrame;
+- (id)originalShape;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })paddedFrame;
 - (void)scaleIfNeeded:(float)arg1 onlyYAxis:(BOOL)arg2;
 - (void)scaleWidth:(float)arg1;
 - (BOOL)scaled;
-- (void)setFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 resetOriginalFrame:(BOOL)arg2;
 - (void)setFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
-- (void)setFrameOnly:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)setGeometry:(id)arg1;
+- (void)setOriginalShape:(id)arg1;
 - (void)setPaddedFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)setScaled:(BOOL)arg1;
 - (BOOL)shouldUseGeometry;

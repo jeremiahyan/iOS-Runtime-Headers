@@ -2,13 +2,15 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class AVCaptureDevice, NSArray;
-
 @interface AVCaptureDeviceInputInternal : NSObject {
-    BOOL _authorizedForCamera;
-    AVCaptureDevice *_device;
-    NSArray *_ports;
-    BOOL _ready;
+    AVWeakKeyValueObserverProxy *KVOProxy;
+    BOOL authorizedForCamera;
+    AVCaptureDevice *device;
+    NSArray *ports;
+    BOOL ready;
+    AVWeakReference *weakReference;
 }
+
+- (void)dealloc;
 
 @end

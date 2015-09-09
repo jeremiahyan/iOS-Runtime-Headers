@@ -2,21 +2,17 @@
    Image: /System/Library/PrivateFrameworks/Notes.framework/Notes
  */
 
-@class ACAccountStore, NSArray, NSLock, NSObject<OS_dispatch_group>, NSString, NoteContext;
-
 @interface AccountUtilities : NSObject {
     NSArray *_accountIDsEnabledForNotes;
     ACAccountStore *_accountStore;
     NSObject<OS_dispatch_group> *_backgroundDispatchGroup;
-    NSString *_contextTestFilePrefix;
     NoteContext *_noteContext;
     NSLock *_updateAccountInfosLock;
 }
 
-@property(retain) ACAccountStore * accountStore;
-@property(retain) NSObject<OS_dispatch_group> * backgroundDispatchGroup;
-@property(retain) NSString * contextTestFilePrefix;
-@property(retain) NSLock * updateAccountInfosLock;
+@property (nonatomic, retain) ACAccountStore *accountStore;
+@property (nonatomic, retain) NSObject<OS_dispatch_group> *backgroundDispatchGroup;
+@property (retain) NSLock *updateAccountInfosLock;
 
 + (id)sharedAccountUtilities;
 
@@ -26,7 +22,6 @@
 - (id)accountStore;
 - (id)accountsEnabledForNotes;
 - (id)backgroundDispatchGroup;
-- (id)contextTestFilePrefix;
 - (void)dealloc;
 - (id)defaultStoreSyncIdWithDesiredSyncId:(id)arg1;
 - (id)freshContext;
@@ -35,9 +30,8 @@
 - (BOOL)localNotesExist;
 - (void)setAccountStore:(id)arg1;
 - (void)setBackgroundDispatchGroup:(id)arg1;
-- (void)setContextTestFilePrefix:(id)arg1;
 - (void)setUpdateAccountInfosLock:(id)arg1;
-- (void)startup;
+- (void)startKeepingAccountInfosUpToDate;
 - (void)updateAccountInfos;
 - (id)updateAccountInfosLock;
 

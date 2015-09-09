@@ -2,13 +2,14 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSArray, NSString;
+@interface SAMPSearchConstraint : AceObject <SAAceSerializable>
 
-@interface SAMPSearchConstraint : AceObject <SAAceSerializable> {
-}
-
-@property(copy) NSString * query;
-@property(copy) NSArray * searchProperties;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *query;
+@property (nonatomic, copy) NSArray *searchProperties;
+@property (readonly) Class superclass;
 
 + (id)searchConstraint;
 + (id)searchConstraintWithDictionary:(id)arg1 context:(id)arg2;

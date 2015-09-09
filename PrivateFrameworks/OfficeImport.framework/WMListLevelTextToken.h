@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSString;
-
 @interface WMListLevelTextToken : NSObject {
     int m_level;
     NSString *m_string;
@@ -15,6 +13,6 @@
 - (id)initWithString:(id)arg1 andLevel:(int)arg2;
 - (int)level;
 - (id)string;
-- (id)stringForIndex:(int)arg1 withFormat:(int)arg2 initialNumber:(int)arg3;
+- (id)stringForIndex:(unsigned int)arg1 withFormat:(int)arg2 orNumberFormatter:(void**)arg3 initialNumber:(unsigned int)arg4;
 
 @end

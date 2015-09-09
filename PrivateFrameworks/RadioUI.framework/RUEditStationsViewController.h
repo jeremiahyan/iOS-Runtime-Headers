@@ -2,34 +2,48 @@
    Image: /System/Library/PrivateFrameworks/RadioUI.framework/RadioUI
  */
 
-@class <RUCreateStationViewControllerDelegate><RUEditStationsViewControllerDelegate>, MPImageCache, NSArray, NSIndexPath, RUCreateStationViewController, RUParallelScrollView, RUProxyTableView, UIAlertView, _UIBackdropView;
-
 @interface RUEditStationsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
     _UIBackdropView *_backdropView;
     RUParallelScrollView *_containerScrollView;
+    struct UIEdgeInsets { 
+        float top; 
+        float left; 
+        float bottom; 
+        float right; 
+    } _containerScrollViewContentInsetAdditions;
     RUCreateStationViewController *_createStationViewController;
     <RUCreateStationViewControllerDelegate><RUEditStationsViewControllerDelegate> *_delegate;
     UIAlertView *_deletionAlertView;
     unsigned int _ignoreReloadDataCount;
-    MPImageCache *_imageCache;
     NSIndexPath *_indexPathToDelete;
     BOOL _isEditing;
     BOOL _needsReloadAfterEndIgnoring;
+    MPUBorderDrawingCache *_stackItemBorderDrawingCache;
     NSArray *_stations;
     RUProxyTableView *_tableView;
 }
 
-@property <RUCreateStationViewControllerDelegate><RUEditStationsViewControllerDelegate> * delegate;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <RUCreateStationViewControllerDelegate><RUEditStationsViewControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+
++ (BOOL)_shouldForwardViewWillTransitionToSize;
 
 - (void).cxx_destruct;
 - (void)_beginIgnoringReloadData;
-- (void)_commitDeletingStationWithCompletionHandler:(id)arg1;
+- (void)_commitDeletingStationWithCompletionHandler:(id /* block */)arg1;
+- (void)_contentSizeCategoryDidChangeNotification:(id)arg1;
 - (void)_didReceiveRadioAccountDidDeauthenticateNotification:(id)arg1;
 - (void)_doneAction:(id)arg1;
 - (void)_editAction:(id)arg1;
 - (void)_endIgnoringReloadData;
 - (void)_radioModelDidChangeNotification:(id)arg1;
 - (void)_updateBarButtonItemsAnimated:(BOOL)arg1;
+- (void)_updateTableViewRowHeight;
+- (void)_updateViewForHorizontalSizeClassChange;
+- (void)_updateViewForTraitCollectionChange;
 - (void)alertView:(id)arg1 clickedButtonAtIndex:(int)arg2;
 - (id)contentScrollView;
 - (void)dealloc;
@@ -49,8 +63,9 @@
 - (int)tableView:(id)arg1 numberOfRowsInSection:(int)arg2;
 - (id)tableView:(id)arg1 targetIndexPathForMoveFromRowAtIndexPath:(id)arg2 toProposedIndexPath:(id)arg3;
 - (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forRowAtIndexPath:(id)arg3;
+- (void)traitCollectionDidChange:(id)arg1;
 - (void)viewDidLoad;
 - (void)viewWillAppear:(BOOL)arg1;
-- (void)willAnimateRotationToInterfaceOrientation:(int)arg1 duration:(double)arg2;
+- (void)viewWillTransitionToSize:(struct CGSize { float x1; float x2; })arg1 withTransitionCoordinator:(id)arg2;
 
 @end

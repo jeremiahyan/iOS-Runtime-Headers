@@ -2,37 +2,28 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@class NSObject<OS_dispatch_queue>;
-
 @interface MPNetworkPlayabilityMonitor : NSObject {
     int _effectiveNetworkTypeForCloudPlayback;
-    int _effectiveNetworkTypeForRadioPlayback;
     double _lastAverageBitrate;
     int _networkType;
     NSObject<OS_dispatch_queue> *_queue;
-    double _radioMinimumBitrateForHighQuality;
-    BOOL _supportsRadio;
 }
 
-@property(readonly) int effectiveNetworkTypeForPlayback;
-@property(readonly) int networkType;
-@property BOOL supportsRadio;
+@property (nonatomic, readonly) int effectiveNetworkTypeForPlayback;
+@property (nonatomic, readonly) double lastAverageBitrate;
+@property (nonatomic, readonly) int networkType;
 
 + (id)sharedNetworkPlayabilityMonitor;
 
 - (void).cxx_destruct;
 - (void)_networkTypeDidChangeNotification:(id)arg1;
-- (int)_onQueueEffectiveNetworkTypeForAverageBitrate:(double)arg1 playbackType:(int)arg2;
+- (int)_onQueueEffectiveNetworkTypeForAverageBitrate:(double)arg1;
 - (void)_onQueueUpdateEffectiveNetworkTypesForPlayback;
-- (void)_radioStoreBagDidLoadNotification:(id)arg1;
-- (void)_updateRadioMinimumBitrateWithStoreBag:(id)arg1;
 - (void)adjustEffectiveNetworkTypeUsingPreviouslyPlayedItem:(id)arg1;
 - (void)dealloc;
 - (int)effectiveNetworkTypeForPlayback;
-- (int)effectiveNetworkTypeForPlaybackType:(int)arg1;
 - (id)init;
+- (double)lastAverageBitrate;
 - (int)networkType;
-- (void)setSupportsRadio:(BOOL)arg1;
-- (BOOL)supportsRadio;
 
 @end

@@ -2,9 +2,7 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class <UIWebSelectedItemPrivate>, DOMHTMLSelectElement, NSArray;
-
-@interface UIWebSelectSinglePicker : UIPickerView <UIWebFormControl, UIPickerViewDataSource, UIPickerViewDelegate> {
+@interface UIWebSelectSinglePicker : UIPickerView <UIPickerViewDataSource, UIPickerViewDelegate, UIWebFormControl> {
     int _indexToSelectWhenDone;
     NSArray *_optionItems;
     <UIWebSelectedItemPrivate> *_optionToSelectWhenDone;
@@ -12,6 +10,11 @@
     int _selectedIndex;
     <UIWebSelectedItemPrivate> *_selectedOptionItem;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)controlBeginEditing;
 - (void)controlEndEditing;

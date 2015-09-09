@@ -2,13 +2,14 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSString;
+@interface SACommandIgnored : SABaseClientBoundCommand <SAServerBoundCommand>
 
-@interface SACommandIgnored : SABaseClientBoundCommand <SAServerBoundCommand> {
-}
-
-@property(copy) NSString * aceId;
-@property(copy) NSString * refId;
+@property (nonatomic, copy) NSString *aceId;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *refId;
+@property (readonly) Class superclass;
 
 + (id)commandIgnored;
 + (id)commandIgnoredWithDictionary:(id)arg1 context:(id)arg2;

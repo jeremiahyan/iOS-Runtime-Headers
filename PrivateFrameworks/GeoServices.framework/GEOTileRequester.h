@@ -2,27 +2,31 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class <GEOTileRequesterDelegate>, GEOTileKeyList, NSData, NSString, NSThread;
-
 @interface GEOTileRequester : NSObject {
     NSData *_auditToken;
     NSString *_bundleIdentifier;
     NSString *_bundleVersion;
+    GEOTileKeyMap *_cachedData;
+    GEOTileKeyMap *_cachedEtags;
     id _context;
     <GEOTileRequesterDelegate> *_delegate;
     GEOTileKeyList *_keyList;
+    NSLocale *_locale;
+    GEOResourceManifestConfiguration *_manifestConfiguration;
     BOOL _requireWiFi;
     NSThread *_thread;
 }
 
-@property(retain) NSData * auditToken;
-@property(retain) NSString * bundleIdentifier;
-@property(retain) NSString * bundleVersion;
-@property(retain) id context;
-@property(retain) <GEOTileRequesterDelegate> * delegate;
-@property(readonly) GEOTileKeyList * keyList;
-@property BOOL requireWiFi;
-@property(retain) NSThread * thread;
+@property (nonatomic, retain) NSData *auditToken;
+@property (nonatomic, retain) NSString *bundleIdentifier;
+@property (nonatomic, retain) NSString *bundleVersion;
+@property (nonatomic, readonly) GEOTileKeyMap *cachedData;
+@property (nonatomic, readonly) GEOTileKeyMap *cachedEtags;
+@property (nonatomic, retain) id context;
+@property (nonatomic, retain) <GEOTileRequesterDelegate> *delegate;
+@property (nonatomic, readonly) GEOTileKeyList *keyList;
+@property (nonatomic) BOOL requireWiFi;
+@property (nonatomic, retain) NSThread *thread;
 
 + (unsigned int)expiringTilesetsCount;
 + (struct { unsigned int x1; double x2; }*)newExpiringTilesets;
@@ -32,11 +36,13 @@
 - (id)auditToken;
 - (id)bundleIdentifier;
 - (id)bundleVersion;
+- (id)cachedData;
+- (id)cachedEtags;
 - (void)cancel;
 - (id)context;
 - (void)dealloc;
 - (id)delegate;
-- (id)initWithKeyList:(id)arg1;
+- (id)initWithKeyList:(id)arg1 manifestConfiguration:(id)arg2 locale:(id)arg3 cachedEtags:(id)arg4 cachedData:(id)arg5;
 - (id)keyList;
 - (BOOL)requireWiFi;
 - (void)setAuditToken:(id)arg1;

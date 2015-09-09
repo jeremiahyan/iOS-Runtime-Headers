@@ -2,8 +2,9 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface TSKAddedToDocumentContext : NSObject {
-}
+@interface TSKAddedToDocumentContext : NSObject
+
+@property (retain) <TSKMultiTableRemapping> *multiTableRemapper;
 
 + (id)changeTrackingSubstorageForCopyContext;
 + (id)dragCopyContext;
@@ -12,6 +13,7 @@
 + (id)importingContextWithImporterID:(id)arg1;
 + (id)importingMasterTemplateContextWithImporterID:(id)arg1;
 + (id)insertingPrototypeContext;
++ (id)moveSectionContext;
 + (id)movingContext;
 + (id)pastingContext;
 + (id)pastingMatchStyleContext;
@@ -19,15 +21,20 @@
 + (id)undoDeleteContext;
 + (id)unhidingContext;
 
+- (void)addDrawable:(id)arg1;
+- (void)addDrawables:(id)arg1;
+- (void)addInsertedTableInfo:(id)arg1;
+- (id)addedDrawables;
 - (BOOL)autoUpdateSmartFields;
 - (BOOL)changeTrackingSubstorage;
-- (BOOL)exportingFootnotes;
 - (id)importerID;
+- (id)insertedTableInfos;
 - (BOOL)invokeDOLC;
 - (BOOL)matchStyle;
-- (void)setTableIDMap:(struct __CFDictionary { }*)arg1;
+- (id)multiTableRemapper;
+- (BOOL)preserveChangeTracking;
+- (void)setMultiTableRemapper:(id)arg1;
 - (BOOL)syncChanges;
-- (struct __CFDictionary { }*)tableIDMap;
 - (id)undoContext;
 - (BOOL)uniqueBookmarks;
 - (BOOL)wasDragMoved;

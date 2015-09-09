@@ -2,17 +2,15 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, NSMutableDictionary;
-
 @interface UIKBTree_Compile : UIKBTree {
     NSMutableDictionary *refs;
     NSMutableDictionary *symbols;
 }
 
-@property(readonly) NSArray * refList;
-@property(retain) NSMutableDictionary * refs;
-@property(retain) NSMutableDictionary * symbols;
-@property BOOL variable;
+@property (nonatomic, readonly) NSArray *refList;
+@property (nonatomic, retain) NSMutableDictionary *refs;
+@property (nonatomic, retain) NSMutableDictionary *symbols;
+@property (nonatomic) BOOL variable;
 
 + (id)stringEnumForType:(int)arg1;
 + (id)treeOfType:(int)arg1;
@@ -27,7 +25,6 @@
 - (int)indexOfSubtreeWithType:(int)arg1;
 - (id)initWithType:(int)arg1;
 - (BOOL)isSameAsTree:(id)arg1;
-- (BOOL)isSymbolType;
 - (id)listAtIndex:(int)arg1;
 - (void)mergePropertiesWithOthers:(id)arg1;
 - (void)mergePropertiesWithSubtreeRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1 properties:(id)arg2;

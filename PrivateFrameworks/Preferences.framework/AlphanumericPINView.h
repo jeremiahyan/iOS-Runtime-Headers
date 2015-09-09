@@ -2,13 +2,16 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@class AlphanumericPINTableViewCell, UITableView, UITextField;
-
 @interface AlphanumericPINView : PINView <UITableViewDataSource> {
     AlphanumericPINTableViewCell *_cell;
     UITextField *_passcodeField;
     UITableView *_table;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)appendString:(id)arg1;
 - (BOOL)becomeFirstResponder;
@@ -24,6 +27,8 @@
 - (BOOL)resignFirstResponder;
 - (void)setBlocked:(BOOL)arg1;
 - (void)setStringValue:(id)arg1;
+- (void)setTextFieldKeyboardAppearance:(int)arg1;
+- (void)setTextFieldKeyboardType:(int)arg1;
 - (void)showError:(id)arg1 animate:(BOOL)arg2;
 - (id)stringValue;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;

@@ -2,10 +2,7 @@
    Image: /System/Library/PrivateFrameworks/StoreBookkeeper.framework/StoreBookkeeper
  */
 
-@class NSArray, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString, SBKSyncBagContext, SBKSyncResponseData, SBKTransactionController;
-
 @interface SBKSyncRequestHandler : SBKRequestHandler <SBKSyncTransactionProcessing> {
-    SBKSyncBagContext *_bagContext;
     NSString *_overrideResponseDomainVersion;
     NSObject<OS_dispatch_queue> *_queue;
     NSMutableArray *_responseConflictedKeys;
@@ -16,19 +13,21 @@
     SBKTransactionController *_transactionController;
 }
 
-@property(readonly) SBKSyncBagContext * bagContext;
-@property(readonly) NSArray * responseConflictedKeys;
-@property(readonly) SBKSyncResponseData * responseData;
-@property(readonly) NSArray * responseDeletedKeys;
-@property(copy) NSString * responseDomainVersion;
-@property(readonly) NSArray * responseUpdatedKeys;
-@property(readonly) SBKTransactionController * transactionController;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) NSArray *responseConflictedKeys;
+@property (readonly) SBKSyncResponseData *responseData;
+@property (readonly) NSArray *responseDeletedKeys;
+@property (copy) NSString *responseDomainVersion;
+@property (readonly) NSArray *responseUpdatedKeys;
+@property (readonly) Class superclass;
+@property (readonly) SBKTransactionController *transactionController;
 
 + (int)conflictDetectionType;
 
 - (void).cxx_destruct;
 - (void)_onQueue_clearTransactionResponseData;
-- (id)bagContext;
 - (void)clearTransactionResponseData;
 - (id)initWithBagContext:(id)arg1;
 - (id)responseConflictedKeys;
@@ -38,7 +37,7 @@
 - (id)responseDomainVersion;
 - (id)responseUpdatedKeys;
 - (void)setResponseDomainVersion:(id)arg1;
-- (void)startTransactionWithSyncAnchor:(id)arg1 keysToUpdate:(id)arg2 keysToDelete:(id)arg3 finishedBlock:(id)arg4;
+- (void)startTransactionWithSyncAnchor:(id)arg1 keysToUpdate:(id)arg2 keysToDelete:(id)arg3 finishedBlock:(id /* block */)arg4;
 - (void)transaction:(id)arg1 didProcessResponseData:(id)arg2;
 - (id)transaction:(id)arg1 keyValuePairForUpdatedKey:(id)arg2;
 - (void)transaction:(id)arg1 processDeletedKey:(id)arg2 isDirty:(BOOL*)arg3;

@@ -2,21 +2,25 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSString, NSURL;
+@interface SAAlarmUpdateCompleted : SABaseCommand <SAServerBoundCommand>
 
-@interface SAAlarmUpdateCompleted : SABaseCommand <SAServerBoundCommand> {
-}
-
-@property(copy) NSString * aceId;
-@property(copy) NSURL * alarmId;
-@property(copy) NSString * refId;
+@property (nonatomic, copy) NSString *aceId;
+@property (nonatomic, copy) NSURL *alarmId;
+@property (nonatomic, copy) NSArray *alarmIds;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *refId;
+@property (readonly) Class superclass;
 
 + (id)updateCompleted;
 + (id)updateCompletedWithDictionary:(id)arg1 context:(id)arg2;
 
 - (id)alarmId;
+- (id)alarmIds;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 - (void)setAlarmId:(id)arg1;
+- (void)setAlarmIds:(id)arg1;
 
 @end

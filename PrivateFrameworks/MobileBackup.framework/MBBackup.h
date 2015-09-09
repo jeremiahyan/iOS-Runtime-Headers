@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/MobileBackup.framework/MobileBackup
  */
 
-@class NSArray, NSString;
-
-@interface MBBackup : NSObject <NSCopying, NSCoding> {
+@interface MBBackup : NSObject <NSCoding, NSCopying> {
     NSString *_backupUDID;
     NSString *_deviceClass;
     NSString *_hardwareModel;
@@ -14,13 +12,13 @@
     NSArray *_snapshots;
 }
 
-@property(readonly) NSString * backupUDID;
-@property(readonly) NSString * deviceClass;
-@property(readonly) NSString * hardwareModel;
-@property(readonly) NSString * marketingName;
-@property(readonly) NSString * productType;
-@property(getter=canRestoreSystemFiles,readonly) BOOL restoreSystemFiles;
-@property(readonly) NSArray * snapshots;
+@property (nonatomic, readonly) NSString *backupUDID;
+@property (nonatomic, readonly) NSString *deviceClass;
+@property (nonatomic, readonly) NSString *hardwareModel;
+@property (nonatomic, readonly) NSString *marketingName;
+@property (nonatomic, readonly) NSString *productType;
+@property (getter=canRestoreSystemFiles, nonatomic, readonly) BOOL restoreSystemFiles;
+@property (nonatomic, readonly) NSArray *snapshots;
 
 - (id)backupUDID;
 - (BOOL)canRestoreSystemFiles;

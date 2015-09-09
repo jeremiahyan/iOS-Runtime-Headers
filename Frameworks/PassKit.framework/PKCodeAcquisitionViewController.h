@@ -2,9 +2,7 @@
    Image: /System/Library/Frameworks/PassKit.framework/PassKit
  */
 
-@class <PKCodeAcquisitionDelegate>, NSMutableData, NSSet, NSURLConnection, PKCaptureSession, PKReticleView, UILabel, UINavigationBar, UIProgressView;
-
-@interface PKCodeAcquisitionViewController : UIViewController <PKCaptureDelegate, NSURLConnectionDataDelegate, UIGestureRecognizerDelegate> {
+@interface PKCodeAcquisitionViewController : UIViewController <NSURLConnectionDataDelegate, PKCaptureDelegate, UIGestureRecognizerDelegate> {
     UILabel *_captionLabel;
     PKCaptureSession *_captureSession;
     <PKCodeAcquisitionDelegate> *_delegate;
@@ -19,11 +17,15 @@
     NSSet *_supportedBarcodeTypes;
 }
 
-@property <PKCodeAcquisitionDelegate> * delegate;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <PKCodeAcquisitionDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)_cleanupDownload;
-- (void)_handleDownloadFailureWithReason:(id)arg1 errorToDisplay:(id)arg2;
 - (void)_handleDownloadFailureWithReason:(id)arg1;
+- (void)_handleDownloadFailureWithReason:(id)arg1 errorToDisplay:(id)arg2;
 - (void)_handleDownloadedPass:(id)arg1;
 - (void)_handleFoundCode:(id)arg1;
 - (void)_handleSingleTap:(id)arg1;
@@ -41,6 +43,7 @@
 - (BOOL)gestureRecognizer:(id)arg1 shouldReceiveTouch:(id)arg2;
 - (id)init;
 - (void)setDelegate:(id)arg1;
+- (BOOL)shouldAutorotate;
 - (unsigned int)supportedInterfaceOrientations;
 - (void)viewDidAppear:(BOOL)arg1;
 - (void)viewDidDisappear:(BOOL)arg1;

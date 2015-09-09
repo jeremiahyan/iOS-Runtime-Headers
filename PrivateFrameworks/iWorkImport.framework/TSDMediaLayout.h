@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class TSDMutableStroke;
-
 @interface TSDMediaLayout : TSDStyledLayout {
     struct CGRect { 
         struct CGPoint { 
@@ -14,8 +12,7 @@
             float width; 
             float height; 
         } size; 
-    struct { 
-        unsigned int alignmentFrame : 1; 
+    } mBoundsForStandardKnobs;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -25,23 +22,21 @@
             float width; 
             float height; 
         } size; 
-    } mBoundsForStandardKnobs;
     } mCachedAlignmentFrame;
     TSDMutableStroke *mDynamicStroke;
+    struct { 
+        unsigned int alignmentFrame : 1; 
     } mMediaInvalidFlags;
     BOOL mShouldRenderFrameStroke;
 }
 
-@property struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } boundsForStandardKnobs;
-@property BOOL shouldRenderFrameStroke;
+@property (nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } boundsForStandardKnobs;
+@property (nonatomic) BOOL shouldRenderFrameStroke;
 
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })alignmentFrame;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })alignmentFrameInRoot;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })boundsForStandardKnobs;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })computeAlignmentFrameInRoot:(BOOL)arg1;
-- (void)dynamicStrokeWidthChangeDidBegin;
-- (void)dynamicStrokeWidthChangeDidEnd;
-- (void)dynamicStrokeWidthUpdateToValue:(float)arg1;
 - (id)initWithInfo:(id)arg1;
 - (void)invalidateAlignmentFrame;
 - (BOOL)isStrokeBeingManipulated;

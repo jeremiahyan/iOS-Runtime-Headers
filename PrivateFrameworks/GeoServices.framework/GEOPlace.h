@@ -2,19 +2,7 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class GEOAddress, GEOBusiness, GEOLatLng, GEOMapRegion, GEORating, NSMutableArray, NSString;
-
 @interface GEOPlace : PBCodable <GEOURLSerializable, NSCopying> {
-    struct { 
-        unsigned int area : 1; 
-        unsigned int geoId : 1; 
-        unsigned int uID : 1; 
-        unsigned int addressGeocodeAccuracy : 1; 
-        unsigned int localSearchProviderID : 1; 
-        unsigned int type : 1; 
-        unsigned int version : 1; 
-        unsigned int waypointLabelType : 1; 
-        unsigned int isDisputed : 1; 
     GEOAddress *_address;
     int _addressGeocodeAccuracy;
     double _area;
@@ -22,6 +10,14 @@
     GEOLatLng *_center;
     NSMutableArray *_entryPoints;
     long long _geoId;
+    struct { 
+        unsigned int area : 1; 
+        unsigned int geoId : 1; 
+        unsigned int uID : 1; 
+        unsigned int addressGeocodeAccuracy : 1; 
+        unsigned int localSearchProviderID : 1; 
+        unsigned int type : 1; 
+        unsigned int isDisputed : 1; 
     } _has;
     NSString *_inputLanguage;
     BOOL _isDisputed;
@@ -33,55 +29,59 @@
     NSString *_phoneticName;
     NSString *_spokenAddress;
     NSString *_spokenName;
+    GEOStructuredAddress *_spokenStructuredAddress;
+    GEOTimezone *_timezone;
     int _type;
     long long _uID;
-    int _version;
-    int _waypointLabelType;
 }
 
-@property(retain) GEOAddress * address;
-@property int addressGeocodeAccuracy;
-@property double area;
-@property(retain) NSMutableArray * business;
-@property(retain) GEOLatLng * center;
-@property(retain) NSMutableArray * entryPoints;
-@property(readonly) GEOBusiness * firstBusiness;
-@property(readonly) GEORating * firstRating;
-@property long long geoId;
-@property(readonly) BOOL hasAddress;
-@property BOOL hasAddressGeocodeAccuracy;
-@property BOOL hasArea;
-@property(readonly) BOOL hasCenter;
-@property BOOL hasGeoId;
-@property(readonly) BOOL hasInputLanguage;
-@property BOOL hasIsDisputed;
-@property BOOL hasLocalSearchProviderID;
-@property(readonly) BOOL hasMapRegion;
-@property(readonly) BOOL hasName;
-@property(readonly) BOOL hasPhoneticAddress;
-@property(readonly) BOOL hasPhoneticLocaleIdentifier;
-@property(readonly) BOOL hasPhoneticName;
-@property(readonly) BOOL hasSpokenAddress;
-@property(readonly) BOOL hasSpokenName;
-@property BOOL hasType;
-@property BOOL hasUID;
-@property BOOL hasVersion;
-@property BOOL hasWaypointLabelType;
-@property(retain) NSString * inputLanguage;
-@property BOOL isDisputed;
-@property int localSearchProviderID;
-@property(retain) GEOMapRegion * mapRegion;
-@property(retain) NSString * name;
-@property(retain) GEOAddress * phoneticAddress;
-@property(retain) NSString * phoneticLocaleIdentifier;
-@property(retain) NSString * phoneticName;
-@property(retain) NSString * spokenAddress;
-@property(retain) NSString * spokenName;
-@property int type;
-@property long long uID;
-@property int version;
-@property int waypointLabelType;
-@property(readonly) NSString * yelpID;
+@property (nonatomic, retain) GEOAddress *address;
+@property (nonatomic) int addressGeocodeAccuracy;
+@property (nonatomic) double area;
+@property (nonatomic, retain) NSMutableArray *business;
+@property (nonatomic, retain) GEOLatLng *center;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) NSMutableArray *entryPoints;
+@property (nonatomic, readonly) GEOBusiness *firstBusiness;
+@property (nonatomic) long long geoId;
+@property (nonatomic, readonly) BOOL hasAddress;
+@property (nonatomic) BOOL hasAddressGeocodeAccuracy;
+@property (nonatomic) BOOL hasArea;
+@property (nonatomic, readonly) BOOL hasCenter;
+@property (nonatomic) BOOL hasGeoId;
+@property (nonatomic, readonly) BOOL hasInputLanguage;
+@property (nonatomic) BOOL hasIsDisputed;
+@property (nonatomic) BOOL hasLocalSearchProviderID;
+@property (nonatomic, readonly) BOOL hasMapRegion;
+@property (nonatomic, readonly) BOOL hasName;
+@property (nonatomic, readonly) BOOL hasPhoneticAddress;
+@property (nonatomic, readonly) BOOL hasPhoneticLocaleIdentifier;
+@property (nonatomic, readonly) BOOL hasPhoneticName;
+@property (nonatomic, readonly) BOOL hasSpokenAddress;
+@property (nonatomic, readonly) BOOL hasSpokenName;
+@property (nonatomic, readonly) BOOL hasSpokenStructuredAddress;
+@property (nonatomic, readonly) BOOL hasTimezone;
+@property (nonatomic) BOOL hasType;
+@property (nonatomic) BOOL hasUID;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) NSString *inputLanguage;
+@property (nonatomic) BOOL isDisputed;
+@property (nonatomic) int localSearchProviderID;
+@property (nonatomic, retain) GEOMapRegion *mapRegion;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) GEOAddress *phoneticAddress;
+@property (nonatomic, retain) NSString *phoneticLocaleIdentifier;
+@property (nonatomic, retain) NSString *phoneticName;
+@property (nonatomic, retain) NSString *spokenAddress;
+@property (nonatomic, retain) NSString *spokenName;
+@property (nonatomic, retain) GEOStructuredAddress *spokenStructuredAddress;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) GEOTimezone *timezone;
+@property (nonatomic) int type;
+@property (nonatomic) long long uID;
+
+// Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
 
 + (id)_placesFromDirectionsAction:(id)arg1 hasCurrentLocation:(BOOL*)arg2 currentLocationIndex:(unsigned int*)arg3 options:(id*)arg4;
 + (id)_placesFromPresentAction:(id)arg1 hasCurrentLocation:(BOOL*)arg2 currentLocationIndex:(unsigned int*)arg3 options:(id*)arg4;
@@ -100,6 +100,7 @@
 + (id)_urlToShowCurrentLocationWithOptions:(id)arg1;
 + (id)_urlToShowPlaces:(id)arg1 options:(id)arg2;
 + (id)_urlToShowURLRepresentations:(id)arg1 options:(id)arg2;
++ (id)placeForPlaceData:(id)arg1;
 
 - (BOOL)_isEquivalentURLRepresentationTo:(id)arg1;
 - (id)_urlForDirectionsFromCurrentLocationWithOptions:(id)arg1;
@@ -120,14 +121,11 @@
 - (double)area;
 - (id)arrivalMapRegion;
 - (id)arrivalMapRegionForTransportType:(int)arg1;
+- (id)bestName;
 - (id)business;
 - (id)businessAtIndex:(unsigned int)arg1;
 - (unsigned int)businessCount;
-- (unsigned long long)businessID;
-- (id)businessName;
 - (id)center;
-- (id)clLocation;
-- (id)clRegion;
 - (void)clearBusiness;
 - (void)clearEntryPoints;
 - (struct { double x1; double x2; })coordinate;
@@ -140,8 +138,8 @@
 - (id)entryPoints;
 - (unsigned int)entryPointsCount;
 - (id)firstBusiness;
-- (id)firstRating;
 - (long long)geoId;
+- (id)geoMapItem;
 - (BOOL)hasAddress;
 - (BOOL)hasAddressGeocodeAccuracy;
 - (BOOL)hasArea;
@@ -155,22 +153,25 @@
 - (BOOL)hasPhoneticAddress;
 - (BOOL)hasPhoneticLocaleIdentifier;
 - (BOOL)hasPhoneticName;
-- (BOOL)hasSingleBusiness;
 - (BOOL)hasSpokenAddress;
 - (BOOL)hasSpokenName;
+- (BOOL)hasSpokenStructuredAddress;
+- (BOOL)hasTimezone;
 - (BOOL)hasType;
 - (BOOL)hasUID;
-- (BOOL)hasVersion;
-- (BOOL)hasWaypointLabelType;
 - (unsigned int)hash;
-- (id)initWithCLLocation:(id)arg1;
-- (id)initWithPlacemark:(id)arg1;
+- (id)initWithLatitude:(double)arg1 longitude:(double)arg2;
+- (id)initWithLatitude:(double)arg1 longitude:(double)arg2 addressDictionary:(id)arg3;
+- (id)initWithLocation:(id)arg1 addressDictionary:(id)arg2 name:(id)arg3 businessURL:(id)arg4 phoneNumber:(id)arg5 muid:(unsigned long long)arg6 attributionID:(id)arg7 sampleSizeForUserRatingScore:(unsigned int)arg8 normalizedUserRatingScore:(float)arg9;
+- (id)initWithName:(id)arg1 placeType:(int)arg2 areaInMeters:(double)arg3;
+- (id)initWithPlaceInfo:(id)arg1 entity:(id)arg2 address:(id)arg3 bounds:(id)arg4 roadAccessInfo:(id)arg5;
 - (id)initWithUrlRepresentation:(id)arg1;
 - (id)inputLanguage;
 - (BOOL)isDisputed;
 - (BOOL)isEqual:(id)arg1;
 - (int)localSearchProviderID;
 - (id)mapRegion;
+- (void)mergeFrom:(id)arg1;
 - (id)name;
 - (id)phoneticAddress;
 - (id)phoneticLocaleIdentifier;
@@ -191,8 +192,6 @@
 - (void)setHasLocalSearchProviderID:(BOOL)arg1;
 - (void)setHasType:(BOOL)arg1;
 - (void)setHasUID:(BOOL)arg1;
-- (void)setHasVersion:(BOOL)arg1;
-- (void)setHasWaypointLabelType:(BOOL)arg1;
 - (void)setInputLanguage:(id)arg1;
 - (void)setIsDisputed:(BOOL)arg1;
 - (void)setLocalSearchProviderID:(int)arg1;
@@ -203,18 +202,25 @@
 - (void)setPhoneticName:(id)arg1;
 - (void)setSpokenAddress:(id)arg1;
 - (void)setSpokenName:(id)arg1;
+- (void)setSpokenStructuredAddress:(id)arg1;
+- (void)setTimezone:(id)arg1;
 - (void)setType:(int)arg1;
 - (void)setUID:(long long)arg1;
-- (void)setVersion:(int)arg1;
-- (void)setWaypointLabelType:(int)arg1;
 - (id)spokenAddress;
 - (id)spokenName;
+- (id)spokenStructuredAddress;
+- (id)timezone;
 - (int)type;
 - (long long)uID;
 - (id)urlRepresentation;
-- (int)version;
-- (int)waypointLabelType;
 - (void)writeTo:(id)arg1;
-- (id)yelpID;
+
+// Image: /System/Library/Frameworks/MapKit.framework/MapKit
+
+- (unsigned long long)businessID;
+- (id)clLocation;
+- (id)clRegion;
+- (id)initWithCLLocation:(id)arg1;
+- (id)initWithPlacemark:(id)arg1;
 
 @end

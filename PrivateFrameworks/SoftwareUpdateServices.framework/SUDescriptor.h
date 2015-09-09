@@ -2,10 +2,10 @@
    Image: /System/Library/PrivateFrameworks/SoftwareUpdateServices.framework/SoftwareUpdateServices
  */
 
-@class NSString, SUDocumentation;
-
-@interface SUDescriptor : NSObject <NSSecureCoding, NSCopying> {
+@interface SUDescriptor : NSObject <NSCopying, NSSecureCoding> {
     BOOL _autoDownloadAllowableForCellular;
+    BOOL _disableCDLevel4;
+    BOOL _disableSiriVoiceDeletion;
     SUDocumentation *_documentation;
     BOOL _downloadAllowableForCellular;
     unsigned long long _downloadSize;
@@ -18,33 +18,42 @@
     NSString *_productSystemName;
     NSString *_productVersion;
     NSString *_publisher;
+    BOOL _streamingZipCapable;
     unsigned long long _unarchiveSize;
     int _updateType;
 }
 
-@property BOOL autoDownloadAllowableForCellular;
-@property(retain) SUDocumentation * documentation;
-@property unsigned long long downloadSize;
-@property(getter=isDownloadable) BOOL downloadable;
-@property(getter=isDownloadableOverCellular) BOOL downloadableOverCellular;
-@property unsigned long long installationSize;
-@property(getter=_msuPrepareSize,setter=_setMsuPrepareSize:) unsigned long long msuPrepareSize;
-@property(retain) NSString * productBuildVersion;
-@property(retain) NSString * productSystemName;
-@property(retain) NSString * productVersion;
-@property(retain) NSString * publisher;
-@property(getter=_unarchiveSize,setter=_setUnarchiveSize:) unsigned long long unarchiveSize;
-@property int updateType;
+@property (nonatomic) BOOL autoDownloadAllowableForCellular;
+@property (getter=cdLevel4Disabled, setter=_setDisableCDLevel4:, nonatomic) BOOL disableCDLevel4;
+@property (getter=siriVoiceDeletionDisabled, setter=_setDisableSiriVoiceDeletion:, nonatomic) BOOL disableSiriVoiceDeletion;
+@property (nonatomic, retain) SUDocumentation *documentation;
+@property (nonatomic) unsigned long long downloadSize;
+@property (getter=isDownloadable, nonatomic) BOOL downloadable;
+@property (getter=isDownloadableOverCellular, nonatomic) BOOL downloadableOverCellular;
+@property (nonatomic) unsigned long long installationSize;
+@property (getter=_msuPrepareSize, setter=_setMsuPrepareSize:, nonatomic) unsigned long long msuPrepareSize;
+@property (nonatomic, retain) NSString *productBuildVersion;
+@property (nonatomic, retain) NSString *productSystemName;
+@property (nonatomic, retain) NSString *productVersion;
+@property (nonatomic, retain) NSString *publisher;
+@property (getter=_isStreamingZipCapable, setter=_setStreamingZipCapable:, nonatomic) BOOL streamingZipCapable;
+@property (getter=_unarchiveSize, setter=_setUnarchiveSize:, nonatomic) unsigned long long unarchiveSize;
+@property (nonatomic) int updateType;
 
 + (BOOL)supportsSecureCoding;
 
 - (id)_buildCompareKey;
 - (BOOL)_hasValue:(id)arg1;
+- (BOOL)_isStreamingZipCapable;
 - (unsigned long long)_msuPrepareSize;
+- (void)_setDisableCDLevel4:(BOOL)arg1;
+- (void)_setDisableSiriVoiceDeletion:(BOOL)arg1;
 - (void)_setMsuPrepareSize:(unsigned long long)arg1;
+- (void)_setStreamingZipCapable:(BOOL)arg1;
 - (void)_setUnarchiveSize:(unsigned long long)arg1;
 - (unsigned long long)_unarchiveSize;
 - (BOOL)autoDownloadAllowableForCellular;
+- (BOOL)cdLevel4Disabled;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)description;
@@ -76,6 +85,7 @@
 - (void)setProductVersion:(id)arg1;
 - (void)setPublisher:(id)arg1;
 - (void)setUpdateType:(int)arg1;
+- (BOOL)siriVoiceDeletionDisabled;
 - (unsigned long long)totalRequiredFreeSpace;
 - (int)updateType;
 

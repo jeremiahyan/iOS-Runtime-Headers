@@ -2,21 +2,7 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class GQDSStyle, GQDWPContainerHint, GQHStyle, GQWrapPointSet;
-
 @interface GQHPagesState : GQHState <GQWrapPointGenerator> {
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
-    struct CGSize { 
-        float width; 
-        float height; 
     long mAttachmentIdCounter;
     struct __CFArray { } *mAttachmentPositions;
     GQDSStyle *mCurrentBaseParagraphStyle;
@@ -42,10 +28,22 @@
     int mHeaderFooterPageNumber;
     struct __CFDictionary { } *mHeaders;
     BOOL mIsMappingHeadersFooters;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } mLastFrame;
     GQDWPContainerHint *mLastInsertedContainerHint;
     BOOL mMappingFloatingDrawables;
     int mMode;
+    struct CGSize { 
+        float width; 
+        float height; 
     } mPageSize;
     struct __CFDictionary { } *mPageWrapPointsMap;
     int mProgressiveIndex;
@@ -57,6 +55,11 @@
     BOOL mStartedSection;
     struct __CFArray { } *mTocHrefStack;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (id).cxx_construct;
 - (void)addAttachmentPosition:(double)arg1;

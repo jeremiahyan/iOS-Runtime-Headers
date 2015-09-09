@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/Social.framework/Social
  */
 
-@class NSMutableArray, NSMutableDictionary, SLSheetTextComposeView, UILabel, UITextView, UIView, UIView<SLSheetPreviewView>;
-
 @interface SLSheetContentView : UIView {
     UIView *_accessoryView;
     BOOL _autoCompletionMode;
@@ -11,18 +9,18 @@
     float _autoCompletionTextViewHeight;
     UIView *_bottomSeparator;
     NSMutableArray *_constraints;
-    int _currentBarMetrics;
+    int _currentVerticalSizeClass;
     NSMutableDictionary *_intrinsicSizes;
     float _previewTopMargin;
-    UIView<SLSheetPreviewView> *_previewView;
+    UIView *_previewView;
     SLSheetTextComposeView *_textComposeView;
     float _textViewTopMargin;
 }
 
-@property(retain) UIView * accessoryView;
-@property(readonly) UILabel * placeholderLabel;
-@property(retain) UIView<SLSheetPreviewView> * previewView;
-@property(readonly) UITextView * textView;
+@property (nonatomic, retain) UIView *accessoryView;
+@property (nonatomic, readonly) UILabel *placeholderLabel;
+@property (nonatomic, retain) UIView *previewView;
+@property (nonatomic, readonly) UITextView *textView;
 
 - (void).cxx_destruct;
 - (float)_previewMarginForContentSize:(struct CGSize { float x1; float x2; })arg1;
@@ -43,8 +41,8 @@
 - (id)previewView;
 - (void)resetPreview;
 - (void)setAccessoryView:(id)arg1;
-- (void)setCurrentBarMetrics:(int)arg1;
-- (void)setIntrinsicSize:(struct CGSize { float x1; float x2; })arg1 forBarMetrics:(int)arg2;
+- (void)setCurrentVerticalSizeClass:(int)arg1;
+- (void)setIntrinsicSize:(struct CGSize { float x1; float x2; })arg1 forVerticalSizeClass:(int)arg2;
 - (void)setPreviewView:(id)arg1;
 - (id)textView;
 - (void)updateConstraints;

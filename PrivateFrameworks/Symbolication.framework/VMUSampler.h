@@ -2,13 +2,7 @@
    Image: /System/Library/PrivateFrameworks/Symbolication.framework/Symbolication
  */
 
-@class NSConditionLock, NSMapTable, NSMutableArray, NSString, VMUProcessDescription, VMUTaskMemoryCache;
-
 @interface VMUSampler : NSObject {
-    struct _CSTypeRef { 
-        unsigned int _opaque_1; 
-        unsigned int _opaque_2; 
-    void *_cfi;
     id _delegate;
     unsigned int _dispatchThreadHardLimit;
     unsigned int _dispatchThreadHardLimitCount;
@@ -36,6 +30,9 @@
     unsigned int _samplingThreadPort;
     BOOL _stacksFixed;
     NSConditionLock *_stateLock;
+    struct _CSTypeRef { 
+        unsigned int _opaque_1; 
+        unsigned int _opaque_2; 
     } _symbolicator;
     unsigned int _task;
     BOOL _taskIs64Bit;
@@ -47,12 +44,9 @@
 }
 
 + (void)initialize;
-+ (id)sampleAllThreadsOfPID:(int)arg1 withSymbolicator:(id)arg2;
 + (id)sampleAllThreadsOfPID:(int)arg1;
-+ (id)sampleAllThreadsOfTask:(unsigned int)arg1 symbolicate:(BOOL)arg2;
-+ (id)sampleAllThreadsOfTask:(unsigned int)arg1 withSymbolicator:(id)arg2 symbolicate:(BOOL)arg3;
-+ (id)sampleAllThreadsOfTask:(unsigned int)arg1 withSymbolicator:(id)arg2;
 + (id)sampleAllThreadsOfTask:(unsigned int)arg1;
++ (id)sampleAllThreadsOfTask:(unsigned int)arg1 symbolicate:(BOOL)arg2;
 
 - (void)_checkDispatchThreadLimits;
 - (void)_fixupStacks:(id)arg1;
@@ -62,16 +56,17 @@
 - (id)createOutput;
 - (void)dealloc;
 - (id)delegate;
-- (id)dispatchQueueNameForSerialNumber:(unsigned long long)arg1 returnedConcurrentFlag:(BOOL*)arg2 returnedThreadId:(unsigned long long*)arg3;
 - (id)dispatchQueueNameForSerialNumber:(unsigned long long)arg1;
+- (id)dispatchQueueNameForSerialNumber:(unsigned long long)arg1 returnedConcurrentFlag:(BOOL*)arg2 returnedThreadId:(unsigned long long*)arg3;
 - (void)finalize;
 - (void)flushData;
 - (void)forceStop;
+- (id)initWithPID:(int)arg1;
 - (id)initWithPID:(int)arg1 options:(unsigned int)arg2;
 - (id)initWithPID:(int)arg1 orTask:(unsigned int)arg2 options:(unsigned int)arg3;
-- (id)initWithPID:(int)arg1;
-- (id)initWithTask:(unsigned int)arg1 options:(unsigned int)arg2;
+- (id)initWithPID:(int)arg1 task:(unsigned int)arg2 processName:(id)arg3 is64Bit:(BOOL)arg4 options:(unsigned int)arg5;
 - (id)initWithTask:(unsigned int)arg1;
+- (id)initWithTask:(unsigned int)arg1 options:(unsigned int)arg2;
 - (void)initializeSamplingContext:(BOOL)arg1;
 - (unsigned int)mainThread;
 - (id)outputString;
@@ -97,8 +92,8 @@
 - (void)stopSampling;
 - (id)stopSamplingAndReturnCallNode;
 - (struct _CSTypeRef { unsigned int x1; unsigned int x2; })symbolicator;
-- (id)threadNameForThread:(unsigned int)arg1 returnedThreadId:(unsigned long long*)arg2 returnedDispatchQueueSerialNum:(unsigned long long*)arg3;
 - (id)threadNameForThread:(unsigned int)arg1;
+- (id)threadNameForThread:(unsigned int)arg1 returnedThreadId:(unsigned long long*)arg2 returnedDispatchQueueSerialNum:(unsigned long long*)arg3;
 - (double)timeLimit;
 - (BOOL)waitUntilDone;
 - (void)writeOutput:(id)arg1 append:(BOOL)arg2;

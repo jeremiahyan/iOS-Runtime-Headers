@@ -2,8 +2,9 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@interface _UIFallbackPresentationWindow : UIWindow {
-}
+@interface _UIFallbackPresentationWindow : UIWindow
+
++ (BOOL)_isSystemWindow;
 
 - (BOOL)_canAffectStatusBarAppearance;
 - (BOOL)_includeInDefaultImageSnapshot;

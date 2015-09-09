@@ -2,25 +2,7 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class <EKEventGestureControllerDelegate>, <EKEventGestureControllerUntimedDelegate>, EKCalendarDate, EKDayOccurrenceView, EKEvent, NSTimer, UILongPressGestureRecognizer;
-
-@interface EKEventGestureController : NSObject <UIGestureRecognizerDelegate, UIAlertViewDelegate> {
-    struct CGPoint { 
-        float x; 
-        float y; 
-    struct CGPoint { 
-        float x; 
-        float y; 
-    struct CGPoint { 
-        float x; 
-        float y; 
-    struct CGPoint { 
-        float x; 
-        float y; 
+@interface EKEventGestureController : NSObject <UIAlertViewDelegate, UIGestureRecognizerDelegate> {
     BOOL _commitBlocked;
     int _consecutivePageTurnCount;
     EKCalendarDate *_currentDay;
@@ -29,8 +11,12 @@
     <EKEventGestureControllerDelegate> *_delegate;
     BOOL _dragLockDisabled;
     EKDayOccurrenceView *_draggingView;
+    EKDayOccurrenceView *_draggingViewSource;
     EKEvent *_event;
     float _firstContactOfDraggingViewTop;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _firstTouchPoint;
     double _firstTouchTime;
     BOOL _forcedStart;
@@ -39,15 +25,25 @@
     BOOL _isInCancelRegion;
     BOOL _isMultiDayTimedEvent;
     BOOL _isNewEvent;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _latestTouchPoint;
     BOOL _needsCommit;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _previousTouchPoint;
     double _previousTouchTime;
     float _previousTouchVelocity;
     UILongPressGestureRecognizer *_recognizer;
-    id _recurrenceSheetCompletionHandler;
+    id /* block */ _recurrenceSheetCompletionHandler;
     NSTimer *_scrollTimer;
+    NSString *_sessionIdentifierForDebug;
     double _timeSinceEnteredPageMargin;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _touchOffset;
     int _touchOffsetDays;
     <EKEventGestureControllerUntimedDelegate> *_untimedDelegate;
@@ -55,19 +51,27 @@
     BOOL _usesXDragOffsetInCancelRegion;
 }
 
-@property BOOL commitBlocked;
-@property <EKEventGestureControllerDelegate> * delegate;
-@property(readonly) EKDayOccurrenceView * draggingView;
-@property(retain) EKEvent * event;
-@property(readonly) struct CGPoint { float x1; float x2; } firstTouchPoint;
-@property(readonly) struct CGPoint { float x1; float x2; } latestTouchPoint;
-@property(readonly) struct CGPoint { float x1; float x2; } touchOffset;
-@property <EKEventGestureControllerUntimedDelegate> * untimedDelegate;
-@property BOOL usesHorizontalDragLocking;
-@property BOOL usesXDragOffsetInCancelRegion;
+@property (nonatomic) BOOL commitBlocked;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <EKEventGestureControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) EKDayOccurrenceView *draggingView;
+@property (nonatomic, retain) EKDayOccurrenceView *draggingViewSource;
+@property (nonatomic, retain) EKEvent *event;
+@property (nonatomic, readonly) struct CGPoint { float x1; float x2; } firstTouchPoint;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) struct CGPoint { float x1; float x2; } latestTouchPoint;
+@property (nonatomic, retain) NSString *sessionIdentifierForDebug;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) struct CGPoint { float x1; float x2; } touchOffset;
+@property (nonatomic) <EKEventGestureControllerUntimedDelegate> *untimedDelegate;
+@property (nonatomic) BOOL usesHorizontalDragLocking;
+@property (nonatomic) BOOL usesXDragOffsetInCancelRegion;
 
 - (void).cxx_destruct;
+- (float)_Debug_HoursSinceStartOfDay:(double)arg1;
 - (float)_alignedYOriginForAllDayOccurrence:(id)arg1 atPoint:(struct CGPoint { float x1; float x2; })arg2 floorAtAllDayRegionBottom:(BOOL)arg3;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_calculateFrameForDraggingViewIncludingTravelTime:(BOOL)arg1;
 - (void)_cancel;
 - (float)_capOccurrenceViewYOrigin:(float)arg1;
 - (void)_commit;
@@ -80,6 +84,7 @@
 - (void)_installScrollTimer;
 - (BOOL)_isPointInCancelRegion:(struct CGPoint { float x1; float x2; })arg1;
 - (void)_longPress:(id)arg1;
+- (float)_minimumDuration;
 - (void)_removeScrollTimer;
 - (void)_scrollTimerFired:(id)arg1;
 - (void)_setTouchOffsetsFromPoint:(struct CGPoint { float x1; float x2; })arg1;
@@ -92,20 +97,24 @@
 - (void)dealloc;
 - (id)delegate;
 - (id)draggingView;
+- (id)draggingViewSource;
 - (void)endForcedStart;
 - (id)event;
 - (struct CGPoint { float x1; float x2; })firstTouchPoint;
-- (void)forceStartWithOccurrence:(id)arg1;
+- (void)forceStartWithOccurrence:(id)arg1 shouldUpdateViewSource:(BOOL)arg2 shouldUpdateOrigin:(BOOL)arg3;
 - (BOOL)gestureRecognizer:(id)arg1 shouldReceiveTouch:(id)arg2;
 - (id)initWithView:(id)arg1;
 - (void)invalidate;
 - (BOOL)isDraggingOccurrence;
 - (struct CGPoint { float x1; float x2; })latestTouchPoint;
-- (void)promptUserForRecurrenceActionOnOccurrence:(id)arg1 whenFinished:(id)arg2;
+- (void)promptUserForRecurrenceActionOnOccurrence:(id)arg1 whenFinished:(id /* block */)arg2;
 - (void)removeDraggedOccurrence;
+- (id)sessionIdentifierForDebug;
 - (void)setCommitBlocked:(BOOL)arg1;
 - (void)setDelegate:(id)arg1;
+- (void)setDraggingViewSource:(id)arg1;
 - (void)setEvent:(id)arg1;
+- (void)setSessionIdentifierForDebug:(id)arg1;
 - (void)setUntimedDelegate:(id)arg1;
 - (void)setUsesHorizontalDragLocking:(BOOL)arg1;
 - (void)setUsesXDragOffsetInCancelRegion:(BOOL)arg1;
@@ -113,6 +122,9 @@
 - (id)untimedDelegate;
 - (void)updateDraggingOccurrence;
 - (void)updateDraggingOccurrenceForced:(BOOL)arg1 animated:(BOOL)arg2;
+- (void)updateDraggingOccurrenceFrame;
+- (void)updateDraggingOccurrenceFrameFromSource;
+- (void)updateDraggingOccurrenceOrigin;
 - (BOOL)usesHorizontalDragLocking;
 - (BOOL)usesXDragOffsetInCancelRegion;
 

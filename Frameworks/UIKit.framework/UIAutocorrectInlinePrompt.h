@@ -2,18 +2,7 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, NSMutableArray, NSString, TIKeyboardCandidateResultSet, UIView;
-
 @interface UIAutocorrectInlinePrompt : UIView <UIKeyboardCandidateList> {
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
     TIKeyboardCandidateResultSet *_candidateResultSet;
     BOOL _showHiddenCandidatesOnly;
     NSString *m_correction;
@@ -25,6 +14,15 @@
     int m_index;
     float m_maxX;
     BOOL m_mouseDown;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } m_originalTypedTextRect;
     float m_originalTypedTextRectCorrectionAmount;
     int m_promptTextType;
@@ -35,10 +33,14 @@
     NSArray *m_usageTrackingTypes;
 }
 
-@property(retain) TIKeyboardCandidateResultSet * candidateResultSet;
-@property(readonly) TIKeyboardCandidateResultSet * candidates;
-@property BOOL showHiddenCandidatesOnly;
-@property unsigned int usageTrackingMask;
+@property (nonatomic, retain) TIKeyboardCandidateResultSet *candidateResultSet;
+@property (nonatomic, readonly) TIKeyboardCandidateResultSet *candidates;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL showHiddenCandidatesOnly;
+@property (readonly) Class superclass;
+@property (nonatomic) unsigned int usageTrackingMask;
 
 - (void)_candidateSelected:(id)arg1;
 - (id)activeCandidateList;
@@ -85,7 +87,7 @@
 - (void)setUIKeyboardCandidateListDelegate:(id)arg1;
 - (void)setUsageTrackingMask:(unsigned int)arg1;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })shadowFrameForFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
-- (void)showCandidate:(id)arg1;
+- (BOOL)showCandidate:(id)arg1;
 - (void)showCandidateAtIndex:(unsigned int)arg1;
 - (BOOL)showHiddenCandidatesOnly;
 - (void)showNextCandidate;

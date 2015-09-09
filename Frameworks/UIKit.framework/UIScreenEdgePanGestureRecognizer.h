@@ -2,14 +2,15 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class _UIScreenEdgePanRecognizer;
-
 @interface UIScreenEdgePanGestureRecognizer : UIPanGestureRecognizer <_UIScreenEdgePanRecognizerDelegate> {
-    unsigned int _edges;
     _UIScreenEdgePanRecognizer *_recognizer;
 }
 
-@property unsigned int edges;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) unsigned int edges;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (float)_edgeRegionSize;
 - (BOOL)_shouldTryToBeginWithEvent:(id)arg1;

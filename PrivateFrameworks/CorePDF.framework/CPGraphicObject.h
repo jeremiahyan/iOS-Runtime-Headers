@@ -2,9 +2,11 @@
    Image: /System/Library/PrivateFrameworks/CorePDF.framework/CorePDF
  */
 
-@class CPChunk<CPGraphicUser>, CPParagraph, CPTextLine;
-
 @interface CPGraphicObject : CPChunk {
+    CPParagraph *anchoringParagraph;
+    CPTextLine *anchoringTextLine;
+    unsigned int clipIndex;
+    BOOL isInZoneBorder;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -14,17 +16,13 @@
             float width; 
             float height; 
         } size; 
-    CPParagraph *anchoringParagraph;
-    CPTextLine *anchoringTextLine;
-    unsigned int clipIndex;
-    BOOL isInZoneBorder;
     } renderedBounds;
     CPChunk<CPGraphicUser> *user;
     int zoneGraphicType;
 }
 
-@property(retain) CPParagraph * anchoringParagraph;
-@property unsigned int clipIndex;
+@property (nonatomic, retain) CPParagraph *anchoringParagraph;
+@property (nonatomic) unsigned int clipIndex;
 
 - (id)anchoringParagraph;
 - (id)anchoringTextLine;

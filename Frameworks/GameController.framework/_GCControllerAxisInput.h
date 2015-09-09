@@ -2,12 +2,6 @@
    Image: /System/Library/Frameworks/GameController.framework/GameController
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class GCControllerButtonInput, GCControllerElement;
-
 @interface _GCControllerAxisInput : GCControllerAxisInput {
     GCControllerElement *_collection;
     BOOL _digital;
@@ -15,7 +9,7 @@
     GCControllerButtonInput *_negative;
     GCControllerButtonInput *_positive;
     float _value;
-    id _valueChangedHandler;
+    id /* block */ _valueChangedHandler;
 }
 
 - (void).cxx_destruct;
@@ -28,8 +22,8 @@
 - (id)negative;
 - (id)positive;
 - (BOOL)setHIDValue:(struct __IOHIDValue { }*)arg1;
-- (void)setValueChangedHandler:(id)arg1;
+- (void)setValueChangedHandler:(id /* block */)arg1;
 - (float)value;
-- (id)valueChangedHandler;
+- (id /* block */)valueChangedHandler;
 
 @end

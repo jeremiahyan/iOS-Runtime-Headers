@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSMutableArray, WDTableProperties;
-
 @interface WDTable : WDBlock {
     WDTableProperties *mProperties;
     NSMutableArray *mRows;
@@ -15,7 +13,9 @@
 - (void)clearProperties;
 - (void)clearRows;
 - (void)dealloc;
+- (id)description;
 - (id)initWithText:(id)arg1;
+- (id)insertRowAtIndex:(unsigned int)arg1;
 - (int)nestingLevel;
 - (id)newCellIterator;
 - (id)newRowIterator;

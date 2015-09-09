@@ -2,16 +2,15 @@
    Image: /System/Library/PrivateFrameworks/WebUI.framework/WebUI
  */
 
-@class NSArray, NSMapTable;
-
 @interface WBSCreditCardDataController : NSObject {
     NSMapTable *_creditCardDataKeychainReferences;
 }
 
-@property(readonly) NSArray * creditCardData;
+@property (nonatomic, readonly) NSArray *creditCardData;
 
 + (BOOL)hasCreditCardData;
 
+- (void).cxx_destruct;
 - (id)_neverSavedCreditCardSuffixFromCard:(id)arg1;
 - (id)_neverSavedCreditCardSuffixFromCardNumber:(id)arg1;
 - (void)_removeNeverSaveCreditCardData:(id)arg1;
@@ -19,7 +18,6 @@
 - (void)clearCreditCardData;
 - (id)creditCardData;
 - (void)creditCardDataDidChange;
-- (void)dealloc;
 - (id)defaultNameForCardOfType:(unsigned int)arg1 cardholderName:(id)arg2;
 - (id)existingCardWithNumber:(id)arg1;
 - (id)init;

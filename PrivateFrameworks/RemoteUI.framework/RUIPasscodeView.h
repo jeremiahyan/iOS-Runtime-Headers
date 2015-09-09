@@ -2,27 +2,37 @@
    Image: /System/Library/PrivateFrameworks/RemoteUI.framework/RemoteUI
  */
 
-@class RUIObjectModel, RUIPasscodeField, UILabel, UIView;
-
-@interface RUIPasscodeView : RUIElement <RUIPasscodeFieldDelegate> {
+@interface RUIPasscodeView : RUIElement <RUIPasscodeFieldDelegate, RUITableFooterDelegate> {
     UIView *_footer;
+    UIColor *_foregroundColor;
+    int _keyboardAppearance;
     UILabel *_label;
     RUIObjectModel *_objectModel;
+    RUIPage *_page;
     RUIPasscodeField *_passcodeField;
     UIView *_view;
 }
 
-@property RUIObjectModel * objectModel;
-@property(readonly) RUIPasscodeField * passcodeField;
+@property (nonatomic, retain) UIColor *foregroundColor;
+@property (nonatomic) int keyboardAppearance;
+@property (nonatomic) RUIObjectModel *objectModel;
+@property (nonatomic) RUIPage *page;
+@property (nonatomic, readonly) RUIPasscodeField *passcodeField;
 
-- (void)dealloc;
+- (void).cxx_destruct;
+- (void)footerView:(id)arg1 activatedLinkWithURL:(id)arg2;
+- (id)foregroundColor;
+- (int)keyboardAppearance;
 - (id)objectModel;
-- (void)passcodeField:(id)arg1 enteredPasscode:(id)arg2;
+- (id)page;
 - (id)passcodeField;
+- (void)passcodeField:(id)arg1 enteredPasscode:(id)arg2;
 - (id)passcodeView;
 - (void)populatePostbackDictionary:(id)arg1;
-- (void)remoteUILinkFooterActivatedLink:(id)arg1;
+- (void)setForegroundColor:(id)arg1;
+- (void)setKeyboardAppearance:(int)arg1;
 - (void)setObjectModel:(id)arg1;
+- (void)setPage:(id)arg1;
 - (void)submitPIN;
 - (void)viewDidLayout;
 - (void)viewWillAppear:(BOOL)arg1;

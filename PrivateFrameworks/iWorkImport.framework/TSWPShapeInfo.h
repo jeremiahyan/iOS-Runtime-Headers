@@ -2,39 +2,46 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class NSObject<TSDContainerInfo>, NSString, TSDInfoGeometry, TSPObject<TSDOwningAttachment>, TSWPColumns, TSWPPadding, TSWPShapeStyle, TSWPStorage;
-
-@interface TSWPShapeInfo : TSDShapeInfo <TSDMixing, TSDContainerInfo, TSWPStorageParent, TSDSelectionStatisticsContributor> {
+@interface TSWPShapeInfo : TSDShapeInfo <TSDContainerInfo, TSDMixing, TSDSelectionStatisticsContributor, TSWPStorageParent> {
     TSWPStorage *_containedStorage;
 }
 
-@property(getter=isAnchoredToText,readonly) BOOL anchoredToText;
-@property(getter=isAttachedToBodyText,readonly) BOOL attachedToBodyText;
-@property(retain) TSWPColumns * columns;
-@property(retain) TSWPStorage * containedStorage;
-@property int contentWritingDirection;
-@property(readonly) BOOL displaysInstructionalText;
-@property(getter=isFloatingAboveText,readonly) BOOL floatingAboveText;
-@property(copy) TSDInfoGeometry * geometry;
-@property(getter=isInlineWithText,readonly) BOOL inlineWithText;
-@property(readonly) NSString * instructionalText;
-@property(readonly) BOOL isBulleted;
-@property BOOL matchesObjectPlaceholderGeometry;
-@property TSPObject<TSDOwningAttachment> * owningAttachment;
-@property(readonly) TSPObject<TSDOwningAttachment> * owningAttachmentNoRecurse;
-@property(retain) TSWPPadding * padding;
-@property NSObject<TSDContainerInfo> * parentInfo;
-@property BOOL shrinkTextToFit;
-@property BOOL textIsVertical;
-@property(readonly) TSWPShapeStyle * tswpShapeStyle;
-@property int verticalAlignment;
+@property (getter=isAnchoredToText, nonatomic, readonly) BOOL anchoredToText;
+@property (getter=isAttachedToBodyText, nonatomic, readonly) BOOL attachedToBodyText;
+@property (nonatomic, readonly) int columnDirection;
+@property (nonatomic, retain) TSWPColumns *columns;
+@property (nonatomic, retain) TSWPStorage *containedStorage;
+@property (nonatomic) int contentWritingDirection;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) BOOL displaysInstructionalText;
+@property (getter=isFloatingAboveText, nonatomic, readonly) BOOL floatingAboveText;
+@property (nonatomic, copy) TSDInfoGeometry *geometry;
+@property (readonly) unsigned int hash;
+@property (getter=isInlineWithText, nonatomic, readonly) BOOL inlineWithText;
+@property (nonatomic, readonly) NSString *instructionalText;
+@property (nonatomic, readonly) BOOL isTextBox;
+@property (nonatomic) BOOL matchesObjectPlaceholderGeometry;
+@property (nonatomic) TSPObject<TSDOwningAttachment> *owningAttachment;
+@property (nonatomic, readonly) TSPObject<TSDOwningAttachment> *owningAttachmentNoRecurse;
+@property (nonatomic, retain) TSWPPadding *padding;
+@property (nonatomic) NSObject<TSDContainerInfo> *parentInfo;
+@property (nonatomic) BOOL shrinkTextToFit;
+@property (readonly) Class superclass;
+@property (nonatomic) BOOL textIsVertical;
+@property (nonatomic, readonly) TSWPShapeStyle *tswpShapeStyle;
+@property (nonatomic) int verticalAlignment;
 
++ (unsigned int)numberOfDifferencesBetweenStyleProperties:(id)arg1 betweenOutgoingStorage:(id)arg2 outgoingRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg3 incomingStorage:(id)arg4 incomingRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg5 maxDifferencesBeforeReturning:(unsigned int)arg6;
 + (void)setDefaultInstructionalText:(id)arg1;
++ (BOOL)shouldDisableTextMorphsFromPropertiesBetweenOutgoingStorage:(id)arg1 outgoingRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2 incomingStorage:(id)arg3 incomingRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg4;
++ (BOOL)stylesAreEqualWithOutgoingStorage:(id)arg1 outgoingRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2 incomingStorage:(id)arg3 incomingRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg4;
++ (id)textPropertiesAffectingObjectMatch;
++ (id)textPropertiesAffectingTextMorph;
++ (id)textPropertiesAffectingVisualStyle;
++ (id)textPropertiesAffectingVisualStyleExceptSize;
++ (id)textPropertiesNeedingCharacterAnimation;
++ (id)textPropertiesNotAffectingVisualStyle;
 
 - (void)acceptVisitor:(id)arg1;
 - (void)adoptStylesheet:(id)arg1 withMapper:(id)arg2;
@@ -43,39 +50,40 @@
 - (struct CGPoint { float x1; float x2; })autosizePositionOffset;
 - (struct CGPoint { float x1; float x2; })autosizePositionOffsetForGeometry:(id)arg1 size:(struct CGSize { float x1; float x2; })arg2;
 - (struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })autosizedTransformForInfoGeometry:(id)arg1 size:(struct CGSize { float x1; float x2; })arg2;
-- (id)buildImageTitle;
 - (id)childEnumerator;
 - (id)childInfos;
 - (unsigned int)chunkCountForTextureDeliveryStyle:(unsigned int)arg1 byGlyphStyle:(int)arg2 animationFilter:(id)arg3;
+- (int)columnDirection;
 - (id)columns;
-- (id)commandForPasteStyleWithContext:(id)arg1 pasteboardStyles:(id)arg2;
-- (id)commandForTransformingByTransform:(struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })arg1 context:(id)arg2 transformedObjects:(id)arg3 inBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg4;
 - (id)containedStorage;
 - (id)containedText;
+- (id)containedTextForDeliveryStyle:(unsigned int)arg1 chunkIndex:(unsigned int)arg2;
 - (id)containedTextForRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1;
 - (int)contentWritingDirection;
 - (id)copyWithContext:(id)arg1;
 - (void)dealloc;
+- (id)defaultBuildChunkTitle;
 - (BOOL)displaysInstructionalText;
-- (Class)editorClass;
 - (void)fixPositionOfImportedAutosizedShape;
 - (id)initFromUnarchiver:(id)arg1;
-- (id)initWithContext:(id)arg1 geometry:(id)arg2 style:(id)arg3 pathSource:(id)arg4 wpStorage:(id)arg5;
-- (id)initWithContext:(id)arg1 geometry:(id)arg2 style:(id)arg3 pathSource:(id)arg4;
-- (id)initWithContext:(id)arg1 geometry:(id)arg2 style:(id)arg3 wpStorage:(id)arg4;
 - (id)initWithContext:(id)arg1 geometry:(id)arg2;
+- (id)initWithContext:(id)arg1 geometry:(id)arg2 style:(id)arg3 pathSource:(id)arg4;
+- (id)initWithContext:(id)arg1 geometry:(id)arg2 style:(id)arg3 pathSource:(id)arg4 wpStorage:(id)arg5;
+- (id)initWithContext:(id)arg1 geometry:(id)arg2 style:(id)arg3 wpStorage:(id)arg4;
 - (id)instructionalText;
 - (BOOL)isBulleted;
+- (BOOL)isEquivalentForCrossDocumentPasteMasterComparison:(id)arg1;
+- (BOOL)isTextBox;
 - (Class)layoutClass;
-- (void)loadFromArchive:(const struct ShapeInfoArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; struct ShapeArchive {} *x3; struct Reference {} *x4; int x5; unsigned int x6[1]; }*)arg1 unarchiver:(id)arg2;
+- (void)loadFromArchive:(const struct ShapeInfoArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; struct ShapeArchive {} *x5; struct Reference {} *x6; }*)arg1 unarchiver:(id)arg2;
+- (id)localizedChunkNameForTextureDeliveryStyle:(unsigned int)arg1 animationFilter:(id)arg2 chunkIndex:(unsigned int)arg3;
 - (id)mixedObjectWithFraction:(float)arg1 ofObject:(id)arg2;
-- (int)mixingTypeWithObject:(id)arg1;
+- (int)mixingTypeWithObject:(id)arg1 context:(id)arg2;
 - (float)pOffsetForParagraphAlignment:(struct CGSize { float x1; float x2; })arg1;
 - (float)pOffsetForVerticalAlignment:(struct CGSize { float x1; float x2; })arg1;
 - (unsigned int)p_chunkCountForByBullet;
 - (unsigned int)p_chunkCountForByBulletGroup;
-- (id)p_containedTextForDeliveryStyle:(unsigned int)arg1 chunkIndex:(unsigned int)arg2;
-- (id)p_defaultBuildChunkTitle;
+- (id)p_chunkTitleByRemovingAdditionalLinesFromTitle:(id)arg1;
 - (BOOL)p_hasContentForRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1;
 - (BOOL)p_hasListLabelOrContentForParagraphIndex:(unsigned int)arg1;
 - (id)padding;
@@ -83,7 +91,7 @@
 - (void)processSelectedStoragesWithStatisticsController:(id)arg1;
 - (id)propertyMapForNewPreset;
 - (Class)repClass;
-- (void)saveToArchive:(struct ShapeInfoArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; struct ShapeArchive {} *x3; struct Reference {} *x4; int x5; unsigned int x6[1]; }*)arg1 archiver:(id)arg2;
+- (void)saveToArchive:(struct ShapeInfoArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; struct ShapeArchive {} *x5; struct Reference {} *x6; }*)arg1 archiver:(id)arg2;
 - (void)saveToArchiver:(id)arg1;
 - (void)setColumns:(id)arg1;
 - (void)setContainedStorage:(id)arg1;
@@ -101,13 +109,12 @@
 - (BOOL)supportsTextInset;
 - (BOOL)textIsVertical;
 - (id)textureDeliveryStylesLocalized:(BOOL)arg1 animationFilter:(id)arg2;
-- (id)titleForBuildChunk:(id)arg1;
 - (struct CGPoint { float x1; float x2; })transformableObjectAnchorPoint;
 - (id)tswpShapeStyle;
 - (int)verticalAlignment;
-- (void)wasAddedToDocumentRoot:(id)arg1 context:(id)arg2;
+- (void)wasAddedToDocumentRoot:(id)arg1 dolcContext:(id)arg2;
 - (void)wasRemovedFromDocumentRoot:(id)arg1;
-- (void)willBeAddedToDocumentRoot:(id)arg1 context:(id)arg2;
+- (void)willBeAddedToDocumentRoot:(id)arg1 dolcContext:(id)arg2;
 - (void)willBeRemovedFromDocumentRoot:(id)arg1;
 
 @end

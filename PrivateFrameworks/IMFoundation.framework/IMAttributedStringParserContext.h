@@ -2,16 +2,14 @@
    Image: /System/Library/PrivateFrameworks/IMFoundation.framework/IMFoundation
  */
 
-@class NSArray, NSAttributedString, NSString;
-
 @interface IMAttributedStringParserContext : NSObject {
     NSAttributedString *_inString;
 }
 
-@property(readonly) NSAttributedString * inString;
-@property(readonly) NSString * name;
-@property(readonly) NSArray * resultsForLogging;
-@property(readonly) BOOL shouldPreprocess;
+@property (readonly, retain) NSAttributedString *inString;
+@property (readonly, retain) NSString *name;
+@property (readonly, retain) NSArray *resultsForLogging;
+@property (readonly) BOOL shouldPreprocess;
 
 - (void)dealloc;
 - (id)inString;

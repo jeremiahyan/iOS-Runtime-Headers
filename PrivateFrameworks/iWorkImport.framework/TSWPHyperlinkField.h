@@ -2,19 +2,12 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class NSString, NSURL;
-
 @interface TSWPHyperlinkField : TSWPSmartField {
     NSURL *_url;
 }
 
-@property(readonly) NSString * displayText;
-@property(setter=setURL:,retain) NSURL * url;
+@property (nonatomic, readonly) NSString *displayText;
+@property (setter=setURL:, nonatomic, retain) NSURL *url;
 
 + (id)defaultFieldStyleIdentifier;
 + (id)defaultFileURL;
@@ -33,7 +26,6 @@
 - (id)copyWithContext:(id)arg1;
 - (void)dealloc;
 - (id)displayText;
-- (int)elementKind;
 - (id)filePath;
 - (id)fullPath;
 - (BOOL)hasDisplayText;
@@ -41,14 +33,18 @@
 - (id)initWithContext:(id)arg1 url:(id)arg2;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isFileURL;
-- (void)loadFromArchive:(const struct HyperlinkFieldArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; struct SmartFieldArchive {} *x3; struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > {} *x4; int x5; unsigned int x6[1]; }*)arg1 unarchiver:(id)arg2;
-- (void)saveToArchive:(struct HyperlinkFieldArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; struct SmartFieldArchive {} *x3; struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > {} *x4; int x5; unsigned int x6[1]; }*)arg1 archiver:(id)arg2;
+- (void)loadFromArchive:(const struct HyperlinkFieldArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; struct SmartFieldArchive {} *x5; struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > {} *x6; }*)arg1 unarchiver:(id)arg2;
+- (void)p_performHyperlinkSelector:(SEL)arg1 onStorage:(id)arg2;
+- (void)saveToArchive:(struct HyperlinkFieldArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; struct SmartFieldArchive {} *x5; struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > {} *x6; }*)arg1 archiver:(id)arg2;
 - (void)saveToArchiver:(id)arg1;
 - (int)scheme;
 - (void)setURL:(id)arg1;
 - (void)setURLReference:(id)arg1;
+- (int)smartFieldKind;
 - (id)url;
 - (id)urlPrefix;
 - (id)urlReference;
+- (void)wasAddedToDocumentRoot:(id)arg1 dolcContext:(id)arg2;
+- (void)willBeRemovedFromDocumentRoot:(id)arg1 storage:(id)arg2;
 
 @end

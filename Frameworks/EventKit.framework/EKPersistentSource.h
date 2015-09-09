@@ -2,22 +2,24 @@
    Image: /System/Library/Frameworks/EventKit.framework/EventKit
  */
 
-@class EKSourceConstraints, NSNumber, NSString;
-
 @interface EKPersistentSource : EKPersistentObject {
     EKSourceConstraints *_constraints;
 }
 
-@property NSString * UUID;
-@property(readonly) EKSourceConstraints * constraints;
-@property(copy) NSNumber * defaultAlarmOffset;
-@property(getter=isEnabled) BOOL enabled;
-@property(copy) NSString * externalID;
-@property(copy) NSString * externalModificationTag;
-@property BOOL onlyCreatorCanModify;
-@property int sourceType;
-@property(copy) NSString * title;
+@property (nonatomic) NSString *UUID;
+@property (nonatomic, readonly) EKSourceConstraints *constraints;
+@property (nonatomic, copy) NSNumber *defaultAlarmOffset;
+@property (getter=isEnabled, nonatomic) BOOL enabled;
+@property (nonatomic, copy) NSString *externalID;
+@property (nonatomic, copy) NSString *externalModificationTag;
+@property (nonatomic) BOOL onlyCreatorCanModify;
+@property (nonatomic) int preferredEventPrivateValue;
+@property (nonatomic) int sourceType;
+@property (nonatomic) int strictestEventPrivateValue;
+@property (nonatomic, copy) NSString *title;
 
++ (int)_calEventPrivacyLevelToEKPrivacyLevel:(int)arg1;
++ (int)_ekPrivacyLevelToCalEventPrivacyLevel:(int)arg1;
 + (id)defaultPropertiesToLoad;
 + (id)relations;
 
@@ -32,6 +34,7 @@
 - (id)init;
 - (BOOL)isEnabled;
 - (BOOL)onlyCreatorCanModify;
+- (int)preferredEventPrivateValue;
 - (BOOL)refresh;
 - (void)reset;
 - (void)setDefaultAlarmOffset:(id)arg1;
@@ -39,10 +42,13 @@
 - (void)setExternalID:(id)arg1;
 - (void)setExternalModificationTag:(id)arg1;
 - (void)setOnlyCreatorCanModify:(BOOL)arg1;
+- (void)setPreferredEventPrivateValue:(int)arg1;
 - (void)setSourceType:(int)arg1;
+- (void)setStrictestEventPrivateValue:(int)arg1;
 - (void)setTitle:(id)arg1;
 - (void)setUUID:(id)arg1;
 - (int)sourceType;
+- (int)strictestEventPrivateValue;
 - (id)title;
 
 @end

@@ -2,15 +2,14 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSString;
-
 @interface EXReader : OCXReader {
     NSString *mTemporaryDirectory;
 }
 
-@property(retain) NSString * temporaryDirectory;
+@property (nonatomic, retain) NSString *temporaryDirectory;
 
 - (void)dealloc;
+- (id)defaultPassphrase;
 - (id)read;
 - (void)setTemporaryDirectory:(id)arg1;
 - (id)temporaryDirectory;

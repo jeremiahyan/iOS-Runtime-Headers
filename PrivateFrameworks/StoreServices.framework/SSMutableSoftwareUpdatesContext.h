@@ -2,14 +2,15 @@
    Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
  */
 
-@class NSArray, NSString;
+@interface SSMutableSoftwareUpdatesContext : SSSoftwareUpdatesContext <SSXPCCoding>
 
-@interface SSMutableSoftwareUpdatesContext : SSSoftwareUpdatesContext <SSXPCCoding> {
-}
-
-@property(copy) NSString * clientIdentifierHeader;
-@property(getter=isForced) BOOL forced;
-@property(copy) NSArray * softwareTypes;
+@property (nonatomic, copy) NSString *clientIdentifierHeader;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (getter=isForced, nonatomic) BOOL forced;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSArray *softwareTypes;
+@property (readonly) Class superclass;
 
 - (id)copyXPCEncoding;
 - (id)initWithXPCEncoding:(id)arg1;

@@ -2,27 +2,29 @@
    Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
  */
 
-@class NSMutableArray, SUCellConfiguration, UIBezierPath, UIView;
-
 @interface SUTableCellContentView : UIView <SUCellConfigurationView> {
-    unsigned int _drawAsDisabled : 1;
-    unsigned int _highlighted : 1;
-    unsigned int _highlightsOnlyContentView : 1;
-    unsigned int _useSubviewLayout : 1;
     int _clipCorners;
     UIBezierPath *_clipPath;
     SUCellConfiguration *_configuration;
+    unsigned int _drawAsDisabled;
+    unsigned int _highlighted;
+    unsigned int _highlightsOnlyContentView;
     UIView *_overlayView;
     NSMutableArray *_subviews;
+    unsigned int _useSubviewLayout;
 }
 
-@property int clipCorners;
-@property(retain) SUCellConfiguration * configuration;
-@property(getter=isDeleteConfirmationVisible) BOOL deleteConfirmationVisisble;
-@property BOOL drawAsDisabled;
-@property(getter=isHighlighted) BOOL highlighted;
-@property BOOL highlightsOnlyContentView;
-@property BOOL usesSubviews;
+@property (nonatomic) int clipCorners;
+@property (nonatomic, retain) SUCellConfiguration *configuration;
+@property (readonly, copy) NSString *debugDescription;
+@property (getter=isDeleteConfirmationVisible, nonatomic) BOOL deleteConfirmationVisisble;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL drawAsDisabled;
+@property (readonly) unsigned int hash;
+@property (getter=isHighlighted, nonatomic) BOOL highlighted;
+@property (nonatomic) BOOL highlightsOnlyContentView;
+@property (readonly) Class superclass;
+@property (nonatomic) BOOL usesSubviews;
 
 - (id)_clipPath;
 - (id)_clippedImageForImage:(id)arg1;
@@ -50,8 +52,8 @@
 - (void)setFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)setHighlighted:(BOOL)arg1;
 - (void)setHighlightsOnlyContentView:(BOOL)arg1;
-- (void)setUsesSubviews:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setUsesSubviews:(BOOL)arg1;
+- (void)setUsesSubviews:(BOOL)arg1 animated:(BOOL)arg2;
 - (BOOL)usesSubviews;
 
 @end

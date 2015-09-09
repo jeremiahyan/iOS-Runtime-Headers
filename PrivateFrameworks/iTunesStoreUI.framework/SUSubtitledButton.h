@@ -2,17 +2,15 @@
    Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
  */
 
-@class NSString, UIColor, UILabel;
-
 @interface SUSubtitledButton : UIButton {
     struct __CFDictionary { } *_subtitleContentLookup;
     UILabel *_subtitleView;
 }
 
-@property(readonly) NSString * currentSubtitle;
-@property(readonly) UIColor * currentSubtitleColor;
-@property(readonly) UIColor * currentSubtitleShadowColor;
-@property(readonly) UILabel * subtitleLabel;
+@property (nonatomic, readonly, retain) NSString *currentSubtitle;
+@property (nonatomic, readonly, retain) UIColor *currentSubtitleColor;
+@property (nonatomic, readonly, retain) UIColor *currentSubtitleShadowColor;
+@property (nonatomic, readonly, retain) UILabel *subtitleLabel;
 
 - (void)_setupSubtitleView;
 - (id)_subtitleFont;

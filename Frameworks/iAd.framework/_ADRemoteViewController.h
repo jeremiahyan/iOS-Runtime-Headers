@@ -7,8 +7,8 @@
     unsigned int _remoteSupportedInterfaceOrientations;
 }
 
-@property BOOL hasBeenDismissed;
-@property unsigned int remoteSupportedInterfaceOrientations;
+@property (nonatomic) BOOL hasBeenDismissed;
+@property (nonatomic) unsigned int remoteSupportedInterfaceOrientations;
 
 + (id)serviceViewControllerInterface;
 
@@ -18,5 +18,6 @@
 - (void)setRemoteSupportedInterfaceOrientations:(unsigned int)arg1;
 - (BOOL)shouldAutorotateToInterfaceOrientation:(int)arg1;
 - (unsigned int)supportedInterfaceOrientations;
+- (void)updateInterfaceOrientationIfNeeded;
 
 @end

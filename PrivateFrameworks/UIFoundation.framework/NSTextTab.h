@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIFoundation.framework/UIFoundation
  */
 
-@class NSDictionary;
-
-@interface NSTextTab : NSObject <NSCopying, NSCoding> {
+@interface NSTextTab : NSObject <NSCoding, NSCopying> {
     struct { 
         unsigned int alignment : 4; 
         unsigned int refCount : 24; 
@@ -14,9 +12,9 @@
     id _reserved;
 }
 
-@property(readonly) int alignment;
-@property(readonly) float location;
-@property(readonly) NSDictionary * options;
+@property (readonly) int alignment;
+@property (readonly) float location;
+@property (readonly) NSDictionary *options;
 
 + (id)allocWithZone:(struct _NSZone { }*)arg1;
 + (id)columnTerminatorsForLocale:(id)arg1;
@@ -24,8 +22,6 @@
 
 - (BOOL)_isDeallocating;
 - (BOOL)_tryRetain;
-- (id)accessibilityRulerMarkerType;
-- (id)accessibilityRulerMarkerTypeDescription;
 - (int)alignment;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;

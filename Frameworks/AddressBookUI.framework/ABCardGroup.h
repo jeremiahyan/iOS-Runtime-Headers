@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class CNContact, NSArray, NSMutableArray, NSString;
-
 @interface ABCardGroup : NSObject <NSCopying> {
     NSArray *_actionItems;
     NSMutableArray *_actions;
@@ -14,14 +12,14 @@
     BOOL _useSplitActions;
 }
 
-@property(readonly) NSArray * actionItems;
-@property(readonly) NSArray * actions;
-@property BOOL addSpacerFromPreviousGroup;
-@property(retain) CNContact * contact;
-@property(readonly) NSArray * displayItems;
-@property(readonly) NSArray * editingItems;
-@property(readonly) NSString * title;
-@property BOOL useSplitActions;
+@property (nonatomic, readonly) NSArray *actionItems;
+@property (nonatomic, readonly) NSArray *actions;
+@property (nonatomic) BOOL addSpacerFromPreviousGroup;
+@property (nonatomic, retain) CNContact *contact;
+@property (nonatomic, readonly) NSArray *displayItems;
+@property (nonatomic, readonly) NSArray *editingItems;
+@property (nonatomic, readonly) NSString *title;
+@property (nonatomic) BOOL useSplitActions;
 
 + (id)groupForContact:(id)arg1;
 
@@ -29,8 +27,9 @@
 - (id)actionItems;
 - (id)actions;
 - (void)addAction:(id)arg1 withTitle:(id)arg2;
-- (id)addActionWithTitle:(id)arg1 target:(id)arg2 selector:(SEL)arg3 destructive:(BOOL)arg4;
+- (void)addAction:(id)arg1 withTitle:(id)arg2 color:(id)arg3 transportType:(int)arg4;
 - (id)addActionWithTitle:(id)arg1 target:(id)arg2 selector:(SEL)arg3;
+- (id)addActionWithTitle:(id)arg1 target:(id)arg2 selector:(SEL)arg3 destructive:(BOOL)arg4;
 - (BOOL)addSpacerFromPreviousGroup;
 - (id)contact;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

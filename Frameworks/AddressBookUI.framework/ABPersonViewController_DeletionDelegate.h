@@ -2,11 +2,14 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class ABPersonViewControllerHelper;
-
 @interface ABPersonViewController_DeletionDelegate : NSObject <UIActionSheetDelegate> {
     ABPersonViewControllerHelper *_controller;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)actionSheet:(id)arg1 clickedButtonAtIndex:(int)arg2;
 - (void)alertView:(id)arg1 didDismissWithButtonIndex:(int)arg2;

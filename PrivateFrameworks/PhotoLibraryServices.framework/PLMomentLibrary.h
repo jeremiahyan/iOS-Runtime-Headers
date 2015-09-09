@@ -2,19 +2,20 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
  */
 
-@class NSOrderedSet;
+@interface PLMomentLibrary : PLManagedObject <PLAssetContainerList, PLMomentContainer>
 
-@interface PLMomentLibrary : PLManagedObject <PLAssetContainerList, PLMomentContainer> {
-}
-
-@property(readonly) unsigned int containersCount;
-@property(retain) NSOrderedSet * moments;
+@property (nonatomic, readonly) unsigned int containersCount;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) NSOrderedSet *moments;
+@property (readonly) Class superclass;
 
 + (void)addSingletonObjectsToContext:(id)arg1;
 + (id)entityInManagedObjectContext:(id)arg1;
 + (id)entityName;
-+ (id)sharedMomentLibraryInManagedObjectContext:(id)arg1 createIfNecessary:(BOOL)arg2;
 + (id)sharedMomentLibraryInManagedObjectContext:(id)arg1;
++ (id)sharedMomentLibraryInManagedObjectContext:(id)arg1 createIfNecessary:(BOOL)arg2;
 
 - (id)_typeDescription;
 - (void)addMoments:(id)arg1;

@@ -2,9 +2,12 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSMutableArray, OADDrawingTheme, OADGroup, OADOrientedBounds, OADShapeStyle, ODDDiagram;
-
 @interface ODIState : NSObject {
+    NSMutableArray *mDefaultStyleLabelNames;
+    ODDDiagram *mDiagram;
+    OADOrientedBounds *mDiagramOrientedBounds;
+    OADDrawingTheme *mDrawingTheme;
+    OADGroup *mGroup;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -14,11 +17,6 @@
             float width; 
             float height; 
         } size; 
-    NSMutableArray *mDefaultStyleLabelNames;
-    ODDDiagram *mDiagram;
-    OADOrientedBounds *mDiagramOrientedBounds;
-    OADDrawingTheme *mDrawingTheme;
-    OADGroup *mGroup;
     } mLogicalBounds;
     int mPointCount;
     int mPointIndex;
@@ -42,8 +40,8 @@
 - (float)scale;
 - (void)setDefaultStyleLabelName:(id)arg1 forPointType:(int)arg2;
 - (void)setGroup:(id)arg1;
-- (void)setLogicalBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 maintainAspectRatio:(BOOL)arg2;
 - (void)setLogicalBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (void)setLogicalBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 maintainAspectRatio:(BOOL)arg2;
 - (void)setPointCount:(int)arg1;
 - (void)setPointIndex:(int)arg1;
 - (void)setPresentationName:(id)arg1 forPointType:(int)arg2;

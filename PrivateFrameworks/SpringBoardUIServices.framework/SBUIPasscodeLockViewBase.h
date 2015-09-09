@@ -2,10 +2,9 @@
    Image: /System/Library/PrivateFrameworks/SpringBoardUIServices.framework/SpringBoardUIServices
  */
 
-@class <SBFLegibilitySettingsProvider>, <SBUIPasscodeLockViewDelegate>, <SBUIPasscodeLockViewDelegate_Internal>, NSString, SBUIPasscodeEntryField, UIColor, _UILegibilitySettings;
-
-@interface SBUIPasscodeLockViewBase : UIView <SBUIBiometricEventObserver, SBFLegibilitySettingsProviderDelegate, SBUIPasscodeLockView> {
+@interface SBUIPasscodeLockViewBase : UIView <SBFLegibilitySettingsProviderDelegate, SBUIBiometricEventObserver, SBUIPasscodeLockView, SBUIPasscodeLockView_Internal> {
     BOOL _allowsStatusTextUpdatingOnResignFirstResponder;
+    BOOL _appearingForSmartCoverUnlock;
     float _backgroundAlpha;
     <SBFLegibilitySettingsProvider> *_backgroundLegibilitySettingsProvider;
     BOOL _becameVisible;
@@ -13,33 +12,48 @@
     float _currentBacklightLevel;
     UIColor *_customBackgroundColor;
     <SBUIPasscodeLockViewDelegate_Internal> *_delegate;
+    BOOL _deviceHasBeenUnlockedOnceSinceBoot;
+    BOOL _enabledMatching;
     SBUIPasscodeEntryField *_entryField;
     _UILegibilitySettings *_legibilitySettings;
     float _luminanceBoost;
     BOOL _mesaLockedOut;
     NSString *_passcode;
     BOOL _playsKeypadSounds;
+    BOOL _screenOn;
     BOOL _shouldResetForFailedPasscodeAttempt;
     BOOL _showsEmergencyCallButton;
     BOOL _showsStatusField;
+    unsigned int _statusState;
+    NSString *_statusSubtitleText;
+    NSString *_statusText;
     int _style;
 }
 
-@property(getter=_entryField,setter=_setEntryField:,retain) SBUIPasscodeEntryField * _entryField;
-@property float backgroundAlpha;
-@property(retain) <SBFLegibilitySettingsProvider> * backgroundLegibilitySettingsProvider;
-@property unsigned int biometricMatchMode;
-@property(retain) UIColor * customBackgroundColor;
-@property <SBUIPasscodeLockViewDelegate> * delegate;
-@property(getter=_luminosityBoost,setter=_setLuminosityBoost:) float luminosityBoost;
-@property(readonly) NSString * passcode;
-@property BOOL playsKeypadSounds;
-@property BOOL shouldResetForFailedPasscodeAttempt;
-@property BOOL showsEmergencyCallButton;
-@property BOOL showsStatusField;
-@property int style;
+@property (getter=_entryField, setter=_setEntryField:, nonatomic, retain) SBUIPasscodeEntryField *_entryField;
+@property (nonatomic) float backgroundAlpha;
+@property (nonatomic, retain) <SBFLegibilitySettingsProvider> *backgroundLegibilitySettingsProvider;
+@property (nonatomic) unsigned int biometricMatchMode;
+@property (nonatomic, retain) UIColor *customBackgroundColor;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SBUIPasscodeLockViewDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (getter=_luminosityBoost, setter=_setLuminosityBoost:, nonatomic) float luminosityBoost;
+@property (nonatomic, readonly) NSString *passcode;
+@property (nonatomic) BOOL playsKeypadSounds;
+@property (getter=isScreenOn, nonatomic) BOOL screenOn;
+@property (nonatomic) BOOL shouldResetForFailedPasscodeAttempt;
+@property (nonatomic) BOOL showsEmergencyCallButton;
+@property (nonatomic) BOOL showsStatusField;
+@property (getter=_statusState, setter=_setStatusState:, nonatomic) unsigned int statusState;
+@property (getter=_statusSubtitleText, nonatomic, readonly, copy) NSString *statusSubtitleText;
+@property (getter=_statusText, nonatomic, readonly, copy) NSString *statusText;
+@property (nonatomic) int style;
+@property (readonly) Class superclass;
 
 - (void)_clearBrightnessChangeTimer;
+- (id)_defaultStatusText;
 - (id)_entryField;
 - (void)_evaluateLuminance;
 - (void)_handleBiometricEvent:(unsigned int)arg1;
@@ -48,10 +62,13 @@
 - (float)_luminanceBoostFromDisplayBrightness;
 - (float)_luminanceBoostFromLegibility;
 - (float)_luminosityBoost;
+- (void)_noteAppearingForSmartCoverUnlock:(BOOL)arg1;
+- (void)_noteBioMatchingEnabledDidChange;
+- (void)_noteDeviceHasBeenUnlockedOnceSinceBoot:(BOOL)arg1;
 - (void)_noteScreenBrightnessDidChange;
 - (void)_notifyDelegatePasscodeEnteredViaMesa;
 - (int)_orientation;
-- (void)_resetForFailedMesaAttemptWithEvent:(unsigned int)arg1;
+- (void)_resetForFailedMesaAttempt;
 - (void)_resetForFailedPasscode:(BOOL)arg1;
 - (void)_resetStatusText;
 - (void)_screenBrightnessReallyDidChange;
@@ -60,9 +77,16 @@
 - (void)_setEntryField:(id)arg1;
 - (void)_setLegibilitySettings:(id)arg1;
 - (void)_setLuminosityBoost:(float)arg1;
-- (void)_updateStatusText:(id)arg1 subtitle:(id)arg2 animated:(BOOL)arg3;
-- (void)_updateStatusTextForBioEvent:(unsigned int)arg1 animated:(BOOL)arg2;
+- (void)_setStatusState:(unsigned int)arg1;
+- (void)_setStatusSubtitleText:(id)arg1;
+- (void)_setStatusText:(id)arg1;
+- (unsigned int)_statusState;
+- (unsigned int)_statusStateForLockoutState:(unsigned int)arg1;
+- (id)_statusSubtitleText;
+- (id)_statusText;
+- (void)_updateStatusStateForLockout;
 - (BOOL)_wantsBiometricAuthentication;
+- (void)autofillForSuccessfulMesaAttemptWithCompletion:(id /* block */)arg1;
 - (float)backgroundAlpha;
 - (id)backgroundLegibilitySettingsProvider;
 - (BOOL)becomeFirstResponder;
@@ -76,11 +100,14 @@
 - (void)didMoveToWindow;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (BOOL)isFirstResponder;
+- (BOOL)isScreenOn;
 - (id)passcode;
 - (BOOL)playsKeypadSounds;
 - (void)providerLegibilitySettingsChanged:(id)arg1;
 - (void)reset;
+- (void)resetForFailedMesaAttemptWithStatusText:(id)arg1 andSubtitle:(id)arg2;
 - (void)resetForFailedPasscode;
+- (void)resetForScreenOff;
 - (BOOL)resignFirstResponder;
 - (void)setAllowsStatusTextUpdatingOnResignFirstResponder:(BOOL)arg1;
 - (void)setBackgroundAlpha:(float)arg1;
@@ -88,7 +115,9 @@
 - (void)setBiometricMatchMode:(unsigned int)arg1;
 - (void)setCustomBackgroundColor:(id)arg1;
 - (void)setDelegate:(id)arg1;
+- (void)setKeyPressClicksPrewarmed:(BOOL)arg1;
 - (void)setPlaysKeypadSounds:(BOOL)arg1;
+- (void)setScreenOn:(BOOL)arg1;
 - (void)setShouldResetForFailedPasscodeAttempt:(BOOL)arg1;
 - (void)setShowsEmergencyCallButton:(BOOL)arg1;
 - (void)setShowsStatusField:(BOOL)arg1;
@@ -97,6 +126,9 @@
 - (BOOL)showsEmergencyCallButton;
 - (BOOL)showsStatusField;
 - (int)style;
+- (void)updateStatusText:(id)arg1 subtitle:(id)arg2 animated:(BOOL)arg3;
+- (void)updateStatusTextAnimated:(BOOL)arg1;
+- (void)updateStatusTextForBioEvent:(unsigned int)arg1 animated:(BOOL)arg2;
 - (void)willMoveToWindow:(id)arg1;
 
 @end

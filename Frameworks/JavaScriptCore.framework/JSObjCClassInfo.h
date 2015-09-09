@@ -2,33 +2,26 @@
    Image: /System/Library/Frameworks/JavaScriptCore.framework/JavaScriptCore
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class JSContext;
-
 @interface JSObjCClassInfo : NSObject {
-    struct Weak<JSC::JSObject> { 
-        struct WeakImpl {} *m_impl; 
-    struct Weak<JSC::JSObject> { 
-        struct WeakImpl {} *m_impl; 
-    boolm_block;
+    bool m_block;
     Class m_class;
-    struct OpaqueJSClass { int x1; struct OpaqueJSClass {} *x2; struct OpaqueJSClass {} *x3; int (*x4)(); int (*x5)(); int (*x6)(); int (*x7)(); int (*x8)(); int (*x9)(); int (*x10)(); int (*x11)(); int (*x12)(); int (*x13)(); int (*x14)(); struct String { struct RefPtr<WTF::StringImpl> { struct StringImpl {} *x_1_2_1; } x_15_1_1; } x15; struct OwnPtr<WTF::HashMap<WTF::RefPtr<WTF::StringImpl>, WTF::OwnPtr<StaticValueEntry>, WTF::StringHash, WTF::HashTraits<WTF::RefPtr<WTF::StringImpl> >, WTF::HashTraits<WTF::OwnPtr<StaticValueEntry> > > > { struct HashMap<WTF::RefPtr<WTF::StringImpl>, WTF::OwnPtr<StaticValueEntry>, WTF::StringHash, WTF::HashTraits<WTF::RefPtr<WTF::StringImpl> >, WTF::HashTraits<WTF::OwnPtr<StaticValueEntry> > > {} *x_16_1_1; } x16; struct OwnPtr<WTF::HashMap<WTF::RefPtr<WTF::StringImpl>, WTF::OwnPtr<StaticFunctionEntry>, WTF::StringHash, WTF::HashTraits<WTF::RefPtr<WTF::StringImpl> >, WTF::HashTraits<WTF::OwnPtr<StaticFunctionEntry> > > > { struct HashMap<WTF::RefPtr<WTF::StringImpl>, WTF::OwnPtr<StaticFunctionEntry>, WTF::StringHash, WTF::HashTraits<WTF::RefPtr<WTF::StringImpl> >, WTF::HashTraits<WTF::OwnPtr<StaticFunctionEntry> > > {} *x_17_1_1; } x17; } *m_classRef;
+    struct OpaqueJSClass { struct atomic<int> { int x_1_1_1; } x1; struct OpaqueJSClass {} *x2; struct OpaqueJSClass {} *x3; int (*x4)(); int (*x5)(); int (*x6)(); int (*x7)(); int (*x8)(); int (*x9)(); int (*x10)(); int (*x11)(); int (*x12)(); int (*x13)(); int (*x14)(); struct String { struct RefPtr<WTF::StringImpl> { struct StringImpl {} *x_1_2_1; } x_15_1_1; } x15; struct OwnPtr<WTF::HashMap<WTF::RefPtr<WTF::StringImpl>, std::__1::unique_ptr<StaticValueEntry, std::__1::default_delete<StaticValueEntry> >, WTF::StringHash, WTF::HashTraits<WTF::RefPtr<WTF::StringImpl> >, WTF::HashTraits<std::__1::unique_ptr<StaticValueEntry, std::__1::default_delete<StaticValueEntry> > > > > { struct HashMap<WTF::RefPtr<WTF::StringImpl>, std::__1::unique_ptr<StaticValueEntry, std::__1::default_delete<StaticValueEntry> >, WTF::StringHash, WTF::HashTraits<WTF::RefPtr<WTF::StringImpl> >, WTF::HashTraits<std::__1::unique_ptr<StaticValueEntry, std::__1::default_delete<StaticValueEntry> > > > {} *x_16_1_1; } x16; struct OwnPtr<WTF::HashMap<WTF::RefPtr<WTF::StringImpl>, std::__1::unique_ptr<StaticFunctionEntry, std::__1::default_delete<StaticFunctionEntry> >, WTF::StringHash, WTF::HashTraits<WTF::RefPtr<WTF::StringImpl> >, WTF::HashTraits<std::__1::unique_ptr<StaticFunctionEntry, std::__1::default_delete<StaticFunctionEntry> > > > > { struct HashMap<WTF::RefPtr<WTF::StringImpl>, std::__1::unique_ptr<StaticFunctionEntry, std::__1::default_delete<StaticFunctionEntry> >, WTF::StringHash, WTF::HashTraits<WTF::RefPtr<WTF::StringImpl> >, WTF::HashTraits<std::__1::unique_ptr<StaticFunctionEntry, std::__1::default_delete<StaticFunctionEntry> > > > {} *x_17_1_1; } x17; } *m_classRef;
+    struct Weak<JSC::JSObject> { 
+        struct WeakImpl {} *m_impl; 
     } m_constructor;
     JSContext *m_context;
+    struct Weak<JSC::JSObject> { 
+        struct WeakImpl {} *m_impl; 
     } m_prototype;
 }
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (void)allocateConstructorAndPrototypeWithSuperClassInfo:(id)arg1;
+- (struct pair<JSC::JSObject *, JSC::JSObject *> { struct JSObject {} *x1; struct JSObject {} *x2; })allocateConstructorAndPrototype;
 - (id)constructor;
 - (void)dealloc;
-- (id)initWithContext:(id)arg1 forClass:(Class)arg2 superClassInfo:(id)arg3;
-- (void)reallocateConstructorAndOrPrototype;
+- (id)initWithContext:(id)arg1 forClass:(Class)arg2;
+- (struct JSObject { struct Structure {} *x1; unsigned char x2; unsigned char x3; unsigned char x4; unsigned char x5; struct CopyWriteBarrier<JSC::Butterfly> { struct Butterfly {} *x_6_1_1; } x6; unsigned int x7; }*)prototype;
 - (id)wrapperForObject:(id)arg1;
 
 @end

@@ -2,10 +2,7 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class GQDTTable;
-
 @interface GQHTableState : NSObject {
-    boolmSplitTable;
     struct vector<unsigned short, std::__1::allocator<unsigned short> > { unsigned short *x1; unsigned short *x2; struct __compressed_pair<unsigned short *, std::__1::allocator<unsigned short> > { unsigned short *x_3_1_1; } x3; } *mCellCountInColumns;
     double mCurrentTablePosition;
     int mGroupLevel;
@@ -13,6 +10,7 @@
     double mOriginalTableHeight;
     int mPrevColumnIndex;
     int mPrevRowIndex;
+    bool mSplitTable;
     long mSplitTableIndex;
     GQDTTable *mTable;
 }

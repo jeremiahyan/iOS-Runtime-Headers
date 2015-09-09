@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@class AVPlayerItemLegibleOutput, MPAVItem, MPAlternateTextTrack, NSArray, NSDictionary, NSMutableDictionary;
-
 @interface MPAlternateTracks : NSObject <AVPlayerItemLegibleOutputPushDelegate> {
     NSDictionary *_alternateTracks;
     MPAlternateTextTrack *_currentTextTrack;
@@ -14,12 +12,15 @@
     NSMutableDictionary *_trackChangeDictionary;
 }
 
-@property BOOL disableAlternateTextTrackRendering;
-@property(getter=isLoaded,readonly) BOOL loaded;
-@property(retain) NSArray * outOfBandTextTracks;
-@property(retain) MPAlternateTextTrack * selectedAlternateTextTrack;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL disableAlternateTextTrackRendering;
+@property (readonly) unsigned int hash;
+@property (getter=isLoaded, nonatomic, readonly) BOOL loaded;
+@property (nonatomic, retain) NSArray *outOfBandTextTracks;
+@property (nonatomic, retain) MPAlternateTextTrack *selectedAlternateTextTrack;
+@property (readonly) Class superclass;
 
-+ (id)accessibleSubtitleCharacteristics;
 + (id)subtitleLanguages;
 
 - (void).cxx_destruct;

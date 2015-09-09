@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIStatusBarViewController, UIView, UIWindow, UIZoomViewController;
-
 @interface UIClassicController : NSObject {
     UIView *_chromeView;
     BOOL _hidesClassicChrome;
@@ -30,7 +28,7 @@
 - (void)setStatusBarHidden:(BOOL)arg1 animationParameters:(id)arg2;
 - (void)setStatusBarOrientation:(int)arg1 animationParameters:(id)arg2;
 - (void)setStatusBarStyle:(int)arg1 animationParameters:(id)arg2;
-- (void)setZoomed:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setZoomed:(BOOL)arg1;
+- (void)setZoomed:(BOOL)arg1 animated:(BOOL)arg2;
 
 @end

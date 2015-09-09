@@ -3,8 +3,10 @@
  */
 
 @interface MCDGeniusMixesViewController : MCD_OLD_TableViewController {
+    NSMutableDictionary *_geniusImages;
 }
 
+- (void).cxx_destruct;
 - (id)_playlistAtIndexPath:(id)arg1;
 - (int)numberOfSectionsInTableView:(id)arg1;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;

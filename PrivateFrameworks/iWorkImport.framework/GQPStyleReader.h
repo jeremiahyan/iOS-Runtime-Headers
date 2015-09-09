@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class GQDSStyle, GQDSStylesheet;
-
-@interface GQPStyleReader : NSObject <GQPObjectReader, GQPObjectHandler> {
+@interface GQPStyleReader : NSObject <GQPObjectHandler, GQPObjectReader> {
     int mCurrentProperty;
     struct __CFArray { } *mEntries;
     char *mIdentifier;
@@ -16,6 +14,11 @@
     GQDSStylesheet *mStylesheet;
     char *mUid;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (void)initialize;
 

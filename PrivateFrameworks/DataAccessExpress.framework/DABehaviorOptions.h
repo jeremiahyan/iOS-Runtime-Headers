@@ -2,11 +2,11 @@
    Image: /System/Library/PrivateFrameworks/DataAccessExpress.framework/DataAccessExpress
  */
 
-@interface DABehaviorOptions : NSObject {
-}
+@interface DABehaviorOptions : NSObject
 
 + (id)APSEnv;
 + (BOOL)CFNetworkLogging;
++ (id)DAManagedDefaultForKey:(id)arg1;
 + (id)DAManagedDefaults;
 + (id)_daManagedDefaultsPath;
 + (BOOL)_shouldForceCookies:(BOOL*)arg1;

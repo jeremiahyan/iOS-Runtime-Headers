@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@class NSString;
-
 @interface NSAttributeDescription : NSPropertyDescription {
     struct __attributeDescriptionFlags { 
         unsigned int _hasMaxValueInExtraIvars : 1; 
@@ -18,6 +16,13 @@
     NSString *_valueTransformerName;
 }
 
+@property BOOL allowsExternalBinaryDataStorage;
+@property unsigned int attributeType;
+@property (copy) NSString *attributeValueClassName;
+@property (retain) id defaultValue;
+@property (copy) NSString *valueTransformerName;
+@property (readonly, copy) NSData *versionHash;
+
 + (id)_classNameForType:(unsigned int)arg1;
 + (void)initialize;
 
@@ -26,8 +31,8 @@
 - (BOOL)_comparePredicatesAndWarnings:(id)arg1;
 - (BOOL)_comparePredicatesAndWarningsWithUnoptimizedAttributeDescription:(id)arg1;
 - (void)_createCachesAndOptimizeState;
-- (id)_initWithName:(id)arg1 type:(unsigned int)arg2 withClassName:(id)arg3;
 - (id)_initWithName:(id)arg1 type:(unsigned int)arg2;
+- (id)_initWithName:(id)arg1 type:(unsigned int)arg2 withClassName:(id)arg3;
 - (id)_initWithType:(unsigned int)arg1;
 - (BOOL)_nonPredicateValidateValue:(id*)arg1 forKey:(id)arg2 inObject:(id)arg3 error:(id*)arg4;
 - (unsigned int)_propertyType;

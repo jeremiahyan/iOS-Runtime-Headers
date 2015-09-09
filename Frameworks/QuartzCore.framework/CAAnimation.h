@@ -2,73 +2,56 @@
    Image: /System/Library/Frameworks/QuartzCore.framework/QuartzCore
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class CAMediaTimingFunction, CAStateControllerTransition, NSString;
-
-@interface CAAnimation : NSObject <NSMutableCopying, CAPropertyInfo, NSCoding, NSCopying, CAMediaTiming, CAAction> {
+@interface CAAnimation : NSObject <CAAction, CAMediaTiming, CAPropertyInfo, NSCoding, NSCopying, NSMutableCopying> {
     void *_attr;
     unsigned int _flags;
 }
 
-@property CAStateControllerTransition * CAStateControllerTransition;
+@property CAStateControllerTransition *CAStateControllerTransition;
 @property int _mapkit_ID;
-@property(readonly) BOOL _mapkit_isScrollingAnimation;
-@property(copy) id animationDidStartBlock;
-@property(copy) id animationDidStopBlock;
-@property int animationID;
+@property (nonatomic, retain) NSArray *animationEvents;
+@property (nonatomic) int animationID;
 @property BOOL autoreverses;
 @property double beginTime;
-@property(copy) NSString * beginTimeMode;
-@property(copy) id completionBlock;
-@property(retain) id delegate;
+@property (copy) NSString *beginTimeMode;
+@property (nonatomic, copy) id /* block */ completionBlock;
+@property (retain) id delegate;
 @property double duration;
-@property(getter=isEnabled) BOOL enabled;
-@property(copy) NSString * fillMode;
+@property (getter=isEnabled) BOOL enabled;
+@property float fadeInDuration;
+@property float fadeOutDuration;
+@property (copy) NSString *fillMode;
 @property double frameInterval;
-@property(getter=isRemovedOnCompletion) BOOL removedOnCompletion;
+@property (getter=isRemovedOnCompletion) BOOL removedOnCompletion;
 @property float repeatCount;
 @property double repeatDuration;
 @property float speed;
 @property double timeOffset;
-@property(retain) CAMediaTimingFunction * timingFunction;
+@property (retain) CAMediaTimingFunction *timingFunction;
+@property BOOL usesSceneTimeBase;
 
-+ (int (*)())CA_getterForProperty:(const struct _CAPropertyInfo { unsigned int x1; SEL x2[2]; unsigned int x3 : 16; unsigned int x4 : 16; char *x5; struct __CFString {} *x6; }*)arg1;
-+ (int (*)())CA_setterForProperty:(const struct _CAPropertyInfo { unsigned int x1; SEL x2[2]; unsigned int x3 : 16; unsigned int x4 : 16; char *x5; struct __CFString {} *x6; }*)arg1;
+// Image: /System/Library/Frameworks/QuartzCore.framework/QuartzCore
+
 + (void)CAMLParserStartElement:(id)arg1;
 + (BOOL)CA_automaticallyNotifiesObservers:(Class)arg1;
 + (BOOL)CA_encodesPropertyConditionally:(unsigned int)arg1 type:(int)arg2;
-+ (id)TSD_supportedKeyPaths;
++ (int (*)CA_getterForProperty:(const struct _CAPropertyInfo { unsigned int x1; SEL x2[2]; unsigned int x3 : 16; unsigned int x4 : 16; char *x5; struct __CFString {} *x6; }*)arg1;
++ (int (*)CA_setterForProperty:(const struct _CAPropertyInfo { unsigned int x1; SEL x2[2]; unsigned int x3 : 16; unsigned int x4 : 16; char *x5; struct __CFString {} *x6; }*)arg1;
 + (id)animation;
 + (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
 + (id)defaultValueForKey:(id)arg1;
 + (id)properties;
 + (BOOL)resolveInstanceMethod:(SEL)arg1;
 
-- (struct Object { int (**x1)(); struct Atomic { struct { int x_1_2_1; } x_2_1_1; } x2; }*)CA_copyRenderValue;
 - (void)CAMLParser:(id)arg1 setValue:(id)arg2 forKey:(id)arg3;
 - (id)CAMLTypeForKey:(id)arg1;
-- (id)TSD_animationForKeyPath:(id)arg1 atTime:(double)arg2;
-- (double)TSD_animationPercentByApplyingTimingFunctionForKeyPath:(id)arg1 atTime:(double)arg2;
-- (BOOL)TSD_containsAnimationForKeyPath:(id)arg1;
-- (id)TSD_valueAtTime:(double)arg1 initialValue:(id)arg2;
-- (id)TSD_valueForKeyPath:(id)arg1 atTime:(double)arg2 animationCache:(id)arg3;
-- (id)TSD_valueForKeyPath:(id)arg1 atTime:(double)arg2;
-- (int)_mapkit_ID;
-- (BOOL)_mapkit_isScrollingAnimation;
+- (struct Object { int (**x1)(); struct Atomic { struct { int x_1_2_1; } x_2_1_1; } x2; }*)CA_copyRenderValue;
 - (unsigned int)_propertyFlagsForLayer:(id)arg1;
 - (BOOL)_setCARenderAnimation:(struct Animation { int (**x1)(); struct Atomic { struct { int x_1_2_1; } x_2_1_1; } x2; float x3; struct Ref<CA::Render::Timing> { struct Timing {} *x_4_1_1; } x4; struct Ref<CA::Render::Vector> { struct Vector {} *x_5_1_1; } x5; void *x6; unsigned int x7; unsigned int x8; unsigned int x9; unsigned int x10; }*)arg1 layer:(id)arg2;
-- (id)animationDidStartBlock;
-- (id)animationDidStopBlock;
-- (int)animationID;
 - (void)applyForTime:(double)arg1 presentationObject:(id)arg2 modelObject:(id)arg3;
 - (BOOL)autoreverses;
 - (double)beginTime;
 - (id)beginTimeMode;
-- (id)completionBlock;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)debugDescription;
@@ -82,19 +65,13 @@
 - (BOOL)isEnabled;
 - (BOOL)isRemovedOnCompletion;
 - (id)mutableCopyWithZone:(struct _NSZone { }*)arg1;
-- (void)p_getValue:(id*)arg1 animationPercent:(double*)arg2 atTime:(double)arg3 initialValue:(id)arg4;
-- (void)performCompletionBlock:(BOOL)arg1;
 - (BOOL)removedOnCompletion;
 - (float)repeatCount;
 - (double)repeatDuration;
 - (void)runActionForKey:(id)arg1 object:(id)arg2 arguments:(id)arg3;
-- (void)setAnimationDidStartBlock:(id)arg1;
-- (void)setAnimationDidStopBlock:(id)arg1;
-- (void)setAnimationID:(int)arg1;
 - (void)setAutoreverses:(BOOL)arg1;
 - (void)setBeginTime:(double)arg1;
 - (void)setBeginTimeMode:(id)arg1;
-- (void)setCompletionBlock:(id)arg1;
 - (void)setDefaultDuration:(double)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setDuration:(double)arg1;
@@ -110,7 +87,6 @@
 - (void)setValue:(id)arg1 forKey:(id)arg2;
 - (void)setValue:(id)arg1 forKeyPath:(id)arg2;
 - (void)setValue:(id)arg1 forUndefinedKey:(id)arg2;
-- (void)set_mapkit_ID:(int)arg1;
 - (BOOL)shouldArchiveValueForKey:(id)arg1;
 - (float)speed;
 - (double)timeOffset;
@@ -118,5 +94,55 @@
 - (id)valueForKey:(id)arg1;
 - (id)valueForKeyPath:(id)arg1;
 - (id)valueForUndefinedKey:(id)arg1;
+
+// Image: /System/Library/Frameworks/MapKit.framework/MapKit
+
+- (int)_mapkit_ID;
+- (void)set_mapkit_ID:(int)arg1;
+
+// Image: /System/Library/Frameworks/PassKit.framework/PassKit
+
++ (id)pkui_shakeAnimation;
+
+- (id /* block */)pkui_completionHandler;
+- (id /* block */)pkui_didStartHandler;
+- (void)pkui_setCompletionHandler:(id /* block */)arg1;
+- (void)pkui_setDidStartHandler:(id /* block */)arg1;
+
+// Image: /System/Library/Frameworks/SceneKit.framework/SceneKit
+
+- (id)animationEvents;
+- (BOOL)commitsOnCompletion;
+- (float)fadeInDuration;
+- (float)fadeOutDuration;
+- (void)setAnimationEvents:(id)arg1;
+- (void)setCommitsOnCompletion:(BOOL)arg1;
+- (void)setFadeInDuration:(float)arg1;
+- (void)setFadeOutDuration:(float)arg1;
+- (void)setUsesSceneTimeBase:(BOOL)arg1;
+- (BOOL)usesSceneTimeBase;
+
+// Image: /System/Library/PrivateFrameworks/PhotoLibrary.framework/PhotoLibrary
+
+- (int)animationID;
+- (id /* block */)completionBlock;
+- (void)performCompletionBlock:(BOOL)arg1;
+- (void)setAnimationID:(int)arg1;
+- (void)setCompletionBlock:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
+
++ (id)TSD_supportedKeyPaths;
+
+- (id)TSDCAAnimationContextCache;
+- (id)TSD_animationForKeyPath:(id)arg1 atTime:(double)arg2;
+- (double)TSD_animationPercentByApplyingTimingFunctionForKeyPath:(id)arg1 atTime:(double)arg2;
+- (BOOL)TSD_containsAnimationForKeyPath:(id)arg1;
+- (id)TSD_valueAtTime:(double)arg1 initialValue:(id)arg2;
+- (id)TSD_valueForKeyPath:(id)arg1 atTime:(double)arg2;
+- (id)TSD_valueForKeyPath:(id)arg1 atTime:(double)arg2 animationCache:(id)arg3;
+- (double)p_animationPercentByApplyingTimingFunctionForKeyPath:(id)arg1 atTime:(double)arg2 contextCache:(id)arg3;
+- (void)p_getValue:(id*)arg1 animationPercent:(double*)arg2 atTime:(double)arg3 initialValue:(id)arg4 contextCache:(id)arg5;
+- (id)p_valueAtTime:(double)arg1 initialValue:(id)arg2 contextCache:(id)arg3;
 
 @end

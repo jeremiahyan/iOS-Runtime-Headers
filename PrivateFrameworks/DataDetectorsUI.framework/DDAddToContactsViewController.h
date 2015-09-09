@@ -2,15 +2,17 @@
    Image: /System/Library/PrivateFrameworks/DataDetectorsUI.framework/DataDetectorsUI
  */
 
-@class ABUnknownPersonViewController, DDAction, XPCProxy<DDRemoteActionPresenter>;
-
 @interface DDAddToContactsViewController : UINavigationController <ABUnknownPersonViewControllerDelegate, DDRemoteActionViewControllerConfiguration> {
     DDAction *_action;
     ABUnknownPersonViewController *_personViewController;
-    XPCProxy<DDRemoteActionPresenter> *_proxy;
+    <DDRemoteActionPresenter> *_proxy;
 }
 
-@property(retain) DDAction * action;
+@property (retain) DDAction *action;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)_exportedInterface;
 + (id)_remoteViewControllerInterface;

@@ -2,12 +2,10 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class SAMPMediaItem;
+@interface SAMPGeniusSummon : SADomainCommand
 
-@interface SAMPGeniusSummon : SADomainCommand {
-}
-
-@property(retain) SAMPMediaItem * mediaItem;
+@property (nonatomic, retain) SAMPMediaItem *mediaItem;
+@property (nonatomic, copy) NSString *upNextQueueInsertLocation;
 
 + (id)geniusSummon;
 + (id)geniusSummonWithDictionary:(id)arg1 context:(id)arg2;
@@ -17,5 +15,7 @@
 - (id)mediaItem;
 - (BOOL)requiresResponse;
 - (void)setMediaItem:(id)arg1;
+- (void)setUpNextQueueInsertLocation:(id)arg1;
+- (id)upNextQueueInsertLocation;
 
 @end

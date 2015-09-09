@@ -2,17 +2,15 @@
    Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
  */
 
-@class SUScriptNavigationBar, SUScriptViewController, UINavigationController;
-
 @interface SUScriptNavigationController : SUScriptViewController {
     UINavigationController *_navController;
 }
 
-@property(readonly) SUScriptNavigationBar * navigationBar;
+@property (readonly) SUScriptNavigationBar *navigationBar;
 @property BOOL navigationBarHidden;
-@property(copy) id toolbarHidden;
-@property(readonly) SUScriptViewController * topViewController;
-@property(retain) id viewControllers;
+@property (copy) id toolbarHidden;
+@property (readonly) SUScriptViewController *topViewController;
+@property (retain) id viewControllers;
 
 + (void)initialize;
 + (id)webScriptNameForKeyName:(id)arg1;
@@ -38,13 +36,13 @@
 - (void)pushViewController:(id)arg1 animated:(BOOL)arg2;
 - (id)scriptAttributeKeys;
 - (void)setNavigationBar:(id)arg1;
-- (void)setNavigationBarHidden:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setNavigationBarHidden:(BOOL)arg1;
-- (void)setToolbarHidden:(BOOL)arg1 animated:(BOOL)arg2;
+- (void)setNavigationBarHidden:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setToolbarHidden:(id)arg1;
+- (void)setToolbarHidden:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setTopViewController:(id)arg1;
-- (void)setViewControllers:(id)arg1 animated:(BOOL)arg2;
 - (void)setViewControllers:(id)arg1;
+- (void)setViewControllers:(id)arg1 animated:(BOOL)arg2;
 - (id)toolbarHidden;
 - (id)topViewController;
 - (id)viewControllers;

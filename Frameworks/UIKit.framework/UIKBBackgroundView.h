@@ -2,45 +2,7 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSObject, NSString, UIKBRenderConfig, UIKBTree, UITextInputTraits;
-
 @interface UIKBBackgroundView : UIKBSplitImageView <UIKBCacheableView> {
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
     BOOL _centerFilled;
     NSObject *_geometryCacheKey;
     BOOL _hasCandidateKeys;
@@ -48,20 +10,60 @@
     BOOL _isSplit;
     UIKBTree *_keyplane;
     UIKBRenderConfig *_renderConfig;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } _splitLeftCacheRect;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } _splitLeftRect;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } _splitRightCacheRect;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } _splitRightRect;
     int _topCorners;
     int _visualStyle;
 }
 
-@property(readonly) BOOL cacheDeferable;
-@property(readonly) NSString * cacheKey;
-@property(readonly) float cachedWidth;
-@property(retain) NSObject * geometryCacheKey;
-@property(readonly) BOOL keepNonPersistent;
-@property(retain) UIKBRenderConfig * renderConfig;
+@property (nonatomic, readonly) BOOL cacheDeferable;
+@property (nonatomic, readonly) NSString *cacheKey;
+@property (nonatomic, readonly) float cachedWidth;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) NSObject *geometryCacheKey;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) BOOL keepNonPersistent;
+@property (nonatomic, retain) UIKBRenderConfig *renderConfig;
+@property (readonly) Class superclass;
 
 - (BOOL)cacheDeferable;
 - (id)cacheKey;

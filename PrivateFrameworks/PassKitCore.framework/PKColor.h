@@ -2,13 +2,17 @@
    Image: /System/Library/PrivateFrameworks/PassKitCore.framework/PassKitCore
  */
 
-@interface PKColor : NSObject <NSSecureCoding, NSCopying> {
+@interface PKColor : NSObject <NSCopying, NSSecureCoding> {
     float _alpha;
     float _blue;
     struct CGColor { } *_colorRef;
     float _green;
     float _red;
 }
+
+@property (nonatomic, readonly) struct CGColor { }*CGColor;
+@property (nonatomic, readonly) unsigned int hash;
+@property (nonatomic, readonly) NSString *string;
 
 + (id)colorFromString:(id)arg1;
 + (id)colorWithH:(float)arg1 S:(float)arg2 B:(float)arg3 A:(float)arg4;
@@ -22,6 +26,7 @@
 - (void)encodeWithCoder:(id)arg1;
 - (unsigned int)hash;
 - (id)initWithCoder:(id)arg1;
+- (float)luminance;
 - (id)string;
 
 @end

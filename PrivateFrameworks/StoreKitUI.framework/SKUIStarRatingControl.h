@@ -2,18 +2,20 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class UIImage, UIImageView;
-
 @interface SKUIStarRatingControl : UIControl {
     UIImageView *_emptyStarsImageView;
     UIImageView *_filledStarsImageView;
     int _previousUserRating;
+    float _starSpacing;
+    float _starWidth;
     int _userRating;
 }
 
-@property(retain) UIImage * emptyStarsImage;
-@property(retain) UIImage * filledStarsImage;
-@property int userRating;
+@property (nonatomic, retain) UIImage *emptyStarsImage;
+@property (nonatomic, retain) UIImage *filledStarsImage;
+@property (nonatomic) float starSpacing;
+@property (nonatomic) float starWidth;
+@property (nonatomic) int userRating;
 
 - (void).cxx_destruct;
 - (void)_updateUserRatingWithTouch:(id)arg1;
@@ -28,8 +30,12 @@
 - (void)setBackgroundColor:(id)arg1;
 - (void)setEmptyStarsImage:(id)arg1;
 - (void)setFilledStarsImage:(id)arg1;
+- (void)setStarSpacing:(float)arg1;
+- (void)setStarWidth:(float)arg1;
 - (void)setUserRating:(int)arg1;
 - (struct CGSize { float x1; float x2; })sizeThatFits:(struct CGSize { float x1; float x2; })arg1;
+- (float)starSpacing;
+- (float)starWidth;
 - (int)userRating;
 
 @end

@@ -2,20 +2,23 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIPickerView, UIPrintPanelViewController, UITableView;
-
 @interface UIPrintRangeViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate> {
+    UIPickerView *_fromPicker;
+    int _pageCount;
     struct _NSRange { 
         unsigned int location; 
         unsigned int length; 
-    UIPickerView *_fromPicker;
-    int _pageCount;
     } _pageRange;
     float _pickerWidth;
     UIPrintPanelViewController *_printPanelViewController;
     UITableView *_tableView;
     UIPickerView *_toPicker;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)dealloc;
 - (id)initWithPrintPanelViewController:(id)arg1;

@@ -2,13 +2,11 @@
    Image: /System/Library/PrivateFrameworks/CertInfo.framework/CertInfo
  */
 
-@class CertInfoDescriptionCellContentView;
-
 @interface CertInfoCertificateSummaryDescriptionCell : UITableViewCell {
     CertInfoDescriptionCellContentView *_customContentView;
 }
 
-- (void)dealloc;
+- (void).cxx_destruct;
 - (id)initWithStyle:(int)arg1 reuseIdentifier:(id)arg2;
 - (float)rowHeight;
 - (void)setLabelsAndValues:(id)arg1;

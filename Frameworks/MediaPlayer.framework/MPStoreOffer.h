@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@class MPStoreOffer, NSDictionary, NSString, NSURL;
-
 @interface MPStoreOffer : NSObject {
     unsigned long long _entityPersistentID;
     NSString *_entityTitle;
@@ -14,25 +12,25 @@
     MPStoreOffer *_regularPriceOffer;
 }
 
-@property(readonly) NSString * actionDisplayTitle;
-@property(readonly) NSString * buyParameters;
-@property(readonly) int buyType;
-@property(readonly) NSString * displayPrice;
-@property(readonly) NSString * displayTitle;
-@property(readonly) unsigned long long downloadSize;
-@property(readonly) unsigned long long entityPersistentID;
-@property(readonly) NSString * entityTitle;
-@property(readonly) int entityType;
-@property(readonly) int passType;
-@property(readonly) double previewDuration;
-@property(readonly) NSURL * previewURL;
-@property(readonly) float price;
-@property(readonly) NSString * regularPriceDisplayPrice;
-@property(readonly) BOOL requiresConfirmation;
+@property (nonatomic, readonly, copy) NSString *actionDisplayTitle;
+@property (nonatomic, readonly, copy) NSString *buyParameters;
+@property (nonatomic, readonly) int buyType;
+@property (nonatomic, readonly, copy) NSString *displayPrice;
+@property (nonatomic, readonly, copy) NSString *displayTitle;
+@property (nonatomic, readonly) unsigned long long downloadSize;
+@property (nonatomic, readonly) unsigned long long entityPersistentID;
+@property (nonatomic, readonly, copy) NSString *entityTitle;
+@property (nonatomic, readonly) int entityType;
+@property (nonatomic, readonly) int passType;
+@property (nonatomic, readonly) double previewDuration;
+@property (nonatomic, readonly, copy) NSURL *previewURL;
+@property (nonatomic, readonly) float price;
+@property (nonatomic, readonly, copy) NSString *regularPriceDisplayPrice;
+@property (nonatomic, readonly) BOOL requiresConfirmation;
 
 + (id)_priceForOfferDictionary:(id)arg1;
 + (int)bestOfferVariantInOfferDictionaries:(id)arg1 withPreferredVariant:(int)arg2;
-+ (int)buyTypeForOfferDictionary:(id)arg1;
++ (int)buyTypeForOfferDictionary:(id)arg1 regularPriceOffer:(id)arg2;
 + (void)getBuyOfferDictionary:(id*)arg1 regularPriceOfferDictionary:(id*)arg2 inOfferDictionaries:(id)arg3 variant:(int)arg4;
 + (void)getBuyOfferDictionary:(id*)arg1 regularPriceOfferDictionary:(id*)arg2 inOfferDictionaries:(id)arg3 variantString:(id)arg4;
 + (id)offerVariantResponseKeyForOfferVariant:(int)arg1;

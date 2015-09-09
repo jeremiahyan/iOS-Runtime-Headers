@@ -2,14 +2,14 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSCalendar, NSData, NSDate, NSString, NSTimeZone;
-
 @interface UIConcreteLocalNotification : UILocalNotification {
     NSString *alertAction;
     NSString *alertBody;
     NSString *alertLaunchImage;
+    NSString *alertTitle;
     BOOL allowSnooze;
     int applicationIconBadgeNumber;
+    NSString *category;
     NSString *customLockSliderLabel;
     NSDate *fireDate;
     BOOL fireNotificationsWhenAppRunning;
@@ -17,7 +17,9 @@
     BOOL hasAction;
     BOOL hideAlertTitle;
     BOOL interruptAudioAndLockDevice;
-    BOOL isSystemAlert;
+    BOOL isTransient;
+    CLRegion *region;
+    BOOL regionTriggersOnce;
     int remainingRepeatCount;
     NSCalendar *repeatCalendar;
     unsigned int repeatInterval;
@@ -35,8 +37,10 @@
 - (id)alertAction;
 - (id)alertBody;
 - (id)alertLaunchImage;
+- (id)alertTitle;
 - (BOOL)allowSnooze;
 - (int)applicationIconBadgeNumber;
+- (id)category;
 - (void)clearNonSystemProperties;
 - (int)compareFireDates:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -54,10 +58,13 @@
 - (id)initWithCoder:(id)arg1;
 - (BOOL)interruptAudioAndLockDevice;
 - (BOOL)isEqual:(id)arg1;
-- (BOOL)isSystemAlert;
+- (BOOL)isTransient;
+- (BOOL)isTriggeredByDate;
 - (BOOL)isValid;
 - (id)nextFireDateAfterDate:(id)arg1 localTimeZone:(id)arg2;
 - (id)nextFireDateForLastFireDate:(id)arg1;
+- (id)region;
+- (BOOL)regionTriggersOnce;
 - (int)remainingRepeatCount;
 - (id)repeatCalendar;
 - (unsigned int)repeatInterval;
@@ -65,8 +72,10 @@
 - (void)setAlertAction:(id)arg1;
 - (void)setAlertBody:(id)arg1;
 - (void)setAlertLaunchImage:(id)arg1;
+- (void)setAlertTitle:(id)arg1;
 - (void)setAllowSnooze:(BOOL)arg1;
 - (void)setApplicationIconBadgeNumber:(int)arg1;
+- (void)setCategory:(id)arg1;
 - (void)setCustomLockSliderLabel:(id)arg1;
 - (void)setFireDate:(id)arg1;
 - (void)setFireNotificationsWhenAppRunning:(BOOL)arg1;
@@ -74,7 +83,9 @@
 - (void)setHasAction:(BOOL)arg1;
 - (void)setHideAlertTitle:(BOOL)arg1;
 - (void)setInterruptAudioAndLockDevice:(BOOL)arg1;
-- (void)setIsSystemAlert:(BOOL)arg1;
+- (void)setIsTransient:(BOOL)arg1;
+- (void)setRegion:(id)arg1;
+- (void)setRegionTriggersOnce:(BOOL)arg1;
 - (void)setRemainingRepeatCount:(int)arg1;
 - (void)setRepeatCalendar:(id)arg1;
 - (void)setRepeatInterval:(unsigned int)arg1;
@@ -93,5 +104,6 @@
 - (id)timeZone;
 - (int)totalRepeatCount;
 - (id)userInfo;
+- (void)validate;
 
 @end

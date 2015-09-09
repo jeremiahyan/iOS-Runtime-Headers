@@ -2,19 +2,15 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString;
-
 @interface UIMenuItem : NSObject {
     SEL _action;
     BOOL _dontDismiss;
     NSString *_title;
 }
 
-@property SEL action;
-@property BOOL dontDismiss;
-@property(copy) NSString * title;
-
-+ (id)menuItemWithTitle:(id)arg1 action:(SEL)arg2;
+@property (nonatomic) SEL action;
+@property (nonatomic) BOOL dontDismiss;
+@property (nonatomic, copy) NSString *title;
 
 - (SEL)action;
 - (void)dealloc;

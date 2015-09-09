@@ -2,27 +2,28 @@
    Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
  */
 
-@interface SUClientDispatch : NSObject {
-}
+@interface SUClientDispatch : NSObject
 
-+ (struct __CFArray { }*)assetTypes;
 + (id)clientInterface;
 + (void)composeEmailWithSubject:(id)arg1 body:(id)arg2;
 + (BOOL)composeReviewWithViewController:(id)arg1 animated:(BOOL)arg2;
 + (void)dismissOverlayBackgroundViewController;
 + (BOOL)enterAccountFlowWithViewController:(id)arg1 animated:(BOOL)arg2;
 + (id)exitStoreButtonTitle;
++ (BOOL)hidePreviewOverlayAnimated:(BOOL)arg1;
 + (id)imageCache;
 + (id)imagePool;
 + (BOOL)isTabBarControllerLoaded;
 + (BOOL)matchesClientApplication:(id)arg1;
 + (id)newScriptInterface;
-+ (BOOL)openClientURL:(id)arg1;
 + (id)overlayBackgroundViewController;
 + (id)overlayConfigurationForStorePage:(id)arg1;
 + (BOOL)presentOverlayBackgroundViewController:(id)arg1;
++ (id)previewOverlayViewController;
 + (id)scriptExecutionContext;
 + (BOOL)sendActionForDialog:(id)arg1 button:(id)arg2;
++ (void)setClientBridge:(id)arg1;
++ (BOOL)showPreviewOverlayAnimated:(BOOL)arg1;
 + (id)tabBarController;
 + (BOOL)wasLaunchedFromLibrary;
 

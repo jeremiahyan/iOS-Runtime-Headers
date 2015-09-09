@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/BluetoothManager.framework/BluetoothManager
  */
 
-@class NSString;
-
 @interface BluetoothDevice : NSObject {
     NSString *_address;
     struct BTDeviceImpl { } *_device;
@@ -15,6 +13,7 @@
 - (void)acceptSSP:(int)arg1;
 - (id)address;
 - (int)batteryLevel;
+- (BOOL)cloudPaired;
 - (int)compare:(id)arg1;
 - (void)connect;
 - (void)connectWithServices:(unsigned int)arg1;

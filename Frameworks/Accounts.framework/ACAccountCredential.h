@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/Accounts.framework/Accounts
  */
 
-@class ACAccount, NSDate, NSMutableDictionary, NSMutableSet, NSSet, NSString;
-
 @interface ACAccountCredential : NSObject <NSSecureCoding> {
     NSMutableDictionary *_credentialItems;
     NSString *_credentialType;
@@ -13,20 +11,22 @@
     ACAccount *_owningAccount;
 }
 
-@property(copy) NSString * credentialType;
-@property(getter=isDirty) BOOL dirty;
-@property(readonly) NSSet * dirtyProperties;
-@property(getter=isEmpty) BOOL empty;
-@property(retain) NSDate * expiryDate;
-@property(copy) NSString * findMyiPhoneToken;
-@property(copy) NSString * hsaToken;
-@property(copy) NSString * mapsToken;
-@property(copy) NSString * oauthRefreshToken;
-@property(copy) NSString * oauthToken;
-@property(copy) NSString * oauthTokenSecret;
-@property(copy) NSString * password;
-@property(copy) NSString * token;
+@property (nonatomic, copy) NSString *credentialType;
+@property (getter=isDirty, nonatomic) BOOL dirty;
+@property (nonatomic, readonly) NSSet *dirtyProperties;
+@property (getter=isEmpty, nonatomic) BOOL empty;
+@property (nonatomic, retain) NSDate *expiryDate;
+@property (nonatomic, copy) NSString *findMyiPhoneToken;
+@property (nonatomic, copy) NSString *hsaToken;
+@property (nonatomic, copy) NSString *mapsToken;
+@property (nonatomic, copy) NSString *oauthRefreshToken;
+@property (nonatomic, copy) NSString *oauthToken;
+@property (nonatomic, copy) NSString *oauthTokenSecret;
+@property (nonatomic, copy) NSString *password;
+@property (nonatomic, copy) NSString *token;
+@property (nonatomic, copy) NSDate *tokenExpiryDate;
 
++ (id)credentialPolicyForAccountType:(id)arg1 key:(id)arg2 clientID:(id)arg3;
 + (id)credentialWithOAuthToken:(id)arg1 tokenSecret:(id)arg2;
 + (id)credentialWithPassword:(id)arg1;
 + (id)nonPersistentKeysForAccountTypeIdentifier:(id)arg1 credentialType:(id)arg2;
@@ -58,6 +58,7 @@
 - (id)mapsToken;
 - (id)oauthRefreshToken;
 - (id)oauthToken;
+- (id)oauthTokenNoSync;
 - (id)oauthTokenSecret;
 - (id)password;
 - (void)setCredentialItem:(id)arg1 forKey:(id)arg2;
@@ -70,9 +71,12 @@
 - (void)setMapsToken:(id)arg1;
 - (void)setOauthRefreshToken:(id)arg1;
 - (void)setOauthToken:(id)arg1;
+- (void)setOauthTokenNoSync:(id)arg1;
 - (void)setOauthTokenSecret:(id)arg1;
 - (void)setPassword:(id)arg1;
 - (void)setToken:(id)arg1;
+- (void)setTokenExpiryDate:(id)arg1;
 - (id)token;
+- (id)tokenExpiryDate;
 
 @end

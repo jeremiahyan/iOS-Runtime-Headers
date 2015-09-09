@@ -2,9 +2,8 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIActionSheet, UIColor, UIImageView, UIPopoverBackgroundView, UIPopoverController, UIView;
-
 @interface _UIPopoverView : UIView {
+    float __dimmingViewTopEdgeInset;
     UIPopoverBackgroundView *_backgroundView;
     Class _backgroundViewClass;
     UIView *_contentView;
@@ -16,19 +15,21 @@
     UIImageView *_toolbarShine;
 }
 
-@property unsigned int arrowDirection;
-@property float arrowOffset;
-@property int backgroundStyle;
-@property(copy) UIColor * popoverBackgroundColor;
-@property UIPopoverController * popoverController;
-@property(retain) UIActionSheet * presentedActionSheet;
-@property BOOL showsBackgroundComponentHighlights;
-@property BOOL showsBackgroundViewHighlight;
-@property BOOL showsContentViewHighlight;
+@property (setter=_setDimmingViewTopEdgeInset:, nonatomic) float _dimmingViewTopEdgeInset;
+@property (nonatomic) unsigned int arrowDirection;
+@property (nonatomic) float arrowOffset;
+@property (nonatomic) int backgroundStyle;
+@property (nonatomic, copy) UIColor *popoverBackgroundColor;
+@property (nonatomic) UIPopoverController *popoverController;
+@property (nonatomic, retain) UIActionSheet *presentedActionSheet;
+@property (nonatomic) BOOL showsBackgroundComponentHighlights;
+@property (nonatomic) BOOL showsBackgroundViewHighlight;
+@property (nonatomic) BOOL showsContentViewHighlight;
 
 + (id)popoverViewContainingView:(id)arg1;
 
 - (BOOL)_allowsCustomizationOfContent;
+- (float)_dimmingViewTopEdgeInset;
 - (void)_hideArrow;
 - (BOOL)_isIgnoringTapsInDimmingView;
 - (void)_layoutToolbarShine;
@@ -38,8 +39,10 @@
 - (void)_presentationInPopoverWillBeginForViewController:(id)arg1;
 - (void)_presentationInPopoverWillEndForViewController:(id)arg1;
 - (void)_setCornerRadius:(float)arg1;
+- (void)_setDimmingViewTopEdgeInset:(float)arg1;
 - (void)_setFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 arrowOffset:(float)arg2;
 - (void)_setIgnoreTapsInDimmingView:(BOOL)arg1;
+- (void)_setPopoverContentView:(id)arg1;
 - (void)_showArrow;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_snapshotBounds;
 - (int)_style;
@@ -50,9 +53,9 @@
 - (id)backgroundView;
 - (id)contentView;
 - (void)dealloc;
-- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 backgroundViewClass:(Class)arg2 embeddedInView:(BOOL)arg3;
-- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 backgroundViewClass:(Class)arg2;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 backgroundViewClass:(Class)arg2;
+- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 backgroundViewClass:(Class)arg2 embeddedInView:(BOOL)arg3;
 - (void)layoutSubviews;
 - (id)popoverBackgroundColor;
 - (id)popoverController;

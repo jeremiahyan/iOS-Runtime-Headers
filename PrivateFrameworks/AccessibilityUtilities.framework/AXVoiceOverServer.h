@@ -2,13 +2,17 @@
    Image: /System/Library/PrivateFrameworks/AccessibilityUtilities.framework/AccessibilityUtilities
  */
 
-@interface AXVoiceOverServer : AXServer {
-}
+@interface AXVoiceOverServer : AXServer
 
 + (id)server;
 
 - (BOOL)_connectIfNecessary;
 - (id)_serviceName;
-- (void)triggerCommand:(int)arg1;
+- (id)currentFocusedElement;
+- (id)currentRotorName;
+- (id)lastScreenChange;
+- (id)lastSoundsPlayed;
+- (id)lastSpokenPhrases;
+- (BOOL)triggerCommand:(int)arg1;
 
 @end

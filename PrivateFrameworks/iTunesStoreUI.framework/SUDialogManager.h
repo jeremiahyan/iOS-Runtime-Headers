@@ -2,13 +2,15 @@
    Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
  */
 
-@class NSMutableArray;
-
 @interface SUDialogManager : NSObject <ISSingleton, SUDialogDelegate> {
     NSMutableArray *_dialogs;
 }
 
-@property(readonly) int numberOfPendingDialogs;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) int numberOfPendingDialogs;
+@property (readonly) Class superclass;
 
 + (id)newDialogWithError:(id)arg1;
 + (void)setSharedInstance:(id)arg1;
@@ -21,9 +23,9 @@
 - (void)dialog:(id)arg1 didDismissWithButtonIndex:(int)arg2;
 - (void)dialogDidCancel:(id)arg1;
 - (int)numberOfPendingDialogs;
-- (BOOL)presentDialog:(id)arg1 withCompletionBlock:(id)arg2;
 - (BOOL)presentDialog:(id)arg1;
-- (BOOL)presentDialogForError:(id)arg1 withCompletionBlock:(id)arg2;
+- (BOOL)presentDialog:(id)arg1 withCompletionBlock:(id /* block */)arg2;
 - (BOOL)presentDialogForError:(id)arg1;
+- (BOOL)presentDialogForError:(id)arg1 withCompletionBlock:(id /* block */)arg2;
 
 @end

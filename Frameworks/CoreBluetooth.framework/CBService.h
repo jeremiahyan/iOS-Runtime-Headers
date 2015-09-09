@@ -2,10 +2,7 @@
    Image: /System/Library/Frameworks/CoreBluetooth.framework/CoreBluetooth
  */
 
-@class CBPeripheral, CBUUID, NSArray, NSNumber;
-
-@interface CBService : NSObject {
-    CBUUID *_UUID;
+@interface CBService : CBAttribute {
     NSArray *_characteristics;
     NSNumber *_endHandle;
     NSArray *_includedServices;
@@ -14,15 +11,13 @@
     NSNumber *_startHandle;
 }
 
-@property(readonly) CBUUID * UUID;
-@property(retain) NSArray * characteristics;
-@property(readonly) NSNumber * endHandle;
-@property(retain) NSArray * includedServices;
-@property(readonly) BOOL isPrimary;
-@property(readonly) CBPeripheral * peripheral;
-@property(readonly) NSNumber * startHandle;
+@property (retain) NSArray *characteristics;
+@property (nonatomic, readonly) NSNumber *endHandle;
+@property (retain) NSArray *includedServices;
+@property (nonatomic) BOOL isPrimary;
+@property (nonatomic, readonly) CBPeripheral *peripheral;
+@property (nonatomic, readonly) NSNumber *startHandle;
 
-- (id)UUID;
 - (id)characteristics;
 - (void)dealloc;
 - (id)description;
@@ -36,6 +31,7 @@
 - (id)peripheral;
 - (void)setCharacteristics:(id)arg1;
 - (void)setIncludedServices:(id)arg1;
+- (void)setIsPrimary:(BOOL)arg1;
 - (id)startHandle;
 
 @end

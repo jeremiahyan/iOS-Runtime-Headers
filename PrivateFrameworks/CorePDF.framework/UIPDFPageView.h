@@ -2,41 +2,7 @@
    Image: /System/Library/PrivateFrameworks/CorePDF.framework/CorePDF
  */
 
-@class <NSObject><UIPDFPageViewDelegate>, CALayer, NSMutableArray, UIActivityIndicatorView, UIColor, UIImage, UIPDFAnnotationController, UIPDFDocument, UIPDFPage, UIPDFPageContentDelegate, UIPDFSearchHighlightsController, UIPDFSelectionController, UIPDFViewTouchHandler;
-
 @interface UIPDFPageView : UIView {
-    struct CGAffineTransform { 
-        float a; 
-        float b; 
-        float c; 
-        float d; 
-        float tx; 
-        float ty; 
-    struct CGAffineTransform { 
-        float a; 
-        float b; 
-        float c; 
-        float d; 
-        float tx; 
-        float ty; 
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
     UIActivityIndicatorView *_activityIndicator;
     BOOL _allowHighlighting;
     BOOL _allowSelection;
@@ -53,6 +19,15 @@
     float _cachedScale;
     UIPDFPageContentDelegate *_contentDelegate;
     CALayer *_contentLayer;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } _cropBox;
     <NSObject><UIPDFPageViewDelegate> *_delegate;
     UIPDFDocument *_document;
@@ -63,6 +38,13 @@
     float _margin;
     UIPDFPage *_page;
     unsigned int _pageIndex;
+    struct CGAffineTransform { 
+        float a; 
+        float b; 
+        float c; 
+        float d; 
+        float tx; 
+        float ty; 
     } _pageToViewTransform;
     BOOL _scalePageOnDraw;
     UIPDFSearchHighlightsController *_searchHighlightController;
@@ -74,33 +56,49 @@
     UIPDFViewTouchHandler *_touchHandler;
     BOOL _useBackingLayer;
     BOOL _useTiledContent;
+    struct CGAffineTransform { 
+        float a; 
+        float b; 
+        float c; 
+        float d; 
+        float tx; 
+        float ty; 
     } _viewToPageTransform;
     BOOL showAnnotations;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } zoomRect;
 }
 
-@property BOOL allowHighlighting;
-@property BOOL allowMenu;
-@property BOOL allowSelection;
-@property BOOL allowTwoFingerSelection;
-@property BOOL animateSetFrame;
-@property(readonly) UIPDFAnnotationController * annotationController;
-@property(retain) UIImage * backgroundImage;
-@property(retain) UIColor * backingLayerColor;
-@property(readonly) CALayer * contentLayer;
-@property <NSObject><UIPDFPageViewDelegate> * delegate;
-@property(readonly) UIPDFDocument * document;
-@property(readonly) CALayer * effectsLayer;
-@property(readonly) struct CGColor { }* highLightColor;
-@property float margin;
-@property UIPDFPage * page;
-@property(readonly) unsigned int pageIndex;
-@property UIPDFSelectionController * selectionController;
-@property BOOL showActivityIndicator;
-@property BOOL showAnnotations;
-@property BOOL showLinkAnnotationUnderline;
-@property BOOL showTextAnnotations;
-@property BOOL useBackingLayer;
+@property (nonatomic) BOOL allowHighlighting;
+@property (nonatomic) BOOL allowMenu;
+@property (nonatomic) BOOL allowSelection;
+@property (nonatomic) BOOL allowTwoFingerSelection;
+@property (nonatomic) BOOL animateSetFrame;
+@property (nonatomic, readonly) UIPDFAnnotationController *annotationController;
+@property (retain) UIImage *backgroundImage;
+@property (nonatomic, retain) UIColor *backingLayerColor;
+@property (nonatomic, readonly) CALayer *contentLayer;
+@property (nonatomic) <NSObject><UIPDFPageViewDelegate> *delegate;
+@property (readonly, retain) UIPDFDocument *document;
+@property (nonatomic, readonly) CALayer *effectsLayer;
+@property (readonly) struct CGColor { }*highLightColor;
+@property (nonatomic) float margin;
+@property UIPDFPage *page;
+@property (readonly) unsigned int pageIndex;
+@property UIPDFSelectionController *selectionController;
+@property (nonatomic) BOOL showActivityIndicator;
+@property (nonatomic) BOOL showAnnotations;
+@property (nonatomic) BOOL showLinkAnnotationUnderline;
+@property (nonatomic) BOOL showTextAnnotations;
+@property (nonatomic) BOOL useBackingLayer;
 
 - (struct CGPDFDictionary { }*)_annotForPoint:(struct CGPoint { float x1; float x2; })arg1 rect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; }*)arg2;
 - (void)addLayers:(BOOL)arg1;
@@ -138,8 +136,8 @@
 - (void)highlightSearchSelection:(id)arg1 animated:(BOOL)arg2;
 - (void)ignoreTouches:(BOOL)arg1;
 - (id)init;
-- (id)initWithPage:(id)arg1 tiledContent:(BOOL)arg2;
 - (id)initWithPage:(id)arg1;
+- (id)initWithPage:(id)arg1 tiledContent:(BOOL)arg2;
 - (void)layoutSubviews;
 - (void)layoutTextEffects;
 - (float)margin;

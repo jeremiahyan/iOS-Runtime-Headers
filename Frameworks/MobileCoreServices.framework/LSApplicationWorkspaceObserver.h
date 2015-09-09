@@ -2,13 +2,15 @@
    Image: /System/Library/Frameworks/MobileCoreServices.framework/MobileCoreServices
  */
 
-@class NSUUID;
-
 @interface LSApplicationWorkspaceObserver : NSObject <LSApplicationWorkspaceObserverProtocol, NSSecureCoding> {
     NSUUID *_uuid;
 }
 
-@property(retain) NSUUID * uuid;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) NSUUID *uuid;
 
 + (BOOL)supportsSecureCoding;
 
@@ -20,8 +22,12 @@
 - (void)applicationInstallsDidResume:(id)arg1;
 - (void)applicationInstallsDidStart:(id)arg1;
 - (void)applicationInstallsDidUpdateIcon:(id)arg1;
+- (void)applicationsDidFailToInstall:(id)arg1;
+- (void)applicationsDidFailToUninstall:(id)arg1;
 - (void)applicationsDidInstall:(id)arg1;
 - (void)applicationsDidUninstall:(id)arg1;
+- (void)applicationsWillInstall:(id)arg1;
+- (void)applicationsWillUninstall:(id)arg1;
 - (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;
 - (id)init;

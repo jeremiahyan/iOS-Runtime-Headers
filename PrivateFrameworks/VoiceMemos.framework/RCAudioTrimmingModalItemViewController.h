@@ -2,46 +2,57 @@
    Image: /System/Library/PrivateFrameworks/VoiceMemos.framework/VoiceMemos
  */
 
-@class NSURL, RCAVPreviewController, RCAudioFileWaveformDataSource, RCAudioWaveformViewController, UIActivityIndicatorView, UIButton, UIColor, UILabel;
-
-@interface RCAudioTrimmingModalItemViewController : UIViewController <RCAudioWaveformViewControllerDelegate> {
+@interface RCAudioTrimmingModalItemViewController : UIViewController <RCAVWaveformViewControllerDelegate> {
     NSURL *_audioURL;
+    RCUIConfiguration *_defaultUIConfiguration;
+    RCUIConfiguration *_disabledUIConfiguration;
     BOOL _enabled;
-    UIActivityIndicatorView *_indeterminateProgressView;
-    UIColor *_indeterminateProgressViewColor;
     double _maximumDuration;
+    UIView *_nonWaveformContentView;
     UIButton *_playPauseButton;
-    RCAVPreviewController *_previewController;
-    BOOL _showingIndeterminateProgress;
+    AVPlayerItem *_playerItem;
+    RCPreviewController *_previewController;
+    float _progress;
+    RCUIConfiguration *_progressUIConfiguration;
+    BOOL _showsProgress;
     UILabel *_timeDisplayLabel;
-    RCAudioFileWaveformDataSource *_waveformDataSource;
-    RCAudioWaveformViewController *_waveformViewController;
+    RCFileInputWaveformDataSource *_waveformDataSource;
+    RCAVWaveformViewController *_waveformViewController;
 }
 
-@property(readonly) NSURL * audioURL;
-@property(getter=isEnabled) BOOL enabled;
-@property(readonly) double maximumDuration;
-@property(readonly) RCAVPreviewController * previewController;
-@property(readonly) struct { double x1; double x2; } selectedTimeRange;
-@property(getter=isShowingIndeterminateProgress) BOOL showingIndeterminateProgress;
+@property (nonatomic, readonly, copy) NSURL *audioURL;
+@property (getter=isEnabled, nonatomic) BOOL enabled;
+@property (nonatomic, readonly) double maximumDuration;
+@property (nonatomic, readonly) RCPreviewController *previewController;
+@property (nonatomic) float progress;
+@property (nonatomic, readonly) struct { double x1; double x2; } selectedTimeRange;
+@property (nonatomic) BOOL showsProgress;
 
 - (void).cxx_destruct;
-- (id)_assetImageForButtonPlaybackState:(int)arg1;
+- (void)_beginOrResumePreviewing;
+- (struct CGSize { float x1; float x2; })_calculatedPreferredContentSize;
+- (id)_currentUIConfiguration;
+- (void)_pausePreviewing;
 - (void)_playPauseAction;
+- (id)_playStateImageForAVPreviewState:(int)arg1;
 - (void)_updateAudioStateInterface;
+- (void)_updateProgressView;
 - (id)audioURL;
-- (void)audioWaveformControllerDidChangeAudioAVState:(id)arg1;
-- (void)audioWaveformControllerDidChangeSelectedTimeRange:(id)arg1;
+- (void)audioWaveformControllerDidChangeAVState:(id)arg1;
+- (void)audioWaveformControllerDidChangeAVTimes:(id)arg1;
 - (void)audioWaveformControllerDidChangeWaveformDataSource:(id)arg1;
 - (id)initWithAudioURL:(id)arg1 maximumDuration:(double)arg2;
 - (BOOL)isEnabled;
-- (BOOL)isShowingIndeterminateProgress;
+- (void)loadView;
 - (double)maximumDuration;
-- (struct CGSize { float x1; float x2; })preferredContentSize;
 - (id)previewController;
+- (float)progress;
 - (struct { double x1; double x2; })selectedTimeRange;
 - (void)setEnabled:(BOOL)arg1;
-- (void)setShowingIndeterminateProgress:(BOOL)arg1;
+- (void)setProgress:(float)arg1;
+- (void)setShowsProgress:(BOOL)arg1;
+- (BOOL)showsProgress;
+- (void)updateViewConstraints;
 - (void)viewDidLoad;
 
 @end

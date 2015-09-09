@@ -2,16 +2,19 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@class FailureBarView, UILabel;
-
 @interface PINView : UIView <PINEntryView> {
-    id _delegate;
+    <PSPINEntryViewDelegate> *_delegate;
     BOOL _error;
     UILabel *_errorTitleLabel;
     FailureBarView *_failureView;
     UILabel *_pinPolicyLabel;
     UILabel *_titleLabel;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)appendString:(id)arg1;
 - (BOOL)becomeFirstResponder;
@@ -20,13 +23,17 @@
 - (void)hideError;
 - (void)hideFailedAttempts;
 - (void)hidePasscodeField:(BOOL)arg1;
+- (void)notifyDelegatePINChanged;
+- (void)notifyDelegatePINEntered;
 - (void)setBlocked:(BOOL)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setPINPolicyString:(id)arg1 visible:(BOOL)arg2;
 - (void)setStringValue:(id)arg1;
+- (void)setTextFieldKeyboardAppearance:(int)arg1;
+- (void)setTextFieldKeyboardType:(int)arg1;
 - (void)setTitle:(id)arg1 font:(id)arg2;
 - (void)showError:(id)arg1 animate:(BOOL)arg2;
-- (void)showFailedAttempts:(int)arg1;
+- (void)showFailedAttempts:(long)arg1;
 - (id)stringValue;
 
 @end

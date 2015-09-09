@@ -2,40 +2,39 @@
    Image: /System/Library/PrivateFrameworks/Search.framework/Search
  */
 
-@class NSMutableArray, NSString;
-
-@interface SPSearchResultSection : PBCodable {
-    struct { 
-        unsigned int domain : 1; 
-        unsigned int flags : 1; 
+@interface SPSearchResultSection : PBCodable <NSCopying> {
     NSString *_category;
     NSString *_displayIdentifier;
     unsigned int _domain;
     int _flags;
+    struct { 
+        unsigned int domain : 1; 
+        unsigned int flags : 1; 
     } _has;
     NSString *_icon;
-    NSMutableArray *_results;
+    NSMutableOrderedSet *_resultSet;
     NSString *_scheme;
 }
 
-@property(retain) NSString * category;
-@property(retain) NSString * displayIdentifier;
-@property unsigned int domain;
-@property int flags;
-@property(readonly) BOOL hasCategory;
-@property(readonly) BOOL hasDisplayIdentifier;
-@property BOOL hasDomain;
-@property BOOL hasFlags;
-@property(readonly) BOOL hasIcon;
-@property(readonly) BOOL hasScheme;
-@property(retain) NSString * icon;
-@property(retain) NSMutableArray * results;
-@property(retain) NSString * scheme;
+@property (nonatomic, retain) NSString *category;
+@property (nonatomic, retain) NSString *displayIdentifier;
+@property (nonatomic) unsigned int domain;
+@property (nonatomic) int flags;
+@property (nonatomic, readonly) BOOL hasCategory;
+@property (nonatomic, readonly) BOOL hasDisplayIdentifier;
+@property (nonatomic) BOOL hasDomain;
+@property (nonatomic) BOOL hasFlags;
+@property (nonatomic, readonly) BOOL hasIcon;
+@property (nonatomic, readonly) BOOL hasScheme;
+@property (nonatomic, retain) NSString *icon;
+@property (nonatomic, retain) NSString *scheme;
 
 - (void)addResults:(id)arg1;
+- (void)addResults:(id)arg1 atIndex:(unsigned int)arg2;
 - (id)category;
 - (void)clearResults;
 - (void)copyTo:(id)arg1;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)description;
 - (id)dictionaryRepresentation;
@@ -51,8 +50,11 @@
 - (BOOL)hasScheme;
 - (unsigned int)hash;
 - (id)icon;
+- (unsigned int)indexOfResult:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)removeResultsAtIndex:(unsigned int)arg1;
+- (id)resultSet;
 - (id)results;
 - (id)resultsAtIndex:(unsigned int)arg1;
 - (unsigned int)resultsCount;
@@ -64,7 +66,6 @@
 - (void)setHasDomain:(BOOL)arg1;
 - (void)setHasFlags:(BOOL)arg1;
 - (void)setIcon:(id)arg1;
-- (void)setResults:(id)arg1;
 - (void)setScheme:(id)arg1;
 - (void)writeTo:(id)arg1;
 

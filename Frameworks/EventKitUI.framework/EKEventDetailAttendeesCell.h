@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-@class EKEventDetailAttendeesListView;
-
 @interface EKEventDetailAttendeesCell : EKEventDetailCell {
     EKEventDetailAttendeesListView *_attendeesListView;
 }
@@ -14,6 +12,5 @@
 - (void)layoutForWidth:(float)arg1 position:(int)arg2;
 - (void)setAttendees:(id)arg1;
 - (BOOL)update;
-- (id)viewControllerForCell;
 
 @end

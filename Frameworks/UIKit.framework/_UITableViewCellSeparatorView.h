@@ -2,19 +2,22 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIView;
-
 @interface _UITableViewCellSeparatorView : UIView {
     UIView *_backgroundView;
     BOOL _drawsWithVibrantLightMode;
+    UIVisualEffectView *_effectView;
     UIView *_overlayView;
+    UIVisualEffect *_separatorEffect;
 }
 
-@property BOOL drawsWithVibrantLightMode;
+@property (nonatomic) BOOL drawsWithVibrantLightMode;
+@property (nonatomic, retain) UIVisualEffect *separatorEffect;
 
 - (void)dealloc;
 - (BOOL)drawsWithVibrantLightMode;
 - (void)layoutSubviews;
+- (id)separatorEffect;
 - (void)setDrawsWithVibrantLightMode:(BOOL)arg1;
+- (void)setSeparatorEffect:(id)arg1;
 
 @end

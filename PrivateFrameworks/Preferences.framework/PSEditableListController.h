@@ -15,10 +15,10 @@
 - (BOOL)editable;
 - (id)init;
 - (BOOL)performDeletionActionForSpecifier:(id)arg1;
-- (void)pushController:(id)arg1;
 - (void)setEditButtonEnabled:(BOOL)arg1;
 - (void)setEditable:(BOOL)arg1;
 - (void)setEditingButtonHidden:(BOOL)arg1 animated:(BOOL)arg2;
+- (void)showController:(id)arg1 animate:(BOOL)arg2;
 - (void)suspend;
 - (void)tableView:(id)arg1 commitEditingStyle:(int)arg2 forRowAtIndexPath:(id)arg3;
 - (int)tableView:(id)arg1 editingStyleForRowAtIndexPath:(id)arg2;

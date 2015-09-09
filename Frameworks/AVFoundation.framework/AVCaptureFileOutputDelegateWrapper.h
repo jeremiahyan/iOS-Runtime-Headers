@@ -2,40 +2,37 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class <AVCaptureFileOutputRecordingDelegate><AVCaptureFileOutputPauseResumeDelegate>, NSArray, NSURL;
-
 @interface AVCaptureFileOutputDelegateWrapper : NSObject {
     NSArray *_connections;
-    <AVCaptureFileOutputRecordingDelegate><AVCaptureFileOutputPauseResumeDelegate> *_delegate;
-    long _didStopRecordingError;
+    AVWeakReferencingDelegateStorage *_delegateStorage;
     NSArray *_metadata;
     NSURL *_outputFileURL;
-    BOOL _receivedDidStartRecording;
-    BOOL _receivedDidStopRecording;
+    BOOL _paused;
+    BOOL _recording;
+    long long _settingsID;
 }
 
-@property(readonly) NSArray * connections;
-@property(readonly) <AVCaptureFileOutputRecordingDelegate><AVCaptureFileOutputPauseResumeDelegate> * delegate;
-@property long didStopRecordingError;
-@property(retain) NSArray * metadata;
-@property(readonly) NSURL * outputFileURL;
-@property BOOL receivedDidStartRecording;
-@property BOOL receivedDidStopRecording;
+@property (readonly) NSArray *connections;
+@property (readonly) AVWeakReferencingDelegateStorage *delegateStorage;
+@property (retain) NSArray *metadata;
+@property (readonly) NSURL *outputFileURL;
+@property (getter=isPaused, nonatomic) BOOL paused;
+@property (getter=isRecording, nonatomic) BOOL recording;
+@property (readonly) long long settingsID;
 
-+ (id)wrapperWithURL:(id)arg1 delegate:(id)arg2 connections:(id)arg3;
++ (id)wrapperWithURL:(id)arg1 delegate:(id)arg2 settingsID:(long long)arg3 connections:(id)arg4;
 
 - (id)connections;
 - (void)dealloc;
-- (id)delegate;
-- (long)didStopRecordingError;
-- (id)initWithURL:(id)arg1 delegate:(id)arg2 connections:(id)arg3;
+- (id)delegateStorage;
+- (id)initWithURL:(id)arg1 delegate:(id)arg2 settingsID:(long long)arg3 connections:(id)arg4;
+- (BOOL)isPaused;
+- (BOOL)isRecording;
 - (id)metadata;
 - (id)outputFileURL;
-- (BOOL)receivedDidStartRecording;
-- (BOOL)receivedDidStopRecording;
-- (void)setDidStopRecordingError:(long)arg1;
 - (void)setMetadata:(id)arg1;
-- (void)setReceivedDidStartRecording:(BOOL)arg1;
-- (void)setReceivedDidStopRecording:(BOOL)arg1;
+- (void)setPaused:(BOOL)arg1;
+- (void)setRecording:(BOOL)arg1;
+- (long long)settingsID;
 
 @end

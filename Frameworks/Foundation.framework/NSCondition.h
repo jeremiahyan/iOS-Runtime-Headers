@@ -6,6 +6,8 @@
     void *_priv;
 }
 
+@property (copy) NSString *name;
+
 + (id)allocWithZone:(struct _NSZone { }*)arg1;
 
 - (void)broadcast;

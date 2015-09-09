@@ -2,11 +2,9 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@interface PBHyperlink : NSObject {
-}
+@interface PBHyperlink : NSObject
 
 + (id)readAnimationInfoContainerHolder:(id)arg1 presentationState:(id)arg2;
 + (void)readHyperlinksWithPresentationState:(id)arg1;
-+ (id)writeHyperlink:(id)arg1 instance:(int)arg2 presentationState:(id)arg3;
 
 @end

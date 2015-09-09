@@ -2,11 +2,11 @@
    Image: /System/Library/PrivateFrameworks/AirPortAssistant.framework/AirPortAssistant
  */
 
-@class NSDictionary, NSMutableDictionary, NSObject<OS_dispatch_semaphore>, NSTimer;
-
 @interface WiFiUtils : NSObject {
     BOOL _joinInProgress;
     NSMutableDictionary *_missingBSSIDCounts;
+    double _periodicScanInterval;
+    int _periodicScanType;
     BOOL _scanInProgress;
     BOOL _scanOnlyWhenAppActive;
     NSTimer *_scanTimer;
@@ -16,7 +16,9 @@
     struct WiFiShimContext { } *_wifiShim;
 }
 
-@property(retain) NSTimer * _scanTimer;
+@property (nonatomic, retain) NSTimer *_scanTimer;
+@property (nonatomic) double periodicScanInterval;
+@property (nonatomic) int periodicScanType;
 
 + (int)barsForRSSI:(int)arg1;
 + (id)copyFilteredNetworks:(id)arg1 ignoreOptions:(int)arg2;
@@ -49,16 +51,18 @@
 + (unsigned int)scanInfoSubAppleProductID:(id)arg1;
 + (BOOL)scanInfoSupportsACPConfigV1:(id)arg1;
 + (BOOL)scanInfoSupportsMFIConfigV1:(id)arg1;
++ (BOOL)scanInfoSupportsSpruce:(id)arg1;
 + (BOOL)scanInfoTestBitFromAppleDeviceIE:(id)arg1 forType:(int)arg2;
 + (id)sharedInstance;
 + (id)sharedInstanceRef;
 + (void)sharedInstanceRelease;
 + (BOOL)stringArray:(id)arg1 containsBSSID:(id)arg2;
 
+- (long)_asyncWiFiScan:(int)arg1 isPeriodic:(BOOL)arg2;
 - (id)_scanTimer;
 - (void)activateScanning:(BOOL)arg1;
 - (BOOL)airPortIsOn;
-- (long)asyncWiFiScan:(BOOL)arg1;
+- (long)asyncWiFiScan:(int)arg1;
 - (void)asyncWiFiScanThread:(id)arg1;
 - (void)cancelAsync;
 - (long)clearScanCacheSync;
@@ -86,6 +90,8 @@
 - (void)mergeScanResults:(id)arg1;
 - (id)mergedScanInfoArray;
 - (long)openWiFi;
+- (double)periodicScanInterval;
+- (int)periodicScanType;
 - (id)resetScanInfosOfType:(int)arg1;
 - (id)scanInfoForMACAddress:(id)arg1;
 - (id)scanInfoForName:(id)arg1 wifiType:(int)arg2;
@@ -95,6 +101,8 @@
 - (void)scanTimerCallback:(id)arg1;
 - (long)setAutoJoinState:(BOOL)arg1;
 - (void)setJoinInProgress:(BOOL)arg1;
+- (void)setPeriodicScanInterval:(double)arg1;
+- (void)setPeriodicScanType:(int)arg1;
 - (void)setScanInProgress:(BOOL)arg1;
 - (void)setScanOnlyWhenAppActive:(BOOL)arg1;
 - (void)setUnmergedScanInfoDict:(id)arg1;

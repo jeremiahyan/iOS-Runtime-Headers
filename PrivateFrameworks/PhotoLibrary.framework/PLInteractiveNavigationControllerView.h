@@ -2,14 +2,12 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibrary.framework/PhotoLibrary
  */
 
-@class UINavigationBar, UIView;
-
 @interface PLInteractiveNavigationControllerView : UIView <UINavigationBarDelegate> {
+    UIView *_bottom;
     struct { 
         unsigned int transitioning : 1; 
         unsigned int headerViewIsVisible : 1; 
         unsigned int footerViewIsVisible : 1; 
-    UIView *_bottom;
     } _controllerViewFlags;
     UIView *_footer;
     UIView *_header;
@@ -20,13 +18,17 @@
     UIView *_top;
 }
 
-@property(retain) UIView * bottomView;
-@property(retain) UIView * footerView;
-@property(getter=footerViewIsHidden) BOOL footerViewHidden;
-@property(retain) UIView * headerView;
-@property(getter=headerViewIsHidden) BOOL headerViewHidden;
-@property(readonly) UINavigationBar * navigationBar;
-@property(retain) UIView * topView;
+@property (nonatomic, retain) UIView *bottomView;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) UIView *footerView;
+@property (getter=footerViewIsHidden, nonatomic) BOOL footerViewHidden;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) UIView *headerView;
+@property (getter=headerViewIsHidden, nonatomic) BOOL headerViewHidden;
+@property (nonatomic, readonly) UINavigationBar *navigationBar;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) UIView *topView;
 
 - (void)_adjustViewFrame:(id)arg1;
 - (id)bottomView;
@@ -41,13 +43,13 @@
 - (id)navigationBar;
 - (void)setBottomView:(id)arg1;
 - (void)setFooterView:(id)arg1;
-- (void)setFooterViewHidden:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setFooterViewHidden:(BOOL)arg1;
+- (void)setFooterViewHidden:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setHeaderView:(id)arg1;
-- (void)setHeaderViewHidden:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setHeaderViewHidden:(BOOL)arg1;
-- (void)setInteractiveView:(id)arg1 removePrevious:(BOOL)arg2;
+- (void)setHeaderViewHidden:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setInteractiveView:(id)arg1;
+- (void)setInteractiveView:(id)arg1 removePrevious:(BOOL)arg2;
 - (void)setInterfaceOrientation:(int)arg1;
 - (void)setOverlayView:(id)arg1;
 - (void)setTopView:(id)arg1;

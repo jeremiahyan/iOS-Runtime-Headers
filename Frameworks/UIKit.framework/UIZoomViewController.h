@@ -2,18 +2,16 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIButton, UIWindow;
-
 @interface UIZoomViewController : UIViewController {
     UIWindow *_window;
     UIButton *_zoomButton;
 }
 
-@property(readonly) UIWindow * window;
+@property (nonatomic, readonly) UIWindow *window;
 
 - (void)_applicationDidFinishLaunching:(id)arg1;
 - (void)_changeZoom:(id)arg1;
-- (void)_getRotationContentSettings:(struct { BOOL x1; BOOL x2; BOOL x3; BOOL x4; float x5; int x6; }*)arg1 forWindow:(id)arg2;
+- (void)_getRotationContentSettings:(struct { BOOL x1; BOOL x2; BOOL x3; BOOL x4; BOOL x5; float x6; int x7; }*)arg1 forWindow:(id)arg2;
 - (void)_setupPositioningAndRotationForInterfaceOrientation:(int)arg1 offscreen:(BOOL)arg2;
 - (void)_suspendAnimationStarted:(id)arg1;
 - (void)_updateZoomButtonTitle;

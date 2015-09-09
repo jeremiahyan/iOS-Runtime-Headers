@@ -2,19 +2,25 @@
    Image: /usr/lib/libTelephonyUtilDynamic.dylib
  */
 
-@class NSMutableData;
-
 @interface URLConnectionDelegate : NSObject <NSURLConnectionDelegate> {
+    NSMutableData *fData;
     struct weak_ptr<ctu::Http::URLConnectionCallbackHandler> { 
         struct URLConnectionCallbackHandler {} *__ptr_; 
         struct __shared_weak_count {} *__cntrl_; 
+    } fHandler;
+    NSMutableData *fPostData;
+    NSDictionary *fProxySettings;
+    bool fRedirection;
     struct shared_ptr<ctu::Http::HttpResponse> { 
         struct HttpResponse {} *__ptr_; 
         struct __shared_weak_count {} *__cntrl_; 
-    NSMutableData *fData;
-    } fHandler;
     } fResponse;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
@@ -22,6 +28,7 @@
 - (void)connection:(id)arg1 didReceiveData:(id)arg2;
 - (void)connection:(id)arg1 didReceiveResponse:(id)arg2;
 - (void)connection:(id)arg1 didSendBodyData:(int)arg2 totalBytesWritten:(int)arg3 totalBytesExpectedToWrite:(int)arg4;
+- (id)connection:(id)arg1 willSendRequest:(id)arg2 redirectResponse:(id)arg3;
 - (void)connection:(id)arg1 willSendRequestForAuthenticationChallenge:(id)arg2;
 - (void)connectionDidFinishLoading:(id)arg1;
 - (void)dealloc;

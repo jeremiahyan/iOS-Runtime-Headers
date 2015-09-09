@@ -2,23 +2,7 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class <TSPComponentWriteChannel>, <TSPComponentWriterDelegate>, NSHashTable, NSMapTable, NSObject<OS_dispatch_group>, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, NSString, TSPArchiverManager, TSPComponent, TSPObject;
-
 @interface TSPComponentWriter : NSObject {
-    struct vector<TSP::ObjectStackEntry, std::__1::allocator<TSP::ObjectStackEntry> > { 
-        struct ObjectStackEntry {} *__begin_; 
-        struct ObjectStackEntry {} *__end_; 
-        struct __compressed_pair<TSP::ObjectStackEntry *, std::__1::allocator<TSP::ObjectStackEntry> > { 
-            struct ObjectStackEntry {} *__first_; 
-        } __end_cap_; 
-    struct { 
-        unsigned int success : 1; 
-        unsigned int isErrorRecoverable : 1; 
-        unsigned int delegateRespondsToNeedsDocumentRecovery : 1; 
-        unsigned int delegateRespondsToLocatorForClaimingComponent : 1; 
-        unsigned int delegateRespondsToObjectBelongsToLinkedComponent : 1; 
-        unsigned int delegateRespondsToExternalPackageDidWriteObject : 1; 
-        unsigned int delegateRespondsToShouldDelayWritingObject : 1; 
     NSHashTable *_analyzedCommandToModelReferences;
     NSHashTable *_archivedObjects;
     NSMapTable *_archivedObjectsDictionary;
@@ -29,6 +13,14 @@
     <TSPComponentWriterDelegate> *_delegate;
     NSObject<OS_dispatch_semaphore> *_delegateSemaphore;
     NSHashTable *_externalReferences;
+    struct { 
+        unsigned int success : 1; 
+        unsigned int isErrorRecoverable : 1; 
+        unsigned int delegateRespondsToNeedsDocumentRecovery : 1; 
+        unsigned int delegateRespondsToLocatorForClaimingComponent : 1; 
+        unsigned int delegateRespondsToObjectBelongsToLinkedComponent : 1; 
+        unsigned int delegateRespondsToExternalPackageDidWriteObject : 1; 
+        unsigned int delegateRespondsToShouldDelayWritingObject : 1; 
     } _flags;
     NSObject<OS_dispatch_queue> *_globalConcurrentQueue;
     NSHashTable *_indirectCommandToModelExternalReferences;
@@ -36,7 +28,14 @@
     NSString *_locator;
     int _mode;
     NSHashTable *_newCommandToModelReferences;
+    struct vector<TSP::ObjectStackEntry, std::__1::allocator<TSP::ObjectStackEntry> > { 
+        struct ObjectStackEntry {} *__begin_; 
+        struct ObjectStackEntry {} *__end_; 
+        struct __compressed_pair<TSP::ObjectStackEntry *, std::__1::allocator<TSP::ObjectStackEntry> > { 
+            struct ObjectStackEntry {} *__first_; 
+        } __end_cap_; 
     } _objectStack;
+    NSMutableDictionary *_objectUUIDToIdentifierDictionary;
     unsigned char _packageIdentifier;
     unsigned long long _readVersion;
     TSPObject *_rootObject;
@@ -47,32 +46,33 @@
     unsigned long long _writeVersion;
 }
 
-@property(readonly) TSPComponent * component;
-@property(readonly) unsigned long long readVersion;
-@property(readonly) unsigned long long writeVersion;
+@property (nonatomic, readonly) TSPComponent *component;
+@property (nonatomic, readonly) unsigned long long readVersion;
+@property (nonatomic, readonly) unsigned long long writeVersion;
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)addCommandToModelReferences:(id)arg1 parentObject:(id)arg2;
-- (void)analyzeCommandToModelReference:(id)arg1 isAnalyzingExternalComponent:(BOOL)arg2 archiver:(id)arg3 completion:(id)arg4;
+- (void)analyzeCommandToModelReference:(id)arg1 isAnalyzingExternalComponent:(BOOL)arg2 archiver:(id)arg3 completion:(id /* block */)arg4;
 - (BOOL)canSkipArchivingStronglyReferencedObject:(id)arg1 fromComponentRootObject:(id)arg2;
 - (id)commandToModelReferencesToWrite;
 - (id)component;
 - (id)init;
 - (id)initWithComponent:(id)arg1 locator:(id)arg2 rootObject:(id)arg3 delegate:(id)arg4 mode:(int)arg5 packageIdentifier:(unsigned char)arg6 writeChannel:(id)arg7 archiverManager:(id)arg8;
-- (BOOL)isObjectExternal:(id)arg1 parentObject:(id)arg2 validateAmbiguousObjectOwnership:(BOOL)arg3 claimingComponent:(id*)arg4 isOwnedByDifferentPackage:(BOOL*)arg5;
+- (BOOL)isObjectExternal:(id)arg1 archiverOrNil:(id)arg2 parentObject:(id)arg3 validateAmbiguousObjectOwnership:(BOOL)arg4 hasArchiverAccessLock:(BOOL)arg5 claimingComponent:(id*)arg6 isOwnedByDifferentPackage:(BOOL*)arg7;
 - (BOOL)isObjectExternalBecauseItAlreadyBelongsToAnotherComponent:(id)arg1 parentObject:(id)arg2 claimingComponent:(id*)arg3 claimingPackageIdentifier:(unsigned char*)arg4 claimingComponentWillBeLinked:(BOOL*)arg5;
+- (BOOL)isObjectExternalBecauseOfExplicitComponentOwnership:(id)arg1 archiverOrNil:(id)arg2 claimingComponentOrNil:(id)arg3 hasArchiverAccessLock:(BOOL)arg4 explicitComponentRootObject:(id*)arg5 claimingComponent:(id*)arg6 isOwnedByDifferentPackage:(BOOL*)arg7;
 - (unsigned long long)readVersion;
 - (BOOL)shouldAnalyzeCommandToModelReference:(id)arg1 isAnalyzingExternalComponent:(BOOL)arg2;
 - (BOOL)shouldDelayWritingObject:(id)arg1;
 - (BOOL)shouldWriteObject:(id)arg1;
-- (void)validateAmbiguousObjectOwnershipForObject:(id)arg1 parentObject:(id)arg2 claimingComponent:(id)arg3 claimingPackageIdentifier:(unsigned char)arg4 claimingComponentWillBeLinked:(BOOL)arg5;
-- (void)validateExplicitComponentOwnershipForObject:(id)arg1 parentObject:(id)arg2;
+- (void)validateAmbiguousObjectOwnershipForObject:(id)arg1 explicitComponentRootObject:(id)arg2 parentObject:(id)arg3 claimingComponent:(id)arg4 claimingPackageIdentifier:(unsigned char)arg5 claimingComponentWillBeLinked:(BOOL)arg6;
+- (void)validateExplicitComponentOwnershipForObject:(id)arg1 archiverOrNil:(id)arg2 parentObject:(id)arg3 hasArchiverAccessLock:(BOOL)arg4;
 - (BOOL)validateObjectContextForObject:(id)arg1;
 - (void)writeArchiver:(id)arg1;
-- (void)writeObject:(id)arg1 archiver:(id)arg2 parentObject:(id)arg3 completion:(id)arg4;
-- (void)writeObjects:(id)arg1 parentObject:(id)arg2 isCommandToModelReference:(BOOL)arg3 isAnalyzingExternalComponent:(BOOL)arg4 completion:(id)arg5;
+- (void)writeObject:(id)arg1 archiver:(id)arg2 parentObject:(id)arg3 completion:(id /* block */)arg4;
+- (void)writeObjects:(id)arg1 parentObject:(id)arg2 isCommandToModelReference:(BOOL)arg3 isAnalyzingExternalComponent:(BOOL)arg4 hasArchiverAccessLock:(BOOL)arg5 completion:(id /* block */)arg6;
 - (unsigned long long)writeVersion;
-- (void)writeWithCompletionQueue:(id)arg1 completion:(id)arg2;
+- (void)writeWithCompletionQueue:(id)arg1 completion:(id /* block */)arg2;
 
 @end

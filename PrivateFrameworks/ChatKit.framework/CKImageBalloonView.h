@@ -2,20 +2,23 @@
    Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
  */
 
-@class CKAnimatedImage, CKBalloonImageView, NSArray;
-
 @interface CKImageBalloonView : CKBalloonView <CKAnimationTimerObserver> {
     CKAnimatedImage *_animatedImage;
     NSArray *_frames;
     CKBalloonImageView *_tailMask;
 }
 
-@property(retain) CKAnimatedImage * animatedImage;
-@property(copy) NSArray * frames;
-@property(retain) CKBalloonImageView * tailMask;
+@property (nonatomic, retain) CKAnimatedImage *animatedImage;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, copy) NSArray *frames;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) CKBalloonImageView *tailMask;
 
 - (id)animatedImage;
 - (void)animationTimerFired:(unsigned int)arg1;
+- (void)configureForMediaObject:(id)arg1 previewWidth:(float)arg2 orientation:(BOOL)arg3;
 - (void)configureForMessagePart:(id)arg1;
 - (void)dealloc;
 - (id)description;
@@ -23,6 +26,7 @@
 - (id)frames;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)layoutSubviews;
+- (BOOL)needsGroupOpacity;
 - (id)overlayColor;
 - (void)prepareForDisplay;
 - (void)prepareForReuse;

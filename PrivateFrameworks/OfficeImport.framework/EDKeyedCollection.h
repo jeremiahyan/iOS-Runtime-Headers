@@ -2,10 +2,8 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class TSUPointerKeyDictionary;
-
 @interface EDKeyedCollection : EDCollection {
-    TSUPointerKeyDictionary *mMap;
+    OITSUPointerKeyDictionary *mMap;
 }
 
 - (unsigned int)addObject:(id)arg1;

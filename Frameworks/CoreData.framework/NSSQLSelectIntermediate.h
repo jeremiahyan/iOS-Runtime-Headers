@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@class NSArray, NSSQLEntity, NSString;
-
 @interface NSSQLSelectIntermediate : NSSQLIntermediate {
     NSString *_columnAlias;
     NSString *_correlationTarget;
@@ -18,7 +16,7 @@
 - (id)generateSQLStringInContext:(id)arg1;
 - (id)initForCorrelationTarget:(id)arg1 alias:(id)arg2 fetchColumns:(id)arg3 inScope:(id)arg4;
 - (id)initWithEntity:(id)arg1 alias:(id)arg2 fetchColumns:(id)arg3 inScope:(id)arg4;
-- (BOOL)isSelectTargetScoped;
+- (BOOL)isTargetColumnsScoped;
 - (BOOL)onlyFetchesAggregates;
 - (void)setColumnAlias:(id)arg1;
 - (void)setFetchColumns:(id)arg1;

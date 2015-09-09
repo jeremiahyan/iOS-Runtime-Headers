@@ -2,14 +2,15 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSString, SAUIAppPunchOut;
+@interface SALocalSearchOffer : AceObject <SAAceSerializable>
 
-@interface SALocalSearchOffer : AceObject <SAAceSerializable> {
-}
-
-@property(copy) NSString * identifier;
-@property(retain) SAUIAppPunchOut * offerPunchOut;
-@property(copy) NSString * title;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *identifier;
+@property (nonatomic, retain) SAUIAppPunchOut *offerPunchOut;
+@property (readonly) Class superclass;
+@property (nonatomic, copy) NSString *title;
 
 + (id)offer;
 + (id)offerWithDictionary:(id)arg1 context:(id)arg2;

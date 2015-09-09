@@ -2,14 +2,16 @@
    Image: /System/Library/PrivateFrameworks/WebBookmarks.framework/WebBookmarks
  */
 
-@class <WebBookmarksClientDelegateProtocol>, WebBookmarksXPCConnection;
-
 @interface SafariFetcherServerProxy : NSObject <WebBookmarksXPCConnectionDelegate> {
     WebBookmarksXPCConnection *_connection;
     <WebBookmarksClientDelegateProtocol> *_delegate;
 }
 
-@property <WebBookmarksClientDelegateProtocol> * delegate;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <WebBookmarksClientDelegateProtocol> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)_clearConnection;
 - (void)clearAllReadingListArchives;

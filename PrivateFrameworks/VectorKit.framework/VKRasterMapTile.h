@@ -2,34 +2,37 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-@class NSData;
-
 @interface VKRasterMapTile : NSObject {
+    struct shared_ptr<ggl::BitmapDataBase> { 
+        struct BitmapDataBase {} *__ptr_; 
+        struct __shared_weak_count {} *__cntrl_; 
+    } _bitmapData;
     struct VKTileKey { 
         unsigned int z; 
         int x; 
         int y; 
         unsigned int pointSize; 
-    struct VKTileKey { 
-        unsigned int z; 
-        int x; 
-        int y; 
-        unsigned int pointSize; 
-    NSData *_bitmapData;
     } _finalTileKey;
     struct CGImage { } *_image;
     float _scale;
+    struct VKTileKey { 
+        unsigned int z; 
+        int x; 
+        int y; 
+        unsigned int pointSize; 
     } _superTileKey;
 }
 
-@property(readonly) struct VKRasterTileKey { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; } tileKey;
+@property (nonatomic, readonly) struct VKRasterTileKey { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; } tileKey;
 
+- (id).cxx_construct;
+- (void).cxx_destruct;
 - (struct CGImage { }*)_image;
 - (void)dealloc;
-- (void)foreachTileOfSize:(unsigned int)arg1 perform:(id)arg2 completion:(id)arg3;
+- (void)foreachTileOfSize:(unsigned int)arg1 perform:(id /* block */)arg2 completion:(id /* block */)arg3;
 - (id)imageDataInFormat:(unsigned int)arg1;
-- (id)initWithBitmapData:(id)arg1 superKey:(const struct VKTileKey { unsigned int x1; int x2; int x3; unsigned int x4; }*)arg2 finalKey:(const struct VKTileKey { unsigned int x1; int x2; int x3; unsigned int x4; }*)arg3 scale:(float)arg4;
-- (id)initWithBitmapData:(id)arg1 tileKey:(const struct VKTileKey { unsigned int x1; int x2; int x3; unsigned int x4; }*)arg2 scale:(float)arg3;
+- (id)initWithBitmapData:(struct shared_ptr<ggl::BitmapDataBase> { struct BitmapDataBase {} *x1; struct __shared_weak_count {} *x2; })arg1 superKey:(const struct VKTileKey { unsigned int x1; int x2; int x3; unsigned int x4; }*)arg2 finalKey:(const struct VKTileKey { unsigned int x1; int x2; int x3; unsigned int x4; }*)arg3 scale:(float)arg4;
+- (id)initWithBitmapData:(struct shared_ptr<ggl::BitmapDataBase> { struct BitmapDataBase {} *x1; struct __shared_weak_count {} *x2; })arg1 tileKey:(const struct VKTileKey { unsigned int x1; int x2; int x3; unsigned int x4; }*)arg2 scale:(float)arg3;
 - (id)tileForKey:(const struct VKRasterTileKey { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; }*)arg1;
 - (struct VKRasterTileKey { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; })tileKey;
 - (BOOL)writeImageToFile:(id)arg1 format:(unsigned int)arg2 error:(id*)arg3;

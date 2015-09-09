@@ -2,24 +2,25 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@class GEORoute, MKPolyline, MKRoutePolyline, NSArray, NSString;
-
 @interface MKRoute : NSObject {
     GEORoute *_geoRoute;
     MKRoutePolyline *_polyline;
     NSArray *_steps;
 }
 
-@property(readonly) NSArray * advisoryNotices;
-@property(readonly) double distance;
-@property(readonly) double expectedTravelTime;
-@property(readonly) NSString * name;
-@property(readonly) MKPolyline * polyline;
-@property(readonly) NSArray * steps;
-@property(readonly) unsigned int transportType;
+@property (nonatomic, readonly) NSArray *advisoryNotices;
+@property (nonatomic, readonly) double distance;
+@property (nonatomic, readonly) double expectedTravelTime;
+@property (getter=_geoRoute, nonatomic, readonly) GEORoute *geoRoute;
+@property (nonatomic, readonly) NSString *name;
+@property (nonatomic, readonly) MKPolyline *polyline;
+@property (nonatomic, readonly) NSArray *steps;
+@property (nonatomic, readonly) unsigned int transportType;
 
 - (void).cxx_destruct;
+- (id)_geoRoute;
 - (id)_initWithGEORoute:(id)arg1;
+- (id)_maneuverImageForStep:(id)arg1 size:(struct CGSize { float x1; float x2; })arg2 scale:(float)arg3;
 - (id)advisoryNotices;
 - (double)distance;
 - (double)expectedTravelTime;

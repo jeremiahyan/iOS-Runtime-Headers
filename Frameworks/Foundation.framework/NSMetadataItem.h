@@ -7,7 +7,9 @@
     void *_reserved;
 }
 
-- (id)_init:(union { id x1; id x2; })arg1;
+@property (readonly, copy) NSArray *attributes;
+
+- (id)_init:(union { id x1; })arg1;
 - (id)_item;
 - (void)_setQuery:(id)arg1;
 - (id)attributes;

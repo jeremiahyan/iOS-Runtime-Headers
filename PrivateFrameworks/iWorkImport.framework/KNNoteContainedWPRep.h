@@ -2,9 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface KNNoteContainedWPRep : TSWPRep {
-}
-
-- (Class)wpEditorClass;
+@interface KNNoteContainedWPRep : TSWPRep
 
 @end

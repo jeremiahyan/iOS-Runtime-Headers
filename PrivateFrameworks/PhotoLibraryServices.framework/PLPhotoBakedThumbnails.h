@@ -2,12 +2,7 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
  */
 
-@class NSData, NSMutableArray, NSMutableDictionary;
-
 @interface PLPhotoBakedThumbnails : NSObject {
-    struct CGSize { 
-        float width; 
-        float height; 
     unsigned int _count;
     BOOL _dataIsMutable;
     int _format;
@@ -16,19 +11,22 @@
     BOOL _optionsAccessed;
     NSData *_optionsData;
     int _singleThumbnailImageLength;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _size;
     NSData *_thumbnailData;
     NSMutableArray *_thumbnailImages;
 }
 
-@property(readonly) unsigned int bitmapInfo;
-@property(readonly) int bitsPerComponent;
-@property(readonly) int bytesPerPixel;
-@property(readonly) int format;
-@property(readonly) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } imageRect;
-@property(readonly) NSMutableDictionary * options;
-@property(readonly) NSData * optionsData;
-@property(readonly) struct CGSize { float x1; float x2; } size;
+@property (nonatomic, readonly) unsigned int bitmapInfo;
+@property (nonatomic, readonly) int bitsPerComponent;
+@property (nonatomic, readonly) int bytesPerPixel;
+@property (nonatomic, readonly) int format;
+@property (nonatomic, readonly) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } imageRect;
+@property (nonatomic, readonly, retain) NSMutableDictionary *options;
+@property (nonatomic, readonly, retain) NSData *optionsData;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } size;
 
 + (BOOL)saveBakedThumbnailsOfImages:(id)arg1 toFile:(id)arg2 format:(int)arg3 orientation:(int*)arg4 options:(id)arg5 delegate:(id)arg6;
 + (id)thumbnailsWithContentsOfFile:(id)arg1 format:(int)arg2;
@@ -42,10 +40,10 @@
 - (id)description;
 - (int)format;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })imageRect;
-- (id)initWithContentsOfFile:(id)arg1 format:(int)arg2 readOnly:(BOOL)arg3;
 - (id)initWithContentsOfFile:(id)arg1 format:(int)arg2;
-- (id)initWithData:(id)arg1 format:(int)arg2 readOnly:(BOOL)arg3;
+- (id)initWithContentsOfFile:(id)arg1 format:(int)arg2 readOnly:(BOOL)arg3;
 - (id)initWithData:(id)arg1 format:(int)arg2;
+- (id)initWithData:(id)arg1 format:(int)arg2 readOnly:(BOOL)arg3;
 - (id)initWithImages:(id)arg1 format:(int)arg2 orientation:(int*)arg3 options:(id)arg4 delegate:(id)arg5;
 - (id)options;
 - (id)optionsData;

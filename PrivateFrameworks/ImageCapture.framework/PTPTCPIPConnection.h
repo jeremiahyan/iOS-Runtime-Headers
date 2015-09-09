@@ -2,19 +2,17 @@
    Image: /System/Library/PrivateFrameworks/ImageCapture.framework/ImageCapture
  */
 
-@class NSMutableData, NSTimer, PTPTCPIPTransport;
-
 @interface PTPTCPIPConnection : NSObject {
     unsigned int _bytesReceived;
     unsigned int _bytesSent;
     struct __CFReadStream { } *_inStream;
     NSTimer *_inactivityTimer;
     struct __CFWriteStream { } *_outStream;
-    struct dispatch_semaphore_s { } *_receiveBufferSemaphore;
+    NSObject<OS_dispatch_semaphore> *_receiveBufferSemaphore;
     NSTimer *_receiveTimer;
     NSMutableData *_recieveBuffer;
     NSMutableData *_transmitBuffer;
-    struct dispatch_semaphore_s { } *_transmitBufferSemaphore;
+    NSObject<OS_dispatch_semaphore> *_transmitBufferSemaphore;
     NSTimer *_transmitTimer;
     PTPTCPIPTransport *_transport;
 }

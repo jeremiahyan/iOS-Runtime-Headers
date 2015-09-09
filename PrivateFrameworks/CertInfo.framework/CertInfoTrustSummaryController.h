@@ -2,26 +2,24 @@
    Image: /System/Library/PrivateFrameworks/CertInfo.framework/CertInfo
  */
 
-@class <CertInfoTrustDescription>, <CertInfoTrustSummaryControllerDelegate>, UIBarButtonItem, UITableViewCell;
-
 @interface CertInfoTrustSummaryController : UITableViewController {
-    unsigned int _showsDoneButton : 1;
     <CertInfoTrustSummaryControllerDelegate> *_delegate;
     <CertInfoTrustDescription> *_description;
     UITableViewCell *_descriptionCell;
     UIBarButtonItem *_doneButton;
     UITableViewCell *_headerCell;
+    unsigned int _showsDoneButton;
 }
 
-@property <CertInfoTrustSummaryControllerDelegate> * delegate;
-@property BOOL showsDoneButton;
+@property (nonatomic) <CertInfoTrustSummaryControllerDelegate> *delegate;
+@property (nonatomic) BOOL showsDoneButton;
 
+- (void).cxx_destruct;
 - (void)_actionButtonPressed:(id)arg1;
 - (id)_cellForReuseIdentifier:(id)arg1;
 - (id)_descriptionCell;
 - (void)_doneButtonPressed:(id)arg1;
 - (id)_headerCell;
-- (void)dealloc;
 - (id)delegate;
 - (id)initWithTrustDescription:(id)arg1;
 - (void)setActionButtonTitle:(id)arg1 destructive:(BOOL)arg2 animated:(BOOL)arg3;

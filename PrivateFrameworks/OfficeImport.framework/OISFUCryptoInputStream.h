@@ -2,13 +2,16 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class <SFUInputStream>, OISFUCryptor;
-
 @interface OISFUCryptoInputStream : NSObject <SFUInputStream> {
     <SFUInputStream> *mBaseStream;
     OISFUCryptor *mCryptor;
     long long mOffset;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (BOOL)canSeek;
 - (void)close;

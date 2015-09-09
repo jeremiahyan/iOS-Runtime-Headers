@@ -2,17 +2,20 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class EDString;
-
 @interface EDContentFormat : NSObject <EDKeyedObject, NSCopying> {
-    boolmBuiltIn;
-    boolmReferenced;
+    bool mBuiltIn;
     unsigned int mFormatId;
     EDString *mFormatString;
+    bool mReferenced;
 }
 
-+ (id)contentFormatWithFormatString:(id)arg1 formatId:(unsigned int)arg2;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+
 + (id)contentFormatWithFormatString:(id)arg1;
++ (id)contentFormatWithFormatString:(id)arg1 formatId:(unsigned int)arg2;
 + (id)contentFormatWithNSString:(id)arg1 formatId:(unsigned int)arg2 builtIn:(bool)arg3;
 
 - (bool)builtIn;

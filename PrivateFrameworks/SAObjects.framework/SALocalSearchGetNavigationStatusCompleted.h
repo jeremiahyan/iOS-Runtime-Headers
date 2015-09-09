@@ -2,31 +2,26 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSNumber, NSString, SALocalSearchAceNavigationEta, SALocalSearchRoute;
+@interface SALocalSearchGetNavigationStatusCompleted : SABaseCommand <SAServerBoundCommand>
 
-@interface SALocalSearchGetNavigationStatusCompleted : SABaseCommand <SAServerBoundCommand> {
-}
-
-@property(copy) NSString * aceId;
-@property(retain) NSNumber * etaInMinutes;
-@property(retain) NSNumber * navigating;
-@property(retain) SALocalSearchAceNavigationEta * nextManeuverEta;
-@property(retain) SALocalSearchAceNavigationEta * overallEta;
-@property(copy) NSString * refId;
-@property(retain) SALocalSearchRoute * route;
+@property (nonatomic, copy) NSString *aceId;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) SALocalSearchAceNavigationEta *nextManeuverEta;
+@property (nonatomic, retain) SALocalSearchAceNavigationEta *overallEta;
+@property (nonatomic, copy) NSString *refId;
+@property (nonatomic, retain) SALocalSearchRoute *route;
+@property (readonly) Class superclass;
 
 + (id)getNavigationStatusCompleted;
 + (id)getNavigationStatusCompletedWithDictionary:(id)arg1 context:(id)arg2;
 
 - (id)encodedClassName;
-- (id)etaInMinutes;
 - (id)groupIdentifier;
-- (id)navigating;
 - (id)nextManeuverEta;
 - (id)overallEta;
 - (id)route;
-- (void)setEtaInMinutes:(id)arg1;
-- (void)setNavigating:(id)arg1;
 - (void)setNextManeuverEta:(id)arg1;
 - (void)setOverallEta:(id)arg1;
 - (void)setRoute:(id)arg1;

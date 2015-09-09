@@ -2,28 +2,29 @@
    Image: /System/Library/Frameworks/iAd.framework/iAd
  */
 
-@class NSString, NSURL;
-
 @interface ADAdSpaceConfiguration : NSObject <NSSecureCoding> {
     NSString *_advertisingSection;
     NSString *_authenticationUserName;
+    NSSet *_context;
     int _creativeType;
     NSString *_identifier;
     int _options;
     NSURL *_serverURL;
 }
 
-@property(copy) NSString * advertisingSection;
-@property(copy) NSString * authenticationUserName;
-@property int creativeType;
-@property(copy) NSString * identifier;
-@property int options;
-@property(copy) NSURL * serverURL;
+@property (nonatomic, copy) NSString *advertisingSection;
+@property (nonatomic, copy) NSString *authenticationUserName;
+@property (nonatomic, copy) NSSet *context;
+@property (nonatomic) int creativeType;
+@property (nonatomic, copy) NSString *identifier;
+@property (nonatomic) int options;
+@property (nonatomic, copy) NSURL *serverURL;
 
 + (BOOL)supportsSecureCoding;
 
 - (id)advertisingSection;
 - (id)authenticationUserName;
+- (id)context;
 - (int)creativeType;
 - (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;
@@ -33,6 +34,7 @@
 - (id)serverURL;
 - (void)setAdvertisingSection:(id)arg1;
 - (void)setAuthenticationUserName:(id)arg1;
+- (void)setContext:(id)arg1;
 - (void)setCreativeType:(int)arg1;
 - (void)setIdentifier:(id)arg1;
 - (void)setOptions:(int)arg1;

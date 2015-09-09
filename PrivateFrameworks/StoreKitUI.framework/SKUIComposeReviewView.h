@@ -2,27 +2,37 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class <SKUIComposeReviewViewDelegate>, SKUIComposeReviewHeaderView, SKUIReviewMetadata, SULoadingView, SUTextContentView, UIControl, UILabel, UIScrollView;
-
 @interface SKUIComposeReviewView : UIView <SKUIComposeReviewHeaderDelegate, UITextContentViewDelegate> {
-    unsigned int _loading : 1;
     int _currentBodyLength;
     <SKUIComposeReviewViewDelegate> *_delegate;
     SKUIComposeReviewHeaderView *_headerView;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
+    } _keyboardFrame;
+    unsigned int _loading;
     SULoadingView *_loadingView;
     SKUIReviewMetadata *_review;
-    UIControl *_reviewCountControl;
-    UILabel *_reviewCountLabel;
     UIScrollView *_scrollView;
     int _style;
     SUTextContentView *_textContentView;
 }
 
-@property(readonly) int composeReviewStyle;
-@property <SKUIComposeReviewViewDelegate> * delegate;
-@property(getter=isLoading) BOOL loading;
-@property float rating;
-@property(getter=isValid,readonly) BOOL valid;
+@property (nonatomic, readonly) int composeReviewStyle;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SKUIComposeReviewViewDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (getter=isLoading, nonatomic) BOOL loading;
+@property (nonatomic) float rating;
+@property (readonly) Class superclass;
+@property (getter=isValid, nonatomic, readonly) BOOL valid;
 
 - (void).cxx_destruct;
 - (id)_body;
@@ -31,8 +41,6 @@
 - (void)_keyboardVisibilityDidChangeNotification:(id)arg1;
 - (void)_layoutComposeView;
 - (void)_layoutLoadingView;
-- (void)_reviewCountAction:(id)arg1;
-- (id)_reviewCountString;
 - (id)_reviewPlaceholder;
 - (void)_showComposeView;
 - (void)_showLoadingView;
@@ -43,6 +51,7 @@
 - (id)copyReview;
 - (void)dealloc;
 - (id)delegate;
+- (id)hitTest:(struct CGPoint { float x1; float x2; })arg1 withEvent:(id)arg2;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 style:(int)arg2;
 - (BOOL)isLoading;
 - (BOOL)isValid;

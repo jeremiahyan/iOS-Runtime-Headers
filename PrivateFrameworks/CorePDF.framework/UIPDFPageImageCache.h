@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/CorePDF.framework/CorePDF
  */
 
-@class NSOperationQueue, UIPDFDocument;
-
 @interface UIPDFPageImageCache : NSObject {
     UIPDFDocument *_document;
     unsigned int _jobCount;
@@ -16,9 +14,9 @@
     NSOperationQueue *_renderQueue;
 }
 
-@property(readonly) UIPDFDocument * document;
-@property(readonly) unsigned int lookAhead;
-@property(readonly) unsigned int pageCount;
+@property (readonly) UIPDFDocument *document;
+@property (readonly) unsigned int lookAhead;
+@property (readonly) unsigned int pageCount;
 
 - (void)addRenderJob:(id)arg1;
 - (void)cacheImageOfPage:(unsigned int)arg1 maxSize:(struct CGSize { float x1; float x2; })arg2;
@@ -30,8 +28,8 @@
 - (void)didReceiveMemoryWarning:(id)arg1;
 - (id)document;
 - (id)getImageIfAvailableForPage:(unsigned int)arg1;
-- (id)initWithDocument:(id)arg1 cacheCount:(unsigned int)arg2 lookAhead:(unsigned int)arg3;
 - (id)initWithDocument:(id)arg1;
+- (id)initWithDocument:(id)arg1 cacheCount:(unsigned int)arg2 lookAhead:(unsigned int)arg3;
 - (unsigned int)lookAhead;
 - (unsigned int)pageCount;
 

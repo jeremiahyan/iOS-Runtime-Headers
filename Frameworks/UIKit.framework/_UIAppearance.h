@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, NSMapTable, NSMutableArray, NSMutableDictionary, _UIAppearanceCustomizableClassInfo;
-
 @interface _UIAppearance : NSObject {
     NSMutableArray *_appearanceInvocations;
     NSArray *_containerList;
@@ -12,15 +10,15 @@
     NSMutableDictionary *_resettableInvocations;
 }
 
-@property(readonly) _UIAppearanceCustomizableClassInfo * _customizableClassInfo;
-@property(setter=_setResettableInvocations:,retain) NSMutableDictionary * _resettableInvocations;
+@property (nonatomic, readonly) _UIAppearanceCustomizableClassInfo *_customizableClassInfo;
+@property (setter=_setResettableInvocations:, nonatomic, retain) NSMutableDictionary *_resettableInvocations;
 
 + (void)_addWindow:(id)arg1 forSource:(id)arg2;
 + (id)_appearanceForClass:(Class)arg1 withContainerList:(id)arg2;
 + (id)_appearanceNodeForClassInfo:(id)arg1 containerList:(id)arg2;
 + (id)_appearanceWithClassInfo:(id)arg1 containerList:(id)arg2;
-+ (void)_applyInvocationsTo:(id)arg1 window:(id)arg2 matchingSelector:(SEL)arg3;
 + (void)_applyInvocationsTo:(id)arg1 window:(id)arg2;
++ (void)_applyInvocationsTo:(id)arg1 window:(id)arg2 matchingSelector:(SEL)arg3;
 + (id)_currentAppearanceSource;
 + (BOOL)_hasAnyCustomizations;
 + (BOOL)_hasCustomizationsForClass:(Class)arg1 guideClass:(Class)arg2;
@@ -28,6 +26,7 @@
 + (id)_pendingRecordInvocationsForSource:(id)arg1;
 + (id)_recorderForSource:(id)arg1;
 + (id)_recordersExcludingSource:(id)arg1 withWindow:(id)arg2;
++ (void)_removeInvocationsForSource:(id)arg1;
 + (void)_removeWindow:(id)arg1 forSource:(id)arg2;
 + (id)_rootAppearancesNode;
 + (void)_setCurrentAppearanceSource:(id)arg1;
@@ -37,9 +36,13 @@
 
 - (id)_appearanceInvocations;
 - (id)_customizableClassInfo;
+- (void)_invalidateAppearanceInWindow:(id)arg1;
+- (BOOL)_isValidAppearanceForCustomizableObject:(id)arg1;
+- (void)_removeInvocationsForSource:(id)arg1;
 - (id)_resettableInvocations;
 - (id)_resettableInvocationsCreateIfNecessary;
 - (void)_setResettableInvocations:(id)arg1;
+- (id)_traitCollection;
 - (void)dealloc;
 - (id)description;
 - (void)forwardInvocation:(id)arg1;

@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class <TSCHStyleActAlike>, NSObject<TSCHUnretainedParent>, NSString, TSCHChartGridAdapter, TSCHChartModel, TSCHChartSeriesType, TSCHErrorBarData, TSCHTrendLineData, TSUPointerKeyDictionary;
-
-@interface TSCHChartSeries : NSObject <TSCHUnretainedParent, TSCHStyleOwning> {
+@interface TSCHChartSeries : NSObject <TSCHPropertyMapsGeneratedProtocol, TSCHStyleOwnerCollaborationSupport, TSCHStyleOwning, TSCHUnretainedParent> {
     TSUPointerKeyDictionary *mAxisTable;
     unsigned int mBarGapIndex;
     TSCHChartModel *mChartModel;
@@ -19,28 +17,37 @@
     TSCHTrendLineData *mTrendLineData;
 }
 
-@property unsigned int barGapIndex;
-@property(readonly) TSCHErrorBarData * errorBarData;
-@property(readonly) TSCHChartModel * model;
-@property(retain) NSString * name;
-@property(readonly) unsigned int seriesIndex;
-@property(readonly) NSObject<TSCHUnretainedParent> * seriesStorage;
-@property TSCHChartSeriesType * seriesType;
-@property(readonly) BOOL showTrendLineLegendText;
-@property(readonly) TSCHTrendLineData * trendLineData;
-@property(readonly) NSString * trendLineLegendText;
-@property(readonly) unsigned int yAxisOrdinal;
+@property (nonatomic) unsigned int barGapIndex;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) TSCHErrorBarData *errorBarData;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) TSCHChartModel *model;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, readonly) unsigned int seriesIndex;
+@property (nonatomic, readonly) NSObject<TSCHUnretainedParent> *seriesStorage;
+@property (nonatomic) TSCHChartSeriesType *seriesType;
+@property (nonatomic, readonly) BOOL showTrendLineLegendText;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) TSCHTrendLineData *trendLineData;
+@property (nonatomic, readonly) NSString *trendLineLegendText;
 
 + (id)computableProperties;
 + (id)computedFillOrStroke:(id)arg1 forSeriesIndex:(unsigned int)arg2 numberOfThemeSeries:(unsigned int)arg3;
++ (id)defaultNumberFormat;
++ (id)stackedPercentageNumberFormat;
++ (unsigned char)styleOwnerPathType;
 
+- (int)adjustedNumberFormatType;
 - (id)axisForAxisType:(int)arg1;
 - (id)axisIDForAxisType:(int)arg1;
+- (id)axisTypesForValueLabelString;
 - (unsigned int)barGapIndex;
 - (id)chartInfo;
 - (void)clearAxisIDs;
 - (void)clearParent;
 - (id)context;
+- (id)customFormatForGridValueType:(int)arg1;
 - (void)dealloc;
 - (id)defaultProperties;
 - (int)defaultPropertyForGeneric:(int)arg1;
@@ -51,6 +58,9 @@
 - (float)floatValueForProperty:(int)arg1 defaultValue:(float)arg2;
 - (id)formattedValueLabelStringForValueIndex:(unsigned int)arg1;
 - (id)g_genericToDefaultPropertyMap;
+- (id)g_operationPropertyNameForGenericProperty:(int)arg1;
+- (int)gridValueType;
+- (BOOL)hasCustomFormatForGridValueType:(int)arg1;
 - (BOOL)hasFloatValueForProperty:(int)arg1 value:(float*)arg2;
 - (BOOL)hasIntValueForProperty:(int)arg1 value:(int*)arg2;
 - (BOOL)hasObjectValueForProperty:(int)arg1 value:(id*)arg2;
@@ -59,7 +69,6 @@
 - (void)invalidateCacheDataForSynchronization;
 - (BOOL)isMultiData;
 - (id)model;
-- (void)modelSyncMutateNonStyle:(id)arg1;
 - (void)modelSyncSetNonStyle:(id)arg1;
 - (void)modelSyncSetStyle:(id)arg1;
 - (unsigned int)multiDataSetIndex;
@@ -70,14 +79,13 @@
 - (id)nonstyle;
 - (unsigned int)numberOfValues;
 - (id)objectValueForProperty:(int)arg1;
+- (id)operationPropertyNameFromGenericProperty:(int)arg1;
 - (id)p_axisStorageForType:(int)arg1 create:(BOOL)arg2;
-- (id)p_axisTypesForValueLabelString;
 - (void)p_generateComputedProperty:(int)arg1 objectValue:(id*)arg2 intValue:(int*)arg3 floatValue:(float*)arg4;
 - (id)p_genericToDefaultPropertyMap;
 - (id)p_representativeThemeSeries;
 - (BOOL)p_seriesIndexWithinThemeStyleCount;
 - (id)p_seriesNonStyleOrDefaultNonStyle;
-- (id)p_swapTuplesForMutations:(id)arg1 isForImport:(BOOL)arg2;
 - (BOOL)renderSeriesForClass:(Class)arg1;
 - (void)resetSeriesStorage;
 - (unsigned int)seriesIndex;
@@ -94,18 +102,16 @@
 - (BOOL)showTrendLineLegendText;
 - (int)specificPropertyForGeneric:(int)arg1;
 - (id)style;
-- (id)swapTuplesForMutations:(id)arg1;
-- (id)swapTuplesForMutationsForImport:(id)arg1;
+- (id)swapTuplesForMutations:(id)arg1 forImport:(BOOL)arg2;
 - (id)swapTuplesForParagraphStyleMutations:(id)arg1 forReferencingProperty:(int)arg2;
 - (id)trendLineData;
 - (id)trendLineLegendText;
-- (id)valueForAxis:(id)arg1 index:(unsigned int)arg2 multiDataSetIndex:(unsigned int)arg3;
 - (id)valueForAxis:(id)arg1 index:(unsigned int)arg2;
-- (id)valueForAxisID:(id)arg1 index:(unsigned int)arg2 multiDataSetIndex:(unsigned int)arg3;
+- (id)valueForAxis:(id)arg1 index:(unsigned int)arg2 multiDataSetIndex:(unsigned int)arg3;
 - (id)valueForAxisID:(id)arg1 index:(unsigned int)arg2;
+- (id)valueForAxisID:(id)arg1 index:(unsigned int)arg2 multiDataSetIndex:(unsigned int)arg3;
 - (id)valueForProperty:(int)arg1;
-- (id*)valuesForAxis:(id)arg1 indexes:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2 multiDataSetIndex:(unsigned int)arg3;
 - (id*)valuesForAxis:(id)arg1 indexes:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2;
-- (unsigned int)yAxisOrdinal;
+- (id*)valuesForAxis:(id)arg1 indexes:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2 multiDataSetIndex:(unsigned int)arg3;
 
 @end

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class TSCHChartAxisLayoutItem;
-
 @interface TSCHChartAreaLayoutItem : TSCH2DChartAbstractAreaLayoutItem {
     TSCHChartAxisLayoutItem *mBottomHorizontalAxis;
     BOOL mInOutwardLayout;
@@ -13,6 +11,9 @@
     TSCHChartAxisLayoutItem *mTopHorizontalAxis;
 }
 
+@property (nonatomic, readonly) TSCHChartReferenceLineLabelsLayoutItem *rightRefLineLabels;
+@property (nonatomic, readonly) TSCHChartReferenceLineLabelsLayoutItem *topRefLineLabels;
+
 - (void)buildSubTree;
 - (void)dealloc;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })i_currentBufferAreaUnitRect;
@@ -21,6 +22,11 @@
 - (float)p_dataSetNameLabelPadding;
 - (void)p_layoutInward;
 - (void)p_layoutOutward;
+- (void)p_updateMinHitSizes;
+- (void)protected_iterateHitChartElements:(struct CGPoint { float x1; float x2; })arg1 withBlock:(id /* block */)arg2;
 - (id)renderersWithRep:(id)arg1;
+- (id)rightRefLineLabels;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })titleFrame;
+- (id)topRefLineLabels;
 
 @end

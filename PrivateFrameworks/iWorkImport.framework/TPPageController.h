@@ -2,21 +2,7 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSDate, NSMutableArray, TPDocumentRoot, TPFootnoteLayoutController, TPOffscreenLayoutController, TPPageLayoutState, TSUMutablePointerSet, TSWPLayoutManager;
-
-@interface TPPageController : NSObject <TPPageLayoutInfoProvider, TSWPLayoutOwner, TPLayoutStateConsumer, TPLayoutStateProvider> {
-    struct multimap<unsigned int, TPPageLayout *, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<const unsigned int, TPPageLayout *> > > { 
-        struct __tree<std::__1::pair<unsigned int, TPPageLayout *>, std::__1::__map_value_compare<unsigned int, TPPageLayout *, std::__1::less<unsigned int>, true>, std::__1::allocator<std::__1::pair<unsigned int, TPPageLayout *> > > { 
-            struct __tree_node<std::__1::pair<unsigned int, TPPageLayout *>, void *> {} *__begin_node_; 
-            struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *> *>, std::__1::allocator<std::__1::__tree_node<std::__1::pair<unsigned int, TPPageLayout *>, void *> > > { 
-                struct __tree_end_node<std::__1::__tree_node_base<void *> *> { 
-                    struct __tree_node_base<void *> {} *__left_; 
-                } __first_; 
-            } __pair1_; 
-            struct __compressed_pair<unsigned long, std::__1::__map_value_compare<unsigned int, TPPageLayout *, std::__1::less<unsigned int>, true> > { 
-                unsigned long __first_; 
-            } __pair3_; 
-        } __tree_; 
+@interface TPPageController : NSObject <TPLayoutStateConsumer, TPLayoutStateProvider, TPPageLayoutInfoProvider, TSWPLayoutOwner> {
     int _backgroundLayoutEnabled;
     int _backgroundLayoutSuspendCount;
     NSDate *_bgLayoutStartDate;
@@ -24,34 +10,55 @@
     TSWPLayoutManager *_bodyLayoutManager;
     BOOL _checkedForBackUp;
     unsigned int _completePageCount;
+    unsigned int _didLayOutPageIndex;
     TPDocumentRoot *_documentRoot;
-    TPOffscreenLayoutController *_drawablesLayoutController;
     TPFootnoteLayoutController *_footnoteLayoutController;
     BOOL _handleBackgroundLayoutScheduled;
+    BOOL _isObservingNotifications;
+    int _isScrolling;
     unsigned int _lastKnownPageCount;
     TSUMutablePointerSet *_layoutObservers;
     TPPageLayoutState *_layoutState;
+    TPSearchCanvasDelegate *_offscreenSearchDelegate;
     NSMutableArray *_pageGeneratorStack;
+    struct multimap<unsigned int, TPPageLayout *, std::__1::less<unsigned int>, std::__1::allocator<std::__1::pair<const unsigned int, TPPageLayout *> > > { 
+        struct __tree<std::__1::__value_type<unsigned int, TPPageLayout *>, std::__1::__map_value_compare<unsigned int, std::__1::__value_type<unsigned int, TPPageLayout *>, std::__1::less<unsigned int>, true>, std::__1::allocator<std::__1::__value_type<unsigned int, TPPageLayout *> > > { 
+            struct __tree_node<std::__1::__value_type<unsigned int, TPPageLayout *>, void *> {} *__begin_node_; 
+            struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *> *>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<unsigned int, TPPageLayout *>, void *> > > { 
+                struct __tree_end_node<std::__1::__tree_node_base<void *> *> { 
+                    struct __tree_node_base<void *> {} *__left_; 
+                } __first_; 
+            } __pair1_; 
+            struct __compressed_pair<unsigned long, std::__1::__map_value_compare<unsigned int, std::__1::__value_type<unsigned int, TPPageLayout *>, std::__1::less<unsigned int>, true> > { 
+                unsigned long __first_; 
+            } __pair3_; 
+        } __tree_; 
     } _pageLayoutCache;
     NSMutableArray *_sectionHints;
     BOOL _shouldUpdatePageCount;
 }
 
-@property BOOL backgroundLayoutEnabled;
-@property(readonly) unsigned int firstPageIndexNeedingLayout;
-@property(readonly) unsigned int pageCount;
+@property (nonatomic) BOOL backgroundLayoutEnabled;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) unsigned int firstPageIndexNeedingLayout;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) unsigned int pageCount;
+@property (readonly) Class superclass;
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (void)accquireLockAndPerformAction:(id)arg1;
+- (void)accquireLockAndPerformAction:(id /* block */)arg1;
 - (void)addLayoutObserver:(id)arg1;
 - (struct _NSRange { unsigned int x1; unsigned int x2; })anchoredRangeForPageIndex:(unsigned int)arg1 forceLayout:(BOOL)arg2;
+- (BOOL)archivedLayoutState:(id)arg1 setBodyLength:(unsigned int)arg2;
 - (void)archivedLayoutState:(id)arg1 setDocumentPageIndex:(unsigned int)arg2;
 - (void)archivedLayoutState:(id)arg1 setLastPageCount:(unsigned int)arg2;
 - (BOOL)archivedLayoutState:(id)arg1 setSectionHints:(id)arg2;
 - (void)archivedLayoutState:(id)arg1 setSectionIndex:(unsigned int)arg2;
 - (void)archivedLayoutState:(id)arg1 setSectionPageIndex:(unsigned int)arg2;
 - (BOOL)backgroundLayoutEnabled;
+- (unsigned int)bodyLengthForArchivedLayoutState:(id)arg1;
 - (struct _NSRange { unsigned int x1; unsigned int x2; })bodyRangeForPageIndex:(unsigned int)arg1 forceLayout:(BOOL)arg2;
 - (BOOL)canProvideInfoForPageIndex:(unsigned int)arg1;
 - (BOOL)canProvideNumberingInfoForPageIndex:(unsigned int)arg1;
@@ -59,6 +66,8 @@
 - (int)contentFlagsForPageIndex:(unsigned int)arg1;
 - (void)d_timeLayout;
 - (void)dealloc;
+- (void)didScroll:(id)arg1;
+- (void)didZoom:(id)arg1;
 - (unsigned int)documentPageIndexForArchivedLayoutState:(id)arg1;
 - (unsigned int)firstPageIndexNeedingLayout;
 - (float)footerHeight;
@@ -75,20 +84,22 @@
 - (void)i_registerPageLayout:(id)arg1;
 - (void)i_setNeedsDynamicLayoutForLayoutController:(id)arg1 onPageIndex:(unsigned int)arg2;
 - (BOOL)i_shouldLayoutBodyVertically;
-- (const struct TSWPTopicNumberHints { struct map<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> >, std::__1::less<const TSWPListStyle *>, std::__1::allocator<std::__1::pair<const TSWPListStyle *const, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > > > > { struct __tree<std::__1::pair<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > >, std::__1::__map_value_compare<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> >, std::__1::less<const TSWPListStyle *>, true>, std::__1::allocator<std::__1::pair<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > > > > { struct __tree_node<std::__1::pair<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > >, void *> {} *x_1_2_1; struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *> *>, std::__1::allocator<std::__1::__tree_node<std::__1::pair<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > >, void *> > > { struct __tree_end_node<std::__1::__tree_node_base<void *> *> { struct __tree_node_base<void *> {} *x_1_4_1; } x_2_3_1; } x_1_2_2; struct __compressed_pair<unsigned long, std::__1::__map_value_compare<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> >, std::__1::less<const TSWPListStyle *>, true> > { unsigned long x_3_3_1; } x_1_2_3; } x_1_1_1; } x1; unsigned int x2; unsigned int x3; }*)i_topicHintsAfterPageIndex:(unsigned int)arg1;
-- (const struct TSWPTopicNumberHints { struct map<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> >, std::__1::less<const TSWPListStyle *>, std::__1::allocator<std::__1::pair<const TSWPListStyle *const, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > > > > { struct __tree<std::__1::pair<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > >, std::__1::__map_value_compare<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> >, std::__1::less<const TSWPListStyle *>, true>, std::__1::allocator<std::__1::pair<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > > > > { struct __tree_node<std::__1::pair<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > >, void *> {} *x_1_2_1; struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *> *>, std::__1::allocator<std::__1::__tree_node<std::__1::pair<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > >, void *> > > { struct __tree_end_node<std::__1::__tree_node_base<void *> *> { struct __tree_node_base<void *> {} *x_1_4_1; } x_2_3_1; } x_1_2_2; struct __compressed_pair<unsigned long, std::__1::__map_value_compare<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> >, std::__1::less<const TSWPListStyle *>, true> > { unsigned long x_3_3_1; } x_1_2_3; } x_1_1_1; } x1; unsigned int x2; unsigned int x3; }*)i_topicHintsPriorToPageIndex:(unsigned int)arg1;
-- (void)i_trimPageAtIndex:(unsigned int)arg1 toCharIndex:(unsigned int)arg2 removeAutoNumberFootnoteCount:(unsigned int)arg3;
+- (const struct TSWPTopicNumberHints { struct map<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> >, std::__1::less<const TSWPListStyle *>, std::__1::allocator<std::__1::pair<const TSWPListStyle *const, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > > > > { struct __tree<std::__1::__value_type<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > >, std::__1::__map_value_compare<const TSWPListStyle *, std::__1::__value_type<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > >, std::__1::less<const TSWPListStyle *>, true>, std::__1::allocator<std::__1::__value_type<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > > > > { struct __tree_node<std::__1::__value_type<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > >, void *> {} *x_1_2_1; struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *> *>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > >, void *> > > { struct __tree_end_node<std::__1::__tree_node_base<void *> *> { struct __tree_node_base<void *> {} *x_1_4_1; } x_2_3_1; } x_1_2_2; struct __compressed_pair<unsigned long, std::__1::__map_value_compare<const TSWPListStyle *, std::__1::__value_type<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > >, std::__1::less<const TSWPListStyle *>, true> > { unsigned long x_3_3_1; } x_1_2_3; } x_1_1_1; } x1; unsigned int x2; unsigned int x3; }*)i_topicHintsAfterPageIndex:(unsigned int)arg1;
+- (const struct TSWPTopicNumberHints { struct map<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> >, std::__1::less<const TSWPListStyle *>, std::__1::allocator<std::__1::pair<const TSWPListStyle *const, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > > > > { struct __tree<std::__1::__value_type<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > >, std::__1::__map_value_compare<const TSWPListStyle *, std::__1::__value_type<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > >, std::__1::less<const TSWPListStyle *>, true>, std::__1::allocator<std::__1::__value_type<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > > > > { struct __tree_node<std::__1::__value_type<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > >, void *> {} *x_1_2_1; struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *> *>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > >, void *> > > { struct __tree_end_node<std::__1::__tree_node_base<void *> *> { struct __tree_node_base<void *> {} *x_1_4_1; } x_2_3_1; } x_1_2_2; struct __compressed_pair<unsigned long, std::__1::__map_value_compare<const TSWPListStyle *, std::__1::__value_type<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > >, std::__1::less<const TSWPListStyle *>, true> > { unsigned long x_3_3_1; } x_1_2_3; } x_1_1_1; } x1; unsigned int x2; unsigned int x3; }*)i_topicHintsPriorToPageIndex:(unsigned int)arg1;
+- (void)i_trimPageAtIndex:(unsigned int)arg1 toCharIndex:(unsigned int)arg2 removeFootnoteLayoutCount:(unsigned int)arg3 removeAutoNumberFootnoteCount:(unsigned int)arg4;
 - (void)i_unregisterPageLayout:(id)arg1;
 - (id)initWithDocumentRoot:(id)arg1;
 - (BOOL)isLayoutComplete;
 - (BOOL)isLayoutCompleteThroughPageIndex:(unsigned int)arg1;
+- (BOOL)isSectionInfo:(id)arg1 onPage:(unsigned int)arg2;
 - (unsigned int)lastPageCountForArchivedLayoutState:(id)arg1;
 - (void)layoutManager:(id)arg1 didClearDirtyRangeWithDelta:(int)arg2 afterCharIndex:(unsigned int)arg3;
 - (void)layoutManagerNeedsLayout:(id)arg1;
-- (void)layoutThroughPageIndex:(unsigned int)arg1 forLayoutController:(id)arg2;
 - (void)layoutThroughPageIndex:(unsigned int)arg1;
+- (void)layoutThroughPageIndex:(unsigned int)arg1 forLayoutController:(id)arg2;
 - (id)masterDrawableProviderForPageIndex:(unsigned int)arg1;
 - (BOOL)okToAnchorDrawable:(id)arg1 toPageIndex:(unsigned int)arg2;
+- (BOOL)okToAnchorDrawables:(id)arg1 toPageIndex:(unsigned int)arg2;
 - (void)p_advanceSectionIndex;
 - (struct _NSRange { unsigned int x1; unsigned int x2; })p_anchoredRangeForPageIndex:(unsigned int)arg1 forceLayout:(BOOL)arg2 allowAfterLayoutPoint:(BOOL)arg3;
 - (void)p_backgroundLayoutReadEntry;
@@ -129,6 +140,7 @@
 - (unsigned int)p_pageIndexForCharIndex:(unsigned int)arg1 caretAffinity:(int)arg2 forceLayout:(BOOL)arg3 searchAfterLayoutPoint:(BOOL)arg4;
 - (unsigned int)p_pageIndexForFootnoteIndex:(unsigned int)arg1 forceLayout:(BOOL)arg2 searchAfterLayoutPoint:(BOOL)arg3;
 - (id)p_pageIndexPathForPageIndex:(unsigned int)arg1 forceLayout:(BOOL)arg2 allowAfterLayoutPoint:(BOOL)arg3;
+- (id)p_pageInfoForBodySelection:(id)arg1;
 - (id)p_pageInfoForPageAtIndex:(unsigned int)arg1;
 - (id)p_pageMasterForPageIndex:(unsigned int)arg1 inSection:(id)arg2 sectionHint:(id)arg3;
 - (void)p_prepareLayoutStateForNextPage;
@@ -155,7 +167,7 @@
 - (void)p_updateNonTextHintAtPageIndexPath:(id)arg1;
 - (void)p_updatePageCount;
 - (void)p_updateTextHintAtPageIndexPath:(id)arg1 withTarget:(id)arg2;
-- (void)p_withPageLayoutAtIndex:(unsigned int)arg1 preferredLayoutController:(id)arg2 executeBlock:(id)arg3;
+- (void)p_withPageLayoutAtIndex:(unsigned int)arg1 preferredLayoutController:(id)arg2 executeBlock:(id /* block */)arg3;
 - (BOOL)pageAtIndexHasBody:(unsigned int)arg1;
 - (BOOL)pageBeginsWithPaginatedAttachment:(unsigned int)arg1;
 - (unsigned int)pageCount;
@@ -166,9 +178,10 @@
 - (unsigned int)pageIndexForFootnoteIndex:(unsigned int)arg1 forceLayout:(BOOL)arg2;
 - (id)pageInfoForAttachmentAtBodyCharIndex:(unsigned int)arg1 selection:(id)arg2;
 - (id)pageInfoForPageIndex:(unsigned int)arg1;
+- (id)pageInfosForInfo:(id)arg1 withSelectionPath:(id)arg2;
 - (unsigned int)pageNumberForPageIndex:(unsigned int)arg1;
 - (struct _NSRange { unsigned int x1; unsigned int x2; })pageRangeForSelection:(id)arg1 outEndIsValid:(BOOL*)arg2;
-- (struct CGPoint { float x1; float x2; })positionForPositionerForDrawable:(id)arg1;
+- (struct _NSRange { unsigned int x1; unsigned int x2; })pageRangeOfSectionIndex:(unsigned int)arg1;
 - (void)removeLayoutObserver:(id)arg1;
 - (void)resumeBackgroundLayout;
 - (void)scheduleImmediateBackgroundLayout;
@@ -177,13 +190,16 @@
 - (unsigned int)sectionIndexForArchivedLayoutState:(id)arg1;
 - (unsigned int)sectionIndexForPageIndex:(unsigned int)arg1 forceLayout:(BOOL)arg2;
 - (unsigned int)sectionPageIndexForArchivedLayoutState:(id)arg1;
+- (unsigned int)sectionPageIndexForPageIndex:(unsigned int)arg1 forceLayout:(BOOL)arg2;
 - (struct _NSRange { unsigned int x1; unsigned int x2; })sectionPageRangeForPageIndex:(unsigned int)arg1 forceLayout:(BOOL)arg2 outEndIsValid:(BOOL*)arg3;
 - (void)setBackgroundLayoutEnabled:(BOOL)arg1;
-- (void)setupListenersForInteractiveCanvasController;
 - (BOOL)shouldHeaderFooterBeVisibleForPageIndex:(unsigned int)arg1;
 - (void)suspendBackgroundLayout;
 - (void)teardown;
 - (id)textWrapper;
-- (void)withPageLayoutAtIndex:(unsigned int)arg1 executeBlock:(id)arg2;
+- (void)willScroll:(id)arg1;
+- (void)willZoom:(id)arg1;
+- (void)withPageLayoutAtIndex:(unsigned int)arg1 executeBlock:(id /* block */)arg2;
+- (void)withPageLayoutAtIndex:(unsigned int)arg1 preferredLayoutController:(id)arg2 executeBlock:(id /* block */)arg3;
 
 @end

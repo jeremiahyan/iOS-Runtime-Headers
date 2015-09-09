@@ -2,15 +2,13 @@
    Image: /System/Library/PrivateFrameworks/SiriUI.framework/SiriUI
  */
 
-@class NSString, SiriUIKeyline, SiriUISnippetViewController, UIButton, UIImageView, UILabel;
-
 @interface SiriUIReusableHeaderView : UICollectionReusableView <SiriUIReusableView, SiriUISizableHeaderView> {
+    UIImageView *_chevronView;
     struct UIEdgeInsets { 
         float top; 
         float left; 
         float bottom; 
         float right; 
-    UIImageView *_chevronView;
     } _contentInsets;
     UIButton *_headerAreaButton;
     UILabel *_headerLabel;
@@ -20,10 +18,14 @@
     NSString *_titleText;
 }
 
-@property(readonly) UIButton * headerAreaButton;
-@property int keylineType;
-@property SiriUISnippetViewController * snippetViewController;
-@property(copy) NSString * titleText;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) UIButton *headerAreaButton;
+@property (nonatomic) int keylineType;
+@property (nonatomic) SiriUISnippetViewController *snippetViewController;
+@property (readonly) Class superclass;
+@property (nonatomic, copy) NSString *titleText;
 
 + (float)defaultHeight;
 + (id)elementKind;

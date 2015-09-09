@@ -2,28 +2,35 @@
    Image: /System/Library/PrivateFrameworks/RemoteUI.framework/RemoteUI
  */
 
-@class UIImageView, UIView;
-
 @interface RemoteUITableViewCell : UITableViewCell {
-    BOOL _forceFullDetailLabel;
+    UIColor *_accessoryColor;
+    UIButton *_detailLinkButton;
+    id /* block */ _detailLinkHandler;
+    BOOL _forceFullSizeDetailLabel;
     UIImageView *_invalidRowView;
     BOOL _leftAlignDetailLabel;
     int _remoteUIAccessoryType;
     UIView *_remoteUIAccessoryView;
 }
 
-@property BOOL forceFullSizeDetailLabel;
-@property BOOL leftAlignDetailLabel;
-@property int remoteUIAccessoryType;
-@property(retain) UIView * remoteUIAccessoryView;
+@property (nonatomic) BOOL forceFullSizeDetailLabel;
+@property (nonatomic) BOOL leftAlignDetailLabel;
+@property (nonatomic) int remoteUIAccessoryType;
+@property (nonatomic, retain) UIView *remoteUIAccessoryView;
 
+- (void).cxx_destruct;
 - (void)_accessoriesChanged;
-- (void)dealloc;
+- (id)_checkmarkImage:(BOOL)arg1;
+- (void)_detailLinkPressed;
+- (id)_disclosureChevronImage:(BOOL)arg1;
+- (void)_setRemoteUIAccessoryType:(int)arg1 withColor:(id)arg2;
 - (BOOL)forceFullSizeDetailLabel;
 - (void)layoutSubviews;
 - (BOOL)leftAlignDetailLabel;
+- (void)prepareForReuse;
 - (int)remoteUIAccessoryType;
 - (id)remoteUIAccessoryView;
+- (void)setDetailLinkText:(id)arg1 handler:(id /* block */)arg2;
 - (void)setForceFullSizeDetailLabel:(BOOL)arg1;
 - (void)setLeftAlignDetailLabel:(BOOL)arg1;
 - (void)setRemoteUIAccessoryType:(int)arg1;

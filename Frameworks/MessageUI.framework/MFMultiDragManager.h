@@ -2,15 +2,14 @@
    Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
  */
 
-@class <MFMultiDragDestination>, MFGobblerGestureRecognizer, NSArray, NSMutableArray, NSMutableDictionary, NSTimer, UIGestureRecognizer, UIView, UIWindow;
-
 @interface MFMultiDragManager : NSObject <UIGestureRecognizerDelegate> {
-    struct CGPoint { 
-        float x; 
-        float y; 
-    struct CGPoint { 
-        float x; 
-        float y; 
+    <MFMultiDragDestination> *_currentDestination;
+    UIGestureRecognizer *_currentGestureBeingProcessed;
+    NSMutableArray *_dragContextValues;
+    NSMutableArray *_dragDestinations;
+    NSMutableArray *_dragSources;
+    BOOL _dragWasSuccessful;
+    UIWindow *_dragWindow;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -20,26 +19,30 @@
             float width; 
             float height; 
         } size; 
-    <MFMultiDragDestination> *_currentDestination;
-    UIGestureRecognizer *_currentGestureBeingProcessed;
-    NSMutableArray *_dragContextValues;
-    NSMutableArray *_dragDestinations;
-    NSMutableArray *_dragSources;
-    BOOL _dragWasSuccessful;
-    UIWindow *_dragWindow;
     } _draggedItemOriginalFrame;
     NSArray *_draggedItems;
     UIView *_draggedItemsContainerView;
     NSMutableDictionary *_draggedItemsIndexToViewRepresentation;
     NSMutableDictionary *_gestureRecognizersForSource;
     MFGobblerGestureRecognizer *_gobblerGestureRecognizer;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _offsetCenterOfDraggedView;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _previousGestureLocation;
     NSTimer *_scrollTimer;
     BOOL _scrollingForDrag;
     NSMutableDictionary *_sourceForGestureRecognizer;
     double _timeOfLastBigUpdate;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)sharedInstance;
 
@@ -57,7 +60,7 @@
 - (void)addDragSource:(id)arg1;
 - (void)cancelCurrentDragOperation;
 - (void)dealloc;
-- (void)enumerateDragContextsUsingBlock:(id)arg1;
+- (void)enumerateDragContextsUsingBlock:(id /* block */)arg1;
 - (BOOL)gestureRecognizerShouldBegin:(id)arg1;
 - (id)init;
 - (void)removeDragContext:(id)arg1;

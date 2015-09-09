@@ -2,9 +2,9 @@
    Image: /System/Library/PrivateFrameworks/TextInput.framework/TextInput
  */
 
-@class <NSCopying><NSObject><NSSecureCoding>, NSString, TIKeyboardCandidate, TIKeyboardTouchEvent;
-
 @interface TIKeyboardInput : NSObject <NSSecureCoding> {
+    TIKeyboardCandidate *_acceptedCandidate;
+    BOOL _backspace;
     union { 
         int integerValue; 
         struct { 
@@ -13,25 +13,25 @@
             unsigned int popupVariant : 1; 
             unsigned int multitap : 1; 
             unsigned int flick : 1; 
+            unsigned int synthesizedByAcceptingCandidate : 1; 
         } fields; 
-    TIKeyboardCandidate *_acceptedCandidate;
-    BOOL _backspace;
     } _flags;
     <NSCopying><NSObject><NSSecureCoding> *_object;
     NSString *_string;
     TIKeyboardTouchEvent *_touchEvent;
 }
 
-@property(retain) TIKeyboardCandidate * acceptedCandidate;
-@property(getter=isAutoshifted) BOOL autoshifted;
-@property(getter=isBackspace) BOOL backspace;
-@property(getter=isFlick) BOOL flick;
-@property(getter=isMultitap) BOOL multitap;
-@property(copy) <NSCopying><NSObject><NSSecureCoding> * object;
-@property(getter=isPopupVariant) BOOL popupVariant;
-@property(copy) NSString * string;
-@property(retain) TIKeyboardTouchEvent * touchEvent;
-@property(getter=isUppercase) BOOL uppercase;
+@property (nonatomic, retain) TIKeyboardCandidate *acceptedCandidate;
+@property (getter=isAutoshifted, nonatomic) BOOL autoshifted;
+@property (getter=isBackspace, nonatomic) BOOL backspace;
+@property (getter=isFlick, nonatomic) BOOL flick;
+@property (getter=isMultitap, nonatomic) BOOL multitap;
+@property (nonatomic, copy) <NSCopying><NSObject><NSSecureCoding> *object;
+@property (getter=isPopupVariant, nonatomic) BOOL popupVariant;
+@property (nonatomic, copy) NSString *string;
+@property (getter=isSynthesizedByAcceptingCandidate, nonatomic) BOOL synthesizedByAcceptingCandidate;
+@property (nonatomic, retain) TIKeyboardTouchEvent *touchEvent;
+@property (getter=isUppercase, nonatomic) BOOL uppercase;
 
 + (BOOL)supportsSecureCoding;
 
@@ -45,6 +45,7 @@
 - (BOOL)isFlick;
 - (BOOL)isMultitap;
 - (BOOL)isPopupVariant;
+- (BOOL)isSynthesizedByAcceptingCandidate;
 - (BOOL)isUppercase;
 - (id)object;
 - (void)setAcceptedCandidate:(id)arg1;
@@ -55,6 +56,7 @@
 - (void)setObject:(id)arg1;
 - (void)setPopupVariant:(BOOL)arg1;
 - (void)setString:(id)arg1;
+- (void)setSynthesizedByAcceptingCandidate:(BOOL)arg1;
 - (void)setTouchEvent:(id)arg1;
 - (void)setUppercase:(BOOL)arg1;
 - (id)string;

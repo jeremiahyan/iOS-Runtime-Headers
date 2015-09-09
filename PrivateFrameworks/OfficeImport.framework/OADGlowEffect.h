@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class OADColor;
-
 @interface OADGlowEffect : OADEffect {
     OADColor *mColor;
     float mRadius;
@@ -12,6 +10,7 @@
 - (id)color;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
+- (id)description;
 - (unsigned int)hash;
 - (id)init;
 - (BOOL)isEqual:(id)arg1;

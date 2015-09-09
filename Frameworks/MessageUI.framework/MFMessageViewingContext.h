@@ -2,51 +2,59 @@
    Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
  */
 
-@class MFActivityMonitor, MFAttachmentManager, MFError, MFLock, MFMailMessage, MFMessageBody, MFMimePart, NSArray, NSObject<MFMessageViewingContextDelegate>;
-
 @interface MFMessageViewingContext : NSObject {
-    unsigned int _loadedFullData : 1;
-    unsigned int _loadBestAlternative : 1;
-    unsigned int _hasNoContent : 1;
-    unsigned int _failedToLoad : 1;
-    unsigned int _isOutgoingMessage : 1;
-    unsigned int _isDraftMessage : 1;
-    unsigned int _isEditableMessage : 1;
-    unsigned int _showMailboxName : 1;
     MFAttachmentManager *_attachmentManager;
     MFMessageBody *_body;
     id _content;
     MFLock *_contentLock;
     unsigned int _contentOffset;
     NSObject<MFMessageViewingContextDelegate> *_delegate;
+    unsigned int _failedToLoad;
+    unsigned int _hasNoContent;
+    unsigned int _isDraftMessage;
+    unsigned int _isEditableMessage;
+    unsigned int _isOutgoingMessage;
+    int _loadAlternative;
     unsigned int _loadIncrement;
     MFActivityMonitor *_loadTask;
+    unsigned int _loadedFullData;
     MFMimePart *_loadedPart;
     MFMailMessage *_message;
+    NSError *_messageAnalysisError;
     MFError *_secureMIMEError;
+    unsigned int _shouldAnalyzeMessage;
+    unsigned int _showMailboxName;
     NSArray *_signers;
+    NSArray *_suggestions;
+    NSConditionLock *_suggestionsLock;
+    NSObject<OS_dispatch_queue> *_suggestionsQueue;
+    SGSuggestionsService *_suggestionsService;
 }
 
-@property(readonly) MFAttachmentManager * attachmentManager;
-@property(readonly) id content;
-@property(readonly) unsigned int contentOffset;
-@property NSObject<MFMessageViewingContextDelegate> * delegate;
-@property(readonly) BOOL failedToLoad;
-@property(readonly) BOOL hasLoaded;
-@property(readonly) BOOL hasNoContent;
-@property BOOL isDraftMessage;
-@property BOOL isEditableMessage;
-@property(readonly) BOOL isMessageEncrypted;
-@property(readonly) BOOL isMessageSigned;
-@property BOOL isOutgoingMessage;
-@property(readonly) BOOL isPartial;
-@property(readonly) MFActivityMonitor * loadTask;
-@property(readonly) MFMimePart * loadedPart;
-@property(readonly) MFMailMessage * message;
-@property(readonly) MFMessageBody * messageBody;
-@property(readonly) MFError * secureMimeError;
-@property BOOL showMailboxName;
-@property(readonly) NSArray * signers;
+@property (nonatomic, readonly, retain) MFAttachmentManager *attachmentManager;
+@property (nonatomic, retain) id content;
+@property (nonatomic) unsigned int contentOffset;
+@property (nonatomic) <MFMessageViewingContextDelegate> *delegate;
+@property (nonatomic, readonly) BOOL failedToLoad;
+@property (nonatomic, readonly) BOOL hasAnalyzedMessage;
+@property (nonatomic, readonly) BOOL hasLoaded;
+@property (nonatomic, readonly) BOOL hasNoContent;
+@property (nonatomic) BOOL isDraftMessage;
+@property (nonatomic) BOOL isEditableMessage;
+@property (nonatomic, readonly) BOOL isMessageEncrypted;
+@property (nonatomic, readonly) BOOL isMessageSigned;
+@property (nonatomic) BOOL isOutgoingMessage;
+@property (nonatomic, readonly) BOOL isPartial;
+@property (nonatomic, readonly, retain) MFActivityMonitor *loadTask;
+@property (nonatomic, retain) MFMimePart *loadedPart;
+@property (nonatomic, readonly, retain) MFMailMessage *message;
+@property (nonatomic, retain) NSError *messageAnalysisError;
+@property (nonatomic, retain) MFMessageBody *messageBody;
+@property (nonatomic, retain) MFError *secureMimeError;
+@property (nonatomic) BOOL shouldAnalyzeMessage;
+@property (nonatomic) BOOL showMailboxName;
+@property (nonatomic, copy) NSArray *signers;
+@property (nonatomic, copy) NSArray *suggestions;
 
 + (BOOL)isAttachmentTooLarge:(id)arg1;
 + (unsigned int)nextOffsetForOffset:(unsigned int)arg1 totalLength:(unsigned int)arg2 requestedAmount:(unsigned int)arg3;
@@ -55,12 +63,16 @@
 - (void)_notifyCompletelyComplete;
 - (void)_notifyFullMessageLoadFailed;
 - (void)_notifyInitialLoadComplete;
+- (void)_notifyMessageAnalysisComplete;
 - (void)_setContent:(id)arg1;
 - (void)_setContentOffset:(unsigned int)arg1;
 - (void)_setLoadedPart:(id)arg1;
+- (void)_setMessageAnalysisError:(id)arg1;
 - (void)_setMessageBody:(id)arg1;
 - (void)_setSecureMIMEError:(id)arg1;
 - (void)_setSigners:(id)arg1;
+- (void)_setSuggestions:(id)arg1;
+- (void)analyzeMessageContent:(id)arg1;
 - (id)attachmentManager;
 - (id)attachments;
 - (void)cancelLoad;
@@ -70,6 +82,8 @@
 - (id)delegate;
 - (BOOL)failedToLoad;
 - (id)fileWrappersForImageAttachments;
+- (BOOL)hasAnalyzedMessage;
+- (BOOL)hasAnalyzedMessageWithTimeout:(id)arg1;
 - (BOOL)hasLoaded;
 - (BOOL)hasNoContent;
 - (id)initWithMessage:(id)arg1 attachmentManager:(id)arg2;
@@ -88,6 +102,7 @@
 - (void)loadWithPriority:(int)arg1;
 - (id)loadedPart;
 - (id)message;
+- (id)messageAnalysisError;
 - (id)messageBody;
 - (id)secureMimeError;
 - (void)setDelegate:(id)arg1;
@@ -95,9 +110,12 @@
 - (void)setIsEditableMessage:(BOOL)arg1;
 - (void)setIsOutgoingMessage:(BOOL)arg1;
 - (void)setLoadTask:(id)arg1;
+- (void)setShouldAnalyzeMessage:(BOOL)arg1;
 - (void)setShowMailboxName:(BOOL)arg1;
+- (BOOL)shouldAnalyzeMessage;
 - (BOOL)showMailboxName;
 - (id)signers;
+- (id)suggestions;
 - (id)uniqueID;
 - (void)unload;
 

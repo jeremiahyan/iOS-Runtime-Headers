@@ -2,17 +2,15 @@
    Image: /System/Library/PrivateFrameworks/iOSDiagnosticsSupport.framework/iOSDiagnosticsSupport
  */
 
-@class NSData, NSMutableDictionary, NSString;
-
 @interface MBSDevice : NSObject {
     NSMutableDictionary *_deviceInfoDictionary;
     NSData *_logData;
     NSString *_logFileName;
 }
 
-@property(retain) NSMutableDictionary * deviceInfoDictionary;
-@property(retain) NSData * logData;
-@property(retain) NSString * logFileName;
+@property (retain) NSMutableDictionary *deviceInfoDictionary;
+@property (retain) NSData *logData;
+@property (retain) NSString *logFileName;
 
 - (BOOL)archiveLogFile:(id)arg1 toFile:(id)arg2 atDir:(id)arg3;
 - (id)collectAggdData;
@@ -20,13 +18,13 @@
 - (id)collectBasicDeviceData;
 - (id)collectGasGaugeData;
 - (BOOL)collectLogs:(unsigned int)arg1;
-- (id)collectUbiquityData;
 - (BOOL)copyLogsToTempDirectory:(unsigned int)arg1;
 - (BOOL)copyPowerLogsToDir:(id)arg1;
 - (BOOL)createTempDirectory:(unsigned int)arg1;
 - (void)dealloc;
+- (BOOL)deviceHasStockholmChip;
 - (id)deviceInfoDictionary;
-- (id)getMaxMinAvgCapacityOfPowerLog:(id)arg1;
+- (id)getMaxMinAvgCapacityOfPowerLog;
 - (id)logData;
 - (id)logFileName;
 - (void)setDeviceInfoDictionary:(id)arg1;

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSData;
-
 @interface OISFUDataRepresentation : NSObject {
     BOOL mHasHash;
     BOOL mHasSha1Hash;
@@ -30,5 +28,6 @@
 - (struct _xmlTextReader { }*)xmlReader;
 - (struct _xmlTextReader { }*)xmlReaderForGzippedData;
 - (struct _xmlTextReader { }*)xmlReaderForGzippedDataWithInputStream:(id*)arg1;
+- (struct _xmlTextReader { }*)xmlReaderWithReadCallback:(int (*)arg1;
 
 @end

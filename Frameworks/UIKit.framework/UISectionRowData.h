@@ -2,13 +2,13 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UITableViewRowData;
-
 @interface UISectionRowData : NSObject <NSCopying> {
     unsigned int _arrayLength;
+    BOOL _estimatesRowHeights;
     int _footerAlignment;
     float _footerHeight;
     float _footerOffset;
+    NSMutableIndexSet *_forcedNegativeRows;
     int _headerAlignment;
     float _headerHeight;
     float _headerOffset;
@@ -47,6 +47,6 @@
 - (int)sectionLocationForReorderedRow:(int)arg1;
 - (int)sectionLocationForRow:(int)arg1;
 - (void)setHeight:(float)arg1 forRow:(int)arg2;
-- (void)updateSectionHeightWithDelta:(float)arg1 updateFooterOffset:(BOOL)arg2;
+- (void)updateSectionHeightWithDelta:(float)arg1 section:(int)arg2 updateFooterOffset:(BOOL)arg3;
 
 @end

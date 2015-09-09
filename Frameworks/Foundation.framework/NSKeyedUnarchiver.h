@@ -21,17 +21,13 @@
     id _tmpRefObjMap;
 }
 
-+ (id)MSSafeUnarchiveObjectWithData:(id)arg1 outError:(id*)arg2;
-+ (id)MSSafeUnarchiveObjectWithData:(id)arg1;
-+ (id)MSSafeUnarchiveObjectWithFile:(id)arg1 outError:(id*)arg2;
-+ (id)MSSafeUnarchiveObjectWithFile:(id)arg1;
-+ (id)_mapkit_safeUnarchiveObjectWithData:(id)arg1;
+@property <NSKeyedUnarchiverDelegate> *delegate;
+
+// Image: /System/Library/Frameworks/Foundation.framework/Foundation
+
 + (Class)classForClassName:(id)arg1;
 + (void)initialize;
-+ (id)pl_safeUnarchiveObjectWithData:(id)arg1;
-+ (id)pl_safeUnarchiveObjectWithFile:(id)arg1;
 + (void)setClass:(Class)arg1 forClassName:(id)arg2;
-+ (id)unarchiveObjectWithData:(id)arg1 allowedClasses:(id)arg2;
 + (id)unarchiveObjectWithData:(id)arg1;
 + (id)unarchiveObjectWithFile:(id)arg1;
 
@@ -72,7 +68,6 @@
 - (id)init;
 - (id)initForReadingWithData:(id)arg1;
 - (id)initWithStream:(id)arg1;
-- (id)pl_safeInitForReadingWithData:(id)arg1;
 - (void)replaceObject:(id)arg1 withObject:(id)arg2;
 - (BOOL)requiresSecureCoding;
 - (void)setAllowedClasses:(id)arg1;
@@ -81,5 +76,55 @@
 - (void)setRequiresSecureCoding:(BOOL)arg1;
 - (unsigned int)systemVersion;
 - (int)versionForClassName:(id)arg1;
+
+// Image: /System/Library/Frameworks/HomeKit.framework/HomeKit
+
++ (id)deserializeObjectWithData:(id)arg1 allowedClasses:(id)arg2;
+
+// Image: /System/Library/Frameworks/MapKit.framework/MapKit
+
++ (id)_mapkit_safeUnarchiveObjectWithData:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/AccessibilityUtilities.framework/AccessibilityUtilities
+
++ (id)secureUnarchiveData:(id)arg1 withExpectedClass:(Class)arg2 otherAllowedClasses:(id)arg3;
+
+// Image: /System/Library/PrivateFrameworks/CloudPhotoLibrary.framework/CloudPhotoLibrary
+
++ (id)cpl_safeUnarchiveObjectWithData:(id)arg1;
++ (id)cpl_safeUnarchiveObjectWithFile:(id)arg1;
+
+- (id)cpl_safeInitForReadingWithData:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/CoreHAP.framework/CoreHAP
+
++ (id)deserializeObjectWithData:(id)arg1 allowedClasses:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/CoreMediaStream.framework/CoreMediaStream
+
++ (id)MSSafeUnarchiveObjectWithData:(id)arg1;
++ (id)MSSafeUnarchiveObjectWithData:(id)arg1 outError:(id*)arg2;
++ (id)MSSafeUnarchiveObjectWithFile:(id)arg1;
++ (id)MSSafeUnarchiveObjectWithFile:(id)arg1 outError:(id*)arg2;
+
+// Image: /System/Library/PrivateFrameworks/NanoMailKitServer.framework/NanoMailKitServer
+
++ (id)unarchiveObjectOfClass:(Class)arg1 withData:(id)arg2;
++ (id)unarchiveObjectOfClasses:(id)arg1 withData:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
+
++ (id)pl_safeUnarchiveObjectWithData:(id)arg1;
++ (id)pl_safeUnarchiveObjectWithFile:(id)arg1;
+
+- (id)pl_safeInitForReadingWithData:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/Search.framework/Search
+
++ (id)_sp_secureUnarchiveObjectWithData:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/XPCObjects.framework/XPCObjects
+
++ (id)unarchiveObjectWithData:(id)arg1 allowedClasses:(id)arg2;
 
 @end

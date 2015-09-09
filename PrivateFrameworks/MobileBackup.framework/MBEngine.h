@@ -2,35 +2,35 @@
    Image: /System/Library/PrivateFrameworks/MobileBackup.framework/MobileBackup
  */
 
-@class MBAppManager, MBDebugContext, MBDomainManager, MBProperties, MBSettingsContext, NSString;
-
 @interface MBEngine : NSObject {
     MBAppManager *_appManager;
     MBDebugContext *_debugContext;
     MBDomainManager *_domainManager;
+    BOOL _encrypted;
     MBProperties *_properties;
     MBSettingsContext *_settingsContext;
 }
 
-@property(readonly) MBAppManager * appManager;
-@property(getter=isBackgroundRestore,readonly) BOOL backgroundRestore;
-@property(getter=isBackupEngine,readonly) BOOL backupEngine;
-@property(getter=shouldCommitIfPossible,readonly) BOOL commitIfPossible;
-@property(readonly) MBDebugContext * debugContext;
-@property(readonly) MBDomainManager * domainManager;
-@property(getter=isDriveEngine,readonly) BOOL driveEngine;
-@property(readonly) int engineMode;
-@property(readonly) NSString * engineModeString;
-@property(readonly) int engineType;
-@property(readonly) NSString * engineTypeString;
-@property(getter=isForegroundRestore,readonly) BOOL foregroundRestore;
-@property(getter=isMigrate,readonly) BOOL migrate;
-@property(readonly) MBProperties * properties;
-@property(getter=isRestoreEngine,readonly) BOOL restoreEngine;
-@property(readonly) int restoreType;
-@property(readonly) NSString * restoreTypeString;
-@property(getter=isServiceEngine,readonly) BOOL serviceEngine;
-@property(readonly) MBSettingsContext * settingsContext;
+@property (nonatomic, readonly) MBAppManager *appManager;
+@property (getter=isBackgroundRestore, nonatomic, readonly) BOOL backgroundRestore;
+@property (getter=isBackupEngine, nonatomic, readonly) BOOL backupEngine;
+@property (getter=shouldCommitIfPossible, nonatomic, readonly) BOOL commitIfPossible;
+@property (nonatomic, readonly) MBDebugContext *debugContext;
+@property (nonatomic, readonly) MBDomainManager *domainManager;
+@property (getter=isDriveEngine, nonatomic, readonly) BOOL driveEngine;
+@property (getter=isEncrypted, nonatomic) BOOL encrypted;
+@property (nonatomic, readonly) int engineMode;
+@property (nonatomic, readonly) NSString *engineModeString;
+@property (nonatomic, readonly) int engineType;
+@property (nonatomic, readonly) NSString *engineTypeString;
+@property (getter=isForegroundRestore, nonatomic, readonly) BOOL foregroundRestore;
+@property (getter=isMigrate, nonatomic, readonly) BOOL migrate;
+@property (nonatomic, readonly) MBProperties *properties;
+@property (getter=isRestoreEngine, nonatomic, readonly) BOOL restoreEngine;
+@property (nonatomic, readonly) int restoreType;
+@property (nonatomic, readonly) NSString *restoreTypeString;
+@property (getter=isServiceEngine, nonatomic, readonly) BOOL serviceEngine;
+@property (nonatomic, readonly) MBSettingsContext *settingsContext;
 
 + (id)stringForEngineMode:(int)arg1;
 + (id)stringForEngineType:(int)arg1;
@@ -49,6 +49,7 @@
 - (BOOL)isBackgroundRestore;
 - (BOOL)isBackupEngine;
 - (BOOL)isDriveEngine;
+- (BOOL)isEncrypted;
 - (BOOL)isForegroundRestore;
 - (BOOL)isMigrate;
 - (BOOL)isRestoreEngine;
@@ -57,6 +58,7 @@
 - (void)pushAggregateDictionaryTotalFileCount:(long long)arg1 totalFileSize:(long long)arg2 duration:(double)arg3;
 - (int)restoreType;
 - (id)restoreTypeString;
+- (void)setEncrypted:(BOOL)arg1;
 - (id)settingsContext;
 - (BOOL)shouldCommitIfPossible;
 - (id)validateFile:(id)arg1;

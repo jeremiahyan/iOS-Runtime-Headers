@@ -2,21 +2,14 @@
    Image: /System/Library/Frameworks/QuartzCore.framework/QuartzCore
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class CALayer, CAValueFunction, NSString;
-
-@interface CASpring : NSObject <NSCopying, NSMutableCopying, NSCoding> {
-    struct CGPoint { 
-        float x; 
-        float y; 
+@interface CASpring : NSObject <NSCoding, NSCopying, NSMutableCopying> {
     struct CGPoint { 
         float x; 
         float y; 
     } _attachmentPointA;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _attachmentPointB;
     float _damping;
     id _delegate;
@@ -34,11 +27,11 @@
 @property struct CGPoint { float x1; float x2; } attachmentPointB;
 @property float damping;
 @property id delegate;
-@property(getter=isEnabled) BOOL enabled;
-@property(retain) CAValueFunction * function;
-@property(retain) CALayer * layerA;
-@property(retain) CALayer * layerB;
-@property(copy) NSString * name;
+@property (getter=isEnabled) BOOL enabled;
+@property (retain) CAValueFunction *function;
+@property (retain) CALayer *layerA;
+@property (retain) CALayer *layerB;
+@property (copy) NSString *name;
 @property float restLength;
 @property float stiffness;
 
@@ -46,10 +39,10 @@
 + (id)defaultValueForKey:(id)arg1;
 + (id)spring;
 
-- (struct Object { int (**x1)(); struct Atomic { struct { int x_1_2_1; } x_2_1_1; } x2; }*)CA_copyRenderValue;
 - (id).cxx_construct;
 - (void)CAMLParser:(id)arg1 setValue:(id)arg2 forKey:(id)arg3;
 - (id)CAMLTypeForKey:(id)arg1;
+- (struct Object { int (**x1)(); struct Atomic { struct { int x_1_2_1; } x_2_1_1; } x2; }*)CA_copyRenderValue;
 - (struct CGPoint { float x1; float x2; })attachmentPointA;
 - (struct CGPoint { float x1; float x2; })attachmentPointB;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

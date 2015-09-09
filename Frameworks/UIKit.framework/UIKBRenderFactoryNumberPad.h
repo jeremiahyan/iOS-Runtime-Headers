@@ -2,22 +2,22 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@interface UIKBRenderFactoryNumberPad : UIKBRenderFactory {
-}
+@interface UIKBRenderFactoryNumberPad : UIKBRenderFactory
 
 - (void)_customizeSymbolStyle:(id)arg1 secondaryStyle:(id)arg2 forKey:(id)arg3 contents:(id)arg4;
 - (id)_traitsForKey:(id)arg1 onKeyplane:(id)arg2;
-- (id)backgroundTraitsForKeyplane:(id)arg1;
 - (struct CGPoint { float x1; float x2; })centerColumnLetterOffset;
 - (struct CGPoint { float x1; float x2; })centerColumnNumberOffset;
 - (id)controlKeyBackgroundColorName;
+- (id)controlKeyDividerColorName;
 - (id)controlKeyForegroundColorName;
-- (id)defaultKeyBackgroundColorName;
+- (id)defaultKeyDividerColorName;
 - (struct CGPoint { float x1; float x2; })deleteGlyphOffset;
 - (struct CGPoint { float x1; float x2; })dictationGlyphOffset;
 - (struct CGPoint { float x1; float x2; })leftColumnLetterOffset;
 - (struct CGPoint { float x1; float x2; })leftColumnNumberOffset;
 - (float)letterFontSize;
+- (int)lightHighQualityEnabledBlendForm;
 - (struct CGPoint { float x1; float x2; })loneZeroOffset;
 - (float)numberFontSize;
 - (struct CGPoint { float x1; float x2; })rightColumnLetterOffset;

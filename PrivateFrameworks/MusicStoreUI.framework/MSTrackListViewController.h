@@ -2,11 +2,14 @@
    Image: /System/Library/PrivateFrameworks/MusicStoreUI.framework/MusicStoreUI
  */
 
-@class MSTrackListHeaderView;
-
 @interface MSTrackListViewController : MSStructuredPageViewController <MSTrackListHeaderDelegate> {
     MSTrackListHeaderView *_headerView;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)_delayedReloadForWebViews;
 - (id)_headerArtworkImage;

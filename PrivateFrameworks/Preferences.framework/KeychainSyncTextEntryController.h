@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@class NSString, PSSpecifier, PSTableCell, UIView<UIKeyInput>;
-
 @interface KeychainSyncTextEntryController : PSKeychainSyncViewController <KeychainSyncPasscodeFieldDelegate> {
     BOOL _convertsNumeralsToASCII;
     BOOL _hidesNextButton;
@@ -16,12 +14,16 @@
     NSString *_textValue;
 }
 
-@property BOOL convertsNumeralsToASCII;
-@property BOOL hidesNextButton;
-@property BOOL secureTextEntry;
-@property int textEntryType;
-@property BOOL textFieldHasRoundBorder;
-@property(retain) NSString * textValue;
+@property (nonatomic) BOOL convertsNumeralsToASCII;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL hidesNextButton;
+@property (nonatomic) BOOL secureTextEntry;
+@property (readonly) Class superclass;
+@property (nonatomic) int textEntryType;
+@property (nonatomic) BOOL textFieldHasRoundBorder;
+@property (nonatomic, retain) NSString *textValue;
 
 - (BOOL)becomeFirstResponder;
 - (BOOL)convertsNumeralsToASCII;
@@ -42,8 +44,8 @@
 - (void)setTextEntryText:(id)arg1;
 - (void)setTextEntryType:(int)arg1;
 - (void)setTextFieldHasRoundBorder:(BOOL)arg1;
-- (void)setTextValue:(id)arg1 forSpecifier:(id)arg2;
 - (void)setTextValue:(id)arg1;
+- (void)setTextValue:(id)arg1 forSpecifier:(id)arg2;
 - (id)specifiers;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
 - (float)tableView:(id)arg1 heightForRowAtIndexPath:(id)arg2;
@@ -58,6 +60,8 @@
 - (BOOL)textFieldHasRoundBorder;
 - (id)textValue;
 - (void)updateNextButton;
+- (void)viewDidDisappear:(BOOL)arg1;
 - (void)viewWillAppear:(BOOL)arg1;
+- (void)viewWillDisappear:(BOOL)arg1;
 
 @end

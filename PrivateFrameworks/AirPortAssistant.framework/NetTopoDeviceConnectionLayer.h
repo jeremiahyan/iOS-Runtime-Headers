@@ -2,23 +2,15 @@
    Image: /System/Library/PrivateFrameworks/AirPortAssistant.framework/AirPortAssistant
  */
 
-@class CAShapeLayer;
-
 @interface NetTopoDeviceConnectionLayer : NetTopoObjectLayer {
-    struct CGPoint { 
-        float x; 
-        float y; 
-    struct CGPoint { 
-        float x; 
-        float y; 
-    struct CGPoint { 
-        float x; 
-        float y; 
     struct CGPath { } *_arrowhead;
     struct CGColor { } *_clearColor;
     CAShapeLayer *_connectionLineLayer;
     unsigned int _connectionMediumFallback;
     unsigned int _connectionStyle;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _downstreamConnectionPoint;
     struct CGPath { } *_hitTestPath;
     struct CGColor { } *_lineColorActive;
@@ -26,22 +18,28 @@
     struct CGColor { } *_lineColorInactive;
     struct CGColor { } *_lineColorWiFi;
     struct CGColor { } *_selectedLineColor;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _siblingMergePoint;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _upstreamConnectionPoint;
     unsigned int _upstreamConnectionSide;
     unsigned int _upstreamDeviceSpatialRelationship;
     struct CGColor { } *_whiteColor;
 }
 
-@property(readonly) unsigned int connectionMedium;
-@property unsigned int connectionMediumFallback;
-@property unsigned int connectionStyle;
-@property struct CGPoint { float x1; float x2; } downstreamConnectionPoint;
-@property(readonly) struct CGPath { }* hitTestPath;
-@property struct CGPoint { float x1; float x2; } siblingMergePoint;
-@property struct CGPoint { float x1; float x2; } upstreamConnectionPoint;
-@property unsigned int upstreamConnectionSide;
-@property unsigned int upstreamDeviceSpatialRelationship;
+@property (nonatomic, readonly) unsigned int connectionMedium;
+@property (nonatomic) unsigned int connectionMediumFallback;
+@property (nonatomic) unsigned int connectionStyle;
+@property (nonatomic) struct CGPoint { float x1; float x2; } downstreamConnectionPoint;
+@property (nonatomic, readonly) struct CGPath { }*hitTestPath;
+@property (nonatomic) struct CGPoint { float x1; float x2; } siblingMergePoint;
+@property (nonatomic) struct CGPoint { float x1; float x2; } upstreamConnectionPoint;
+@property (nonatomic) unsigned int upstreamConnectionSide;
+@property (nonatomic) unsigned int upstreamDeviceSpatialRelationship;
 
 - (void)addBottomWindingConnectionToPath:(struct CGPath { }*)arg1 withOffset:(float)arg2;
 - (void)addCurvedArrowConnectionToPath:(struct CGPath { }*)arg1 withOffset:(float)arg2;

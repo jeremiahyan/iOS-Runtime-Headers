@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSObject<TSARenderingExporterDelegate>, TSADocumentRoot, TSDBitmapRenderingQualityInfo, TSDImager, TSUProgressContext;
-
 @interface TSARenderingExporter : NSObject <TSKRenderingExporter> {
     TSDBitmapRenderingQualityInfo *mBitmapRenderingQualityInfo;
     TSADocumentRoot *mDocumentRoot;
@@ -16,7 +14,11 @@
     NSObject<TSARenderingExporterDelegate> *mRenderingExporterDelegate;
 }
 
-@property(retain) TSUProgressContext * progressContext;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (retain) TSUProgressContext *progressContext;
+@property (readonly) Class superclass;
 
 - (id)bitmapRenderingQualityInfo;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })boundsRect;
@@ -32,8 +34,8 @@
 - (BOOL)hasMoreThanOnePageToPrint;
 - (id)imager;
 - (BOOL)incrementPage;
-- (id)initWithDocumentRoot:(id)arg1 imager:(id)arg2;
 - (id)initWithDocumentRoot:(id)arg1;
+- (id)initWithDocumentRoot:(id)arg1 imager:(id)arg2;
 - (BOOL)isCancelled;
 - (BOOL)isQuit;
 - (void)p_drawCurrentPageWithContext:(struct CGContext { }*)arg1 returnSuccess:(BOOL*)arg2 createPage:(BOOL)arg3;

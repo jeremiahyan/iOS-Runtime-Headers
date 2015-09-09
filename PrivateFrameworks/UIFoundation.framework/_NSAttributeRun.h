@@ -2,13 +2,11 @@
    Image: /System/Library/PrivateFrameworks/UIFoundation.framework/UIFoundation
  */
 
-@class NSMutableArray, NSTextStorage;
-
 @interface _NSAttributeRun : NSObject <NSCopying> {
+    NSMutableArray *_attributesArray;
     struct _NSRange { 
         unsigned int location; 
         unsigned int length; 
-    NSMutableArray *_attributesArray;
     } _range;
     NSTextStorage *_textStorage;
 }

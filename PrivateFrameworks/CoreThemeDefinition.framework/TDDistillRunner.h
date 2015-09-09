@@ -2,11 +2,10 @@
    Image: /System/Library/PrivateFrameworks/CoreThemeDefinition.framework/CoreThemeDefinition
  */
 
-@class NSString, NSURL, TDDistiller, TDLogger;
-
 @interface TDDistillRunner : NSObject {
     int _assetStoreVersionNumber;
     NSString *_assetStoreVersionString;
+    int _capabilities;
     NSURL *_carScratchURL;
     TDDistiller *_distiller;
     TDLogger *_logger;
@@ -14,9 +13,9 @@
 }
 
 @property int assetStoreVersionNumber;
-@property(copy) NSString * assetStoreVersionString;
-@property(retain) TDLogger * logger;
-@property(copy) NSURL * outputURL;
+@property (copy) NSString *assetStoreVersionString;
+@property (nonatomic, retain) TDLogger *logger;
+@property (nonatomic, copy) NSURL *outputURL;
 
 - (BOOL)_isDistillUnnecessaryForDocument:(id)arg1;
 - (void)_moveScratchToOutputPath;
@@ -31,6 +30,7 @@
 - (BOOL)runDistillWithDocumentURL:(id)arg1 outputURL:(id)arg2 attemptIncremental:(BOOL)arg3 forceDistill:(BOOL)arg4;
 - (void)setAssetStoreVersionNumber:(int)arg1;
 - (void)setAssetStoreVersionString:(id)arg1;
+- (void)setDocumentCapabilities:(int)arg1;
 - (void)setLogger:(id)arg1;
 - (void)setOutputURL:(id)arg1;
 

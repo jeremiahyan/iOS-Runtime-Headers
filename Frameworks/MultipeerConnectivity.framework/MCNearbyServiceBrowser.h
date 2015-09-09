@@ -2,14 +2,13 @@
    Image: /System/Library/Frameworks/MultipeerConnectivity.framework/MultipeerConnectivity
  */
 
-@class <MCNearbyServiceBrowserDelegate>, MCPeerID, NSMutableDictionary, NSNetServiceBrowser, NSObject<OS_dispatch_queue>, NSString;
-
 @interface MCNearbyServiceBrowser : NSObject <NSNetServiceBrowserDelegate, NSNetServiceDelegate> {
     <MCNearbyServiceBrowserDelegate> *_delegate;
     NSString *_formattedServiceType;
     NSMutableDictionary *_invites;
     BOOL _isBrowsing;
     MCPeerID *_myPeerID;
+    NSMutableDictionary *_netServices;
     NSNetServiceBrowser *_networkBrowser;
     int _outgoingInviteID;
     NSMutableDictionary *_peers;
@@ -18,17 +17,22 @@
     BOOL _wasBrowsing;
 }
 
-@property <MCNearbyServiceBrowserDelegate> * delegate;
-@property(copy) NSString * formattedServiceType;
-@property(retain) NSMutableDictionary * invites;
-@property BOOL isBrowsing;
-@property(readonly) MCPeerID * myPeerID;
-@property(retain) NSNetServiceBrowser * networkBrowser;
-@property int outgoingInviteID;
-@property(retain) NSMutableDictionary * peers;
-@property(copy) NSString * serviceType;
-@property(retain) NSObject<OS_dispatch_queue> * syncQueue;
-@property BOOL wasBrowsing;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <MCNearbyServiceBrowserDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, copy) NSString *formattedServiceType;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) NSMutableDictionary *invites;
+@property (nonatomic) BOOL isBrowsing;
+@property (nonatomic, readonly) MCPeerID *myPeerID;
+@property (nonatomic, retain) NSMutableDictionary *netServices;
+@property (nonatomic, retain) NSNetServiceBrowser *networkBrowser;
+@property (nonatomic) int outgoingInviteID;
+@property (nonatomic, retain) NSMutableDictionary *peers;
+@property (nonatomic, copy) NSString *serviceType;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) NSObject<OS_dispatch_queue> *syncQueue;
+@property (nonatomic) BOOL wasBrowsing;
 
 - (void)applicationDidEnterBackgroundNotification:(id)arg1;
 - (void)applicationWillEnterForegroundNotification:(id)arg1;
@@ -51,6 +55,7 @@
 - (void)netServiceBrowser:(id)arg1 didRemoveService:(id)arg2 moreComing:(BOOL)arg3;
 - (void)netServiceBrowserDidStopSearch:(id)arg1;
 - (void)netServiceBrowserWillSearch:(id)arg1;
+- (id)netServices;
 - (id)networkBrowser;
 - (int)outgoingInviteID;
 - (void)parseIDString:(id*)arg1 displayName:(id*)arg2 fromIdentifier:(id)arg3;
@@ -61,6 +66,7 @@
 - (void)setFormattedServiceType:(id)arg1;
 - (void)setInvites:(id)arg1;
 - (void)setIsBrowsing:(BOOL)arg1;
+- (void)setNetServices:(id)arg1;
 - (void)setNetworkBrowser:(id)arg1;
 - (void)setOutgoingInviteID:(int)arg1;
 - (void)setPeers:(id)arg1;
@@ -78,8 +84,8 @@
 - (int)syncNextOutgoingInviteID;
 - (id)syncQueue;
 - (void)syncReceivedData:(id)arg1 fromPeer:(id)arg2;
-- (void)syncSendData:(id)arg1 toPeer:(id)arg2 withCompletionHandler:(id)arg3;
-- (void)syncSendDictionary:(id)arg1 toPeer:(id)arg2 withCompletionHandler:(id)arg3;
+- (void)syncSendData:(id)arg1 toPeer:(id)arg2 withCompletionHandler:(id /* block */)arg3;
+- (void)syncSendDictionary:(id)arg1 toPeer:(id)arg2 withCompletionHandler:(id /* block */)arg3;
 - (void)syncStartBrowsingForPeers;
 - (void)syncStopBrowsingForPeers;
 - (BOOL)wasBrowsing;

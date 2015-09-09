@@ -2,16 +2,14 @@
    Image: /System/Library/Frameworks/SpriteKit.framework/SpriteKit
  */
 
-@class CIFilter;
+@interface SKEffectNode : SKNode
 
-@interface SKEffectNode : SKNode {
-}
-
-@property int blendMode;
-@property(retain) CIFilter * filter;
-@property BOOL shouldCenterFilter;
-@property BOOL shouldEnableEffects;
-@property BOOL shouldRasterize;
+@property (nonatomic) int blendMode;
+@property (nonatomic, retain) CIFilter *filter;
+@property (nonatomic, retain) SKShader *shader;
+@property (nonatomic) BOOL shouldCenterFilter;
+@property (nonatomic) BOOL shouldEnableEffects;
+@property (nonatomic) BOOL shouldRasterize;
 
 - (void)_flippedChangedFrom:(BOOL)arg1 to:(BOOL)arg2;
 - (void)_scaleFactorChangedFrom:(float)arg1 to:(float)arg2;
@@ -22,11 +20,14 @@
 - (id)filter;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
+- (BOOL)isEqualToNode:(id)arg1;
 - (void)setBlendMode:(int)arg1;
 - (void)setFilter:(id)arg1;
+- (void)setShader:(id)arg1;
 - (void)setShouldCenterFilter:(BOOL)arg1;
 - (void)setShouldEnableEffects:(BOOL)arg1;
 - (void)setShouldRasterize:(BOOL)arg1;
+- (id)shader;
 - (BOOL)shouldCenterFilter;
 - (BOOL)shouldEnableEffects;
 - (BOOL)shouldRasterize;

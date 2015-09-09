@@ -2,16 +2,17 @@
    Image: /System/Library/PrivateFrameworks/AccessibilityUtilities.framework/AccessibilityUtilities
  */
 
-@interface AXEventPathInfoRepresentation : NSObject <NSSecureCoding, NSCopying> {
-    struct CGPoint { 
-        float x; 
-        float y; 
+@interface AXEventPathInfoRepresentation : NSObject <NSCopying, NSSecureCoding> {
     float _pathDensity;
     unsigned int _pathEventMask;
     unsigned char _pathIdentity;
     unsigned char _pathIndex;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _pathLocation;
     float _pathMajorRadius;
+    float _pathMajorRadiusTolerance;
     float _pathMinorRadius;
     float _pathPressure;
     unsigned char _pathProximity;
@@ -21,19 +22,20 @@
     unsigned long _pathWindowContextID;
 }
 
-@property float pathDensity;
-@property unsigned int pathEventMask;
-@property unsigned char pathIdentity;
-@property unsigned char pathIndex;
-@property struct CGPoint { float x1; float x2; } pathLocation;
-@property float pathMajorRadius;
-@property float pathMinorRadius;
-@property float pathPressure;
-@property unsigned char pathProximity;
-@property float pathQuality;
-@property float pathTwist;
-@property void* pathWindow;
-@property unsigned long pathWindowContextID;
+@property (nonatomic) float pathDensity;
+@property (nonatomic) unsigned int pathEventMask;
+@property (nonatomic) unsigned char pathIdentity;
+@property (nonatomic) unsigned char pathIndex;
+@property (nonatomic) struct CGPoint { float x1; float x2; } pathLocation;
+@property (nonatomic) float pathMajorRadius;
+@property (nonatomic) float pathMajorRadiusTolerance;
+@property (nonatomic) float pathMinorRadius;
+@property (nonatomic) float pathPressure;
+@property (nonatomic) unsigned char pathProximity;
+@property (nonatomic) float pathQuality;
+@property (nonatomic) float pathTwist;
+@property (nonatomic) void*pathWindow;
+@property (nonatomic) unsigned long pathWindowContextID;
 
 + (id)representationWithPathInfo:(struct { unsigned char x1; unsigned char x2; unsigned char x3; float x4; float x5; struct CGPoint { float x_6_1_1; float x_6_1_2; } x6; unsigned int x7; void *x8; }*)arg1;
 + (BOOL)supportsSecureCoding;
@@ -48,6 +50,7 @@
 - (unsigned char)pathIndex;
 - (struct CGPoint { float x1; float x2; })pathLocation;
 - (float)pathMajorRadius;
+- (float)pathMajorRadiusTolerance;
 - (float)pathMinorRadius;
 - (float)pathPressure;
 - (unsigned char)pathProximity;
@@ -61,6 +64,7 @@
 - (void)setPathIndex:(unsigned char)arg1;
 - (void)setPathLocation:(struct CGPoint { float x1; float x2; })arg1;
 - (void)setPathMajorRadius:(float)arg1;
+- (void)setPathMajorRadiusTolerance:(float)arg1;
 - (void)setPathMinorRadius:(float)arg1;
 - (void)setPathPressure:(float)arg1;
 - (void)setPathProximity:(unsigned char)arg1;

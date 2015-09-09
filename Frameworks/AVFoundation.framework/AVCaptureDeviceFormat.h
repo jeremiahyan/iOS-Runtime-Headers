@@ -2,34 +2,40 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class AVCaptureDeviceFormatInternal, NSArray, NSString;
-
 @interface AVCaptureDeviceFormat : NSObject {
     AVCaptureDeviceFormatInternal *_internal;
 }
 
-@property(readonly) struct opaqueCMFormatDescription { }* formatDescription;
-@property(readonly) NSString * mediaType;
-@property(getter=isVideoBinned,readonly) BOOL videoBinned;
-@property(readonly) float videoFieldOfView;
-@property(readonly) float videoMaxZoomFactor;
-@property(getter=isVideoStabilizationSupported,readonly) BOOL videoStabilizationSupported;
-@property(readonly) NSArray * videoSupportedFrameRateRanges;
-@property(readonly) float videoZoomFactorUpscaleThreshold;
+@property (nonatomic, readonly) int autoFocusSystem;
+@property (nonatomic, readonly) struct opaqueCMFormatDescription { }*formatDescription;
+@property (nonatomic, readonly) struct { int x1; int x2; } highResolutionStillImageDimensions;
+@property (nonatomic, readonly) struct { long long x1; int x2; unsigned int x3; long long x4; } maxExposureDuration;
+@property (nonatomic, readonly) float maxISO;
+@property (nonatomic, readonly) NSString *mediaType;
+@property (nonatomic, readonly) struct { long long x1; int x2; unsigned int x3; long long x4; } minExposureDuration;
+@property (nonatomic, readonly) float minISO;
+@property (getter=isVideoBinned, nonatomic, readonly) BOOL videoBinned;
+@property (nonatomic, readonly) float videoFieldOfView;
+@property (getter=isVideoHDRSupported, nonatomic, readonly) BOOL videoHDRSupported;
+@property (nonatomic, readonly) float videoMaxZoomFactor;
+@property (getter=isVideoStabilizationSupported, nonatomic, readonly) BOOL videoStabilizationSupported;
+@property (nonatomic, readonly) NSArray *videoSupportedFrameRateRanges;
+@property (nonatomic, readonly) float videoZoomFactorUpscaleThreshold;
 
-+ (id)deviceFormatWithDictionary:(id)arg1 deviceProperties:(id)arg2 mediaType:(id)arg3;
 + (void)initialize;
 
-- (struct CGSize { float x1; float x2; })_maxVideoDimensions;
+- (id)AVCaptureSessionPresets;
 - (id)_stringForFormatDescription:(struct opaqueCMFormatDescription { }*)arg1 frameRateRanges:(id)arg2;
+- (int)autoFocusSystem;
 - (void)dealloc;
 - (struct { long long x1; int x2; unsigned int x3; long long x4; })defaultActiveMaxFrameDuration;
 - (struct { long long x1; int x2; unsigned int x3; long long x4; })defaultActiveMinFrameDuration;
 - (id)description;
+- (id)figCaptureSourceFormat;
 - (struct opaqueCMFormatDescription { }*)formatDescription;
-- (id)formatDictionary;
+- (struct { int x1; int x2; })highResolutionStillImageDimensions;
 - (struct { long long x1; int x2; unsigned int x3; long long x4; })highestSupportedVideoFrameDuration;
-- (id)initWithDictionary:(id)arg1 deviceProperties:(id)arg2 mediaType:(id)arg3;
+- (id)initWithFigCaptureSourceFormat:(id)arg1;
 - (BOOL)isDefaultActiveFormat;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isExperimental;
@@ -37,27 +43,32 @@
 - (BOOL)isPhotoFormat;
 - (BOOL)isSISSupported;
 - (BOOL)isVideoBinned;
+- (BOOL)isVideoHDRSupported;
+- (BOOL)isVideoStabilizationModeSupported:(int)arg1;
 - (BOOL)isVideoStabilizationSupported;
 - (struct { long long x1; int x2; unsigned int x3; long long x4; })lowestSupportedVideoFrameDuration;
+- (struct { long long x1; int x2; unsigned int x3; long long x4; })maxExposureDuration;
+- (float)maxISO;
 - (id)mediaType;
+- (struct { long long x1; int x2; unsigned int x3; long long x4; })minExposureDuration;
+- (float)minISO;
 - (BOOL)needsPhotoPreviewDPCC;
-- (BOOL)needsPhotoTNR;
-- (struct { int x1; int x2; })outputDimensions;
+- (BOOL)prefersVideoHDREnabledForSessionPreset:(id)arg1;
+- (struct { int x1; int x2; })previewDimensions;
 - (int)rawBitDepth;
 - (struct { int x1; int x2; })sensorDimensions;
 - (int)supportedFormatsArrayIndex;
 - (int)supportedStabilizationMethod;
 - (BOOL)supportsDynamicCrop;
 - (BOOL)supportsHighProfileH264;
+- (BOOL)supportsHighResolutionStillImageOutput;
 - (BOOL)supportsLowLightBoost;
-- (BOOL)supportsVideoZoom;
-- (BOOL)usesPreviewSizedThumbnail;
 - (float)videoFieldOfView;
 - (float)videoMaxZoomFactor;
 - (id)videoSupportedFrameRateRanges;
 - (float)videoZoomFactorUpscaleThreshold;
 - (id)videoZoomSupportedDownscaleStages;
 - (id)videoZoomSupportedUpscaleStages;
-- (int)visCompanionSupportedFormatsArrayIndex;
+- (id)vtScalingMode;
 
 @end

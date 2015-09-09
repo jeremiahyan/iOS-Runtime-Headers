@@ -3,8 +3,13 @@
  */
 
 @interface UITableViewLabel : UILabel {
+    UITableViewCell *_tableCell;
 }
 
+@property (nonatomic) UITableViewCell *tableCell;
+
+- (void)setTableCell:(id)arg1;
 - (void)setText:(id)arg1;
+- (id)tableCell;
 
 @end

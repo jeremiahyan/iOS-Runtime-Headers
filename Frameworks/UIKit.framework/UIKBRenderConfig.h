@@ -7,21 +7,23 @@
     float _blurSaturation;
     float _keycapOpacity;
     BOOL _lightKeyboard;
-    float _lightLatinKeycapOpacity;
+    float _lightKeycapOpacity;
+    BOOL _useEmojiStyles;
 }
 
-@property(readonly) int backdropStyle;
-@property float blurRadius;
-@property float blurSaturation;
-@property float keycapOpacity;
-@property BOOL lightKeyboard;
-@property float lightLatinKeycapOpacity;
-@property(readonly) BOOL whiteText;
+@property (nonatomic, readonly) int backdropStyle;
+@property (nonatomic) float blurRadius;
+@property (nonatomic) float blurSaturation;
+@property (nonatomic) float keycapOpacity;
+@property (nonatomic) BOOL lightKeyboard;
+@property (nonatomic) float lightKeycapOpacity;
+@property (nonatomic, readonly) BOOL whiteText;
 
 + (int)backdropStyleForStyle:(int)arg1;
-+ (id)configForAppearance:(int)arg1;
++ (id)configForAppearance:(int)arg1 inputMode:(id)arg2;
 + (id)darkConfig;
 + (id)defaultConfig;
++ (id)defaultEmojiConfig;
 
 - (int)backdropStyle;
 - (float)blurRadius;
@@ -31,12 +33,12 @@
 - (BOOL)isEqual:(id)arg1;
 - (float)keycapOpacity;
 - (BOOL)lightKeyboard;
-- (float)lightLatinKeycapOpacity;
+- (float)lightKeycapOpacity;
 - (void)setBlurRadius:(float)arg1;
 - (void)setBlurSaturation:(float)arg1;
 - (void)setKeycapOpacity:(float)arg1;
 - (void)setLightKeyboard:(BOOL)arg1;
-- (void)setLightLatinKeycapOpacity:(float)arg1;
+- (void)setLightKeycapOpacity:(float)arg1;
 - (BOOL)whiteText;
 
 @end

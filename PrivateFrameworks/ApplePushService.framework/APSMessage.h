@@ -2,17 +2,15 @@
    Image: /System/Library/PrivateFrameworks/ApplePushService.framework/ApplePushService
  */
 
-@class NSDictionary, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_xpc_object>, NSString;
-
 @interface APSMessage : NSObject <NSCoding> {
     NSObject<OS_dispatch_queue> *_ivarQueue;
     NSMutableDictionary *_plist;
-    NSObject<OS_xpc_object> *_xpcMessage;
+    void *_xpcMessage;
 }
 
-@property unsigned int identifier;
-@property(retain) NSString * topic;
-@property(retain) NSDictionary * userInfo;
+@property (nonatomic) unsigned int identifier;
+@property (nonatomic, retain) NSString *topic;
+@property (nonatomic, retain) NSDictionary *userInfo;
 
 - (void)dealloc;
 - (id)dictionaryRepresentation;
@@ -20,8 +18,8 @@
 - (id)guid;
 - (unsigned int)identifier;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithDictionary:(id)arg1 xpcMessage:(id)arg2;
 - (id)initWithDictionary:(id)arg1;
+- (id)initWithDictionary:(id)arg1 xpcMessage:(id)arg2;
 - (id)initWithTopic:(id)arg1 userInfo:(id)arg2;
 - (id)objectForKey:(id)arg1;
 - (void)setGuid:(id)arg1;

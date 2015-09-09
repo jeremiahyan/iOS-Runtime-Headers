@@ -2,19 +2,18 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class <AVPlayerItemOutputPullDelegate>, AVPlayerItemVideoOutputInternal, NSObject<OS_dispatch_queue>;
-
 @interface AVPlayerItemVideoOutput : AVPlayerItemOutput {
     AVPlayerItemVideoOutputInternal *_videoOutputInternal;
 }
 
-@property(readonly) <AVPlayerItemOutputPullDelegate> * delegate;
-@property(readonly) NSObject<OS_dispatch_queue> * delegateQueue;
+@property (nonatomic, readonly) <AVPlayerItemOutputPullDelegate> *delegate;
+@property (nonatomic, readonly) NSObject<OS_dispatch_queue> *delegateQueue;
 
-- (void)_attachToPlayerItem:(id)arg1;
+- (BOOL)_attachToPlayerItem:(id)arg1;
 - (void)_detachFromPlayerItem;
 - (void)_dispatchOutputMediaDataWillChange;
 - (void)_dispatchOutputSequenceWasFlushed;
+- (id)_pixelBufferAttributes;
 - (void)_setTagBuffersWithConversionInformation;
 - (void)_setTimebase:(struct OpaqueCMTimebase { }*)arg1;
 - (void)_startObservingTimebaseNotificationsForTimebase:(struct OpaqueCMTimebase { }*)arg1;

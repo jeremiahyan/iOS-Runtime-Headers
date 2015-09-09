@@ -3,6 +3,9 @@
  */
 
 @interface VKPTrafficStyle : PBCodable <NSCopying> {
+    float _fadingOffset;
+    float _fadingSlope;
+    unsigned int _fillColor;
     struct { 
         unsigned int fadingOffset : 1; 
         unsigned int fadingSlope : 1; 
@@ -13,9 +16,6 @@
         unsigned int secondaryColor : 1; 
         unsigned int uNUSEDPattern : 1; 
         unsigned int widthFraction : 1; 
-    float _fadingOffset;
-    float _fadingSlope;
-    unsigned int _fillColor;
     } _has;
     float _patternLength;
     float _patternSlotLength;
@@ -25,24 +25,24 @@
     float _widthFraction;
 }
 
-@property float fadingOffset;
-@property float fadingSlope;
-@property unsigned int fillColor;
-@property BOOL hasFadingOffset;
-@property BOOL hasFadingSlope;
-@property BOOL hasFillColor;
-@property BOOL hasPatternLength;
-@property BOOL hasPatternSlotLength;
-@property BOOL hasPatternWidth;
-@property BOOL hasSecondaryColor;
-@property BOOL hasUNUSEDPattern;
-@property BOOL hasWidthFraction;
-@property float patternLength;
-@property float patternSlotLength;
-@property float patternWidth;
-@property unsigned int secondaryColor;
-@property int uNUSEDPattern;
-@property float widthFraction;
+@property (nonatomic) float fadingOffset;
+@property (nonatomic) float fadingSlope;
+@property (nonatomic) unsigned int fillColor;
+@property (nonatomic) BOOL hasFadingOffset;
+@property (nonatomic) BOOL hasFadingSlope;
+@property (nonatomic) BOOL hasFillColor;
+@property (nonatomic) BOOL hasPatternLength;
+@property (nonatomic) BOOL hasPatternSlotLength;
+@property (nonatomic) BOOL hasPatternWidth;
+@property (nonatomic) BOOL hasSecondaryColor;
+@property (nonatomic) BOOL hasUNUSEDPattern;
+@property (nonatomic) BOOL hasWidthFraction;
+@property (nonatomic) float patternLength;
+@property (nonatomic) float patternSlotLength;
+@property (nonatomic) float patternWidth;
+@property (nonatomic) unsigned int secondaryColor;
+@property (nonatomic) int uNUSEDPattern;
+@property (nonatomic) float widthFraction;
 
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -62,6 +62,7 @@
 - (BOOL)hasWidthFraction;
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
+- (void)mergeFrom:(id)arg1;
 - (float)patternLength;
 - (float)patternSlotLength;
 - (float)patternWidth;

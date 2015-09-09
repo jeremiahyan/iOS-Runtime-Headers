@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibrary.framework/PhotoLibrary
  */
 
-@class PLTextView, UILabel, UITextField;
-
-@interface PLTableViewEditableCell : UITableViewCell <UITextViewDelegate, UITextFieldDelegate> {
+@interface PLTableViewEditableCell : UITableViewCell <UITextFieldDelegate, UITextViewDelegate> {
     int _cellStyle;
     id _delegate;
     BOOL _forceFirstResponder;
@@ -13,7 +11,11 @@
     PLTextView *_textView;
 }
 
-@property int style;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) int style;
+@property (readonly) Class superclass;
 
 + (id)posterCellIdentifier;
 

@@ -2,15 +2,11 @@
    Image: /System/Library/PrivateFrameworks/Message.framework/Message
  */
 
-@class MFError, MFInvocationQueue, MFMailboxUid, NSString, NSThread;
-
 @interface MFActivityMonitor : MFPriorityDesignator {
-    unsigned int _key : 13;
-    unsigned int _canCancel : 1;
-    unsigned int _shouldCancel : 1;
-    unsigned int _isActive : 1;
-    unsigned int _supportsPerItemProgress : 1;
-    unsigned int _changeCount : 8;
+    unsigned int _bytesRead;
+    unsigned int _bytesWritten;
+    unsigned int _canCancel;
+    unsigned int _changeCount;
     unsigned int _currentCount;
     double _currentItemPercentDone;
     id _delegate;
@@ -19,19 +15,24 @@
     MFError *_error;
     unsigned int _expectedLength;
     unsigned int _gotNewMessagesState;
+    unsigned int _isActive;
+    unsigned int _key;
     double _lastTime;
     MFMailboxUid *_mailbox;
     unsigned int _maxCount;
     MFInvocationQueue *_ourQueue;
     double _percentDone;
+    NSMutableSet *_reasons;
     NSThread *_runningThread;
+    unsigned int _shouldCancel;
     double _startTime;
     NSString *_statusMessage;
+    unsigned int _supportsPerItemProgress;
     id _target;
     NSString *_taskName;
 }
 
-@property(retain) MFMailboxUid * mailbox;
+@property (retain) MFMailboxUid *mailbox;
 
 + (id)currentMonitor;
 + (void)destroyMonitor;
@@ -44,6 +45,9 @@
 - (id)activityTargets;
 - (void)addActivityTarget:(id)arg1;
 - (void)addActivityTargets:(id)arg1;
+- (void)addReason:(id)arg1;
+- (unsigned int)bytesRead;
+- (unsigned int)bytesWritten;
 - (BOOL)canBeCancelled;
 - (void)cancel;
 - (void)cancelMessage;
@@ -55,6 +59,7 @@
 - (unsigned int)expectedLength;
 - (void)finishedActivity:(id)arg1;
 - (unsigned int)gotNewMessagesState;
+- (BOOL)hasReason:(id)arg1;
 - (id)init;
 - (BOOL)isActive;
 - (id)mailbox;
@@ -64,34 +69,39 @@
 - (void)postActivityStarting;
 - (void)postDidChangeWithUserInfo:(id)arg1;
 - (id)primaryTarget;
+- (id)reasons;
+- (void)recordBytesRead:(unsigned int)arg1;
+- (void)recordBytesWritten:(unsigned int)arg1;
 - (void)relinquishExclusiveAccessKey:(int)arg1;
 - (void)removeActivityTarget:(id)arg1;
 - (void)reset;
+- (void)resetConnectionStats;
 - (void)setActivityTarget:(id)arg1;
 - (void)setCanBeCancelled:(BOOL)arg1;
 - (void)setCurrentCount:(unsigned int)arg1;
 - (void)setDelegate:(id)arg1;
-- (void)setDisplayName:(id)arg1 maxCount:(unsigned int)arg2;
 - (void)setDisplayName:(id)arg1;
+- (void)setDisplayName:(id)arg1 maxCount:(unsigned int)arg2;
 - (void)setError:(id)arg1;
 - (void)setExpectedLength:(unsigned int)arg1;
 - (void)setGotNewMessagesState:(unsigned int)arg1;
 - (void)setInvocationQueue:(id)arg1;
 - (void)setMailbox:(id)arg1;
 - (void)setMaxCount:(unsigned int)arg1;
-- (void)setPercentDone:(double)arg1 withKey:(int)arg2;
 - (void)setPercentDone:(double)arg1;
+- (void)setPercentDone:(double)arg1 withKey:(int)arg2;
 - (void)setPercentDoneOfCurrentItem:(double)arg1;
 - (void)setPrimaryTarget:(id)arg1;
 - (void)setShouldCancel:(BOOL)arg1;
-- (void)setStatusMessage:(id)arg1 percentDone:(double)arg2 withKey:(int)arg3;
-- (void)setStatusMessage:(id)arg1 percentDone:(double)arg2;
-- (void)setStatusMessage:(id)arg1 withKey:(int)arg2;
 - (void)setStatusMessage:(id)arg1;
+- (void)setStatusMessage:(id)arg1 percentDone:(double)arg2;
+- (void)setStatusMessage:(id)arg1 percentDone:(double)arg2 withKey:(int)arg3;
+- (void)setStatusMessage:(id)arg1 withKey:(int)arg2;
 - (void)setSupportsPerItemProgress:(BOOL)arg1;
 - (void)setTaskName:(id)arg1;
 - (BOOL)shouldCancel;
 - (void)startActivity;
+- (double)startTime;
 - (id)statusMessage;
 - (id)taskName;
 - (id)userInfoForNotification;

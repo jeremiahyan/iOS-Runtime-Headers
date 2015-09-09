@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@class GEOStep, MKPolyline, MKRouteStepPolyline, NSString;
-
 @interface MKRouteStep : NSObject {
     GEOStep *_geoStep;
     NSString *_instructions;
@@ -11,13 +9,15 @@
     unsigned int _transportType;
 }
 
-@property(readonly) double distance;
-@property(readonly) NSString * instructions;
-@property(readonly) NSString * notice;
-@property(readonly) MKPolyline * polyline;
-@property(readonly) unsigned int transportType;
+@property (nonatomic, readonly) double distance;
+@property (getter=_geoStep, nonatomic, readonly) GEOStep *geoStep;
+@property (nonatomic, readonly) NSString *instructions;
+@property (nonatomic, readonly) NSString *notice;
+@property (nonatomic, readonly) MKPolyline *polyline;
+@property (nonatomic, readonly) unsigned int transportType;
 
 - (void).cxx_destruct;
+- (id)_geoStep;
 - (id)_initWithGEOStep:(id)arg1 instructions:(id)arg2 transportType:(unsigned int)arg3 polyline:(id)arg4;
 - (double)distance;
 - (id)instructions;

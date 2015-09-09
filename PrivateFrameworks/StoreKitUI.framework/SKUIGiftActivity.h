@@ -2,12 +2,15 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class SKUIClientContext, SKUIProductPageItem;
-
 @interface SKUIGiftActivity : UIActivity <SKUIGiftViewControllerDelegate> {
     SKUIClientContext *_clientContext;
     SKUIProductPageItem *_item;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (id)_beforeActivity;

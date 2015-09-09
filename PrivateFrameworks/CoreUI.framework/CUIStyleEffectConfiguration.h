@@ -10,13 +10,14 @@
     int _value;
 }
 
-@property BOOL foregroundColorShouldTintEffects;
-@property int presentationState;
-@property int state;
-@property BOOL useSimplifiedEffect;
-@property int value;
+@property (nonatomic) BOOL foregroundColorShouldTintEffects;
+@property (nonatomic) int presentationState;
+@property (nonatomic) int state;
+@property (nonatomic) BOOL useSimplifiedEffect;
+@property (nonatomic) int value;
 
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (id)description;
 - (BOOL)foregroundColorShouldTintEffects;
 - (id)init;
 - (int)presentationState;
@@ -26,6 +27,7 @@
 - (void)setUseSimplifiedEffect:(BOOL)arg1;
 - (void)setValue:(int)arg1;
 - (BOOL)shouldIgnoreForegroundColor;
+- (BOOL)shouldRespectOutputBlending;
 - (int)state;
 - (BOOL)useSimplifiedEffect;
 - (int)value;

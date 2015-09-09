@@ -3,13 +3,18 @@
  */
 
 @interface MPUNavigationController : UINavigationController {
-    unsigned int _overrideSupportedInterfaceOrientations;
+    id /* block */ _overrideSupportedInterfaceOrientationsHandler;
+    BOOL _supportsStandardInterfaceOrientations;
 }
 
-@property unsigned int overrideSupportedInterfaceOrientations;
+@property (nonatomic, copy) id /* block */ overrideSupportedInterfaceOrientationsHandler;
+@property (nonatomic) BOOL supportsStandardInterfaceOrientations;
 
-- (unsigned int)overrideSupportedInterfaceOrientations;
-- (void)setOverrideSupportedInterfaceOrientations:(unsigned int)arg1;
+- (void).cxx_destruct;
+- (id /* block */)overrideSupportedInterfaceOrientationsHandler;
+- (void)setOverrideSupportedInterfaceOrientationsHandler:(id /* block */)arg1;
+- (void)setSupportsStandardInterfaceOrientations:(BOOL)arg1;
 - (unsigned int)supportedInterfaceOrientations;
+- (BOOL)supportsStandardInterfaceOrientations;
 
 @end

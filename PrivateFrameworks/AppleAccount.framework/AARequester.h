@@ -2,16 +2,11 @@
    Image: /System/Library/PrivateFrameworks/AppleAccount.framework/AppleAccount
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class AARequest, AAResponse, NSHTTPURLResponse, NSMutableData, NSURLConnection;
-
 @interface AARequester : NSOperation {
     BOOL _canceled;
     NSMutableData *_data;
-    id _handler;
+    id /* block */ _handler;
+    NSObject<OS_dispatch_queue> *_handlerQueue;
     NSHTTPURLResponse *_httpResponse;
     BOOL _isCanceled;
     BOOL _isExecuting;
@@ -22,9 +17,10 @@
     NSURLConnection *_urlConnection;
 }
 
-@property(getter=isCanceled) BOOL canceled;
-@property(getter=isExecuting) BOOL executing;
-@property(getter=isFinished) BOOL finished;
+@property (getter=isCanceled) BOOL canceled;
+@property (getter=isFinished) BOOL finished;
+@property (nonatomic, retain) NSObject<OS_dispatch_queue> *handlerQueue;
+@property (getter=isExecuting, nonatomic) BOOL isExecuting;
 
 - (void).cxx_destruct;
 - (void)_callHandler;
@@ -35,13 +31,15 @@
 - (void)connection:(id)arg1 didReceiveData:(id)arg2;
 - (void)connection:(id)arg1 didReceiveResponse:(id)arg2;
 - (void)connectionDidFinishLoading:(id)arg1;
-- (id)initWithRequest:(id)arg1 handler:(id)arg2;
+- (id)handlerQueue;
+- (id)initWithRequest:(id)arg1 handler:(id /* block */)arg2;
 - (BOOL)isCanceled;
 - (BOOL)isExecuting;
 - (BOOL)isFinished;
 - (void)setCanceled:(BOOL)arg1;
-- (void)setExecuting:(BOOL)arg1;
 - (void)setFinished:(BOOL)arg1;
+- (void)setHandlerQueue:(id)arg1;
+- (void)setIsExecuting:(BOOL)arg1;
 - (void)start;
 
 @end

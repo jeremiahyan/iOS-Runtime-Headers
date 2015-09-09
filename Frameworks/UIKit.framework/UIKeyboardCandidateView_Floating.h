@@ -12,17 +12,22 @@
             float width; 
             float height; 
         } size; 
+    } _collapsedRect;
     struct CGSize { 
         float width; 
         float height; 
-    } _collapsedRect;
     } presentationSize;
 }
 
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
 @property struct CGSize { float x1; float x2; } presentationSize;
+@property (readonly) Class superclass;
 
 + (float)defaultExtendedControlHeight;
 
+- (id)_inheritedRenderConfig;
 - (unsigned int)_numberOfColumns:(BOOL)arg1;
 - (id)activeCandidateList;
 - (void)candidatesDidChange;

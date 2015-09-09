@@ -2,9 +2,7 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class <UIKeyboardCandidateListDelegate>, <UIKeyboardCandidateRowViewControllerDelegate>, NSArray, TIKeyboardCandidateResultSet, UIKBCandidateCollectionView;
-
-@interface UIKeyboardCandidateRowViewController : UIViewController <UIKeyboardCandidateList, UICollectionViewDelegate, UICollectionViewDataSource> {
+@interface UIKeyboardCandidateRowViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UIKeyboardCandidateList> {
     <UIKeyboardCandidateListDelegate> *_candidateListDelegate;
     TIKeyboardCandidateResultSet *_candidateSet;
     Class _cellClass;
@@ -12,13 +10,17 @@
     BOOL _showsHiddenCandidates;
 }
 
-@property <UIKeyboardCandidateListDelegate> * candidateListDelegate;
-@property(retain) TIKeyboardCandidateResultSet * candidateSet;
-@property(readonly) NSArray * candidates;
-@property(retain) Class cellClass;
-@property(readonly) UIKBCandidateCollectionView * collectionView;
-@property <UIKeyboardCandidateRowViewControllerDelegate> * delegate;
-@property BOOL showsHiddenCandidates;
+@property (nonatomic) <UIKeyboardCandidateListDelegate> *candidateListDelegate;
+@property (nonatomic, retain) TIKeyboardCandidateResultSet *candidateSet;
+@property (nonatomic, readonly) NSArray *candidates;
+@property (nonatomic, retain) Class cellClass;
+@property (nonatomic, readonly) UIKBCandidateCollectionView *collectionView;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <UIKeyboardCandidateRowViewControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL showsHiddenCandidates;
+@property (readonly) Class superclass;
 
 + (float)suggestedHeightForCellClass:(Class)arg1;
 
@@ -31,12 +33,12 @@
 - (id)candidates;
 - (void)candidatesDidChange;
 - (Class)cellClass;
+- (id)collectionView;
 - (id)collectionView:(id)arg1 cellForItemAtIndexPath:(id)arg2;
 - (void)collectionView:(id)arg1 didSelectItemAtIndexPath:(id)arg2;
 - (struct CGSize { float x1; float x2; })collectionView:(id)arg1 layout:(id)arg2 sizeForItemAtIndexPath:(id)arg3;
 - (int)collectionView:(id)arg1 numberOfItemsInSection:(int)arg2;
 - (id)collectionView:(id)arg1 viewForSupplementaryElementOfKind:(id)arg2 atIndexPath:(id)arg3;
-- (id)collectionView;
 - (id)currentCandidate;
 - (unsigned int)currentIndex;
 - (id)delegate;
@@ -57,7 +59,7 @@
 - (void)setDelegate:(id)arg1;
 - (void)setShowsHiddenCandidates:(BOOL)arg1;
 - (void)setUIKeyboardCandidateListDelegate:(id)arg1;
-- (void)showCandidate:(id)arg1;
+- (BOOL)showCandidate:(id)arg1;
 - (void)showCandidateAtIndex:(unsigned int)arg1;
 - (void)showNextCandidate;
 - (void)showNextPage;

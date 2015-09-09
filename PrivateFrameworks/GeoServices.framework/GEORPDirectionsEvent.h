@@ -2,9 +2,9 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class GEOLatLng, NSData, NSString;
-
 @interface GEORPDirectionsEvent : PBCodable <NSCopying> {
+    long long _errorCode;
+    NSString *_errorDomain;
     struct { 
         unsigned int errorCode : 1; 
         unsigned int occurrenceResponseIndex : 1; 
@@ -12,42 +12,40 @@
         unsigned int switchedToResponseIndex : 1; 
         unsigned int synthesizedStepManeuverType : 1; 
         unsigned int type : 1; 
-    long long _errorCode;
-    NSString *_errorDomain;
     } _has;
     GEOLatLng *_occurrenceLatLng;
     unsigned int _occurrenceResponseIndex;
-    NSData *_occurrenceRouteID;
+    NSData *_occurrenceRouteId;
     unsigned int _occurrenceStepIndex;
     unsigned int _switchedToResponseIndex;
-    NSData *_switchedToRouteID;
+    NSData *_switchedToRouteId;
     NSString *_synthesizedStepInstructions;
     int _synthesizedStepManeuverType;
     int _type;
 }
 
-@property long long errorCode;
-@property(retain) NSString * errorDomain;
-@property BOOL hasErrorCode;
-@property(readonly) BOOL hasErrorDomain;
-@property(readonly) BOOL hasOccurrenceLatLng;
-@property BOOL hasOccurrenceResponseIndex;
-@property(readonly) BOOL hasOccurrenceRouteID;
-@property BOOL hasOccurrenceStepIndex;
-@property BOOL hasSwitchedToResponseIndex;
-@property(readonly) BOOL hasSwitchedToRouteID;
-@property(readonly) BOOL hasSynthesizedStepInstructions;
-@property BOOL hasSynthesizedStepManeuverType;
-@property BOOL hasType;
-@property(retain) GEOLatLng * occurrenceLatLng;
-@property unsigned int occurrenceResponseIndex;
-@property(retain) NSData * occurrenceRouteID;
-@property unsigned int occurrenceStepIndex;
-@property unsigned int switchedToResponseIndex;
-@property(retain) NSData * switchedToRouteID;
-@property(retain) NSString * synthesizedStepInstructions;
-@property int synthesizedStepManeuverType;
-@property int type;
+@property (nonatomic) long long errorCode;
+@property (nonatomic, retain) NSString *errorDomain;
+@property (nonatomic) BOOL hasErrorCode;
+@property (nonatomic, readonly) BOOL hasErrorDomain;
+@property (nonatomic, readonly) BOOL hasOccurrenceLatLng;
+@property (nonatomic) BOOL hasOccurrenceResponseIndex;
+@property (nonatomic, readonly) BOOL hasOccurrenceRouteId;
+@property (nonatomic) BOOL hasOccurrenceStepIndex;
+@property (nonatomic) BOOL hasSwitchedToResponseIndex;
+@property (nonatomic, readonly) BOOL hasSwitchedToRouteId;
+@property (nonatomic, readonly) BOOL hasSynthesizedStepInstructions;
+@property (nonatomic) BOOL hasSynthesizedStepManeuverType;
+@property (nonatomic) BOOL hasType;
+@property (nonatomic, retain) GEOLatLng *occurrenceLatLng;
+@property (nonatomic) unsigned int occurrenceResponseIndex;
+@property (nonatomic, retain) NSData *occurrenceRouteId;
+@property (nonatomic) unsigned int occurrenceStepIndex;
+@property (nonatomic) unsigned int switchedToResponseIndex;
+@property (nonatomic, retain) NSData *switchedToRouteId;
+@property (nonatomic, retain) NSString *synthesizedStepInstructions;
+@property (nonatomic) int synthesizedStepManeuverType;
+@property (nonatomic) int type;
 
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -60,18 +58,19 @@
 - (BOOL)hasErrorDomain;
 - (BOOL)hasOccurrenceLatLng;
 - (BOOL)hasOccurrenceResponseIndex;
-- (BOOL)hasOccurrenceRouteID;
+- (BOOL)hasOccurrenceRouteId;
 - (BOOL)hasOccurrenceStepIndex;
 - (BOOL)hasSwitchedToResponseIndex;
-- (BOOL)hasSwitchedToRouteID;
+- (BOOL)hasSwitchedToRouteId;
 - (BOOL)hasSynthesizedStepInstructions;
 - (BOOL)hasSynthesizedStepManeuverType;
 - (BOOL)hasType;
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
+- (void)mergeFrom:(id)arg1;
 - (id)occurrenceLatLng;
 - (unsigned int)occurrenceResponseIndex;
-- (id)occurrenceRouteID;
+- (id)occurrenceRouteId;
 - (unsigned int)occurrenceStepIndex;
 - (BOOL)readFrom:(id)arg1;
 - (void)setErrorCode:(long long)arg1;
@@ -84,15 +83,15 @@
 - (void)setHasType:(BOOL)arg1;
 - (void)setOccurrenceLatLng:(id)arg1;
 - (void)setOccurrenceResponseIndex:(unsigned int)arg1;
-- (void)setOccurrenceRouteID:(id)arg1;
+- (void)setOccurrenceRouteId:(id)arg1;
 - (void)setOccurrenceStepIndex:(unsigned int)arg1;
 - (void)setSwitchedToResponseIndex:(unsigned int)arg1;
-- (void)setSwitchedToRouteID:(id)arg1;
+- (void)setSwitchedToRouteId:(id)arg1;
 - (void)setSynthesizedStepInstructions:(id)arg1;
 - (void)setSynthesizedStepManeuverType:(int)arg1;
 - (void)setType:(int)arg1;
 - (unsigned int)switchedToResponseIndex;
-- (id)switchedToRouteID;
+- (id)switchedToRouteId;
 - (id)synthesizedStepInstructions;
 - (int)synthesizedStepManeuverType;
 - (int)type;

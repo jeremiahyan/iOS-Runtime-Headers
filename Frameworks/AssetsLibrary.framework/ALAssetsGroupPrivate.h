@@ -2,10 +2,9 @@
    Image: /System/Library/Frameworks/AssetsLibrary.framework/AssetsLibrary
  */
 
-@class ALAssetsFilter, ALAssetsLibrary, NSMutableDictionary, NSObject<PLAlbumProtocol>, PLPhotoLibrary;
-
 @interface ALAssetsGroupPrivate : NSObject <ALAssetsLibraryAsset> {
     struct NSObject { Class x1; } *_album;
+    BOOL _applyHyperionFilter;
     ALAssetsFilter *_assetsFilter;
     unsigned int _groupType;
     BOOL _isCloudSharedGroup;
@@ -16,23 +15,28 @@
     NSMutableDictionary *_propertyValues;
 }
 
-@property(retain) PLPhotoLibrary * _photoLibrary;
-@property(retain) NSObject<PLAlbumProtocol> * album;
-@property(retain) ALAssetsFilter * assetsFilter;
-@property unsigned int groupType;
-@property BOOL isCloudSharedGroup;
-@property BOOL isValid;
-@property ALAssetsLibrary * library;
-@property(retain) NSMutableDictionary * propertyValues;
+@property (nonatomic, retain) PLPhotoLibrary *_photoLibrary;
+@property (nonatomic, retain) NSObject<PLAlbumProtocol> *album;
+@property (nonatomic) BOOL applyHyperionFilter;
+@property (nonatomic, retain) ALAssetsFilter *assetsFilter;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) unsigned int groupType;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL isCloudSharedGroup;
+@property (nonatomic) BOOL isValid;
+@property (nonatomic) ALAssetsLibrary *library;
+@property (nonatomic, retain) NSMutableDictionary *propertyValues;
+@property (readonly) Class superclass;
 
-- (void)_performBlockAndWait:(id)arg1;
+- (void)_performBlockAndWait:(id /* block */)arg1;
 - (id)_photoLibrary;
 - (struct NSObject { Class x1; }*)album;
 - (int)albumFilter;
+- (BOOL)applyHyperionFilter;
 - (id)assetsFilter;
 - (void)dealloc;
 - (unsigned int)groupType;
-- (BOOL)hasFilter;
 - (id)initWithAlbum:(struct NSObject { Class x1; }*)arg1 library:(id)arg2;
 - (BOOL)isCloudSharedGroup;
 - (BOOL)isValid;
@@ -42,6 +46,7 @@
 - (id)propertyValues;
 - (void)resetAssets;
 - (void)setAlbum:(struct NSObject { Class x1; }*)arg1;
+- (void)setApplyHyperionFilter:(BOOL)arg1;
 - (void)setAssetsFilter:(id)arg1;
 - (void)setGroupType:(unsigned int)arg1;
 - (void)setIsCloudSharedGroup:(BOOL)arg1;
@@ -50,6 +55,7 @@
 - (void)setPropertyValues:(id)arg1;
 - (void)setValue:(id)arg1 forProperty:(id)arg2;
 - (void)set_photoLibrary:(id)arg1;
+- (void)updateAlbumFiltering;
 - (id)valueForProperty:(id)arg1;
 
 @end

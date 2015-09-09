@@ -2,22 +2,20 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class EDCollection, EDColumnInfoCollection, EDMergedCellCollection, EDPane, EDReference, EDRowBlocks, EDWarnings, TSUPointerKeyDictionary;
-
 @interface EDWorksheet : EDSheet {
-    boolmFitToPage;
     EDColumnInfoCollection *mColumnInfos;
     EDCollection *mConditionalFormattings;
     double mDefaultColumnWidth;
     unsigned short mDefaultRowHeight;
+    bool mFitToPage;
     EDCollection *mHyperlinks;
     EDReference *mImplicitCellArea;
     EDReference *mMaxCellReferencedInFormulas;
     unsigned long mMaxColumnOutlineLevel;
     unsigned long mMaxRowOutlineLevel;
     EDMergedCellCollection *mMergedCells;
-    TSUPointerKeyDictionary *mMergedCols;
-    TSUPointerKeyDictionary *mMergedRows;
+    OITSUPointerKeyDictionary *mMergedCols;
+    OITSUPointerKeyDictionary *mMergedRows;
     EDPane *mPane;
     EDCollection *mPivotTables;
     EDRowBlocks *mRowBlocks;

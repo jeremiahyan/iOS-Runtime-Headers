@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@class NSObject<OS_dispatch_queue>, SBCPlaybackPositionServiceProxy;
-
 @interface MPUbiquitousPlaybackPositionController : NSObject {
     BOOL _applicationBecomingActive;
     BOOL _beganUsingPlaybackPositionMetadata;
@@ -12,17 +10,19 @@
     BOOL _isServiceActive;
     NSObject<OS_dispatch_queue> *_queue;
     NSObject<OS_dispatch_queue> *_serviceQueue;
-    SBCPlaybackPositionServiceProxy *_uppServiceProxy;
+    SBCPlaybackPositionDomain *_uppDomain;
+    SBCPlaybackPositionSyncService *_uppServiceProxy;
 }
 
-@property(readonly) BOOL applicationBecomingActive;
-@property(getter=isServiceActive) BOOL beganUsingPlaybackPositionMetadata;
-@property BOOL databaseHasBookmarkableContents;
-@property BOOL externallyActive;
-@property(readonly) NSObject<OS_dispatch_queue> * queue;
-@property(getter=isServiceActive) BOOL serviceActive;
-@property(readonly) NSObject<OS_dispatch_queue> * serviceQueue;
-@property(retain) SBCPlaybackPositionServiceProxy * uppServiceProxy;
+@property (nonatomic, readonly) BOOL applicationBecomingActive;
+@property (getter=isServiceActive, nonatomic) BOOL beganUsingPlaybackPositionMetadata;
+@property (nonatomic) BOOL databaseHasBookmarkableContents;
+@property (nonatomic) BOOL externallyActive;
+@property (nonatomic, readonly, retain) NSObject<OS_dispatch_queue> *queue;
+@property (getter=isServiceActive, nonatomic) BOOL serviceActive;
+@property (nonatomic, readonly, retain) NSObject<OS_dispatch_queue> *serviceQueue;
+@property (nonatomic, retain) SBCPlaybackPositionDomain *uppDomain;
+@property (nonatomic, retain) SBCPlaybackPositionSyncService *uppServiceProxy;
 
 + (id)sharedUbiquitousPlaybackPositionController;
 
@@ -40,6 +40,7 @@
 - (void)_onServiceQueue_setDatabaseHasBookmarkableContents:(BOOL)arg1;
 - (void)_onServiceQueue_updateActiveServiceIfNeeded;
 - (void)_onServiceQueue_updateBoomkarkabilityState;
+- (id)_playbackPositionEntityWithValuesFromMusicLibraryTrackPersistentID:(long long)arg1;
 - (BOOL)applicationBecomingActive;
 - (void)beginUsingPlaybackPositionMetadata;
 - (BOOL)databaseHasBookmarkableContents;
@@ -55,8 +56,9 @@
 - (void)setDatabaseHasBookmarkableContents:(BOOL)arg1;
 - (void)setExternallyActive:(BOOL)arg1;
 - (void)setServiceActive:(BOOL)arg1;
+- (void)setUppDomain:(id)arg1;
 - (void)setUppServiceProxy:(id)arg1;
-- (void)synchronizeImmediatelyWithCompletionBlock:(id)arg1;
+- (id)uppDomain;
 - (id)uppServiceProxy;
 
 @end

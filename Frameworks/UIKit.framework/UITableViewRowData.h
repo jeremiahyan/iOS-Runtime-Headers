@@ -2,9 +2,8 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSIndexPath, UITableView;
-
 @interface UITableViewRowData : NSObject <NSCopying> {
+    BOOL _estimatesRowHeights;
     NSIndexPath *_gapIndexPath;
     float _heightForTableHeaderViewHiding;
     float _minimumRowHeight;
@@ -25,14 +24,15 @@
     float _tableViewWidth;
 }
 
-@property(readonly) float heightForAutohidingTableHeaderView;
-@property(readonly) float heightForTableHeaderViewHiding;
-@property float minimumRowHeight;
-@property(readonly) NSIndexPath * reorderGapIndexPath;
-@property(readonly) float reorderedRowHeight;
-@property float tableBottomPadding;
-@property float tableSidePadding;
-@property float tableTopPadding;
+@property (nonatomic) BOOL estimatesRowHeights;
+@property (nonatomic, readonly) float heightForAutohidingTableHeaderView;
+@property (nonatomic, readonly) float heightForTableHeaderViewHiding;
+@property (nonatomic) float minimumRowHeight;
+@property (nonatomic, readonly) NSIndexPath *reorderGapIndexPath;
+@property (nonatomic, readonly) float reorderedRowHeight;
+@property (nonatomic) float tableBottomPadding;
+@property (nonatomic) float tableSidePadding;
+@property (nonatomic) float tableTopPadding;
 
 - (void)_ensureSectionOffsetIsValidForSection:(int)arg1;
 - (int)_sectionForPoint:(struct CGPoint { float x1; float x2; })arg1 beginningWithSection:(int)arg2 numberOfSections:(int)arg3;
@@ -45,6 +45,7 @@
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (void)ensureAllSectionsAreValid;
+- (BOOL)estimatesRowHeights;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })floatingRectForFooterInSection:(int)arg1 visibleRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })floatingRectForHeaderInSection:(int)arg1 visibleRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2;
 - (int)footerAlignmentForSection:(int)arg1;
@@ -56,8 +57,8 @@
 - (float)heightForAutohidingTableHeaderView;
 - (float)heightForFooterInSection:(int)arg1 canGuess:(BOOL)arg2;
 - (float)heightForHeaderInSection:(int)arg1 canGuess:(BOOL)arg2;
-- (float)heightForRow:(int)arg1 inSection:(int)arg2 canGuess:(BOOL)arg3 adjustForReorderedRow:(BOOL)arg4;
 - (float)heightForRow:(int)arg1 inSection:(int)arg2 canGuess:(BOOL)arg3;
+- (float)heightForRow:(int)arg1 inSection:(int)arg2 canGuess:(BOOL)arg3 adjustForReorderedRow:(BOOL)arg4;
 - (float)heightForSection:(int)arg1;
 - (float)heightForTable;
 - (float)heightForTableFooterView;
@@ -95,6 +96,8 @@
 - (int)sectionLocationForReorderedRow:(int)arg1 inSection:(int)arg2;
 - (int)sectionLocationForRow:(int)arg1 inSection:(int)arg2;
 - (struct _NSRange { unsigned int x1; unsigned int x2; })sectionsInRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (void)setEstimatesRowHeights:(BOOL)arg1;
+- (void)setHeight:(float)arg1 forRowAtIndexPath:(id)arg2;
 - (void)setHeightForTableHeaderViewHiding:(float)arg1;
 - (void)setMinimumRowHeight:(float)arg1;
 - (void)setReorderedIndexPath:(id)arg1;

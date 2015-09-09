@@ -2,12 +2,19 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface TSPDatabaseInputStream : NSObject <TSUStreamReadChannel, SFUInputStream> {
+@interface TSPDatabaseInputStream : NSObject <SFUInputStream, TSUStreamReadChannel> {
     struct sqlite3_blob { } *_blob;
     int _length;
     int _offset;
+    NSObject<OS_dispatch_queue> *_readQueue;
 }
 
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+
+- (void).cxx_destruct;
 - (BOOL)canSeek;
 - (void)close;
 - (id)closeLocalStream;
@@ -17,7 +24,7 @@
 - (id)initWithBlob:(struct sqlite3_blob { }*)arg1;
 - (long long)offset;
 - (unsigned long)readToBuffer:(char *)arg1 size:(unsigned long)arg2;
-- (void)readWithQueue:(id)arg1 handler:(id)arg2;
+- (void)readWithHandler:(id /* block */)arg1;
 - (void)seekToOffset:(long long)arg1;
 
 @end

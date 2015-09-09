@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/PersistentConnection.framework/PersistentConnection
  */
 
-@class NSDate, NSRunLoop, NSString, PCDispatchTimer;
-
 @interface PCSimpleTimer : NSObject <PCLoggingDelegate> {
     BOOL _disableSystemWaking;
     double _fireTime;
@@ -11,7 +9,7 @@
     double _lastUpdateTime;
     unsigned int _powerAssertionID;
     PCDispatchTimer *_preventSleepTimer;
-    struct dispatch_queue_s { } *_queue;
+    NSObject<OS_dispatch_queue> *_queue;
     NSDate *_scheduledWakeDate;
     SEL _selector;
     NSString *_serviceIdentifier;
@@ -26,8 +24,12 @@
     id _userInfo;
 }
 
-@property BOOL disableSystemWaking;
-@property(readonly) NSString * loggingIdentifier;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL disableSystemWaking;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) NSString *loggingIdentifier;
+@property (readonly) Class superclass;
 
 + (double)currentMachTimeInterval;
 + (id)lastSystemWakeDate;
@@ -35,7 +37,7 @@
 - (void)_fireTimerFired;
 - (id)_getTimerMode;
 - (id)_getTimerRunLoop;
-- (void)_performBlockOnQueue:(id)arg1;
+- (void)_performBlockOnQueue:(id /* block */)arg1;
 - (void)_powerNotificationSleepIsImminent;
 - (void)_powerNotificationSleepIsNotImminent;
 - (void)_preventSleepFired;
@@ -54,9 +56,9 @@
 - (void)invalidate;
 - (BOOL)isValid;
 - (id)loggingIdentifier;
-- (void)scheduleInQueue:(struct dispatch_queue_s { }*)arg1;
-- (void)scheduleInRunLoop:(id)arg1 inMode:(id)arg2;
+- (void)scheduleInQueue:(id)arg1;
 - (void)scheduleInRunLoop:(id)arg1;
+- (void)scheduleInRunLoop:(id)arg1 inMode:(id)arg2;
 - (void)setDisableSystemWaking:(BOOL)arg1;
 - (void)updateFireTime:(double)arg1 triggerOnGMTChange:(BOOL)arg2;
 - (id)userInfo;

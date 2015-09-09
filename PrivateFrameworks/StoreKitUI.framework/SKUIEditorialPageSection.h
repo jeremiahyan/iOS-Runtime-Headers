@@ -2,23 +2,30 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class SKUIEditorialComponent, SKUIEditorialLayout;
-
 @interface SKUIEditorialPageSection : SKUIStorePageSection {
+    SKUIColorScheme *_colorScheme;
     SKUIEditorialLayout *_editorialLayout;
+    BOOL _hasValidColorScheme;
     BOOL _isExpanded;
+    SKUIViewElementLayoutContext *_layoutContext;
 }
 
-@property(readonly) SKUIEditorialComponent * pageComponent;
+@property (nonatomic, readonly) SKUIEditorialComponent *pageComponent;
 
 - (void).cxx_destruct;
+- (id)_colorScheme;
 - (id)_editorialLayout;
+- (void)addImpressionsForIndexPath:(id)arg1 toSession:(id)arg2;
+- (int)applyUpdateType:(int)arg1;
 - (id)cellForIndexPath:(id)arg1;
 - (struct CGSize { float x1; float x2; })cellSizeForIndexPath:(id)arg1;
+- (void)collectionViewDidEndDisplayingCellForItemAtIndexPath:(id)arg1;
 - (void)collectionViewDidSelectItemAtIndexPath:(id)arg1;
+- (void)collectionViewWillDisplayCellForItemAtIndexPath:(id)arg1;
 - (id)initWithPageComponent:(id)arg1;
 - (int)numberOfCells;
+- (void)reloadCellWithIndexPath:(id)arg1 reason:(int)arg2;
 - (void)willAppearInContext:(id)arg1;
-- (void)willRotateToInterfaceOrientation:(int)arg1 duration:(double)arg2;
+- (void)willTransitionToSize:(struct CGSize { float x1; float x2; })arg1 withTransitionCoordinator:(id)arg2;
 
 @end

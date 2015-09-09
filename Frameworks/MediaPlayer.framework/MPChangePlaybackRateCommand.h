@@ -2,17 +2,14 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@class NSArray;
-
 @interface MPChangePlaybackRateCommand : MPRemoteCommand {
     NSArray *_supportedPlaybackRates;
 }
 
-@property(copy) NSArray * supportedPlaybackRates;
+@property (nonatomic, copy) NSArray *supportedPlaybackRates;
 
 - (void).cxx_destruct;
 - (id)_mediaRemoteCommandInfoOptions;
-- (id)keyPathsForValuesTriggeringCommandsChanged;
 - (void)setSupportedPlaybackRates:(id)arg1;
 - (id)supportedPlaybackRates;
 

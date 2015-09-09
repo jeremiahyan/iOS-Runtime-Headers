@@ -2,19 +2,22 @@
    Image: /System/Library/PrivateFrameworks/IMCore.framework/IMCore
  */
 
-@class IMMessage;
+@interface IMMessageChatItem : IMTranscriptChatItem <IMMessageChatItem>
 
-@interface IMMessageChatItem : IMChatItem {
-}
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) BOOL failed;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) BOOL isFromMe;
+@property (nonatomic, readonly, retain) IMMessage *message;
+@property (nonatomic, readonly, retain) IMHandle *sender;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly, retain) NSDate *time;
 
-@property(readonly) IMMessage * message;
-
-- (int)_compareToChatItem:(id)arg1;
-- (int)_reverseCompareToChatItem:(id)arg1;
-- (void)_setMessage:(id)arg1;
-- (id)description;
-- (id)initWithMessage:(id)arg1;
-- (BOOL)isEqual:(id)arg1;
+- (BOOL)failed;
+- (BOOL)isFromMe;
 - (id)message;
+- (id)sender;
+- (id)time;
 
 @end

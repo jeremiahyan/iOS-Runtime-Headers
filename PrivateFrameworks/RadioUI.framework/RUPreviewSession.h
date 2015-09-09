@@ -2,21 +2,20 @@
    Image: /System/Library/PrivateFrameworks/RadioUI.framework/RadioUI
  */
 
-@class MPAVController, MPAVItem, NSArray, NSHashTable;
-
 @interface RUPreviewSession : NSObject {
+    MPAVItem *_currentItem;
     double _customTrackPreviewDuration;
     NSArray *_items;
     MPAVController *_player;
     NSHashTable *_sessionObservers;
 }
 
-@property(readonly) MPAVItem * currentItem;
-@property(readonly) double currentItemDuration;
-@property(readonly) double currentTime;
-@property double customTrackPreviewDuration;
-@property(readonly) NSArray * items;
-@property(getter=isPlaying,readonly) BOOL playing;
+@property (nonatomic, readonly) MPAVItem *currentItem;
+@property (nonatomic, readonly) double currentItemDuration;
+@property (nonatomic, readonly) double currentTime;
+@property (nonatomic) double customTrackPreviewDuration;
+@property (nonatomic, readonly, copy) NSArray *items;
+@property (getter=isPlaying, nonatomic, readonly) BOOL playing;
 
 - (void).cxx_destruct;
 - (void)_applicationWillResignActiveNotification:(id)arg1;

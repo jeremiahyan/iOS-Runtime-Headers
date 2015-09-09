@@ -2,9 +2,7 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class _UIViewServiceFencingController;
-
-@interface _UIViewServiceFencingControlProxy : _UIQueueingProxy <XPCProxyTarget> {
+@interface _UIViewServiceFencingControlProxy : _UIQueueingProxy {
     _UIViewServiceFencingController *_fencingController;
 }
 
@@ -14,6 +12,5 @@
 - (void)__endFencingMessagesForSendRight:(id)arg1;
 - (void)dealloc;
 - (id)methodSignatureForSelector:(SEL)arg1;
-- (id)proxy:(id)arg1 detailedSignatureForSelector:(SEL)arg2;
 
 @end

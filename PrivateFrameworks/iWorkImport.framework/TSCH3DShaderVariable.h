@@ -2,29 +2,27 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSArray, NSString, TSCH3DShaderVariable;
-
 @interface TSCH3DShaderVariable : NSObject <NSCopying> {
-    struct TSCH3DShaderType { 
-        unsigned int mValue; 
     unsigned int mArraySize;
     NSArray *mElements;
     TSCH3DShaderVariable *mGenericName;
     BOOL mIsSpecial;
     NSString *mName;
     struct NSString { Class x1; } *mPrecision;
+    struct TSCH3DShaderType { 
+        unsigned int mValue; 
     } mShaderType;
     struct NSString { Class x1; } *mType;
 }
 
-@property(readonly) unsigned int arraySize;
-@property(readonly) TSCH3DShaderVariable * genericName;
-@property(readonly) struct TSCH3DShaderType { unsigned int x1; } initialLinkType;
-@property(readonly) BOOL isSpecial;
-@property(readonly) NSString * name;
-@property(readonly) NSString * precision;
-@property(readonly) struct TSCH3DShaderType { unsigned int x1; } shaderType;
-@property(readonly) NSString * type;
+@property (nonatomic, readonly) unsigned int arraySize;
+@property (nonatomic, readonly) TSCH3DShaderVariable *genericName;
+@property (nonatomic, readonly) struct TSCH3DShaderType { unsigned int x1; } initialLinkType;
+@property (nonatomic, readonly) BOOL isSpecial;
+@property (nonatomic, readonly) NSString *name;
+@property (nonatomic, readonly) NSString *precision;
+@property (nonatomic, readonly) struct TSCH3DShaderType { unsigned int x1; } shaderType;
+@property (nonatomic, readonly) NSString *type;
 
 + (id)variableWithName:(id)arg1 type:(struct NSString { Class x1; }*)arg2 precision:(struct NSString { Class x1; }*)arg3 arraySize:(unsigned int)arg4 shaderType:(struct TSCH3DShaderType { unsigned int x1; })arg5 isSpecial:(BOOL)arg6 generic:(id)arg7;
 

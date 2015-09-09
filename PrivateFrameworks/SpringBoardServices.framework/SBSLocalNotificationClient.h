@@ -2,23 +2,28 @@
    Image: /System/Library/PrivateFrameworks/SpringBoardServices.framework/SpringBoardServices
  */
 
-@interface SBSLocalNotificationClient : NSObject {
-}
+@interface SBSLocalNotificationClient : NSObject
 
-+ (void)_scheduleLocalNotifications:(id)arg1 cancel:(BOOL)arg2 replace:(BOOL)arg3 optionalBundleIdentifier:(id)arg4 waitUntilDone:(BOOL)arg5;
 + (void)_scheduleLocalNotifications:(id)arg1 cancel:(BOOL)arg2 replace:(BOOL)arg3 optionalBundleIdentifier:(id)arg4;
++ (void)_scheduleLocalNotifications:(id)arg1 cancel:(BOOL)arg2 replace:(BOOL)arg3 optionalBundleIdentifier:(id)arg4 waitUntilDone:(BOOL)arg5;
 + (void)cancelAllLocalNotifications;
 + (void)cancelAllLocalNotificationsForBundleIdentifier:(id)arg1;
-+ (void)cancelLocalNotification:(id)arg1 bundleIdentifier:(id)arg2 waitUntilDone:(BOOL)arg3;
-+ (void)cancelLocalNotification:(id)arg1 bundleIdentifier:(id)arg2;
 + (void)cancelLocalNotification:(id)arg1;
++ (void)cancelLocalNotification:(id)arg1 bundleIdentifier:(id)arg2;
++ (void)cancelLocalNotification:(id)arg1 bundleIdentifier:(id)arg2 waitUntilDone:(BOOL)arg3;
++ (unsigned int)currentAllowedNotificationTypesForBundleID:(id)arg1;
++ (id)currentUserNotificationSettings;
++ (id)currentUserNotificationSettingsForBundleID:(id)arg1;
 + (id)getPendingNotification;
-+ (void)scheduleLocalNotification:(id)arg1 bundleIdentifier:(id)arg2 waitUntilDone:(BOOL)arg3;
-+ (void)scheduleLocalNotification:(id)arg1 bundleIdentifier:(id)arg2;
++ (void)migrateUserNotificationSettingsForBundleIdentifierPushSettingsPairs:(id)arg1;
++ (void)registerUserNotificationSettings:(id)arg1;
++ (void)registerUserNotificationSettings:(id)arg1 bundleIdentifier:(id)arg2;
 + (void)scheduleLocalNotification:(id)arg1;
++ (void)scheduleLocalNotification:(id)arg1 bundleIdentifier:(id)arg2;
++ (void)scheduleLocalNotification:(id)arg1 bundleIdentifier:(id)arg2 waitUntilDone:(BOOL)arg3;
 + (id)scheduledLocalNotifications;
 + (id)scheduledLocalNotificationsForBundleIdentifier:(id)arg1;
-+ (void)setScheduledLocalNotifications:(id)arg1 bundleIdentifier:(id)arg2;
 + (void)setScheduledLocalNotifications:(id)arg1;
++ (void)setScheduledLocalNotifications:(id)arg1 bundleIdentifier:(id)arg2;
 
 @end

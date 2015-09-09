@@ -2,14 +2,8 @@
    Image: /System/Library/PrivateFrameworks/Librarian.framework/Librarian
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class LBFSEventsWatcher, NSArray, NSMetadataQuery, NSMutableArray, NSMutableDictionary, NSMutableIndexSet, NSObject<OS_dispatch_queue>, NSOperationQueue, NSPredicate;
-
 @interface LBQuery : NSObject {
+    unsigned int _accumulatedItemCount;
     struct { 
         unsigned int first_max_num; 
         unsigned int first_max_ms; 
@@ -17,27 +11,24 @@
         unsigned int progress_max_ms; 
         unsigned int update_max_num; 
         unsigned int update_max_ms; 
-    struct _opaque_pthread_mutex_t { 
-        long __sig; 
-        BOOL __opaque[40]; 
-    int (*_create_result_callbacks_equal)();
-    int (*_create_result_callbacks_release)();
-    int (*_create_result_fn)();
-    int (*_create_value_callbacks_equal)();
-    int (*_create_value_callbacks_release)();
-    int (*_create_value_fn)();
-    int (*_sort_fn)();
-    unsigned int _accumulatedItemCount;
     } _batchingParameters;
     NSMutableArray *_changes;
+    int (*_create_result_callbacks_equal;
+    int (*_create_result_callbacks_release;
     void *_create_result_context;
+    int (*_create_result_fn;
+    int (*_create_value_callbacks_equal;
+    int (*_create_value_callbacks_release;
     void *_create_value_context;
+    int (*_create_value_fn;
     NSMutableDictionary *_created;
     int _disableCount;
     NSMutableIndexSet *_insertionSet;
     NSObject<OS_dispatch_queue> *_notificationQueue;
     unsigned long _notifyInterval;
     struct __LBItemUpdateObserver { } *_observer;
+    bool _pendingChanges;
+    bool _pendingNote;
     NSPredicate *_predicate;
     int _previousQueryState;
     NSMetadataQuery *_query;
@@ -51,17 +42,19 @@
     unsigned long _scopeOptions;
     NSArray *_searchScopes;
     void *_sort_context;
+    int (*_sort_fn;
     NSArray *_sortingAttributes;
+    struct _opaque_pthread_mutex_t { 
+        long __sig; 
+        BOOL __opaque[40]; 
     } _stateLock;
     BOOL _synchronous;
     NSMutableDictionary *_toBeInserted;
     NSMutableDictionary *_toBeRemoved;
     NSMutableDictionary *_toBeReplaced;
+    bool _ubiquitousGatherComplete;
     NSArray *_values;
     LBFSEventsWatcher *_watcher;
-    bool_pendingChanges;
-    bool_pendingNote;
-    bool_ubiquitousGatherComplete;
 }
 
 - (void)__updateQueryResultForURL:(id)arg1 info:(id)arg2 updateType:(int)arg3;
@@ -93,7 +86,7 @@
 - (unsigned char)executeWithOptions:(unsigned long)arg1;
 - (int)indexOfResult:(const void*)arg1;
 - (id)initWithQuery:(id)arg1 values:(id)arg2 sortingAttributes:(id)arg3 items:(id)arg4;
-- (void)performBlock:(id)arg1;
+- (void)performBlock:(id /* block */)arg1;
 - (void)postNote:(struct __CFString { }*)arg1;
 - (id)predicate;
 - (void)processUpdates;
@@ -102,11 +95,11 @@
 - (unsigned int)resultCount;
 - (void)sendNote;
 - (void)setBatchingParameters:(struct { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; unsigned int x5; unsigned int x6; })arg1;
-- (void)setCreateResultFunction:(int (*)())arg1 withContext:(void*)arg2 callbacks:(const struct { int x1; int (*x2)(); int (*x3)(); int (*x4)(); int (*x5)(); }*)arg3;
-- (void)setCreateValueFunction:(int (*)())arg1 withContext:(void*)arg2 callbacks:(const struct { int x1; int (*x2)(); int (*x3)(); int (*x4)(); int (*x5)(); }*)arg3;
+- (void)setCreateResultFunction:(int (*)arg1 withContext:(void*)arg2 callbacks:(const struct { int x1; int (*x2)(); int (*x3)(); int (*x4)(); int (*x5)(); }*)arg3;
+- (void)setCreateValueFunction:(int (*)arg1 withContext:(void*)arg2 callbacks:(const struct { int x1; int (*x2)(); int (*x3)(); int (*x4)(); int (*x5)(); }*)arg3;
 - (void)setQueryQueue:(id)arg1;
 - (void)setSearchScope:(id)arg1 withOptions:(unsigned long)arg2;
-- (void)setSortComparator:(int (*)())arg1 withContext:(void*)arg2;
+- (void)setSortComparator:(int (*)arg1 withContext:(void*)arg2;
 - (void)startObserver;
 - (void)stop;
 - (void)updateQueryResultForURL:(id)arg1 info:(id)arg2 updateType:(int)arg3;

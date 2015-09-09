@@ -2,13 +2,7 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class CALayer, NSMutableDictionary, UIKBCacheToken;
-
 @interface UIKeyboardFlipTransitionView : UIKeyboardSplitTransitionView {
-    struct { 
-        unsigned int shiftKeys : 1; 
-        unsigned int returnKeys : 1; 
-        unsigned int moreIntlKeys : 1; 
     CALayer *_backDarkening;
     CALayer *_backDarkeningLeft;
     CALayer *_backDarkeningRight;
@@ -18,12 +12,16 @@
     UIKBCacheToken *_endKeyplaneToken;
     CALayer *_frontDarkening;
     CALayer *_frontFace;
+    struct { 
+        unsigned int shiftKeys : 1; 
+        unsigned int returnKeys : 1; 
+        unsigned int moreIntlKeys : 1; 
     } _rebuildFlags;
     BOOL _showingFrontFace;
     UIKBCacheToken *_startKeyplaneToken;
 }
 
-@property(getter=isShowingFrontFace) BOOL showingFrontFace;
+@property (getter=isShowingFrontFace, nonatomic) BOOL showingFrontFace;
 
 - (void)_delayedUpdateTransition;
 - (void)_flipToFront:(BOOL)arg1 animated:(BOOL)arg2;
@@ -32,7 +30,7 @@
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (BOOL)isShowingFrontFace;
 - (void)rebuildBackgroundTransition;
-- (void)rebuildControlKeys:(int)arg1;
+- (void)rebuildControlKeys:(unsigned long long)arg1;
 - (void)rebuildControlSlicesForKeyName:(id)arg1;
 - (void)rebuildFromKeyplane:(id)arg1 toKeyplane:(id)arg2 keyboardType:(int)arg3 orientation:(int)arg4;
 - (void)rebuildMoreIntlKeys;

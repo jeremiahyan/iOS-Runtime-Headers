@@ -2,21 +2,11 @@
    Image: /System/Library/PrivateFrameworks/UIFoundation.framework/UIFoundation
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class NSArray, NSCalendar, NSData, NSFileWrapper, NSMapTable, NSMutableArray, NSMutableAttributedString, NSMutableData, NSMutableDictionary, NSMutableParagraphStyle, NSTextTable, UIColor, UIFont;
-
 @interface NSRTFReader : NSObject {
-    union { 
-        unsigned char thin[128]; 
-        unsigned short fat[128]; 
     struct _NSAttributeInfo { 
         unsigned int toUniCharEncoding; 
         unsigned int codePageEncoding; 
-        UIFont *font; 
+        NSFont *font; 
         float fontSize; 
         float kern; 
         NSMutableParagraphStyle *paraStyle; 
@@ -33,12 +23,48 @@
         unsigned int paraStyleNeedsCopying : 1; 
         unsigned int hasWritingDirectionAttribute : 1; 
         unsigned int  : 15; 
+    } _attributeInfo;
+    NSMutableData *_attributeInfoStack;
+    NSMutableArray *_attributesStack;
+    float _bMargin;
+    NSMapTable *_cachedRTFFontTable;
+    int _cocoaSubVersion;
+    int _cocoaVersion;
+    NSMutableAttributedString *_curAttributedString;
+    NSMutableDictionary *_curAttributes;
+    unsigned int _currentBorderEdge;
+    BOOL _currentBorderIsTable;
+    int _currentColumn;
+    int _currentDefinitionColumn;
+    int _currentListLevel;
+    int _currentListNumber;
+    int _currentRow;
+    NSMutableArray *_currentRowArray;
+    BOOL _currentRowIsLast;
+    NSTextTable *_currentTable;
+    float _defaultTabInterval;
+    unsigned long _defaultToUniCharEncoding;
+    NSFileWrapper *_document;
+    NSColor *_documentBackgroundColor;
+    NSMutableDictionary *_documentInfoDictionary;
+    BOOL _explicitCharSetEncountered;
+    NSMutableDictionary *_fontAttributesTable;
+    NSMutableDictionary *_fontTable;
+    NSCalendar *_gregorianCalendar;
+    float _hyphenationFactor;
+    BOOL _isRTLDocument;
+    float _lMargin;
+    NSMutableArray *_layoutOrientationSections;
+    unsigned int _level;
+    BOOL _limitReached;
+    NSMutableDictionary *_listDefinitions;
+    NSMutableArray *_nestedTables;
     struct CGSize { 
         float width; 
         float height; 
-    struct CGSize { 
-        float width; 
-        float height; 
+    } _paperSize;
+    NSMutableArray *_previousRowArray;
+    NSTextTable *_previousTable;
     struct _NSRTFPriv { 
         void *reader; 
         char *rtfInput; 
@@ -71,45 +97,6 @@
         int lineNum; 
         int linePos; 
         int groupState; 
-    } _attributeInfo;
-    NSMutableData *_attributeInfoStack;
-    NSMutableArray *_attributesStack;
-    float _bMargin;
-    NSMapTable *_cachedRTFFontTable;
-    int _cocoaSubVersion;
-    int _cocoaVersion;
-    NSMutableAttributedString *_curAttributedString;
-    NSMutableDictionary *_curAttributes;
-    unsigned int _currentBorderEdge;
-    BOOL _currentBorderIsTable;
-    int _currentColumn;
-    int _currentDefinitionColumn;
-    int _currentListLevel;
-    int _currentListNumber;
-    int _currentRow;
-    NSMutableArray *_currentRowArray;
-    BOOL _currentRowIsLast;
-    NSTextTable *_currentTable;
-    float _defaultTabInterval;
-    unsigned long _defaultToUniCharEncoding;
-    NSFileWrapper *_document;
-    UIColor *_documentBackgroundColor;
-    NSMutableDictionary *_documentInfoDictionary;
-    BOOL _explicitCharSetEncountered;
-    NSMutableDictionary *_fontAttributesTable;
-    NSMutableDictionary *_fontTable;
-    NSCalendar *_gregorianCalendar;
-    float _hyphenationFactor;
-    BOOL _isRTLDocument;
-    float _lMargin;
-    NSMutableArray *_layoutOrientationSections;
-    unsigned int _level;
-    BOOL _limitReached;
-    NSMutableDictionary *_listDefinitions;
-    NSMutableArray *_nestedTables;
-    } _paperSize;
-    NSMutableArray *_previousRowArray;
-    NSTextTable *_previousTable;
     } _private;
     float _rMargin;
     int _readLimit;
@@ -119,6 +106,9 @@
     BOOL _setTableCells;
     float _tMargin;
     NSArray *_textBlocks;
+    union { 
+        unsigned char thin[128]; 
+        unsigned short fat[128]; 
     } _textBuffer;
     BOOL _textBufferContentsIsFat;
     unsigned int _textBufferIndex;
@@ -129,6 +119,9 @@
     unsigned int _verticalOrientationLocation;
     int _viewKind;
     int _viewScale;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _viewSize;
 }
 

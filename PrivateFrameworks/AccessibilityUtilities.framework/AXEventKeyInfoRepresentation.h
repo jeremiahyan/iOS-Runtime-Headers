@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/AccessibilityUtilities.framework/AccessibilityUtilities
  */
 
-@class NSString;
-
-@interface AXEventKeyInfoRepresentation : NSObject <NSSecureCoding, NSCopying> {
+@interface AXEventKeyInfoRepresentation : NSObject <NSCopying, NSSecureCoding> {
     unsigned short _keyCode;
     BOOL _keyDown;
     NSString *_modifiedInput;
@@ -13,12 +11,12 @@
     NSString *_unmodifiedInput;
 }
 
-@property unsigned short keyCode;
-@property BOOL keyDown;
-@property(retain) NSString * modifiedInput;
-@property unsigned int modifierState;
-@property(retain) NSString * shiftModifiedInput;
-@property(retain) NSString * unmodifiedInput;
+@property (nonatomic) unsigned short keyCode;
+@property (nonatomic) BOOL keyDown;
+@property (nonatomic, retain) NSString *modifiedInput;
+@property (nonatomic) unsigned int modifierState;
+@property (nonatomic, retain) NSString *shiftModifiedInput;
+@property (nonatomic, retain) NSString *unmodifiedInput;
 
 + (BOOL)supportsSecureCoding;
 
@@ -39,6 +37,7 @@
 - (void)setUnmodifiedInput:(id)arg1;
 - (id)shiftModifiedInput;
 - (void)translateKeycode;
+- (void)translateStringToKeycode;
 - (id)unmodifiedInput;
 
 @end

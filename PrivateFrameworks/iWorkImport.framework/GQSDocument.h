@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class <GQUOutputBundle>, <GQWrapPointGenerator>, GQDRoot, GQDSStylesheet, GQPProcessor, GQSTable, SFUZipArchive;
-
 @interface GQSDocument : NSObject <GQWrapPointGenerator> {
     BOOL _doCalculateThumbnailSize;
     SFUZipArchive *mArchive;
@@ -13,6 +11,7 @@
     Class mCurrentTableGenerator;
     <GQWrapPointGenerator> *mCurrentWrapPointGenerator;
     BOOL mDoExternalTextWrap;
+    struct __CFURL { } *mDocumentUrl;
     struct __CFString { } *mFilename;
     BOOL mGeneratingThumbnail;
     BOOL mGeneratorBeginWasCalled;
@@ -31,7 +30,11 @@
     struct set<GQUtility::ObjcSharedPtr<GQDWrapPoint>, GQUtility::NSObjectComparator<GQDWrapPoint>, std::__1::allocator<GQUtility::ObjcSharedPtr<GQDWrapPoint> > > { struct __tree<GQUtility::ObjcSharedPtr<GQDWrapPoint>, GQUtility::NSObjectComparator<GQDWrapPoint>, std::__1::allocator<GQUtility::ObjcSharedPtr<GQDWrapPoint> > > { struct __tree_node<GQUtility::ObjcSharedPtr<GQDWrapPoint>, void *> {} *x_1_1_1; struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *> *>, std::__1::allocator<std::__1::__tree_node<GQUtility::ObjcSharedPtr<GQDWrapPoint>, void *> > > { struct __tree_end_node<std::__1::__tree_node_base<void *> *> { struct __tree_node_base<void *> {} *x_1_3_1; } x_2_2_1; } x_1_1_2; struct __compressed_pair<unsigned long, GQUtility::NSObjectComparator<GQDWrapPoint> > { unsigned long x_3_2_1; struct NSObjectComparator<GQDWrapPoint> { SEL x_2_3_1; } x_3_2_2; } x_1_1_3; } x1; } *mWrapPoints;
 }
 
-@property BOOL doCalculateThumbnailSize;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL doCalculateThumbnailSize;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)addWrapPoint:(id)arg1;
 - (void)clearWrapPoints;
@@ -47,9 +50,9 @@
 - (struct __CFString { }*)filename;
 - (BOOL)generatorBeginWasCalled;
 - (id)generatorState;
-- (id)initWithRoot:(id)arg1 processor:(id)arg2 archive:(id)arg3 outputBundle:(id)arg4 filename:(struct __CFString { }*)arg5;
+- (id)initWithRoot:(id)arg1 processor:(id)arg2 archive:(id)arg3 outputBundle:(id)arg4 fileURL:(struct __CFURL { }*)arg5;
 - (id)initWithRoot:(id)arg1 processor:(id)arg2 bundleUrl:(struct __CFURL { }*)arg3 archive:(id)arg4 outputBundle:(id)arg5;
-- (id)initWithRoot:(id)arg1 processor:(id)arg2 outputBundle:(id)arg3 filename:(struct __CFString { }*)arg4;
+- (id)initWithRoot:(id)arg1 processor:(id)arg2 outputBundle:(id)arg3 fileURL:(struct __CFURL { }*)arg4;
 - (BOOL)isGeneratingThumbnail;
 - (BOOL)isReadingStorageAttachments;
 - (BOOL)isThumbnailGenerationDone;

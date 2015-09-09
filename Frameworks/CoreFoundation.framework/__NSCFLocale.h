@@ -2,13 +2,14 @@
    Image: /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
  */
 
-@interface __NSCFLocale : NSLocale {
-}
+@interface __NSCFLocale : NSLocale
 
 + (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
 
 - (BOOL)_isDeallocating;
+- (unsigned char)_nullLocale;
 - (id)_prefs;
+- (void)_setNullLocale;
 - (BOOL)_tryRetain;
 - (id)displayNameForKey:(id)arg1 value:(id)arg2;
 - (void)finalize;

@@ -2,8 +2,7 @@
    Image: /System/Library/PrivateFrameworks/Message.framework/Message
  */
 
-@interface MFMailMimePart : MFMimePart {
-}
+@interface MFMailMimePart : MFMimePart
 
 + (Class)attachmentClass;
 + (BOOL)isRecognizedClassForContent:(id)arg1;
@@ -24,8 +23,8 @@
 - (id)fileWrapperForDecodedObject:(id)arg1 withFileData:(id*)arg2;
 - (id)fileWrapperForcingDownload:(BOOL)arg1;
 - (id)htmlContent;
-- (id)htmlContentToOffset:(unsigned int)arg1 resultOffset:(unsigned int*)arg2 downloadIfNecessary:(BOOL)arg3;
 - (id)htmlContentToOffset:(unsigned int)arg1 resultOffset:(unsigned int*)arg2;
+- (id)htmlContentToOffset:(unsigned int)arg1 resultOffset:(unsigned int*)arg2 downloadIfNecessary:(BOOL)arg3;
 - (id)storeData:(id)arg1 inMessage:(id)arg2 isComplete:(BOOL)arg3;
 
 @end

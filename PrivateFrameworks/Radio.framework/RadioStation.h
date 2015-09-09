@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/Radio.framework/Radio
  */
 
-@class NSArray, NSData, NSDictionary, NSManagedObject, NSString, NSURL, RadioArtworkCollection, RadioModel;
-
-@interface RadioStation : NSObject <RadioManagedObjectWrapperProtocol> {
+@interface RadioStation : NSObject <MusicEntityValueProviding, RadioManagedObjectWrapperProtocol> {
     NSData *_adData;
     long long _adamID;
     NSURL *_artworkURL;
@@ -16,6 +14,7 @@
     NSArray *_editableFields;
     BOOL _featured;
     BOOL _gatewayVideoAdEnabled;
+    BOOL _hasSkipRules;
     unsigned int _impressionThreshold;
     BOOL _isExplicit;
     BOOL _likesEnabled;
@@ -40,6 +39,7 @@
     NSString *_stationDescription;
     NSString *_stationHash;
     long long _stationID;
+    NSString *_stationStringID;
     NSURL *_streamCertificateURL;
     NSURL *_streamKeyURL;
     NSURL *_streamURL;
@@ -49,52 +49,60 @@
     BOOL _virtualPlayEnabled;
 }
 
-@property(retain) NSData * adData;
-@property long long adamID;
-@property(readonly) RadioArtworkCollection * artworkCollection;
-@property(copy) NSURL * artworkURL;
-@property(copy) NSData * artworkURLData;
-@property(copy) NSString * coreSeedName;
-@property(getter=isDatabaseBacked,readonly) BOOL databaseBacked;
-@property(copy) NSDictionary * debugDictionary;
-@property(readonly) NSDictionary * dictionaryRepresentation;
-@property BOOL editEnabled;
-@property(retain) NSArray * editableFields;
-@property(getter=isFeatured) BOOL featured;
-@property(readonly) NSDictionary * feedbackDictionaryRepresentation;
-@property(getter=isGatewayVideoAdEnabled) BOOL gatewayVideoAdEnabled;
-@property unsigned int impressionThreshold;
-@property BOOL isExplicit;
-@property BOOL likesEnabled;
-@property(readonly) NSManagedObject * managedObject;
-@property(readonly) RadioModel * model;
-@property(copy) NSString * name;
-@property long long persistentID;
-@property(getter=isPremiumPlacement) BOOL premiumPlacement;
-@property(getter=isPreview,readonly) BOOL preview;
-@property(getter=isPreviewOnly) BOOL previewOnly;
-@property(retain) id seedTracks;
-@property(copy) NSString * shareToken;
-@property(getter=isShared) BOOL shared;
-@property(getter=isSharingEnabled) BOOL sharingEnabled;
-@property BOOL skipEnabled;
-@property int skipFrequency;
-@property(copy) NSString * skipIdentifier;
-@property double skipInterval;
-@property(copy) NSArray * skipTimestamps;
-@property int songMixType;
-@property int sortOrder;
-@property(getter=isSponsored) BOOL sponsored;
-@property(copy) NSString * stationDescription;
-@property(copy) NSString * stationHash;
-@property long long stationID;
-@property(retain) NSURL * streamCertificateURL;
-@property(retain) NSURL * streamKeyURL;
-@property(retain) NSURL * streamURL;
-@property(getter=isSubscribed) BOOL subscribed;
-@property int subscriberCount;
-@property(copy) NSArray * trackPlaybackDescriptorQueue;
-@property BOOL virtualPlayEnabled;
+@property (nonatomic, retain) NSData *adData;
+@property (nonatomic) long long adamID;
+@property (nonatomic, readonly) RadioArtworkCollection *artworkCollection;
+@property (nonatomic, copy) NSURL *artworkURL;
+@property (nonatomic, copy) NSData *artworkURLData;
+@property (nonatomic, copy) NSString *coreSeedName;
+@property (getter=isDatabaseBacked, nonatomic, readonly) BOOL databaseBacked;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic, copy) NSDictionary *debugDictionary;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) NSDictionary *dictionaryRepresentation;
+@property (nonatomic) BOOL editEnabled;
+@property (nonatomic, retain) NSArray *editableFields;
+@property (getter=isFeatured, nonatomic) BOOL featured;
+@property (nonatomic, readonly, copy) NSDictionary *feedbackDictionaryRepresentation;
+@property (getter=isGatewayVideoAdEnabled, nonatomic) BOOL gatewayVideoAdEnabled;
+@property (nonatomic) BOOL hasSkipRules;
+@property (readonly) unsigned int hash;
+@property (nonatomic) unsigned int impressionThreshold;
+@property (nonatomic) BOOL isExplicit;
+@property (nonatomic) BOOL likesEnabled;
+@property (nonatomic, readonly) NSManagedObject *managedObject;
+@property (nonatomic, readonly) RadioModel *model;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic) long long persistentID;
+@property (getter=isPremiumPlacement, nonatomic) BOOL premiumPlacement;
+@property (getter=isPreview, nonatomic, readonly) BOOL preview;
+@property (getter=isPreviewOnly, nonatomic) BOOL previewOnly;
+@property (nonatomic, retain) id seedTracks;
+@property (nonatomic, copy) NSString *shareToken;
+@property (getter=isShared, nonatomic) BOOL shared;
+@property (getter=isSharingEnabled, nonatomic) BOOL sharingEnabled;
+@property (nonatomic) BOOL skipEnabled;
+@property (nonatomic) int skipFrequency;
+@property (nonatomic, copy) NSString *skipIdentifier;
+@property (nonatomic) double skipInterval;
+@property (nonatomic, copy) NSArray *skipTimestamps;
+@property (nonatomic) int songMixType;
+@property (nonatomic) int sortOrder;
+@property (getter=isSponsored, nonatomic) BOOL sponsored;
+@property (nonatomic, copy) NSString *stationDescription;
+@property (nonatomic, copy) NSString *stationHash;
+@property (nonatomic) long long stationID;
+@property (nonatomic, copy) NSString *stationStringID;
+@property (nonatomic, retain) NSURL *streamCertificateURL;
+@property (nonatomic, retain) NSURL *streamKeyURL;
+@property (nonatomic, retain) NSURL *streamURL;
+@property (getter=isSubscribed, nonatomic) BOOL subscribed;
+@property (nonatomic) int subscriberCount;
+@property (readonly) Class superclass;
+@property (nonatomic, copy) NSArray *trackPlaybackDescriptorQueue;
+@property (nonatomic) BOOL virtualPlayEnabled;
+
+// Image: /System/Library/PrivateFrameworks/Radio.framework/Radio
 
 - (void).cxx_destruct;
 - (void)_radioModelWasDeletedNotification:(id)arg1;
@@ -111,6 +119,7 @@
 - (BOOL)editEnabled;
 - (id)editableFields;
 - (id)feedbackDictionaryRepresentation;
+- (BOOL)hasSkipRules;
 - (unsigned int)hash;
 - (unsigned int)impressionThreshold;
 - (id)initWithModel:(id)arg1 managedObject:(id)arg2;
@@ -142,6 +151,7 @@
 - (void)setEditableFields:(id)arg1;
 - (void)setFeatured:(BOOL)arg1;
 - (void)setGatewayVideoAdEnabled:(BOOL)arg1;
+- (void)setHasSkipRules:(BOOL)arg1;
 - (void)setImpressionThreshold:(unsigned int)arg1;
 - (void)setIsExplicit:(BOOL)arg1;
 - (void)setLikesEnabled:(BOOL)arg1;
@@ -164,6 +174,7 @@
 - (void)setStationDescription:(id)arg1;
 - (void)setStationHash:(id)arg1;
 - (void)setStationID:(long long)arg1;
+- (void)setStationStringID:(id)arg1;
 - (void)setStreamCertificateURL:(id)arg1;
 - (void)setStreamKeyURL:(id)arg1;
 - (void)setStreamURL:(id)arg1;
@@ -182,11 +193,19 @@
 - (id)stationDescription;
 - (id)stationHash;
 - (long long)stationID;
+- (id)stationStringID;
 - (id)streamCertificateURL;
 - (id)streamKeyURL;
 - (id)streamURL;
 - (int)subscriberCount;
 - (id)trackPlaybackDescriptorQueue;
 - (BOOL)virtualPlayEnabled;
+
+// Image: /System/Library/PrivateFrameworks/FuseUI.framework/FuseUI
+
+- (id)entityUniqueIdentifier;
+- (id)imageURLForEntityArtworkProperty:(id)arg1 fittingSize:(struct CGSize { float x1; float x2; })arg2 destinationScale:(float)arg3;
+- (id)valueForEntityProperty:(id)arg1;
+- (id)valuesForEntityProperties:(id)arg1;
 
 @end

@@ -2,15 +2,17 @@
    Image: /System/Library/PrivateFrameworks/iTunesStore.framework/iTunesStore
  */
 
-@class ISURLBag, SSURLBagContext;
-
 @interface ISLoadURLBagOperation : ISOperation <ISStoreURLOperationDelegate> {
     SSURLBagContext *_context;
     ISURLBag *_outputBag;
 }
 
-@property(readonly) ISURLBag * URLBag;
-@property(readonly) SSURLBagContext * context;
+@property (readonly) ISURLBag *URLBag;
+@property (readonly) SSURLBagContext *context;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (id)URLBag;
 - (void)_addHeadersToRequestProperties:(id)arg1;
@@ -22,6 +24,7 @@
 - (void)dealloc;
 - (id)init;
 - (id)initWithBagContext:(id)arg1;
+- (BOOL)operation:(id)arg1 shouldSetStoreFrontID:(id)arg2;
 - (void)operation:(id)arg1 willSendRequest:(id)arg2;
 - (void)run;
 - (id)uniqueKey;

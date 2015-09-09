@@ -2,12 +2,11 @@
    Image: /System/Library/PrivateFrameworks/Search.framework/Search
  */
 
-@class NSArray, NSString;
-
 @interface SPSearchQuery : NSObject <NSCopying> {
     double _cancellationTime;
     BOOL _cancelled;
     double _creationTime;
+    BOOL _extendedTime;
     BOOL _finished;
     int _nextDomainIndex;
     unsigned int _queryID;
@@ -15,11 +14,12 @@
     NSString *_searchString;
 }
 
-@property(readonly) double cancellationTime;
-@property(readonly) BOOL cancelled;
-@property(readonly) double creationTime;
-@property(readonly) NSArray * searchDomains;
-@property(readonly) NSString * searchString;
+@property (nonatomic, readonly) double cancellationTime;
+@property (nonatomic, readonly) BOOL cancelled;
+@property (nonatomic, readonly) double creationTime;
+@property (nonatomic) BOOL extendedTime;
+@property (nonatomic, readonly) NSArray *searchDomains;
+@property (nonatomic, readonly) NSString *searchString;
 
 - (void)cancel;
 - (double)cancellationTime;
@@ -27,11 +27,13 @@
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (double)creationTime;
 - (void)dealloc;
+- (BOOL)extendedTime;
 - (unsigned int)hash;
-- (id)initWithSearchString:(id)arg1 forSearchDomains:(id)arg2;
 - (id)initWithSearchString:(id)arg1;
+- (id)initWithSearchString:(id)arg1 forSearchDomains:(id)arg2;
 - (BOOL)isEqual:(id)arg1;
 - (id)searchDomains;
 - (id)searchString;
+- (void)setExtendedTime:(BOOL)arg1;
 
 @end

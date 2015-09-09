@@ -2,10 +2,8 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class TSUColor;
-
 @interface MFPSolidBrush : MFPBrush {
-    TSUColor *mColor;
+    OITSUColor *mColor;
 }
 
 - (id)color;

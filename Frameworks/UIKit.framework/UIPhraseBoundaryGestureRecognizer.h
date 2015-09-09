@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIDelayedAction, UIResponder<UITextInput>;
-
 @interface UIPhraseBoundaryGestureRecognizer : UILongPressGestureRecognizer {
     double _secondDelay;
     BOOL _secondDelayElapsed;
@@ -12,16 +10,16 @@
     id _userData;
 }
 
-@property double secondDelay;
-@property(readonly) BOOL secondDelayElapsed;
-@property UIResponder<UITextInput> * textInput;
-@property id userData;
+@property (nonatomic) double secondDelay;
+@property (nonatomic, readonly) BOOL secondDelayElapsed;
+@property (nonatomic) UIResponder<UITextInput> *textInput;
+@property (nonatomic) id userData;
 
 - (void)_resetGestureRecognizer;
 - (void)clearTimer;
 - (double)secondDelay;
-- (void)secondDelayElapsed:(id)arg1;
 - (BOOL)secondDelayElapsed;
+- (void)secondDelayElapsed:(id)arg1;
 - (void)setSecondDelay:(double)arg1;
 - (void)setState:(int)arg1;
 - (void)setTextInput:(id)arg1;

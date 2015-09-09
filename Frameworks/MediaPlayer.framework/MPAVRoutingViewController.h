@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@class <MPAVRoutingViewControllerDelegate>, MPAVRoutingController, NSArray, UITableView;
-
 @interface MPAVRoutingViewController : UIViewController <MPAVRoutingControllerDelegate, MPAVRoutingTableViewCellDelegate, UITableViewDataSource, UITableViewDelegate> {
     int _airPlayPasswordAlertDidAppearToken;
     BOOL _airPlayPasswordAlertDidAppearTokenIsValid;
@@ -11,30 +9,51 @@
     BOOL _allowMirroring;
     unsigned int _avItemType;
     NSArray *_cachedRoutes;
+    BOOL _cachedShowAirPlayDebugButton;
     <MPAVRoutingViewControllerDelegate> *_delegate;
+    BOOL _hasCachedAirPlayDebugButtonStatus;
+    BOOL _needsDisplayedRoutesUpdate;
     MPAVRoutingController *_routingController;
-    BOOL _shouldShowDebugButton;
     unsigned int _style;
+    UIColor *_tableCellsBackgroundColor;
+    UIColor *_tableCellsContentColor;
     UITableView *_tableView;
+    MPWeakTimer *_updateTimer;
 }
 
-@property BOOL allowMirroring;
-@property(setter=setAVItemType:) unsigned int avItemType;
-@property <MPAVRoutingViewControllerDelegate> * delegate;
-@property(readonly) unsigned int style;
+@property (nonatomic) BOOL allowMirroring;
+@property (setter=setAVItemType:, nonatomic) unsigned int avItemType;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <MPAVRoutingViewControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) unsigned int style;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
-- (id)_availableRoutes;
 - (unsigned int)_debugButtonTableViewIndex;
 - (id)_displayedRoutes;
+- (float)_expandedCellHeight;
+- (float)_normalCellHeight;
 - (void)_pickRoute:(id)arg1;
 - (unsigned int)_routeIndexForTableViewIndex:(unsigned int)arg1;
 - (id)_routesWhereMirroringIsPreferred;
+- (void)_serviceWillPresentAuthenticationPromptNotification:(id)arg1;
+- (void)_setNeedsDisplayedRoutesUpdate;
+- (void)_setTableCellsBackgroundColor:(id)arg1;
+- (void)_setTableCellsContentColor:(id)arg1;
+- (void)_setupUpdateTimerIfNecessary;
+- (BOOL)_shouldShowAirPlayDebugButton;
 - (BOOL)_shouldShowMirroringCellForRoute:(id)arg1;
 - (void)_showAirPlayDebug;
+- (id)_tableCellsBackgroundColor;
+- (id)_tableCellsContentColor;
 - (id)_tableView;
+- (float)_tableViewFooterViewHeight;
+- (float)_tableViewHeaderViewHeight;
 - (float)_tableViewHeightAccordingToDataSource;
 - (unsigned int)_tableViewIndexForRouteIndex:(unsigned int)arg1;
+- (unsigned int)_tableViewNumberOfRows;
 - (void)_updateDisplayedRoutes;
 - (BOOL)allowMirroring;
 - (unsigned int)avItemType;

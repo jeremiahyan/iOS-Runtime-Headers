@@ -2,13 +2,13 @@
    Image: /System/Library/PrivateFrameworks/IMCore.framework/IMCore
  */
 
-@class NSMutableSet;
-
 @interface IMIDStatusController : NSObject {
+    NSRecursiveLock *_servicesLock;
     NSMutableSet *_servicesRegistered;
 }
 
-@property(retain) NSMutableSet * _servicesRegistered;
+@property (nonatomic, retain) NSRecursiveLock *_servicesLock;
+@property (nonatomic, retain) NSMutableSet *_servicesRegistered;
 
 + (id)sharedInstance;
 
@@ -17,12 +17,14 @@
 - (int)_idStatusForID:(id)arg1 onService:(id)arg2;
 - (void)_processIDStatusResponseForURI:(id)arg1 resultStatus:(int)arg2 forService:(id)arg3;
 - (void)_requestStatusForID:(id)arg1 onService:(id)arg2 onAccount:(id)arg3;
+- (id)_servicesLock;
 - (id)_servicesRegistered;
 - (int)_statusForCanonicalizedID:(id)arg1 onService:(id)arg2;
 - (void)dealloc;
 - (id)init;
 - (void)requestStatusForID:(id)arg1 onAccount:(id)arg2;
 - (void)requestStatusForID:(id)arg1 onService:(id)arg2;
+- (void)set_servicesLock:(id)arg1;
 - (void)set_servicesRegistered:(id)arg1;
 - (int)statusForID:(id)arg1 onService:(id)arg2;
 

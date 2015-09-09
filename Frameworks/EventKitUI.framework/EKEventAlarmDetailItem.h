@@ -2,16 +2,17 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-@class NSArray;
-
 @interface EKEventAlarmDetailItem : EKEventDetailItem {
     NSArray *_alarms;
+    BOOL _canHaveLeaveNowAlarm;
     unsigned int _disclosedSubitem;
+    BOOL _hasLeaveNowAlarm;
 }
 
 - (void).cxx_destruct;
 - (BOOL)_alarmsAreCreatable;
 - (BOOL)_alarmsAreEditable;
+- (void)_updateAlarms;
 - (id)cellForSubitemAtIndex:(unsigned int)arg1;
 - (BOOL)configureWithCalendar:(id)arg1 preview:(BOOL)arg2;
 - (float)defaultCellHeightForSubitemAtIndex:(unsigned int)arg1 forWidth:(float)arg2;

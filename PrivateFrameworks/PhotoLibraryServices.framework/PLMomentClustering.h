@@ -2,12 +2,6 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class CLGeocoder, NSArray, NSMutableDictionary, NSSet, PLMomentNodeCache;
-
 @interface PLMomentClustering : NSObject {
     NSMutableDictionary *__clustersByNodeObjectID;
     NSMutableDictionary *__clustersByObjectID;
@@ -27,7 +21,8 @@
     NSSet *_deletedClusters;
     BOOL _dirty;
     NSSet *_insertedClusters;
-    id _progressBlock;
+    id /* block */ _progressBlock;
+    BOOL _shouldApplyUserInfluenceBeforeClustering;
     double _sigma;
     double _spatialJoinThreshold;
     double _spatialJoinTimeInterval;
@@ -36,37 +31,40 @@
     NSSet *_updatedClusters;
 }
 
-@property(readonly) NSMutableDictionary * _clustersByNodeObjectID;
-@property(readonly) NSMutableDictionary * _clustersByObjectID;
-@property(readonly) CLGeocoder * _geocoder;
-@property(readonly) NSMutableDictionary * _markedNodesByObjectID;
-@property(setter=_setMinimumNumberOfNodes:) unsigned int _minimumNumberOfNodes;
-@property(readonly) PLMomentNodeCache * _nodeCache;
-@property(setter=_setNumberOfVisitedNodes:) unsigned int _numberOfVisitedNodes;
-@property(setter=_setTotalNumberOfNodes:) unsigned int _totalNumberOfNodes;
-@property BOOL accumulatesSmallClusters;
-@property double accumulationJoinThreshold;
-@property double accumulationRejectionThreshold;
-@property double accumulationRejectionTimeInterval;
-@property unsigned int accumulationSize;
-@property double accumulationTimeInterval;
-@property(copy) NSArray * clusters;
-@property(copy) NSSet * deletedClusters;
-@property(getter=isDirty,setter=_setDirty:) BOOL dirty;
-@property(readonly) BOOL hasMarkedNodes;
-@property(copy) NSSet * insertedClusters;
-@property(copy) id progressBlock;
-@property double sigma;
-@property double spatialJoinThreshold;
-@property double spatialJoinTimeInterval;
-@property BOOL spatialJoinsAdjacentClusters;
-@property double theta;
-@property(copy) NSSet * updatedClusters;
+@property (nonatomic, readonly) NSMutableDictionary *_clustersByNodeObjectID;
+@property (nonatomic, readonly) NSMutableDictionary *_clustersByObjectID;
+@property (nonatomic, readonly) CLGeocoder *_geocoder;
+@property (nonatomic, readonly) NSMutableDictionary *_markedNodesByObjectID;
+@property (setter=_setMinimumNumberOfNodes:, nonatomic) unsigned int _minimumNumberOfNodes;
+@property (nonatomic, readonly) PLMomentNodeCache *_nodeCache;
+@property (setter=_setNumberOfVisitedNodes:, nonatomic) unsigned int _numberOfVisitedNodes;
+@property (setter=_setTotalNumberOfNodes:, nonatomic) unsigned int _totalNumberOfNodes;
+@property (nonatomic) BOOL accumulatesSmallClusters;
+@property (nonatomic) double accumulationJoinThreshold;
+@property (nonatomic) double accumulationRejectionThreshold;
+@property (nonatomic) double accumulationRejectionTimeInterval;
+@property (nonatomic) unsigned int accumulationSize;
+@property (nonatomic) double accumulationTimeInterval;
+@property (nonatomic, copy) NSArray *clusters;
+@property (nonatomic, copy) NSSet *deletedClusters;
+@property (getter=isDirty, setter=_setDirty:, nonatomic) BOOL dirty;
+@property (nonatomic, readonly) BOOL hasMarkedNodes;
+@property (nonatomic, copy) NSSet *insertedClusters;
+@property (nonatomic, copy) id /* block */ progressBlock;
+@property (nonatomic) BOOL shouldApplyUserInfluenceBeforeClustering;
+@property (nonatomic) double sigma;
+@property (nonatomic) double spatialJoinThreshold;
+@property (nonatomic) double spatialJoinTimeInterval;
+@property (nonatomic) BOOL spatialJoinsAdjacentClusters;
+@property (nonatomic) double theta;
+@property (nonatomic, copy) NSSet *updatedClusters;
 
 + (double)maximumClusterTime;
 
+- (id)_clustersByMergingUserInfluencedClusters:(id)arg1;
 - (id)_clustersByNodeObjectID;
 - (id)_clustersByObjectID;
+- (id)_clustersBySplittingUserInfluencedClusters:(id)arg1;
 - (void)_commonPLMomentClusteringManagerInitialization;
 - (id)_geocoder;
 - (id)_markedNodesByObjectID;
@@ -90,11 +88,12 @@
 - (unsigned int)accumulationSize;
 - (double)accumulationTimeInterval;
 - (id)clusters;
+- (id)clustersByApplyingUserInfluenceToClusters:(id)arg1;
 - (id)clustersWithNodes:(id)arg1 sigma:(double)arg2 theta:(double)arg3;
 - (void)dealloc;
 - (id)deletedClusters;
-- (void)generateClustersForAssets:(id)arg1 withCompletionBlock:(id)arg2;
 - (id)generateClustersForAssets:(id)arg1;
+- (void)generateClustersForAssets:(id)arg1 withCompletionBlock:(id /* block */)arg2;
 - (BOOL)hasMarkedNodes;
 - (id)init;
 - (id)initWithManagedMoments:(id)arg1;
@@ -102,19 +101,22 @@
 - (BOOL)isDirty;
 - (void)markNodeForDiagnosis:(id)arg1;
 - (id)neighborsOfNode:(id)arg1;
-- (id)progressBlock;
+- (id)neighborsOfTaggedNode:(id)arg1;
+- (id /* block */)progressBlock;
 - (void)setAccumulatesSmallClusters:(BOOL)arg1;
 - (void)setAccumulationJoinThreshold:(double)arg1;
 - (void)setAccumulationRejectionThreshold:(double)arg1;
 - (void)setAccumulationRejectionTimeInterval:(double)arg1;
 - (void)setAccumulationSize:(unsigned int)arg1;
 - (void)setAccumulationTimeInterval:(double)arg1;
-- (void)setProgressBlock:(id)arg1;
+- (void)setProgressBlock:(id /* block */)arg1;
+- (void)setShouldApplyUserInfluenceBeforeClustering:(BOOL)arg1;
 - (void)setSigma:(double)arg1;
 - (void)setSpatialJoinThreshold:(double)arg1;
 - (void)setSpatialJoinTimeInterval:(double)arg1;
 - (void)setSpatialJoinsAdjacentClusters:(BOOL)arg1;
 - (void)setTheta:(double)arg1;
+- (BOOL)shouldApplyUserInfluenceBeforeClustering;
 - (double)sigma;
 - (id)spatialJoinClustersFromClusters:(id)arg1;
 - (double)spatialJoinThreshold;

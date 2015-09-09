@@ -2,13 +2,12 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIKBBackdropView, UIKBKeyView;
-
 @interface UIKBBlurredKeyView : UIKBKeyView {
     UIKBBackdropView *_backdropView;
     UIKBKeyView *_keyView;
 }
 
+- (id)contentsKeyView;
 - (void)dealloc;
 - (void)dimKeyCaps:(float)arg1 duration:(float)arg2;
 - (void)displayLayer:(id)arg1;

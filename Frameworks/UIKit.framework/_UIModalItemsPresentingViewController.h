@@ -2,13 +2,17 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSMutableArray, UIView, UIWindow, _UIModalItem;
-
 @interface _UIModalItemsPresentingViewController : UIViewController {
+    UIView *_backgroundView;
+    _UIModalItem *_currentItem;
+    UIView *_currentItemView;
+    UIView *_dimmingView;
+    BOOL _isInTransition;
+    _UIModalItem *_itemBeingDismissed;
+    _UIModalItem *_itemBeingPresented;
+    NSMutableArray *_items;
+    id /* block */ _itemsTransitionCompletion;
+    NSMutableArray *_itemsViews;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -18,41 +22,31 @@
             float width; 
             float height; 
         } size; 
-    UIView *_backgroundView;
-    _UIModalItem *_currentItem;
-    UIView *_currentItemView;
-    UIView *_dimmingView;
-    BOOL _isInTransition;
-    _UIModalItem *_itemBeingDismissed;
-    _UIModalItem *_itemBeingPresented;
-    NSMutableArray *_items;
-    id _itemsTransitionCompletion;
-    NSMutableArray *_itemsViews;
     } _keyboardFrame;
     float _keyboardHeight;
     NSMutableArray *_occludedWindows;
     UIWindow *_rotationDelegate;
 }
 
-@property(retain) _UIModalItem * currentItem;
-@property BOOL isInTransition;
-@property(retain) _UIModalItem * itemBeingDismissed;
-@property(retain) _UIModalItem * itemBeingPresented;
-@property(copy) id itemsTransitionCompletion;
-@property(retain) UIWindow * rotationDelegate;
+@property (nonatomic, retain) _UIModalItem *currentItem;
+@property (nonatomic) BOOL isInTransition;
+@property (nonatomic, retain) _UIModalItem *itemBeingDismissed;
+@property (nonatomic, retain) _UIModalItem *itemBeingPresented;
+@property (copy) id /* block */ itemsTransitionCompletion;
+@property (nonatomic, retain) UIWindow *rotationDelegate;
 
-- (void)_applyDismissingAnimationEndingStateForModalItem:(id)arg1 view:(id)arg2 forceCenter:(BOOL)arg3;
 - (void)_applyDismissingAnimationEndingStateForModalItem:(id)arg1 view:(id)arg2;
-- (void)_applyPresentingAnimationEndingStateForModalItem:(id)arg1 view:(id)arg2 forceCenter:(BOOL)arg3;
+- (void)_applyDismissingAnimationEndingStateForModalItem:(id)arg1 view:(id)arg2 forceCenter:(BOOL)arg3;
 - (void)_applyPresentingAnimationEndingStateForModalItem:(id)arg1 view:(id)arg2;
+- (void)_applyPresentingAnimationEndingStateForModalItem:(id)arg1 view:(id)arg2 forceCenter:(BOOL)arg3;
 - (void)_applyPresentingAnimationStartingStateForModalItem:(id)arg1 view:(id)arg2;
 - (void)_applyPresentingViewMetricsStateForModalItem:(id)arg1;
 - (id)_createViewForItem:(id)arg1;
 - (void)_desaturateUI;
-- (void)_dismissItem:(id)arg1 andPresentItem:(id)arg2 animated:(BOOL)arg3 completion:(id)arg4 keepDimmingView:(BOOL)arg5;
-- (void)_dismissItem:(id)arg1 andPresentItem:(id)arg2 animated:(BOOL)arg3 completion:(id)arg4;
+- (void)_dismissItem:(id)arg1 andPresentItem:(id)arg2 animated:(BOOL)arg3 completion:(id /* block */)arg4;
+- (void)_dismissItem:(id)arg1 andPresentItem:(id)arg2 animated:(BOOL)arg3 completion:(id /* block */)arg4 keepDimmingView:(BOOL)arg5;
 - (void)_dismissMe:(id)arg1 animated:(BOOL)arg2;
-- (void)_enqueueAdditionalTransitionCompletion:(id)arg1;
+- (void)_enqueueAdditionalTransitionCompletion:(id /* block */)arg1;
 - (void)_hide;
 - (void)_hideAnimated:(BOOL)arg1 dimmSpotlight:(BOOL)arg2;
 - (void)_hideDimmingViewAnimated:(BOOL)arg1;
@@ -73,7 +67,7 @@
 - (BOOL)isInTransition;
 - (id)itemBeingDismissed;
 - (id)itemBeingPresented;
-- (id)itemsTransitionCompletion;
+- (id /* block */)itemsTransitionCompletion;
 - (void)keyboardChanged:(id)arg1;
 - (void)keyfirstResponderChanged:(id)arg1;
 - (int)preferredInterfaceOrientationForPresentation;
@@ -82,7 +76,7 @@
 - (void)setIsInTransition:(BOOL)arg1;
 - (void)setItemBeingDismissed:(id)arg1;
 - (void)setItemBeingPresented:(id)arg1;
-- (void)setItemsTransitionCompletion:(id)arg1;
+- (void)setItemsTransitionCompletion:(id /* block */)arg1;
 - (void)setRotationDelegate:(id)arg1;
 - (BOOL)shouldAutorotate;
 - (BOOL)shouldAutorotateToInterfaceOrientation:(int)arg1;

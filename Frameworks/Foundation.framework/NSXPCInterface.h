@@ -2,19 +2,17 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@class Protocol;
-
 @interface NSXPCInterface : NSObject {
     struct __CFDictionary { } *_methods2;
     Protocol *_protocol;
     id _reserved1;
 }
 
-@property Protocol * protocol;
+@property Protocol *protocol;
+
+// Image: /System/Library/Frameworks/Foundation.framework/Foundation
 
 + (id)interfaceWithProtocol:(id)arg1;
-+ (id)mf_mailComposeRemoteHostInterface;
-+ (id)mf_mailComposeRemoteServiceInterface;
 + (id)signatureForBlock:(id)arg1;
 
 - (id)_allowedClassesForSelector:(SEL)arg1 reply:(BOOL)arg2;
@@ -35,5 +33,14 @@
 - (void)setInterface:(id)arg1 forSelector:(SEL)arg2 argumentIndex:(unsigned int)arg3 ofReply:(BOOL)arg4;
 - (void)setProtocol:(id)arg1;
 - (void)setReplyBlockSignature:(id)arg1 forSelector:(SEL)arg2;
+
+// Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
+
++ (id)mf_mailComposeRemoteHostInterface;
++ (id)mf_mailComposeRemoteServiceInterface;
+
+// Image: /System/Library/PrivateFrameworks/AssistantServices.framework/AssistantServices
+
++ (id)af_siriTaskDeliveringInterface;
 
 @end

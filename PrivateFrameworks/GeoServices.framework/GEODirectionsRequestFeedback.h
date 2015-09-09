@@ -2,24 +2,22 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSString;
-
 @interface GEODirectionsRequestFeedback : PBCodable <NSCopying> {
+    NSString *_appIdentifier;
     struct { 
         unsigned int purpose : 1; 
         unsigned int source : 1; 
-    NSString *_appIdentifier;
     } _has;
     int _purpose;
     int _source;
 }
 
-@property(retain) NSString * appIdentifier;
-@property(readonly) BOOL hasAppIdentifier;
-@property BOOL hasPurpose;
-@property BOOL hasSource;
-@property int purpose;
-@property int source;
+@property (nonatomic, retain) NSString *appIdentifier;
+@property (nonatomic, readonly) BOOL hasAppIdentifier;
+@property (nonatomic) BOOL hasPurpose;
+@property (nonatomic) BOOL hasSource;
+@property (nonatomic) int purpose;
+@property (nonatomic) int source;
 
 - (id)appIdentifier;
 - (void)copyTo:(id)arg1;
@@ -31,10 +29,11 @@
 - (BOOL)hasPurpose;
 - (BOOL)hasSource;
 - (unsigned int)hash;
-- (id)initWithPurpose:(int)arg1 andSource:(int)arg2 andIdentifier:(id)arg3;
-- (id)initWithPurpose:(int)arg1 andSource:(int)arg2;
 - (id)initWithPurpose:(int)arg1;
+- (id)initWithPurpose:(int)arg1 andSource:(int)arg2;
+- (id)initWithPurpose:(int)arg1 andSource:(int)arg2 andIdentifier:(id)arg3;
 - (BOOL)isEqual:(id)arg1;
+- (void)mergeFrom:(id)arg1;
 - (int)purpose;
 - (BOOL)readFrom:(id)arg1;
 - (void)setAppIdentifier:(id)arg1;

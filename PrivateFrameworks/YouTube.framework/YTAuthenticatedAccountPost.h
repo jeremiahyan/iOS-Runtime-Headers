@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/YouTube.framework/YouTube
  */
 
-@class NSMutableData, NSMutableURLRequest, NSURLConnection;
-
 @interface YTAuthenticatedAccountPost : NSObject <NSURLConnectionDelegate> {
     NSURLConnection *_connection;
     id _delegate;
@@ -12,6 +10,11 @@
     int _type;
     BOOL _validResponse;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)_cleanup;
 - (void)_deleteVideo:(id)arg1;

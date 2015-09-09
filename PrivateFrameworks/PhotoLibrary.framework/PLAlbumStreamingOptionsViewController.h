@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibrary.framework/PhotoLibrary
  */
 
-@class <PLAlbumStreamingOptionsViewControllerDelegate>, NSArray, NSString, PLCloudSharedAlbum, PLCloudSharedAlbumInvitationRecord, PLComposeRecipientViewController, UIBarButtonItem, UISwitch, UITableView;
-
-@interface PLAlbumStreamingOptionsViewController : UIViewController <PLComposeRecipientViewControllerDelegate, PLInvitationRecordsObserver, UIActionSheetDelegate, UITableViewDataSource, UITableViewDelegate> {
+@interface PLAlbumStreamingOptionsViewController : UIViewController <PLComposeRecipientViewControllerDelegate, PLInvitationRecordsObserver, UITableViewDataSource, UITableViewDelegate> {
     NSString *__lastMultiContributorsSectionFooterTitle;
     NSString *__lastPublicURLSectionFooterTitle;
     PLCloudSharedAlbumInvitationRecord *__selectedSubscriberInvitationRecord;
@@ -12,15 +10,18 @@
     unsigned int _addSubscribersRow;
     BOOL _adjustedInsetsForKeyboard;
     PLCloudSharedAlbum *_album;
-    NSArray *_albumAssets;
+    BOOL _albumIsFamilyStream;
     NSString *_albumName;
     UIBarButtonItem *_cancelButton;
-    BOOL _changingValueFromControl;
     PLComposeRecipientViewController *_composeRecipientController;
     <PLAlbumStreamingOptionsViewControllerDelegate> *_delegate;
     UIBarButtonItem *_doneButton;
+    ACAccountStore *_familyAccountStore;
+    AAUIProfilePictureStore *_familyMemberPictureStore;
+    NSArray *_familyMembers;
+    NSMutableDictionary *_familyProfilePictures;
+    NSOperationQueue *_familyRequestQueue;
     BOOL _isPresentedModally;
-    int _optionsMode;
     UITableView *_optionsTableView;
     BOOL _showShareLink;
     BOOL _streamOwner;
@@ -31,30 +32,33 @@
     UISwitch *_wantsPublicWebsiteSwitch;
 }
 
-@property(setter=_setLastMultiContributorsSectionFooterTitle:,copy) NSString * _lastMultiContributorsSectionFooterTitle;
-@property(setter=_setLastPublicURLSectionFooterTitle:,copy) NSString * _lastPublicURLSectionFooterTitle;
-@property(setter=_setSelectedSubscriberInvitationRecord:,retain) PLCloudSharedAlbumInvitationRecord * _selectedSubscriberInvitationRecord;
-@property(setter=_setShouldScrollToTopOnNextViewLayout:) BOOL _shouldScrollToTopOnNextViewLayout;
-@property(retain) PLCloudSharedAlbum * album;
-@property(retain) NSArray * albumAssets;
-@property(copy) NSString * albumName;
-@property <PLAlbumStreamingOptionsViewControllerDelegate> * delegate;
-@property BOOL isPresentedModally;
-@property BOOL streamOwner;
+@property (setter=_setLastMultiContributorsSectionFooterTitle:, nonatomic, copy) NSString *_lastMultiContributorsSectionFooterTitle;
+@property (setter=_setLastPublicURLSectionFooterTitle:, nonatomic, copy) NSString *_lastPublicURLSectionFooterTitle;
+@property (setter=_setSelectedSubscriberInvitationRecord:, nonatomic, retain) PLCloudSharedAlbumInvitationRecord *_selectedSubscriberInvitationRecord;
+@property (setter=_setShouldScrollToTopOnNextViewLayout:, nonatomic) BOOL _shouldScrollToTopOnNextViewLayout;
+@property (nonatomic, retain) PLCloudSharedAlbum *album;
+@property (nonatomic) BOOL albumIsFamilyStream;
+@property (nonatomic, copy) NSString *albumName;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <PLAlbumStreamingOptionsViewControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL isPresentedModally;
+@property (nonatomic) BOOL streamOwner;
+@property (readonly) Class superclass;
 
 - (BOOL)_appAllowsSupressionOfAlerts;
 - (void)_cancelAction:(id)arg1;
 - (void)_changeWantsAcceptCloudNotification:(id)arg1;
 - (void)_changeWantsMultipleContributors:(id)arg1;
 - (void)_changeWantsPublicWebsite:(id)arg1;
-- (void)_createNewCloudSharedAlbum;
 - (void)_deletePhotoStream;
 - (void)_displayActivitySheet;
 - (void)_displayConfirmationForRemovalOfSelectedSubscriber;
+- (void)_displayConfirmationWithMessage:(id)arg1 destructiveTitle:(id)arg2 actionHandler:(id /* block */)arg3;
 - (void)_displayDeleteConfirmation:(id)arg1;
 - (void)_doneAction:(id)arg1;
 - (void)_handleCompletionWithReason:(int)arg1;
-- (id)_initWithOptionsMode:(int)arg1 withAlbum:(id)arg2 andAssets:(id)arg3;
 - (void)_keyboardDidHide:(id)arg1;
 - (void)_keyboardWillHide:(id)arg1;
 - (void)_keyboardWillShow:(id)arg1;
@@ -83,22 +87,20 @@
 - (void)_updateWantsMultipleContributorsField;
 - (void)_updateWantsPublicWebsiteField;
 - (id)_visibleInvitationRecordsForStreamOwner:(BOOL)arg1;
-- (void)actionSheet:(id)arg1 didDismissWithButtonIndex:(int)arg2;
 - (id)album;
-- (id)albumAssets;
+- (BOOL)albumIsFamilyStream;
 - (id)albumName;
 - (id)backingNavigationControllerForComposeRecipientViewController:(id)arg1;
 - (struct CGSize { float x1; float x2; })contentSizeForViewInPopover;
 - (void)dealloc;
 - (id)delegate;
-- (id)initForAlbumCreationOperationWithAssets:(id)arg1;
-- (id)initForEditOpertationForAlbum:(id)arg1;
+- (id)initWithAlbum:(id)arg1;
 - (void)invitationRecordsDidChange:(id)arg1;
 - (BOOL)isPresentedModally;
 - (void)loadView;
 - (int)numberOfSectionsInTableView:(id)arg1;
 - (void)setAlbum:(id)arg1;
-- (void)setAlbumAssets:(id)arg1;
+- (void)setAlbumIsFamilyStream:(BOOL)arg1;
 - (void)setAlbumName:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setIsPresentedModally:(BOOL)arg1;

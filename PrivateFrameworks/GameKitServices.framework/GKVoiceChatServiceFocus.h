@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/GameKitServices.framework/GameKitServices
  */
 
-@class NSMutableArray, NSString;
-
 @interface GKVoiceChatServiceFocus : GKVoiceChatServicePrivate {
     NSString *currentFocus;
     BOOL hasMic;
@@ -13,7 +11,7 @@
     int packetsPerBundle;
 }
 
-@property(copy) NSString * currentFocus;
+@property (nonatomic, copy) NSString *currentFocus;
 @property BOOL hasMic;
 @property int packetsPerBundle;
 
@@ -64,8 +62,8 @@
 - (void)setSpeakingDelegate:(id)arg1;
 - (void)setTalkingPeersLimit:(unsigned int)arg1;
 - (BOOL)startVoiceChatWithParticipantID:(id)arg1 error:(id*)arg2;
-- (void)stopVoiceChatProc:(id)arg1 participantDidCancel:(BOOL)arg2;
 - (void)stopVoiceChatProc:(id)arg1;
+- (void)stopVoiceChatProc:(id)arg1 participantDidCancel:(BOOL)arg2;
 - (void)updatedConnectedPeers:(id)arg1;
 - (void)updatedMutedPeers:(id)arg1 forParticipantID:(id)arg2;
 - (void)videoConference:(id)arg1 didStartSession:(BOOL)arg2 withCallID:(unsigned long)arg3 error:(id)arg4;

@@ -2,14 +2,9 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class NSArray, NSMutableArray, TSDBezierNode;
-
-@interface TSDEditableBezierPathSource : TSDPathSource <TSDRealignablePathSource, TSDMixing> {
+@interface TSDEditableBezierPathSource : TSDPathSource <TSDMixing, TSDRealignablePathSource> {
+    unsigned int mActiveSubpath;
+    BOOL mHasLockedFlipTransform;
     struct CGAffineTransform { 
         float a; 
         float b; 
@@ -17,26 +12,25 @@
         float d; 
         float tx; 
         float ty; 
-    unsigned int mActiveSubpath;
-    BOOL mHasLockedFlipTransform;
     } mLockedFlipTransform;
     NSMutableArray *mSubpaths;
 }
 
-@property(readonly) BOOL allNodesSelected;
-@property(readonly) BOOL canDeleteSelectedNodes;
-@property(readonly) BOOL closeIfEndpointsAreEqual;
-@property(getter=isClosed) BOOL closed;
-@property(readonly) TSDBezierNode * firstNode;
-@property(readonly) BOOL hasSelectedNode;
-@property(readonly) BOOL isCompound;
-@property(readonly) BOOL isOpen;
-@property(readonly) TSDBezierNode * lastNode;
-@property(readonly) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } nodeBounds;
-@property(retain) NSArray * nodeTypes;
-@property(retain) NSMutableArray * nodes;
-@property(readonly) struct CGPath { }* subpathForSelection;
-@property(retain) NSMutableArray * subpaths;
+@property (nonatomic, readonly) BOOL allNodesSelected;
+@property (nonatomic, readonly) BOOL canDeleteSelectedNodes;
+@property (nonatomic, readonly) BOOL closeIfEndpointsAreEqual;
+@property (getter=isClosed, nonatomic) BOOL closed;
+@property (nonatomic, readonly) BOOL deletingSelectedNodesWillDeleteShape;
+@property (nonatomic, readonly) TSDBezierNode *firstNode;
+@property (nonatomic, readonly) BOOL hasSelectedNode;
+@property (nonatomic, readonly) BOOL isCompound;
+@property (nonatomic, readonly) BOOL isOpen;
+@property (nonatomic, readonly) TSDBezierNode *lastNode;
+@property (nonatomic, readonly) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } nodeBounds;
+@property (nonatomic, retain) NSArray *nodeTypes;
+@property (nonatomic, retain) NSMutableArray *nodes;
+@property (nonatomic, readonly) struct CGPath { }*subpathForSelection;
+@property (nonatomic, retain) NSMutableArray *subpaths;
 
 + (id)editableBezierPathSource;
 + (id)editableBezierPathSourceWithBezierPath:(id)arg1;
@@ -48,7 +42,6 @@
 - (void)alignToOrigin;
 - (BOOL)allNodesSelected;
 - (id)bezierNodeUnderPoint:(struct CGPoint { float x1; float x2; })arg1 withTransform:(struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })arg2 andTolerance:(float)arg3 returningType:(int*)arg4;
-- (BOOL)bezierPathUnderPoint:(struct CGPoint { float x1; float x2; })arg1 withTransform:(struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })arg2 tolerance:(float)arg3;
 - (id)bezierPathWithoutFlips;
 - (BOOL)canCloseSelectedNodes;
 - (BOOL)canConnectSelectedNodes;
@@ -66,14 +59,14 @@
 - (void)deleteSelectedEdges;
 - (void)deleteSelectedNodes;
 - (void)deleteSelectedNodesForced:(BOOL)arg1;
+- (BOOL)deletingSelectedNodesWillDeleteShape;
 - (id)description;
 - (void)deselectAllNodes;
 - (float)distanceToPoint:(struct CGPoint { float x1; float x2; })arg1 subpathIndex:(unsigned int*)arg2 elementIndex:(unsigned int*)arg3 tValue:(float*)arg4 threshold:(float)arg5;
 - (id)firstNode;
 - (BOOL)hasSelectedNode;
 - (id)init;
-- (id)initWithArchive:(const struct PathSourceArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; struct PointPathSourceArchive {} *x3; struct ScalarPathSourceArchive {} *x4; struct BezierPathSourceArchive {} *x5; struct CalloutPathSourceArchive {} *x6; struct ConnectionLinePathSourceArchive {} *x7; struct EditableBezierPathSourceArchive {} *x8; boolx9; boolx10; int x11; unsigned int x12[1]; }*)arg1;
-- (id)insertNodeAtPoint:(struct CGPoint { float x1; float x2; })arg1 tolerance:(float)arg2;
+- (id)initWithArchive:(const struct PathSourceArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; struct PointPathSourceArchive {} *x5; struct ScalarPathSourceArchive {} *x6; struct BezierPathSourceArchive {} *x7; struct CalloutPathSourceArchive {} *x8; struct ConnectionLinePathSourceArchive {} *x9; struct EditableBezierPathSourceArchive {} *x10; bool x11; bool x12; }*)arg1;
 - (BOOL)isCircular;
 - (BOOL)isClosed;
 - (BOOL)isCompound;
@@ -83,7 +76,7 @@
 - (id)lastNode;
 - (void)lineToPoint:(struct CGPoint { float x1; float x2; })arg1;
 - (id)mixedObjectWithFraction:(float)arg1 ofObject:(id)arg2;
-- (int)mixingTypeWithObject:(id)arg1;
+- (int)mixingTypeWithObject:(id)arg1 context:(id)arg2;
 - (void)morphWithMorphInfo:(id)arg1;
 - (void)moveToPoint:(struct CGPoint { float x1; float x2; })arg1;
 - (struct CGSize { float x1; float x2; })naturalSize;
@@ -100,7 +93,7 @@
 - (void)removeLastNode;
 - (void)removeNode:(id)arg1;
 - (void)reverseDirection;
-- (void)saveToArchive:(struct PathSourceArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; struct PointPathSourceArchive {} *x3; struct ScalarPathSourceArchive {} *x4; struct BezierPathSourceArchive {} *x5; struct CalloutPathSourceArchive {} *x6; struct ConnectionLinePathSourceArchive {} *x7; struct EditableBezierPathSourceArchive {} *x8; boolx9; boolx10; int x11; unsigned int x12[1]; }*)arg1;
+- (void)saveToArchive:(struct PathSourceArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; struct PointPathSourceArchive {} *x5; struct ScalarPathSourceArchive {} *x6; struct BezierPathSourceArchive {} *x7; struct CalloutPathSourceArchive {} *x8; struct ConnectionLinePathSourceArchive {} *x9; struct EditableBezierPathSourceArchive {} *x10; bool x11; bool x12; }*)arg1;
 - (void)selectAllNodes;
 - (void)selectSubpathForNode:(id)arg1 toggle:(BOOL)arg2;
 - (void)setBezierPath:(id)arg1;

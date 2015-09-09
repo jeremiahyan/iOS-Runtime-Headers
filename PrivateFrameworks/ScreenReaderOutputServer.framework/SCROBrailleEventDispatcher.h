@@ -2,10 +2,8 @@
    Image: /System/Library/PrivateFrameworks/ScreenReaderOutputServer.framework/ScreenReaderOutputServer
  */
 
-@class NSLock, SCROBrailleEvent;
-
 @interface SCROBrailleEventDispatcher : NSObject {
-    SCROBrailleEvent *_brailleQueue;
+    NSMutableArray *_brailleEventQueue;
     BOOL _isValid;
     struct __CFArray { } *_queue;
     NSLock *_queueLock;

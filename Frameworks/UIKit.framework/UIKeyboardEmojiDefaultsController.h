@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSMutableDictionary;
-
 @interface UIKeyboardEmojiDefaultsController : NSObject {
     NSMutableDictionary *_defaults;
 }
@@ -24,7 +22,9 @@
 - (void)setDefaultsValue:(id)arg1 forKey:(id)arg2;
 - (void)setEmojiCategoryDefaultsIndex:(int)arg1 forCategory:(id)arg2;
 - (void)setRecentsKey:(id)arg1;
+- (void)setSkinToneBaseKeyPreferencesKey:(id)arg1;
 - (void)setUsageHistoryKey:(id)arg1;
+- (id)skinToneBaseKeyPreferencesKey;
 - (id)usageHistoryKey;
 - (void)writeEmojiDefaults;
 

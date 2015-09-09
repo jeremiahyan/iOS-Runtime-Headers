@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/Search.framework/Search
  */
 
-@class NSMutableArray;
-
-@interface SPSearchResultSerializer : PBDataWriter {
+@interface SPSearchResultSerializer : NSObject {
     unsigned int _byteVector;
     unsigned int _byteVectorCapacity;
     unsigned int _byteVectorCnt;
@@ -22,11 +20,10 @@
     NSMutableArray *_sections;
 }
 
-@property(readonly) BOOL completed;
+@property (nonatomic, readonly) BOOL completed;
 
 - (unsigned int)_allocateSize:(unsigned int)arg1;
 - (id)_convertConformingResult:(id)arg1;
-- (BOOL)appendResult:(id)arg1 toSection:(id)arg2;
 - (BOOL)appendResult:(id)arg1;
 - (BOOL)appendSection:(id)arg1;
 - (unsigned int)byteVector;
@@ -34,10 +31,11 @@
 - (BOOL)completed;
 - (void)dealloc;
 - (id)init;
-- (id)initWithInitialCapacity:(unsigned int)arg1 inProc:(BOOL)arg2;
 - (id)initWithInitialCapacity:(unsigned int)arg1;
+- (id)initWithInitialCapacity:(unsigned int)arg1 inProc:(BOOL)arg2;
+- (BOOL)lockedAppendResult:(id)arg1 toSection:(id)arg2;
 - (unsigned int)sectionCount;
 - (void)serialize;
-- (unsigned int)write:(const char *)arg1 maxLength:(unsigned int)arg2;
+- (void)updateScoesForQuery:(id)arg1 inDomain:(int)arg2;
 
 @end

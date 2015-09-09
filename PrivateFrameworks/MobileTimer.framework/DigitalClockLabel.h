@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/MobileTimer.framework/MobileTimer
  */
 
-@class NSCalendar, NSDate;
-
-@interface DigitalClockLabel : ShrinkableDateLabel {
+@interface DigitalClockLabel : MTDateLabel {
     NSDate *_baseDate;
     NSCalendar *_calendar;
     int _hour;

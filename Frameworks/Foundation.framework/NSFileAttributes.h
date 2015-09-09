@@ -2,9 +2,19 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@class NSDate, NSDictionary, NSMutableDictionary;
-
 @interface NSFileAttributes : NSDictionary {
+    struct { 
+        BOOL extensionHidden; 
+        NSDate *creationDate; 
+        struct _fields { 
+            unsigned int extensionHidden : 1; 
+            unsigned int creationDate : 1; 
+            unsigned int reserved : 30; 
+        } validFields; 
+    } catInfo;
+    NSMutableDictionary *dict;
+    NSDictionary *extendedAttrs;
+    int fileProtectionClass;
     struct stat { 
         int st_dev; 
         unsigned short st_mode; 
@@ -36,18 +46,6 @@
         unsigned int st_gen; 
         int st_lspare; 
         long long st_qspare[2]; 
-    struct { 
-        BOOL extensionHidden; 
-        NSDate *creationDate; 
-        struct _fields { 
-            unsigned int extensionHidden : 1; 
-            unsigned int creationDate : 1; 
-            unsigned int reserved : 30; 
-        } validFields; 
-    } catInfo;
-    NSMutableDictionary *dict;
-    NSDictionary *extendedAttrs;
-    int fileProtectionClass;
     } statInfo;
 }
 

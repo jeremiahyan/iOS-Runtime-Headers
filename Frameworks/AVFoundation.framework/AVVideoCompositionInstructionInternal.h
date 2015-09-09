@@ -2,9 +2,10 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class NSArray;
-
 @interface AVVideoCompositionInstructionInternal : NSObject {
+    struct CGColor { } *backgroundColor;
+    BOOL enablePostProcessing;
+    NSArray *layerInstructions;
     struct { 
         struct { 
             long long value; 
@@ -18,9 +19,6 @@
             unsigned int flags; 
             long long epoch; 
         } duration; 
-    struct CGColor { } *backgroundColor;
-    BOOL enablePostProcessing;
-    NSArray *layerInstructions;
     } timeRange;
 }
 

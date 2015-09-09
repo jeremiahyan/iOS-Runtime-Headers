@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
  */
 
-@class SUClientInterface, SUSection;
-
 @interface SUNavigationController : UINavigationController <SUScriptNativeObject> {
     BOOL _canBeWeakScriptReference;
     SUClientInterface *_clientInterface;
@@ -12,9 +10,13 @@
     int _storeBarStyle;
 }
 
-@property(retain) SUClientInterface * clientInterface;
-@property(getter=isLoading) BOOL loading;
-@property(retain) SUSection * section;
+@property (nonatomic, retain) SUClientInterface *clientInterface;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (getter=isLoading, nonatomic) BOOL loading;
+@property (nonatomic, retain) SUSection *section;
+@property (readonly) Class superclass;
 
 - (int)ITunesStoreUIBarStyle;
 - (void)_loadingDidChangeNotification:(id)arg1;
@@ -29,8 +31,8 @@
 - (id)description;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (id)initWithRootViewController:(id)arg1;
-- (id)initWithSection:(id)arg1 rootViewController:(id)arg2;
 - (id)initWithSection:(id)arg1;
+- (id)initWithSection:(id)arg1 rootViewController:(id)arg2;
 - (BOOL)isLoading;
 - (void)loadView;
 - (id)moreListImage;
@@ -42,8 +44,8 @@
 - (void)setLoading:(BOOL)arg1;
 - (void)setParentViewController:(id)arg1;
 - (void)setSection:(id)arg1;
-- (void)setToolbarHidden:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setToolbarHidden:(BOOL)arg1;
+- (void)setToolbarHidden:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setViewControllers:(id)arg1;
 - (unsigned int)supportedInterfaceOrientations;
 - (void)viewDidDisappear:(BOOL)arg1;

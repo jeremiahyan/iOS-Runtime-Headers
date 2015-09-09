@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSMutableArray, NSString;
-
 @interface GEOLocalizedAttribution : PBCodable <NSCopying> {
     NSString *_displayName;
     NSString *_language;
@@ -11,16 +9,16 @@
     NSMutableArray *_snippetLogoURLs;
 }
 
-@property(retain) NSString * displayName;
-@property(readonly) BOOL hasDisplayName;
-@property(readonly) BOOL hasLanguage;
-@property(retain) NSString * language;
-@property(retain) NSMutableArray * logoURLs;
-@property(retain) NSMutableArray * snippetLogoURLs;
+@property (nonatomic, retain) NSString *displayName;
+@property (nonatomic, readonly) BOOL hasDisplayName;
+@property (nonatomic, readonly) BOOL hasLanguage;
+@property (nonatomic, retain) NSString *language;
+@property (nonatomic, retain) NSMutableArray *logoURLs;
+@property (nonatomic, retain) NSMutableArray *snippetLogoURLs;
 
 - (void)addLogoURLs:(id)arg1;
 - (void)addSnippetLogoURLs:(id)arg1;
-- (id)bestURLForLogos:(id)arg1 hiDPI:(BOOL)arg2;
+- (id)bestURLForLogos:(id)arg1 scale:(float)arg2;
 - (void)clearLogoURLs;
 - (void)clearSnippetLogoURLs;
 - (void)copyTo:(id)arg1;
@@ -37,6 +35,7 @@
 - (id)logoURLs;
 - (id)logoURLsAtIndex:(unsigned int)arg1;
 - (unsigned int)logoURLsCount;
+- (void)mergeFrom:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 - (void)setDisplayName:(id)arg1;
 - (void)setLanguage:(id)arg1;

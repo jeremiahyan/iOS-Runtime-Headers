@@ -2,16 +2,15 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class <SKUIIPadProductPageDelegate>, ACAccountStore, NSOperationQueue, NSURL, NSURLRequest, SKUIClientContext, SKUIFacebookLikeStatus, SKUIIncompatibleAppViewController, SKUIItem, SKUILoadProductPageOperation, SKUIMetricsController, SKUINetworkErrorViewController, SKUIProductPage, SKUIProductPageDetailsViewController, SKUIProductPageHeaderViewController, SKUIProductPagePlaceholderViewController, SKUIProductPageReviewsViewController, SKUISwooshArrayViewController, SSMetricsPageEvent, UIView;
-
-@interface SKUIIPadProductPageViewController : UIViewController <SKUIMetricsViewController, SKUINetworkErrorDelegate, SKUIProductPageHeaderViewDelegate, SKUIProductPageChildViewControllerDelegate> {
-    ACAccountStore *_accountStore;
+@interface SKUIIPadProductPageViewController : UIViewController <SKUIMessageBannerDelegate, SKUIMetricsViewController, SKUINetworkErrorDelegate, SKUIProductPageChildViewControllerDelegate, SKUIProductPageHeaderViewDelegate> {
+    BOOL _askPermission;
+    SKUIMessageBanner *_banner;
+    NSString *_bannerText;
     SKUIClientContext *_clientContext;
     int _defaultSelectedSectionIndex;
     <SKUIIPadProductPageDelegate> *_delegate;
     SKUIProductPageDetailsViewController *_detailsViewController;
     BOOL _didSendCannotOpen;
-    SKUIFacebookLikeStatus *_facebookLikeStatus;
     SKUIProductPageHeaderViewController *_headerViewController;
     SKUIIncompatibleAppViewController *_incompatibleViewController;
     SKUIItem *_item;
@@ -30,35 +29,42 @@
     NSURLRequest *_urlRequest;
 }
 
-@property(readonly) NSURL * URL;
-@property(retain) SKUIClientContext * clientContext;
-@property <SKUIIPadProductPageDelegate> * delegate;
-@property(readonly) SKUIItem * item;
-@property(readonly) SKUIProductPage * productPage;
+@property (nonatomic, readonly) NSURL *URL;
+@property (nonatomic) BOOL askPermission;
+@property (nonatomic, copy) NSString *bannerText;
+@property (nonatomic, retain) SKUIClientContext *clientContext;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SKUIIPadProductPageDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) SKUIItem *item;
+@property (nonatomic, readonly) SKUIProductPage *productPage;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (id)URL;
-- (void)_accountStoreDidChangeNotification:(id)arg1;
 - (id)_detailsViewController;
 - (id)_initSKUIIPadProductPageViewController;
 - (BOOL)_isIncompatibleItem;
 - (void)_metricsEnterEventNotification:(id)arg1;
 - (id)_placeholderViewController;
 - (id)_relatedViewController;
-- (void)_reloadFacebookLikeStatus;
 - (void)_reloadHeaderViewController;
 - (id)_reviewsViewController;
 - (void)_selectSectionIndex:(int)arg1;
 - (void)_sendCannotOpen;
 - (void)_setDefaultSectionIndexWithFragment:(int)arg1;
-- (void)_setFacebookLikeStatus:(id)arg1;
 - (void)_setMetricsController:(id)arg1;
 - (void)_setProductPage:(id)arg1 error:(id)arg2;
+- (void)_showBanner;
 - (void)_showError:(id)arg1;
 - (void)_showIncompatibleView;
 - (void)_showViewController:(id)arg1;
 - (id)_viewControllerForSectionIndex:(int)arg1;
 - (id)activeMetricsController;
+- (BOOL)askPermission;
+- (void)askPermissionBannerDidSelect:(id)arg1;
+- (id)bannerText;
 - (id)clientContext;
 - (void)configureMetricsWithPageEvent:(id)arg1;
 - (void)dealloc;
@@ -75,13 +81,16 @@
 - (void)networkErrorViewControllerInvalidated:(id)arg1;
 - (id)productPage;
 - (void)productPageChildOpenItem:(id)arg1;
-- (void)productPageChildOpenURL:(id)arg1 viewControllerBlock:(id)arg2;
+- (void)productPageChildOpenURL:(id)arg1 viewControllerBlock:(id /* block */)arg2;
 - (void)productPageChildViewControllerDidLoad:(id)arg1;
 - (void)productPageChildViewControllerDidLoadScrollView:(id)arg1;
 - (void)productPageChildViewControllerDidScroll:(id)arg1;
 - (void)productPageHeaderView:(id)arg1 didSelectSectionIndex:(int)arg2;
 - (void)productPageHeaderView:(id)arg1 didSelectURL:(id)arg2;
+- (void)productPageHeaderViewDidWantAskPermissionBanner:(id)arg1;
 - (void)reloadData;
+- (void)setAskPermission:(BOOL)arg1;
+- (void)setBannerText:(id)arg1;
 - (void)setClientContext:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (struct CGPoint { float x1; float x2; })topContentOffset;

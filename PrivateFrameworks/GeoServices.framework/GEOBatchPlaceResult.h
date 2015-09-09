@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class GEOPlaceResult;
-
 @interface GEOBatchPlaceResult : PBCodable <NSCopying> {
     struct { 
         unsigned int statusCode : 1; 
@@ -12,10 +10,10 @@
     int _statusCode;
 }
 
-@property(readonly) BOOL hasPlaceResult;
-@property BOOL hasStatusCode;
-@property(retain) GEOPlaceResult * placeResult;
-@property int statusCode;
+@property (nonatomic, readonly) BOOL hasPlaceResult;
+@property (nonatomic) BOOL hasStatusCode;
+@property (nonatomic, retain) GEOPlaceResult *placeResult;
+@property (nonatomic) int statusCode;
 
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -26,6 +24,7 @@
 - (BOOL)hasStatusCode;
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
+- (void)mergeFrom:(id)arg1;
 - (id)placeResult;
 - (BOOL)readFrom:(id)arg1;
 - (void)setHasStatusCode:(BOOL)arg1;

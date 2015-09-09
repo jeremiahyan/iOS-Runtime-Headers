@@ -2,13 +2,11 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UITableViewCell;
-
 @interface UITableViewCellReorderControl : UIControl {
+    UITableViewCell *_cell;
     struct CGPoint { 
         float x; 
         float y; 
-    UITableViewCell *_cell;
     } _downPoint;
 }
 

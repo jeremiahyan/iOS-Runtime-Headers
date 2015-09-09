@@ -2,8 +2,8 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface TSCELegacyGlobalID : NSObject <NSCopying, NSCoding> {
-    unsigned char mBytes[16];
+@interface TSCELegacyGlobalID : NSObject <NSCoding, NSCopying> {
+    unsigned char mBytes;
 }
 
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

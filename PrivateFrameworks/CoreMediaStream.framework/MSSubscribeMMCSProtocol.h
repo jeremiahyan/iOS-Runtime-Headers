@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/CoreMediaStream.framework/CoreMediaStream
  */
 
-@class <MSSubscribeStorageProtocolDelegate>, NSMutableDictionary;
-
 @interface MSSubscribeMMCSProtocol : MSMMCSProtocol <MSSubscribeStorageProtocol> {
     char **_authTokens;
     <MSSubscribeStorageProtocolDelegate> *_delegate;
@@ -13,7 +11,11 @@
     const char **_signatures;
 }
 
-@property <MSSubscribeStorageProtocolDelegate> * delegate;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <MSSubscribeStorageProtocolDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_getItemDone:(unsigned long long)arg1 path:(id)arg2 error:(id)arg3;

@@ -2,15 +2,17 @@
    Image: /System/Library/PrivateFrameworks/CommunicationsSetupUI.framework/CommunicationsSetupUI
  */
 
-@class NSTimer;
-
 @interface CNFRegAccountWebViewController : CNFRegServerWebViewController <UIAlertViewDelegate> {
     NSTimer *_bagLoadTimer;
     BOOL _failedBagLoad;
     BOOL _listeningForBagLoad;
 }
 
-@property BOOL failedBagLoad;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL failedBagLoad;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)_bagLoadTimeout:(id)arg1;
 - (void)_handleFTServerBagFinishedLoading;
@@ -18,7 +20,7 @@
 - (id)_nonModalParentController;
 - (void)_reload;
 - (void)_reloadDelayed;
-- (void)_showGenericErrorWithHandler:(id)arg1;
+- (void)_showGenericErrorWithHandler:(id /* block */)arg1;
 - (void)_showURLDidNotLoadAlert;
 - (void)_startBagLoadTimer;
 - (void)_startListeningForBagLoad;
@@ -33,6 +35,7 @@
 - (id)bagKey;
 - (BOOL)canSendURLRequest:(id)arg1;
 - (void)cancelTapped;
+- (id)clientInfoHeaderValue;
 - (void)completeHandoffWithStatus:(int)arg1 appleID:(id)arg2 authID:(id)arg3 authToken:(id)arg4;
 - (void)dealloc;
 - (void)doHandoffWithStatus:(int)arg1 appleID:(id)arg2 authID:(id)arg3 authToken:(id)arg4;

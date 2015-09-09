@@ -2,16 +2,18 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class NSArray;
-
 @interface SKUIEditorialLinkLayoutRequest : NSObject <SKUILayoutRequest> {
     NSArray *_links;
     float _width;
 }
 
-@property(readonly) Class layoutClass;
-@property(copy) NSArray * links;
-@property float width;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) Class layoutClass;
+@property (nonatomic, copy) NSArray *links;
+@property (readonly) Class superclass;
+@property (nonatomic) float width;
 
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

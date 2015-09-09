@@ -3,37 +3,37 @@
  */
 
 @interface TSCH3DExtrusionDoubleBevelGenerator : NSObject {
+    float mBevelHeight;
+    int mBevelSlices;
+    BOOL mEnableBevelEdges;
     struct vector<glm::detail::tvec3<float>, std::__1::allocator<glm::detail::tvec3<float> > > { 
         struct tvec3<float> {} *__begin_; 
         struct tvec3<float> {} *__end_; 
         struct __compressed_pair<glm::detail::tvec3<float> *, std::__1::allocator<glm::detail::tvec3<float> > > { 
             struct tvec3<float> {} *__first_; 
         } __end_cap_; 
-    struct vector<glm::detail::tvec3<float>, std::__1::allocator<glm::detail::tvec3<float> > > { 
-        struct tvec3<float> {} *__begin_; 
-        struct tvec3<float> {} *__end_; 
-        struct __compressed_pair<glm::detail::tvec3<float> *, std::__1::allocator<glm::detail::tvec3<float> > > { 
-            struct tvec3<float> {} *__first_; 
-        } __end_cap_; 
+    } mInputSpinePoints;
     struct vector<glm::detail::tvec2<float>, std::__1::allocator<glm::detail::tvec2<float> > > { 
         struct tvec2<float> {} *__begin_; 
         struct tvec2<float> {} *__end_; 
         struct __compressed_pair<glm::detail::tvec2<float> *, std::__1::allocator<glm::detail::tvec2<float> > > { 
             struct tvec2<float> {} *__first_; 
         } __end_cap_; 
-    float mBevelHeight;
-    int mBevelSlices;
-    BOOL mEnableBevelEdges;
-    } mInputSpinePoints;
     } mScaleValues;
+    struct vector<glm::detail::tvec3<float>, std::__1::allocator<glm::detail::tvec3<float> > > { 
+        struct tvec3<float> {} *__begin_; 
+        struct tvec3<float> {} *__end_; 
+        struct __compressed_pair<glm::detail::tvec3<float> *, std::__1::allocator<glm::detail::tvec3<float> > > { 
+            struct tvec3<float> {} *__first_; 
+        } __end_cap_; 
     } mSpinePoints;
 }
 
-@property float bevelHeight;
-@property int bevelSlices;
-@property(readonly) int bottomBevelStartIndex;
-@property(readonly) int bottomNonBevelStartIndex;
-@property BOOL enableBevelEdges;
+@property (nonatomic) float bevelHeight;
+@property (nonatomic) int bevelSlices;
+@property (nonatomic, readonly) int bottomBevelStartIndex;
+@property (nonatomic, readonly) int bottomNonBevelStartIndex;
+@property (nonatomic) BOOL enableBevelEdges;
 
 + (id)generator;
 + (id)namedBevelInterpolationShaderFunction;

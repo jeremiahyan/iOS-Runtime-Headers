@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/AirPlayReceiver.framework/AirPlayReceiver
  */
 
-@class CALayer, MPDocument, MRMarimbaLayer, MediaControlServer, NSData, NSDictionary, NSLock, NSMutableDictionary;
-
 @interface AirPlayLocalSlideshow : NSObject <MPAssetKeyDelegate> {
     NSMutableDictionary *_assets;
     BOOL _endPending;
@@ -19,11 +17,16 @@
     CALayer *_presentationLayer;
     MediaControlServer *_server;
     unsigned int _serverSessionID;
-    unsigned char _sessionUUID[16];
+    unsigned char _sessionUUID;
     NSDictionary *_settings;
     double _startTime;
     int _state;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)slideshowFeaturesWithLanguage:(id)arg1;
 
@@ -46,8 +49,8 @@
 - (void)_playbackUserStop:(id)arg1;
 - (void)_postProgressEvent:(id)arg1;
 - (void)_pruneAssets;
-- (id)absolutePathForAssetKey:(id)arg1 andSize:(struct CGSize { float x1; float x2; })arg2;
 - (id)absolutePathForAssetKey:(id)arg1;
+- (id)absolutePathForAssetKey:(id)arg1 andSize:(struct CGSize { float x1; float x2; })arg2;
 - (id)absolutePathForStillAssetAtPath:(id)arg1 andSize:(struct CGSize { float x1; float x2; })arg2;
 - (void)dealloc;
 - (id)imageDataForAssetKey:(id)arg1 andSize:(struct CGSize { float x1; float x2; })arg2;

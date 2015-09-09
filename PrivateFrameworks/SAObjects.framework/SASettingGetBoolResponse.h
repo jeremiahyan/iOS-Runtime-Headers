@@ -2,21 +2,12 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class SASettingEntity;
-
-@interface SASettingGetBoolResponse : SASettingGetValueResponse {
-}
-
-@property(retain) SASettingEntity * setting;
+@interface SASettingGetBoolResponse : SASettingGetValueResponse
 
 + (id)getBoolResponse;
 + (id)getBoolResponseWithDictionary:(id)arg1 context:(id)arg2;
-+ (id)getBoolResponseWithSetting:(id)arg1;
 
 - (id)encodedClassName;
 - (id)groupIdentifier;
-- (id)initWithSetting:(id)arg1;
-- (void)setSetting:(id)arg1;
-- (id)setting;
 
 @end

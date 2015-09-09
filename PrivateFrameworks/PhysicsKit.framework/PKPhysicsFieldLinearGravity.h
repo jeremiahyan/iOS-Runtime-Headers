@@ -2,15 +2,12 @@
    Image: /System/Library/PrivateFrameworks/PhysicsKit.framework/PhysicsKit
  */
 
-@interface PKPhysicsFieldLinearGravity : PKPhysicsField {
-}
+@interface PKPhysicsFieldLinearGravity : PKPhysicsField
 
-@property struct CGVector { float x1; float x2; } gravity;
++ (id)field;
 
-+ (id)fieldWithLinearGravity:(struct CGVector { float x1; float x2; })arg1;
-
-- (struct CGVector { float x1; float x2; })gravity;
-- (id)initWithLinearGravity:(struct CGVector { float x1; float x2; })arg1;
-- (void)setGravity:(struct CGVector { float x1; float x2; })arg1;
+- (void)direction;
+- (id)init;
+- (void)setDirection;
 
 @end

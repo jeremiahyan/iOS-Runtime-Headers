@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@class <PSPasscodeFieldDelegate>, NSMutableArray, NSMutableString;
-
 @interface PSPasscodeField : UIView <UIKeyInput> {
     NSMutableArray *_dashViews;
     <PSPasscodeFieldDelegate> *_delegate;
@@ -14,17 +12,21 @@
     NSMutableString *_stringValue;
 }
 
-@property int autocapitalizationType;
-@property int autocorrectionType;
-@property <PSPasscodeFieldDelegate> * delegate;
-@property BOOL enablesReturnKeyAutomatically;
-@property int keyboardAppearance;
-@property int keyboardType;
-@property(readonly) unsigned int numberOfEntryFields;
-@property int returnKeyType;
-@property BOOL securePasscodeEntry;
-@property(getter=isSecureTextEntry) BOOL secureTextEntry;
-@property int spellCheckingType;
+@property (nonatomic) int autocapitalizationType;
+@property (nonatomic) int autocorrectionType;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <PSPasscodeFieldDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL enablesReturnKeyAutomatically;
+@property (readonly) unsigned int hash;
+@property (nonatomic) int keyboardAppearance;
+@property (nonatomic) int keyboardType;
+@property (nonatomic, readonly) unsigned int numberOfEntryFields;
+@property (nonatomic) int returnKeyType;
+@property (nonatomic) BOOL securePasscodeEntry;
+@property (getter=isSecureTextEntry, nonatomic) BOOL secureTextEntry;
+@property (nonatomic) int spellCheckingType;
+@property (readonly) Class superclass;
 
 - (BOOL)becomeFirstResponder;
 - (BOOL)canBecomeFirstResponder;
@@ -35,9 +37,11 @@
 - (id)initWithNumberOfEntryFields:(unsigned int)arg1;
 - (void)insertText:(id)arg1;
 - (BOOL)isSecureTextEntry;
+- (int)keyboardAppearance;
 - (int)keyboardType;
 - (void)layoutSubviews;
 - (unsigned int)numberOfEntryFields;
+- (void)passcodeFieldTapped:(id)arg1;
 - (BOOL)securePasscodeEntry;
 - (void)setDelegate:(id)arg1;
 - (void)setSecurePasscodeEntry:(BOOL)arg1;

@@ -2,14 +2,12 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIImageView, UIKeyboardCandidateBar, UIKeyboardCandidateGrid, UIKeyboardCandidateSortControl, UIKeyboardCandidateSplitKeyboardToggleButton, UIKeyboardCandidateUnsplitKeyboardToggleButton, UIView<UIKeyboardCandidateList>;
-
 @interface UIKeyboardCandidateView : UIInputView {
+    UIKeyboardCandidateBar *_bar;
     struct { 
         unsigned int isExtended; 
         unsigned int didMinimizeKeyboard; 
         unsigned int isSplit; 
-    UIKeyboardCandidateBar *_bar;
     } _candidateBarFlags;
     UIKeyboardCandidateGrid *_extendedView;
     UIView<UIKeyboardCandidateList> *_inlineView;
@@ -20,15 +18,15 @@
     UIKeyboardCandidateSortControl *_sortControl;
 }
 
-@property(retain) UIView<UIKeyboardCandidateList> * inlineView;
+@property (nonatomic, retain) UIView<UIKeyboardCandidateList> *inlineView;
 
 + (id)activeCandidateList;
 + (id)activeCandidateView;
 + (float)defaultExtendedControlHeight;
 + (void)setActiveCandidateView:(id)arg1;
 + (id)sharedInstance;
-+ (id)sharedInstanceForInlineView:(BOOL)arg1;
 + (id)sharedInstanceForInlineView;
++ (id)sharedInstanceForInlineView:(BOOL)arg1;
 
 - (unsigned int)_numberOfColumns:(BOOL)arg1;
 - (void)_toggleExtendedCandidateView:(id)arg1;
@@ -36,6 +34,7 @@
 - (float)barHeight;
 - (void)candidatesDidChange;
 - (void)dealloc;
+- (float)extendedViewAnimationDuration;
 - (id)hitTest:(struct CGPoint { float x1; float x2; })arg1 withEvent:(id)arg2;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (id)inlineView;

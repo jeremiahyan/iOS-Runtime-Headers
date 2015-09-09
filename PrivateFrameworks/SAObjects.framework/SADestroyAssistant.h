@@ -2,15 +2,16 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSString;
+@interface SADestroyAssistant : SABaseCommand <SAServerBoundCommand>
 
-@interface SADestroyAssistant : SABaseCommand <SAServerBoundCommand> {
-}
-
-@property(copy) NSString * aceId;
-@property(copy) NSString * assistantId;
-@property(copy) NSString * refId;
-@property(copy) NSString * speechId;
+@property (nonatomic, copy) NSString *aceId;
+@property (nonatomic, copy) NSString *assistantId;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *refId;
+@property (nonatomic, copy) NSString *speechId;
+@property (readonly) Class superclass;
 
 + (id)destroyAssistant;
 + (id)destroyAssistantWithDictionary:(id)arg1 context:(id)arg2;

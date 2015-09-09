@@ -2,44 +2,40 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSArray, NSMutableArray, NSString;
-
 @interface GEOResourceLoader : NSObject {
+    NSString *_additionalDirectoryToConsider;
+    BOOL _allowResumingPartialDownloads;
+    NSData *_auditToken;
     NSString *_baseURLString;
     BOOL _canceled;
-    id _completionHandler;
+    id /* block */ _completionHandler;
     NSString *_directory;
-    BOOL _firstLoadEver;
-    BOOL _ignoreCachedResources;
+    NSMapTable *_inProgressResourceDownloads;
     NSMutableArray *_loadedResources;
     unsigned int _maxConcurrentLoads;
     int _numberOfCopiesInProgress;
     int _numberOfDownloadsInProgress;
-    id _progressHandler;
+    GEOPowerAssertion *_powerAssertion;
+    id /* block */ _progressHandler;
+    long _queuePriority;
     NSArray *_resourceInfos;
     NSMutableArray *_resourcesToLoad;
-    unsigned int _tileGroupIdentifier;
-    NSString *_uniqueTileGroupIdentifier;
 }
 
-@property(readonly) NSArray * loadedResources;
-@property(readonly) unsigned int tileGroupIdentifier;
-@property(readonly) NSString * uniqueTileGroupIdentifier;
+@property (nonatomic, retain) NSData *auditToken;
+@property (nonatomic, readonly) NSArray *loadedResources;
 
 - (void)_cleanup;
+- (BOOL)_establishHardLinkIfPossibleForResource:(id)arg1 toResource:(id)arg2 error:(id*)arg3;
 - (void)_loadNextResource;
 - (id)_urlForResource:(id)arg1;
-- (void)_writeResourceToDisk:(id)arg1 withData:(id)arg2 orExistingPathOnDisk:(id)arg3 completionHandler:(id)arg4;
+- (void)_writeResourceToDisk:(id)arg1 withData:(id)arg2 orExistingPathOnDisk:(id)arg3 allowCreatingHardLink:(BOOL)arg4 checksum:(id)arg5 completionHandler:(id /* block */)arg6;
+- (id)auditToken;
 - (void)cancel;
 - (void)dealloc;
-- (id)initWithTileGroupIdentifier:(unsigned int)arg1 uniqueIdentifier:(id)arg2 targetDirectory:(id)arg3 baseURLString:(id)arg4 resources:(id)arg5 isFirstLoad:(BOOL)arg6 ignoreCachedResources:(BOOL)arg7;
+- (id)initWithTargetDirectory:(id)arg1 baseURLString:(id)arg2 resources:(id)arg3 maximumConcurrentLoads:(unsigned int)arg4 additionalDirectoryToConsider:(id)arg5;
 - (id)loadedResources;
-- (void)startWithProgressHandler:(id)arg1 completionHandler:(id)arg2 firstLoadEver:(BOOL)arg3;
-- (unsigned int)tileGroupIdentifier;
-- (id)uniqueTileGroupIdentifier;
+- (void)setAuditToken:(id)arg1;
+- (void)startWithProgressHandler:(id /* block */)arg1 completionHandler:(id /* block */)arg2 priority:(long)arg3;
 
 @end

@@ -2,27 +2,27 @@
    Image: /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
 @interface _CFStreamDelegate : NSObject <NSStreamDelegate> {
-    struct { 
-        int version; 
-        void *info; 
-        int (*retain)(); 
-        int (*release)(); 
-        int (*copyDescription)(); 
     union { 
         int (*_rcb)(); 
         int (*_wcb)(); 
         int (*genericCallback)(); 
         void *genericPointer; 
     } _cb;
+    struct { 
+        int version; 
+        void *info; 
+        int (*retain)(); 
+        int (*release)(); 
+        int (*copyDescription)(); 
     } _client;
     unsigned long _flags;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)dealloc;
 - (id)initWithStreamEvents:(unsigned long)arg1 callback:(void*)arg2 context:(struct { int x1; void *x2; int (*x3)(); int (*x4)(); int (*x5)(); }*)arg3;

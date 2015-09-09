@@ -2,9 +2,7 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString;
-
-@interface UIPrintInfo : NSObject <NSCopying, NSCoding> {
+@interface UIPrintInfo : NSObject <NSCoding, NSCopying> {
     int _copies;
     int _duplex;
     NSString *_jobName;
@@ -14,13 +12,13 @@
     BOOL _scaleUp;
 }
 
-@property int copies;
-@property int duplex;
-@property(copy) NSString * jobName;
-@property int orientation;
-@property int outputType;
-@property(copy) NSString * printerID;
-@property BOOL scaleUp;
+@property (nonatomic) int copies;
+@property (nonatomic) int duplex;
+@property (nonatomic, copy) NSString *jobName;
+@property (nonatomic) int orientation;
+@property (nonatomic) int outputType;
+@property (nonatomic, copy) NSString *printerID;
+@property (nonatomic) BOOL scaleUp;
 
 + (id)printInfo;
 + (id)printInfoWithDictionary:(id)arg1;

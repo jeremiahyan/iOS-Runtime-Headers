@@ -2,9 +2,9 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibrary.framework/PhotoLibrary
  */
 
-@class NSURL, PLCropOverlay, PLImageCache, PLImageLoadingQueue, PLImageSource, PLManagedAsset, PLPhotoTileViewController, PLVideoRemaker, PLVideoView, UIImage;
-
-@interface PLUIImageViewController : UIViewController <PLVideoViewDelegate, PLImageLoadingQueueDelegate, PLPhotoTileViewControllerDelegate> {
+@interface PLUIImageViewController : UIViewController <PLImageLoadingQueueDelegate, PLPhotoTileViewControllerDelegate, PLVideoViewDelegate> {
+    unsigned int _allowEditing;
+    PLCropOverlay *_cropOverlay;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -14,12 +14,6 @@
             float width; 
             float height; 
         } size; 
-    unsigned int _allowEditing : 1;
-    unsigned int _statusBarWasHidden : 1;
-    unsigned int _isVideo : 1;
-    unsigned int _isDisappearing : 1;
-    unsigned int _remaking : 1;
-    PLCropOverlay *_cropOverlay;
     } _cropRect;
     UIImage *_image;
     PLImageCache *_imageCache;
@@ -27,13 +21,22 @@
     struct CGImage { } *_imageRef;
     PLImageSource *_imageSource;
     PLPhotoTileViewController *_imageTile;
+    unsigned int _isDisappearing;
+    unsigned int _isVideo;
     int _newStatusBarStyle;
     PLManagedAsset *_photo;
     int _previousStatusBarStyle;
     PLVideoRemaker *_remaker;
+    unsigned int _remaking;
+    unsigned int _statusBarWasHidden;
     NSURL *_videoURL;
     PLVideoView *_videoView;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (unsigned int)_contentAutoresizingMask;
 - (BOOL)_displaysFullScreen;
@@ -48,8 +51,8 @@
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_viewFrame;
 - (void)attachScrubberPalette;
 - (BOOL)clientIsWallpaper;
-- (void)cropOverlay:(id)arg1 didFinishSaving:(id)arg2;
 - (id)cropOverlay;
+- (void)cropOverlay:(id)arg1 didFinishSaving:(id)arg2;
 - (int)cropOverlayMode;
 - (void)cropOverlayPause:(id)arg1;
 - (void)cropOverlayPlay:(id)arg1;

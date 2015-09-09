@@ -2,69 +2,63 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class <VKAnnotationModelDelegate>, NSArray, NSMutableArray, NSMutableSet, VKAnnotationMarker, VKMapModel, VKStylesheet;
-
-@interface VKAnnotationModel : VKModelObject <VKMapLayer, VKStylesheetObserver> {
-    struct { 
-        int from; 
-        int to; 
-        int fromDisplayStyle; 
-        int toDisplayStyle; 
-        float fraction; 
+@interface VKAnnotationModel : VKModelObject <VKMapLayer, VKStyleManagerObserver> {
     NSMutableSet *_animatingMarkers;
-    id _annotationMarkerDeselectionCallback;
+    id /* block */ _annotationMarkerDeselectionCallback;
     NSMutableArray *_annotationMarkers;
-    <VKAnnotationModelDelegate> *_delegate;
     BOOL _didDragMarker;
     VKAnnotationMarker *_draggingAnnotationMarker;
     BOOL _hasEverDrawnSomething;
     VKMapModel *_mapModel;
     NSMutableArray *_markersToAnimate;
     VKAnnotationMarker *_selectedAnnotationMarker;
+    struct { 
+        int from; 
+        int to; 
+        unsigned int fromDisplayStyle; 
+        unsigned int toDisplayStyle; 
+        float fraction; 
     } _styleTransitionState;
 }
 
-@property(copy) id annotationMarkerDeselectionCallback;
-@property(readonly) NSArray * annotationMarkers;
-@property <VKAnnotationModelDelegate> * delegate;
-@property VKMapModel * mapModel;
-@property(readonly) BOOL needsLayout;
-@property(readonly) VKAnnotationMarker * selectedAnnotationMarker;
-@property struct { int x1; int x2; int x3; int x4; float x5; } styleTransitionState;
-@property(readonly) VKStylesheet * stylesheet;
+@property (nonatomic, copy) id /* block */ annotationMarkerDeselectionCallback;
+@property (nonatomic, readonly) NSArray *annotationMarkers;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) VKMapModel *mapModel;
+@property (nonatomic, readonly) BOOL needsLayout;
+@property (nonatomic, readonly) VKAnnotationMarker *selectedAnnotationMarker;
+@property (nonatomic, readonly) VKStyleManager *styleManager;
+@property (nonatomic) struct { int x1; int x2; unsigned int x3; unsigned int x4; float x5; } styleTransitionState;
+@property (readonly) Class superclass;
 
 + (BOOL)reloadOnStylesheetChange;
 
 - (id).cxx_construct;
 - (void)addAnnotationMarker:(id)arg1 allowAnimation:(BOOL)arg2;
 - (void)anchorPositionChangedForMarker:(id)arg1;
-- (id)annotationCoordinateTest;
-- (id)annotationMarkerDeselectionCallback;
+- (id /* block */)annotationCoordinateTest;
+- (id /* block */)annotationMarkerDeselectionCallback;
 - (id)annotationMarkerForSelectionAtPoint:(struct VKPoint { double x1; double x2; double x3; })arg1 avoidCurrent:(BOOL)arg2 canvasSize:(struct CGSize { float x1; float x2; })arg3;
 - (id)annotationMarkers;
-- (id)annotationRectTest;
+- (id /* block */)annotationRectTest;
 - (void)dealloc;
-- (id)delegate;
 - (void)deselectAnnotationMarker:(id)arg1;
-- (void)drawScene:(id)arg1 withContext:(id)arg2;
-- (void)layoutScene:(id)arg1 withContext:(id)arg2;
-- (unsigned int)mapLayerPosition;
+- (void)gglLayoutScene:(id)arg1 withContext:(id)arg2 renderQueue:(struct RenderQueue { int (**x1)(); struct shared_ptr<ggl::RenderQueue> { struct RenderQueue {} *x_2_1_1; struct __shared_weak_count {} *x_2_1_2; } x2; }*)arg3;
+- (id)init;
+- (unsigned long long)mapLayerPosition;
 - (id)mapModel;
 - (BOOL)needsLayout;
 - (void)removeAnnotationMarker:(id)arg1;
 - (void)selectAnnotationMarker:(id)arg1;
 - (id)selectedAnnotationMarker;
-- (void)setAnnotationMarkerDeselectionCallback:(id)arg1;
-- (void)setDelegate:(id)arg1;
+- (void)setAnnotationMarkerDeselectionCallback:(id /* block */)arg1;
 - (void)setMapModel:(id)arg1;
-- (void)setStyleTransitionState:(struct { int x1; int x2; int x3; int x4; float x5; })arg1;
-- (struct { int x1; int x2; int x3; int x4; float x5; })styleTransitionState;
-- (id)stylesheet;
+- (void)setStyleTransitionState:(struct { int x1; int x2; unsigned int x3; unsigned int x4; float x5; })arg1;
+- (BOOL)shouldLayoutWithoutStyleManager;
+- (id)styleManager;
+- (struct { int x1; int x2; unsigned int x3; unsigned int x4; float x5; })styleTransitionState;
 - (void)stylesheetDidChange;
-- (unsigned int)supportedRenderPasses;
 
 @end

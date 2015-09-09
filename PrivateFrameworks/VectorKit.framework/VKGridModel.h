@@ -2,63 +2,92 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-@class VGLMesh, VGLRenderState, VKMapModel, VKStylesheet;
-
-@interface VKGridModel : VKModelObject <VKMapLayer, VKStylesheetObserver> {
-    struct { 
-        double v[4][4]; 
-    struct { 
-        double v[4][4]; 
-    struct Vec2Imp<float> { 
-        float x; 
-        float y; 
-    struct _VGLColor { 
-        float r; 
-        float g; 
-        float b; 
-        float a; 
-    struct _VGLColor { 
-        float r; 
-        float g; 
-        float b; 
-        float a; 
+@interface VKGridModel : VKModelObject <VKMapLayer, VKStyleManagerObserver> {
+    struct shared_ptr<ggl::GridBase::GridBaseUniformData> { 
+        struct GridBaseUniformData {} *__ptr_; 
+        struct __shared_weak_count {} *__cntrl_; 
+    } _baseUniformData;
+    struct Matrix<float, 4, 1> { 
+        float _e[4]; 
     } _fillColor;
+    struct shared_ptr<ggl::GridBase::GridMesh> { 
+        struct GridMesh {} *__ptr_; 
+        struct __shared_weak_count {} *__cntrl_; 
+    } _gridMesh;
     double _gridMix;
-    } _gridView;
-    } _invFwidth;
+    struct RenderItem { int (**x1)(); char *x2; struct RenderState {} *x3; struct ShaderSetup {} *x4; unsigned int x5; unsigned int x6; float x7; struct Mesh {} *x8; struct Range { unsigned int x_9_1_1; unsigned int x_9_1_2; } x9; struct Range {} *x10; unsigned int x11; } *_gridRenderItem;
+    struct unique_ptr<ggl::RenderState, std::__1::default_delete<ggl::RenderState> > { 
+        struct __compressed_pair<ggl::RenderState *, std::__1::default_delete<ggl::RenderState> > { 
+            struct RenderState {} *__first_; 
+        } __ptr_; 
+    } _gridRenderState;
+    struct Matrix<float, 4, 1> { 
+        float _e[4]; 
     } _lineColor;
     VKMapModel *_mapModel;
-    VGLMesh *_mesh;
-    } _projection;
-    unsigned int _renderPass;
-    VGLRenderState *_renderState;
+    BOOL _needsUpdatedColor;
+    unsigned char _renderPass;
+    struct unique_ptr<ggl::Grid::Shader::Setup, std::__1::default_delete<ggl::Grid::Shader::Setup> > { 
+        struct __compressed_pair<ggl::Grid::Shader::Setup *, std::__1::default_delete<ggl::Grid::Shader::Setup> > { 
+            struct Setup {} *__first_; 
+        } __ptr_; 
+    } _shaderSetup;
     BOOL _simpleGridEnabled;
+    struct RenderItem { int (**x1)(); char *x2; struct RenderState {} *x3; struct ShaderSetup {} *x4; unsigned int x5; unsigned int x6; float x7; struct Mesh {} *x8; struct Range { unsigned int x_9_1_1; unsigned int x_9_1_2; } x9; struct Range {} *x10; unsigned int x11; } *_simpleGridRenderItem;
+    struct unique_ptr<ggl::RenderState, std::__1::default_delete<ggl::RenderState> > { 
+        struct __compressed_pair<ggl::RenderState *, std::__1::default_delete<ggl::RenderState> > { 
+            struct RenderState {} *__first_; 
+        } __ptr_; 
+    } _simpleGridRenderState;
+    struct unique_ptr<ggl::SimpleGrid::Shader::Setup, std::__1::default_delete<ggl::SimpleGrid::Shader::Setup> > { 
+        struct __compressed_pair<ggl::SimpleGrid::Shader::Setup *, std::__1::default_delete<ggl::SimpleGrid::Shader::Setup> > { 
+            struct Setup {} *__first_; 
+        } __ptr_; 
+    } _simpleShaderSetup;
+    struct shared_ptr<ggl::SimpleGrid::SimpleGridUniformData> { 
+        struct SimpleGridUniformData {} *__ptr_; 
+        struct __shared_weak_count {} *__cntrl_; 
+    } _simpleUniformData;
+    struct shared_ptr<ggl::Grid::GridUniformData> { 
+        struct GridUniformData {} *__ptr_; 
+        struct __shared_weak_count {} *__cntrl_; 
+    } _uniformData;
+    struct shared_ptr<ggl::Tile::ViewUniformData> { 
+        struct ViewUniformData {} *__ptr_; 
+        struct __shared_weak_count {} *__cntrl_; 
+    } _viewUniformData;
 }
 
-@property(readonly) struct _VGLColor { float x1; float x2; float x3; float x4; } fillColor;
-@property VKMapModel * mapModel;
-@property unsigned int renderPass;
-@property BOOL simpleGridEnabled;
-@property(readonly) VKStylesheet * stylesheet;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) /* Warning: unhandled struct encoding: '{Matrix<float' */ struct  fillColor; /* unknown property attribute:  1>=[4f]} */
+@property (readonly) unsigned int hash;
+@property (nonatomic) VKMapModel *mapModel;
+@property (nonatomic) unsigned char renderPass;
+@property (nonatomic) BOOL simpleGridEnabled;
+@property (nonatomic, readonly) VKStyleManager *styleManager;
+@property (readonly) Class superclass;
 
 + (BOOL)reloadOnStylesheetChange;
 
 - (id).cxx_construct;
+- (void).cxx_destruct;
 - (void)dealloc;
-- (void)drawScene:(id)arg1 withContext:(id)arg2 pass:(unsigned int)arg3;
-- (struct _VGLColor { float x1; float x2; float x3; float x4; })fillColor;
+- (struct Matrix<float, 4, 1> { float x1[4]; })fillColor;
+- (void)gglLayoutScene:(id)arg1 withContext:(id)arg2 renderQueue:(struct RenderQueue { int (**x1)(); struct shared_ptr<ggl::RenderQueue> { struct RenderQueue {} *x_2_1_1; struct __shared_weak_count {} *x_2_1_2; } x2; }*)arg3;
 - (id)init;
-- (void)layoutScene:(id)arg1 withContext:(id)arg2;
-- (unsigned int)mapLayerPosition;
+- (unsigned long long)mapLayerPosition;
 - (id)mapModel;
-- (unsigned int)renderPass;
+- (unsigned char)renderPass;
 - (void)setMapModel:(id)arg1;
-- (void)setRenderPass:(unsigned int)arg1;
+- (void)setNeedsUpdatedGridColor;
+- (void)setRenderPass:(unsigned char)arg1;
 - (void)setSimpleGridEnabled:(BOOL)arg1;
+- (BOOL)shouldLayoutWithoutStyleManager;
 - (BOOL)simpleGridEnabled;
-- (id)stylesheet;
+- (id)styleManager;
 - (void)stylesheetDidChange;
-- (unsigned int)supportedRenderPasses;
+- (void)stylesheetDoneChanging;
 - (void)updateGridColor;
 
 @end

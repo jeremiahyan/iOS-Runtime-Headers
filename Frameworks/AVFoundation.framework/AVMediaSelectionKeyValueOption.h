@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class AVWeakReference, NSDictionary, NSString;
-
 @interface AVMediaSelectionKeyValueOption : AVMediaSelectionOption {
     NSDictionary *_dictionary;
     BOOL _displaysNonForcedSubtitles;
@@ -15,7 +13,6 @@
 
 - (id)_groupID;
 - (id)_groupMediaType;
-- (id)associatedMediaSelectionOptionInMediaSelectionGroup:(id)arg1;
 - (id)availableMetadataFormats;
 - (id)commonMetadata;
 - (void)dealloc;

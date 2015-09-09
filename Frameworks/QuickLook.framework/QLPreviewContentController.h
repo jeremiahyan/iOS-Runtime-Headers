@@ -2,24 +2,7 @@
    Image: /System/Library/Frameworks/QuickLook.framework/QuickLook
  */
 
-@class <QLPreviewContentDataSource>, <QLPreviewContentDelegate>, NSMutableArray, NSMutableDictionary, NSMutableOrderedSet, NSMutableSet, NSString, QLAirPlayController, UIColor, UILongPressGestureRecognizer, UIPageViewController, UISegmentedControl, UITapGestureRecognizer;
-
 @interface QLPreviewContentController : UIViewController <QLPreviewContentControllerProtocol, QLPreviewItemInteractionDelegate> {
-    struct { 
-        int pid; 
-        struct { 
-            unsigned int val[8]; 
-        } audit_token; 
-        struct CGRect { 
-            struct CGPoint { 
-                float x; 
-                float y; 
-            } origin; 
-            struct CGSize { 
-                float width; 
-                float height; 
-            } size; 
-        } contentFrame; 
     QLAirPlayController *_airPlayController;
     UIColor *_backgroundColor;
     BOOL _blockRemoteImages;
@@ -43,14 +26,33 @@
     BOOL _swiping;
     UITapGestureRecognizer *_tapRecognizer;
     BOOL _transitioning;
+    struct { 
+        int pid; 
+        struct { 
+            unsigned int val[8]; 
+        } audit_token; 
+        struct CGRect { 
+            struct CGPoint { 
+                float x; 
+                float y; 
+            } origin; 
+            struct CGSize { 
+                float width; 
+                float height; 
+            } size; 
+        } contentFrame; 
     } clientContext;
 }
 
-@property(copy) UIColor * backgroundColor;
+@property (copy) UIColor *backgroundColor;
 @property struct { int x1; struct { unsigned int x_2_1_1[8]; } x2; struct CGRect { struct CGPoint { float x_1_2_1; float x_1_2_2; } x_3_1_1; struct CGSize { float x_2_2_1; float x_2_2_2; } x_3_1_2; } x3; } clientContext;
-@property <QLPreviewContentDataSource> * dataSource;
-@property <QLPreviewContentDelegate> * delegate;
+@property <QLPreviewContentDataSource> *dataSource;
+@property (readonly, copy) NSString *debugDescription;
+@property <QLPreviewContentDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
 @property int previewMode;
+@property (readonly) Class superclass;
 
 - (void)_activateAirPlayOnRemoteScreen:(id)arg1;
 - (void)_cachePreviewViewController:(id)arg1;
@@ -117,8 +119,8 @@
 - (int)previewMode;
 - (id)printPageHelper;
 - (id)printPageRenderer;
-- (void)refreshCurrentPreviewItem:(BOOL)arg1;
 - (void)refreshCurrentPreviewItem;
+- (void)refreshCurrentPreviewItem:(BOOL)arg1;
 - (void)scrubToValue:(double)arg1;
 - (void)setBackgroundColor:(id)arg1;
 - (void)setBlockRemoteImages:(BOOL)arg1;
@@ -131,9 +133,10 @@
 - (void)setNavigationBarVerticalOffset:(float)arg1;
 - (void)setOverlayHidden:(BOOL)arg1 duration:(double)arg2;
 - (void)setPreviewMode:(int)arg1;
-- (void)setTransitioning:(BOOL)arg1 synchronizedWithBlock:(id)arg2;
+- (void)setTransitioning:(BOOL)arg1 synchronizedWithBlock:(id /* block */)arg2;
 - (void)showContentsWasTappedForPreviewItem:(id)arg1;
 - (id)snapshotView;
+- (void)stopLoadingCurrentPreviewItem;
 - (void)togglePlayState;
 - (void)viewDidAppear:(BOOL)arg1;
 - (void)viewDidLayoutSubviews;

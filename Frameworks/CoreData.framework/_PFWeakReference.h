@@ -7,7 +7,7 @@
     unsigned int _objectAddress;
 }
 
-@property(readonly) id object;
+@property (readonly) id object;
 
 + (id)weakReferenceWithObject:(id)arg1;
 
@@ -16,5 +16,6 @@
 - (id)initWithObject:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (id)object;
+- (id)retainedObject;
 
 @end

@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/GameKitServices.framework/GameKitServices
  */
 
-@class <GKVoiceChatSessionDelegate>, GKInterfaceListener, GKRWLock, GKSessionInternal, GKVoiceChatServiceFocus, NSArray, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString, VoiceChatSessionRoster;
-
-@interface GKVoiceChatSessionInternal : NSObject <GKSessionVoiceChatDelegate, GKVoiceChatClient, VideoConferenceSpeakingDelegate, InterfaceListenerDelegate> {
+@interface GKVoiceChatSessionInternal : NSObject <GKSessionVoiceChatDelegate, GKVoiceChatClient, InterfaceListenerDelegate, VideoConferenceSpeakingDelegate> {
     unsigned int _conferenceID;
     NSMutableArray *_connectedFocusPeers;
     NSMutableArray *_connectedPeers;
@@ -35,13 +33,17 @@
     unsigned int talkingPeersLimit;
 }
 
-@property(getter=isActiveSession) BOOL activeSession;
-@property(readonly) unsigned int conferenceID;
-@property <GKVoiceChatSessionDelegate> * delegate;
+@property (getter=isActiveSession) BOOL activeSession;
+@property (nonatomic, readonly) unsigned int conferenceID;
+@property (readonly, copy) NSString *debugDescription;
+@property <GKVoiceChatSessionDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
 @property BOOL isUsingSuppression;
-@property(readonly) NSArray * peerList;
-@property(readonly) NSString * sessionName;
+@property (readonly) NSArray *peerList;
+@property (nonatomic, readonly) NSString *sessionName;
 @property float sessionVolume;
+@property (readonly) Class superclass;
 @property unsigned int talkingPeersLimit;
 
 + (void)brokenHash:(id)arg1 response:(char *)arg2;
@@ -69,11 +71,12 @@
 - (void)informClientVoiceChatSilent:(id)arg1;
 - (void)informClientVoiceChatSpeaking:(id)arg1;
 - (id)initWithGKSession:(id)arg1 publicWrapper:(id)arg2 sessionName:(id)arg3;
-- (void)interfaceStateDidChangeWithWifiUp:(BOOL)arg1 withCellUp:(BOOL)arg2;
+- (void)interfaceStateDidChangeWithWifiUp:(BOOL)arg1 cellUp:(BOOL)arg2;
 - (BOOL)isActiveSession;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isUsingSuppression;
 - (void)lossRate:(float)arg1 forParticipantID:(id)arg2;
+- (void)networkStateDidChange;
 - (void)parseConnectedPeers:(id)arg1;
 - (void)parseMutedPeers:(id)arg1 forPeer:(id)arg2;
 - (id)participantID;

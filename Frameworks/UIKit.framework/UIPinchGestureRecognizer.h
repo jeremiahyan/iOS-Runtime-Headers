@@ -2,9 +2,19 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UITouch;
-
 @interface UIPinchGestureRecognizer : UIGestureRecognizer {
+    struct CGPoint { 
+        float x; 
+        float y; 
+    } _anchorSceneReferencePoint;
+    unsigned int _endsOnSingleTouch;
+    float _hysteresis;
+    float _initialTouchDistance;
+    float _initialTouchScale;
+    double _lastTouchTime;
+    float _previousVelocity;
+    float _scaleThreshold;
+    UITouch *_touches;
     struct CGAffineTransform { 
         float a; 
         float b; 
@@ -12,30 +22,16 @@
         float d; 
         float tx; 
         float ty; 
-    struct CGPoint { 
-        float x; 
-        float y; 
-    unsigned int _endsOnSingleTouch : 1;
-    } _anchorPoint;
-    float _hysteresis;
-    float _initialTouchDistance;
-    float _initialTouchScale;
-    double _lastTouchTime;
-    float _previousVelocity;
-    float _scaleThreshold;
-    UITouch *_touches[2];
     } _transform;
     id _transformAnalyzer;
     float _velocity;
 }
 
-@property(readonly) struct CGPoint { float x1; float x2; } anchorPoint;
-@property(getter=_hysteresis,setter=_setHysteresis:) float hysteresis;
-@property float scale;
-@property float scaleThreshold;
-@property(readonly) float velocity;
-
-+ (void)addPinchGestureRecognizerToView:(id)arg1 withTarget:(id)arg2 action:(SEL)arg3;
+@property (nonatomic, readonly) struct CGPoint { float x1; float x2; } anchorPoint;
+@property (getter=_hysteresis, setter=_setHysteresis:, nonatomic) float hysteresis;
+@property (nonatomic) float scale;
+@property (nonatomic) float scaleThreshold;
+@property (nonatomic, readonly) float velocity;
 
 - (BOOL)_endsOnSingleTouch;
 - (float)_hysteresis;

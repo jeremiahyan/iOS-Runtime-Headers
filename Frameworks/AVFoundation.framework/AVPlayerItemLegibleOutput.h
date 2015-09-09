@@ -2,27 +2,22 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class <AVPlayerItemLegibleOutputPushDelegate>, AVPlayerItemLegibleOutputInternal, NSObject<OS_dispatch_queue>;
-
 @interface AVPlayerItemLegibleOutput : AVPlayerItemOutput {
     AVPlayerItemLegibleOutputInternal *_legibleOutputInternal;
 }
 
-@property double advanceIntervalForDelegateInvocation;
-@property(readonly) <AVPlayerItemLegibleOutputPushDelegate> * delegate;
-@property(readonly) NSObject<OS_dispatch_queue> * delegateQueue;
+@property (nonatomic) double advanceIntervalForDelegateInvocation;
+@property (nonatomic, readonly) <AVPlayerItemLegibleOutputPushDelegate> *delegate;
+@property (nonatomic, readonly) NSObject<OS_dispatch_queue> *delegateQueue;
 
 + (void)initialize;
 
-- (void)_attachToPlayerItem:(id)arg1;
+- (BOOL)_attachToPlayerItem:(id)arg1;
 - (void)_collectUncollectables;
-- (void)_dataSourceProvidedAttributedStrings:(id)arg1 andSampleBuffers:(id)arg2 atItemTime:(struct { long long x1; int x2; unsigned int x3; long long x4; })arg3;
-- (void)_dataSourceSignaledFlush;
 - (void)_detachFromPlayerItem;
-- (id)_figLegibleOutputsDictionaryKey;
 - (id)_figLegibleOutputsDictionaryOptions;
-- (id)_hostOrNil;
-- (BOOL)_isAttachedToHost;
+- (void)_pushAttributedStrings:(id)arg1 andSampleBuffers:(id)arg2 atItemTime:(struct { long long x1; int x2; unsigned int x3; long long x4; })arg3;
+- (void)_signalFlush;
 - (double)advanceIntervalForDelegateInvocation;
 - (void)dealloc;
 - (id)delegate;

@@ -2,10 +2,9 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSMutableString, WDCharacterProperties, WDOfficeArt, WDParagraphProperties;
-
 @interface WDListLevel : NSObject {
     WDCharacterProperties *mCharacterProperties;
+    WDDocument *mDocument;
     WDOfficeArt *mImage;
     int mJustification;
     BOOL mLegacy;
@@ -14,6 +13,7 @@
     BOOL mLegal;
     int mNumberFormat;
     WDParagraphProperties *mParagraphProperties;
+    long mRestartLevel;
     BOOL mRestartNumbering;
     long mStartNumber;
     int mSuffix;
@@ -22,6 +22,7 @@
 
 - (id)characterProperties;
 - (void)dealloc;
+- (id)description;
 - (id)image;
 - (BOOL)imageBullet;
 - (BOOL)imageBulletOverridden;
@@ -36,6 +37,8 @@
 - (int)numberFormat;
 - (BOOL)numberFormatOverridden;
 - (id)paragraphProperties;
+- (long)restartLevel;
+- (BOOL)restartLevelOverridden;
 - (BOOL)restartNumbering;
 - (BOOL)restartNumberingOverridden;
 - (void)setImage:(id)arg1;
@@ -45,6 +48,7 @@
 - (void)setLegacySpace:(long)arg1;
 - (void)setLegal:(BOOL)arg1;
 - (void)setNumberFormat:(int)arg1;
+- (void)setRestartLevel:(long)arg1;
 - (void)setRestartNumbering:(BOOL)arg1;
 - (void)setStartNumber:(long)arg1;
 - (void)setSuffix:(int)arg1;

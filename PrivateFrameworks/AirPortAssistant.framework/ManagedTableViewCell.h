@@ -2,9 +2,12 @@
    Image: /System/Library/PrivateFrameworks/AirPortAssistant.framework/AirPortAssistant
  */
 
-@class NSIndexPath, NSMutableDictionary, TableViewManager;
-
 @interface ManagedTableViewCell : UITableViewCell {
+    NSMutableDictionary *_cellDict;
+    float _cellXEdgeInset;
+    float _computedRightmostEditTextInset;
+    NSIndexPath *_currentIndexPath;
+    float _forcedRightmostEditTextInset;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -14,22 +17,17 @@
             float width; 
             float height; 
         } size; 
-    NSMutableDictionary *_cellDict;
-    float _cellXEdgeInset;
-    float _computedRightmostEditTextInset;
-    NSIndexPath *_currentIndexPath;
-    float _forcedRightmostEditTextInset;
     } _modifiedContentViewFrame;
     float _neededContentHeight;
     TableViewManager *_parentTableManager;
 }
 
-@property(retain) NSMutableDictionary * cellDict;
-@property(readonly) float computedRightmostEditTextInset;
-@property(retain) NSIndexPath * currentIndexPath;
-@property float forcedRightmostEditTextInset;
-@property(readonly) float neededContentHeight;
-@property TableViewManager * parentTableManager;
+@property (nonatomic, retain) NSMutableDictionary *cellDict;
+@property (nonatomic, readonly) float computedRightmostEditTextInset;
+@property (nonatomic, retain) NSIndexPath *currentIndexPath;
+@property (nonatomic) float forcedRightmostEditTextInset;
+@property (nonatomic, readonly) float neededContentHeight;
+@property (nonatomic) TableViewManager *parentTableManager;
 
 - (id)accessibilityValue;
 - (float)calculateFrameSizeForView:(id)arg1 forItem:(id)arg2 atItemIndex:(unsigned int)arg3 withRemainingContentWidth:(float)arg4;

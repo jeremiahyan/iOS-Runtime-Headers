@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray;
-
 @interface _UIRemoteDictionaryViewController : UITableViewController {
     NSArray *_availableDictionaries;
 }
@@ -15,7 +13,6 @@
 - (id)_downloadOptionsDictionary;
 - (void)_handleDeleteButton:(id)arg1;
 - (void)_handleDownloadButton:(id)arg1;
-- (id)_normalizedLanguageStringForLanguageCode:(id)arg1;
 - (void)dealloc;
 - (id)initWithStyle:(int)arg1;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;

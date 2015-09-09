@@ -2,21 +2,14 @@
    Image: /System/Library/Frameworks/Social.framework/Social
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class <NSStreamDelegate>, NSArray, SLRequestMultiPartInputStream;
-
 @interface SLRequestBodyInputStream : NSInputStream {
+    int (*_clientCallback;
     struct { 
         int version; 
         void *info; 
         int (*retain)(); 
         int (*release)(); 
         int (*copyDescription)(); 
-    int (*_clientCallback)();
     } _clientContext;
     unsigned int _currentIndex;
     unsigned int _currentLength;
@@ -28,16 +21,17 @@
     NSArray *_inputStreams;
     BOOL _openEventSent;
     struct __CFRunLoopSource { } *_rls;
+    SLRequestBodyInputStream *_selfReferenceDuringStreamEventTrigger;
     unsigned int _streamStatus;
 }
 
-@property <NSStreamDelegate> * delegate;
-@property(readonly) unsigned int totalBytes;
+@property (nonatomic) <NSStreamDelegate> *delegate;
+@property (readonly) unsigned int totalBytes;
 
 - (void).cxx_destruct;
 - (void)_scheduleCallback;
 - (void)_scheduleInCFRunLoop:(struct __CFRunLoop { }*)arg1 forMode:(struct __CFString { }*)arg2;
-- (BOOL)_setCFClientFlags:(unsigned long)arg1 callback:(int (*)())arg2 context:(struct { int x1; void *x2; int (*x3)(); int (*x4)(); int (*x5)(); }*)arg3;
+- (BOOL)_setCFClientFlags:(unsigned long)arg1 callback:(int (*)arg2 context:(struct { int x1; void *x2; int (*x3)(); int (*x4)(); int (*x5)(); }*)arg3;
 - (void)_streamEventTrigger;
 - (void)_unscheduleFromCFRunLoop:(struct __CFRunLoop { }*)arg1 forMode:(struct __CFString { }*)arg2;
 - (unsigned int)bytesRead;

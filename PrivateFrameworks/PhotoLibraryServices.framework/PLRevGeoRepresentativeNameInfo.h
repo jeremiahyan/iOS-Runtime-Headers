@@ -2,29 +2,26 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
  */
 
-@class NSMutableOrderedSet, NSString;
-
 @interface PLRevGeoRepresentativeNameInfo : NSObject {
     BOOL _addCountyIfNeeded;
     BOOL _allEntriesAtHome;
     BOOL _allEntriesMatchHomeForOrderType;
     NSMutableOrderedSet *_geoPlaces;
-    NSString *_localizedName;
     unsigned int _matchingCount;
     NSString *_name;
     NSMutableOrderedSet *_remainingGeoPlaces;
     unsigned int _type;
 }
 
-@property BOOL addCountyIfNeeded;
-@property BOOL allEntriesAtHome;
-@property BOOL allEntriesMatchHomeForOrderType;
-@property(readonly) NSMutableOrderedSet * geoPlaces;
-@property(copy) NSString * localizedName;
-@property unsigned int matchingCount;
-@property(copy) NSString * name;
-@property(readonly) NSMutableOrderedSet * remainingGeoPlaces;
-@property unsigned int type;
+@property (nonatomic) BOOL addCountyIfNeeded;
+@property (nonatomic) BOOL allEntriesAtHome;
+@property (nonatomic) BOOL allEntriesMatchHomeForOrderType;
+@property (nonatomic, readonly) NSMutableOrderedSet *geoPlaces;
+@property (nonatomic, readonly, copy) NSString *localizedName;
+@property (nonatomic) unsigned int matchingCount;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, readonly) NSMutableOrderedSet *remainingGeoPlaces;
+@property (nonatomic) unsigned int type;
 
 - (void)_addResourceKeys:(id)arg1 toTypeMap:(id)arg2 forOrderType:(unsigned int)arg3 countryCode:(id)arg4;
 - (BOOL)_administrativeAreaCode:(id)arg1 supportedForOrderType:(unsigned int)arg2;
@@ -40,7 +37,6 @@
 - (void)dealloc;
 - (id)description;
 - (id)geoPlaces;
-- (id)init;
 - (id)initWithName:(id)arg1 type:(unsigned int)arg2;
 - (id)localizedName;
 - (unsigned int)matchingCount;
@@ -51,7 +47,6 @@
 - (void)setAddCountyIfNeeded:(BOOL)arg1;
 - (void)setAllEntriesAtHome:(BOOL)arg1;
 - (void)setAllEntriesMatchHomeForOrderType:(BOOL)arg1;
-- (void)setLocalizedName:(id)arg1;
 - (void)setMatchingCount:(unsigned int)arg1;
 - (void)setName:(id)arg1;
 - (void)setType:(unsigned int)arg1;

@@ -7,6 +7,7 @@
     float mLineSpacingReductionPercent;
 }
 
+- (id)description;
 - (float)fontScalePercent;
 - (unsigned int)hash;
 - (id)initWithFontScalePercent:(float)arg1 lineSpacingReductionPercent:(float)arg2;

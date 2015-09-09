@@ -2,41 +2,39 @@
    Image: /System/Library/PrivateFrameworks/SiriUI.framework/SiriUI
  */
 
-@class SiriUIKeyline, UIImageView, UILabel, UIView;
-
 @interface SiriUIContentCollectionViewCell : SiriUIClearBackgroundCell {
     struct UIOffset { 
         float horizontal; 
         float vertical; 
-    struct UIOffset { 
-        float horizontal; 
-        float vertical; 
-    struct UIEdgeInsets { 
-        float top; 
-        float left; 
-        float bottom; 
-        float right; 
     } _accessoryOffset;
     UIView *_accessoryView;
     UIImageView *_chevronView;
     BOOL _hasChevron;
     SiriUIKeyline *_keyline;
     int _keylineType;
+    struct UIEdgeInsets { 
+        float top; 
+        float left; 
+        float bottom; 
+        float right; 
     } _textAndAccessoryInsets;
     UILabel *_textLabel;
+    struct UIOffset { 
+        float horizontal; 
+        float vertical; 
     } _textOffset;
     int _verticalAlignment;
 }
 
-@property struct UIOffset { float x1; float x2; } accessoryOffset;
-@property(retain) UIView * accessoryView;
-@property BOOL hasChevron;
-@property(readonly) SiriUIKeyline * keyline;
-@property int keylineType;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } textAndAccessoryInsets;
-@property(retain) UILabel * textLabel;
-@property struct UIOffset { float x1; float x2; } textOffset;
-@property int verticalAlignment;
+@property (nonatomic) struct UIOffset { float x1; float x2; } accessoryOffset;
+@property (nonatomic, retain) UIView *accessoryView;
+@property (nonatomic) BOOL hasChevron;
+@property (nonatomic, readonly) SiriUIKeyline *keyline;
+@property (nonatomic) int keylineType;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } textAndAccessoryInsets;
+@property (nonatomic, retain) UILabel *textLabel;
+@property (nonatomic) struct UIOffset { float x1; float x2; } textOffset;
+@property (nonatomic) int verticalAlignment;
 
 + (id)reuseIdentifier;
 

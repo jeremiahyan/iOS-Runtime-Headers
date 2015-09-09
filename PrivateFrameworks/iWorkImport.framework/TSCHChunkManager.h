@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class TSCHChartInfo;
-
 @interface TSCHChunkManager : NSObject {
     TSCHChartInfo *mChartInfo;
     unsigned int mChunkMapCount;
@@ -23,16 +21,21 @@
 - (unsigned int)chunkCountByUpdatingCacheIfNecessaryForChartDeliveryStyle:(unsigned int)arg1;
 - (unsigned int)chunkCountForChartDeliveryStyle:(unsigned int)arg1;
 - (void)clearCaches;
+- (id)containedTextForChartDeliveryStyle:(unsigned int)arg1 chunkIndex:(unsigned int)arg2;
 - (void)dealloc;
 - (BOOL)hasBackgroundLayerForPieChart;
 - (id)initWithChartInfo:(id)arg1;
+- (BOOL)isVisibleAtBeginningOfMagicChartBuildForDeliveryStyle:(unsigned int)arg1 animationFilter:(id)arg2;
 - (BOOL)lastChunkForSeriesIndex:(unsigned int)arg1 currentChunk:(unsigned int)arg2 chunkStyle:(unsigned int)arg3;
+- (id)p_backgroundStringForChartWithTitle:(id)arg1;
 - (BOOL)p_canAddChunkForSeries:(id)arg1 valueIndex:(int)arg2;
 - (unsigned int)p_chunkCountForChartDeliveryStyle:(unsigned int)arg1;
 - (BOOL)p_hasBackgroundFill;
 - (BOOL)p_isMultiData;
 - (BOOL)p_isPie;
 - (BOOL)p_legendOn;
+- (id)p_nameForMultiDataSetCategory:(unsigned int)arg1;
+- (id)p_seriesNameForSeriesAtIndex:(unsigned int)arg1 withPrefix:(id)arg2;
 - (BOOL)p_titleOn;
 - (void)p_updateCacheForElementsInSeries;
 - (void)p_updateCacheForElementsInSets;

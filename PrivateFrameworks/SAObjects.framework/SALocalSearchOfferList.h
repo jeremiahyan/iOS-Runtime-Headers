@@ -2,13 +2,14 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSArray, NSString;
+@interface SALocalSearchOfferList : AceObject <SAAceSerializable>
 
-@interface SALocalSearchOfferList : AceObject <SAAceSerializable> {
-}
-
-@property(copy) NSArray * offers;
-@property(copy) NSString * providerId;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSArray *offers;
+@property (nonatomic, copy) NSString *providerId;
+@property (readonly) Class superclass;
 
 + (id)offerList;
 + (id)offerListWithDictionary:(id)arg1 context:(id)arg2;

@@ -2,24 +2,27 @@
    Image: /System/Library/PrivateFrameworks/PhysicsKit.framework/PhysicsKit
  */
 
-@class PKPhysicsBody;
-
 @interface PKPhysicsContact : NSObject {
+    PKPhysicsBody *_bodyA;
+    PKPhysicsBody *_bodyB;
+    struct CGVector { 
+        float dx; 
+        float dy; 
+    } _contactNormal;
     struct CGPoint { 
         float x; 
         float y; 
-    PKPhysicsBody *_bodyA;
-    PKPhysicsBody *_bodyB;
     } _contactPoint;
     BOOL _didBegin;
     BOOL _didEnd;
     float _impulse;
 }
 
-@property(readonly) PKPhysicsBody * bodyA;
-@property(readonly) PKPhysicsBody * bodyB;
-@property(readonly) float collisionImpulse;
-@property(readonly) struct CGPoint { float x1; float x2; } contactPoint;
+@property (nonatomic, readonly) PKPhysicsBody *bodyA;
+@property (nonatomic, readonly) PKPhysicsBody *bodyB;
+@property (nonatomic, readonly) float collisionImpulse;
+@property (nonatomic, readonly) struct CGVector { float x1; float x2; } contactNormal;
+@property (nonatomic, readonly) struct CGPoint { float x1; float x2; } contactPoint;
 @property BOOL didBegin;
 @property BOOL didEnd;
 
@@ -28,6 +31,7 @@
 - (id)bodyA;
 - (id)bodyB;
 - (float)collisionImpulse;
+- (struct CGVector { float x1; float x2; })contactNormal;
 - (struct CGPoint { float x1; float x2; })contactPoint;
 - (BOOL)didBegin;
 - (BOOL)didEnd;
@@ -35,6 +39,7 @@
 - (void)setBodyA:(id)arg1;
 - (void)setBodyB:(id)arg1;
 - (void)setCollisionImpulse:(float)arg1;
+- (void)setContactNormal:(struct CGVector { float x1; float x2; })arg1;
 - (void)setContactPoint:(struct CGPoint { float x1; float x2; })arg1;
 - (void)setDidBegin:(BOOL)arg1;
 - (void)setDidEnd:(BOOL)arg1;

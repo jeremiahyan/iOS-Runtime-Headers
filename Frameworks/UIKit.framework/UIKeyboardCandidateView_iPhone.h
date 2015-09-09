@@ -2,17 +2,21 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIKeyboardCandidateGridHeader;
-
 @interface UIKeyboardCandidateView_iPhone : UIKeyboardCandidateView <UICollectionViewDelegate, UIGestureRecognizerDelegate> {
     UIKeyboardCandidateGridHeader *_header;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+
++ (float)defaultExtendedControlHeight;
 
 - (void)_handleKeyboardShowOrHide:(id)arg1;
 - (void)_setupKeyboardInteraction;
 - (BOOL)_shouldShowHideKeyboard;
 - (BOOL)_shouldUseFullMetrics;
-- (float)barHeight;
 - (void)dealloc;
 - (BOOL)gestureRecognizerShouldBegin:(id)arg1;
 - (void)handleTap;

@@ -2,9 +2,8 @@
    Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
  */
 
-@class NSMutableDictionary;
-
 @interface SUDeferredUIButton : UIButton <SUDeferredUIView> {
+    BOOL _deferredEnabled;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -14,14 +13,17 @@
             float width; 
             float height; 
         } size; 
-    BOOL _deferredEnabled;
     } _deferredFrame;
     NSMutableDictionary *_deferredImages;
     NSMutableDictionary *_deferredTitles;
     BOOL _isDeferringInterfaceUpdates;
 }
 
-@property(getter=isDeferringInterfaceUpdates) BOOL deferringInterfaceUpdates;
+@property (readonly, copy) NSString *debugDescription;
+@property (getter=isDeferringInterfaceUpdates, nonatomic) BOOL deferringInterfaceUpdates;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)_commitDeferredInterfaceUpdates;
 - (void)_saveCurrentStateAsDeferred;

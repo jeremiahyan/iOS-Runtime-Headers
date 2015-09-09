@@ -2,9 +2,10 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class <UIWebAutoFillDelegate>, DOMNode, NSHashTable, NSLock, NSMutableArray, NSMutableSet, NSObject<UIFormPeripheral>, NSString, NSTimer, UIResponder, UIWebFormAccessory, UIWebFormDelegate, UIWebPDFView, UIWebTouchEventsGestureRecognizer;
-
-@interface UIWebBrowserView : UIWebDocumentView <UIWebTouchEventsGestureRecognizerDelegate, UIWebFormAccessoryDelegate, _UIWebRotationDelegate> {
+@interface UIWebBrowserView : UIWebDocumentView <UIWebFormAccessoryDelegate, UIWebTouchEventsGestureRecognizerDelegate, WBUFormAutoFillWebView, _UIWebRotationDelegate> {
+    UIWebFormAccessory *_accessory;
+    unsigned int _accessoryEnabled;
+    NSHashTable *_activeHighlighters;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -14,6 +15,21 @@
             float width; 
             float height; 
         } size; 
+    } _addressViewBounds;
+    unsigned int _allowDOMFocusRedirects;
+    unsigned int _alwaysDispatchesScrollEvents;
+    DOMNode *_assistedNodeStartingFocusRedirects;
+    unsigned int _audioSessionCategoryOverride;
+    <UIWebAutoFillDelegate> *_autoFillDelegate;
+    DOMNode *_currentAssistedNode;
+    NSMutableArray *_deferredTouchEvents;
+    unsigned int _dispatchedTouchEvents;
+    UIResponder *_editingDelegateForEverythingExceptForms;
+    unsigned int _forceInputView;
+    UIWebFormDelegate *_formDelegate;
+    unsigned int _formIsAutoFilling;
+    unsigned int _hasEditedTextField;
+    NSObject<UIFormPeripheral> *_input;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -23,6 +39,9 @@
             float width; 
             float height; 
         } size; 
+    } _inputViewBounds;
+    unsigned int _inputViewObeysDOMFocus;
+    float _lastAdjustmentForScroller;
     struct { 
         NSMutableArray *all; 
         NSMutableArray *html; 
@@ -32,34 +51,13 @@
         NSMutableArray *warning; 
         NSMutableArray *tip; 
         NSMutableArray *log; 
-    struct { 
-        UIWebPDFView *view; 
-        NSTimer *timer; 
-    unsigned int _accessoryEnabled : 1;
-    unsigned int _forceInputView : 1;
-    unsigned int _formIsAutoFilling : 1;
-    unsigned int _inputViewObeysDOMFocus : 1;
-    unsigned int _allowDOMFocusRedirects : 1;
-    unsigned int _hasEditedTextField : 1;
-    unsigned int _alwaysDispatchesScrollEvents : 1;
-    UIWebFormAccessory *_accessory;
-    NSHashTable *_activeHighlighters;
-    } _addressViewBounds;
-    DOMNode *_assistedNodeStartingFocusRedirects;
-    unsigned int _audioSessionCategoryOverride;
-    <UIWebAutoFillDelegate> *_autoFillDelegate;
-    DOMNode *_currentAssistedNode;
-    NSMutableArray *_deferredTouchEvents;
-    unsigned int _dispatchedTouchEvents;
-    UIResponder *_editingDelegateForEverythingExceptForms;
-    UIWebFormDelegate *_formDelegate;
-    NSObject<UIFormPeripheral> *_input;
-    } _inputViewBounds;
-    float _lastAdjustmentForScroller;
     } _messages;
     NSMutableSet *_overflowScrollViews;
     NSMutableSet *_overflowScrollViewsPendingDeletion;
     NSMutableSet *_overflowScrollViewsPendingInsertion;
+    struct { 
+        UIWebPDFView *view; 
+        NSTimer *timer; 
     } _pdf;
     BOOL _pendingGeometryChangeAfterOverflowScroll;
     NSLock *_pendingOverflowDataLock;
@@ -67,21 +65,29 @@
     UIWebTouchEventsGestureRecognizer *_webTouchEventsGestureRecognizer;
 }
 
-@property(retain) UIWebFormAccessory * _accessory;
-@property(retain) DOMNode * _currentAssistedNode;
-@property UIResponder * _editingDelegateForEverythingExceptForms;
-@property(retain) NSObject<UIFormPeripheral> * _input;
-@property(getter=isAccessoryEnabled) BOOL accessoryEnabled;
-@property BOOL allowDOMFocusRedirects;
-@property BOOL allowsInlineMediaPlayback;
-@property BOOL alwaysDispatchesScrollEvents;
-@property unsigned int audioSessionCategoryOverride;
-@property <UIWebAutoFillDelegate> * autoFillDelegate;
-@property(readonly) BOOL hasEditedTextField;
-@property BOOL inputViewObeysDOMFocus;
-@property(readonly) BOOL isDispatchingTouchEvents;
-@property BOOL mediaPlaybackRequiresUserAction;
-@property NSString * networkInterfaceName;
+@property (nonatomic, retain) UIWebFormAccessory *_accessory;
+@property (nonatomic, retain) DOMNode *_currentAssistedNode;
+@property (nonatomic) UIResponder *_editingDelegateForEverythingExceptForms;
+@property (nonatomic, retain) NSObject<UIFormPeripheral> *_input;
+@property (getter=isAccessoryEnabled, nonatomic) BOOL accessoryEnabled;
+@property (nonatomic) BOOL allowDOMFocusRedirects;
+@property (nonatomic) BOOL allowsInlineMediaPlayback;
+@property (nonatomic) BOOL alwaysDispatchesScrollEvents;
+@property (nonatomic) unsigned int audioSessionCategoryOverride;
+@property (nonatomic) <UIWebAutoFillDelegate> *autoFillDelegate;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) BOOL hasEditedTextField;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL inputViewObeysDOMFocus;
+@property (nonatomic, readonly) BOOL isDispatchingTouchEvents;
+@property (nonatomic) BOOL mediaPlaybackRequiresUserAction;
+@property (nonatomic) NSString *networkInterfaceName;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) BOOL webui_privateBrowsingEnabled;
+@property (nonatomic, readonly) UIView *webui_viewForAutoFillPrompt;
+
+// Image: /System/Library/Frameworks/UIKit.framework/UIKit
 
 + (id)getUIWebBrowserViewForWebFrame:(id)arg1;
 + (void)initialize;
@@ -91,10 +97,11 @@
 - (id)_accessory;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_activeRectForRectToCenter:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)_addAdditionalSubview:(id)arg1;
+- (void)_assistFormNode:(id)arg1;
 - (void)_autoFillFrame:(id)arg1;
 - (void)_beginAllowingFocusRedirects;
-- (void)_centerRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 forSizeChange:(BOOL)arg2 withVisibleHeight:(float)arg3 pinningEdge:(unsigned int)arg4 toValue:(float)arg5;
 - (void)_centerRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 forSizeChange:(BOOL)arg2 withVisibleHeight:(float)arg3 pinningEdge:(unsigned int)arg4;
+- (void)_centerRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 forSizeChange:(BOOL)arg2 withVisibleHeight:(float)arg3 pinningEdge:(unsigned int)arg4 toValue:(float)arg5;
 - (void)_clearAllConsoleMessages;
 - (void)_clearFormAutoFillStateForFrame:(id)arg1;
 - (void)_clearSelectionAndUI;
@@ -118,6 +125,7 @@
 - (BOOL)_isAutoFilling;
 - (BOOL)_keepKeyboardVisibleDuringFocusRedirects;
 - (void)_keyboardDidChangeFrame:(id)arg1;
+- (void)_keyboardDidHide:(id)arg1;
 - (id)_keyboardResponder;
 - (void)_keyboardWillChangeFrame:(id)arg1;
 - (void)_keyboardWillHide:(id)arg1;
@@ -146,6 +154,7 @@
 - (void)_stopAssistingFormNode;
 - (void)_stopAssistingKeyboard;
 - (void)_stopAssistingNode:(id)arg1;
+- (void)_transliterateChinese:(id)arg1;
 - (void)_updateAccessory;
 - (void)_updateAutoFillButton;
 - (void)_updateFixedPositionContent;
@@ -158,8 +167,8 @@
 - (void)_webTouchEventsRecognized:(id)arg1;
 - (void)_webViewFormEditedStatusHasChanged:(id)arg1;
 - (void)_zoomToNode:(id)arg1 forceScroll:(BOOL)arg2;
-- (void)_zoomToRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 ensuringVisibilityOfRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2 withScale:(float)arg3 forceScroll:(BOOL)arg4 formAssistantFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg5 animationDuration:(double)arg6;
 - (void)_zoomToRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 ensuringVisibilityOfRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2 withScale:(float)arg3 forceScroll:(BOOL)arg4;
+- (void)_zoomToRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 ensuringVisibilityOfRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2 withScale:(float)arg3 forceScroll:(BOOL)arg4 formAssistantFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg5 animationDuration:(double)arg6;
 - (void)_zoomToRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 withScale:(float)arg2;
 - (void)acceptedAutoFillWord:(id)arg1;
 - (void)accessoryAutoFill;
@@ -241,5 +250,17 @@
 - (void)webView:(id)arg1 willRemoveScrollingLayer:(id)arg2 withContentsLayer:(id)arg3 forNode:(id)arg4;
 - (void)webViewDidCommitCompositingLayerChanges:(id)arg1;
 - (void)webViewDidPreventDefaultForEvent:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/WebUI.framework/WebUI
+
+- (id)_frameToFormMetadataForLastPasswordGenerationOrSubmitEvent;
+- (void)enumerateUnsubmittedFormsUsingBlock:(id /* block */)arg1;
+- (id)webui_formMetadataAndFrame:(id*)arg1 forLastPasswordGenerationOrSubmitEventInFrame:(id)arg2;
+- (id)webui_formMetadataForLastPasswordGenerationOrSubmitEventInFrame:(id)arg1;
+- (id /* block */)webui_preventNavigationDuringAutoFillPrompt;
+- (BOOL)webui_privateBrowsingEnabled;
+- (void)webui_removeFormMetadataForLastPasswordGenerationOrSubmitEventInFrame:(id)arg1;
+- (void)webui_setFormMetadata:(id)arg1 forLastPasswordGenerationOrSubmitEventInFrame:(id)arg2;
+- (id)webui_viewForAutoFillPrompt;
 
 @end

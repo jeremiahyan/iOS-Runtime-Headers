@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, UIColor, UIView, _UIBackdropView;
-
 @interface _UIPopoverStandardChromeView : UIPopoverBackgroundView {
     unsigned int _arrowDirection;
     float _arrowOffset;
@@ -12,6 +10,7 @@
     int _backgroundStyle;
     _UIBackdropView *_blurView;
     BOOL _debugMode;
+    float _dimmingViewTopEdgeInset;
     NSArray *_dimmingViews;
     UIView *_leftCapView;
     UIColor *_popoverBackgroundColor;
@@ -19,11 +18,12 @@
     BOOL useShortMode;
 }
 
-@property(getter=isArrowVisible) BOOL arrowVisible;
-@property int backgroundStyle;
-@property(getter=isDebugModeEnabled) BOOL debugModeEnabled;
-@property(copy) UIColor * popoverBackgroundColor;
-@property BOOL useShortMode;
+@property (getter=isArrowVisible, nonatomic) BOOL arrowVisible;
+@property (nonatomic) int backgroundStyle;
+@property (getter=isDebugModeEnabled, nonatomic) BOOL debugModeEnabled;
+@property (nonatomic) float dimmingViewTopEdgeInset;
+@property (nonatomic, copy) UIColor *popoverBackgroundColor;
+@property (nonatomic) BOOL useShortMode;
 
 + (float)arrowBase;
 + (float)arrowHeight;
@@ -43,6 +43,7 @@
 - (int)backgroundStyle;
 - (void)dealloc;
 - (void)didMoveToWindow;
+- (float)dimmingViewTopEdgeInset;
 - (BOOL)hasComponentViews;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (BOOL)isArrowVisible;
@@ -59,11 +60,12 @@
 - (id)popoverBackgroundColor;
 - (void)setArrowDirection:(unsigned int)arg1;
 - (void)setArrowOffset:(float)arg1;
-- (void)setArrowVisible:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setArrowVisible:(BOOL)arg1;
-- (void)setBackgroundStyle:(int)arg1 animated:(BOOL)arg2;
+- (void)setArrowVisible:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setBackgroundStyle:(int)arg1;
+- (void)setBackgroundStyle:(int)arg1 animated:(BOOL)arg2;
 - (void)setDebugModeEnabled:(BOOL)arg1;
+- (void)setDimmingViewTopEdgeInset:(float)arg1;
 - (void)setPopoverBackgroundColor:(id)arg1;
 - (void)setUseShortMode:(BOOL)arg1;
 - (void)touchesBegan:(id)arg1 withEvent:(id)arg2;

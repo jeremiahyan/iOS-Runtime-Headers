@@ -2,9 +2,19 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSTimer, UIDimmingView, UIInputSwitcherSelectionExtraView, UIInputSwitcherShadowView, UIInputSwitcherTableView, UIKBTree, UIKeyboardLayoutStar;
-
-@interface UIKeyboardMenuView : UIView <UITableViewDataSource, UITableViewDelegate, UIDimmingViewDelegate> {
+@interface UIKeyboardMenuView : UIView <UIDimmingViewDelegate, UITableViewDataSource, UITableViewDelegate> {
+    UIKeyboardLayoutStar *_layout;
+    UIKBTree *_referenceKey;
+    BOOL _usesDarkTheme;
+    BOOL _usesStraightLeftEdge;
+    UIDimmingView *m_dimmingView;
+    int m_firstVisibleRow;
+    int m_mode;
+    struct CGPoint { 
+        float x; 
+        float y; 
+    } m_point;
+    float m_pointerOffset;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -14,18 +24,6 @@
             float width; 
             float height; 
         } size; 
-    struct CGPoint { 
-        float x; 
-        float y; 
-    UIKeyboardLayoutStar *_layout;
-    UIKBTree *_referenceKey;
-    BOOL _usesDarkTheme;
-    BOOL _usesStraightLeftEdge;
-    UIDimmingView *m_dimmingView;
-    int m_firstVisibleRow;
-    int m_mode;
-    } m_point;
-    float m_pointerOffset;
     } m_referenceRect;
     int m_scrollDirection;
     double m_scrollStartTime;
@@ -40,12 +38,16 @@
     int m_visibleRows;
 }
 
-@property UIKeyboardLayoutStar * layout;
-@property int mode;
-@property UIKBTree * referenceKey;
-@property BOOL usesDarkTheme;
-@property BOOL usesStraightLeftEdge;
-@property(readonly) BOOL usesTable;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) UIKeyboardLayoutStar *layout;
+@property (nonatomic) int mode;
+@property (nonatomic) UIKBTree *referenceKey;
+@property (readonly) Class superclass;
+@property (nonatomic) BOOL usesDarkTheme;
+@property (nonatomic) BOOL usesStraightLeftEdge;
+@property (readonly) BOOL usesTable;
 
 + (id)viewThatContainsBaseKey;
 
@@ -64,6 +66,7 @@
 - (void)fadeAnimationDidStop:(id)arg1 finished:(id)arg2 context:(id)arg3;
 - (void)fadeWithDelay:(double)arg1;
 - (id)font;
+- (id)fontForItemAtIndex:(int)arg1;
 - (void)hide;
 - (void)highlightRow:(int)arg1;
 - (int)indexForIndexPath:(id)arg1;
@@ -71,12 +74,14 @@
 - (void)insertSelExtraView;
 - (BOOL)isVisible;
 - (id)layout;
+- (id)localizedTitleForItemAtIndex:(int)arg1;
 - (id)maskForShadowViewBlurredBackground;
 - (float)minYOfLastTableCellForSelectionExtraView;
 - (int)mode;
 - (int)numberOfItems;
 - (void)performShowAnimation;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })popupRect;
+- (id)predictiveSwitch;
 - (struct CGSize { float x1; float x2; })preferredSize;
 - (id)referenceKey;
 - (void)removeFromSuperview;
@@ -100,6 +105,7 @@
 - (void)showAsPopupForKey:(id)arg1 inLayout:(id)arg2;
 - (void)stopAnyAutoscrolling;
 - (id)subtitleFont;
+- (id)subtitleFontForItemAtIndex:(int)arg1;
 - (id)subtitleForItemAtIndex:(int)arg1;
 - (id)table;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
@@ -110,6 +116,7 @@
 - (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forRowAtIndexPath:(id)arg3;
 - (id)tableView:(id)arg1 willSelectRowAtIndexPath:(id)arg2;
 - (id)titleForItemAtIndex:(int)arg1;
+- (void)toggleKeyboardPredictionPreference;
 - (void)touchesBegan:(id)arg1 withEvent:(id)arg2;
 - (void)touchesCancelled:(id)arg1 withEvent:(id)arg2;
 - (void)touchesEnded:(id)arg1 withEvent:(id)arg2;

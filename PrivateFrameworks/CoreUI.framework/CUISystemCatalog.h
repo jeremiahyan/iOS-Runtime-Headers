@@ -2,12 +2,10 @@
    Image: /System/Library/PrivateFrameworks/CoreUI.framework/CoreUI
  */
 
-@interface CUISystemCatalog : CUICatalog {
-}
+@interface CUISystemCatalog : CUICatalog
 
 - (BOOL)hasStylePresetWithName:(id)arg1;
-- (id)newShapeEffectPresetWithStyleID:(unsigned int)arg1 state:(int)arg2 presentationState:(int)arg3 value:(int)arg4 resolution:(unsigned int)arg5;
-- (id)newShapeEffectPresetWithStylePresetName:(id)arg1 state:(int)arg2 presentationState:(int)arg3 value:(int)arg4 resolution:(unsigned int)arg5;
-- (id)temporaryFallbackCatalog;
+- (BOOL)hasStylePresetWithName:(id)arg1 styleConfiguration:(id)arg2;
+- (id)newShapeEffectPresetForStylePresetName:(id)arg1 styleConfiguration:(id)arg2;
 
 @end

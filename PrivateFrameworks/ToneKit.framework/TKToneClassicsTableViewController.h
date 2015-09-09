@@ -2,42 +2,34 @@
    Image: /System/Library/PrivateFrameworks/ToneKit.framework/ToneKit
  */
 
-@class <TKToneClassicsTableViewControllerDelegate>, <TKTonePickerStyleProvider>, NSArray, NSIndexPath, TKToneTableController, UIImage;
-
-@interface TKToneClassicsTableViewController : UITableViewController {
-    <TKTonePickerStyleProvider> *_styleProvider;
-    UIImage *checkmarkImage;
-    <TKToneClassicsTableViewControllerDelegate> *delegate;
-    NSIndexPath *selectedIndexPath;
-    NSArray *toneIdentifiers;
-    TKToneTableController *toneTableController;
+@interface TKToneClassicsTableViewController : UITableViewController <TKTonePickerTableViewLayoutMarginsObserver> {
+    TKTonePickerItem *_classicTonesHeaderItem;
+    <TKTonePickerTableViewControllerHelper> *_tonePickerTableViewControllerHelper;
 }
 
-@property(retain) UIImage * checkmarkImage;
-@property <TKToneClassicsTableViewControllerDelegate> * delegate;
-@property(retain) NSIndexPath * selectedIndexPath;
-@property(retain) <TKTonePickerStyleProvider> * styleProvider;
-@property(retain) NSArray * toneIdentifiers;
-@property(retain) TKToneTableController * toneTableController;
+@property (setter=_setClassicTonesHeaderItem:, nonatomic, retain) TKTonePickerItem *_classicTonesHeaderItem;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+@property (nonatomic) <TKTonePickerTableViewControllerHelper> *tonePickerTableViewControllerHelper;
 
-- (id)checkmarkImage;
+- (id)_classicTonesHeaderItem;
+- (void)_setClassicTonesHeaderItem:(id)arg1;
 - (void)dealloc;
-- (id)delegate;
-- (id)initWithDelegate:(id)arg1 toneTableController:(id)arg2;
+- (void)didReloadTones;
+- (void)didUpdateCheckedStatus:(BOOL)arg1 ofToneClassicsPickerItem:(id)arg2;
+- (void)didUpdateDetailText:(id)arg1 ofToneClassicsPickerItem:(id)arg2;
+- (id)initWithClassicTonesHeaderItem:(id)arg1;
+- (void)layoutMarginsDidChangeInTonePickerTableView:(id)arg1;
+- (void)loadView;
 - (int)numberOfSectionsInTableView:(id)arg1;
-- (id)selectedIndexPath;
-- (void)setCheckmarkImage:(id)arg1;
-- (void)setDelegate:(id)arg1;
-- (void)setSelectedIndexPath:(id)arg1;
-- (void)setStyleProvider:(id)arg1;
-- (void)setToneIdentifiers:(id)arg1;
-- (void)setToneTableController:(id)arg1;
-- (id)styleProvider;
+- (void)setTonePickerTableViewControllerHelper:(id)arg1;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
 - (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
 - (int)tableView:(id)arg1 numberOfRowsInSection:(int)arg2;
-- (id)toneIdentifiers;
-- (id)toneTableController;
+- (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forRowAtIndexPath:(id)arg3;
+- (id)tonePickerTableViewControllerHelper;
 - (void)viewWillAppear:(BOOL)arg1;
 - (void)viewWillDisappear:(BOOL)arg1;
 

@@ -2,15 +2,16 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSString;
+@interface SASportsMatchupPlaySummary : AceObject <SAAceSerializable>
 
-@interface SASportsMatchupPlaySummary : AceObject <SAAceSerializable> {
-}
-
-@property BOOL appliesToAwayTeam;
-@property BOOL appliesToHomeTeam;
-@property(copy) NSString * summaryDescription;
-@property(copy) NSString * time;
+@property (nonatomic) BOOL appliesToAwayTeam;
+@property (nonatomic) BOOL appliesToHomeTeam;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *summaryDescription;
+@property (readonly) Class superclass;
+@property (nonatomic, copy) NSString *time;
 
 + (id)matchupPlaySummary;
 + (id)matchupPlaySummaryWithDictionary:(id)arg1 context:(id)arg2;

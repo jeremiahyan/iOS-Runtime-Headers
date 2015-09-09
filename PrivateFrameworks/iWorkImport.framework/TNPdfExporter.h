@@ -2,11 +2,14 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSDictionary;
-
 @interface TNPdfExporter : TNRenderingExporter <TSKEncryptedDocumentExporter> {
     NSDictionary *mOptions;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)dealloc;
 - (id)p_renderingExporterDelegate;

@@ -2,45 +2,32 @@
    Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
  */
 
-@class IMHandle, NSAttributedString, NSString, UIImage;
-
-@interface CKEntity : NSObject <CKTranscriptDataRowObject> {
-    NSAttributedString *_attributedTranscriptText;
+@interface CKEntity : NSObject {
     IMHandle *_handle;
 }
 
-@property(readonly) void* abRecord;
-@property(readonly) NSAttributedString * attributedTranscriptText;
-@property(readonly) IMHandle * defaultIMHandle;
-@property(readonly) NSString * fullName;
-@property(retain) IMHandle * handle;
-@property(readonly) int identifier;
-@property(readonly) NSString * name;
-@property(readonly) NSString * originalAddress;
-@property(readonly) int propertyType;
-@property(readonly) NSString * rawAddress;
-@property(readonly) NSString * textToneIdentifier;
-@property(readonly) NSString * textVibrationIdentifier;
-@property(readonly) UIImage * transcriptContactImage;
+@property (nonatomic, readonly, copy) NSString *IDSCanonicalAddress;
+@property (nonatomic, readonly) void*abRecord;
+@property (nonatomic, readonly, retain) IMHandle *defaultIMHandle;
+@property (nonatomic, readonly, copy) NSString *fullName;
+@property (nonatomic, retain) IMHandle *handle;
+@property (nonatomic, readonly) int identifier;
+@property (nonatomic, readonly, retain) UIImage *locationMapViewContactImage;
+@property (nonatomic, readonly, retain) UIImage *locationShareBalloonContactImage;
+@property (nonatomic, readonly, copy) NSString *name;
+@property (nonatomic, readonly, copy) NSString *originalAddress;
+@property (nonatomic, readonly) int propertyType;
+@property (nonatomic, readonly, copy) NSString *rawAddress;
+@property (nonatomic, readonly, copy) NSString *textToneIdentifier;
+@property (nonatomic, readonly, copy) NSString *textVibrationIdentifier;
+@property (nonatomic, readonly, retain) UIImage *transcriptContactImage;
+@property (nonatomic, readonly, retain) UIImage *transcriptDrawerContactImage;
 
 + (id)_copyEntityForAddressString:(id)arg1 onAccount:(id)arg2;
 + (id)copyEntityForAddressString:(id)arg1;
 
-- (Class)__ck_displayCellClass;
-- (id)__ck_displayCellIdentifier;
-- (id)__ck_displayContactImage;
-- (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })__ck_displayContentAlignmentInsets;
-- (BOOL)__ck_displayDuringSend;
-- (id)__ck_displayGUIDWithMessage:(id)arg1;
-- (struct CGSize { float x1; float x2; })__ck_displaySize:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; }*)arg1;
-- (BOOL)__ck_displayTranscriptOrientation;
-- (void)__ck_prewarmForDisplay;
-- (BOOL)__ck_transcriptUsesTextAlignmentInsets;
-- (BOOL)__ck_wantsDrawerLayout;
+- (id)IDSCanonicalAddress;
 - (void*)abRecord;
-- (void)addressBookChanged:(id)arg1;
-- (id)attributedTranscriptText;
-- (void)contentSizeCategoryDidChange:(id)arg1;
 - (void)dealloc;
 - (id)defaultIMHandle;
 - (id)description;
@@ -50,6 +37,8 @@
 - (int)identifier;
 - (id)initWithIMHandle:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
+- (id)locationMapViewContactImage;
+- (id)locationShareBalloonContactImage;
 - (id)name;
 - (id)originalAddress;
 - (id)personViewControllerWithDelegate:(id)arg1;
@@ -59,5 +48,6 @@
 - (id)textToneIdentifier;
 - (id)textVibrationIdentifier;
 - (id)transcriptContactImage;
+- (id)transcriptDrawerContactImage;
 
 @end

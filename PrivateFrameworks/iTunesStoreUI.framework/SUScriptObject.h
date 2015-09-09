@@ -2,28 +2,26 @@
    Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
  */
 
-@class NSLock, NSMutableArray, NSMutableSet, NSString, SUClientInterface, SUScriptNativeObject, SUScriptObject, SUScriptObjectInvocationBatch, WebFrame;
-
 @interface SUScriptObject : NSObject {
-    unsigned int _checkOutWhenHidden : 1;
-    unsigned int _isVisible : 1;
+    unsigned int _checkOutWhenHidden;
     NSString *_className;
     NSMutableArray *_eventListeners;
     SUScriptObjectInvocationBatch *_invocationBatch;
+    unsigned int _isVisible;
     NSLock *_lock;
     SUScriptNativeObject *_nativeObject;
     SUScriptObject *_parentScriptObject;
     NSMutableSet *_scriptObjects;
 }
 
-@property(getter=_className,readonly) NSString * className;
-@property(readonly) SUClientInterface * clientInterface;
-@property(readonly) struct OpaqueJSContext { }* copyJavaScriptContext;
-@property(retain) SUScriptNativeObject * nativeObject;
-@property SUScriptObject * parentScriptObject;
-@property(readonly) NSMutableArray * scriptAttributeKeys;
-@property(readonly) BOOL sourceIsTrusted;
-@property(readonly) WebFrame * webFrame;
+@property (getter=_className, readonly) NSString *className;
+@property (readonly, retain) SUClientInterface *clientInterface;
+@property (readonly) struct OpaqueJSContext { }*copyJavaScriptContext;
+@property (retain) SUScriptNativeObject *nativeObject;
+@property SUScriptObject *parentScriptObject;
+@property (readonly) NSMutableArray *scriptAttributeKeys;
+@property (readonly) BOOL sourceIsTrusted;
+@property (readonly, retain) WebFrame *webFrame;
 
 + (void)initialize;
 + (BOOL)isKeyExcludedFromWebScript:(const char *)arg1;
@@ -47,18 +45,18 @@
 - (id)copyObjectForScriptFromPoolWithClass:(Class)arg1;
 - (void)dealloc;
 - (void)didPerformBatchedInvocations;
-- (void)dispatchEvent:(id)arg1 forName:(id)arg2 synchronously:(BOOL)arg3;
 - (void)dispatchEvent:(id)arg1 forName:(id)arg2;
+- (void)dispatchEvent:(id)arg1 forName:(id)arg2 synchronously:(BOOL)arg3;
 - (BOOL)equals:(id)arg1;
 - (void)finalizeForWebScript;
 - (id)init;
 - (id)invocationBatch:(BOOL)arg1;
 - (BOOL)isVisible;
-- (void)loadImageWithURL:(id)arg1 completionBlock:(id)arg2;
+- (void)loadImageWithURL:(id)arg1 completionBlock:(id /* block */)arg2;
 - (void)lock;
 - (id)nativeObject;
-- (id)newImageWithURL:(id)arg1 scale:(float)arg2;
 - (id)newImageWithURL:(id)arg1;
+- (id)newImageWithURL:(id)arg1 scale:(float)arg2;
 - (id)parentScriptObject;
 - (id)parentViewController;
 - (void)removeListenerForEventWithName:(id)arg1 callback:(id)arg2 useCapture:(BOOL)arg3;

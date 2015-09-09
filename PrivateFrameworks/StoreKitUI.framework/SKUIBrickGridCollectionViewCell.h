@@ -2,24 +2,22 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class NSString, SKUIEditorialCellLayout, UIImage, UIImageView, UIView;
-
 @interface SKUIBrickGridCollectionViewCell : UICollectionViewCell {
+    NSString *_accessibilityLabel;
+    UIImageView *_brickImageView;
     struct UIEdgeInsets { 
         float top; 
         float left; 
         float bottom; 
         float right; 
-    NSString *_accessibilityLabel;
-    UIImageView *_brickImageView;
     } _contentInsets;
     SKUIEditorialCellLayout *_editorialCellLayout;
     UIView *_editorialContainerView;
 }
 
-@property(copy) NSString * accessibilityLabel;
-@property(retain) UIImage * brickImage;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } contentInsets;
+@property (nonatomic, copy) NSString *accessibilityLabel;
+@property (nonatomic, retain) UIImage *brickImage;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } contentInsets;
 
 - (void).cxx_destruct;
 - (id)accessibilityLabel;

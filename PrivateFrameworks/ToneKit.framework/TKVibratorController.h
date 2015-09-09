@@ -2,11 +2,8 @@
    Image: /System/Library/PrivateFrameworks/ToneKit.framework/ToneKit
  */
 
-@interface TKVibratorController : NSObject {
-}
+@interface TKVibratorController : NSObject
 
-- (void)_turnOff;
-- (void)_turnOnWithVibrationPattern:(id)arg1;
 - (void)turnOff;
 - (void)turnOnWithVibrationPattern:(id)arg1;
 

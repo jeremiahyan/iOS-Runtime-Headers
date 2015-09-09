@@ -2,49 +2,38 @@
    Image: /System/Library/PrivateFrameworks/TelephonyUI.framework/TelephonyUI
  */
 
-@class TPLCDSubImageView, TPLCDTextView, UIView;
-
 @interface TPLCDView : TPLCDBar {
-    unsigned int _layoutAsLabelled : 1;
-    UIView *_backgroundGradientView;
     UIView *_contentView;
-    BOOL _hasBackgroundGradient;
     TPLCDSubImageView *_imageView;
     TPLCDTextView *_labelView;
+    unsigned int _layoutAsLabelled;
     TPLCDTextView *_textView;
     BOOL _verticallyCenterTextViewIfLabelless;
 }
 
-@property(retain) UIView * backgroundGradientView;
-@property BOOL hasBackgroundGradient;
 @property BOOL verticallyCenterTextViewIfLabelless;
 
 + (float)defaultLabelFontSize;
 + (float)defaultTextFontSize;
 
-- (struct CGPoint { float x1; float x2; })_backgroundGradientViewOrigin;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_imageViewFrame;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_labelFrame;
 - (float)_labelVInset;
 - (void)_resetContentViewFrame;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_text1Frame;
 - (float)_textVInset;
-- (id)backgroundGradientView;
 - (void)blinkLabel;
 - (void)dealloc;
 - (void)didFinishAnimatingLCDLabelFadeOut:(id)arg1 finished:(id)arg2 context:(id)arg3;
 - (void)didMoveToWindow;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })fullSizedContentViewFrame;
-- (BOOL)hasBackgroundGradient;
 - (id)initWithDefaultSizeForOrientation:(int)arg1;
 - (id)label;
 - (void)layoutSubviews;
 - (id)secondLineText;
-- (void)setBackgroundGradientView:(id)arg1;
 - (void)setContentsAlpha:(float)arg1;
-- (void)setHasBackgroundGradient:(BOOL)arg1;
-- (void)setLabel:(id)arg1 animate:(BOOL)arg2;
 - (void)setLabel:(id)arg1;
+- (void)setLabel:(id)arg1 animate:(BOOL)arg2;
 - (void)setLabelFontSize:(float)arg1;
 - (void)setLayoutAsLabelled:(BOOL)arg1;
 - (void)setSecondLineText:(id)arg1;

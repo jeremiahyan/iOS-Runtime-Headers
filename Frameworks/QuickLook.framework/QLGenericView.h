@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/QuickLook.framework/QuickLook
  */
 
-@class <QLGenericViewDelegate>, NSAttributedString, NSError, NSString, UIButton, UIImageView, UILabel, UIView;
-
 @interface QLGenericView : UIView {
     UIView *_containerView;
     NSError *_error;
@@ -14,13 +12,13 @@
     <QLGenericViewDelegate> *delegate;
 }
 
-@property(copy) NSAttributedString * attributedSubtitle;
-@property <QLGenericViewDelegate> * delegate;
+@property (copy) NSAttributedString *attributedSubtitle;
+@property <QLGenericViewDelegate> *delegate;
 @property BOOL showArchiveButton;
-@property(copy) NSString * subtitle;
-@property(copy) NSString * title;
+@property (copy) NSString *subtitle;
+@property (copy) NSString *title;
 
-- (void)_updateContainerFrameForOrientation:(int)arg1;
+- (void)_updateContainerFrameForTraitCollection:(id)arg1;
 - (id)attributedSubtitle;
 - (id)delegate;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;

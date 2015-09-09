@@ -7,38 +7,50 @@
 }
 
 + (int)callStatusForCTCallStatusType:(int)arg1;
++ (void)playDTMFToneForKey:(unsigned char)arg1;
++ (void)stopPlayingDTMFTone;
 
-- (void)answer;
+- (void)_refreshFaceTimeIDSStatus;
+- (BOOL)allowsTTYSettingChanges;
+- (void)answerWithSourceIdentifier:(id)arg1;
 - (id)audioCategory;
-- (id)bundleIDForHostingApplication;
+- (id)audioMode;
 - (struct __CTCall { }*)call;
 - (double)callDuration;
 - (int)callIdentifier;
+- (int)callStatus;
+- (id)callUUID;
 - (id)callerNameFromNetwork;
 - (long)causeCode;
 - (void)dealloc;
-- (id)description;
 - (id)destinationID;
 - (void)disconnect;
-- (BOOL)hold;
+- (void)emergencyCallStatusChangedNotification:(id)arg1;
+- (int)faceTimeIDStatus;
+- (BOOL)hasSupport:(int)arg1;
+- (void)hold;
 - (id)initWithCall:(struct __CTCall { }*)arg1;
 - (BOOL)isAlerting;
 - (BOOL)isBlocked;
 - (BOOL)isConferenced;
+- (BOOL)isDownlinkMuted;
 - (BOOL)isEmergencyCall;
 - (BOOL)isEqual:(id)arg1;
-- (BOOL)isMuted;
 - (BOOL)isOutgoing;
 - (BOOL)isTTY;
+- (BOOL)isUplinkMuted;
 - (BOOL)isVoicemail;
-- (id)isoCountryCode;
+- (BOOL)isWiFiCall;
 - (void)joinConference;
 - (void)leaveConference;
-- (void)resume;
+- (BOOL)managesAudioInterruptions;
+- (void)playDTMFToneForKey:(unsigned char)arg1;
 - (int)service;
-- (BOOL)setMuted:(BOOL)arg1;
+- (BOOL)setDownlinkMuted:(BOOL)arg1;
+- (BOOL)setUplinkMuted:(BOOL)arg1;
 - (double)startTime;
-- (int)status;
-- (BOOL)unhold;
+- (int)supportedModelType;
+- (void)unhold;
+- (void)updateForDisconnection;
 
 @end

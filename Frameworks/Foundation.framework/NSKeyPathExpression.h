@@ -2,8 +2,9 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@interface NSKeyPathExpression : NSFunctionExpression {
-}
+@interface NSKeyPathExpression : NSFunctionExpression
+
+// Image: /System/Library/Frameworks/Foundation.framework/Foundation
 
 - (void)dealloc;
 - (id)initWithKeyPath:(id)arg1;
@@ -11,5 +12,9 @@
 - (id)keyPath;
 - (id)pathExpression;
 - (id)predicateFormat;
+
+// Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
+
+- (id)CKExpressionValue;
 
 @end

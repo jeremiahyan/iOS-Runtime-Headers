@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSURL, NSUUID, TSUSafeSaveAssistant;
-
 @interface TSPSupportSaveOperationState : NSObject {
     NSURL *_URL;
     BOOL _didWriteSupportBundleSuccessfuly;
@@ -13,28 +11,31 @@
     NSUUID *_originalVersionUUID;
     TSUSafeSaveAssistant *_safeSaveAssistant;
     BOOL _shouldLeavePendingEndSave;
-    unsigned int _updateType;
+    int _updateType;
 }
 
-@property(copy) NSURL * URL;
-@property BOOL didWriteSupportBundleSuccessfuly;
-@property(copy) NSUUID * documentUUID;
-@property(readonly) NSUUID * originalDocumentUUID;
-@property(readonly) NSURL * originalURL;
-@property(readonly) NSUUID * originalVersionUUID;
-@property(retain) TSUSafeSaveAssistant * safeSaveAssistant;
-@property BOOL shouldLeavePendingEndSave;
-@property(readonly) unsigned int updateType;
+@property (nonatomic, copy) NSURL *URL;
+@property (nonatomic) BOOL didWriteSupportBundleSuccessfuly;
+@property (nonatomic, copy) NSUUID *documentUUID;
+@property (nonatomic, readonly) NSUUID *originalDocumentUUID;
+@property (nonatomic, readonly) NSURL *originalURL;
+@property (nonatomic, readonly) NSUUID *originalVersionUUID;
+@property (nonatomic, readonly) BOOL preserveDocumentUUID;
+@property (nonatomic, retain) TSUSafeSaveAssistant *safeSaveAssistant;
+@property (nonatomic) BOOL shouldLeavePendingEndSave;
+@property (nonatomic, readonly) BOOL shouldUpdate;
+@property (nonatomic, readonly) int updateType;
 
 - (void).cxx_destruct;
 - (id)URL;
 - (BOOL)didWriteSupportBundleSuccessfuly;
 - (id)documentUUID;
 - (id)init;
-- (id)initWithOriginalDocumentUUID:(id)arg1 originalVersionUUID:(id)arg2 originalURL:(id)arg3 updateType:(unsigned int)arg4;
+- (id)initWithOriginalDocumentUUID:(id)arg1 originalVersionUUID:(id)arg2 originalURL:(id)arg3 updateType:(int)arg4;
 - (id)originalDocumentUUID;
 - (id)originalURL;
 - (id)originalVersionUUID;
+- (BOOL)preserveDocumentUUID;
 - (id)safeSaveAssistant;
 - (void)setDidWriteSupportBundleSuccessfuly:(BOOL)arg1;
 - (void)setDocumentUUID:(id)arg1;
@@ -42,6 +43,7 @@
 - (void)setShouldLeavePendingEndSave:(BOOL)arg1;
 - (void)setURL:(id)arg1;
 - (BOOL)shouldLeavePendingEndSave;
-- (unsigned int)updateType;
+- (BOOL)shouldUpdate;
+- (int)updateType;
 
 @end

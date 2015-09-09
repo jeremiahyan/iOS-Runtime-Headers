@@ -2,14 +2,12 @@
    Image: /System/Library/PrivateFrameworks/AccountsDaemon.framework/AccountsDaemon
  */
 
-@class NSString;
-
 @interface _ACDTestServer : ACDServer {
     NSString *_databasePath;
 }
 
 - (void).cxx_destruct;
-- (id)clientForConnection:(id)arg1;
+- (id)createClientForConnection:(id)arg1;
 - (id)initWithDatabasePath:(id)arg1;
 
 @end

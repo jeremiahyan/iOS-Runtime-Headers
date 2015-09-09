@@ -2,10 +2,9 @@
    Image: /System/Library/PrivateFrameworks/BulletinBoard.framework/BulletinBoard
  */
 
-@class BBSectionIcon, BBSectionInfo, NSArray, NSData, NSString;
-
 @interface BBSectionInfo : NSObject <NSCopying, NSSecureCoding> {
     unsigned int _alertType;
+    BOOL _allowsNotifications;
     NSArray *_dataProviderIDs;
     NSString *_displayName;
     BOOL _displaysCriticalBulletins;
@@ -23,6 +22,7 @@
     BOOL _showsInNotificationCenter;
     BOOL _showsMessagePreview;
     BOOL _showsOnBluetoothDevices;
+    BOOL _showsOnExternalDevices;
     NSString *_subsectionID;
     int _subsectionPriority;
     NSArray *_subsections;
@@ -31,34 +31,36 @@
     unsigned int _version;
 }
 
-@property unsigned int alertType;
-@property unsigned int bulletinCount;
-@property(copy) NSArray * dataProviderIDs;
-@property(copy) NSString * displayName;
-@property BOOL displaysCriticalBulletins;
-@property BOOL enabled;
-@property(copy) NSString * factorySectionID;
-@property BOOL hideWeeApp;
-@property(copy) BBSectionIcon * icon;
-@property(readonly) NSData * iconData;
-@property unsigned int notificationCenterLimit;
-@property BBSectionInfo * parentSection;
-@property(copy) NSString * pathToWeeAppPluginBundle;
-@property unsigned int pushSettings;
-@property int sectionCategory;
-@property(copy) NSString * sectionID;
-@property int sectionType;
-@property BOOL showsInLockScreen;
-@property BOOL showsInNotificationCenter;
-@property BOOL showsMessagePreview;
-@property BOOL showsOnBluetoothDevices;
-@property(copy) NSString * subsectionID;
-@property int subsectionPriority;
-@property(copy) NSArray * subsections;
-@property BOOL suppressFromSettings;
-@property unsigned int suppressedSettings;
-@property unsigned int version;
+@property (nonatomic) unsigned int alertType;
+@property (nonatomic) BOOL allowsNotifications;
+@property (nonatomic) unsigned int bulletinCount;
+@property (nonatomic, copy) NSArray *dataProviderIDs;
+@property (nonatomic, copy) NSString *displayName;
+@property (nonatomic) BOOL displaysCriticalBulletins;
+@property (nonatomic) BOOL enabled;
+@property (nonatomic, copy) NSString *factorySectionID;
+@property (nonatomic) BOOL hideWeeApp;
+@property (nonatomic, copy) BBSectionIcon *icon;
+@property (nonatomic, readonly, copy) NSData *iconData;
+@property (nonatomic) unsigned int notificationCenterLimit;
+@property (nonatomic) BBSectionInfo *parentSection;
+@property (nonatomic, copy) NSString *pathToWeeAppPluginBundle;
+@property (nonatomic) unsigned int pushSettings;
+@property (nonatomic) int sectionCategory;
+@property (nonatomic, copy) NSString *sectionID;
+@property (nonatomic) int sectionType;
+@property (nonatomic) BOOL showsInLockScreen;
+@property (nonatomic) BOOL showsInNotificationCenter;
+@property (nonatomic) BOOL showsMessagePreview;
+@property (nonatomic) BOOL showsOnExternalDevices;
+@property (nonatomic, copy) NSString *subsectionID;
+@property (nonatomic) int subsectionPriority;
+@property (nonatomic, copy) NSArray *subsections;
+@property (nonatomic) BOOL suppressFromSettings;
+@property (nonatomic) unsigned int suppressedSettings;
+@property (nonatomic) unsigned int version;
 
++ (id)defaultSectionInfoForSection:(id)arg1;
 + (id)defaultSectionInfoForType:(int)arg1;
 + (BOOL)defaultStateForSetting:(unsigned int)arg1 inSectionType:(int)arg2;
 + (BOOL)supportsSecureCoding;
@@ -67,10 +69,10 @@
 - (void)_associateDataProviderSectionInfo:(id)arg1;
 - (void)_configureWithDefaultsForSectionType:(int)arg1;
 - (void)_dissociateDataProviderSectionInfo:(id)arg1;
-- (id)_pushSettingsDescription;
 - (void)_replaceSubsection:(id)arg1;
 - (id)_subsectionForID:(id)arg1;
 - (unsigned int)alertType;
+- (BOOL)allowsNotifications;
 - (unsigned int)bulletinCount;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dataProviderIDs;
@@ -96,6 +98,7 @@
 - (id)sectionID;
 - (int)sectionType;
 - (void)setAlertType:(unsigned int)arg1;
+- (void)setAllowsNotifications:(BOOL)arg1;
 - (void)setBulletinCount:(unsigned int)arg1;
 - (void)setDataProviderIDs:(id)arg1;
 - (void)setDisplayName:(id)arg1;
@@ -114,7 +117,7 @@
 - (void)setShowsInLockScreen:(BOOL)arg1;
 - (void)setShowsInNotificationCenter:(BOOL)arg1;
 - (void)setShowsMessagePreview:(BOOL)arg1;
-- (void)setShowsOnBluetoothDevices:(BOOL)arg1;
+- (void)setShowsOnExternalDevices:(BOOL)arg1;
 - (void)setSubsectionID:(id)arg1;
 - (void)setSubsectionPriority:(int)arg1;
 - (void)setSubsections:(id)arg1;
@@ -124,12 +127,13 @@
 - (BOOL)showsInLockScreen;
 - (BOOL)showsInNotificationCenter;
 - (BOOL)showsMessagePreview;
-- (BOOL)showsOnBluetoothDevices;
+- (BOOL)showsOnExternalDevices;
 - (id)subsectionID;
 - (int)subsectionPriority;
 - (id)subsections;
 - (BOOL)suppressFromSettings;
 - (unsigned int)suppressedSettings;
+- (void)updateWithDefaultSectionInfo:(id)arg1;
 - (unsigned int)version;
 
 @end

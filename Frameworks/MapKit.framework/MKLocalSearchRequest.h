@@ -2,9 +2,17 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@class NSData, NSString;
-
 @interface MKLocalSearchRequest : NSObject <NSCopying> {
+    BOOL _allowPhoneNumberLookupUsingCellular;
+    NSString *_canonicalSearchString;
+    NSString *_contactsDataString;
+    CLLocation *_deviceLocation;
+    <GEOCompletionItem> *_geoCompletionItem;
+    BOOL _hasRegion;
+    _MKLocalSearchMerchantParameters *_merchantParameters;
+    NSArray *_muids;
+    NSString *_naturalLanguageQuery;
+    NSArray *_phoneNumbers;
     struct { 
         struct { 
             double latitude; 
@@ -14,33 +22,51 @@
             double latitudeDelta; 
             double longitudeDelta; 
         } span; 
-    BOOL _hasRegion;
-    NSString *_naturalLanguageQuery;
     } _region;
-    NSData *_suggestionEntryMetadata;
-    NSData *_suggestionMetadata;
+    int _resultProviderID;
 }
 
-@property(readonly) BOOL _hasRegion;
-@property(copy) NSString * naturalLanguageQuery;
-@property struct { struct { double x_1_1_1; double x_1_1_2; } x1; struct { double x_2_1_1; double x_2_1_2; } x2; } region;
-@property(retain) NSData * suggestionEntryMetadata;
-@property(retain) NSData * suggestionMetadata;
+@property (nonatomic, readonly) BOOL _hasRegion;
+@property (getter=_allowPhoneNumberLookupUsingCellular, setter=_setAllowPhoneNumberLookupUsingCellular:, nonatomic) BOOL allowPhoneNumberLookupUsingCellular;
+@property (getter=_canonicalSearchString, setter=_setCanonicalSearchString:, nonatomic, retain) NSString *canonicalSearchString;
+@property (getter=_contactsDataString, setter=_setContactsDataString:, nonatomic, retain) NSString *contactsDataString;
+@property (getter=_deviceLocation, setter=_setDeviceLocation:, nonatomic, retain) CLLocation *deviceLocation;
+@property (nonatomic, readonly) <GEOCompletionItem> *geoCompletionItem;
+@property (getter=_merchantParameters, setter=_setMerchantParameters:, nonatomic, retain) _MKLocalSearchMerchantParameters *merchantParameters;
+@property (getter=_muids, setter=_setMuids:, nonatomic, retain) NSArray *muids;
+@property (nonatomic, copy) NSString *naturalLanguageQuery;
+@property (getter=_phoneNumbers, setter=_setPhoneNumbers:, nonatomic, retain) NSArray *phoneNumbers;
+@property (nonatomic) struct { struct { double x_1_1_1; double x_1_1_2; } x1; struct { double x_2_1_1; double x_2_1_2; } x2; } region;
+@property (getter=_resultProviderID, setter=_setResultProviderID:, nonatomic) int resultProviderID;
 
 + (id)searchRequestWithCompletion:(id)arg1;
 
 - (void).cxx_destruct;
+- (BOOL)_allowPhoneNumberLookupUsingCellular;
+- (id)_canonicalSearchString;
+- (id)_contactsDataString;
+- (id)_deviceLocation;
 - (id)_dictionaryRepresentation;
 - (BOOL)_hasRegion;
+- (id)_merchantParameters;
+- (id)_muids;
+- (id)_phoneNumbers;
+- (int)_resultProviderID;
+- (void)_setAllowPhoneNumberLookupUsingCellular:(BOOL)arg1;
+- (void)_setCanonicalSearchString:(id)arg1;
+- (void)_setContactsDataString:(id)arg1;
+- (void)_setDeviceLocation:(id)arg1;
+- (void)_setMerchantParameters:(id)arg1;
+- (void)_setMuids:(id)arg1;
+- (void)_setPhoneNumbers:(id)arg1;
+- (void)_setResultProviderID:(int)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
+- (id)geoCompletionItem;
+- (id)initWithCompletion:(id)arg1;
 - (id)naturalLanguageQuery;
 - (struct { struct { double x_1_1_1; double x_1_1_2; } x1; struct { double x_2_1_1; double x_2_1_2; } x2; })region;
 - (void)setNaturalLanguageQuery:(id)arg1;
 - (void)setRegion:(struct { struct { double x_1_1_1; double x_1_1_2; } x1; struct { double x_2_1_1; double x_2_1_2; } x2; })arg1;
-- (void)setSuggestionEntryMetadata:(id)arg1;
-- (void)setSuggestionMetadata:(id)arg1;
-- (id)suggestionEntryMetadata;
-- (id)suggestionMetadata;
 
 @end

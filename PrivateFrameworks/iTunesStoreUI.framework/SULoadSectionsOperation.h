@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
  */
 
-@class NSString, SUClientInterface, SUSectionsResponse;
-
 @interface SULoadSectionsOperation : ISOperation <ISURLOperationDelegate> {
     NSString *_activeSectionVersionString;
     SUClientInterface *_clientInterface;
@@ -11,9 +9,13 @@
     BOOL _shouldUseCache;
 }
 
-@property(copy) NSString * activeSectionVersionString;
-@property(readonly) SUSectionsResponse * sectionsResponse;
+@property (copy) NSString *activeSectionVersionString;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) SUSectionsResponse *sectionsResponse;
 @property BOOL shouldUseCache;
+@property (readonly) Class superclass;
 
 - (id)_cachePathForVersion:(id)arg1 create:(BOOL)arg2;
 - (BOOL)_loadSectionsFromCacheForVersion:(id)arg1;

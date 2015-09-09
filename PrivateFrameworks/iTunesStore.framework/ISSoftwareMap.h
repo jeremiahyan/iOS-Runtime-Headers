@@ -2,22 +2,22 @@
    Image: /System/Library/PrivateFrameworks/iTunesStore.framework/iTunesStore
  */
 
-@class NSArray;
-
 @interface ISSoftwareMap : NSObject {
     NSArray *_applications;
 }
 
-@property(readonly) NSArray * applications;
+@property (nonatomic, readonly) NSArray *applications;
 
 + (id)_newSoftwareUpdateDictionaryForApplication:(id)arg1;
 + (void)_startWatchingInstallationNotifications;
-+ (id)applicationForBundleIdentifier:(id)arg1 applicationType:(struct __CFString { }*)arg2;
 + (id)applicationForBundleIdentifier:(id)arg1;
++ (id)applicationForBundleIdentifier:(id)arg1 applicationType:(id)arg2;
++ (id)containerPathForApp:(id)arg1 homeDirectory:(id)arg2 systemMetadataDirectory:(id)arg3;
 + (id)copySoftwareUpdatesPropertyListWithApplications:(id)arg1 updatesContext:(id)arg2;
 + (id)currentMap;
 + (BOOL)currentMapIsValid;
-+ (BOOL)haveApplicationsOfType:(struct __CFString { }*)arg1;
++ (void)enumerateApplicationsForProxies:(id)arg1 usingBlock:(id /* block */)arg2;
++ (BOOL)haveApplicationsOfType:(id)arg1;
 + (void)invalidateCurrentMap;
 + (id)loadedMap;
 + (void)setCurrentMap:(id)arg1;

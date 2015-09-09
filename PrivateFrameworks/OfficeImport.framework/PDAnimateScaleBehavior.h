@@ -6,14 +6,14 @@
     struct CGPoint { 
         float x; 
         float y; 
-    struct CGPoint { 
-        float x; 
-        float y; 
-    struct CGPoint { 
-        float x; 
-        float y; 
     } mBy;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } mFrom;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } mTo;
 }
 
@@ -21,6 +21,7 @@
 - (struct CGPoint { float x1; float x2; })by;
 - (struct CGPoint { float x1; float x2; })from;
 - (id)init;
+- (BOOL)isEqual:(id)arg1;
 - (void)setBy:(struct CGPoint { float x1; float x2; })arg1;
 - (void)setFrom:(struct CGPoint { float x1; float x2; })arg1;
 - (void)setTo:(struct CGPoint { float x1; float x2; })arg1;

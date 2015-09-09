@@ -2,31 +2,29 @@
    Image: /System/Library/Frameworks/StoreKit.framework/StoreKit
  */
 
-@class NSString, UIImageView, UILabel;
-
 @interface SKStarRatingControl : UIControl {
-    struct CGSize { 
-        float width; 
-        float height; 
-    struct CGPoint { 
-        float x; 
-        float y; 
-    struct CGPoint { 
-        float x; 
-        float y; 
     UIImageView *_backgroundImageView;
     UILabel *_explanationLabel;
     UIImageView *_foregroundImageView;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _hitPadding;
     float _starWidth;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _trackingLastPoint;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _trackingStartPoint;
     float _value;
 }
 
-@property(copy) NSString * explanationText;
-@property float starWidth;
-@property float value;
+@property (nonatomic, copy) NSString *explanationText;
+@property (nonatomic) float starWidth;
+@property (nonatomic) float value;
 
 - (BOOL)_alwaysHandleScrollerMouseEvent;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_foregroundImageClipBounds;

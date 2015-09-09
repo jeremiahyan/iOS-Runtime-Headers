@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@class MPAVRoutingController, MPAVRoutingSheet, MPAudioVideoRoutingPopoverController, MPVolumeSlider, UIButton, UIImage, UILabel;
-
 @interface MPVolumeView : UIView <MPAVRoutingControllerDelegate, NSCoding> {
     BOOL _hasNonDefaultMaxVolumeSliderImage;
     BOOL _hasNonDefaultMinVolumeSliderImage;
@@ -30,19 +28,23 @@
     BOOL _wirelessRoutesAvailable;
 }
 
-@property BOOL hidesRouteLabelWhenNoRouteChoice;
-@property(readonly) BOOL isShowingRouteButton;
-@property(readonly) BOOL isVisible;
-@property BOOL routeButtonShowsTouchWhenHighlighted;
-@property unsigned int routePopoverPermittedArrowDirections;
-@property BOOL showsRouteButton;
-@property BOOL showsVolumeSlider;
-@property(readonly) int style;
-@property(readonly) MPVolumeSlider * volumeSlider;
-@property BOOL volumeSliderShrinksFromBothEnds;
-@property(retain) UIImage * volumeWarningSliderImage;
-@property(getter=isWirelessRouteActive,readonly) BOOL wirelessRouteActive;
-@property(getter=areWirelessRoutesAvailable,readonly) BOOL wirelessRoutesAvailable;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL hidesRouteLabelWhenNoRouteChoice;
+@property (nonatomic, readonly) BOOL isShowingRouteButton;
+@property (nonatomic, readonly) BOOL isVisible;
+@property (nonatomic) BOOL routeButtonShowsTouchWhenHighlighted;
+@property (nonatomic) unsigned int routePopoverPermittedArrowDirections;
+@property (nonatomic) BOOL showsRouteButton;
+@property (nonatomic) BOOL showsVolumeSlider;
+@property (nonatomic, readonly) int style;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) MPVolumeSlider *volumeSlider;
+@property (nonatomic) BOOL volumeSliderShrinksFromBothEnds;
+@property (nonatomic, retain) UIImage *volumeWarningSliderImage;
+@property (getter=isWirelessRouteActive, nonatomic, readonly) BOOL wirelessRouteActive;
+@property (getter=areWirelessRoutesAvailable, nonatomic, readonly) BOOL wirelessRoutesAvailable;
 
 - (void).cxx_destruct;
 - (void)_applicationDidEnterBackgroundNotification:(id)arg1;
@@ -68,8 +70,8 @@
 - (void)encodeWithCoder:(id)arg1;
 - (BOOL)hidesRouteLabelWhenNoRouteChoice;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 style:(int)arg2;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 style:(int)arg2;
 - (BOOL)isShowingActiveOverlays;
 - (BOOL)isShowingRouteButton;
 - (BOOL)isVisible;
@@ -85,7 +87,6 @@
 - (unsigned int)routePopoverPermittedArrowDirections;
 - (void)routingControllerAvailableRoutesDidChange:(id)arg1;
 - (void)setAlpha:(float)arg1;
-- (void)setFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)setHidden:(BOOL)arg1;
 - (void)setHidesRouteLabelWhenNoRouteChoice:(BOOL)arg1;
 - (void)setMaximumVolumeSliderImage:(id)arg1 forState:(unsigned int)arg2;

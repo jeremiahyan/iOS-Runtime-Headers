@@ -2,18 +2,16 @@
    Image: /System/Library/PrivateFrameworks/IMCore.framework/IMCore
  */
 
-@class IDSService, IMAccount, NSArray, NSData, NSDictionary, NSMutableDictionary, NSString;
-
 @interface IMServiceImpl : IMService {
     NSArray *_abProperties;
     BOOL _allowsMultipleConnections;
     IMAccount *_bestAccount;
     NSMutableDictionary *_cardMap;
+    NSString *_countryCode;
     NSDictionary *_defaultSettings;
     NSArray *_emailDomains;
     BOOL _handlesChatInvites;
     BOOL _hasLoadedServiceProperties;
-    IDSService *_idsService;
     BOOL _ignoresNetworkConnectivity;
     NSData *_imageData;
     BOOL _isPersistent;
@@ -27,7 +25,9 @@
     NSDictionary *_serviceProps;
     BOOL _shouldDisableDeactivation;
     BOOL _shouldInternationalizeNumbers;
+    NSArray *_siblingServiceNames;
     BOOL _supportsAdding;
+    BOOL _supportsAudioMessages;
     BOOL _supportsAuthorization;
     BOOL _supportsDatabaseStorage;
     BOOL _supportsGroupAttachments;
@@ -40,40 +40,43 @@
     BOOL _supportsSMS;
 }
 
-@property(readonly) unsigned int IDSensitivity;
-@property(readonly) BOOL _supportsDatabaseStorage;
-@property(readonly) BOOL _wantsInternationizedNumbers;
-@property(readonly) Class accountClass;
-@property(readonly) NSArray * accountIDs;
-@property(readonly) NSArray * addressBookProperties;
-@property(readonly) NSString * addressBookProperty;
-@property(readonly) BOOL allowsMultipleConnections;
-@property(readonly) int buddyNotesMaxByteLength;
-@property(readonly) NSDictionary * cardMap;
-@property(retain) NSDictionary * defaultAccountSettings;
-@property(readonly) NSArray * emailDomains;
-@property(readonly) BOOL handlesChatInvites;
-@property(readonly) BOOL ignoresNetworkConnectivity;
-@property(readonly) NSString * internalName;
-@property(readonly) BOOL isPersistent;
-@property(readonly) BOOL isPlugInService;
-@property(readonly) int maxAttachmentSize;
-@property(readonly) int maxChatParticipants;
-@property(readonly) NSString * name;
-@property(retain) NSDictionary * serviceDefaults;
-@property(readonly) NSData * serviceImageData;
-@property(retain) NSDictionary * serviceProperties;
-@property(readonly) NSString * shortName;
-@property(readonly) BOOL shouldDisableDeactivation;
-@property(readonly) BOOL supportsAdding;
-@property(readonly) BOOL supportsAuthorization;
-@property(readonly) BOOL supportsGroupAttachments;
-@property(readonly) BOOL supportsIDStatusLookup;
-@property(readonly) BOOL supportsMutatingGroupMembers;
-@property(readonly) BOOL supportsOfflineTransfers;
-@property(readonly) BOOL supportsPhoneNumberMapping;
-@property(readonly) BOOL supportsPresence;
-@property(readonly) BOOL supportsRegistration;
+@property (nonatomic, readonly) unsigned int IDSensitivity;
+@property (nonatomic, readonly) BOOL _supportsDatabaseStorage;
+@property (nonatomic, readonly) BOOL _wantsInternationizedNumbers;
+@property (nonatomic, readonly) Class accountClass;
+@property (nonatomic, readonly, retain) NSArray *accountIDs;
+@property (nonatomic, readonly, retain) NSArray *addressBookProperties;
+@property (nonatomic, readonly, retain) NSString *addressBookProperty;
+@property (nonatomic, readonly) BOOL allowsMultipleConnections;
+@property (nonatomic, readonly) int buddyNotesMaxByteLength;
+@property (nonatomic, readonly, retain) NSDictionary *cardMap;
+@property (nonatomic, retain) NSString *countryCode;
+@property (nonatomic, retain) NSDictionary *defaultAccountSettings;
+@property (nonatomic, readonly, retain) NSArray *emailDomains;
+@property (nonatomic, readonly) BOOL handlesChatInvites;
+@property (nonatomic, readonly) BOOL ignoresNetworkConnectivity;
+@property (nonatomic, readonly, retain) NSString *internalName;
+@property (nonatomic, readonly) BOOL isPersistent;
+@property (nonatomic, readonly) BOOL isPlugInService;
+@property (nonatomic, readonly) int maxAttachmentSize;
+@property (nonatomic, readonly) int maxChatParticipants;
+@property (nonatomic, readonly, retain) NSString *name;
+@property (nonatomic, retain) NSDictionary *serviceDefaults;
+@property (nonatomic, readonly, retain) NSData *serviceImageData;
+@property (nonatomic, retain) NSDictionary *serviceProperties;
+@property (nonatomic, readonly, retain) NSString *shortName;
+@property (nonatomic, readonly) BOOL shouldDisableDeactivation;
+@property (nonatomic, readonly, retain) NSArray *siblingServices;
+@property (nonatomic, readonly) BOOL supportsAdding;
+@property (nonatomic, readonly) BOOL supportsAudioMessages;
+@property (nonatomic, readonly) BOOL supportsAuthorization;
+@property (nonatomic, readonly) BOOL supportsGroupAttachments;
+@property (nonatomic, readonly) BOOL supportsIDStatusLookup;
+@property (nonatomic, readonly) BOOL supportsMutatingGroupMembers;
+@property (nonatomic, readonly) BOOL supportsOfflineTransfers;
+@property (nonatomic, readonly) BOOL supportsPhoneNumberMapping;
+@property (nonatomic, readonly) BOOL supportsPresence;
+@property (nonatomic, readonly) BOOL supportsRegistration;
 
 + (id)activeServices;
 + (id)allServices;
@@ -88,11 +91,11 @@
 + (void)setServiceClass:(Class)arg1;
 + (id)supportedCountryCodes;
 + (BOOL)systemSupportsSMSSending;
++ (BOOL)systemSupportsSendingAttachmentsOfTypes:(id)arg1 error:(int*)arg2;
 
 - (unsigned int)IDSensitivity;
 - (id)_IDsToMapForIMPerson:(id)arg1;
 - (id)_abPropertiesBySanitizingABProperties:(id)arg1;
-- (id)_accountForUniqueID:(id)arg1;
 - (void)_addAddressBookCards:(id)arg1 toMap:(id)arg2;
 - (void)_blockUntilInitialSyncPerformed;
 - (void)_calculateBestAccount;
@@ -114,6 +117,7 @@
 - (id)cardMap;
 - (void)clearIDToCardMap;
 - (int)compareNames:(id)arg1;
+- (id)countryCode;
 - (void)dealloc;
 - (id)defaultAccountSettings;
 - (void)defaultsChanged:(id)arg1;
@@ -124,10 +128,10 @@
 - (BOOL)equalID:(id)arg1 andID:(id)arg2;
 - (BOOL)handlesChatInvites;
 - (BOOL)ignoresNetworkConnectivity;
+- (id)imABPeopleWithScreenName:(id)arg1;
 - (id)imABPeopleWithScreenName:(id)arg1 countryCode:(id)arg2 identifier:(int*)arg3;
 - (id)imABPeopleWithScreenName:(id)arg1 identifier:(int*)arg2;
 - (id)imABPeopleWithScreenName:(id)arg1 options:(unsigned int)arg2;
-- (id)imABPeopleWithScreenName:(id)arg1;
 - (id)infoForAllScreenNames;
 - (id)infoForPreferredScreenNames;
 - (id)infoForScreenName:(id)arg1;
@@ -150,15 +154,18 @@
 - (id)serviceDefaults;
 - (id)serviceImageData;
 - (id)serviceProperties;
+- (void)setCountryCode:(id)arg1;
 - (void)setDefaultAccountSettings:(id)arg1;
 - (void)setServiceDefaults:(id)arg1;
 - (void)setServiceProperties:(id)arg1;
 - (id)shortName;
 - (BOOL)shouldDisableDeactivation;
+- (id)siblingServices;
 - (unsigned int)status;
 - (void)statusChangedForAccount:(id)arg1 from:(unsigned int)arg2 to:(unsigned int)arg3;
 - (id)subtypeInformationForAccount:(id)arg1;
 - (BOOL)supportsAdding;
+- (BOOL)supportsAudioMessages;
 - (BOOL)supportsAuthorization;
 - (BOOL)supportsGroupAttachments;
 - (BOOL)supportsIDStatusLookup;

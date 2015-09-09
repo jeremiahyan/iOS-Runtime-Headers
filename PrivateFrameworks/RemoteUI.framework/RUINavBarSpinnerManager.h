@@ -2,23 +2,21 @@
    Image: /System/Library/PrivateFrameworks/RemoteUI.framework/RemoteUI
  */
 
-@class NSMutableDictionary;
-
 @interface RUINavBarSpinnerManager : NSObject {
     int _activityIndicatorViewStyle;
-    NSMutableDictionary *_navigationItems;
-    NSMutableDictionary *_savedRightItems;
+    NSMutableDictionary *_savedRecords;
 }
 
-@property int activityIndicatorViewStyle;
+@property (nonatomic) int activityIndicatorViewStyle;
 
 + (id)sharedSpinnerManager;
 
+- (void).cxx_destruct;
 - (int)activityIndicatorViewStyle;
-- (void)dealloc;
 - (id)init;
 - (void)setActivityIndicatorViewStyle:(int)arg1;
 - (void)startAnimatingInNavItem:(id)arg1 forIdentifier:(id)arg2;
+- (void)startAnimatingInNavItem:(id)arg1 title:(id)arg2 forIdentifier:(id)arg3 hideBackButton:(BOOL)arg4;
 - (void)stopAnimatingForIdentifier:(id)arg1;
 
 @end

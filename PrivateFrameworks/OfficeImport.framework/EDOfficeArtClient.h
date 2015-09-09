@@ -2,9 +2,8 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class EDAnchor, EDComment, EDSheet, EDTextBox, NSMutableDictionary;
-
 @interface EDOfficeArtClient : NSObject <OADClient, OADTextClient> {
+    EDAnchor *mAnchor;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -14,15 +13,19 @@
             float width; 
             float height; 
         } size; 
-    boolmIsBoundsSet;
-    EDAnchor *mAnchor;
     } mBounds;
     id mClientState;
     EDComment *mComment;
+    bool mIsBoundsSet;
     EDSheet *mSheet;
     NSMutableDictionary *mTableModels;
     EDTextBox *mTextBox;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (id).cxx_construct;
 - (id)anchor;
@@ -33,7 +36,6 @@
 - (void)dealloc;
 - (BOOL)hasBounds;
 - (BOOL)hasText;
-- (id)init;
 - (void)setAnchor:(id)arg1;
 - (void)setBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)setClientState:(id)arg1;

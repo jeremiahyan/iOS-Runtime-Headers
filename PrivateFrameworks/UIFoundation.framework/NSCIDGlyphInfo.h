@@ -16,5 +16,6 @@
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCharacterIdentifier:(unsigned int)arg1 collection:(unsigned int)arg2 baseString:(id)arg3;
+- (id)initWithCoder:(id)arg1;
 
 @end

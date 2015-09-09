@@ -3,10 +3,8 @@
  */
 
 @interface VKPGenericShieldStyleInfo : PBCodable <NSCopying> {
-    struct { 
-        float *list; 
-        unsigned int count; 
-        unsigned int size; 
+    unsigned int _backgroundColor;
+    unsigned int _borderColor;
     struct { 
         unsigned int backgroundColor : 1; 
         unsigned int borderColor : 1; 
@@ -16,36 +14,38 @@
         unsigned int textDropShadowSize : 1; 
         unsigned int textStrokeColor : 1; 
         unsigned int textStrokeSize : 1; 
-    unsigned int _backgroundColor;
-    unsigned int _borderColor;
     } _has;
     int _style;
     unsigned int _textColor;
     unsigned int _textDropShadowColor;
+    struct { 
+        float *list; 
+        unsigned int count; 
+        unsigned int size; 
     } _textDropShadowOffsets;
     float _textDropShadowSize;
     unsigned int _textStrokeColor;
     float _textStrokeSize;
 }
 
-@property unsigned int backgroundColor;
-@property unsigned int borderColor;
-@property BOOL hasBackgroundColor;
-@property BOOL hasBorderColor;
-@property BOOL hasStyle;
-@property BOOL hasTextColor;
-@property BOOL hasTextDropShadowColor;
-@property BOOL hasTextDropShadowSize;
-@property BOOL hasTextStrokeColor;
-@property BOOL hasTextStrokeSize;
-@property int style;
-@property unsigned int textColor;
-@property unsigned int textDropShadowColor;
-@property(readonly) float* textDropShadowOffsets;
-@property(readonly) unsigned int textDropShadowOffsetsCount;
-@property float textDropShadowSize;
-@property unsigned int textStrokeColor;
-@property float textStrokeSize;
+@property (nonatomic) unsigned int backgroundColor;
+@property (nonatomic) unsigned int borderColor;
+@property (nonatomic) BOOL hasBackgroundColor;
+@property (nonatomic) BOOL hasBorderColor;
+@property (nonatomic) BOOL hasStyle;
+@property (nonatomic) BOOL hasTextColor;
+@property (nonatomic) BOOL hasTextDropShadowColor;
+@property (nonatomic) BOOL hasTextDropShadowSize;
+@property (nonatomic) BOOL hasTextStrokeColor;
+@property (nonatomic) BOOL hasTextStrokeSize;
+@property (nonatomic) int style;
+@property (nonatomic) unsigned int textColor;
+@property (nonatomic) unsigned int textDropShadowColor;
+@property (nonatomic, readonly) float*textDropShadowOffsets;
+@property (nonatomic, readonly) unsigned int textDropShadowOffsetsCount;
+@property (nonatomic) float textDropShadowSize;
+@property (nonatomic) unsigned int textStrokeColor;
+@property (nonatomic) float textStrokeSize;
 
 - (void)addTextDropShadowOffset:(float)arg1;
 - (unsigned int)backgroundColor;
@@ -66,6 +66,7 @@
 - (BOOL)hasTextStrokeSize;
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
+- (void)mergeFrom:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 - (void)setBackgroundColor:(unsigned int)arg1;
 - (void)setBorderColor:(unsigned int)arg1;

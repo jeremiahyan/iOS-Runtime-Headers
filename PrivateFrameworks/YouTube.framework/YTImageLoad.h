@@ -2,14 +2,17 @@
    Image: /System/Library/PrivateFrameworks/YouTube.framework/YouTube
  */
 
-@class NSMutableData, NSString, NSURL, NSURLConnection;
-
 @interface YTImageLoad : NSObject <NSURLConnectionDelegate> {
     NSURL *_URL;
     NSURLConnection *_connection;
     NSMutableData *_imageData;
     NSString *_videoID;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)_createImage;
 - (void)_loadFinished;

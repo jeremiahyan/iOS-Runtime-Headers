@@ -2,30 +2,22 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@class NSString, UIAlertView, UIButton, UILabel;
-
-@interface KeychainSyncSecurityCodeController : KeychainSyncTextEntryController <UIAlertViewDelegate> {
+@interface KeychainSyncSecurityCodeController : KeychainSyncTextEntryController {
     NSString *_firstPasscodeEntry;
     UIButton *_footerButton;
     UILabel *_footerLabel;
-    BOOL _forgotCodeAlertHasApproveButton;
-    UIAlertView *_forgotSecurityCodeAlert;
     NSString *_generatedCode;
-    UIAlertView *_iCSCMismatchAlert;
     float _keyboardHeight;
     int _mode;
-    UIAlertView *_resetKeychainAlert;
     int _securityCodeType;
     BOOL _showsAdvancedSettings;
-    UIAlertView *_weakSecurityCodeAlert;
 }
 
-@property(retain) NSString * firstPasscodeEntry;
-@property int mode;
-@property int securityCodeType;
-@property BOOL showsAdvancedSettings;
+@property (nonatomic, retain) NSString *firstPasscodeEntry;
+@property (nonatomic) int mode;
+@property (nonatomic) int securityCodeType;
+@property (nonatomic) BOOL showsAdvancedSettings;
 
-- (void)alertView:(id)arg1 didDismissWithButtonIndex:(int)arg2;
 - (void)animatePasscodeFieldLeft:(BOOL)arg1;
 - (void)dealloc;
 - (void)didFinishEnteringText:(id)arg1;

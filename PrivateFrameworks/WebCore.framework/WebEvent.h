@@ -2,12 +2,7 @@
    Image: /System/Library/PrivateFrameworks/WebCore.framework/WebCore
  */
 
-@class NSArray, NSString;
-
 @interface WebEvent : NSObject {
-    struct CGPoint { 
-        float x; 
-        float y; 
     int _characterSet;
     NSString *_characters;
     NSString *_charactersIgnoringModifiers;
@@ -19,6 +14,9 @@
     unsigned short _keyCode;
     BOOL _keyRepeating;
     unsigned int _keyboardFlags;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _locationInWindow;
     unsigned int _modifierFlags;
     BOOL _popupVariant;
@@ -32,28 +30,28 @@
     BOOL _wasHandled;
 }
 
-@property(readonly) int characterSet;
-@property(readonly) NSString * characters;
-@property(readonly) NSString * charactersIgnoringModifiers;
-@property(readonly) float deltaX;
-@property(readonly) float deltaY;
-@property(readonly) float gestureRotation;
-@property(readonly) float gestureScale;
-@property(readonly) BOOL isGesture;
-@property(readonly) unsigned short keyCode;
-@property(getter=isKeyRepeating,readonly) BOOL keyRepeating;
-@property(readonly) unsigned int keyboardFlags;
-@property(readonly) struct CGPoint { float x1; float x2; } locationInWindow;
-@property(readonly) unsigned int modifierFlags;
-@property(getter=isPopupVariant,readonly) BOOL popupVariant;
-@property(getter=isTabKey,readonly) BOOL tabKey;
-@property(readonly) double timestamp;
-@property(readonly) unsigned int touchCount;
-@property(readonly) NSArray * touchIdentifiers;
-@property(readonly) NSArray * touchLocations;
-@property(readonly) NSArray * touchPhases;
-@property(readonly) int type;
-@property BOOL wasHandled;
+@property (nonatomic, readonly) int characterSet;
+@property (nonatomic, readonly, retain) NSString *characters;
+@property (nonatomic, readonly, retain) NSString *charactersIgnoringModifiers;
+@property (nonatomic, readonly) float deltaX;
+@property (nonatomic, readonly) float deltaY;
+@property (nonatomic, readonly) float gestureRotation;
+@property (nonatomic, readonly) float gestureScale;
+@property (nonatomic, readonly) BOOL isGesture;
+@property (nonatomic, readonly) unsigned short keyCode;
+@property (getter=isKeyRepeating, nonatomic, readonly) BOOL keyRepeating;
+@property (nonatomic, readonly) unsigned int keyboardFlags;
+@property (nonatomic, readonly) struct CGPoint { float x1; float x2; } locationInWindow;
+@property (nonatomic, readonly) unsigned int modifierFlags;
+@property (getter=isPopupVariant, nonatomic, readonly) BOOL popupVariant;
+@property (getter=isTabKey, nonatomic, readonly) BOOL tabKey;
+@property (nonatomic, readonly) double timestamp;
+@property (nonatomic, readonly) unsigned int touchCount;
+@property (nonatomic, readonly, retain) NSArray *touchIdentifiers;
+@property (nonatomic, readonly, retain) NSArray *touchLocations;
+@property (nonatomic, readonly, retain) NSArray *touchPhases;
+@property (nonatomic, readonly) int type;
+@property (nonatomic) BOOL wasHandled;
 
 - (id).cxx_construct;
 - (id)_characterSetDescription;

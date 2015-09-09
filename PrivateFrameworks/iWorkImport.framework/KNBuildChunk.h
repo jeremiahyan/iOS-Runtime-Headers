@@ -2,97 +2,105 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class KNBuild, KNSlide, NSArray, NSSet, NSString;
-
-@interface KNBuildChunk : TSPContainedObject <KNInspectableAnimation> {
-    BOOL mAutomatic;
-    KNBuild *mBuild;
-    double mDelay;
-    double mDuration;
-    unsigned int mIndexInBuild;
-    BOOL mOwnsAutomatic;
-    BOOL mOwnsDelay;
-    BOOL mOwnsDuration;
-    BOOL mOwnsReferent;
-    unsigned int mReferent;
+@interface KNBuildChunk : TSPObject <KNInspectableAnimation, NSCopying> {
+    BOOL _automatic;
+    KNBuildChunkIdentifier *_buildChunkIdentifier;
+    NSUUID *_buildId;
+    TSPLazyReference *_buildReference;
+    unsigned int _cachedActiveIndexOnSlide;
+    unsigned int _cachedIndexInBuild;
+    unsigned int _cachedIndexOnSlide;
+    double _delay;
+    double _duration;
+    BOOL _needsAutomaticFromBuildAttributes;
+    BOOL _needsDelayFromBuildAttributes;
+    BOOL _needsDurationFromBuildAttributes;
+    BOOL _needsReferentFromBuildAttributes;
+    unsigned int _referent;
 }
 
-@property(getter=isActive,readonly) BOOL active;
-@property(readonly) unsigned int activeIndexOnSlide;
-@property(getter=isAutomatic) BOOL automatic;
-@property(getter=isAutomaticWithPreviousChunk,readonly) BOOL automaticWithPreviousChunk;
-@property(readonly) NSArray * availableEventTriggers;
-@property(readonly) KNBuild * build;
-@property(readonly) BOOL canEditAnimations;
-@property double delay;
-@property(readonly) unsigned int deliveryGroupIndex;
-@property double duration;
-@property(readonly) unsigned int eventTrigger;
-@property(readonly) BOOL hasComplement;
-@property(readonly) unsigned int indexInBuild;
-@property(readonly) unsigned int indexOnSlide;
-@property(readonly) NSSet * inspectableAttributes;
-@property(readonly) BOOL isFirstInBuild;
-@property(readonly) BOOL isFirstOnSlide;
-@property BOOL ownsAutomatic;
-@property BOOL ownsDelay;
-@property BOOL ownsDuration;
-@property BOOL ownsReferent;
-@property unsigned int referent;
-@property(readonly) KNSlide * slide;
-@property(readonly) BOOL supportsWithStart;
-@property(readonly) NSString * title;
+@property (getter=isActive, nonatomic, readonly) BOOL active;
+@property (nonatomic, readonly) unsigned int activeIndexOnSlide;
+@property (getter=isAutomatic, nonatomic) BOOL automatic;
+@property (getter=isAutomaticWithPreviousChunk, nonatomic, readonly) BOOL automaticWithPreviousChunk;
+@property (getter=isAutomaticWithPreviousChunkOnSameDrawable, nonatomic, readonly) BOOL automaticWithPreviousChunkOnSameDrawable;
+@property (nonatomic, readonly) NSArray *availableEventTriggers;
+@property (nonatomic, readonly) KNBuild *build;
+@property (nonatomic, readonly) BOOL canEditAnimations;
+@property (nonatomic, readonly) KNBuildChunkIdentifier *chunkIdentifier;
+@property (nonatomic) double delay;
+@property (nonatomic, readonly) unsigned int deliveryGroupIndex;
+@property (nonatomic) double duration;
+@property (nonatomic, readonly) unsigned int eventTrigger;
+@property (nonatomic, readonly) BOOL hasComplement;
+@property (nonatomic, readonly) NSUUID *i_buildId;
+@property (nonatomic, readonly) unsigned int indexInBuild;
+@property (nonatomic, readonly) unsigned int indexOnSlide;
+@property (nonatomic, readonly) NSSet *inspectableAttributes;
+@property (nonatomic, readonly) BOOL isFirstInBuild;
+@property (nonatomic, readonly) BOOL isFirstInDeliveryGroup;
+@property (nonatomic, readonly) BOOL isFirstOnSlide;
+@property (nonatomic) unsigned int referent;
+@property (nonatomic, readonly) KNSlide *slide;
+@property (nonatomic, readonly) BOOL supportsWithStart;
+@property (nonatomic, readonly) NSString *title;
+
++ (BOOL)needsObjectUUID;
 
 - (unsigned int)activeIndexOnSlide;
 - (id)availableEventTriggers;
 - (id)build;
 - (BOOL)canBuildWithChunk:(id)arg1;
 - (BOOL)canEditAnimations;
+- (id)chunkIdentifier;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (double)delay;
 - (unsigned int)deliveryGroupIndex;
 - (id)description;
+- (void)didInitFromSOS;
+- (void)didLoadBuild:(id)arg1;
 - (double)duration;
 - (unsigned int)eventTrigger;
 - (BOOL)hasComplement;
+- (id)i_buildId;
+- (void)i_clearChunkIdentifier;
+- (void)i_correctChunkIdentifierToPointAtBuild:(id)arg1;
+- (void)i_invalidateChunkIndexInBuildCache;
+- (void)i_setBuild:(id)arg1;
+- (void)i_setBuildId:(id)arg1;
+- (void)i_setChunkIdentifier:(id)arg1;
 - (unsigned int)indexInBuild;
 - (unsigned int)indexOnSlide;
-- (id)initWithArchive:(const struct BuildChunkArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; struct Reference {} *x3; double x4; double x5; unsigned int x6; boolx7; boolx8; int x9; unsigned int x10[1]; }*)arg1 unarchiver:(id)arg2 owner:(id)arg3;
-- (id)initWithIndex:(unsigned int)arg1 inBuild:(id)arg2 copyingAttributesFromChunk:(id)arg3;
-- (id)initWithIndex:(unsigned int)arg1 inBuild:(id)arg2 referent:(unsigned int)arg3 copyingRemainingAttributesFromChunk:(id)arg4;
-- (id)initWithIndex:(unsigned int)arg1 inBuild:(id)arg2;
+- (id)initFromUnarchiver:(id)arg1;
+- (id)initWithBuild:(id)arg1;
+- (id)initWithBuild:(id)arg1 copyingAttributesFromChunk:(id)arg2;
+- (id)initWithBuild:(id)arg1 referent:(unsigned int)arg2 copyingRemainingAttributesFromChunk:(id)arg3;
 - (id)inspectableAttributes;
 - (BOOL)isActive;
 - (BOOL)isAutomatic;
 - (BOOL)isAutomaticWithPreviousChunk;
-- (BOOL)isEqual:(id)arg1;
+- (BOOL)isAutomaticWithPreviousChunkOnSameDrawable;
+- (BOOL)isComplementOfBuildChunk:(id)arg1;
 - (BOOL)isFirstInBuild;
+- (BOOL)isFirstInDeliveryGroup;
 - (BOOL)isFirstOnSlide;
-- (BOOL)ownsAutomatic;
-- (BOOL)ownsDelay;
-- (BOOL)ownsDuration;
-- (BOOL)ownsReferent;
+- (void)loadFromArchive:(const struct BuildChunkArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; struct Reference {} *x5; double x6; double x7; unsigned int x8; bool x9; bool x10; struct BuildChunkIdentifierArchive {} *x11; struct UUID {} *x12; }*)arg1 unarchiver:(id)arg2;
+- (id)nextChunkOnSlide;
 - (BOOL)p_canBuildWithChunk:(id)arg1 checkOtherChunksBuildingWithThisChunk:(BOOL)arg2;
 - (id)p_chunksBuildingWithThisChunk;
 - (BOOL)p_chunksBuildingWithThisChunkCanBuildWithChunk:(id)arg1;
-- (void)p_invalidateSlideCaches;
-- (id)p_previousChunkOnSlide;
+- (void)p_setDelayFromBuildAttributes:(id)arg1 withReferent:(unsigned int)arg2 automatic:(BOOL)arg3;
+- (void)p_setDurationFromBuildAttributes:(id)arg1;
 - (id)p_stringForReferent:(unsigned int)arg1;
+- (id)p_stringRepresentationWithNotAvailableForIndex:(unsigned int)arg1;
+- (id)previousChunkOnSlide;
 - (unsigned int)referent;
-- (void)reset;
-- (void)saveToArchive:(struct BuildChunkArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; struct Reference {} *x3; double x4; double x5; unsigned int x6; boolx7; boolx8; int x9; unsigned int x10[1]; }*)arg1 archiver:(id)arg2;
+- (void)saveToArchive:(struct BuildChunkArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; struct Reference {} *x5; double x6; double x7; unsigned int x8; bool x9; bool x10; struct BuildChunkIdentifierArchive {} *x11; struct UUID {} *x12; }*)arg1 archiver:(id)arg2;
+- (void)saveToArchiver:(id)arg1;
 - (void)setAutomatic:(BOOL)arg1;
 - (void)setDelay:(double)arg1;
 - (void)setDuration:(double)arg1;
-- (void)setOwnsAutomatic:(BOOL)arg1;
-- (void)setOwnsDelay:(BOOL)arg1;
-- (void)setOwnsDuration:(BOOL)arg1;
-- (void)setOwnsReferent:(BOOL)arg1;
 - (void)setReferent:(unsigned int)arg1;
 - (id)slide;
 - (BOOL)supportsWithStart;

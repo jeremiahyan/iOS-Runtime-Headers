@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/ScreenReaderOutput.framework/ScreenReaderOutput
  */
 
-@class NSLock, SCRCTargetSelectorTimer, SCROConnection;
-
 @interface SCROScriptClient : NSObject {
     SCROConnection *_connection;
     BOOL _isReady;
@@ -13,13 +11,14 @@
 
 + (id)allocWithZone:(struct _NSZone { }*)arg1;
 + (void)initialize;
-+ (id)sharedScriptClient;
++ (id)sharedClient;
 
 - (BOOL)_isReady;
 - (void)_killConnection;
 - (id)_lazyConnection;
 - (id)autorelease;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (void)dealloc;
 - (void)handleCallback:(id)arg1;
 - (id)init;
 - (oneway void)release;

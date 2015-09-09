@@ -2,21 +2,23 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class <TSCHSupportsRendering>, TSCHChartInfo, TSCHChartLayoutItem, TSCHChartModel;
-
 @interface TSCHRenderer : NSObject <TSCHSupportsTextEditing> {
     TSCHChartLayoutItem *mChartLayoutItem;
     <TSCHSupportsRendering> *mChartRep;
 }
 
-@property(readonly) TSCHChartInfo * chartInfo;
-@property(readonly) <TSCHSupportsRendering> * chartRep;
-@property(readonly) struct CGColor { }* debugColor;
-@property(readonly) BOOL debugLayout;
-@property(readonly) TSCHChartLayoutItem * layoutItem;
-@property(readonly) TSCHChartModel * model;
-@property(readonly) BOOL supportsSeparateLabelsRenderPass;
-@property(readonly) float viewScale;
+@property (nonatomic, readonly) TSCHChartInfo *chartInfo;
+@property (nonatomic, readonly) <TSCHSupportsRendering> *chartRep;
+@property (nonatomic, readonly) struct CGColor { }*debugColor;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic, readonly) BOOL debugLayout;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) TSCHChartLayoutItem *layoutItem;
+@property (nonatomic, readonly) TSCHChartModel *model;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) BOOL supportsSeparateLabelsRenderPass;
+@property (nonatomic, readonly) float viewScale;
 
 - (void)addSelection:(id)arg1 toCGPath:(struct CGPath { }*)arg2;
 - (BOOL)canEditTextForSelectionPath:(id)arg1;
@@ -31,6 +33,7 @@
 - (void)drawErrorBarsInContext:(struct CGContext { }*)arg1 chartVertical:(BOOL)arg2 elementRenderClass:(Class)arg3;
 - (void)drawTrendLinesInContext:(struct CGContext { }*)arg1 chartVertical:(BOOL)arg2 elementRenderClass:(Class)arg3;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })frameForEditingTextForSelectionPath:(id)arg1;
+- (float)frameHeightChangeForPath:(id)arg1;
 - (id)initWithChartRep:(id)arg1 layoutItem:(id)arg2;
 - (BOOL)isCompositeRenderer;
 - (id)layoutItem;

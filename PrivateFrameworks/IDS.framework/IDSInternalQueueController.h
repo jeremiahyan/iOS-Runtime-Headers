@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/IDS.framework/IDS
  */
 
-@class NSObject<OS_dispatch_queue>;
-
 @interface IDSInternalQueueController : NSObject {
     NSObject<OS_dispatch_queue> *_queue;
 }
@@ -14,8 +12,9 @@
 - (void)assertQueueIsNotCurrent;
 - (void)dealloc;
 - (id)init;
-- (void)performBlock:(id)arg1 waitUntilDone:(BOOL)arg2;
-- (void)performBlock:(id)arg1;
+- (BOOL)isQueueCurrent;
+- (void)performBlock:(id /* block */)arg1;
+- (void)performBlock:(id /* block */)arg1 waitUntilDone:(BOOL)arg2;
 - (id)queue;
 
 @end

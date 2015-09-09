@@ -3,24 +3,27 @@
  */
 
 @interface VKRasterMapTileRequest : NSObject <NSCopying> {
+    NSLocale *_locale;
+    int _mapType;
+    unsigned int _scale;
+    unsigned int _tileGroupID;
     struct VKRasterTileKey { 
         unsigned int x; 
         unsigned int y; 
         unsigned int z; 
         unsigned int pointSize; 
-    BOOL _localizeLabels;
-    int _mapType;
-    unsigned int _scale;
     } _tileKey;
 }
 
-@property(readonly) struct VKCacheKey { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; } cacheKey;
-@property BOOL localizeLabels;
-@property int mapType;
-@property unsigned int scale;
-@property struct VKRasterTileKey { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; } tileKey;
-@property(readonly) const struct VKRasterTileKey { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; }* tileKeyPtr;
-@property(readonly) struct VKTileKey { unsigned int x1; int x2; int x3; unsigned int x4; } tk;
+@property (nonatomic, readonly) struct VKCacheKey { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; } cacheKey;
+@property (nonatomic, readonly) BOOL isInvalid;
+@property (nonatomic, retain) NSLocale *locale;
+@property (nonatomic) int mapType;
+@property (nonatomic) unsigned int scale;
+@property (nonatomic) unsigned int tileGroupID;
+@property (nonatomic) struct VKRasterTileKey { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; } tileKey;
+@property (nonatomic, readonly) const struct VKRasterTileKey { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; }*tileKeyPtr;
+@property (nonatomic, readonly) struct VKTileKey { unsigned int x1; int x2; int x3; unsigned int x4; } tk;
 
 - (struct VKCacheKey { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; })cacheKey;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -28,13 +31,17 @@
 - (unsigned int)hash;
 - (id)init;
 - (BOOL)isEqual:(id)arg1;
-- (BOOL)localizeLabels;
+- (BOOL)isInvalid;
+- (void)isReallyInvalid:(id /* block */)arg1;
+- (id)locale;
 - (int)mapType;
 - (unsigned int)scale;
-- (void)setLocalizeLabels:(BOOL)arg1;
+- (void)setLocale:(id)arg1;
 - (void)setMapType:(int)arg1;
 - (void)setScale:(unsigned int)arg1;
+- (void)setTileGroupID:(unsigned int)arg1;
 - (void)setTileKey:(struct VKRasterTileKey { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; })arg1;
+- (unsigned int)tileGroupID;
 - (struct VKRasterTileKey { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; })tileKey;
 - (const struct VKRasterTileKey { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; }*)tileKeyPtr;
 - (struct VKTileKey { unsigned int x1; int x2; int x3; unsigned int x4; })tk;

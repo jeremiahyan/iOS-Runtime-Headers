@@ -2,9 +2,7 @@
    Image: /System/Library/Frameworks/Social.framework/Social
  */
 
-@class NSArray, NSLock, NSObject<SLPlaceDataSource>, NSString, NSTimer, UISearchDisplayController;
-
-@interface SLSheetPlaceSearchController : NSObject <UITableViewDataSource, SLPlaceDataSourceDelegate> {
+@interface SLSheetPlaceSearchController : NSObject <SLPlaceDataSourceDelegate, UITableViewDataSource> {
     NSTimer *_delayTimer;
     BOOL _isSearching;
     NSObject<SLPlaceDataSource> *_placeDataSource;
@@ -15,9 +13,13 @@
     NSString *_searchString;
 }
 
-@property(retain) NSObject<SLPlaceDataSource> * placeDataSource;
-@property(retain) UISearchDisplayController * searchDisplayController;
-@property(retain) NSArray * searchResults;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (retain) NSObject<SLPlaceDataSource> *placeDataSource;
+@property (retain) UISearchDisplayController *searchDisplayController;
+@property (retain) NSArray *searchResults;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)cancelSearch;

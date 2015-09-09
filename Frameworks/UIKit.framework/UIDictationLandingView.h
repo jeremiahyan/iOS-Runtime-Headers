@@ -2,10 +2,8 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class CADisplayLink, NSInvocationOperation, UITextRange;
-
 @interface UIDictationLandingView : UIView <_UIBasicAnimationFactory> {
-    NSInvocationOperation *_afterShrinkCompletionInvocation;
+    NSOperation *_afterShrinkCompletionInvocation;
     float _angle;
     float _diameter;
     BOOL _didHaveText;
@@ -18,10 +16,15 @@
     BOOL _willInsertResult;
 }
 
-@property BOOL willInsertResult;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+@property (nonatomic) BOOL willInsertResult;
 
 + (id)activeInstance;
 + (float)diameterForLineHeight:(float)arg1;
++ (int)fallbackPlaceholderLength;
 + (id)sharedInstance;
 + (float)widthForLineHeight:(float)arg1;
 
@@ -33,14 +36,13 @@
 - (BOOL)delegateWasEmpty;
 - (void)drawRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)errorShakeDidFinish;
-- (void)errorShrinkDidFinish;
 - (float)fadeOutDuration;
 - (void)hideCursor;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)rotateBy:(float)arg1;
 - (void)setWillInsertResult:(BOOL)arg1;
 - (void)showCursor;
-- (void)shrinkWithCompletionInvocation:(id)arg1;
+- (void)shrinkWithCompletion:(id)arg1;
 - (void)startDisplayLinkIfNecessary;
 - (void)startLandingIfNecessary;
 - (void)stopLanding;

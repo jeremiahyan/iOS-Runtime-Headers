@@ -2,27 +2,33 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class NSMutableArray, UICollectionView;
-
 @interface SKUISearchCollectionViewFlowLayout : SKUIItemGridCollectionViewLayout {
+    BOOL _backfills;
+    UICollectionView *_collectionView;
     struct CGSize { 
         float width; 
         float height; 
-    UICollectionView *_collectionView;
     } _headerSize;
+    float _horizontalPadding;
     int _numberOfColumns;
     int _numberOfRows;
-    NSMutableArray *_sectionCounts;
+    float _verticalPadding;
 }
 
+@property (nonatomic) BOOL backfills;
+@property (nonatomic) float horizontalPadding;
+@property (nonatomic) float verticalPadding;
+
 - (void).cxx_destruct;
-- (int)_globalIndexForIndexPath:(id)arg1;
-- (id)_indexPathForGlobalIndex:(int)arg1;
+- (BOOL)backfills;
+- (float)horizontalPadding;
 - (id)init;
 - (id)layoutAttributesForDecorationViewOfKind:(id)arg1 atIndexPath:(id)arg2;
 - (id)layoutAttributesForElementsInRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
-- (id)layoutAttributesForItemAtIndexPath:(id)arg1;
-- (id)layoutAttributesForSupplementaryViewOfKind:(id)arg1 atIndexPath:(id)arg2;
 - (void)prepareLayout;
+- (void)setBackfills:(BOOL)arg1;
+- (void)setHorizontalPadding:(float)arg1;
+- (void)setVerticalPadding:(float)arg1;
+- (float)verticalPadding;
 
 @end

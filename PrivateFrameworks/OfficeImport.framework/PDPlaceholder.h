@@ -10,7 +10,10 @@
     int mType;
 }
 
++ (BOOL)isTextType:(int)arg1;
+
 - (int)boundsTrack;
+- (id)description;
 - (int)index;
 - (id)init;
 - (int)orientation;

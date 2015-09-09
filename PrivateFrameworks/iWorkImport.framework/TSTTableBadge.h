@@ -2,9 +2,9 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class TSUColor;
-
 @interface TSTTableBadge : NSObject {
+    int _badgeType;
+    TSUColor *_color;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -14,16 +14,14 @@
             float width; 
             float height; 
         } size; 
-    int _badgeType;
-    TSUColor *_color;
     } _frame;
     float _viewScale;
 }
 
-@property int badgeType;
-@property(retain) TSUColor * color;
-@property struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } frame;
-@property float viewScale;
+@property (nonatomic) int badgeType;
+@property (nonatomic, retain) TSUColor *color;
+@property (nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } frame;
+@property (nonatomic) float viewScale;
 
 + (id)badgeWithType:(int)arg1 color:(id)arg2 viewScale:(float)arg3 frame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg4;
 

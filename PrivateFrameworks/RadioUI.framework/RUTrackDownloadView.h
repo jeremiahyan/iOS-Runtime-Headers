@@ -2,27 +2,25 @@
    Image: /System/Library/PrivateFrameworks/RadioUI.framework/RadioUI
  */
 
-@class <RUTrackDownloadViewDelegate>, MPAVItem, MPMediaDownloadObserver, MPMediaItem, NSArray, NSString, RadioTrack, SKUIItemOfferButton, UIViewController;
-
 @interface RUTrackDownloadView : UIView <MPStoreDownloadManagerObserver, SKStoreProductViewControllerDelegate, SKUIItemOfferButtonDelegate> {
     struct UIEdgeInsets { 
         float top; 
         float left; 
         float bottom; 
         float right; 
-    struct CGSize { 
-        float width; 
-        float height; 
     } _alignmentRectInsets;
     MPAVItem *_avItem;
     NSString *_baseOriginator;
     int _buyButtonTitleStyle;
     NSArray *_buyOffers;
     <RUTrackDownloadViewDelegate> *_delegate;
-    MPMediaDownloadObserver *_downloadObserver;
+    MPUMediaDownloadObserver *_downloadObserver;
     BOOL _isPurchaseAllowed;
     SKUIItemOfferButton *_itemOfferButton;
     MPMediaItem *_mediaItem;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _overrideSize;
     int _overrideState;
     NSString *_overrideTitleText;
@@ -31,24 +29,31 @@
     int _state;
     NSString *_stationHash;
     long long _stationID;
+    long long _storeDownloadID;
     BOOL _supportsAlbumOnly;
     UIViewController *_viewControllerForPresenting;
 }
 
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } alignmentRectInsets;
-@property(setter=setAVItem:,retain) MPAVItem * avItem;
-@property(copy) NSString * baseOriginator;
-@property int buyButtonTitleStyle;
-@property <RUTrackDownloadViewDelegate> * delegate;
-@property struct CGSize { float x1; float x2; } overrideSize;
-@property int overrideState;
-@property(copy) NSString * overrideTitleText;
-@property(retain) RadioTrack * radioTrack;
-@property(readonly) int state;
-@property(copy) NSString * stationHash;
-@property long long stationID;
-@property BOOL supportsAlbumOnly;
-@property UIViewController * viewControllerForPresenting;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } alignmentRectInsets;
+@property (setter=setAVItem:, nonatomic, retain) MPAVItem *avItem;
+@property (nonatomic, copy) NSString *baseOriginator;
+@property (nonatomic) int buyButtonTitleStyle;
+@property (nonatomic, retain) NSArray *buyOffers;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <RUTrackDownloadViewDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) struct CGSize { float x1; float x2; } overrideSize;
+@property (nonatomic) int overrideState;
+@property (nonatomic, copy) NSString *overrideTitleText;
+@property (nonatomic, retain) RadioTrack *radioTrack;
+@property (nonatomic, readonly) int state;
+@property (nonatomic, copy) NSString *stationHash;
+@property (nonatomic) long long stationID;
+@property (nonatomic) long long storeDownloadID;
+@property (readonly) Class superclass;
+@property (nonatomic) BOOL supportsAlbumOnly;
+@property (nonatomic) UIViewController *viewControllerForPresenting;
 
 - (void).cxx_destruct;
 - (long long)_albumStoreID;
@@ -79,6 +84,7 @@
 - (id)avItem;
 - (id)baseOriginator;
 - (int)buyButtonTitleStyle;
+- (id)buyOffers;
 - (void)dealloc;
 - (id)delegate;
 - (void)downloadManager:(id)arg1 didAddDownloads:(id)arg2 removeDownloads:(id)arg3;
@@ -95,6 +101,7 @@
 - (void)setAlignmentRectInsets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
 - (void)setBaseOriginator:(id)arg1;
 - (void)setBuyButtonTitleStyle:(int)arg1;
+- (void)setBuyOffers:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setOverrideSize:(struct CGSize { float x1; float x2; })arg1;
 - (void)setOverrideState:(int)arg1;
@@ -102,12 +109,14 @@
 - (void)setRadioTrack:(id)arg1;
 - (void)setStationHash:(id)arg1;
 - (void)setStationID:(long long)arg1;
+- (void)setStoreDownloadID:(long long)arg1;
 - (void)setSupportsAlbumOnly:(BOOL)arg1;
 - (void)setViewControllerForPresenting:(id)arg1;
 - (struct CGSize { float x1; float x2; })sizeThatFits:(struct CGSize { float x1; float x2; })arg1;
 - (int)state;
 - (id)stationHash;
 - (long long)stationID;
+- (long long)storeDownloadID;
 - (BOOL)supportsAlbumOnly;
 - (id)viewControllerForPresenting;
 

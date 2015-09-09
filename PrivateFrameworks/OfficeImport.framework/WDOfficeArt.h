@@ -2,11 +2,9 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class OADDrawable, WDCharacterProperties;
-
 @interface WDOfficeArt : WDRun {
-    boolmFloating;
     OADDrawable *mDrawable;
+    bool mFloating;
     WDCharacterProperties *mProperties;
 }
 

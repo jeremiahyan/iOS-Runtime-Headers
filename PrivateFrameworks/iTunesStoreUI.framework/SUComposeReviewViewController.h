@@ -2,14 +2,16 @@
    Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
  */
 
-@class NSURL, SKComposeReviewViewController;
-
 @interface SUComposeReviewViewController : SUViewController <SKComposeReviewDelegate> {
     NSURL *_compositionURL;
     SKComposeReviewViewController *_remoteViewController;
 }
 
-@property(readonly) NSURL * compositionURL;
+@property (nonatomic, readonly) NSURL *compositionURL;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)_showRemoteView;
 - (BOOL)automaticallyForwardAppearanceAndRotationMethodsToChildViewControllers;
@@ -19,7 +21,7 @@
 - (id)init;
 - (id)initWithCompositionURL:(id)arg1;
 - (void)loadView;
-- (void)prepareWithCompletionBlock:(id)arg1;
+- (void)prepareWithCompletionBlock:(id /* block */)arg1;
 - (void)reviewComposeViewControllerDidFinish:(id)arg1;
 
 @end

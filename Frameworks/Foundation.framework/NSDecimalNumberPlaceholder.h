@@ -2,8 +2,7 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@interface NSDecimalNumberPlaceholder : NSDecimalNumber {
-}
+@interface NSDecimalNumberPlaceholder : NSDecimalNumber
 
 + (id)allocWithZone:(struct _NSZone { }*)arg1;
 + (BOOL)supportsSecureCoding;
@@ -22,8 +21,8 @@
 - (id)initWithLongLong:(long long)arg1;
 - (id)initWithMantissa:(unsigned long long)arg1 exponent:(short)arg2 isNegative:(BOOL)arg3;
 - (id)initWithShort:(short)arg1;
-- (id)initWithString:(id)arg1 locale:(id)arg2;
 - (id)initWithString:(id)arg1;
+- (id)initWithString:(id)arg1 locale:(id)arg2;
 - (id)initWithUnsignedChar:(unsigned char)arg1;
 - (id)initWithUnsignedInt:(unsigned int)arg1;
 - (id)initWithUnsignedInteger:(unsigned int)arg1;

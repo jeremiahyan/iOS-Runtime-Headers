@@ -2,12 +2,13 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSData;
+@interface SALocalSearchRoute : AceObject <SABackgroundContextObject>
 
-@interface SALocalSearchRoute : AceObject <SABackgroundContextObject> {
-}
-
-@property(copy) NSData * routeAsZilchBinary;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSData *routeAsZilchBinary;
+@property (readonly) Class superclass;
 
 + (id)route;
 + (id)routeWithDictionary:(id)arg1 context:(id)arg2;

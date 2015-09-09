@@ -2,17 +2,16 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSMutableArray;
-
-@interface GEOVConnectivity : PBCodable {
+@interface GEOVConnectivity : PBCodable <NSCopying> {
     NSMutableArray *_junctions;
 }
 
-@property(retain) NSMutableArray * junctions;
+@property (nonatomic, retain) NSMutableArray *junctions;
 
 - (void)addJunction:(id)arg1;
 - (void)clearJunctions;
 - (void)copyTo:(id)arg1;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)description;
 - (id)dictionaryRepresentation;

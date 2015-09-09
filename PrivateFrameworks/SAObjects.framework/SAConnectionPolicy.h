@@ -2,24 +2,28 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSArray, NSNumber, NSString;
+@interface SAConnectionPolicy : AceObject <SAAceSerializable>
 
-@interface SAConnectionPolicy : AceObject <SAAceSerializable> {
-}
-
-@property(copy) NSNumber * globalTimeout;
-@property(copy) NSString * policyId;
-@property(copy) NSArray * routes;
-@property(copy) NSNumber * timeToLive;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL enabled;
+@property (nonatomic, copy) NSNumber *globalTimeout;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *policyId;
+@property (nonatomic, copy) NSArray *routes;
+@property (readonly) Class superclass;
+@property (nonatomic, copy) NSNumber *timeToLive;
 
 + (id)connectionPolicy;
 + (id)connectionPolicyWithDictionary:(id)arg1 context:(id)arg2;
 
+- (BOOL)enabled;
 - (id)encodedClassName;
 - (id)globalTimeout;
 - (id)groupIdentifier;
 - (id)policyId;
 - (id)routes;
+- (void)setEnabled:(BOOL)arg1;
 - (void)setGlobalTimeout:(id)arg1;
 - (void)setPolicyId:(id)arg1;
 - (void)setRoutes:(id)arg1;

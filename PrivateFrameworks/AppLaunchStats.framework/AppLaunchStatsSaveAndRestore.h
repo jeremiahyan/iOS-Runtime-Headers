@@ -2,18 +2,16 @@
    Image: /System/Library/PrivateFrameworks/AppLaunchStats.framework/AppLaunchStats
  */
 
-@class NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>;
-
 @interface AppLaunchStatsSaveAndRestore : NSObject {
+    bool allowSave;
     NSObject<OS_dispatch_queue> *aplsSaveAndRestoreQueue;
-    boolallowSave;
-    boolhasSavedData;
+    bool hasSavedData;
     NSMutableArray *saveRestoreObjects;
     NSMutableDictionary *saveState;
 }
 
-@property bool allowSave;
-@property(readonly) bool hasSavedData;
+@property (nonatomic) bool allowSave;
+@property (nonatomic, readonly) bool hasSavedData;
 
 - (void).cxx_destruct;
 - (void)addDataSource:(id)arg1;
@@ -25,6 +23,7 @@
 - (id)getString:(id)arg1;
 - (bool)hasSavedData;
 - (id)init;
+- (void)quickSaveAppStatistics:(id)arg1 forKey:(id)arg2;
 - (void)quickSaveBlackList:(id)arg1 forKey:(id)arg2;
 - (void)quickSaveDelayTime:(id)arg1 forKey:(id)arg2;
 - (void)quickSaveInstallApps:(id)arg1 forKey:(id)arg2;

@@ -2,8 +2,7 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@interface UITableViewCellLayoutManager : NSObject {
-}
+@interface UITableViewCellLayoutManager : NSObject
 
 + (id)_alternateExternalDetailTextColor;
 + (id)_alternateExternalTextColor;
@@ -14,9 +13,13 @@
 
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_accessoryRectForCell:(id)arg1 offscreen:(BOOL)arg2;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_adjustedBackgroundContentRectForCell:(id)arg1 forIndentedState:(BOOL)arg2;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_adjustedBackgroundContentRectForCell:(id)arg1 forIndentedState:(BOOL)arg2 rowWidth:(float)arg3;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_adjustedBackgroundRectForCell:(id)arg1 forIndentedState:(BOOL)arg2;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_adjustedBackgroundRectForCell:(id)arg1 forIndentedState:(BOOL)arg2 rowWidth:(float)arg3;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_backgroundRectForCell:(id)arg1 forIndentedState:(BOOL)arg2;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_backgroundRectForCell:(id)arg1 forIndentedState:(BOOL)arg2 rowWidth:(float)arg3;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_contentRectForCell:(id)arg1 forEditingState:(BOOL)arg2 showingDeleteConfirmation:(BOOL)arg3;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_contentRectForCell:(id)arg1 forEditingState:(BOOL)arg2 showingDeleteConfirmation:(BOOL)arg3 rowWidth:(float)arg4;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_editControlRectForCell:(id)arg1 offscreen:(BOOL)arg2;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_editingAccessoryRectForCell:(id)arg1 offscreen:(BOOL)arg2;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_reorderControlRectForCell:(id)arg1 offscreen:(BOOL)arg2;
@@ -34,14 +37,16 @@
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })contentEndingRectForCell:(id)arg1 forNewEditingState:(BOOL)arg2;
 - (float)contentIndentationForCell:(id)arg1;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })contentRectForCell:(id)arg1 forState:(unsigned int)arg2;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })contentRectForCell:(id)arg1 forState:(unsigned int)arg2 rowWidth:(float)arg3;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })contentStartingRectForCell:(id)arg1 forDisplayOfDeleteConfirmation:(BOOL)arg2;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })contentStartingRectForCell:(id)arg1 forNewEditingState:(BOOL)arg2;
 - (id)defaultBadgeForCell:(id)arg1;
+- (id)defaultDetailTextLabelFontForCell:(id)arg1;
 - (float)defaultDetailTextLabelFontSizeForCell:(id)arg1;
 - (id)defaultEditableTextFieldForCell:(id)arg1;
 - (id)defaultImageViewForCell:(id)arg1;
-- (id)defaultLabelForCell:(id)arg1 ofClass:(Class)arg2;
 - (id)defaultLabelForCell:(id)arg1;
+- (id)defaultLabelForCell:(id)arg1 ofClass:(Class)arg2;
 - (id)defaultTextLabelFontForCell:(id)arg1;
 - (float)defaultTextLabelFontSizeForCell:(id)arg1;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })deleteConfirmationRectForCell:(id)arg1;
@@ -55,7 +60,9 @@
 - (BOOL)editingAccessoryShouldAppearForCell:(id)arg1;
 - (BOOL)editingAccessoryShouldFadeForCell:(id)arg1;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })editingAccessoryStartingRectForCell:(id)arg1 forNewEditingState:(BOOL)arg2 showingDeleteConfirmation:(BOOL)arg3;
+- (void)getTextLabelRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; }*)arg1 detailTextLabelRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; }*)arg2 forCell:(id)arg3 rowWidth:(float)arg4;
 - (id)imageViewForCell:(id)arg1;
+- (struct CGSize { float x1; float x2; })intrinsicContentSizeForCell:(id)arg1 rowWidth:(float)arg2;
 - (void)layoutSubviewsOfCell:(id)arg1;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })reorderControlEndingRectForCell:(id)arg1 forNewEditingState:(BOOL)arg2 showingDeleteConfirmation:(BOOL)arg3;
 - (BOOL)reorderControlShouldAppearForCell:(id)arg1;
@@ -68,5 +75,6 @@
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })selectedBackgroundEndingRectForCell:(id)arg1 forNewEditingState:(BOOL)arg2;
 - (id)textLabelForCell:(id)arg1;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })textRectForCell:(id)arg1;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })textRectForCell:(id)arg1 rowWidth:(float)arg2;
 
 @end

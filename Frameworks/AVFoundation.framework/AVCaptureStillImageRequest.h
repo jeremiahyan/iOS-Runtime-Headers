@@ -2,68 +2,36 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@interface AVCaptureStillImageRequest : NSObject <NSCopying> {
-    struct CGSize { 
-        float width; 
-        float height; 
-    int _HDRMode;
-    BOOL _chromaNoiseReductionEnabled;
-    unsigned long _imageDataFormatType;
-    id _iosurfaceCompletionBlock;
-    float _jpegQuality;
-    BOOL _jpegQualitySpecified;
-    } _previewImageSize;
-    id _sbufCompletionBlock;
+@interface AVCaptureStillImageRequest : NSObject {
+    id /* block */ _bracketedCaptureCompletionBlock;
+    AVCaptureBracketedStillImageSettings *_bracketedSettings;
+    id /* block */ _iosurfaceCompletionBlock;
+    id /* block */ _sbufCompletionBlock;
+    long long _settingsID;
     unsigned long _shutterSoundID;
-    BOOL _stillImageMirrored;
-    int _stillImageOrientation;
-    BOOL _suspendsVideoProcessing;
 }
 
-@property int HDRMode;
-@property BOOL chromaNoiseReductionEnabled;
-@property unsigned long imageDataFormatType;
-@property(copy) id iosurfaceCompletionBlock;
-@property float jpegQuality;
-@property BOOL jpegQualitySpecified;
-@property struct CGSize { float x1; float x2; } previewImageSize;
-@property(copy) id sbufCompletionBlock;
+@property (copy) id /* block */ bracketedCaptureCompletionBlock;
+@property (retain) AVCaptureBracketedStillImageSettings *bracketedSettings;
+@property (copy) id /* block */ iosurfaceCompletionBlock;
+@property (copy) id /* block */ sbufCompletionBlock;
+@property long long settingsID;
 @property unsigned long shutterSoundID;
-@property(getter=isStillImageMirrored) BOOL stillImageMirrored;
-@property int stillImageOrientation;
-@property BOOL suspendsVideoProcessing;
 
 + (id)request;
 
-- (int)HDRMode;
-- (BOOL)chromaNoiseReductionEnabled;
-- (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (id /* block */)bracketedCaptureCompletionBlock;
+- (id)bracketedSettings;
 - (void)dealloc;
-- (unsigned long)imageDataFormatType;
-- (id)iosurfaceCompletionBlock;
-- (BOOL)isStillImageMirrored;
-- (float)jpegQuality;
-- (BOOL)jpegQualitySpecified;
-- (struct CGSize { float x1; float x2; })previewImageSize;
-- (id)sbufCompletionBlock;
-- (void)setChromaNoiseReductionEnabled:(BOOL)arg1;
-- (void)setHDRMode:(int)arg1;
-- (void)setImageDataFormatType:(unsigned long)arg1;
-- (void)setIosurfaceCompletionBlock:(id)arg1;
-- (void)setJpegQuality:(float)arg1;
-- (void)setJpegQualitySpecified:(BOOL)arg1;
-- (void)setPreviewImageSize:(struct CGSize { float x1; float x2; })arg1;
-- (void)setSbufCompletionBlock:(id)arg1;
+- (id /* block */)iosurfaceCompletionBlock;
+- (id /* block */)sbufCompletionBlock;
+- (void)setBracketedCaptureCompletionBlock:(id /* block */)arg1;
+- (void)setBracketedSettings:(id)arg1;
+- (void)setIosurfaceCompletionBlock:(id /* block */)arg1;
+- (void)setSbufCompletionBlock:(id /* block */)arg1;
+- (void)setSettingsID:(long long)arg1;
 - (void)setShutterSoundID:(unsigned long)arg1;
-- (void)setStillImageMirrored:(BOOL)arg1;
-- (void)setStillImageOrientation:(int)arg1;
-- (void)setSuspendsVideoProcessing:(BOOL)arg1;
+- (long long)settingsID;
 - (unsigned long)shutterSoundID;
-- (int)stillImageOrientation;
-- (BOOL)suspendsVideoProcessing;
 
 @end

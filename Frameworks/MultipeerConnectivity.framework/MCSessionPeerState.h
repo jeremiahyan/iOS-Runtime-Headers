@@ -2,11 +2,11 @@
    Image: /System/Library/Frameworks/MultipeerConnectivity.framework/MultipeerConnectivity
  */
 
-@class MCPeerID, NSMutableDictionary;
-
 @interface MCSessionPeerState : NSObject {
     int _certificateDecision;
+    BOOL _connectPeerCalled;
     NSMutableDictionary *_incomingStreams;
+    NSData *_nearbyConnectionData;
     unsigned int _newStreamID;
     unsigned int _newStreamOpenRequestID;
     NSMutableDictionary *_outgoingStreamRequests;
@@ -15,26 +15,32 @@
     int _state;
 }
 
-@property int certificateDecision;
-@property(retain) NSMutableDictionary * incomingStreams;
-@property(readonly) unsigned int newStreamID;
-@property(readonly) unsigned int newStreamOpenRequestID;
-@property(retain) NSMutableDictionary * outgoingStreamRequests;
-@property(retain) NSMutableDictionary * outgoingStreams;
-@property(readonly) MCPeerID * peerID;
-@property int state;
+@property (nonatomic) int certificateDecision;
+@property (nonatomic) BOOL connectPeerCalled;
+@property (nonatomic, retain) NSMutableDictionary *incomingStreams;
+@property (nonatomic, copy) NSData *nearbyConnectionData;
+@property (nonatomic, readonly) unsigned int newStreamID;
+@property (nonatomic, readonly) unsigned int newStreamOpenRequestID;
+@property (nonatomic, retain) NSMutableDictionary *outgoingStreamRequests;
+@property (nonatomic, retain) NSMutableDictionary *outgoingStreams;
+@property (nonatomic, readonly, copy) MCPeerID *peerID;
+@property (nonatomic) int state;
 
 - (int)certificateDecision;
+- (BOOL)connectPeerCalled;
 - (void)dealloc;
 - (id)incomingStreams;
 - (id)initWithPeer:(id)arg1;
+- (id)nearbyConnectionData;
 - (unsigned int)newStreamID;
 - (unsigned int)newStreamOpenRequestID;
 - (id)outgoingStreamRequests;
 - (id)outgoingStreams;
 - (id)peerID;
 - (void)setCertificateDecision:(int)arg1;
+- (void)setConnectPeerCalled:(BOOL)arg1;
 - (void)setIncomingStreams:(id)arg1;
+- (void)setNearbyConnectionData:(id)arg1;
 - (void)setOutgoingStreamRequests:(id)arg1;
 - (void)setOutgoingStreams:(id)arg1;
 - (void)setState:(int)arg1;

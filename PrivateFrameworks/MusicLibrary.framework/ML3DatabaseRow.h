@@ -2,17 +2,17 @@
    Image: /System/Library/PrivateFrameworks/MusicLibrary.framework/MusicLibrary
  */
 
-@class ML3DatabaseResult;
-
 @interface ML3DatabaseRow : NSObject {
     ML3DatabaseResult *_parentResult;
     struct sqlite3_stmt { } *_stmt;
 }
 
-@property(readonly) ML3DatabaseResult * parentResult;
+@property (nonatomic, readonly) ML3DatabaseResult *parentResult;
 
 - (void).cxx_destruct;
 - (id)arrayRepresentation;
+- (const char *)cStringForColumnIndex:(unsigned int)arg1;
+- (const char *)cStringForColumnName:(id)arg1;
 - (unsigned int)columnCount;
 - (id)dataForColumnIndex:(unsigned int)arg1;
 - (id)dataForColumnName:(id)arg1;

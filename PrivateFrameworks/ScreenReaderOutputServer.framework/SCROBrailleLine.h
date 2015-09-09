@@ -2,14 +2,7 @@
    Image: /System/Library/PrivateFrameworks/ScreenReaderOutputServer.framework/ScreenReaderOutputServer
  */
 
-@class <SCROBrailleDriverProtocol>, NSData, NSMutableAttributedString;
-
 @interface SCROBrailleLine : NSObject {
-    struct { 
-        NSData *data; 
-        int alignment; 
-        int length; 
-        char *cells; 
     BOOL _anyUnread;
     id _appToken;
     BOOL _blink;
@@ -19,6 +12,7 @@
     struct __CFDictionary { } *_chunkDictionary;
     BOOL _currentUnread;
     char *_displayBuffer;
+    BOOL _displayEnabled;
     char *_displayFilter;
     int _displayMode;
     int _firstToken;
@@ -40,10 +34,16 @@
     NSData *_statusData;
     char *_statusFilter;
     int _statusSize;
+    struct { 
+        NSData *data; 
+        int alignment; 
+        int length; 
+        char *cells; 
     } _virtualStatus;
 }
 
-@property(readonly) BOOL needsDisplayFlush;
+@property (nonatomic) BOOL displayEnabled;
+@property (nonatomic, readonly) BOOL needsDisplayFlush;
 
 + (void)initialize;
 
@@ -60,6 +60,7 @@
 - (BOOL)currentUnread;
 - (void)dealloc;
 - (BOOL)display;
+- (BOOL)displayEnabled;
 - (int)displayMode;
 - (int)firstToken;
 - (BOOL)getStatusRouterIndex:(int*)arg1 forRawIndex:(int)arg2;
@@ -74,6 +75,7 @@
 - (void)setAnyUnread:(BOOL)arg1;
 - (void)setAppToken:(id)arg1;
 - (void)setCurrentUnread:(BOOL)arg1;
+- (void)setDisplayEnabled:(BOOL)arg1;
 - (void)setDisplayMode:(int)arg1;
 - (void)setFormatter:(id)arg1;
 - (void)setLineFocus:(int)arg1;

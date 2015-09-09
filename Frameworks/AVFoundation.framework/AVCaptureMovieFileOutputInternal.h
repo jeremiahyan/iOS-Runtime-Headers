@@ -2,18 +2,19 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class NSArray, NSMutableArray;
-
 @interface AVCaptureMovieFileOutputInternal : NSObject {
+    NSArray *metadata;
     struct { 
         long long value; 
         int timescale; 
         unsigned int flags; 
         long long epoch; 
-    NSArray *metadata;
     } movieFragmentInterval;
+    BOOL paused;
+    BOOL recording;
     NSMutableArray *recordingDelegatesArray;
     BOOL sendLastVideoPreviewFrame;
+    AVWeakReference *weakReference;
 }
 
 - (void)dealloc;

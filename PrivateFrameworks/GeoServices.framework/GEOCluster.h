@@ -2,21 +2,19 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class GEOPlaceResult;
-
 @interface GEOCluster : PBCodable <NSCopying> {
+    GEOPlaceResult *_container;
     struct { 
         int *list; 
         unsigned int count; 
         unsigned int size; 
-    GEOPlaceResult *_container;
     } _indexs;
 }
 
-@property(retain) GEOPlaceResult * container;
-@property(readonly) BOOL hasContainer;
-@property(readonly) int* indexs;
-@property(readonly) unsigned int indexsCount;
+@property (nonatomic, retain) GEOPlaceResult *container;
+@property (nonatomic, readonly) BOOL hasContainer;
+@property (nonatomic, readonly) int*indexs;
+@property (nonatomic, readonly) unsigned int indexsCount;
 
 - (void)addIndex:(int)arg1;
 - (void)clearIndexs;
@@ -32,6 +30,7 @@
 - (int*)indexs;
 - (unsigned int)indexsCount;
 - (BOOL)isEqual:(id)arg1;
+- (void)mergeFrom:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 - (void)setContainer:(id)arg1;
 - (void)setIndexs:(int*)arg1 count:(unsigned int)arg2;

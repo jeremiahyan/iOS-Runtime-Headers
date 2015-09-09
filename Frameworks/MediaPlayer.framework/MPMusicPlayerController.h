@@ -2,21 +2,20 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@class MPMusicPlayerControllerInternal;
-
 @interface MPMusicPlayerController : NSObject <MPMediaPlayback> {
     MPMusicPlayerControllerInternal *_internal;
 }
 
-@property float currentPlaybackRate;
-@property double currentPlaybackTime;
-@property(readonly) BOOL isPreparedToPlay;
+@property (nonatomic) float currentPlaybackRate;
+@property (nonatomic) double currentPlaybackTime;
+@property (nonatomic, readonly) BOOL isPreparedToPlay;
 
 + (id)applicationMusicPlayer;
 + (id)iPodMusicPlayer;
 + (void)initialize;
 + (id)runLoopForNotifications;
 + (void)setRunLoopForNotifications:(id)arg1;
++ (id)systemMusicPlayer;
 
 - (void).cxx_destruct;
 - (void)_clientCheckInUsingExistencePort:(BOOL)arg1;
@@ -55,7 +54,6 @@
 - (id)methodSignatureForSelector:(SEL)arg1;
 - (id)nowPlayingItem;
 - (id)nowPlayingItemAtIndex:(unsigned int)arg1;
-- (id)nowPlayingRadioTrack;
 - (unsigned int)numberOfItems;
 - (void)pause;
 - (void)pauseWithFadeoutDuration:(double)arg1;
@@ -69,22 +67,25 @@
 - (void)setCurrentChapterIndex:(unsigned int)arg1;
 - (void)setCurrentPlaybackRate:(float)arg1;
 - (void)setCurrentPlaybackTime:(double)arg1;
+- (void)setNowPlayingItem:(id)arg1;
 - (void)setPlaybackSpeed:(int)arg1;
 - (void)setQueueWithGeniusMixPlaylist:(id)arg1;
 - (void)setQueueWithItemCollection:(id)arg1;
-- (void)setQueueWithQuery:(id)arg1 firstItem:(id)arg2;
 - (void)setQueueWithQuery:(id)arg1;
+- (void)setQueueWithQuery:(id)arg1 firstItem:(id)arg2;
 - (void)setQueueWithRadioStation:(id)arg1;
 - (BOOL)setQueueWithSeedItems:(id)arg1;
 - (void)setRepeatMode:(int)arg1;
 - (void)setShuffleMode:(int)arg1;
 - (void)setUseCachedPlaybackState:(BOOL)arg1;
+- (void)setUserQueueModificationsDisabled:(BOOL)arg1;
 - (void)setVolume:(float)arg1;
 - (void)setVolumePrivate:(float)arg1;
 - (int)shuffleMode;
 - (BOOL)skipInDirection:(int)arg1 error:(id*)arg2;
 - (void)stop;
 - (unsigned int)unshuffledIndexOfNowPlayingItem;
+- (BOOL)userQueueModificationsDisabled;
 - (float)volume;
 
 @end

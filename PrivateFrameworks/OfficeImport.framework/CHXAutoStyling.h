@@ -3,7 +3,16 @@
  */
 
 @interface CHXAutoStyling : CHAutoStyling <CHAutoStyling> {
+    BOOL __autoChartFillIsHollow;
+    BOOL __autoChartStrokeIsHollow;
 }
+
+@property BOOL _autoChartFillIsHollow;
+@property BOOL _autoChartStrokeIsHollow;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)colorWithSchemeColorId:(int)arg1 shade:(float)arg2;
 + (id)colorWithSchemeColorId:(int)arg1 tint:(float)arg2;
@@ -12,20 +21,26 @@
 + (int)styleIdWithStyleRow:(int)arg1 styleColumn:(int)arg2;
 + (int)styleRowWithStyleId:(int)arg1;
 
-- (id)autoAxisColor;
-- (id)autoAxisStroke;
-- (id)autoChartAreaColor;
+- (BOOL)_autoChartFillIsHollow;
+- (BOOL)_autoChartStrokeIsHollow;
+- (id)autoAxisAndMajorGridColor;
+- (id)autoChartAreaAndDataTableAndFloorStrokeColor;
+- (id)autoChartAreaFillColor;
 - (id)autoColorOfFirstColumnSeriesWithIndex:(unsigned int)arg1 seriesCount:(unsigned int)arg2;
-- (id)autoColorOfSeriesWithIndex:(unsigned int)arg1 colorMap:(id)arg2 colorScheme:(id)arg3;
+- (id)autoColorOfSeriesWithIndex:(unsigned int)arg1;
+- (unsigned long)autoFloorAndChartAreaStrokeIndex;
+- (id)autoFloorAndWallsAndPlotArea2DFillColor;
+- (unsigned long)autoFloorAndWallsFillIndex;
 - (id)autoMinorGridColor;
-- (id)autoPlotAreaColor;
+- (id)autoOtherStrokeColor;
 - (id)autoStrokeForSeriesIndex:(unsigned int)arg1;
+- (id)autoTextFill;
 - (void)resolveAxisGraphicProperties:(id)arg1;
 - (void)resolveChartAreaGraphicProperties:(id)arg1;
 - (void)resolveFloorGraphicProperties:(id)arg1;
-- (void)resolveGraphicPropertiesOfErrorBar:(id)arg1 forSeriesIndex:(unsigned int)arg2 colorMap:(id)arg3 colorScheme:(id)arg4;
-- (void)resolveGraphicPropertiesOfSeries:(id)arg1 forSeriesIndex:(unsigned int)arg2 colorMap:(id)arg3 colorScheme:(id)arg4;
-- (void)resolveGraphicPropertiesOfSeries:(id)arg1 forSeriesIndex:(unsigned int)arg2 isLine:(bool)arg3 colorMap:(id)arg4 colorScheme:(id)arg5;
+- (void)resolveGraphicPropertiesOfErrorBar:(id)arg1 forSeriesIndex:(unsigned int)arg2;
+- (void)resolveGraphicPropertiesOfSeries:(id)arg1 forSeriesIndex:(unsigned int)arg2;
+- (void)resolveGraphicPropertiesOfSeries:(id)arg1 forSeriesIndex:(unsigned int)arg2 isLine:(bool)arg3;
 - (void)resolveGraphicPropertiesOfTrendline:(id)arg1 forSeriesIndex:(unsigned int)arg2;
 - (void)resolveLegendGraphicProperties:(id)arg1;
 - (void)resolveMajorGridLinesGraphicProperties:(id)arg1;
@@ -33,8 +48,13 @@
 - (void)resolveMinorGridLinesGraphicProperties:(id)arg1;
 - (void)resolvePlotAreaGraphicProperties:(id)arg1;
 - (void)resolveWallGraphicProperties:(id)arg1;
+- (void)setAutoChartFillIsHollow:(BOOL)arg1;
+- (void)setAutoChartStrokeIsHollow:(BOOL)arg1;
 - (void)setDefaultErrorBarPropertiesInGraphicProperties:(id)arg1;
+- (void)set_autoChartFillIsHollow:(BOOL)arg1;
+- (void)set_autoChartStrokeIsHollow:(BOOL)arg1;
 - (int)styleColumn;
+- (int)styleId;
 - (int)styleRow;
 
 @end

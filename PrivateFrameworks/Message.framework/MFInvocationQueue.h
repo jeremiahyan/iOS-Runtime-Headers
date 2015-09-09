@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/Message.framework/Message
  */
 
-@class NSConditionLock, NSMutableArray;
-
-@interface MFInvocationQueue : NSObject {
+@interface MFInvocationQueue : NSObject <MFDiagnosticsGenerator> {
     BOOL _isForeground;
     NSMutableArray *_items;
     NSConditionLock *_lock;
@@ -15,11 +13,15 @@
     double _threadRecycleTimeout;
 }
 
-@property(readonly) unsigned int invocationCount;
-@property unsigned int maxThreadCount;
-@property(readonly) unsigned int threadCount;
-@property int threadPriorityTrigger;
-@property double threadRecycleTimeout;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) unsigned int invocationCount;
+@property (nonatomic) unsigned int maxThreadCount;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) unsigned int threadCount;
+@property (nonatomic) int threadPriorityTrigger;
+@property (nonatomic) double threadRecycleTimeout;
 
 + (void)flushAllInvocationQueues;
 + (id)sharedInvocationQueue;

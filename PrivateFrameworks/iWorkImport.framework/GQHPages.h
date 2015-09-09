@@ -2,8 +2,12 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface GQHPages : NSObject <GQPagesGenerator> {
-}
+@interface GQHPages : NSObject <GQPagesGenerator>
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (int)beginPublication:(id)arg1 state:(id)arg2;
 + (int)endPublication:(id)arg1 state:(id)arg2;

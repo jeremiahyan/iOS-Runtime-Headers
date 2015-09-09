@@ -3,19 +3,15 @@
  */
 
 @interface _PLLargeJPEGPreheatItem : PLJPEGPreheatItem {
+    BOOL _forceBGRA;
     struct CGSize { 
         float width; 
         float height; 
-    BOOL _forceBGRA;
-    int _format;
     } _imageSize;
 }
 
-+ (id)dataLoadQueue;
-
 - (struct __CFDictionary { }*)decodeSessionOptions;
-- (id)initWithImagePath:(id)arg1 imageSize:(struct CGSize { float x1; float x2; })arg2 format:(int)arg3 options:(unsigned int)arg4;
-- (void)loadPreheatDataWithHandler:(id)arg1;
-- (id)preheatData;
+- (struct __CFDictionary { }*)decodeSessionOptionsApplyRotationTransform:(BOOL)arg1;
+- (id)initWithImagePath:(id)arg1 imageSize:(struct CGSize { float x1; float x2; })arg2 format:(int)arg3 imageType:(int)arg4 optimalSourcePixelSize:(struct CGSize { float x1; float x2; })arg5 options:(unsigned int)arg6;
 
 @end

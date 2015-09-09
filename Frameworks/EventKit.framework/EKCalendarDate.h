@@ -2,9 +2,8 @@
    Image: /System/Library/Frameworks/EventKit.framework/EventKit
  */
 
-@class EKTimeZone;
-
 @interface EKCalendarDate : NSObject <NSCopying, NSMutableCopying> {
+    double _dateAbs;
     struct { 
         int year; 
         BOOL month; 
@@ -12,7 +11,6 @@
         BOOL hour; 
         BOOL minute; 
         double second; 
-    double _dateAbs;
     } _dateGr;
     unsigned int _flags;
     EKTimeZone *_timeZone;
@@ -34,8 +32,8 @@
 - (id)calendarDateForEndOfMonth;
 - (id)calendarDateForEndOfWeekWithWeekStart:(long)arg1;
 - (id)calendarDateForMonth;
-- (id)calendarDateForWeekWithWeekStart:(long)arg1 daysSinceWeekStart:(int*)arg2;
 - (id)calendarDateForWeekWithWeekStart:(long)arg1;
+- (id)calendarDateForWeekWithWeekStart:(long)arg1 daysSinceWeekStart:(int*)arg2;
 - (id)calendarDateForYear;
 - (id)calendarDateInTimeZone:(id)arg1;
 - (id)calendarDateWithDate:(id)arg1;

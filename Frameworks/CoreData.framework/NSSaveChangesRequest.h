@@ -2,19 +2,24 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@class NSSet;
-
 @interface NSSaveChangesRequest : NSPersistentStoreRequest {
     NSSet *_deletedObjects;
+    unsigned long _flags;
     NSSet *_insertedObjects;
     NSSet *_optimisticallyLockedObjects;
     void *_reserved1;
-    void *_reserved2;
     NSSet *_updatedObjects;
 }
 
+@property (readonly) NSSet *deletedObjects;
+@property (readonly) NSSet *insertedObjects;
+@property (readonly) NSSet *lockedObjects;
+@property (readonly) NSSet *updatedObjects;
+
 + (void)initialize;
 
+- (int)_retryHandlerCount;
+- (void)_setRetryHandlerCount:(int)arg1;
 - (void)dealloc;
 - (id)deletedObjects;
 - (id)description;

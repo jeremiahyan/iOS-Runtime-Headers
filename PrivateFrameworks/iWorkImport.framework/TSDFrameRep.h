@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class CALayer, NSArray, TSDBitmapImageProvider, TSDFrame;
-
 @interface TSDFrameRep : NSObject {
     TSDBitmapImageProvider *mAdornment;
     TSDFrame *mFrame;
@@ -20,13 +18,13 @@
 - (id)frame;
 - (void)frameRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 inContext:(struct CGContext { }*)arg2 withTotalScale:(float)arg3;
 - (id)initWithTSDFrame:(id)arg1;
+- (struct CGImage { }*)newFrameForMask:(BOOL)arg1 size:(struct CGSize { float x1; float x2; })arg2 forCALayer:(BOOL)arg3 viewScale:(float)arg4;
 - (void)p_addEdgeLayerForIndex:(unsigned int)arg1 toLayer:(id)arg2 maskLayer:(id)arg3;
 - (void)p_addUnreplicatedLayerForIndex:(unsigned int)arg1 toLayer:(id)arg2 maskLayer:(id)arg3;
 - (void)p_adjustRepeatingLayer:(id)arg1 withImageRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2 start:(float)arg3 end:(float)arg4 vertical:(BOOL)arg5;
 - (id)p_createRepeatingLayerWithImage:(struct CGImage { }*)arg1 vertical:(BOOL)arg2 screenScale:(float)arg3;
 - (void)p_drawFrameIntoRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 inContext:(struct CGContext { }*)arg2 withImages:(id)arg3 atViewScale:(float)arg4 isMask:(BOOL)arg5;
 - (void)p_drawTiles:(id)arg1 inContext:(struct CGContext { }*)arg2 rect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg3 start:(float)arg4 end:(float)arg5 vertical:(BOOL)arg6;
-- (struct CGImage { }*)p_newFrameForMask:(BOOL)arg1 size:(struct CGSize { float x1; float x2; })arg2 forCALayer:(BOOL)arg3 viewScale:(float)arg4;
 - (struct CGImage { }*)p_newRenderedFrameForMask:(BOOL)arg1 size:(struct CGSize { float x1; float x2; })arg2 forCALayer:(BOOL)arg3 viewScale:(float)arg4;
 - (void)p_setRepeatingLayerWithIndex:(unsigned int)arg1 sublayers:(id)arg2 maskLayers:(id)arg3 toRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg4 start:(float)arg5 end:(float)arg6;
 - (void)p_setUnreplicatedLayerWithIndex:(unsigned int)arg1 sublayers:(id)arg2 maskLayers:(id)arg3 toRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg4;

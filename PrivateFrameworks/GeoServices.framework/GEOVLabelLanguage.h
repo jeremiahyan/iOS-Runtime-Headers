@@ -2,19 +2,18 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSString;
-
-@interface GEOVLabelLanguage : PBCodable {
+@interface GEOVLabelLanguage : PBCodable <NSCopying> {
     unsigned int _endOffset;
     NSString *_languageLocale;
     unsigned int _startOffset;
 }
 
-@property unsigned int endOffset;
-@property(retain) NSString * languageLocale;
-@property unsigned int startOffset;
+@property (nonatomic) unsigned int endOffset;
+@property (nonatomic, retain) NSString *languageLocale;
+@property (nonatomic) unsigned int startOffset;
 
 - (void)copyTo:(id)arg1;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)description;
 - (id)dictionaryRepresentation;

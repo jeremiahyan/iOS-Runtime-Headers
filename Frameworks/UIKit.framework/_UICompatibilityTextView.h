@@ -2,46 +2,48 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class <UITextInputDelegate>, <UITextInputTokenizer>, <UITextViewDelegate>, NSAttributedString, NSDictionary, NSString, UIColor, UIFont, UITextPosition, UITextRange, UIView;
-
-@interface _UICompatibilityTextView : UIScrollView <UITextLinkInteraction, UITextInput> {
+@interface _UICompatibilityTextView : UIScrollView <UITextInput, UITextLinkInteraction> {
     id _private;
     BOOL m_editing;
     UIView *m_inputView;
 }
 
-@property BOOL allowsEditingTextAttributes;
-@property(copy) NSAttributedString * attributedText;
-@property int autocapitalizationType;
-@property int autocorrectionType;
-@property(readonly) UITextPosition * beginningOfDocument;
-@property BOOL clearsOnInsertion;
-@property unsigned int dataDetectorTypes;
-@property <UITextViewDelegate> * delegate;
-@property(getter=isEditable) BOOL editable;
-@property(getter=isEditing) BOOL editing;
-@property BOOL enablesReturnKeyAutomatically;
-@property(readonly) UITextPosition * endOfDocument;
-@property(retain) UIFont * font;
-@property(retain) UIView * inputAccessoryView;
-@property <UITextInputDelegate> * inputDelegate;
-@property(retain) UIView * inputView;
-@property int keyboardAppearance;
-@property int keyboardType;
-@property(readonly) UITextRange * markedTextRange;
-@property(copy) NSDictionary * markedTextStyle;
-@property int returnKeyType;
-@property(getter=isSecureTextEntry) BOOL secureTextEntry;
-@property struct _NSRange { unsigned int x1; unsigned int x2; } selectedRange;
-@property(copy) UITextRange * selectedTextRange;
-@property int selectionAffinity;
-@property int spellCheckingType;
-@property(copy) NSString * text;
-@property int textAlignment;
-@property(retain) UIColor * textColor;
-@property(readonly) UIView * textInputView;
-@property(readonly) <UITextInputTokenizer> * tokenizer;
-@property(copy) NSDictionary * typingAttributes;
+@property (nonatomic) BOOL allowsEditingTextAttributes;
+@property (nonatomic, copy) NSAttributedString *attributedText;
+@property (nonatomic) int autocapitalizationType;
+@property (nonatomic) int autocorrectionType;
+@property (nonatomic, readonly) UITextPosition *beginningOfDocument;
+@property (nonatomic) BOOL clearsOnInsertion;
+@property (nonatomic) unsigned int dataDetectorTypes;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <UITextViewDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (getter=isEditable, nonatomic) BOOL editable;
+@property (getter=isEditing, nonatomic) BOOL editing;
+@property (nonatomic) BOOL enablesReturnKeyAutomatically;
+@property (nonatomic, readonly) UITextPosition *endOfDocument;
+@property (nonatomic, retain) UIFont *font;
+@property (readonly) unsigned int hash;
+@property (retain) UIView *inputAccessoryView;
+@property (nonatomic) <UITextInputDelegate> *inputDelegate;
+@property (retain) UIView *inputView;
+@property (nonatomic) int keyboardAppearance;
+@property (nonatomic) int keyboardType;
+@property (nonatomic, readonly) UITextRange *markedTextRange;
+@property (nonatomic, copy) NSDictionary *markedTextStyle;
+@property (nonatomic) int returnKeyType;
+@property (getter=isSecureTextEntry, nonatomic) BOOL secureTextEntry;
+@property (nonatomic) struct _NSRange { unsigned int x1; unsigned int x2; } selectedRange;
+@property (copy) UITextRange *selectedTextRange;
+@property (nonatomic) int selectionAffinity;
+@property (nonatomic) int spellCheckingType;
+@property (readonly) Class superclass;
+@property (nonatomic, copy) NSString *text;
+@property (nonatomic) int textAlignment;
+@property (nonatomic, retain) UIColor *textColor;
+@property (nonatomic, readonly) UIView *textInputView;
+@property (nonatomic, readonly) <UITextInputTokenizer> *tokenizer;
+@property (nonatomic, copy) NSDictionary *typingAttributes;
 
 + (id)_bestInterpretationForDictationResult:(id)arg1;
 + (BOOL)_isCompatibilityTextView;
@@ -64,6 +66,7 @@
 - (void)_showTextStyleOptions:(id)arg1;
 - (void)_transferAttribute:(id)arg1 fromString:(id)arg2 andSetPropertyWith:(SEL)arg3 usingValueClass:(Class)arg4;
 - (void)_transferTextViewPropertiesFromText:(id)arg1;
+- (void)_transliterateChinese:(id)arg1;
 - (void)_updateForNewSize:(struct CGSize { float x1; float x2; })arg1 withOldSize:(struct CGSize { float x1; float x2; })arg2;
 - (BOOL)allowsEditingTextAttributes;
 - (id)attributedText;
@@ -83,8 +86,8 @@
 - (id)characterRangeAtPoint:(struct CGPoint { float x1; float x2; })arg1;
 - (id)characterRangeByExtendingPosition:(id)arg1 inDirection:(int)arg2;
 - (BOOL)clearsOnInsertion;
-- (id)closestPositionToPoint:(struct CGPoint { float x1; float x2; })arg1 withinRange:(id)arg2;
 - (id)closestPositionToPoint:(struct CGPoint { float x1; float x2; })arg1;
+- (id)closestPositionToPoint:(struct CGPoint { float x1; float x2; })arg1 withinRange:(id)arg2;
 - (void)commonInitWithWebDocumentView:(id)arg1 isDecoding:(BOOL)arg2;
 - (int)comparePosition:(id)arg1 toPosition:(id)arg2;
 - (struct CGPoint { float x1; float x2; })constrainedPoint:(struct CGPoint { float x1; float x2; })arg1;
@@ -114,9 +117,9 @@
 - (BOOL)hasText;
 - (id)hitTest:(struct CGPoint { float x1; float x2; })arg1 withEvent:(id)arg2;
 - (id)initWithCoder:(id)arg1;
+- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 font:(id)arg2;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 webView:(id)arg2;
-- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (id)inputAccessoryView;
 - (id)inputDelegate;
 - (id)inputView;
@@ -154,7 +157,6 @@
 - (id)positionWithinRange:(id)arg1 farthestInDirection:(int)arg2;
 - (void)recalculateStyle;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })rectForSelection:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1;
-- (void)registerForEditingDelegateNotification:(id)arg1 selector:(SEL)arg2;
 - (void)removeDictationResultPlaceholder:(id)arg1 willInsertResult:(BOOL)arg2;
 - (void)removeFromSuperview;
 - (void)replace:(id)arg1;
@@ -168,8 +170,8 @@
 - (void)scrollToMakeCaretVisible:(BOOL)arg1;
 - (BOOL)scrollingEnabled;
 - (void)select:(id)arg1;
-- (void)selectAll:(id)arg1;
 - (void)selectAll;
+- (void)selectAll:(id)arg1;
 - (struct _NSRange { unsigned int x1; unsigned int x2; })selectedRange;
 - (id)selectedText;
 - (id)selectedTextRange;
@@ -232,6 +234,7 @@
 - (id)textInputTraits;
 - (id)textInputView;
 - (id)textRangeFromPosition:(id)arg1 toPosition:(id)arg2;
+- (id)textStylingAtPosition:(id)arg1 inDirection:(int)arg2;
 - (struct CGSize { float x1; float x2; })tileSizeForSize:(struct CGSize { float x1; float x2; })arg1;
 - (void)toggleBoldface:(id)arg1;
 - (void)toggleItalics:(id)arg1;
@@ -249,8 +252,8 @@
 - (void)validateInteractionWithLinkAtPoint:(struct CGPoint { float x1; float x2; })arg1;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })visibleRect;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })visibleTextRect;
-- (void)webView:(id)arg1 decidePolicyForNavigationAction:(id)arg2 request:(id)arg3 frame:(id)arg4 decisionListener:(id)arg5;
 - (id)webView;
+- (void)webView:(id)arg1 decidePolicyForNavigationAction:(id)arg2 request:(id)arg3 frame:(id)arg4 decisionListener:(id)arg5;
 - (void)webViewDidChange:(id)arg1;
 - (BOOL)willInteractWithLinkAtPoint:(struct CGPoint { float x1; float x2; })arg1;
 

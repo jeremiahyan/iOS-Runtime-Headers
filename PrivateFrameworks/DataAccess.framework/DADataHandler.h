@@ -3,25 +3,31 @@
  */
 
 @interface DADataHandler : NSObject {
+    NSString *_changeTrackingID;
     void *_container;
 }
 
-@property void* container;
+@property (nonatomic, copy) NSString *changeTrackingID;
+@property (nonatomic) void*container;
 
-+ (id)newDataHandlerForDataclass:(int)arg1 container:(void*)arg2;
++ (id)newDataHandlerForDataclass:(int)arg1 container:(void*)arg2 changeTrackingID:(id)arg3;
 
+- (void).cxx_destruct;
+- (id)changeTrackingID;
 - (BOOL)closeDBAndSave:(BOOL)arg1;
 - (void*)container;
 - (void*)copyLocalObjectFromId:(int)arg1;
-- (struct __CFArray { }*)copyOfAllLocalObjectsInContainer;
+- (id)copyOfAllLocalObjectsInContainer;
 - (int)dataclass;
 - (void)dealloc;
 - (void)drainContainer;
+- (void)drainSuperfluousChanges;
 - (id)getDAObjectWithLocalItem:(void*)arg1 serverId:(id)arg2 account:(id)arg3;
 - (int)getIdFromLocalObject:(void*)arg1;
-- (id)initWithContainer:(void*)arg1;
+- (id)initWithContainer:(void*)arg1 changeTrackingID:(id)arg2;
 - (void)openDB;
 - (BOOL)saveContainer;
+- (void)setChangeTrackingID:(id)arg1;
 - (void)setContainer:(void*)arg1;
 - (BOOL)wipeServerIds;
 

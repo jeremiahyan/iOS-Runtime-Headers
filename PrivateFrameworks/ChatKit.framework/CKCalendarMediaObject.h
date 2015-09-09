@@ -2,10 +2,10 @@
    Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
  */
 
-@interface CKCalendarMediaObject : CKCardMediaObject {
-}
+@interface CKCalendarMediaObject : CKCardMediaObject
 
 + (id)UTITypes;
++ (id)attachmentSummary:(unsigned int)arg1;
 + (id)fallbackFilenamePrefix;
 
 - (int)mediaType;

@@ -2,13 +2,16 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class UIPopoverController;
-
 @interface SKUIPopoverObserver : NSObject <UIPopoverControllerDelegate> {
     UIPopoverController *_popoverController;
     SEL _selector;
     id _target;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)dealloc;

@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString, UIKBThemedView, UILabel;
-
 @interface UIKeyboardCandidateBarCell : UICollectionViewCell <UIKBCacheableView> {
     BOOL _beginsFirstPage;
     NSString *_candidateText;
@@ -13,18 +11,23 @@
     UIKBThemedView *_themedView;
 }
 
-@property BOOL beginsFirstPage;
-@property(readonly) BOOL cacheDeferable;
-@property(readonly) NSString * cacheKey;
-@property(readonly) float cachedWidth;
-@property(copy) NSString * candidateText;
-@property BOOL endsLastPage;
-@property BOOL isAtLeftEdge;
-@property(readonly) BOOL keepNonPersistent;
-@property(retain) UILabel * label;
-@property(retain) UIKBThemedView * themedView;
+@property (nonatomic) BOOL beginsFirstPage;
+@property (nonatomic, readonly) BOOL cacheDeferable;
+@property (nonatomic, readonly) NSString *cacheKey;
+@property (nonatomic, readonly) float cachedWidth;
+@property (nonatomic, copy) NSString *candidateText;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL endsLastPage;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL isAtLeftEdge;
+@property (nonatomic, readonly) BOOL keepNonPersistent;
+@property (nonatomic, retain) UILabel *label;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) UIKBThemedView *themedView;
 
 + (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })cacheInsets;
++ (BOOL)drawsSideBorders;
 + (id)font;
 + (BOOL)highlightAffectsBackground;
 + (id)reuseIdentifier;

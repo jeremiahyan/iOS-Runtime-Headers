@@ -2,13 +2,7 @@
    Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSArray, NSData, NSDictionary, NSInputStream, NSObject<OS_dispatch_queue>, NSString, NSURL;
-
-@interface SSURLRequestProperties : NSObject <SSXPCCoding, NSCoding, NSCopying, NSMutableCopying> {
+@interface SSURLRequestProperties : NSObject <NSCoding, NSCopying, NSMutableCopying, SSXPCCoding> {
     int _allowedRetryCount;
     BOOL _allowsBootstrapCellularData;
     unsigned int _cachePolicy;
@@ -24,8 +18,10 @@
     BOOL _isITunesStoreRequest;
     int _kbsyncType;
     BOOL _largeDownload;
+    int _machineDataStyle;
     unsigned int _networkServiceType;
     NSDictionary *_requestParameters;
+    BOOL _requiresCellularDataNetwork;
     BOOL _requiresExtendedValidationCertificates;
     BOOL _requiresHTTPS;
     BOOL _shouldDecodeResponse;
@@ -37,44 +33,50 @@
     double _timeoutInterval;
     NSString *_urlBagKey;
     int _urlBagType;
-    id _urlBagURLBlock;
+    id /* block */ _urlBagURLBlock;
     NSArray *_urls;
     NSArray *_userAgentComponents;
 }
 
-@property(readonly) NSData * HTTPBody;
-@property(readonly) NSInputStream * HTTPBodyStream;
-@property(readonly) NSDictionary * HTTPHeaders;
-@property(readonly) NSString * HTTPMethod;
-@property(getter=isITunesStoreRequest,readonly) BOOL ITunesStoreRequest;
-@property(readonly) int KBSyncType;
-@property(readonly) NSURL * URL;
-@property(readonly) NSString * URLBagKey;
-@property(readonly) int URLBagType;
-@property(readonly) id URLBagURLBlock;
-@property(readonly) NSArray * URLs;
-@property(readonly) int allowedRetryCount;
-@property(readonly) BOOL allowsBootstrapCellularData;
-@property(readonly) unsigned int cachePolicy;
-@property(readonly) BOOL canBeResolved;
-@property(readonly) NSString * clientAuditBundleIdentifier;
-@property(readonly) NSData * clientAuditTokenData;
-@property(readonly) NSString * clientIdentifier;
-@property(readonly) long long expectedContentLength;
-@property(getter=isLargeDownload,readonly) BOOL largeDownload;
-@property(readonly) unsigned int networkServiceType;
-@property(readonly) NSDictionary * requestParameters;
-@property(readonly) BOOL requiresExtendedValidationCertificates;
-@property(readonly) BOOL requiresHTTPS;
-@property(readonly) BOOL shouldAddKBSyncData;
-@property(readonly) BOOL shouldDecodeResponse;
-@property(readonly) BOOL shouldDisableCellular;
-@property(readonly) BOOL shouldDisableCellularFallback;
-@property(readonly) BOOL shouldProcessProtocol;
-@property(readonly) BOOL shouldSendSecureToken;
-@property(readonly) BOOL shouldSetCookies;
-@property(readonly) double timeoutInterval;
-@property(readonly) NSArray * userAgentComponents;
+@property (readonly, copy) NSData *HTTPBody;
+@property (readonly, retain) NSInputStream *HTTPBodyStream;
+@property (readonly, copy) NSDictionary *HTTPHeaders;
+@property (readonly, copy) NSString *HTTPMethod;
+@property (getter=isITunesStoreRequest, readonly) BOOL ITunesStoreRequest;
+@property (readonly) int KBSyncType;
+@property (readonly, retain) NSURL *URL;
+@property (readonly, copy) NSString *URLBagKey;
+@property (readonly) int URLBagType;
+@property (readonly, copy) id /* block */ URLBagURLBlock;
+@property (readonly, copy) NSArray *URLs;
+@property (readonly) int allowedRetryCount;
+@property (readonly) BOOL allowsBootstrapCellularData;
+@property (readonly) unsigned int cachePolicy;
+@property (readonly) BOOL canBeResolved;
+@property (readonly, copy) NSString *clientAuditBundleIdentifier;
+@property (readonly, copy) NSData *clientAuditTokenData;
+@property (readonly, copy) NSString *clientIdentifier;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) long long expectedContentLength;
+@property (readonly) unsigned int hash;
+@property (getter=isLargeDownload, readonly) BOOL largeDownload;
+@property (readonly) int machineDataStyle;
+@property (readonly) unsigned int networkServiceType;
+@property (readonly, copy) NSDictionary *requestParameters;
+@property (readonly) BOOL requiresCellularDataNetwork;
+@property (readonly) BOOL requiresExtendedValidationCertificates;
+@property (readonly) BOOL requiresHTTPS;
+@property (readonly) BOOL shouldAddKBSyncData;
+@property (readonly) BOOL shouldDecodeResponse;
+@property (readonly) BOOL shouldDisableCellular;
+@property (readonly) BOOL shouldDisableCellularFallback;
+@property (readonly) BOOL shouldProcessProtocol;
+@property (readonly) BOOL shouldSendSecureToken;
+@property (readonly) BOOL shouldSetCookies;
+@property (readonly) Class superclass;
+@property (readonly) double timeoutInterval;
+@property (readonly, copy) NSArray *userAgentComponents;
 
 - (id)HTTPBody;
 - (id)HTTPBodyStream;
@@ -84,7 +86,7 @@
 - (id)URL;
 - (id)URLBagKey;
 - (int)URLBagType;
-- (id)URLBagURLBlock;
+- (id /* block */)URLBagURLBlock;
 - (id)URLs;
 - (id)_initCommon;
 - (int)allowedRetryCount;
@@ -109,9 +111,11 @@
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isITunesStoreRequest;
 - (BOOL)isLargeDownload;
+- (int)machineDataStyle;
 - (id)mutableCopyWithZone:(struct _NSZone { }*)arg1;
 - (unsigned int)networkServiceType;
 - (id)requestParameters;
+- (BOOL)requiresCellularDataNetwork;
 - (BOOL)requiresExtendedValidationCertificates;
 - (BOOL)requiresHTTPS;
 - (BOOL)shouldAddKBSyncData;

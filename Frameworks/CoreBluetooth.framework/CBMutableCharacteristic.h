@@ -2,27 +2,26 @@
    Image: /System/Library/Frameworks/CoreBluetooth.framework/CoreBluetooth
  */
 
-@class CBUUID, NSArray, NSData, NSMutableArray, NSNumber;
-
 @interface CBMutableCharacteristic : CBCharacteristic {
     NSNumber *_ID;
     unsigned int _permissions;
     NSMutableArray *_subscribedCentrals;
 }
 
-@property(retain) NSNumber * ID;
-@property(retain) CBUUID * UUID;
-@property(retain) NSArray * descriptors;
-@property unsigned int permissions;
-@property unsigned int properties;
-@property(readonly) NSArray * subscribedCentrals;
-@property(retain) NSData * value;
+@property (retain) NSNumber *ID;
+@property (nonatomic, retain) CBUUID *UUID;
+@property (retain) NSArray *descriptors;
+@property (nonatomic) unsigned int permissions;
+@property (nonatomic) unsigned int properties;
+@property (readonly, retain) NSArray *subscribedCentrals;
+@property (retain) NSData *value;
 
 - (id)ID;
 - (void)dealloc;
 - (id)description;
 - (BOOL)handleCentralSubscribed:(id)arg1;
 - (BOOL)handleCentralUnsubscribed:(id)arg1;
+- (void)handlePowerNotOn;
 - (id)initWithService:(id)arg1 dictionary:(id)arg2;
 - (id)initWithType:(id)arg1 properties:(unsigned int)arg2 value:(id)arg3 permissions:(unsigned int)arg4;
 - (unsigned int)permissions;

@@ -2,27 +2,25 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSArray, NSDictionary, NSSet, NSString;
-
 @interface KNAnimationInfo : NSObject {
     Class mAnimationClass;
     NSSet *mValidAnimationTypes;
 }
 
-@property(readonly) Class animationClass;
-@property(readonly) NSString * animationFilter;
-@property(readonly) int category;
-@property(readonly) NSDictionary * customAttributeDefaults;
-@property(readonly) NSArray * customAttributes;
-@property(readonly) NSDictionary * defaultAttributes;
-@property(readonly) unsigned int directionType;
-@property(readonly) NSString * effectIdentifier;
-@property(readonly) BOOL isDrift;
-@property(readonly) NSString * localizedActionBuildName;
-@property(readonly) NSString * localizedBuildInName;
-@property(readonly) NSString * localizedBuildOutName;
-@property(readonly) NSString * localizedTransitionName;
-@property(readonly) NSSet * validAnimationTypes;
+@property (nonatomic, readonly) Class animationClass;
+@property (nonatomic, readonly) NSString *animationFilter;
+@property (nonatomic, readonly) int category;
+@property (nonatomic, readonly) NSDictionary *customAttributeDefaults;
+@property (nonatomic, readonly) NSArray *customAttributes;
+@property (nonatomic, readonly) NSDictionary *defaultAttributes;
+@property (nonatomic, readonly) unsigned int directionType;
+@property (nonatomic, readonly) NSString *effectIdentifier;
+@property (nonatomic, readonly) BOOL isDrift;
+@property (nonatomic, readonly) NSString *localizedActionBuildName;
+@property (nonatomic, readonly) NSString *localizedBuildInName;
+@property (nonatomic, readonly) NSString *localizedBuildOutName;
+@property (nonatomic, readonly) NSString *localizedTransitionName;
+@property (nonatomic, readonly) NSSet *validAnimationTypes;
 
 + (id)effectIdentifiersForAnimationInfos:(id)arg1;
 + (id)localizedEffectNamesForAnimationInfos:(id)arg1 animationType:(int)arg2;
@@ -33,6 +31,7 @@
 - (id)customAttributeDefaults;
 - (id)customAttributes;
 - (id)customAttributesForAttributeKey:(id)arg1;
+- (id)customEffectTimingCurveDisplayParametersForAttributes:(id)arg1 layoutStyleOnly:(BOOL)arg2;
 - (void)dealloc;
 - (id)defaultAttributes;
 - (id)description;
@@ -42,12 +41,12 @@
 - (id)initWithAnimationClass:(Class)arg1;
 - (BOOL)isDrift;
 - (BOOL)isEqual:(id)arg1;
-- (BOOL)isType:(int)arg1;
 - (id)localizedActionBuildName;
 - (id)localizedBuildInName;
 - (id)localizedBuildOutName;
 - (id)localizedNameForType:(int)arg1;
 - (id)localizedTransitionName;
+- (BOOL)supportsAnimationType:(int)arg1;
 - (id)thumbnailImageNameForType:(int)arg1;
 - (id)validAnimationTypes;
 

@@ -2,19 +2,11 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@class <MPDetailScrubControllerDelegate>, UIControl<MPDetailedScrubbing>;
-
 @interface MPDetailScrubController : NSObject {
-    struct CGPoint { 
-        float x; 
-        float y; 
-    struct CGPoint { 
-        float x; 
-        float y; 
-    struct CGPoint { 
-        float x; 
-        float y; 
     float _accumulatedDelta;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _beginLocationInView;
     int _currentScrubSpeed;
     float _currentValue;
@@ -23,21 +15,27 @@
     BOOL _didBeginTracking;
     double _duration;
     BOOL _isTracking;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _lastCommittedLocationInView;
     BOOL _needsCommit;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _previousLocationInView;
     UIControl<MPDetailedScrubbing> *_scrubbingControl;
     float _scrubbingVerticalRange;
 }
 
-@property(readonly) int currentScrubSpeed;
-@property <MPDetailScrubControllerDelegate> * delegate;
-@property BOOL detailedScrubbingEnabled;
-@property double duration;
-@property(readonly) BOOL durationAllowsForDetailedScrubbing;
-@property(readonly) BOOL isTracking;
-@property UIControl<MPDetailedScrubbing> * scrubbingControl;
-@property float scrubbingVerticalRange;
+@property (nonatomic, readonly) int currentScrubSpeed;
+@property (nonatomic) <MPDetailScrubControllerDelegate> *delegate;
+@property (nonatomic) BOOL detailedScrubbingEnabled;
+@property (nonatomic) double duration;
+@property (nonatomic, readonly) BOOL durationAllowsForDetailedScrubbing;
+@property (nonatomic, readonly) BOOL isTracking;
+@property (nonatomic) UIControl<MPDetailedScrubbing> *scrubbingControl;
+@property (nonatomic) float scrubbingVerticalRange;
 
 - (void).cxx_destruct;
 - (void)_beginScrubbing;

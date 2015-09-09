@@ -2,24 +2,16 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIButton, UILabel, UITableView, UITextField, UIView, UIViewController, _UIModalItem, _UIModalItemsPresentingViewController;
-
 @interface _UIModalItemContentView : UIView <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate> {
-    struct CGSize { 
-        float width; 
-        float height; 
-    struct CGSize { 
-        float width; 
-        float height; 
-    struct CGSize { 
-        float width; 
-        float height; 
-    struct CGSize { 
-        float width; 
-        float height; 
     UIViewController *_accessoryViewController;
     UIView *_accessoryViewControllerContrainerView;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _accessoryViewControllerSize;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _actualViewControllerSize;
     UITableView *_buttonTable;
     UIButton *_cancelButton;
@@ -28,35 +20,45 @@
     int _defaultButtonIndex;
     BOOL _enableFirstOtherButton;
     UITextField *_loginTextField;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _maxSize;
     UILabel *_messageLabel;
     _UIModalItem *_modalItem;
     UITextField *_passwordTextField;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _presentingSize;
     _UIModalItemsPresentingViewController *_presentingViewController;
     UILabel *_subtitleLabel;
     UILabel *_titleLabel;
 }
 
-@property(readonly) UIViewController * accessoryViewController;
-@property(readonly) UIView * accessoryViewControllerContrainerView;
-@property(readonly) struct CGSize { float x1; float x2; } accessoryViewControllerSize;
-@property struct CGSize { float x1; float x2; } actualViewControllerSize;
-@property(readonly) UITableView * buttonTable;
-@property(retain) UIButton * cancelButton;
-@property(readonly) int cancelButtonIndex;
-@property(retain) UIButton * defaultButton;
-@property(readonly) int defaultButtonIndex;
-@property BOOL enableFirstOtherButton;
-@property(readonly) UITextField * loginTextField;
-@property struct CGSize { float x1; float x2; } maxSize;
-@property(readonly) UILabel * messageLabel;
-@property _UIModalItem * modalItem;
-@property(readonly) UITextField * passwordTextField;
-@property struct CGSize { float x1; float x2; } presentingSize;
-@property _UIModalItemsPresentingViewController * presentingViewController;
-@property(readonly) UILabel * subtitleLabel;
-@property(readonly) UILabel * titleLabel;
+@property (nonatomic, readonly) UIViewController *accessoryViewController;
+@property (nonatomic, readonly) UIView *accessoryViewControllerContrainerView;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } accessoryViewControllerSize;
+@property (nonatomic) struct CGSize { float x1; float x2; } actualViewControllerSize;
+@property (nonatomic, readonly) UITableView *buttonTable;
+@property (nonatomic, retain) UIButton *cancelButton;
+@property (nonatomic, readonly) int cancelButtonIndex;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic, retain) UIButton *defaultButton;
+@property (nonatomic, readonly) int defaultButtonIndex;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL enableFirstOtherButton;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) UITextField *loginTextField;
+@property (nonatomic) struct CGSize { float x1; float x2; } maxSize;
+@property (nonatomic, readonly) UILabel *messageLabel;
+@property (nonatomic) _UIModalItem *modalItem;
+@property (nonatomic, readonly) UITextField *passwordTextField;
+@property (nonatomic) struct CGSize { float x1; float x2; } presentingSize;
+@property (nonatomic) _UIModalItemsPresentingViewController *presentingViewController;
+@property (nonatomic, readonly) UILabel *subtitleLabel;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) UILabel *titleLabel;
 
 - (void)_createAndConfigureButtonTable;
 - (void)_createAndConfigureMessageLabel;
@@ -90,8 +92,8 @@
 - (void)setDefaultButton:(id)arg1;
 - (void)setEnableFirstOtherButton:(BOOL)arg1;
 - (void)setMaxSize:(struct CGSize { float x1; float x2; })arg1;
-- (void)setModalItem:(id)arg1 skipLayout:(BOOL)arg2;
 - (void)setModalItem:(id)arg1;
+- (void)setModalItem:(id)arg1 skipLayout:(BOOL)arg2;
 - (void)setPresentingSize:(struct CGSize { float x1; float x2; })arg1;
 - (void)setPresentingViewController:(id)arg1;
 - (id)subtitleLabel;

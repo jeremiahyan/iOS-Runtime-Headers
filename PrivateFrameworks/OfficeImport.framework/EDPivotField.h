@@ -2,19 +2,17 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class EDCollection;
-
 @interface EDPivotField : NSObject {
-    boolmCompact;
-    boolmDataField;
-    boolmInsertBlankRow;
-    boolmOutlineItems;
-    boolmShowAllItems;
-    boolmShowDefaultSubTotal;
-    boolmSubtotalTop;
     int mAxis;
+    bool mCompact;
+    bool mDataField;
+    bool mInsertBlankRow;
     unsigned long mNumFmtId;
+    bool mOutlineItems;
     EDCollection *mPivotFieldItems;
+    bool mShowAllItems;
+    bool mShowDefaultSubTotal;
+    bool mSubtotalTop;
 }
 
 + (id)pivotField;

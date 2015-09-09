@@ -2,21 +2,20 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class EDResources, OADGraphicProperties;
-
 @interface CHDDataLabel : NSObject {
-    boolmIsPositionAffineTransform;
-    boolmShowCategoryName;
-    boolmShowLeaderLines;
-    boolmShowLegendKey;
-    boolmShowPercent;
-    boolmShowSeriesName;
-    boolmShowValue;
     unsigned int mContentFormatId;
     OADGraphicProperties *mGraphicProperties;
+    bool mIsPositionAffineTransform;
     int mPosition;
     EDResources *mResources;
     double mRotation;
+    bool mShowBubbleSize;
+    bool mShowCategoryName;
+    bool mShowLeaderLines;
+    bool mShowLegendKey;
+    bool mShowPercent;
+    bool mShowSeriesName;
+    bool mShowValue;
     unsigned int mStringIndex;
 }
 
@@ -28,6 +27,7 @@
 - (id)graphicProperties;
 - (id)initWithResources:(id)arg1;
 - (bool)isPositionAffineTransform;
+- (bool)isShowBubbleSize;
 - (bool)isShowCategoryName;
 - (bool)isShowLeaderLines;
 - (bool)isShowLegendKey;
@@ -42,6 +42,7 @@
 - (void)setIsPositionAffineTransform:(bool)arg1;
 - (void)setPosition:(int)arg1;
 - (void)setRotationAngle:(double)arg1;
+- (void)setShowBubbleSize:(bool)arg1;
 - (void)setShowCategoryName:(bool)arg1;
 - (void)setShowLeaderLines:(bool)arg1;
 - (void)setShowLegendKey:(bool)arg1;

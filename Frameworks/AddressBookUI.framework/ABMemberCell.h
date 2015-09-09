@@ -2,36 +2,27 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class <ABStyleProvider>, ABMemberNameView, ABStyleProvider, ABUIPerson;
-
 @interface ABMemberCell : UITableViewCell {
-    ABMemberNameView *_contactNameView;
     BOOL _isMeCard;
-    BOOL _layoutComplete;
     ABUIPerson *_person;
     ABStyleProvider *_styleProvider;
 }
 
-@property(retain) ABMemberNameView * contactNameView;
-@property BOOL isMeCard;
-@property(retain) ABUIPerson * person;
-@property(readonly) <ABStyleProvider> * styleProvider;
+@property (nonatomic) BOOL isMeCard;
+@property (nonatomic, retain) ABUIPerson *person;
+@property (nonatomic, readonly) <ABStyleProvider> *styleProvider;
 
-- (id)_scriptingInfo;
-- (id)contactNameView;
+- (id)_attributedNameWithNameComponents:(id)arg1 delimiter:(id)arg2 highlightedIndex:(int)arg3 romanName:(BOOL)arg4;
+- (id)_cachedBoldTextAttributes;
+- (id)_cachedMemberNameRegularFont;
+- (id)_cachedPlaceholderTextAttributes;
+- (id)_cachedRegularTextAttributes;
 - (void)dealloc;
-- (id)description;
 - (id)initWithStyleProvider:(id)arg1 reuseIdentifier:(id)arg2;
 - (BOOL)isMeCard;
-- (void)layoutSubviews;
 - (id)person;
-- (void)setContactNameView:(id)arg1;
-- (void)setHighlighted:(BOOL)arg1 animated:(BOOL)arg2;
-- (void)setHighlighted:(BOOL)arg1;
 - (void)setIsMeCard:(BOOL)arg1;
-- (void)setNeedsLayout;
 - (void)setPerson:(id)arg1;
-- (void)setSelected:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setUserInteractionEnabled:(BOOL)arg1;
 - (id)styleProvider;
 

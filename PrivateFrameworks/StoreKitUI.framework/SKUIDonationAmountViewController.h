@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class SKUIDonationAmountView, SKUIGiftPurchaseRequest, SKUIGiftValidationResponse, SKUIGiftValidator;
-
 @interface SKUIDonationAmountViewController : SKUIDonationStepViewController <SKUIDonationConfigurationObserver> {
     SKUIDonationAmountView *_amountView;
     SKUIGiftValidationResponse *_lastValidationResponse;
@@ -11,6 +9,11 @@
     BOOL _tappedNextWhileValidating;
     SKUIGiftValidator *_validator;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_amountChangedNotification:(id)arg1;

@@ -2,17 +2,7 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibrary.framework/PhotoLibrary
  */
 
-@class <PLSlalomRegionEditorDelegate>, UIImageView;
-
 @interface PLSlalomRegionEditor : UIControl {
-    struct CGPoint { 
-        float x; 
-        float y; 
-    struct UIEdgeInsets { 
-        float top; 
-        float left; 
-        float bottom; 
-        float right; 
     <PLSlalomRegionEditorDelegate> *_delegate;
     BOOL _draggingEnd;
     BOOL _draggingStart;
@@ -23,9 +13,17 @@
     float _minValue;
     UIImageView *_startHandleView;
     float _startValue;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _touchLocationWhenTrackingZoomBegan;
     float _touchOffset;
     UIImageView *_trackImageView;
+    struct UIEdgeInsets { 
+        float top; 
+        float left; 
+        float bottom; 
+        float right; 
     } _trackInsets;
     UIImageView *_trackSnapshotView;
     BOOL _trackingZoom;
@@ -37,15 +35,15 @@
     BOOL _zoomed;
 }
 
-@property <PLSlalomRegionEditorDelegate> * delegate;
-@property float endValue;
-@property float maxValue;
-@property float minValue;
-@property float startValue;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } trackInsets;
-@property float trimHandleWidth;
-@property(getter=isZoomAnimating,setter=setZoomAnimating:) BOOL zoomAnimating;
-@property double zoomDelay;
+@property (nonatomic) <PLSlalomRegionEditorDelegate> *delegate;
+@property (nonatomic) float endValue;
+@property (nonatomic) float maxValue;
+@property (nonatomic) float minValue;
+@property (nonatomic) float startValue;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } trackInsets;
+@property (nonatomic) float trimHandleWidth;
+@property (getter=isZoomAnimating, setter=setZoomAnimating:, nonatomic) BOOL zoomAnimating;
+@property (nonatomic) double zoomDelay;
 
 - (void)_beginTrackingZoomWithTouch:(id)arg1;
 - (void)_cancelTrackingZoom;
@@ -87,12 +85,12 @@
 - (float)minValue;
 - (void)setDelegate:(id)arg1;
 - (void)setEnabled:(BOOL)arg1;
-- (void)setEndValue:(float)arg1 notify:(BOOL)arg2;
 - (void)setEndValue:(float)arg1;
+- (void)setEndValue:(float)arg1 notify:(BOOL)arg2;
 - (void)setMaxValue:(float)arg1;
 - (void)setMinValue:(float)arg1;
-- (void)setStartValue:(float)arg1 notify:(BOOL)arg2;
 - (void)setStartValue:(float)arg1;
+- (void)setStartValue:(float)arg1 notify:(BOOL)arg2;
 - (void)setTrackInsets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
 - (void)setTrimHandleWidth:(float)arg1;
 - (void)setZoomAnimating:(BOOL)arg1;

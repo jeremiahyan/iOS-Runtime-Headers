@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
  */
 
-@class <MFMessageComposeViewControllerDelegate>, NSArray, NSMutableArray, NSString;
-
 @interface MFMessageComposeViewController : UINavigationController {
     NSArray *_attachments;
     NSString *_body;
@@ -14,19 +12,17 @@
     NSMutableArray *_mutableAttachmentURLs;
     NSArray *_recipients;
     NSString *_subject;
-    NSMutableArray *_temporaryAttachmentURLs;
 }
 
-@property(readonly) NSArray * attachments;
-@property(copy) NSString * body;
-@property unsigned int currentAttachedAudioCount;
-@property unsigned int currentAttachedImageCount;
-@property unsigned int currentAttachedVideoCount;
-@property <MFMessageComposeViewControllerDelegate> * messageComposeDelegate;
-@property(copy) NSMutableArray * mutableAttachmentURLs;
-@property(copy) NSArray * recipients;
-@property(copy) NSString * subject;
-@property(copy) NSMutableArray * temporaryAttachmentURLs;
+@property (nonatomic, readonly, copy) NSArray *attachments;
+@property (nonatomic, copy) NSString *body;
+@property (nonatomic) unsigned int currentAttachedAudioCount;
+@property (nonatomic) unsigned int currentAttachedImageCount;
+@property (nonatomic) unsigned int currentAttachedVideoCount;
+@property (nonatomic) <MFMessageComposeViewControllerDelegate> *messageComposeDelegate;
+@property (nonatomic, copy) NSMutableArray *mutableAttachmentURLs;
+@property (nonatomic, copy) NSArray *recipients;
+@property (nonatomic, copy) NSString *subject;
 
 + (BOOL)_canSendText;
 + (void)_serviceAvailabilityChanged:(id)arg1;
@@ -78,11 +74,9 @@
 - (void)setMutableAttachmentURLs:(id)arg1;
 - (void)setRecipients:(id)arg1;
 - (void)setSubject:(id)arg1;
-- (void)setTemporaryAttachmentURLs:(id)arg1;
 - (void)smsComposeControllerCancelled:(id)arg1;
 - (void)smsComposeControllerSendStarted:(id)arg1;
 - (id)subject;
-- (id)temporaryAttachmentURLs;
 - (void)viewWillAppear:(BOOL)arg1;
 
 @end

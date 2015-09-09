@@ -2,12 +2,6 @@
    Image: /System/Library/PrivateFrameworks/PrototypeTools.framework/PrototypeTools
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSHashTable, NSPredicate, NSString, PTSRowAction, PTSSection, UIImage, _UISettings;
-
 @interface PTSRow : NSObject <_UISettingsKeyPathObserver> {
     PTSRowAction *_action;
     int _allowedEditingTypes;
@@ -21,26 +15,32 @@
     UIImage *_staticImage;
     NSString *_staticTitle;
     NSString *_titleKeyPath;
-    id _valueFormatter;
+    id /* block */ _valueFormatter;
     NSString *_valueKeyPath;
-    id _valueValidatator;
+    id /* block */ _valueValidatator;
 }
 
-@property(copy) PTSRowAction * action;
-@property int allowedEditingTypes;
-@property(copy) NSPredicate * condition;
-@property(retain) _UISettings * groupChild;
-@property(retain) NSString * groupKeyPath;
-@property(copy) NSString * imageKeyPath;
-@property PTSSection * section;
-@property(retain) _UISettings * settings;
-@property(retain) UIImage * staticImage;
-@property(copy) NSString * staticTitle;
-@property(copy) NSString * titleKeyPath;
-@property(retain) id value;
-@property(copy) id valueFormatter;
-@property(copy) NSString * valueKeyPath;
-@property(copy) id valueValidatator;
+@property (nonatomic, copy) PTSRowAction *action;
+@property (nonatomic) int allowedEditingTypes;
+@property (nonatomic, copy) NSPredicate *condition;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) _UISettings *groupChild;
+@property (nonatomic, retain) NSString *groupKeyPath;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *imageKeyPath;
+@property (nonatomic) PTSSection *section;
+@property (nonatomic, retain) _UISettings *settings;
+@property (nonatomic, retain) UIImage *staticImage;
+@property (nonatomic, copy) NSString *staticTitle;
+@property (readonly) Class superclass;
+@property (nonatomic, copy) NSString *titleKeyPath;
+@property (nonatomic, retain) id value;
+@property (nonatomic, copy) id /* block */ valueFormatter;
+@property (nonatomic, copy) NSString *valueKeyPath;
+@property (nonatomic, copy) id /* block */ valueValidatator;
+
+// Image: /System/Library/PrivateFrameworks/PrototypeTools.framework/PrototypeTools
 
 + (id)row;
 + (id)rowWithTitle:(id)arg1 valueKeyPath:(id)arg2;
@@ -49,30 +49,29 @@
 - (void)_sendImageChanged;
 - (void)_sendTitleChanged;
 - (void)_sendValueChanged;
-- (id)action:(id)arg1;
 - (id)action;
+- (id)action:(id)arg1;
 - (void)addObserver:(id)arg1;
-- (id)allowedEditingTypes:(int)arg1;
 - (int)allowedEditingTypes;
+- (id)allowedEditingTypes:(int)arg1;
 - (BOOL)allowsDelete;
 - (BOOL)allowsDuplicate;
 - (BOOL)allowsReorder;
 - (BOOL)allowsShare;
 - (id)childSettingsForKeyPath:(id)arg1;
 - (id)concreteCopyWithIndex:(unsigned int)arg1;
-- (id)condition:(id)arg1;
 - (id)condition;
+- (id)condition:(id)arg1;
 - (id)conditionFormat:(id)arg1;
 - (void)dealloc;
 - (id)group;
 - (id)groupChild;
-- (id)groupKeyPath:(id)arg1;
 - (id)groupKeyPath;
+- (id)groupKeyPath:(id)arg1;
 - (id)image;
-- (id)imageKeyPath:(id)arg1;
 - (id)imageKeyPath;
+- (id)imageKeyPath:(id)arg1;
 - (id)init;
-- (id)pu_increment:(float)arg1;
 - (void)removeObserver:(id)arg1;
 - (void)resolveTemplatesWithIndex:(unsigned int)arg1;
 - (Class)rowTableViewCellClass;
@@ -89,25 +88,29 @@
 - (void)setStaticTitle:(id)arg1;
 - (void)setTitleKeyPath:(id)arg1;
 - (void)setValue:(id)arg1;
-- (void)setValueFormatter:(id)arg1;
+- (void)setValueFormatter:(id /* block */)arg1;
 - (void)setValueKeyPath:(id)arg1;
-- (void)setValueValidatator:(id)arg1;
-- (void)settings:(id)arg1 changedValueForKeyPath:(id)arg2;
+- (void)setValueValidatator:(id /* block */)arg1;
 - (id)settings;
-- (id)staticImage:(id)arg1;
+- (void)settings:(id)arg1 changedValueForKeyPath:(id)arg2;
 - (id)staticImage;
-- (id)staticTitle:(id)arg1;
+- (id)staticImage:(id)arg1;
 - (id)staticTitle;
+- (id)staticTitle:(id)arg1;
 - (id)title;
-- (id)titleKeyPath:(id)arg1;
 - (id)titleKeyPath;
+- (id)titleKeyPath:(id)arg1;
 - (void)updateWithRow:(id)arg1;
 - (id)value;
-- (id)valueFormatter:(id)arg1;
-- (id)valueFormatter;
-- (id)valueKeyPath:(id)arg1;
+- (id /* block */)valueFormatter;
+- (id)valueFormatter:(id /* block */)arg1;
 - (id)valueKeyPath;
-- (id)valueValidatator;
-- (id)valueValidator:(id)arg1;
+- (id)valueKeyPath:(id)arg1;
+- (id /* block */)valueValidatator;
+- (id)valueValidator:(id /* block */)arg1;
+
+// Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
+
+- (id)pu_increment:(float)arg1;
 
 @end

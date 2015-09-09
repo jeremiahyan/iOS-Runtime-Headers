@@ -2,44 +2,39 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibrary.framework/PhotoLibrary
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
 @interface PLPlacesMapKitSupport : NSObject {
-    struct { 
-        struct { 
-            double x; 
-            double y; 
-        } origin; 
-        struct { 
-            double width; 
-            double height; 
-        } size; 
-    struct { 
-        struct { 
-            double x; 
-            double y; 
-        } origin; 
-        struct { 
-            double width; 
-            double height; 
-        } size; 
-    int (*_mkCoordinateForMapPoint)();
-    int (*_mkCoordinateRegionForMapRect)();
-    int (*_mkMapPointForCoordinate)();
-    int (*_mkMapPointsPerMeterAtLatitude)();
-    int (*_mkMapRectForCoordinateRegion)();
-    int (*_mkMapRectIntersectsMapRectWrappingMeridian)();
-    int (*_mkMapRectIntersectsRect)();
-    int (*_mkMapRectMakeWithRadialDistance)();
-    int (*_mkMapRectUnion)();
-    int (*_mkMetersPerMapPointAtLatitude)();
     Class _annotationViewClass;
+    struct { 
+        struct { 
+            double x; 
+            double y; 
+        } origin; 
+        struct { 
+            double width; 
+            double height; 
+        } size; 
     } _mapRectNull;
+    struct { 
+        struct { 
+            double x; 
+            double y; 
+        } origin; 
+        struct { 
+            double width; 
+            double height; 
+        } size; 
     } _mapRectWorld;
     Class _mapViewClass;
+    int (*_mkCoordinateForMapPoint;
+    int (*_mkCoordinateRegionForMapRect;
+    int (*_mkMapPointForCoordinate;
+    int (*_mkMapPointsPerMeterAtLatitude;
+    int (*_mkMapRectForCoordinateRegion;
+    int (*_mkMapRectIntersectsMapRectWrappingMeridian;
+    int (*_mkMapRectIntersectsRect;
+    int (*_mkMapRectMakeWithRadialDistance;
+    int (*_mkMapRectUnion;
+    int (*_mkMetersPerMapPointAtLatitude;
     Class _pinAnnotationViewClass;
     Class _polylineClass;
     Class _polylineViewClass;

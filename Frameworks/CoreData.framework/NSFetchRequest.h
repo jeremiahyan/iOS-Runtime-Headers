@@ -2,9 +2,11 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@class NSArray, NSEntityDescription, NSPredicate;
-
 @interface NSFetchRequest : NSPersistentStoreRequest <NSCoding> {
+    id *_additionalPrivateIvars;
+    unsigned int _batchSize;
+    NSEntityDescription *_entity;
+    unsigned long _fetchLimit;
     struct _fetchRequestFlags { 
         unsigned int distinctValuesOnly : 1; 
         unsigned int includesSubentities : 1; 
@@ -18,28 +20,46 @@
         unsigned int propertiesValidated : 1; 
         unsigned int disableCaching : 1; 
         unsigned int _RESERVED : 19; 
-    unsigned int _batchSize;
-    NSEntityDescription *_entity;
-    unsigned long _fetchLimit;
     } _flags;
     NSArray *_groupByProperties;
     NSPredicate *_havingPredicate;
-    unsigned int _offset;
     NSPredicate *_predicate;
     NSArray *_relationshipKeyPathsForPrefetching;
     NSArray *_sortDescriptors;
     NSArray *_valuesToFetch;
 }
 
+@property (nonatomic, retain) NSArray *affectedStores;
+@property (nonatomic, retain) NSEntityDescription *entity;
+@property (nonatomic, readonly) NSString *entityName;
+@property (nonatomic) unsigned int fetchBatchSize;
+@property (nonatomic) unsigned int fetchLimit;
+@property (nonatomic) unsigned int fetchOffset;
+@property (nonatomic, retain) NSPredicate *havingPredicate;
+@property (nonatomic) BOOL includesPendingChanges;
+@property (nonatomic) BOOL includesPropertyValues;
+@property (nonatomic) BOOL includesSubentities;
+@property (nonatomic, retain) NSPredicate *predicate;
+@property (nonatomic, copy) NSArray *propertiesToFetch;
+@property (nonatomic, copy) NSArray *propertiesToGroupBy;
+@property (nonatomic, copy) NSArray *relationshipKeyPathsForPrefetching;
+@property (nonatomic) unsigned int resultType;
+@property (nonatomic) BOOL returnsDistinctResults;
+@property (nonatomic) BOOL returnsObjectsAsFaults;
+@property (nonatomic) BOOL shouldRefreshRefetchedObjects;
+@property (nonatomic, retain) NSArray *sortDescriptors;
+
 + (BOOL)accessInstanceVariablesDirectly;
 + (id)fetchRequestWithEntityName:(id)arg1;
 + (void)initialize;
 
+- (id)_asyncResultHandle;
 - (BOOL)_disablePersistentStoreResultCaching;
 - (void)_incrementInUseCounter;
 - (BOOL)_isEditable;
 - (id)_newValidatedProperties:(id)arg1 groupBy:(BOOL)arg2 error:(id*)arg3;
 - (void)_resolveEntityWithContext:(id)arg1;
+- (void)_setAsyncResultHandle:(id)arg1;
 - (void)_setDisablePersistentStoreResultCaching:(BOOL)arg1;
 - (void)_throwIfNotEditable;
 - (void)_writeIntoData:(id)arg1 propertiesDict:(id)arg2 uniquedPropertyNames:(id)arg3 uniquedStrings:(id)arg4 uniquedData:(id)arg5 uniquedMappings:(id)arg6 entities:(id)arg7;

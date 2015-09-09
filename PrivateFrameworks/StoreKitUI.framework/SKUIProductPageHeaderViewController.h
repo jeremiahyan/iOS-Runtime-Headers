@@ -2,15 +2,13 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class <SKUIProductPageHeaderViewDelegate>, NSOperationQueue, SKUIClientContext, SKUIContentRatingArtworkResourceLoader, SKUIFacebookLikeStatus, SKUIItem, SKUIItemArtworkContext, SKUIItemOffer, SKUIProductPage, SKUIProductPageHeaderFloatingView, SKUIProductPageHeaderView, SSVLoadURLOperation, UIImage, UIPopoverController;
-
 @interface SKUIProductPageHeaderViewController : UIViewController <SKUIItemStateCenterObserver, UIPopoverControllerDelegate> {
     UIPopoverController *_activityPopoverController;
     SKUIItemArtworkContext *_artworkContext;
+    BOOL _askPermission;
     SKUIClientContext *_clientContext;
     SKUIContentRatingArtworkResourceLoader *_contentRatingArtworkLoader;
     <SKUIProductPageHeaderViewDelegate> *_delegate;
-    SKUIFacebookLikeStatus *_facebookLikeStatus;
     SKUIProductPageHeaderFloatingView *_floatingView;
     SKUIProductPageHeaderView *_headerView;
     UIImage *_iconImage;
@@ -28,14 +26,18 @@
     BOOL _wantsActivityViewController;
 }
 
-@property(retain) SKUIClientContext * clientContext;
-@property <SKUIProductPageHeaderViewDelegate> * delegate;
-@property(copy) SKUIFacebookLikeStatus * facebookLikeStatus;
-@property(readonly) SKUIProductPageHeaderFloatingView * floatingView;
-@property(readonly) UIImage * iconImage;
-@property(readonly) SKUIItem * item;
-@property(retain) NSOperationQueue * operationQueue;
-@property int selectedSectionIndex;
+@property (nonatomic) BOOL askPermission;
+@property (nonatomic, retain) SKUIClientContext *clientContext;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SKUIProductPageHeaderViewDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) SKUIProductPageHeaderFloatingView *floatingView;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) UIImage *iconImage;
+@property (nonatomic, readonly) SKUIItem *item;
+@property (nonatomic, retain) NSOperationQueue *operationQueue;
+@property (nonatomic) int selectedSectionIndex;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (id)_activeItem;
@@ -45,7 +47,6 @@
 - (id)_contentRatingResourceLoader;
 - (void)_destroyPopoverController;
 - (void)_disableItemOfferButtonWithTitle:(id)arg1 animated:(BOOL)arg2;
-- (id)_facebookFriendsString;
 - (BOOL)_isRestricted;
 - (void)_itemOfferButtonAction:(id)arg1;
 - (void)_loadUberImageIfAvailable;
@@ -59,12 +60,13 @@
 - (void)_setUberWithImage:(id)arg1 error:(id)arg2;
 - (void)_shareButtonAction:(id)arg1;
 - (void)_showActivityViewControllerFromView:(id)arg1;
+- (void)_showAskPermissionBanner;
 - (void)_showSynthesizedItemStateWithFlag:(unsigned int)arg1 animated:(BOOL)arg2;
+- (BOOL)askPermission;
 - (id)clientContext;
 - (void)dealloc;
 - (id)delegate;
 - (void)didRotateFromInterfaceOrientation:(int)arg1;
-- (id)facebookLikeStatus;
 - (id)floatingView;
 - (id)iconImage;
 - (id)initWithItem:(id)arg1;
@@ -76,9 +78,9 @@
 - (void)popoverControllerDidDismissPopover:(id)arg1;
 - (void)reloadData;
 - (int)selectedSectionIndex;
+- (void)setAskPermission:(BOOL)arg1;
 - (void)setClientContext:(id)arg1;
 - (void)setDelegate:(id)arg1;
-- (void)setFacebookLikeStatus:(id)arg1;
 - (void)setOperationQueue:(id)arg1;
 - (void)setProductPage:(id)arg1;
 - (void)setSelectedSectionIndex:(int)arg1;

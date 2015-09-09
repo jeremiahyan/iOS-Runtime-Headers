@@ -2,15 +2,19 @@
    Image: /System/Library/PrivateFrameworks/SiriUI.framework/SiriUI
  */
 
-@class SAABPersonPicker, SiriUIObjectPickerViewController;
-
 @interface SiriUIPrivatePeoplePickerViewController : SiriUISnippetViewController <SiriUIObjectPickerViewControllerDelegate> {
     SAABPersonPicker *_picker;
     SiriUIObjectPickerViewController *_pickerController;
 }
 
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+
 - (void).cxx_destruct;
 - (id)_pickerController;
+- (void)_showPicker:(id)arg1;
 - (void)configureReusableTransparentFooterView:(id)arg1;
 - (float)desiredHeightForTransparentFooterView;
 - (float)desiredHeightForWidth:(float)arg1;

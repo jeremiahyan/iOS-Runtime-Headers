@@ -2,13 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class <TSWPTOCController>, NSArray, NSSet, TSWPTOCPartitioner, TSWPTOCSettings;
-
 @interface TSWPTOCInfo : TSWPShapeInfo {
     NSArray *_pageNumberRanges;
     TSWPTOCPartitioner *_partitioner;
@@ -17,25 +10,28 @@
     TSWPTOCSettings *_tocSettings;
 }
 
-@property(retain) NSArray * pageNumberRanges;
-@property(readonly) NSSet * paragraphStylesShownInTOC;
-@property <TSWPTOCController> * tocController;
-@property(setter=setTOCEntries:,retain) NSArray * tocEntries;
-@property(setter=setTOCSettings:,retain) TSWPTOCSettings * tocSettings;
+@property (nonatomic, retain) NSArray *pageNumberRanges;
+@property (nonatomic, readonly) NSSet *paragraphStylesShownInTOC;
+@property (nonatomic) <TSWPTOCController> *tocController;
+@property (setter=setTOCEntries:, nonatomic, retain) NSArray *tocEntries;
+@property (setter=setTOCSettings:, nonatomic, retain) TSWPTOCSettings *tocSettings;
 
 + (BOOL)canPartition;
 
 - (void)acceptVisitor:(id)arg1;
 - (void)adoptStylesheet:(id)arg1 withMapper:(id)arg2;
+- (id)containedStorageFormattedUsingParagraphStyle:(id)arg1;
+- (id)copyWithContext:(id)arg1;
 - (void)dealloc;
 - (id)initFromUnarchiver:(id)arg1;
-- (void)loadTOCInfoMessage:(const struct TOCInfoArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; struct ShapeInfoArchive {} *x3; struct Reference {} *x4; struct RepeatedPtrField<TSP::Reference> { void **x_5_1_1; int x_5_1_2; int x_5_1_3; int x_5_1_4; } x5; struct RepeatedPtrField<TSP::Range> { void **x_6_1_1; int x_6_1_2; int x_6_1_3; int x_6_1_4; } x6; int x7; unsigned int x8[1]; }*)arg1 unarchiver:(id)arg2;
+- (void)loadTOCInfoMessage:(const struct TOCInfoArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; struct ShapeInfoArchive {} *x5; struct Reference {} *x6; struct RepeatedPtrField<TSP::Reference> { void **x_7_1_1; int x_7_1_2; int x_7_1_3; int x_7_1_4; } x7; struct RepeatedPtrField<TSP::Range> { void **x_8_1_1; int x_8_1_2; int x_8_1_3; int x_8_1_4; } x8; }*)arg1 unarchiver:(id)arg2;
 - (void)p_regenerateStorageContent;
+- (BOOL)p_startingTOCIsRTLForEntries:(id)arg1;
 - (id)pageNumberRanges;
 - (id)paragraphStylesShownInTOC;
 - (id)partitioner;
 - (Class)repClass;
-- (void)saveTOCInfoMessage:(struct TOCInfoArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; struct ShapeInfoArchive {} *x3; struct Reference {} *x4; struct RepeatedPtrField<TSP::Reference> { void **x_5_1_1; int x_5_1_2; int x_5_1_3; int x_5_1_4; } x5; struct RepeatedPtrField<TSP::Range> { void **x_6_1_1; int x_6_1_2; int x_6_1_3; int x_6_1_4; } x6; int x7; unsigned int x8[1]; }*)arg1 archiver:(id)arg2;
+- (void)saveTOCInfoMessage:(struct TOCInfoArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; struct ShapeInfoArchive {} *x5; struct Reference {} *x6; struct RepeatedPtrField<TSP::Reference> { void **x_7_1_1; int x_7_1_2; int x_7_1_3; int x_7_1_4; } x7; struct RepeatedPtrField<TSP::Range> { void **x_8_1_1; int x_8_1_2; int x_8_1_3; int x_8_1_4; } x8; }*)arg1 archiver:(id)arg2;
 - (void)saveToArchiver:(id)arg1;
 - (void)setPageNumberRanges:(id)arg1;
 - (void)setTOCEntries:(id)arg1;

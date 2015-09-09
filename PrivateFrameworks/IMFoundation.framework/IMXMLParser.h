@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/IMFoundation.framework/IMFoundation
  */
 
-@class IMXMLParserContext, IMXMLParserFrame, NSMutableArray, NSXMLParser;
-
 @interface IMXMLParser : NSObject <NSXMLParserDelegate> {
     IMXMLParserContext *_context;
     struct __CFDictionary { } *_framespace;
@@ -12,6 +10,11 @@
     struct _TidyDoc { int x1; } *_tidyDoc;
     IMXMLParserFrame *_topFrame;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)sharedInstance;
 

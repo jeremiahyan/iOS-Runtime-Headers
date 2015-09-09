@@ -2,19 +2,17 @@
    Image: /System/Library/PrivateFrameworks/MobileBackup.framework/MobileBackup
  */
 
-@class NSDictionary, NSString;
-
-@interface MBFileInfo : NSObject <NSCopying, NSCoding> {
+@interface MBFileInfo : NSObject <NSCoding, NSCopying> {
     NSDictionary *_extendedAttributes;
     BOOL _isDirectory;
     NSString *_path;
     int _priority;
 }
 
-@property(copy) NSDictionary * extendedAttributes;
-@property BOOL isDirectory;
-@property(copy) NSString * path;
-@property int priority;
+@property (nonatomic, copy) NSDictionary *extendedAttributes;
+@property (nonatomic) BOOL isDirectory;
+@property (nonatomic, copy) NSString *path;
+@property (nonatomic) int priority;
 
 + (id)fileInfoWithPath:(id)arg1 extendedAttributes:(id)arg2;
 

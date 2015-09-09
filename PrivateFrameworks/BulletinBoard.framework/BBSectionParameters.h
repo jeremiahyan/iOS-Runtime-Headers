@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/BulletinBoard.framework/BulletinBoard
  */
 
-@class BBSectionIcon, BBSectionSubtypeParameters, NSLock, NSMutableDictionary, NSString;
-
-@interface BBSectionParameters : NSObject <NSSecureCoding> {
+@interface BBSectionParameters : NSObject <BBUniquableObject, NSSecureCoding> {
     NSMutableDictionary *_allSubtypeParameters;
     BBSectionSubtypeParameters *_defaultSubtypeParameters;
     NSString *_displayName;
@@ -19,24 +17,28 @@
     BOOL _usesVariableLayout;
 }
 
-@property(retain) NSMutableDictionary * allSubtypeParameters;
-@property(retain) BBSectionSubtypeParameters * defaultSubtypeParameters;
-@property(copy) NSString * displayName;
-@property BOOL displaysCriticalBulletins;
-@property(retain) BBSectionIcon * icon;
-@property unsigned int messageNumberOfLines;
-@property BOOL orderSectionUsingRecencyDate;
-@property BOOL showsDateInFloatingLockScreenAlert;
-@property BOOL showsSubtitle;
-@property(retain) NSString * uniqueIdentifier;
-@property BOOL usesVariableLayout;
+@property (nonatomic, retain) NSMutableDictionary *allSubtypeParameters;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic, retain) BBSectionSubtypeParameters *defaultSubtypeParameters;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, copy) NSString *displayName;
+@property (nonatomic) BOOL displaysCriticalBulletins;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) BBSectionIcon *icon;
+@property (nonatomic) unsigned int messageNumberOfLines;
+@property (nonatomic) BOOL orderSectionUsingRecencyDate;
+@property (nonatomic) BOOL showsDateInFloatingLockScreenAlert;
+@property (nonatomic) BOOL showsSubtitle;
+@property (readonly) Class superclass;
+@property (nonatomic) BOOL usesVariableLayout;
 
-+ (void)addSectionParametersToCache:(id)arg1;
++ (id)addSectionParametersToCache:(id)arg1;
 + (id)copyCachedSectionParametersWithIdentifier:(id)arg1;
 + (void)removeSectionParametersFromCache:(id)arg1;
 + (BOOL)supportsSecureCoding;
 
 - (id)allSubtypeParameters;
+- (id)allSubtypes;
 - (void)dealloc;
 - (id)defaultSubtypeParameters;
 - (id)displayName;
@@ -57,7 +59,6 @@
 - (void)setOrderSectionUsingRecencyDate:(BOOL)arg1;
 - (void)setShowsDateInFloatingLockScreenAlert:(BOOL)arg1;
 - (void)setShowsSubtitle:(BOOL)arg1;
-- (void)setUniqueIdentifier:(id)arg1;
 - (void)setUsesVariableLayout:(BOOL)arg1;
 - (BOOL)showsDateInFloatingLockScreenAlert;
 - (BOOL)showsSubtitle;

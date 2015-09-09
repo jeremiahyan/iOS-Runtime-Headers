@@ -6,6 +6,8 @@
     int mPresetTextWarpType;
 }
 
++ (id)stringWithPresetTextWarpType:(int)arg1;
+
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
 - (int)presetTextWarpType;

@@ -2,12 +2,7 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
  */
 
-@class NSString;
-
 @interface PLThumbFileManager : NSObject <PLThumbPersistenceManager> {
-    struct CGSize { 
-        float width; 
-        float height; 
     int _entryLength;
     NSString *_filename;
     int _format;
@@ -15,19 +10,27 @@
     int _imageRowBytes;
     NSString *_path;
     BOOL _readOnly;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _thumbnailSize;
 }
 
-@property(readonly) int imageFormat;
-@property(readonly) int imageHeight;
-@property(readonly) int imageLength;
-@property(readonly) int imageRowBytes;
-@property(readonly) struct CGSize { float x1; float x2; } imageSize;
-@property(readonly) int imageWidth;
-@property(readonly) BOOL isReadOnly;
-@property(readonly) NSString * path;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) int imageFormat;
+@property (nonatomic, readonly) int imageHeight;
+@property (nonatomic, readonly) int imageLength;
+@property (nonatomic, readonly) int imageRowBytes;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } imageSize;
+@property (nonatomic, readonly) int imageWidth;
+@property (nonatomic, readonly) BOOL isReadOnly;
+@property (nonatomic, readonly) NSString *path;
+@property (readonly) Class superclass;
 
-+ (BOOL)_deviceShouldUseBGRAThumbs;
++ (BOOL)_deviceShouldUseLowPerformancePixelFormat;
++ (id)baseSessionOptions;
 + (struct __CFDictionary { }*)decodeSessionOptions;
 + (void)deleteAllEntriesWithIdentifier:(id)arg1 basePath:(id)arg2;
 
@@ -47,11 +50,12 @@
 - (struct CGSize { float x1; float x2; })imageSize;
 - (int)imageWidth;
 - (id)imageWithIdentifier:(id)arg1;
-- (id)initWithPath:(id)arg1 imageFormat:(int)arg2 readOnly:(BOOL)arg3;
 - (id)initWithPath:(id)arg1 imageFormat:(int)arg2;
+- (id)initWithPath:(id)arg1 imageFormat:(int)arg2 readOnly:(BOOL)arg3;
 - (BOOL)isReadOnly;
+- (id)originalPreheatItemForAsset:(id)arg1 optimalSourcePixelSize:(struct CGSize { float x1; float x2; })arg2 options:(unsigned int)arg3;
 - (id)path;
-- (id)preheatItemForAsset:(id)arg1 options:(unsigned int)arg2;
+- (id)preheatItemForAsset:(id)arg1 format:(int)arg2 optimalSourcePixelSize:(struct CGSize { float x1; float x2; })arg3 options:(unsigned int)arg4;
 - (void)setImageDataForEntry:(const void*)arg1 withIdentifier:(id)arg2 orIndex:(unsigned int)arg3 asset:(id)arg4;
 - (void)setImageForEntry:(id)arg1 withIdentifier:(id)arg2 orIndex:(unsigned int)arg3 videoDuration:(id)arg4 photoUUID:(id)arg5;
 - (id)thumbnailForImage:(id)arg1 videoDuration:(id)arg2;

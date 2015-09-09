@@ -2,26 +2,24 @@
    Image: /System/Library/PrivateFrameworks/CommunicationsSetupUI.framework/CommunicationsSetupUI
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class CNFRegController;
-
-@interface CNFRegListController : PSListController <CNFRegChangeAccountPasswordDelegate, CNFRegAccountAuthorizationDelegate, IMSystemMonitorListener> {
-    id _appearBlock;
+@interface CNFRegListController : PSListController <CNFRegAccountAuthorizationDelegate, CNFRegChangeAccountPasswordDelegate, IMSystemMonitorListener> {
+    id /* block */ _appearBlock;
     BOOL _appeared;
     CNFRegController *_regController;
     BOOL _shouldRerootPreferences;
     BOOL _showingChildController;
 }
 
-@property(copy) id appearBlock;
-@property(readonly) BOOL appeared;
-@property(readonly) int currentAppearanceStyle;
-@property(retain) CNFRegController * regController;
-@property BOOL shouldRerootPreferences;
-@property BOOL showingChildController;
+@property (nonatomic, copy) id /* block */ appearBlock;
+@property (nonatomic, readonly) BOOL appeared;
+@property (nonatomic, readonly) int currentAppearanceStyle;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) CNFRegController *regController;
+@property (nonatomic) BOOL shouldRerootPreferences;
+@property (nonatomic) BOOL showingChildController;
+@property (readonly) Class superclass;
 
 - (id)_existingLabelForSection:(int)arg1 header:(BOOL)arg2;
 - (id)_existingLabelForSpecifier:(id)arg1 header:(BOOL)arg2;
@@ -35,7 +33,7 @@
 - (void)_updateExistingLabelForSpecifier:(id)arg1 header:(BOOL)arg2;
 - (void)_updateTableLabel:(id)arg1 withTableView:(id)arg2 isTopMostHeader:(BOOL)arg3;
 - (void)_updateTitle;
-- (id)appearBlock;
+- (id /* block */)appearBlock;
 - (BOOL)appeared;
 - (void)applicationDidResume;
 - (void)authorizationController:(id)arg1 authorizedAccount:(BOOL)arg2;
@@ -51,7 +49,7 @@
 - (id)logName;
 - (id)regController;
 - (void)removeAllHandlers;
-- (void)setAppearBlock:(id)arg1;
+- (void)setAppearBlock:(id /* block */)arg1;
 - (void)setRegController:(id)arg1;
 - (void)setShouldRerootPreferences:(BOOL)arg1;
 - (void)setShowingChildController:(BOOL)arg1;

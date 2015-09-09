@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibrary.framework/PhotoLibrary
  */
 
-@class <PLCameraImporterDelegate>, ICCameraDevice, NSMutableArray, NSMutableDictionary, NSString, PLCameraImportQueue, PLImportFileManager, PLMutableCameraImportQueue;
-
-@interface PLCameraImporter : NSObject <ICDeviceDelegate, ICCameraDeviceDelegate> {
+@interface PLCameraImporter : NSObject <ICCameraDeviceDelegate, ICDeviceDelegate> {
     BOOL _autosplitEvents;
     ICCameraDevice *_camera;
     NSMutableArray *_coalescedDeletedItems;
@@ -16,6 +14,7 @@
     BOOL _importInProgress;
     BOOL _importItemInProgress;
     PLCameraImportQueue *_importQueue;
+    BOOL _isAppleDevice;
     NSMutableArray *_items;
     NSMutableDictionary *_itemsMapping;
     NSMutableArray *_orphanItems;
@@ -25,11 +24,16 @@
     NSString *importSessionIdentifier;
 }
 
-@property(retain) ICCameraDevice * camera;
-@property <PLCameraImporterDelegate> * delegate;
-@property(copy) NSString * importSessionIdentifier;
-@property(retain) NSMutableArray * items;
-@property(retain) NSMutableDictionary * itemsMapping;
+@property (nonatomic, retain) ICCameraDevice *camera;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <PLCameraImporterDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *importSessionIdentifier;
+@property (nonatomic) BOOL isAppleDevice;
+@property (nonatomic, retain) NSMutableArray *items;
+@property (nonatomic, retain) NSMutableDictionary *itemsMapping;
+@property (readonly) Class superclass;
 
 - (void)_addImportItemFromCameraFile:(id)arg1;
 - (void)_clearImportItemsForDownload:(id)arg1;
@@ -80,6 +84,7 @@
 - (void)importItems:(id)arg1;
 - (id)importSessionIdentifier;
 - (id)initWithDevice:(id)arg1 delegate:(id)arg2;
+- (BOOL)isAppleDevice;
 - (BOOL)isImporting;
 - (id)items;
 - (id)itemsMapping;
@@ -91,6 +96,7 @@
 - (void)setCamera:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setImportSessionIdentifier:(id)arg1;
+- (void)setIsAppleDevice:(BOOL)arg1;
 - (void)setItems:(id)arg1;
 - (void)setItemsMapping:(id)arg1;
 - (void)stopImport;

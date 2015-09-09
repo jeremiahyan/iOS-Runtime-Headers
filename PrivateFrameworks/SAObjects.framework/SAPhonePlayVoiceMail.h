@@ -2,12 +2,11 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSURL;
+@interface SAPhonePlayVoiceMail : SADomainCommand
 
-@interface SAPhonePlayVoiceMail : SADomainCommand {
-}
+@property (nonatomic, copy) NSURL *voiceMailId;
 
-@property(copy) NSURL * voiceMailId;
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
 
 + (id)playVoiceMail;
 + (id)playVoiceMailWithDictionary:(id)arg1 context:(id)arg2;
@@ -17,5 +16,9 @@
 - (BOOL)requiresResponse;
 - (void)setVoiceMailId:(id)arg1;
 - (id)voiceMailId;
+
+// Image: /System/Library/PrivateFrameworks/AssistantUI.framework/AssistantUI
+
+- (BOOL)_afui_isUsefulUserResultCommand;
 
 @end

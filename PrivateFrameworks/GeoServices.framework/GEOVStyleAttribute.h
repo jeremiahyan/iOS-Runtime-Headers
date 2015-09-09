@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@interface GEOVStyleAttribute : PBCodable {
+@interface GEOVStyleAttribute : PBCodable <NSCopying> {
     struct { 
         unsigned int intValue : 1; 
     } _has;
@@ -10,12 +10,12 @@
     unsigned int _key;
 }
 
-@property BOOL hasIntValue;
-@property int intValue;
-@property unsigned int key;
+@property (nonatomic) BOOL hasIntValue;
+@property (nonatomic) int intValue;
+@property (nonatomic) unsigned int key;
 
 - (void)copyTo:(id)arg1;
-- (void)dealloc;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (id)dictionaryRepresentation;
 - (BOOL)hasIntValue;

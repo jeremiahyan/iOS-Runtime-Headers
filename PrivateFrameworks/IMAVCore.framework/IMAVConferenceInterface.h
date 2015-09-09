@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/IMAVCore.framework/IMAVCore
  */
 
-@class AVConference, NSLock, NSMutableArray, NSMutableDictionary;
-
 @interface IMAVConferenceInterface : IMAVInterface <AVConferenceDelegate> {
     NSMutableDictionary *_avConferences;
     NSLock *_avConferencesLock;
@@ -12,15 +10,16 @@
     BOOL _pendingCleanup;
 }
 
-@property(readonly) AVConference * controller;
+@property (nonatomic, readonly) AVConference *controller;
 
++ (BOOL)_forceRelayMode;
 + (void)_postParticipantMediaChangeNotification:(id)arg1 cameraChanged:(BOOL)arg2 orientationChanged:(BOOL)arg3 aspectChanged:(BOOL)arg4 contentRectChanged:(BOOL)arg5 cameraWillSwitch:(BOOL)arg6 camera:(unsigned int)arg7 orentation:(unsigned int)arg8 aspect:(struct CGSize { float x1; float x2; })arg9 contentRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg10;
 + (void)_postParticipantScreenAttributesChangeNotification:(id)arg1 cameraChanged:(BOOL)arg2 orientationChanged:(BOOL)arg3 aspectChanged:(BOOL)arg4 cameraWillSwitch:(BOOL)arg5 camera:(unsigned int)arg6 orentation:(unsigned int)arg7 aspect:(struct CGSize { float x1; float x2; })arg8;
 + (BOOL)_useMultipleAVConference;
 
 - (void)_avChatDealloc:(id)arg1;
-- (id)_avChatForConference:(id)arg1 callID:(int)arg2 errorString:(id)arg3;
 - (id)_avChatForConference:(id)arg1;
+- (id)_avChatForConference:(id)arg1 callID:(int)arg2 errorString:(id)arg3;
 - (void)_cleanupAVInterface;
 - (void)_conferenceEnded:(id)arg1;
 - (id)_conferenceForAVChat:(id)arg1;
@@ -28,6 +27,7 @@
 - (id)_controller;
 - (id)_existingConferenceForAVChat:(id)arg1;
 - (id)_existingConferenceForAVChatGUID:(id)arg1;
+- (id)_getFaceTimeUUID;
 - (BOOL)_hasAVConferenceObjectsForChatsOtherThan:(id)arg1;
 - (id)_imAVChatParticipantForConference:(id)arg1 callID:(int)arg2 errorString:(id)arg3;
 - (void)_notifyAboutPotentialCallForChat:(id)arg1;
@@ -50,18 +50,20 @@
 - (void)conference:(id)arg1 cancelRelayRequest:(int)arg2 requestDict:(id)arg3;
 - (void)conference:(id)arg1 didChangeLocalVariablesForCallID:(int)arg2;
 - (void)conference:(id)arg1 didStartSession:(BOOL)arg2 withUserInfo:(id)arg3;
-- (void)conference:(id)arg1 didStopWithCallID:(int)arg2 error:(id)arg3 callMetadata:(id)arg4;
 - (void)conference:(id)arg1 didStopWithCallID:(int)arg2 error:(id)arg3;
+- (void)conference:(id)arg1 didStopWithCallID:(int)arg2 error:(id)arg3 callMetadata:(id)arg4;
 - (void)conference:(id)arg1 inititiateRelayRequest:(int)arg2 requestDict:(id)arg3;
 - (void)conference:(id)arg1 localIPChange:(id)arg2 withCallID:(int)arg3;
 - (void)conference:(id)arg1 receivedFirstRemoteFrameForCallID:(int)arg2;
-- (void)conference:(id)arg1 receivedNoRemotePacketsForTime:(double)arg2 callID:(int)arg3;
+- (void)conference:(id)arg1 reinitializeCallForCallID:(unsigned long)arg2;
 - (void)conference:(id)arg1 remoteAudioPaused:(BOOL)arg2 callID:(int)arg3;
 - (void)conference:(id)arg1 remoteScreenAttributesChanged:(id)arg2 callID:(int)arg3;
 - (void)conference:(id)arg1 remoteVideoAttributesChanged:(id)arg2 callID:(int)arg3;
 - (void)conference:(id)arg1 remoteVideoPaused:(BOOL)arg2 callID:(int)arg3;
 - (void)conference:(id)arg1 sendRelayUpdate:(int)arg2 updateDict:(id)arg3;
+- (void)conference:(id)arg1 updateInputFrequencyLevel:(id)arg2;
 - (void)conference:(id)arg1 updateInputMeterLevel:(float)arg2;
+- (void)conference:(id)arg1 updateOutputFrequencyLevel:(id)arg2;
 - (void)conference:(id)arg1 updateOutputMeterLevel:(float)arg2;
 - (void)conference:(id)arg1 videoQualityNotificationForCallID:(int)arg2 isDegraded:(BOOL)arg3 isRemote:(BOOL)arg4;
 - (void)conference:(id)arg1 withCallID:(int)arg2 networkHint:(BOOL)arg3;

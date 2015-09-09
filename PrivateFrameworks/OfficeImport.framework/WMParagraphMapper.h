@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class OIXMLElement, WDParagraph, WMParagraphMapper;
-
 @interface WMParagraphMapper : CMMapper {
     OIXMLElement *mActiveNode;
     WMParagraphMapper *mCurrentMapper;
@@ -23,6 +21,6 @@
 - (void)mapFieldMarkerAt:(id)arg1 marker:(id)arg2 withState:(id)arg3;
 - (void)mapParagraphBodyWithState:(id)arg1;
 - (void)mapRunAt:(id)arg1 run:(id)arg2 withState:(id)arg3;
-- (id)runAtIndex:(int)arg1;
+- (id)runAtIndex:(unsigned int)arg1;
 
 @end

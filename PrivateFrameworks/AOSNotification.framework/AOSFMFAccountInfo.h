@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/AOSNotification.framework/AOSNotification
  */
 
-@class NSDictionary, NSString;
-
 @interface AOSFMFAccountInfo : NSObject <NSSecureCoding> {
     NSDictionary *_additionalInfo;
     NSString *_aosAPSEnvironment;
@@ -11,43 +9,56 @@
     NSString *_aosServerProtocolScheme;
     NSString *_appAuthToken;
     int _appAuthTokenStatus;
+    NSString *_appServerHost;
     NSString *_dsid;
     NSString *_internalAuthToken;
+    NSString *_legacyDsid;
+    NSString *_legacyUsername;
     NSString *_username;
 }
 
-@property(retain) NSDictionary * additionalInfo;
-@property(retain) NSString * aosAPSEnvironment;
-@property(retain) NSString * aosServerHost;
-@property(retain) NSString * aosServerProtocolScheme;
-@property(retain) NSString * appAuthToken;
-@property int appAuthTokenStatus;
-@property(retain) NSString * dsid;
-@property(retain) NSString * internalAuthToken;
-@property(retain) NSString * username;
+@property (nonatomic, retain) NSDictionary *additionalInfo;
+@property (nonatomic, retain) NSString *aosAPSEnvironment;
+@property (nonatomic, retain) NSString *aosServerHost;
+@property (nonatomic, retain) NSString *aosServerProtocolScheme;
+@property (nonatomic, retain) NSString *appAuthToken;
+@property (nonatomic) int appAuthTokenStatus;
+@property (nonatomic, retain) NSString *appServerHost;
+@property (nonatomic, retain) NSString *dsid;
+@property (nonatomic, retain) NSString *internalAuthToken;
+@property (nonatomic, retain) NSString *legacyDsid;
+@property (nonatomic, retain) NSString *legacyUsername;
+@property (nonatomic, retain) NSString *username;
 
 + (BOOL)supportsSecureCoding;
 
+- (void).cxx_destruct;
 - (id)additionalInfo;
 - (id)aosAPSEnvironment;
 - (id)aosServerHost;
 - (id)aosServerProtocolScheme;
 - (id)appAuthToken;
 - (int)appAuthTokenStatus;
+- (id)appServerHost;
 - (void)dealloc;
 - (id)description;
 - (id)dsid;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)internalAuthToken;
+- (id)legacyDsid;
+- (id)legacyUsername;
 - (void)setAdditionalInfo:(id)arg1;
 - (void)setAosAPSEnvironment:(id)arg1;
 - (void)setAosServerHost:(id)arg1;
 - (void)setAosServerProtocolScheme:(id)arg1;
 - (void)setAppAuthToken:(id)arg1;
 - (void)setAppAuthTokenStatus:(int)arg1;
+- (void)setAppServerHost:(id)arg1;
 - (void)setDsid:(id)arg1;
 - (void)setInternalAuthToken:(id)arg1;
+- (void)setLegacyDsid:(id)arg1;
+- (void)setLegacyUsername:(id)arg1;
 - (void)setUsername:(id)arg1;
 - (id)username;
 

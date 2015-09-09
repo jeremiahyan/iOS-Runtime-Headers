@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-@class UIActivityIndicatorView, UILabel, UIView;
-
 @interface EKCalendarPublishingEditItem : EKCalendarEditItem <CalendarPublishingActivityDelegate> {
     UILabel *_descriptionLabel;
     UIView *_footerView;
@@ -12,8 +10,12 @@
     UIActivityIndicatorView *_spinner;
 }
 
-@property(readonly) UIView * footerView;
-@property BOOL published;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) UIView *footerView;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL published;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_applyStyleToUILabel:(id)arg1;

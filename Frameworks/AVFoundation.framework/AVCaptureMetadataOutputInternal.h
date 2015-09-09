@@ -2,9 +2,10 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class <AVCaptureMetadataOutputObjectsDelegate>, NSArray, NSObject<OS_dispatch_queue>;
-
 @interface AVCaptureMetadataOutputInternal : NSObject {
+    AVWeakReferencingDelegateStorage *delegateStorage;
+    NSArray *metadataObjectTypes;
+    NSObject<OS_dispatch_queue> *objectQueue;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -14,12 +15,13 @@
             float width; 
             float height; 
         } size; 
-    NSObject<OS_dispatch_queue> *clientQueue;
-    <AVCaptureMetadataOutputObjectsDelegate> *delegate;
-    NSArray *metadataObjectTypes;
     } rectOfInterest;
+    struct OpaqueFigSimpleMutex { } *remoteQueueMutex;
+    struct remoteQueueReceiverOpaque { } *remoteReceiverQueue;
+    AVWeakReference *weakReference;
 }
 
 - (void)dealloc;
+- (id)init;
 
 @end

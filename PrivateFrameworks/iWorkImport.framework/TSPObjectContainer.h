@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSArray;
-
 @interface TSPObjectContainer : TSPObject {
     NSArray *_childObjects;
     unsigned char _packageIdentifier;
@@ -15,8 +13,8 @@
 - (unsigned int)delayedArchivingPriority;
 - (void)didFinishUnarchiving;
 - (id)initFromUnarchiver:(id)arg1;
-- (id)initWithContext:(id)arg1 packageIdentifier:(unsigned char)arg2;
 - (id)initWithContext:(id)arg1;
+- (id)initWithContext:(id)arg1 packageIdentifier:(unsigned char)arg2;
 - (id)packageLocator;
 - (void)prepareForComponentWriteWithDelayedObjects:(id)arg1;
 - (void)saveToArchiver:(id)arg1;

@@ -2,9 +2,7 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class <ABPopoverRepresentDelegate>, UIActionSheet, UIBarButtonItem, UIPopoverController, UIResponder, UIView, UIWindow;
-
-@interface ABPopoverManager : NSObject <UIPopoverControllerDelegate, UIActionSheetDelegate> {
+@interface ABPopoverManager : NSObject <UIActionSheetDelegate, UIPopoverControllerDelegate> {
     UIActionSheet *_autorotateActionSheet;
     UIBarButtonItem *_autorotateBarButtonItem;
     unsigned int _autorotateDirections;
@@ -16,21 +14,25 @@
     BOOL _rotating;
 }
 
-@property(retain) UIActionSheet * autorotateActionSheet;
-@property(retain) UIBarButtonItem * autorotateBarButtonItem;
-@property unsigned int autorotateDirrections;
-@property(retain) UIPopoverController * autorotatePopoverController;
-@property(retain) UIResponder * autorotateResponder;
-@property(retain) UIView * autorotateView;
-@property(readonly) UIWindow * observedWindow;
-@property(retain) id realDelegate;
-@property(retain) <ABPopoverRepresentDelegate> * representDelegate;
+@property (nonatomic, retain) UIActionSheet *autorotateActionSheet;
+@property (nonatomic, retain) UIBarButtonItem *autorotateBarButtonItem;
+@property (nonatomic) unsigned int autorotateDirrections;
+@property (nonatomic, retain) UIPopoverController *autorotatePopoverController;
+@property (nonatomic, retain) UIResponder *autorotateResponder;
+@property (nonatomic, retain) UIView *autorotateView;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) UIWindow *observedWindow;
+@property (nonatomic, retain) id realDelegate;
+@property (nonatomic, retain) <ABPopoverRepresentDelegate> *representDelegate;
+@property (readonly) Class superclass;
 
 + (void)actionSheet:(id)arg1 dismissWithClickedButtonIndex:(int)arg2 animated:(BOOL)arg3;
-+ (void)actionSheet:(id)arg1 showFromBarButtonItem:(id)arg2 animated:(BOOL)arg3 autorotate:(BOOL)arg4;
 + (void)actionSheet:(id)arg1 showFromBarButtonItem:(id)arg2 animated:(BOOL)arg3;
-+ (void)actionSheet:(id)arg1 showFromRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2 inView:(id)arg3 animated:(BOOL)arg4 direction:(unsigned int)arg5 autorotate:(BOOL)arg6;
++ (void)actionSheet:(id)arg1 showFromBarButtonItem:(id)arg2 animated:(BOOL)arg3 autorotate:(BOOL)arg4;
 + (void)actionSheet:(id)arg1 showFromRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2 inView:(id)arg3 animated:(BOOL)arg4;
++ (void)actionSheet:(id)arg1 showFromRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2 inView:(id)arg3 animated:(BOOL)arg4 direction:(unsigned int)arg5 autorotate:(BOOL)arg6;
 + (void)actionSheet:(id)arg1 showFromRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2 inView:(id)arg3 direction:(unsigned int)arg4 animated:(BOOL)arg5;
 + (void)actionSheet:(id)arg1 showFromView:(id)arg2 animated:(BOOL)arg3 autorotate:(BOOL)arg4;
 + (void)actionSheet:(id)arg1 showFromView:(id)arg2 animated:(BOOL)arg3 direction:(unsigned int)arg4 autorotate:(BOOL)arg5;

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iTunesStore.framework/iTunesStore
  */
 
-@class NSArray, NSDictionary, NSSet, SSNetworkConstraints, SSURLBagContext;
-
 @interface ISURLBag : NSObject {
     SSURLBagContext *_context;
     SSNetworkConstraints *_defaultConstraints;
@@ -13,15 +11,17 @@
     NSDictionary *_headerPatterns;
     double _invalidationTime;
     BOOL _loadedFromDiskCache;
+    NSString *_storeFrontIdentifier;
 }
 
-@property(copy) SSURLBagContext * URLBagContext;
-@property(readonly) NSDictionary * URLBagDictionary;
-@property(readonly) NSSet * availableStorefrontItemKinds;
-@property double invalidationTime;
-@property BOOL loadedFromDiskCache;
-@property(getter=isValid,readonly) BOOL valid;
-@property(readonly) long long versionIdentifier;
+@property (nonatomic, copy) SSURLBagContext *URLBagContext;
+@property (nonatomic, readonly) NSDictionary *URLBagDictionary;
+@property (readonly) NSSet *availableStorefrontItemKinds;
+@property (nonatomic) double invalidationTime;
+@property (nonatomic) BOOL loadedFromDiskCache;
+@property (nonatomic, copy) NSString *storeFrontIdentifier;
+@property (getter=isValid, nonatomic, readonly) BOOL valid;
+@property (nonatomic, readonly) long long versionIdentifier;
 
 + (BOOL)_allowUnsignedBags;
 + (void)_loadItemKindURLBagKeyMap;
@@ -40,8 +40,8 @@
 - (id)_copyGUIDPatternsFromDictionary:(id)arg1;
 - (id)_copyGUIDSchemesFromDictionary:(id)arg1;
 - (id)_copyHeaderPatternsFromDictionary:(id)arg1;
-- (BOOL)_loadFromSignedDictionary:(id)arg1 returningError:(id*)arg2;
 - (id)_networkConstraintsCachePath;
+- (void)_preprocessURLResolutionCacheDictionary:(id)arg1;
 - (void)_setDictionary:(id)arg1;
 - (void)_writeNetworkConstraintsCacheFile;
 - (void)_writeURLResolutionCacheFile;
@@ -62,8 +62,11 @@
 - (void)setInvalidationTime:(double)arg1;
 - (void)setInvalidationTimeWithExprationInterval:(double)arg1;
 - (void)setLoadedFromDiskCache:(BOOL)arg1;
+- (void)setStoreFrontIdentifier:(id)arg1;
 - (void)setURLBagContext:(id)arg1;
+- (BOOL)shouldSendAnonymousMachineIdentifierForURL:(id)arg1;
 - (BOOL)shouldSendGUIDForURL:(id)arg1;
+- (id)storeFrontIdentifier;
 - (id)urlForKey:(id)arg1;
 - (BOOL)urlIsTrusted:(id)arg1;
 - (id)valueForKey:(id)arg1;

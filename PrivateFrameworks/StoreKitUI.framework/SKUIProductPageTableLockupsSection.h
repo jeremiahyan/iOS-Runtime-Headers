@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class NSArray, NSMapTable, SKUIIconDataConsumer, SKUIMissingItemLoader, SKUIProductPageTableHeaderView, SKUIProductPageTableSeparatorView, SKUIResourceLoader, UIImage;
-
 @interface SKUIProductPageTableLockupsSection : SKUIProductPageTableSection <SKUIArtworkRequestDelegate, SKUIMissingItemDelegate> {
     NSMapTable *_artworkRequests;
     SKUIProductPageTableSeparatorView *_footerView;
@@ -11,11 +9,15 @@
     NSArray *_lockups;
     SKUIMissingItemLoader *_missingItemLoader;
     UIImage *_placeholderImage;
-    SKUIIconDataConsumer *_productImageDataConsumer;
+    SKUIStyledImageDataConsumer *_productImageDataConsumer;
     SKUIResourceLoader *_resourceLoader;
 }
 
-@property(retain) SKUIResourceLoader * resourceLoader;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) SKUIResourceLoader *resourceLoader;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (id)_missingItemLoader;

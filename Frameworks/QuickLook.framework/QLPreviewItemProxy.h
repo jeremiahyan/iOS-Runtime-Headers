@@ -2,13 +2,14 @@
    Image: /System/Library/Frameworks/QuickLook.framework/QuickLook
  */
 
-@class NSString, NSURL, NSUUID;
-
 @interface QLPreviewItemProxy : NSObject <NSSecureCoding, QLPreviewItem> {
+    double _autoPlaybackPosition;
+    UIColor *_backgroundColorOverride;
     NSString *_contentType;
     int _fileExtensionHandle;
     NSString *_fileExtensionToken;
     int _index;
+    BOOL _isPromisedItem;
     NSString *_password;
     NSString *_title;
     NSURL *_url;
@@ -16,20 +17,29 @@
     NSUUID *_uuid;
 }
 
-@property(retain) NSString * contentType;
+@property double autoPlaybackPosition;
+@property (nonatomic, retain) UIColor *backgroundColorOverride;
+@property (retain) NSString *contentType;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
 @property int index;
-@property(retain) NSString * password;
-@property(readonly) NSString * previewItemTitle;
-@property(readonly) NSURL * previewItemURL;
-@property(retain) NSString * title;
-@property(retain) NSURL * url;
-@property(retain) NSURL * urlForDisplay;
-@property(readonly) NSUUID * uuid;
+@property BOOL isPromisedItem;
+@property (retain) NSString *password;
+@property (readonly) NSString *previewItemTitle;
+@property (readonly) NSURL *previewItemURL;
+@property (readonly) Class superclass;
+@property (retain) NSString *title;
+@property (retain) NSURL *url;
+@property (retain) NSURL *urlForDisplay;
+@property (readonly) NSUUID *uuid;
 
 + (id)encodedClasses;
 + (id)proxyWithPreviewItem:(id)arg1;
 + (BOOL)supportsSecureCoding;
 
+- (double)autoPlaybackPosition;
+- (id)backgroundColorOverride;
 - (void)consumeFileExtension;
 - (id)contentType;
 - (void)dealloc;
@@ -39,14 +49,18 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithPreviewItem:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
+- (BOOL)isPromisedItem;
 - (void)issueFileExtension;
 - (id)password;
 - (id)previewItemContentType;
 - (id)previewItemTitle;
 - (id)previewItemURL;
 - (id)previewItemURLForDisplay;
+- (void)setAutoPlaybackPosition:(double)arg1;
+- (void)setBackgroundColorOverride:(id)arg1;
 - (void)setContentType:(id)arg1;
 - (void)setIndex:(int)arg1;
+- (void)setIsPromisedItem:(BOOL)arg1;
 - (void)setPassword:(id)arg1;
 - (void)setTitle:(id)arg1;
 - (void)setUrl:(id)arg1;

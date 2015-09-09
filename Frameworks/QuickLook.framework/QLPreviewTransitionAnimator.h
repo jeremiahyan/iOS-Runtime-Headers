@@ -2,16 +2,18 @@
    Image: /System/Library/Frameworks/QuickLook.framework/QuickLook
  */
 
-@class <UIViewControllerContextTransitioning>, QLPreviewController;
-
 @interface QLPreviewTransitionAnimator : NSObject <UIViewControllerAnimatedTransitioning, UIViewControllerInteractiveTransitioning> {
     <UIViewControllerContextTransitioning> *_transitionContext;
     BOOL showing;
 }
 
-@property(readonly) QLPreviewController * previewController;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) QLPreviewController *previewController;
 @property BOOL showing;
-@property <UIViewControllerContextTransitioning> * transitionContext;
+@property (readonly) Class superclass;
+@property <UIViewControllerContextTransitioning> *transitionContext;
 
 - (int)_transitionStateForAnimationEnding:(BOOL)arg1;
 - (void)animateTransition:(id)arg1;

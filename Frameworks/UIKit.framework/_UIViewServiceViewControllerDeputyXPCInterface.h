@@ -2,15 +2,19 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSXPCInterface;
-
 @interface _UIViewServiceViewControllerDeputyXPCInterface : NSObject <_UIViewServiceDeputyXPCInterface> {
     NSXPCInterface *_exportedInterface;
     NSXPCInterface *_remoteViewControllerInterface;
 }
 
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+
 + (id)interfaceWithExportedInterface:(id)arg1 remoteViewControllerInterface:(id)arg2;
 
+- (id)connectionInvocation;
 - (id)connectionProtocol;
 - (SEL)connectionSelector;
 - (void)dealloc;

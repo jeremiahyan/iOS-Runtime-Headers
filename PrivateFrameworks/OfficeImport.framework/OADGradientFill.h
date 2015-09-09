@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSMutableArray, OADRelativeRect, OADShade;
-
 @interface OADGradientFill : OADFill {
     BOOL mAreStopsOverridden;
     int mFlipMode;
@@ -18,6 +16,7 @@
 }
 
 + (id)defaultProperties;
++ (id)stringForTileFlipMode:(int)arg1;
 
 - (void)addStopColor:(id)arg1 position:(float)arg2;
 - (BOOL)areStopsOverridden;
@@ -41,6 +40,7 @@
 - (void)setStyleColor:(id)arg1;
 - (void)setTileRect:(id)arg1;
 - (id)shade;
+- (void)sortStops;
 - (id)stopColorAtIndex:(unsigned int)arg1;
 - (unsigned int)stopCount;
 - (float)stopPositionAtIndex:(unsigned int)arg1;

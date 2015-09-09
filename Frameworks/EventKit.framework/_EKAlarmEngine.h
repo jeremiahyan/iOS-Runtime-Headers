@@ -2,16 +2,14 @@
    Image: /System/Library/Frameworks/EventKit.framework/EventKit
  */
 
-@class CLLocationManager, NSDate, NSDateFormatter, NSObject<OS_dispatch_queue>, NSTimer, PCPersistentTimer;
-
 @interface _EKAlarmEngine : NSObject <CLLocationManagerDelegate> {
-    BOOL _abortedLastAttemptToAdjustFences;
     NSDateFormatter *_dateFormatter;
-    double _defaultRadius;
     NSObject<OS_dispatch_queue> *_dispatchQueue;
+    BOOL _fencesNeedAdjusted;
     double _lastCheckpoint;
     int _lastDBSequence;
     CLLocationManager *_locationManager;
+    BOOL _needsAlarmTablePopulation;
     NSDate *_nextFireDate;
     BOOL _pendingChanges;
     double _populateStart;
@@ -23,7 +21,14 @@
     NSDate *_tomorrow;
 }
 
-+ (double)defaultRadius;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+
++ (id)_publisherBulletinIDForReminder:(id)arg1;
++ (id)_publisherBulletinIDForTask:(void*)arg1;
++ (id)_publisherBulletinIDForTaskUniqueIdentifier:(id)arg1;
 + (id)sharedInstance;
 
 - (void)_adjustFences:(id)arg1;
@@ -39,7 +44,6 @@
 - (BOOL)_populateAlarmTable:(id)arg1;
 - (void)_populateFinished;
 - (void)_protectedDataDidBecomeAvailable;
-- (void)_protectedDataWillBecomeUnavailable;
 - (void)_proximityAlertTriggered:(id)arg1 entered:(BOOL)arg2;
 - (void)_removeAllFences;
 - (void)_rescheduleTimer;
@@ -53,7 +57,6 @@
 - (void)_timeDidChangeSignificantly;
 - (void)_timeZoneChanged:(id)arg1;
 - (void)_timerFired:(id)arg1;
-- (void)_updateWithForce:(BOOL)arg1;
 - (void)_updateWithForceForAlarmTable:(BOOL)arg1 forFences:(BOOL)arg2;
 - (void)dealloc;
 - (void)locationManager:(id)arg1 didChangeAuthorizationStatus:(int)arg2;

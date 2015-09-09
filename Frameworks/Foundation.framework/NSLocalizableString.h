@@ -2,15 +2,13 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@class NSString;
-
 @interface NSLocalizableString : NSString {
     NSString *_developmentLanguageString;
     NSString *_stringsFileKey;
 }
 
-@property(readonly) NSString * developmentLanguageString;
-@property(readonly) NSString * stringsFileKey;
+@property (readonly, copy) NSString *developmentLanguageString;
+@property (readonly, copy) NSString *stringsFileKey;
 
 + (id)localizableStringWithStringsFileKey:(id)arg1 developmentLanguageString:(id)arg2;
 

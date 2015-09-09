@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIKBBackgroundView, UIKBTree;
-
 @interface UIKeyboardLayoutDictation : UIKeyboardLayout {
     UIKBBackgroundView *_backgroundView;
     UIKBTree *_keyplane;
@@ -15,6 +13,7 @@
 
 - (int)_clipCornersOfView:(id)arg1;
 - (id)currentKeyplane;
+- (struct CGSize { float x1; float x2; })dragGestureSize;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)layoutSubviews;
 - (void)setRenderConfig:(id)arg1;

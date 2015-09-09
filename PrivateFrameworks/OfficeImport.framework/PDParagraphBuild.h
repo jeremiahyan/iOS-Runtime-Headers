@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSMutableArray;
-
 @interface PDParagraphBuild : PDBuild {
     double mAutoAdvanceTime;
     int mBuildLevel;
@@ -17,6 +15,7 @@
 - (int)buildLevel;
 - (void)dealloc;
 - (id)init;
+- (BOOL)isEqual:(id)arg1;
 - (BOOL)isReversedParagraphOrder;
 - (void)setAutoAdvanceTime:(double)arg1;
 - (void)setBuildLevel:(int)arg1;

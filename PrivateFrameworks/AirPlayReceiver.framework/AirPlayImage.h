@@ -3,25 +3,25 @@
  */
 
 @interface AirPlayImage : NSObject {
-    struct CGSize { 
-        float width; 
-        float height; 
-    struct CGSize { 
-        float width; 
-        float height; 
     struct CGImage { } *_image;
     int _imageOrientation;
     void *_ioSurface;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _scale;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _unadjustedSize;
 }
 
-@property(readonly) struct CGImage { }* CGImage;
-@property(readonly) int imageOrientation;
-@property(readonly) void* ioSurface;
-@property(readonly) id layerContents;
-@property struct CGSize { float x1; float x2; } scale;
-@property(readonly) struct CGSize { float x1; float x2; } size;
+@property (nonatomic, readonly) struct CGImage { }*CGImage;
+@property (nonatomic, readonly) int imageOrientation;
+@property (nonatomic, readonly) void*ioSurface;
+@property (nonatomic, readonly) id layerContents;
+@property (nonatomic) struct CGSize { float x1; float x2; } scale;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } size;
 
 - (struct CGImage { }*)CGImage;
 - (void)_setCGImage:(struct CGImage { }*)arg1;
@@ -31,10 +31,10 @@
 - (struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })contentsTransformForLayer:(id)arg1;
 - (void)dealloc;
 - (int)imageOrientation;
-- (id)initWithContentsOfFile:(id)arg1 decode:(BOOL)arg2;
 - (id)initWithContentsOfFile:(id)arg1;
-- (id)initWithData:(id)arg1 decode:(BOOL)arg2;
+- (id)initWithContentsOfFile:(id)arg1 decode:(BOOL)arg2;
 - (id)initWithData:(id)arg1;
+- (id)initWithData:(id)arg1 decode:(BOOL)arg2;
 - (void*)ioSurface;
 - (id)layerContents;
 - (struct CGSize { float x1; float x2; })scale;

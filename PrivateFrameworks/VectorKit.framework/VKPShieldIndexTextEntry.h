@@ -2,22 +2,20 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-@class NSMutableArray, NSString;
-
 @interface VKPShieldIndexTextEntry : PBCodable <NSCopying> {
+    NSString *_artworkIdentifier;
     struct { 
         unsigned int shieldType : 1; 
-    NSString *_artworkIdentifier;
     } _has;
     NSMutableArray *_shieldTexts;
     int _shieldType;
 }
 
-@property(retain) NSString * artworkIdentifier;
-@property(readonly) BOOL hasArtworkIdentifier;
-@property BOOL hasShieldType;
-@property(retain) NSMutableArray * shieldTexts;
-@property int shieldType;
+@property (nonatomic, retain) NSString *artworkIdentifier;
+@property (nonatomic, readonly) BOOL hasArtworkIdentifier;
+@property (nonatomic) BOOL hasShieldType;
+@property (nonatomic, retain) NSMutableArray *shieldTexts;
+@property (nonatomic) int shieldType;
 
 - (void)addShieldText:(id)arg1;
 - (id)artworkIdentifier;
@@ -31,6 +29,7 @@
 - (BOOL)hasShieldType;
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
+- (void)mergeFrom:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 - (void)setArtworkIdentifier:(id)arg1;
 - (void)setHasShieldType:(BOOL)arg1;

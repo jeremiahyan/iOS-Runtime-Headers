@@ -2,20 +2,38 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-@class NSMutableArray, VGLRenderState;
-
 @interface VKRasterOverlayMapModel : VKMapTileModel <VKMapLayer> {
+    struct unique_ptr<ggl::ClearItem, std::__1::default_delete<ggl::ClearItem> > { 
+        struct __compressed_pair<ggl::ClearItem *, std::__1::default_delete<ggl::ClearItem> > { 
+            struct ClearItem {} *__first_; 
+        } __ptr_; 
+    } _clearItem;
+    struct unique_ptr<ggl::RenderState, std::__1::default_delete<ggl::RenderState> > { 
+        struct __compressed_pair<ggl::RenderState *, std::__1::default_delete<ggl::RenderState> > { 
+            struct RenderState {} *__first_; 
+        } __ptr_; 
+    } _gglRenderState;
     unsigned int _level;
-    VGLRenderState *_renderState;
     NSMutableArray *_sortedTiles;
+    struct unique_ptr<ggl::Mesh, std::__1::default_delete<ggl::Mesh> > { 
+        struct __compressed_pair<ggl::Mesh *, std::__1::default_delete<ggl::Mesh> > { 
+            struct Mesh {} *__first_; 
+        } __ptr_; 
+    } _unitMesh;
 }
 
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+
+- (id).cxx_construct;
+- (void).cxx_destruct;
 - (void)dealloc;
-- (void)drawScene:(id)arg1 withContext:(id)arg2;
+- (void)gglLayoutScene:(id)arg1 withContext:(id)arg2 renderQueue:(struct RenderQueue { int (**x1)(); struct shared_ptr<ggl::RenderQueue> { struct RenderQueue {} *x_2_1_1; struct __shared_weak_count {} *x_2_1_2; } x2; }*)arg3;
 - (id)initWithLevel:(unsigned int)arg1;
-- (void)layoutScene:(id)arg1 withContext:(id)arg2;
-- (unsigned int)mapLayerPosition;
+- (unsigned long long)mapLayerPosition;
 - (void)reset;
-- (unsigned int)supportedRenderPasses;
+- (BOOL)shouldLayoutWithoutStyleManager;
 
 @end

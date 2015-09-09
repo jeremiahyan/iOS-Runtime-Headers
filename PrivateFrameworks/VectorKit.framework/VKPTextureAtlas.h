@@ -2,17 +2,15 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-@class NSData;
-
 @interface VKPTextureAtlas : PBCodable <NSCopying> {
     unsigned int _quadHeight;
     unsigned int _quadWidth;
     NSData *_texture;
 }
 
-@property unsigned int quadHeight;
-@property unsigned int quadWidth;
-@property(retain) NSData * texture;
+@property (nonatomic) unsigned int quadHeight;
+@property (nonatomic) unsigned int quadWidth;
+@property (nonatomic, retain) NSData *texture;
 
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -21,6 +19,7 @@
 - (id)dictionaryRepresentation;
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
+- (void)mergeFrom:(id)arg1;
 - (unsigned int)quadHeight;
 - (unsigned int)quadWidth;
 - (BOOL)readFrom:(id)arg1;

@@ -2,14 +2,19 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@interface UITableViewCellLayoutManagerEditable1 : UITableViewCellLayoutManager <UITextFieldDelegate> {
-}
+@interface UITableViewCellLayoutManagerEditable1 : UITableViewCellLayoutManager <UITextFieldDelegate>
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)_textFieldEndEditing:(id)arg1;
 - (void)_textFieldEndEditingOnReturn:(id)arg1;
 - (void)_textFieldStartEditing:(id)arg1;
 - (void)_textValueChanged:(id)arg1;
 - (float)defaultTextFieldFontSizeForCell:(id)arg1;
+- (id)defaultTextLabelFontForCell:(id)arg1;
 - (id)detailTextLabelForCell:(id)arg1;
 - (id)editableTextFieldForCell:(id)arg1;
 - (void)layoutSubviewsOfCell:(id)arg1;

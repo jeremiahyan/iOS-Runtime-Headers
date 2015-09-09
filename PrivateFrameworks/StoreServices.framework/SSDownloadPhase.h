@@ -2,19 +2,21 @@
    Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
  */
 
-@class SSOperationProgress;
-
-@interface SSDownloadPhase : NSObject <SSXPCCoding, NSCopying> {
+@interface SSDownloadPhase : NSObject <NSCopying, SSXPCCoding> {
     SSOperationProgress *_operationProgress;
 }
 
-@property(readonly) double estimatedSecondsRemaining;
-@property(readonly) SSOperationProgress * operationProgress;
-@property(readonly) int phaseType;
-@property(readonly) float progressChangeRate;
-@property(readonly) int progressUnits;
-@property(readonly) long long progressValue;
-@property(readonly) long long totalProgressValue;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) double estimatedSecondsRemaining;
+@property (readonly) unsigned int hash;
+@property (readonly) SSOperationProgress *operationProgress;
+@property (readonly) int phaseType;
+@property (readonly) float progressChangeRate;
+@property (readonly) int progressUnits;
+@property (readonly) long long progressValue;
+@property (readonly) Class superclass;
+@property (readonly) long long totalProgressValue;
 
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)copyXPCEncoding;

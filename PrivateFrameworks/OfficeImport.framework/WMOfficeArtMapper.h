@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class WDAContent;
-
 @interface WMOfficeArtMapper : CMDrawableMapper {
     WDAContent *mContent;
     unsigned int mCurrentPage;
@@ -14,7 +12,7 @@
 
 - (id)blipAtIndex:(unsigned int)arg1;
 - (struct CGSize { float x1; float x2; })expandedSizeForTextBox:(id)arg1 withState:(id)arg2;
-- (id)initWithOadDrawable:(id)arg1 asFloating:(BOOL)arg2 origin:(struct CGPoint { float x1; float x2; })arg3 parent:(id)arg4;
+- (id)initWithOadDrawable:(id)arg1 asFloating:(BOOL)arg2 parent:(id)arg3;
 - (id)initWithWdOfficeArt:(id)arg1 parent:(id)arg2;
 - (BOOL)isInsideGroup;
 - (void)mapAt:(id)arg1 withState:(id)arg2;

@@ -2,13 +2,16 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class TPFootnoteContainerLayout, TSDLayoutController, TSULRUCache;
-
 @interface TPFootnoteHeightMeasurer : NSObject <TSWPFootnoteHeightMeasurer> {
     TPFootnoteContainerLayout *_footnoteContainerLayout;
     TSULRUCache *_footnoteLayoutCache;
     TSDLayoutController *_layoutController;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)addFootnoteReferenceStorage:(id)arg1;
 - (void)dealloc;

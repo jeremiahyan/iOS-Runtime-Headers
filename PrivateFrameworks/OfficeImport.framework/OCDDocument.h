@@ -2,11 +2,11 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSData, OADBlipCollection, OADGraphicStyleCache, OADTextListStyle, OCDReader, OCDSummary, OCDWriter;
-
 @interface OCDDocument : NSObject {
     OADBlipCollection *mBlips;
+    NSMutableArray *mCharts;
     OADTextListStyle *mDefaultTextStyle;
+    OITSUPointerKeyDictionary *mDualDrawableMap;
     NSData *mEncryptionInfo;
     OADGraphicStyleCache *mGraphicStyleCache;
     OCDReader *mReader;
@@ -14,21 +14,24 @@
     OCDWriter *mWriter;
 }
 
-@property(readonly) OADBlipCollection * blips;
-@property(readonly) OADTextListStyle * defaultTextStyle;
-@property(retain) OADGraphicStyleCache * graphicStyleCache;
-@property(retain) OCDReader * reader;
-@property(readonly) OCDSummary * summary;
-@property(retain) OCDWriter * writer;
+@property (nonatomic, readonly) OADBlipCollection *blips;
+@property (nonatomic, readonly) NSMutableArray *charts;
+@property (nonatomic, readonly) OADTextListStyle *defaultTextStyle;
+@property (nonatomic, readonly) OITSUPointerKeyDictionary *dualDrawableMap;
+@property (nonatomic, retain) OADGraphicStyleCache *graphicStyleCache;
+@property (nonatomic, retain) OCDReader *reader;
+@property (nonatomic, readonly) OCDSummary *summary;
+@property (nonatomic, retain) OCDWriter *writer;
 
 - (id)blips;
+- (id)charts;
 - (void)dealloc;
 - (id)defaultTextStyle;
+- (id)dualDrawableMap;
 - (id)encryptionInfo;
 - (id)graphicStyleCache;
 - (id)init;
 - (bool)isFromBinaryFile;
-- (bool)isToBinaryFile;
 - (id)reader;
 - (void)setEncryptionInfo:(id)arg1;
 - (void)setGraphicStyleCache:(id)arg1;

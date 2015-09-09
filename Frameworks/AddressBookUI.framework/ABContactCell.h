@@ -2,47 +2,45 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class ABCardGroupItem, UIColor, UIView;
-
 @interface ABContactCell : UITableViewCell {
+    BOOL _addedConstantsConstraints;
     ABCardGroupItem *_cardGroupItem;
-    UIColor *_contactSeparatorColor;
+    CNContactStyle *_contactStyle;
     BOOL _hasBeenDisplayed;
     float _leftContentMargin;
     float _rightContentMargin;
-    UIView *_separatorView;
-    BOOL _showSeparator;
+    NSArray *_variableConstraints;
 }
 
-@property(retain) ABCardGroupItem * cardGroupItem;
-@property(retain) UIColor * contactSeparatorColor;
-@property BOOL hasBeenDisplayed;
-@property float leftContentMargin;
-@property float rightContentMargin;
-@property(readonly) UIView * separatorView;
-@property BOOL showSeparator;
+@property (nonatomic, retain) ABCardGroupItem *cardGroupItem;
+@property (nonatomic, retain) CNContactStyle *contactStyle;
+@property (nonatomic) BOOL hasBeenDisplayed;
+@property (nonatomic) float leftContentMargin;
+@property (nonatomic) float rightContentMargin;
+@property (nonatomic) BOOL showSeparator;
 
 - (id)cardGroupItem;
-- (id)contactSeparatorColor;
+- (id)constantConstraints;
+- (id)contactStyle;
 - (void)dealloc;
 - (BOOL)hasBeenDisplayed;
 - (id)initWithStyle:(int)arg1 reuseIdentifier:(id)arg2;
-- (void)layoutSubviews;
 - (float)leftContentMargin;
+- (float)minCellHeight;
 - (void)performAccessoryAction;
 - (void)performDefaultAction;
+- (void)prepareForReuse;
 - (float)rightContentMargin;
-- (id)separatorView;
 - (void)setCardGroupItem:(id)arg1;
-- (void)setContactSeparatorColor:(id)arg1;
-- (void)setEditing:(BOOL)arg1 animated:(BOOL)arg2;
+- (void)setContactStyle:(id)arg1;
 - (void)setHasBeenDisplayed:(BOOL)arg1;
 - (void)setLeftContentMargin:(float)arg1;
-- (void)setNeedsLayout;
 - (void)setRightContentMargin:(float)arg1;
 - (void)setShowSeparator:(BOOL)arg1;
 - (BOOL)shouldPerformAccessoryAction;
 - (BOOL)shouldPerformDefaultAction;
 - (BOOL)showSeparator;
+- (void)updateConstraints;
+- (id)variableConstraints;
 
 @end

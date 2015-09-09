@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/FTServices.framework/FTServices
  */
 
-@class APSConnection, NSMutableArray, NSMutableDictionary;
-
-@interface FTMessageDelivery_APS : FTMessageDelivery <FTMessageQueueDelegate, APSConnectionDelegate> {
+@interface FTMessageDelivery_APS : FTMessageDelivery <APSConnectionDelegate, FTMessageQueueDelegate> {
     Class _APSConnectionClass;
     Class _APSOutgoingMessageClass;
     NSMutableDictionary *_apsMessageMap;
@@ -13,11 +11,17 @@
     NSMutableDictionary *_deathTimerMap;
     NSMutableArray *_enabledTopics;
     NSMutableDictionary *_ftMessageMap;
+    int _largeMessageSize;
     int _messageSize;
     NSMutableDictionary *_retriesMap;
     NSMutableDictionary *_startDateMap;
     NSMutableDictionary *_timerMap;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)sharedInstance;
 
@@ -53,10 +57,10 @@
 - (void)_setEnabledTopics:(id)arg1;
 - (void)_setMapForMessage:(id)arg1 apsMessage:(id)arg2 messageBody:(id)arg3 timeoutTime:(double)arg4 timeoutSelector:(SEL)arg5 retries:(id)arg6;
 - (void)_updateTopics;
-- (void)_updateWiFiAssertions;
 - (id)allMessages;
 - (BOOL)busy;
 - (void)cancelMessage:(id)arg1;
+- (id)connection;
 - (void)connection:(id)arg1 didChangeConnectedStatus:(BOOL)arg2;
 - (void)connection:(id)arg1 didFailToSendOutgoingMessage:(id)arg2 error:(id)arg3;
 - (void)connection:(id)arg1 didReceiveMessageForTopic:(id)arg2 userInfo:(id)arg3;
@@ -65,6 +69,7 @@
 - (void)dealloc;
 - (id)init;
 - (void)invalidate;
+- (int)maxLargeMessageSize;
 - (int)maxMessageSize;
 - (void)queue:(id)arg1 hitTimeoutForMessage:(id)arg2;
 - (BOOL)sendMessage:(id)arg1;

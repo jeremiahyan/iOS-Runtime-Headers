@@ -2,17 +2,15 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class <SKUIItemGridDelegate>, NSArray, NSMutableArray, NSMutableIndexSet, NSOperationQueue, SKUIClientContext, SKUIIconDataConsumer, SKUIItemArtworkContext, SKUIItemCollectionController, SKUIUber, UICollectionView, UIImage;
-
 @interface SKUIItemGridViewController : UIViewController <SKUIItemCollectionDelegate, UICollectionViewDataSource, UICollectionViewDelegate> {
-    struct CGSize { 
-        float width; 
-        float height; 
     SKUIItemArtworkContext *_artworkContext;
     SKUIClientContext *_clientContext;
     UICollectionView *_collectionView;
     <SKUIItemGridDelegate> *_delegate;
     NSMutableIndexSet *_hiddenIconIndexSet;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _imageBoundingSize;
     SKUIItemCollectionController *_itemCollectionController;
     NSMutableArray *_items;
@@ -23,21 +21,26 @@
     SKUIUber *_uber;
 }
 
-@property(retain) SKUIItemArtworkContext * artworkContext;
-@property(retain) SKUIClientContext * clientContext;
-@property struct CGPoint { float x1; float x2; } contentOffset;
-@property <SKUIItemGridDelegate> * delegate;
-@property(retain) SKUIIconDataConsumer * iconDataConsumer;
-@property struct CGSize { float x1; float x2; } imageBoundingSize;
-@property(copy) NSArray * items;
-@property(retain) NSOperationQueue * operationQueue;
-@property(readonly) float rowHeight;
-@property(retain) SKUIUber * uber;
+@property (nonatomic, retain) SKUIItemArtworkContext *artworkContext;
+@property (nonatomic, retain) SKUIClientContext *clientContext;
+@property (nonatomic) struct CGPoint { float x1; float x2; } contentOffset;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SKUIItemGridDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) SKUIStyledImageDataConsumer *iconDataConsumer;
+@property (nonatomic) struct CGSize { float x1; float x2; } imageBoundingSize;
+@property (nonatomic, copy) NSArray *items;
+@property (nonatomic, retain) NSOperationQueue *operationQueue;
+@property (nonatomic, readonly) float rowHeight;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) SKUIUber *uber;
 
 - (void).cxx_destruct;
 - (id)_collectionView;
 - (id)_itemCollectionController;
 - (int)_numberOfColumnsForOrientation:(int)arg1;
+- (void)_reloadLayout;
 - (id)artworkContext;
 - (id)clientContext;
 - (id)collectionView:(id)arg1 cellForItemAtIndexPath:(id)arg2;
@@ -53,11 +56,13 @@
 - (id)itemCollectionController:(id)arg1 cellLayoutForItemIndex:(int)arg2;
 - (struct _NSRange { unsigned int x1; unsigned int x2; })itemCollectionController:(id)arg1 itemPageRangeForOffset:(struct CGPoint { float x1; float x2; })arg2;
 - (void)itemCollectionView:(id)arg1 didConfirmItemOfferForCell:(id)arg2;
+- (void)itemCollectionView:(id)arg1 didPerformEditActionForCell:(id)arg2;
 - (id)items;
 - (void)loadNextPageOfArtworkWithReason:(int)arg1;
 - (void)loadView;
 - (id)operationQueue;
 - (id)popIconImageViewForItemAtIndex:(int)arg1;
+- (void)removeItemsAtIndexes:(id)arg1;
 - (float)rowHeight;
 - (void)scrollViewDidEndDecelerating:(id)arg1;
 - (void)scrollViewWillBeginDragging:(id)arg1;
@@ -77,8 +82,7 @@
 - (id)uber;
 - (void)unhideIcons;
 - (void)viewDidAppear:(BOOL)arg1;
-- (void)viewWillAppear:(BOOL)arg1;
+- (void)viewDidLayoutSubviews;
 - (struct _NSRange { unsigned int x1; unsigned int x2; })visibleItemRangeForItemCollectionController:(id)arg1;
-- (void)willRotateToInterfaceOrientation:(int)arg1 duration:(double)arg2;
 
 @end

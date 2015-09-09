@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@class NSMutableArray, _PFArray;
-
 @interface _PFMutableProxyArray : NSMutableArray {
     int _cd_rc;
     unsigned int _editCount;
@@ -23,12 +21,12 @@
 - (void)dealloc;
 - (void)finalize;
 - (unsigned int)indexOfManagedObjectForObjectID:(id)arg1;
-- (unsigned int)indexOfObject:(id)arg1 inRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2;
 - (unsigned int)indexOfObject:(id)arg1;
-- (unsigned int)indexOfObjectIdenticalTo:(id)arg1 inRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2;
+- (unsigned int)indexOfObject:(id)arg1 inRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2;
 - (unsigned int)indexOfObjectIdenticalTo:(id)arg1;
-- (id)initWithPFArray:(id)arg1 inRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2;
+- (unsigned int)indexOfObjectIdenticalTo:(id)arg1 inRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2;
 - (id)initWithPFArray:(id)arg1;
+- (id)initWithPFArray:(id)arg1 inRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2;
 - (void)insertObject:(id)arg1 atIndex:(unsigned int)arg2;
 - (id)managedObjectIDAtIndex:(unsigned int)arg1;
 - (id)newArrayFromObjectIDs;

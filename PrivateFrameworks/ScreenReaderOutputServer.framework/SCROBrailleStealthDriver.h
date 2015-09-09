@@ -2,14 +2,17 @@
    Image: /System/Library/PrivateFrameworks/ScreenReaderOutputServer.framework/ScreenReaderOutputServer
  */
 
-@class NSString;
-
 @interface SCROBrailleStealthDriver : NSObject <SCROBrailleDriverProtocol> {
     BOOL _isDriverLoaded;
     int _mainSize;
     NSString *_modelIdentifier;
     int _statusSize;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (int)brailleInputMode;
 - (void)dealloc;

@@ -2,23 +2,17 @@
    Image: /System/Library/PrivateFrameworks/MediaPlayerUI.framework/MediaPlayerUI
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSDictionary;
-
 @interface _MPUViewControllerCreationInformation : NSObject {
     NSDictionary *_attributes;
-    id _defaultQueryCreationHandler;
+    id /* block */ _defaultQueryCreationHandler;
 }
 
-@property(readonly) NSDictionary * attributes;
-@property(readonly) id defaultQueryCreationHandler;
+@property (nonatomic, readonly) NSDictionary *attributes;
+@property (nonatomic, readonly) id /* block */ defaultQueryCreationHandler;
 
 - (void).cxx_destruct;
 - (id)attributes;
-- (id)defaultQueryCreationHandler;
-- (id)initWithAttributes:(id)arg1 defaultQueryCreationHandler:(id)arg2;
+- (id /* block */)defaultQueryCreationHandler;
+- (id)initWithAttributes:(id)arg1 defaultQueryCreationHandler:(id /* block */)arg2;
 
 @end

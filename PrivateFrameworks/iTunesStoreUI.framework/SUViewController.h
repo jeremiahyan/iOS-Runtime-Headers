@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
  */
 
-@class NSArray, NSMutableArray, NSString, SUClientInterface, SUNavigationItem, SURotationController, SUViewControllerContext, SUViewControllerScriptProperties, UIBarButtonItem, UIViewController;
-
-@interface SUViewController : UIViewController <SUScriptNativeObject, ISOperationDelegate> {
+@interface SUViewController : UIViewController <ISOperationDelegate, SUScriptNativeObject> {
     SUViewControllerScriptProperties *_cachedScriptProperties;
     BOOL _canBeWeakScriptReference;
     NSMutableArray *_cancelOnDeallocOperations;
@@ -21,27 +19,33 @@
     SUViewControllerContext *_restoredContext;
     SURotationController *_rotationController;
     int _rotationState;
+    BOOL _shouldAdjustContentOffsets;
     BOOL _shouldInvalidateForMemoryPurge;
     BOOL _showsLibraryButton;
     int _transitionSafetyCount;
 }
 
-@property(getter=_cachedScriptProperties,readonly) SUViewControllerScriptProperties * _cachedScriptProperties;
-@property(getter=_isEnteringForeground,readonly) BOOL _enteringForeground;
-@property(getter=_pendingDialogs,readonly) NSArray * _pendingDialogs;
-@property(getter=_restoredContext,readonly) SUViewControllerContext * _restoredContext;
-@property(retain) SUClientInterface * clientInterface;
-@property(readonly) double defaultPNGExpirationTime;
-@property(readonly) NSString * defaultPNGName;
-@property(readonly) UIViewController * footerViewController;
-@property(retain) UIViewController * inputAccessoryViewController;
-@property(getter=isLoading) BOOL loading;
-@property(readonly) SUNavigationItem * navigationItem;
-@property BOOL shouldExcludeFromNavigationHistory;
-@property BOOL shouldInvalidateForMemoryPurge;
-@property BOOL showsLibraryButton;
-@property(getter=isVisible,readonly) BOOL visible;
-@property(getter=isVisibleAndFrontmost,readonly) BOOL visibleAndFrontmost;
+@property (getter=_cachedScriptProperties, nonatomic, readonly) SUViewControllerScriptProperties *_cachedScriptProperties;
+@property (getter=_isEnteringForeground, nonatomic, readonly) BOOL _enteringForeground;
+@property (getter=_pendingDialogs, nonatomic, readonly) NSArray *_pendingDialogs;
+@property (getter=_restoredContext, nonatomic, readonly) SUViewControllerContext *_restoredContext;
+@property (nonatomic, retain) SUClientInterface *clientInterface;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic, readonly) double defaultPNGExpirationTime;
+@property (nonatomic, readonly) NSString *defaultPNGName;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) UIViewController *footerViewController;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) UIViewController *inputAccessoryViewController;
+@property (getter=isLoading, nonatomic) BOOL loading;
+@property (nonatomic, readonly, retain) SUNavigationItem *navigationItem;
+@property (nonatomic) BOOL shouldAdjustContentOffsets;
+@property (nonatomic) BOOL shouldExcludeFromNavigationHistory;
+@property (nonatomic) BOOL shouldInvalidateForMemoryPurge;
+@property (nonatomic) BOOL showsLibraryButton;
+@property (readonly) Class superclass;
+@property (getter=isVisible, nonatomic, readonly) BOOL visible;
+@property (getter=isVisibleAndFrontmost, nonatomic, readonly) BOOL visibleAndFrontmost;
 
 - (int)ITunesStoreUIBarStyle;
 - (void)_applicationDidEnterBackgroundNotification:(id)arg1;
@@ -66,7 +70,6 @@
 - (id)_restoredContext;
 - (id)_rotationController;
 - (void)_setExistingNavigationItem:(id)arg1;
-- (BOOL)_shouldUseDefaultFirstResponder;
 - (void)applicationDidEnterBackground;
 - (void)applicationDidResume;
 - (void)applicationWillEnterForeground;
@@ -90,8 +93,8 @@
 - (void)dismissFooterViewControllerAnimated:(BOOL)arg1;
 - (void)enqueueOperation:(id)arg1 cancelOnDealloc:(BOOL)arg2;
 - (id)footerViewController;
-- (void)handleApplicationURL:(id)arg1 withSourceApplication:(id)arg2 sourceURL:(id)arg3;
 - (void)handleApplicationURL:(id)arg1;
+- (void)handleApplicationURL:(id)arg1 withSourceApplication:(id)arg2 sourceURL:(id)arg3;
 - (id)init;
 - (id)initWithSection:(id)arg1;
 - (id)inputAccessoryView;
@@ -123,11 +126,13 @@
 - (void)setParentViewController:(id)arg1;
 - (void)setScriptProperties:(id)arg1;
 - (void)setSection:(id)arg1;
+- (void)setShouldAdjustContentOffsets:(BOOL)arg1;
 - (void)setShouldExcludeFromNavigationHistory:(BOOL)arg1;
 - (void)setShouldInvalidateForMemoryPurge:(BOOL)arg1;
 - (void)setShowsLibraryButton:(BOOL)arg1;
-- (void)setTitle:(id)arg1 changeTabBarItem:(BOOL)arg2;
 - (void)setTitle:(id)arg1;
+- (void)setTitle:(id)arg1 changeTabBarItem:(BOOL)arg2;
+- (BOOL)shouldAdjustContentOffsets;
 - (BOOL)shouldExcludeFromNavigationHistory;
 - (BOOL)shouldInvalidateForMemoryPurge;
 - (BOOL)showsLibraryButton;

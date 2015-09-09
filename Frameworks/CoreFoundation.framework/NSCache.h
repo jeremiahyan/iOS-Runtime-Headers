@@ -4,9 +4,17 @@
 
 @interface NSCache : NSObject {
     id _delegate;
-    void *_private[5];
+    void *_private;
     void *_reserved;
 }
+
+@property unsigned int countLimit;
+@property <NSCacheDelegate> *delegate;
+@property BOOL evictsObjectsWithDiscardedContent;
+@property (copy) NSString *name;
+@property unsigned int totalCostLimit;
+
+// Image: /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
 
 - (id)allObjects;
 - (unsigned int)countLimit;
@@ -25,11 +33,21 @@
 - (void)setEvictsObjectsWhenApplicationEntersBackground:(BOOL)arg1;
 - (void)setEvictsObjectsWithDiscardedContent:(BOOL)arg1;
 - (void)setName:(id)arg1;
-- (void)setObject:(id)arg1 forKey:(id)arg2 cost:(unsigned int)arg3;
 - (void)setObject:(id)arg1 forKey:(id)arg2;
+- (void)setObject:(id)arg1 forKey:(id)arg2 cost:(unsigned int)arg3;
 - (void)setTotalCostLimit:(unsigned int)arg1;
 - (unsigned int)totalCostLimit;
-- (void)tsp_removeComponentWithIdentifier:(long long)arg1;
-- (void)tsp_setComponent:(id)arg1 forIdentifier:(long long)arg2;
+
+// Image: /System/Library/PrivateFrameworks/CalendarFoundation.framework/CalendarFoundation
+
+- (id)CALobjectForKey:(id)arg1 calculatedWithBlock:(id /* block */)arg2;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
+
+- (void)tsp_cacheComponent:(id)arg1;
+- (id)tsp_currentComponent;
+- (unsigned char)tsp_currentOperation;
+- (void)tsp_flushComponent:(id)arg1;
+- (void)tsp_performOperation:(unsigned char)arg1 forComponent:(id)arg2 usingBlock:(id /* block */)arg3;
 
 @end

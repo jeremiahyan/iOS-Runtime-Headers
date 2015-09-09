@@ -2,18 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIFoundation.framework/UIFoundation
  */
 
-@class NSArray, NSDictionary, NSLayoutManager;
-
 @interface NSTextContainer : NSObject <NSCoding, NSTextLayoutOrientationProvider> {
-    struct CGSize { 
-        float width; 
-        float height; 
-    struct __tcFlags { 
-        unsigned int widthTracksTextView : 1; 
-        unsigned int heightTracksTextView : 1; 
-        unsigned int observingFrameChanges : 1; 
-        unsigned int lineBreakMode : 4; 
-        unsigned int _reserved : 9; 
     NSDictionary *_attributesForExtraLineFragment;
     float _cacheBoundsMaxY;
     float _cacheBoundsMinY;
@@ -26,21 +15,33 @@
     float _lineFragmentPadding;
     unsigned int _maximumLines;
     float _minimumWidth;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _size;
+    struct __tcFlags { 
+        unsigned int widthTracksTextView : 1; 
+        unsigned int heightTracksTextView : 1; 
+        unsigned int observingFrameChanges : 1; 
+        unsigned int lineBreakMode : 4; 
+        unsigned int oldAPI : 1; 
+        unsigned int _reserved : 8; 
     } _tcFlags;
     id _textView;
 }
 
-@property(copy) NSArray * exclusionPaths;
-@property BOOL heightTracksTextView;
-@property(readonly) BOOL isSimpleRectangularTextContainer;
-@property NSLayoutManager * layoutManager;
-@property int layoutOrientation;
-@property int lineBreakMode;
-@property float lineFragmentPadding;
-@property unsigned int maximumNumberOfLines;
-@property struct CGSize { float x1; float x2; } size;
-@property BOOL widthTracksTextView;
+@property (nonatomic, copy) NSArray *exclusionPaths;
+@property (nonatomic) BOOL heightTracksTextView;
+@property (readonly) BOOL isSimpleRectangularTextContainer;
+@property (nonatomic) NSLayoutManager *layoutManager;
+@property (nonatomic) int layoutOrientation;
+@property (nonatomic) int lineBreakMode;
+@property (nonatomic) float lineFragmentPadding;
+@property (nonatomic) unsigned int maximumNumberOfLines;
+@property (nonatomic) struct CGSize { float x1; float x2; } size;
+@property (nonatomic) BOOL widthTracksTextView;
+
+// Image: /System/Library/PrivateFrameworks/UIFoundation.framework/UIFoundation
 
 + (void)initialize;
 
@@ -48,7 +49,7 @@
 - (void)_resizeAccordingToTextView:(id)arg1;
 - (id)attributesForExtraLineFragment;
 - (struct CGSize { float x1; float x2; })containerSize;
-- (void)coordinateAccess:(id)arg1;
+- (void)coordinateAccess:(id /* block */)arg1;
 - (void)dealloc;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
@@ -85,5 +86,9 @@
 - (struct CGPoint { float x1; float x2; })textContainerOrigin;
 - (id)textView;
 - (BOOL)widthTracksTextView;
+
+// Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
+
+- (struct CGSize { float x1; float x2; })sizeThatFits:(struct CGSize { float x1; float x2; })arg1 textAlignmentInsets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; }*)arg2 isSingleLine:(BOOL*)arg3;
 
 @end

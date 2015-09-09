@@ -2,12 +2,7 @@
    Image: /System/Library/PrivateFrameworks/Weather.framework/Weather
  */
 
-@class <CLLocationManagerDelegate>, CLLocationManager, NSDate, NSTimer;
-
 @interface WeatherLocationManager : NSObject <CLLocationManagerDelegate> {
-    struct { 
-        double latitude; 
-        double longitude; 
     NSTimer *_accuracyFallbackTimer;
     BOOL _activelyTrackingLocation;
     int _authorizationStatus;
@@ -15,6 +10,9 @@
     NSTimer *_automaticLocationUpdateTimer;
     <CLLocationManagerDelegate> *_delegate;
     float _lastLocationAccuracy;
+    struct { 
+        double latitude; 
+        double longitude; 
     } _lastLocationCoord;
     NSDate *_lastLocationTimeStamp;
     double _lastLocationUpdateTime;
@@ -24,14 +22,18 @@
     double _oldestAcceptedTime;
 }
 
-@property BOOL activelyTrackingLocation;
-@property int authorizationStatus;
-@property <CLLocationManagerDelegate> * delegate;
-@property float lastLocationAccuracy;
-@property struct { double x1; double x2; } lastLocationCoord;
-@property(copy) NSDate * lastLocationTimeStamp;
-@property(retain) CLLocationManager * locationManager;
-@property BOOL locationTrackingIsReady;
+@property (nonatomic) BOOL activelyTrackingLocation;
+@property (nonatomic) int authorizationStatus;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <CLLocationManagerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) float lastLocationAccuracy;
+@property (nonatomic) struct { double x1; double x2; } lastLocationCoord;
+@property (nonatomic, copy) NSDate *lastLocationTimeStamp;
+@property (nonatomic, retain) CLLocationManager *locationManager;
+@property (nonatomic) BOOL locationTrackingIsReady;
+@property (readonly) Class superclass;
 
 + (void)clearSharedLocationManager;
 + (id)sharedWeatherLocationManager;
@@ -45,6 +47,8 @@
 - (void)_setUpLocationTimerWithInterval:(float)arg1;
 - (void)_updateLocation:(id)arg1;
 - (BOOL)activelyTrackingLocation;
+- (void)adjustDefaultSelectionForWeatherLocationUpdate:(BOOL)arg1;
+- (void)askForLocationManagerAuthorization;
 - (int)authorizationStatus;
 - (void)clearLocalWeatherUpdateState;
 - (void)dealloc;
@@ -55,13 +59,14 @@
 - (float)lastLocationAccuracy;
 - (struct { double x1; double x2; })lastLocationCoord;
 - (id)lastLocationTimeStamp;
-- (BOOL)loadAndPrepareLocationTrackingState;
+- (BOOL)loadAndPrepareLocationTrackingState:(BOOL)arg1;
 - (BOOL)localWeatherAuthorized;
 - (id)location;
+- (id)locationManager;
 - (void)locationManager:(id)arg1 didChangeAuthorizationStatus:(int)arg2;
 - (void)locationManager:(id)arg1 didUpdateLocations:(id)arg2;
-- (id)locationManager;
 - (BOOL)locationTrackingIsReady;
+- (void)rescheduleTimerWithFastInterval:(BOOL)arg1;
 - (void)setActivelyTrackingLocation:(BOOL)arg1;
 - (void)setAuthorizationStatus:(int)arg1;
 - (void)setDelegate:(id)arg1;
@@ -71,7 +76,7 @@
 - (void)setLocationManager:(id)arg1;
 - (void)setLocationTrackingActive:(BOOL)arg1;
 - (void)setLocationTrackingIsReady:(BOOL)arg1;
-- (void)setLocationTrackingReady:(BOOL)arg1 activelyTracking:(BOOL)arg2;
+- (void)setLocationTrackingReady:(BOOL)arg1 activelyTracking:(BOOL)arg2 watchKitExtension:(BOOL)arg3;
 - (void)updateLocation:(id)arg1;
 
 @end

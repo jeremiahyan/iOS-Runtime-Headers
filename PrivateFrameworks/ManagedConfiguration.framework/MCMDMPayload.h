@@ -2,30 +2,34 @@
    Image: /System/Library/PrivateFrameworks/ManagedConfiguration.framework/ManagedConfiguration
  */
 
-@class NSArray, NSData, NSString;
-
 @interface MCMDMPayload : MCPayload {
     int _accessRights;
     NSString *_checkInURLString;
     BOOL _checkOutWhenRemoved;
+    NSNumber *_checkOutWhenRemovedNum;
     NSData *_identityPersistentID;
     NSString *_identityUUID;
     NSString *_serverURLString;
     BOOL _signMessage;
+    NSNumber *_signMessageNum;
     NSString *_topic;
     BOOL _useDevelopmentAPNS;
+    NSNumber *_useDevelopmentAPNSNum;
 }
 
-@property(readonly) int accessRights;
-@property(readonly) NSString * checkInURLString;
-@property(readonly) BOOL checkOutWhenRemoved;
-@property(retain) NSData * identityPersistentID;
-@property(readonly) NSString * identityUUID;
-@property(readonly) NSArray * localizedAccessRightDescriptions;
-@property(readonly) NSString * serverURLString;
-@property(readonly) BOOL signMessage;
-@property(readonly) NSString * topic;
-@property(readonly) BOOL useDevelopmentAPNS;
+@property (nonatomic, readonly) int accessRights;
+@property (nonatomic, readonly, retain) NSString *checkInURLString;
+@property (nonatomic, readonly) BOOL checkOutWhenRemoved;
+@property (nonatomic, readonly) NSNumber *checkOutWhenRemovedNum;
+@property (nonatomic, retain) NSData *identityPersistentID;
+@property (nonatomic, readonly, retain) NSString *identityUUID;
+@property (nonatomic, readonly, retain) NSArray *localizedAccessRightDescriptions;
+@property (nonatomic, readonly, retain) NSString *serverURLString;
+@property (nonatomic, readonly) BOOL signMessage;
+@property (nonatomic, readonly) NSNumber *signMessageNum;
+@property (nonatomic, readonly, retain) NSString *topic;
+@property (nonatomic, readonly) BOOL useDevelopmentAPNS;
+@property (nonatomic, readonly) NSNumber *useDevelopmentAPNSNum;
 
 + (id)localizedPluralForm;
 + (id)localizedSingularForm;
@@ -38,22 +42,24 @@
 - (int)accessRights;
 - (id)checkInURLString;
 - (BOOL)checkOutWhenRemoved;
+- (id)checkOutWhenRemovedNum;
 - (id)description;
 - (id)identityPersistentID;
 - (id)identityUUID;
 - (id)initWithDictionary:(id)arg1 profile:(id)arg2 outError:(id*)arg3;
 - (id)installationWarnings;
 - (id)localizedAccessRightDescriptions;
+- (id)payloadDescriptionKeyValueSections;
 - (id)serverURLString;
 - (void)setIdentityPersistentID:(id)arg1;
 - (BOOL)signMessage;
+- (id)signMessageNum;
 - (id)stubDictionary;
 - (id)subtitle1Description;
 - (id)subtitle1Label;
-- (id)subtitle2Description;
-- (id)subtitle2Label;
 - (id)title;
 - (id)topic;
 - (BOOL)useDevelopmentAPNS;
+- (id)useDevelopmentAPNSNum;
 
 @end

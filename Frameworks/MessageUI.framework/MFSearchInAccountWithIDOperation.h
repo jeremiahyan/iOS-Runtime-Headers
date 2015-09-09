@@ -2,10 +2,9 @@
    Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
  */
 
-@interface MFSearchInAccountWithIDOperation : MFContactsSearchOperation {
-}
+@interface MFSearchInAccountWithIDOperation : MFContactsSearchOperation
 
 - (void)main;
-- (int)type;
+- (unsigned int)type;
 
 @end

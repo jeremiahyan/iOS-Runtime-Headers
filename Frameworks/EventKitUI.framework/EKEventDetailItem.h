@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-@class <EKEventDetailItemDelegate>, EKEvent, EKEventStore, EKUIRecurrenceAlertController, UIViewController, UIViewController<EKEditItemViewControllerProtocol>;
-
 @interface EKEventDetailItem : NSObject <EKEditItemViewControllerDelegate> {
     BOOL _allowsEditing;
     int _cellPosition;
@@ -15,11 +13,17 @@
     UIViewController<EKEditItemViewControllerProtocol> *_viewController;
 }
 
-@property BOOL allowsEditing;
-@property int cellPosition;
-@property <EKEventDetailItemDelegate> * delegate;
-@property BOOL shouldIndent;
-@property(retain) UIViewController * viewController;
+@property (nonatomic) BOOL allowsEditing;
+@property (nonatomic) int cellPosition;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <EKEventDetailItemDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) unsigned int maximumNumberOfSubItems;
+@property (nonatomic, readonly) BOOL requiresLayoutForSubitemCount;
+@property (nonatomic) BOOL shouldIndent;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) UIViewController *viewController;
 
 - (void).cxx_destruct;
 - (BOOL)allowsEditing;
@@ -33,13 +37,18 @@
 - (void)editItemViewController:(id)arg1 didCompleteWithAction:(int)arg2;
 - (BOOL)editItemViewControllerCommit:(id)arg1;
 - (BOOL)editItemViewControllerShouldShowDetachAlert;
+- (void)eventViewController:(id)arg1 didHighlightSubitem:(unsigned int)arg2;
+- (void)eventViewController:(id)arg1 didSelectReadOnlySubitem:(unsigned int)arg2;
 - (void)eventViewController:(id)arg1 didSelectSubitem:(unsigned int)arg2;
+- (void)eventViewController:(id)arg1 didUnhighlightSubitem:(unsigned int)arg2;
 - (BOOL)hasDetailViewControllerAtIndex:(unsigned int)arg1;
 - (void)layoutCellsForWidth:(float)arg1 position:(int)arg2;
+- (unsigned int)maximumNumberOfSubItems;
 - (void)notifyDidEndEditing;
 - (void)notifyDidStartEditing;
 - (void)notifySubitemDidCommit:(unsigned int)arg1;
 - (unsigned int)numberOfSubitems;
+- (BOOL)requiresLayoutForSubitemCount;
 - (void)reset;
 - (BOOL)saveAndDismissWithForce:(BOOL)arg1;
 - (void)setAllowsEditing:(BOOL)arg1;

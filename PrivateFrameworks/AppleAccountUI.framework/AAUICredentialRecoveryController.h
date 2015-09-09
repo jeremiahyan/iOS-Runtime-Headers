@@ -2,21 +2,27 @@
    Image: /System/Library/PrivateFrameworks/AppleAccountUI.framework/AppleAccountUI
  */
 
-@class NSMutableArray, NSObject<AAUICredentialRecoveryPresentationDelegate>, NSURL, RUILoader, RUIPage, UINavigationController, UIViewController;
-
-@interface AAUICredentialRecoveryController : NSObject <RUIObjectModelDelegate, RUILoaderDelegate> {
+@interface AAUICredentialRecoveryController : NSObject <RUILoaderDelegate, RUIObjectModelDelegate> {
     NSObject<AAUICredentialRecoveryPresentationDelegate> *_delegate;
     BOOL _isModal;
+    BOOL _isShowingSpinner;
     RUIPage *_loadingPage;
     UIViewController *_navigationBaseViewController;
     UINavigationController *_navigationController;
+    UINavigationItem *_navigationItemShowingSpinner;
     NSMutableArray *_objectModels;
+    UIBarButtonItem *_originalRightBarButtonItem;
     UIViewController *_presentationViewController;
     RUILoader *_remoteUILoader;
     NSURL *_remoteUIURL;
+    UIActivityIndicatorView *_spinnerView;
 }
 
-@property NSObject<AAUICredentialRecoveryPresentationDelegate> * delegate;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) NSObject<AAUICredentialRecoveryPresentationDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_addHeadersToRequest:(id)arg1;
@@ -25,7 +31,9 @@
 - (void)_createRemoteUIViewControllerFromURL:(id)arg1;
 - (void)_displayConnectionError;
 - (void)_finishPresentationWithSuccess:(BOOL)arg1;
+- (void)_hideActivitySpinnerInNavigationBar;
 - (void)_popObjectModelAnimated:(BOOL)arg1;
+- (void)_showActivitySpinnerInNavigationBar;
 - (void)cancelPresentation;
 - (id)delegate;
 - (id)init;

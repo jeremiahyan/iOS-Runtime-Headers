@@ -2,8 +2,12 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@interface NSPointerArray : NSObject <NSFastEnumeration, NSCopying, NSCoding> {
-}
+@interface NSPointerArray : NSObject <NSCoding, NSCopying, NSFastEnumeration>
+
+@property unsigned int count;
+@property (readonly, copy) NSPointerFunctions *pointerFunctions;
+
+// Image: /System/Library/Frameworks/Foundation.framework/Foundation
 
 + (id)allocWithZone:(struct _NSZone { }*)arg1;
 + (id)pointerArrayWithOptions:(unsigned int)arg1;
@@ -18,7 +22,7 @@
 - (void)compact;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (unsigned int)count;
-- (unsigned int)countByEnumeratingWithState:(struct { unsigned long x1; id *x2; unsigned long *x3; unsigned long x4[5]; }*)arg1 objects:(id*)arg2 count:(unsigned int)arg3;
+- (unsigned int)countByEnumeratingWithState:(struct { unsigned long x1; id *x2; unsigned long x3; unsigned long x4[5]; }*)arg1 objects:(id*)arg2 count:(unsigned int)arg3;
 - (void)encodeWithCoder:(id)arg1;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
@@ -31,5 +35,13 @@
 - (void)removePointerAtIndex:(unsigned int)arg1;
 - (void)replacePointerAtIndex:(unsigned int)arg1 withPointer:(void*)arg2;
 - (void)setCount:(unsigned int)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PhotoEditSupport.framework/PhotoEditSupport
+
+- (id)bl_firstObject;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
+
+- (void)tsu_enumerateNonNullPointersUsingBlock:(id /* block */)arg1;
 
 @end

@@ -2,15 +2,19 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class <ABContactGroupPickerDelegate>, NSArray, UITableView;
-
 @interface ABContactGroupPickerViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
+    CNContactStyle *_contactStyle;
     <ABContactGroupPickerDelegate> *_groupPickerDelegate;
     NSArray *_pickableGroups;
     UITableView *_tableView;
 }
 
-@property <ABContactGroupPickerDelegate> * groupPickerDelegate;
+@property (nonatomic, retain) CNContactStyle *contactStyle;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) <ABContactGroupPickerDelegate> *groupPickerDelegate;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)pickableGroupsWithPickedGroups:(id)arg1;
 + (BOOL)propertiesLeftToPickWithPickedGroups:(id)arg1;
@@ -18,11 +22,13 @@
 
 - (id)_loadPickableGroupsWithPickedGroups:(id)arg1;
 - (void)cancel:(id)arg1;
+- (id)contactStyle;
 - (void)dealloc;
 - (id)groupPickerDelegate;
 - (id)initWithGroups:(id)arg1;
 - (void)loadView;
 - (int)numberOfSectionsInTableView:(id)arg1;
+- (void)setContactStyle:(id)arg1;
 - (void)setGroupPickerDelegate:(id)arg1;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
 - (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;

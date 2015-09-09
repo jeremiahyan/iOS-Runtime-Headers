@@ -2,15 +2,16 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSString;
+@interface SAUISnippetInteraction : SABaseCommand <SAServerBoundCommand>
 
-@interface SAUISnippetInteraction : SABaseCommand <SAServerBoundCommand> {
-}
-
-@property(copy) NSString * aceId;
-@property(copy) NSString * refId;
-@property(copy) NSString * requestId;
-@property(copy) NSString * snippetId;
+@property (nonatomic, copy) NSString *aceId;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *refId;
+@property (nonatomic, copy) NSString *requestId;
+@property (nonatomic, copy) NSString *snippetId;
+@property (readonly) Class superclass;
 
 + (id)snippetInteraction;
 + (id)snippetInteractionWithDictionary:(id)arg1 context:(id)arg2;

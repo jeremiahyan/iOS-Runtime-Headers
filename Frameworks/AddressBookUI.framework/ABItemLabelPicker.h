@@ -2,9 +2,7 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class ABPropertyGroup, ABStyleProvider, NSIndexPath, NSMutableArray, NSString, UITableView;
-
-@interface ABItemLabelPicker : UIView <UITableViewDataSource, UITableViewDelegate, ABSimpleTextInputViewControllerDelegate> {
+@interface ABItemLabelPicker : UIView <ABSimpleTextInputViewControllerDelegate, UITableViewDataSource, UITableViewDelegate> {
     BOOL _addLabelDisabled;
     NSMutableArray *_additionalLabels;
     void *_addressBook;
@@ -25,11 +23,15 @@
     UITableView *_tableView;
 }
 
-@property(getter=isAddLabelDisabled) BOOL addLabelDisabled;
-@property void* addressBook;
-@property BOOL didCreateNewLabel;
-@property(retain) ABStyleProvider * styleProvider;
-@property(readonly) UITableView * tableView;
+@property (getter=isAddLabelDisabled, nonatomic) BOOL addLabelDisabled;
+@property (nonatomic) void*addressBook;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL didCreateNewLabel;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) ABStyleProvider *styleProvider;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) UITableView *tableView;
 
 + (id)_defaultLabelsForProperty:(int)arg1 person:(id)arg2 propertyGroup:(id)arg3 index:(int)arg4 addressBook:(void*)arg5 outBestLabelIndex:(int*)arg6 forceIncludeLabels:(id)arg7;
 + (id)builtInLabelsForProperty:(int)arg1;
@@ -42,8 +44,8 @@
 
 - (void)_didEndPickingAndConfirmed:(BOOL)arg1 animate:(BOOL)arg2;
 - (void)_matchSelectedPathWithSelectedLabel;
-- (void)_setSelectedLabel:(id)arg1 atPath:(id)arg2;
 - (void)_setSelectedLabel:(id)arg1;
+- (void)_setSelectedLabel:(id)arg1 atPath:(id)arg2;
 - (void)_setSelectedPath:(id)arg1;
 - (void*)addressBook;
 - (BOOL)allowsCustomLabels;
@@ -77,6 +79,7 @@
 - (void)simpleTextInputViewController:(id)arg1 didCompleteWithValue:(id)arg2;
 - (BOOL)simpleTextInputViewControllerShouldDismissKeyboard:(id)arg1;
 - (id)styleProvider;
+- (id)tableView;
 - (BOOL)tableView:(id)arg1 canEditRowAtIndexPath:(id)arg2;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
 - (void)tableView:(id)arg1 commitEditingStyle:(int)arg2 forRowAtIndexPath:(id)arg3;
@@ -85,7 +88,6 @@
 - (int)tableView:(id)arg1 numberOfRowsInSection:(int)arg2;
 - (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forRowAtIndexPath:(id)arg3;
 - (id)tableView:(id)arg1 willSelectRowAtIndexPath:(id)arg2;
-- (id)tableView;
 - (void)toggleEditing;
 
 @end

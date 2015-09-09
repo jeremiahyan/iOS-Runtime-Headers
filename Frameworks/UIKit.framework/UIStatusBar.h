@@ -2,11 +2,11 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class <UIStatusBarStateProvider>, <UIStatusBarStyleDelegate>, NSMutableArray, NSMutableSet, NSNumber, NSString, UIColor, UILabel, UIStatusBar, UIStatusBarBackgroundView, UIStatusBarForegroundView, UIStatusBarServer, UIStatusBarStyleAnimationParameters, UIStatusBarStyleAttributes, UIStatusBarStyleRequest, UIStatusBarWindow, UIView;
-
 @interface UIStatusBar : _UIScrollsToTopInitiatorView <UIStatusBarServerClient, UIStatusBarStateObserver> {
+    UIStatusBarBackgroundView *_backgroundView;
+    NSString *_currentDoubleHeightText;
     struct { 
-        BOOL itemIsEnabled[25]; 
+        BOOL itemIsEnabled[26]; 
         BOOL timeString[64]; 
         int gsmSignalStrengthRaw; 
         int gsmSignalStrengthBars; 
@@ -33,8 +33,6 @@
         unsigned int locationIconType : 1; 
         unsigned int quietModeInactive : 1; 
         unsigned int tetheringConnectionCount; 
-    UIStatusBarBackgroundView *_backgroundView;
-    NSString *_currentDoubleHeightText;
     } _currentRawData;
     NSMutableSet *_disableRasterizationReasons;
     UILabel *_doubleHeightLabel;
@@ -48,7 +46,7 @@
     NSMutableArray *_interruptedAnimationCompositeViews;
     UIColor *_lastUsedBackgroundColor;
     int _legibilityStyle;
-    struct { BOOL x1[25]; unsigned int x2 : 1; unsigned int x3 : 1; unsigned int x4 : 1; unsigned int x5 : 1; unsigned int x6 : 2; unsigned int x7 : 1; unsigned int x8 : 1; unsigned int x9 : 1; unsigned int x10 : 1; unsigned int x11 : 1; unsigned int x12 : 1; unsigned int x13 : 1; unsigned int x14 : 1; unsigned int x15 : 1; unsigned int x16 : 1; unsigned int x17 : 1; unsigned int x18 : 1; unsigned int x19 : 1; unsigned int x20 : 1; unsigned int x21 : 1; unsigned int x22 : 1; struct { BOOL x_23_1_1[25]; BOOL x_23_1_2[64]; int x_23_1_3; int x_23_1_4; BOOL x_23_1_5[100]; BOOL x_23_1_6[100]; BOOL x_23_1_7[2][100]; BOOL x_23_1_8[1024]; unsigned int x_23_1_9; int x_23_1_10; int x_23_1_11; unsigned int x_23_1_12; int x_23_1_13; unsigned int x_23_1_14; BOOL x_23_1_15[150]; int x_23_1_16; int x_23_1_17; unsigned int x_23_1_18 : 1; unsigned int x_23_1_19 : 1; unsigned int x_23_1_20 : 1; BOOL x_23_1_21[256]; unsigned int x_23_1_22 : 1; unsigned int x_23_1_23 : 1; unsigned int x_23_1_24 : 1; unsigned int x_23_1_25 : 1; unsigned int x_23_1_26 : 1; unsigned int x_23_1_27; } x23; } *_localDataOverrides;
+    struct { BOOL x1[26]; unsigned int x2 : 1; unsigned int x3 : 1; unsigned int x4 : 1; unsigned int x5 : 1; unsigned int x6 : 2; unsigned int x7 : 1; unsigned int x8 : 1; unsigned int x9 : 1; unsigned int x10 : 1; unsigned int x11 : 1; unsigned int x12 : 1; unsigned int x13 : 1; unsigned int x14 : 1; unsigned int x15 : 1; unsigned int x16 : 1; unsigned int x17 : 1; unsigned int x18 : 1; unsigned int x19 : 1; unsigned int x20 : 1; unsigned int x21 : 1; unsigned int x22 : 1; struct { BOOL x_23_1_1[26]; BOOL x_23_1_2[64]; int x_23_1_3; int x_23_1_4; BOOL x_23_1_5[100]; BOOL x_23_1_6[100]; BOOL x_23_1_7[2][100]; BOOL x_23_1_8[1024]; unsigned int x_23_1_9; int x_23_1_10; int x_23_1_11; unsigned int x_23_1_12; int x_23_1_13; unsigned int x_23_1_14; BOOL x_23_1_15[150]; int x_23_1_16; int x_23_1_17; unsigned int x_23_1_18 : 1; unsigned int x_23_1_19 : 1; unsigned int x_23_1_20 : 1; BOOL x_23_1_21[256]; unsigned int x_23_1_22 : 1; unsigned int x_23_1_23 : 1; unsigned int x_23_1_24 : 1; unsigned int x_23_1_25 : 1; unsigned int x_23_1_26 : 1; unsigned int x_23_1_27; } x23; } *_localDataOverrides;
     UIStatusBarBackgroundView *_newStyleBackgroundView;
     UIStatusBarForegroundView *_newStyleForegroundView;
     UIStatusBarStyleAnimationParameters *_nextTintTransition;
@@ -74,20 +72,24 @@
     BOOL _waitingOnCallbackAfterChangingStyleOverridesLocally;
 }
 
-@property(retain) UIColor * foregroundColor;
-@property BOOL homeItemsDisabled;
-@property int legibilityStyle;
-@property BOOL persistentAnimationsEnabled;
-@property BOOL serverUpdatesDisabled;
-@property BOOL simulatesLegacyAppearance;
-@property UIStatusBarWindow * statusBarWindow;
-@property <UIStatusBarStyleDelegate> * styleDelegate;
-@property(readonly) int styleOverrides;
-@property(copy) UIStatusBarStyleRequest * styleRequest;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) UIColor *foregroundColor;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL homeItemsDisabled;
+@property (nonatomic) int legibilityStyle;
+@property (nonatomic) BOOL persistentAnimationsEnabled;
+@property (nonatomic) BOOL serverUpdatesDisabled;
+@property (nonatomic) BOOL simulatesLegacyAppearance;
+@property (nonatomic) UIStatusBarWindow *statusBarWindow;
+@property (nonatomic) <UIStatusBarStyleDelegate> *styleDelegate;
+@property (nonatomic, readonly) int styleOverrides;
+@property (nonatomic, copy) UIStatusBarStyleRequest *styleRequest;
+@property (readonly) Class superclass;
 
-+ (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_frameForStyle:(int)arg1 orientation:(int)arg2 inWindowOfSize:(struct CGSize { float x1; float x2; })arg3;
-+ (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_frameForStyleAttributes:(id)arg1 orientation:(int)arg2 inWindowOfSize:(struct CGSize { float x1; float x2; })arg3;
-+ (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_frameForStyleAttributes:(id)arg1 orientation:(int)arg2;
++ (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_frameInSceneReferenceSpaceForStyle:(int)arg1 orientation:(int)arg2 inSceneWithReferenceSize:(struct CGSize { float x1; float x2; })arg3;
++ (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_frameInSceneReferenceSpaceForStyleAttributes:(id)arg1 orientation:(int)arg2;
++ (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_frameInSceneReferenceSpaceForStyleAttributes:(id)arg1 orientation:(int)arg2 inSceneWithReferenceSize:(struct CGSize { float x1; float x2; })arg3;
 + (id)_newStyleAttributesForRequest:(id)arg1;
 + (id)_styleAttributesForRequest:(id)arg1;
 + (id)_styleAttributesForStatusBarStyle:(int)arg1 legacy:(BOOL)arg2;
@@ -95,7 +97,8 @@
 + (id)defaultBlueTintColor;
 + (int)defaultStatusBarStyleWithTint:(BOOL)arg1;
 + (int)defaultStyleForRequestedStyle:(int)arg1 styleOverrides:(int)arg2;
-+ (void)getData:(struct { BOOL x1[25]; BOOL x2[64]; int x3; int x4; BOOL x5[100]; BOOL x6[100]; BOOL x7[2][100]; BOOL x8[1024]; unsigned int x9; int x10; int x11; unsigned int x12; int x13; unsigned int x14; BOOL x15[150]; int x16; int x17; unsigned int x18 : 1; unsigned int x19 : 1; unsigned int x20 : 1; BOOL x21[256]; unsigned int x22 : 1; unsigned int x23 : 1; unsigned int x24 : 1; unsigned int x25 : 1; unsigned int x26 : 1; unsigned int x27; }*)arg1 forRequestedData:(const struct { BOOL x1[25]; BOOL x2[64]; int x3; int x4; BOOL x5[100]; BOOL x6[100]; BOOL x7[2][100]; BOOL x8[1024]; unsigned int x9; int x10; int x11; unsigned int x12; int x13; unsigned int x14; BOOL x15[150]; int x16; int x17; unsigned int x18 : 1; unsigned int x19 : 1; unsigned int x20 : 1; BOOL x21[256]; unsigned int x22 : 1; unsigned int x23 : 1; unsigned int x24 : 1; unsigned int x25 : 1; unsigned int x26 : 1; unsigned int x27; }*)arg2 withOverrides:(const struct { BOOL x1[25]; unsigned int x2 : 1; unsigned int x3 : 1; unsigned int x4 : 1; unsigned int x5 : 1; unsigned int x6 : 2; unsigned int x7 : 1; unsigned int x8 : 1; unsigned int x9 : 1; unsigned int x10 : 1; unsigned int x11 : 1; unsigned int x12 : 1; unsigned int x13 : 1; unsigned int x14 : 1; unsigned int x15 : 1; unsigned int x16 : 1; unsigned int x17 : 1; unsigned int x18 : 1; unsigned int x19 : 1; unsigned int x20 : 1; unsigned int x21 : 1; unsigned int x22 : 1; struct { BOOL x_23_1_1[25]; BOOL x_23_1_2[64]; int x_23_1_3; int x_23_1_4; BOOL x_23_1_5[100]; BOOL x_23_1_6[100]; BOOL x_23_1_7[2][100]; BOOL x_23_1_8[1024]; unsigned int x_23_1_9; int x_23_1_10; int x_23_1_11; unsigned int x_23_1_12; int x_23_1_13; unsigned int x_23_1_14; BOOL x_23_1_15[150]; int x_23_1_16; int x_23_1_17; unsigned int x_23_1_18 : 1; unsigned int x_23_1_19 : 1; unsigned int x_23_1_20 : 1; BOOL x_23_1_21[256]; unsigned int x_23_1_22 : 1; unsigned int x_23_1_23 : 1; unsigned int x_23_1_24 : 1; unsigned int x_23_1_25 : 1; unsigned int x_23_1_26 : 1; unsigned int x_23_1_27; } x23; }*)arg3;
++ (void)enumerateStatusBarStyleOverridesWithBlock:(id /* block */)arg1;
++ (void)getData:(struct { BOOL x1[26]; BOOL x2[64]; int x3; int x4; BOOL x5[100]; BOOL x6[100]; BOOL x7[2][100]; BOOL x8[1024]; unsigned int x9; int x10; int x11; unsigned int x12; int x13; unsigned int x14; BOOL x15[150]; int x16; int x17; unsigned int x18 : 1; unsigned int x19 : 1; unsigned int x20 : 1; BOOL x21[256]; unsigned int x22 : 1; unsigned int x23 : 1; unsigned int x24 : 1; unsigned int x25 : 1; unsigned int x26 : 1; unsigned int x27; }*)arg1 forRequestedData:(const struct { BOOL x1[26]; BOOL x2[64]; int x3; int x4; BOOL x5[100]; BOOL x6[100]; BOOL x7[2][100]; BOOL x8[1024]; unsigned int x9; int x10; int x11; unsigned int x12; int x13; unsigned int x14; BOOL x15[150]; int x16; int x17; unsigned int x18 : 1; unsigned int x19 : 1; unsigned int x20 : 1; BOOL x21[256]; unsigned int x22 : 1; unsigned int x23 : 1; unsigned int x24 : 1; unsigned int x25 : 1; unsigned int x26 : 1; unsigned int x27; }*)arg2 withOverrides:(const struct { BOOL x1[26]; unsigned int x2 : 1; unsigned int x3 : 1; unsigned int x4 : 1; unsigned int x5 : 1; unsigned int x6 : 2; unsigned int x7 : 1; unsigned int x8 : 1; unsigned int x9 : 1; unsigned int x10 : 1; unsigned int x11 : 1; unsigned int x12 : 1; unsigned int x13 : 1; unsigned int x14 : 1; unsigned int x15 : 1; unsigned int x16 : 1; unsigned int x17 : 1; unsigned int x18 : 1; unsigned int x19 : 1; unsigned int x20 : 1; unsigned int x21 : 1; unsigned int x22 : 1; struct { BOOL x_23_1_1[26]; BOOL x_23_1_2[64]; int x_23_1_3; int x_23_1_4; BOOL x_23_1_5[100]; BOOL x_23_1_6[100]; BOOL x_23_1_7[2][100]; BOOL x_23_1_8[1024]; unsigned int x_23_1_9; int x_23_1_10; int x_23_1_11; unsigned int x_23_1_12; int x_23_1_13; unsigned int x_23_1_14; BOOL x_23_1_15[150]; int x_23_1_16; int x_23_1_17; unsigned int x_23_1_18 : 1; unsigned int x_23_1_19 : 1; unsigned int x_23_1_20 : 1; BOOL x_23_1_21[256]; unsigned int x_23_1_22 : 1; unsigned int x_23_1_23 : 1; unsigned int x_23_1_24 : 1; unsigned int x_23_1_25 : 1; unsigned int x_23_1_26 : 1; unsigned int x_23_1_27; } x23; }*)arg3;
 + (float)heightForStyle:(int)arg1 orientation:(int)arg2;
 + (int)lowBatteryLevel;
 + (id)navBarTintColorFromStatusBarTintColor:(id)arg1;
@@ -128,11 +131,12 @@
 - (id)_prepareInterruptedAnimationCompositeViewIncludingForeground:(BOOL)arg1;
 - (id)_prepareToSetStyle:(id)arg1 animation:(int)arg2;
 - (void)_requestStyleAttributes:(id)arg1 animationParameters:(id)arg2;
+- (int)_requestedStyle;
 - (void)_setDoubleHeightStatusString:(id)arg1;
 - (void)_setFrameForStyle:(id)arg1;
 - (void)_setOverrideHeight:(float)arg1;
-- (void)_setStyle:(id)arg1 animation:(int)arg2;
 - (void)_setStyle:(id)arg1;
+- (void)_setStyle:(id)arg1 animation:(int)arg2;
 - (void)_setVisualAltitude:(float)arg1;
 - (void)_setVisualAltitudeBias:(struct CGSize { float x1; float x2; })arg1;
 - (BOOL)_shouldSeekHigherPriorityTouchTarget;
@@ -158,20 +162,22 @@
 - (int)currentStyle;
 - (id)currentStyleRequestForStyle:(int)arg1;
 - (void)dealloc;
+- (float)defaultDoubleHeight;
+- (float)defaultHeight;
 - (void)didMoveToSuperview;
 - (void)forceUpdateData:(BOOL)arg1;
 - (void)forceUpdateDoubleHeightStatus;
 - (void)forceUpdateGlowAnimation;
 - (void)forceUpdateStyleOverrides:(BOOL)arg1;
-- (void)forceUpdateToData:(const struct { BOOL x1[25]; BOOL x2[64]; int x3; int x4; BOOL x5[100]; BOOL x6[100]; BOOL x7[2][100]; BOOL x8[1024]; unsigned int x9; int x10; int x11; unsigned int x12; int x13; unsigned int x14; BOOL x15[150]; int x16; int x17; unsigned int x18 : 1; unsigned int x19 : 1; unsigned int x20 : 1; BOOL x21[256]; unsigned int x22 : 1; unsigned int x23 : 1; unsigned int x24 : 1; unsigned int x25 : 1; unsigned int x26 : 1; unsigned int x27; }*)arg1 animated:(BOOL)arg2;
+- (void)forceUpdateToData:(const struct { BOOL x1[26]; BOOL x2[64]; int x3; int x4; BOOL x5[100]; BOOL x6[100]; BOOL x7[2][100]; BOOL x8[1024]; unsigned int x9; int x10; int x11; unsigned int x12; int x13; unsigned int x14; BOOL x15[150]; int x16; int x17; unsigned int x18 : 1; unsigned int x19 : 1; unsigned int x20 : 1; BOOL x21[256]; unsigned int x22 : 1; unsigned int x23 : 1; unsigned int x24 : 1; unsigned int x25 : 1; unsigned int x26 : 1; unsigned int x27; }*)arg1 animated:(BOOL)arg2;
 - (id)foregroundColor;
 - (void)forgetEitherSideHistory;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })frameForOrientation:(int)arg1;
 - (float)heightForOrientation:(int)arg1;
 - (BOOL)homeItemsDisabled;
-- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 showForegroundView:(BOOL)arg2 inProcessStateProvider:(id)arg3;
-- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 showForegroundView:(BOOL)arg2;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 showForegroundView:(BOOL)arg2;
+- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 showForegroundView:(BOOL)arg2 inProcessStateProvider:(id)arg3;
 - (BOOL)isDoubleHeight;
 - (BOOL)isHidden;
 - (BOOL)isTranslucent;
@@ -180,21 +186,21 @@
 - (void)noteStyleOverridesChangedLocally;
 - (BOOL)persistentAnimationsEnabled;
 - (BOOL)pointInside:(struct CGPoint { float x1; float x2; })arg1 withEvent:(id)arg2;
+- (void)requestStyle:(int)arg1;
 - (void)requestStyle:(int)arg1 animated:(BOOL)arg2;
 - (void)requestStyle:(int)arg1 animation:(int)arg2 startTime:(double)arg3 duration:(double)arg4 curve:(int)arg5;
 - (void)requestStyle:(int)arg1 animationParameters:(id)arg2;
-- (void)requestStyle:(int)arg1;
 - (BOOL)serverUpdatesDisabled;
 - (void)setBackgroundAlpha:(float)arg1;
-- (void)setForegroundColor:(id)arg1 animationParameters:(id)arg2;
 - (void)setForegroundColor:(id)arg1;
+- (void)setForegroundColor:(id)arg1 animationParameters:(id)arg2;
+- (void)setHidden:(BOOL)arg1;
 - (void)setHidden:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setHidden:(BOOL)arg1 animationParameters:(id)arg2;
-- (void)setHidden:(BOOL)arg1;
 - (void)setHomeItemsDisabled:(BOOL)arg1;
-- (void)setLegibilityStyle:(int)arg1 animationParameters:(id)arg2;
 - (void)setLegibilityStyle:(int)arg1;
-- (void)setLocalDataOverrides:(struct { BOOL x1[25]; unsigned int x2 : 1; unsigned int x3 : 1; unsigned int x4 : 1; unsigned int x5 : 1; unsigned int x6 : 2; unsigned int x7 : 1; unsigned int x8 : 1; unsigned int x9 : 1; unsigned int x10 : 1; unsigned int x11 : 1; unsigned int x12 : 1; unsigned int x13 : 1; unsigned int x14 : 1; unsigned int x15 : 1; unsigned int x16 : 1; unsigned int x17 : 1; unsigned int x18 : 1; unsigned int x19 : 1; unsigned int x20 : 1; unsigned int x21 : 1; unsigned int x22 : 1; struct { BOOL x_23_1_1[25]; BOOL x_23_1_2[64]; int x_23_1_3; int x_23_1_4; BOOL x_23_1_5[100]; BOOL x_23_1_6[100]; BOOL x_23_1_7[2][100]; BOOL x_23_1_8[1024]; unsigned int x_23_1_9; int x_23_1_10; int x_23_1_11; unsigned int x_23_1_12; int x_23_1_13; unsigned int x_23_1_14; BOOL x_23_1_15[150]; int x_23_1_16; int x_23_1_17; unsigned int x_23_1_18 : 1; unsigned int x_23_1_19 : 1; unsigned int x_23_1_20 : 1; BOOL x_23_1_21[256]; unsigned int x_23_1_22 : 1; unsigned int x_23_1_23 : 1; unsigned int x_23_1_24 : 1; unsigned int x_23_1_25 : 1; unsigned int x_23_1_26 : 1; unsigned int x_23_1_27; } x23; }*)arg1;
+- (void)setLegibilityStyle:(int)arg1 animationParameters:(id)arg2;
+- (void)setLocalDataOverrides:(struct { BOOL x1[26]; unsigned int x2 : 1; unsigned int x3 : 1; unsigned int x4 : 1; unsigned int x5 : 1; unsigned int x6 : 2; unsigned int x7 : 1; unsigned int x8 : 1; unsigned int x9 : 1; unsigned int x10 : 1; unsigned int x11 : 1; unsigned int x12 : 1; unsigned int x13 : 1; unsigned int x14 : 1; unsigned int x15 : 1; unsigned int x16 : 1; unsigned int x17 : 1; unsigned int x18 : 1; unsigned int x19 : 1; unsigned int x20 : 1; unsigned int x21 : 1; unsigned int x22 : 1; struct { BOOL x_23_1_1[26]; BOOL x_23_1_2[64]; int x_23_1_3; int x_23_1_4; BOOL x_23_1_5[100]; BOOL x_23_1_6[100]; BOOL x_23_1_7[2][100]; BOOL x_23_1_8[1024]; unsigned int x_23_1_9; int x_23_1_10; int x_23_1_11; unsigned int x_23_1_12; int x_23_1_13; unsigned int x_23_1_14; BOOL x_23_1_15[150]; int x_23_1_16; int x_23_1_17; unsigned int x_23_1_18 : 1; unsigned int x_23_1_19 : 1; unsigned int x_23_1_20 : 1; BOOL x_23_1_21[256]; unsigned int x_23_1_22 : 1; unsigned int x_23_1_23 : 1; unsigned int x_23_1_24 : 1; unsigned int x_23_1_25 : 1; unsigned int x_23_1_26 : 1; unsigned int x_23_1_27; } x23; }*)arg1;
 - (void)setOrientation:(int)arg1;
 - (void)setPersistentAnimationsEnabled:(BOOL)arg1;
 - (void)setServerUpdatesDisabled:(BOOL)arg1;
@@ -202,19 +208,19 @@
 - (void)setSimulatesLegacyAppearance:(BOOL)arg1;
 - (void)setStatusBarWindow:(id)arg1;
 - (void)setStyleDelegate:(id)arg1;
-- (void)setStyleRequest:(id)arg1 animationParameters:(id)arg2;
 - (void)setStyleRequest:(id)arg1;
+- (void)setStyleRequest:(id)arg1 animationParameters:(id)arg2;
 - (void)setSuppressesGlow:(BOOL)arg1;
 - (void)setSuppressesHiddenSideEffects:(BOOL)arg1;
-- (void)setTintColor:(id)arg1 withDuration:(double)arg2;
 - (void)setTintColor:(id)arg1;
+- (void)setTintColor:(id)arg1 withDuration:(double)arg2;
 - (BOOL)simulatesLegacyAppearance;
 - (void)statusBarServer:(id)arg1 didReceiveDoubleHeightStatusString:(id)arg2 forStyle:(int)arg3;
 - (void)statusBarServer:(id)arg1 didReceiveGlowAnimationState:(BOOL)arg2 forStyle:(int)arg3;
-- (void)statusBarServer:(id)arg1 didReceiveStatusBarData:(const struct { BOOL x1[25]; BOOL x2[64]; int x3; int x4; BOOL x5[100]; BOOL x6[100]; BOOL x7[2][100]; BOOL x8[1024]; unsigned int x9; int x10; int x11; unsigned int x12; int x13; unsigned int x14; BOOL x15[150]; int x16; int x17; unsigned int x18 : 1; unsigned int x19 : 1; unsigned int x20 : 1; BOOL x21[256]; unsigned int x22 : 1; unsigned int x23 : 1; unsigned int x24 : 1; unsigned int x25 : 1; unsigned int x26 : 1; unsigned int x27; }*)arg2 withActions:(int)arg3;
+- (void)statusBarServer:(id)arg1 didReceiveStatusBarData:(const struct { BOOL x1[26]; BOOL x2[64]; int x3; int x4; BOOL x5[100]; BOOL x6[100]; BOOL x7[2][100]; BOOL x8[1024]; unsigned int x9; int x10; int x11; unsigned int x12; int x13; unsigned int x14; BOOL x15[150]; int x16; int x17; unsigned int x18 : 1; unsigned int x19 : 1; unsigned int x20 : 1; BOOL x21[256]; unsigned int x22 : 1; unsigned int x23 : 1; unsigned int x24 : 1; unsigned int x25 : 1; unsigned int x26 : 1; unsigned int x27; }*)arg2 withActions:(int)arg3;
 - (void)statusBarServer:(id)arg1 didReceiveStyleOverrides:(int)arg2;
 - (void)statusBarStateProvider:(id)arg1 didChangeDoubleHeightStatusStringForStyle:(int)arg2;
-- (void)statusBarStateProvider:(id)arg1 didPostStatusBarData:(const struct { BOOL x1[25]; BOOL x2[64]; int x3; int x4; BOOL x5[100]; BOOL x6[100]; BOOL x7[2][100]; BOOL x8[1024]; unsigned int x9; int x10; int x11; unsigned int x12; int x13; unsigned int x14; BOOL x15[150]; int x16; int x17; unsigned int x18 : 1; unsigned int x19 : 1; unsigned int x20 : 1; BOOL x21[256]; unsigned int x22 : 1; unsigned int x23 : 1; unsigned int x24 : 1; unsigned int x25 : 1; unsigned int x26 : 1; unsigned int x27; }*)arg2 withActions:(int)arg3;
+- (void)statusBarStateProvider:(id)arg1 didPostStatusBarData:(const struct { BOOL x1[26]; BOOL x2[64]; int x3; int x4; BOOL x5[100]; BOOL x6[100]; BOOL x7[2][100]; BOOL x8[1024]; unsigned int x9; int x10; int x11; unsigned int x12; int x13; unsigned int x14; BOOL x15[150]; int x16; int x17; unsigned int x18 : 1; unsigned int x19 : 1; unsigned int x20 : 1; BOOL x21[256]; unsigned int x22 : 1; unsigned int x23 : 1; unsigned int x24 : 1; unsigned int x25 : 1; unsigned int x26 : 1; unsigned int x27; }*)arg2 withActions:(int)arg3;
 - (id)statusBarWindow;
 - (id)styleDelegate;
 - (int)styleForRequestedStyle:(int)arg1;

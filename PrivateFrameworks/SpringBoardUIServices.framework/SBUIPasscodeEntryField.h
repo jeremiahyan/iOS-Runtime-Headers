@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/SpringBoardUIServices.framework/SpringBoardUIServices
  */
 
-@class <SBUIPasscodeEntryFieldDelegate>, NSMutableCharacterSet, NSString, UIColor, UITextField;
-
 @interface SBUIPasscodeEntryField : UIView <UITextFieldDelegate> {
     UIColor *_customBackgroundColor;
     <SBUIPasscodeEntryFieldDelegate> *_delegate;
@@ -13,13 +11,17 @@
     UITextField *_textField;
 }
 
-@property(retain) UIColor * customBackgroundColor;
-@property <SBUIPasscodeEntryFieldDelegate> * delegate;
-@property(copy) NSString * stringValue;
-@property(getter=_textField,readonly) UITextField * textField;
+@property (nonatomic, retain) UIColor *customBackgroundColor;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SBUIPasscodeEntryFieldDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *stringValue;
+@property (readonly) Class superclass;
+@property (getter=_textField, nonatomic, readonly) UITextField *textField;
 
 - (void)_appendString:(id)arg1;
-- (void)_autofillForMesaWithCompletion:(id)arg1;
+- (void)_autofillForMesaWithCompletion:(id /* block */)arg1;
 - (BOOL)_baseBecomeFirstResponder;
 - (BOOL)_baseResignFirstResponder;
 - (void)_deleteLastCharacter;
@@ -36,7 +38,7 @@
 - (void)dealloc;
 - (id)delegate;
 - (void)deleteLastCharacter;
-- (id)initWithDefaultSize;
+- (id)initWithDefaultSizeAndLightStyle:(BOOL)arg1;
 - (BOOL)isFirstResponder;
 - (void)notePasscodeFieldDidAcceptEntry;
 - (void)notePasscodeFieldTextDidChange;

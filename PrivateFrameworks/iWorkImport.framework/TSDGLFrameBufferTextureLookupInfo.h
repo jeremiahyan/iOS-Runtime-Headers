@@ -4,19 +4,32 @@
 
 @interface TSDGLFrameBufferTextureLookupInfo : NSObject {
     unsigned int _attachment;
-    int _index;
-    unsigned int _name;
+    int _indexOnAttachment;
+    NSString *_name;
+    unsigned int _textureName;
+    struct CGSize { 
+        float width; 
+        float height; 
+    } _textureSize;
 }
 
-@property(readonly) unsigned int attachment;
-@property(readonly) int index;
-@property(readonly) unsigned int name;
+@property (nonatomic) unsigned int attachment;
+@property (nonatomic) int indexOnAttachment;
+@property (nonatomic, readonly) NSString *name;
+@property (nonatomic, readonly) unsigned int textureName;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } textureSize;
 
-+ (id)textureLookupInfoWithAttachment:(unsigned int)arg1 index:(int)arg2 name:(unsigned int)arg3;
++ (id)textureLookupInfoWithAttachment:(unsigned int)arg1 indexOnAttachment:(int)arg2 textureName:(unsigned int)arg3 textureSize:(struct CGSize { float x1; float x2; })arg4 name:(id)arg5;
 
 - (unsigned int)attachment;
-- (int)index;
-- (id)initWithAttachment:(unsigned int)arg1 index:(int)arg2 name:(unsigned int)arg3;
-- (unsigned int)name;
+- (void)dealloc;
+- (id)description;
+- (int)indexOnAttachment;
+- (id)initWithAttachment:(unsigned int)arg1 indexOnAttachment:(int)arg2 textureName:(unsigned int)arg3 textureSize:(struct CGSize { float x1; float x2; })arg4 name:(id)arg5;
+- (id)name;
+- (void)setAttachment:(unsigned int)arg1;
+- (void)setIndexOnAttachment:(int)arg1;
+- (unsigned int)textureName;
+- (struct CGSize { float x1; float x2; })textureSize;
 
 @end

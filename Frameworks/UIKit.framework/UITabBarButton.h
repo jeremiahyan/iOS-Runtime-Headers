@@ -2,9 +2,15 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSMutableDictionary, NSValue, UIColor, UIImage, UITabBarButtonLabel, UITabBarSelectionIndicatorView, UIView, _UIBadgeView;
-
 @interface UITabBarButton : UIControl {
+    Class _appearanceGuideClass;
+    _UIBadgeView *_badge;
+    BOOL _badgeAnimated;
+    BOOL _barHeight;
+    NSMutableDictionary *_buttonTintColorsForState;
+    BOOL _centerAllContents;
+    NSMutableDictionary *_contentTintColorsForState;
+    UIImage *_customSelectedIndicatorImage;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -14,45 +20,38 @@
             float width; 
             float height; 
         } size; 
+    } _hitRect;
+    UIView *_info;
     struct UIEdgeInsets { 
         float top; 
         float left; 
         float bottom; 
         float right; 
-    struct UIOffset { 
-        float horizontal; 
-        float vertical; 
-    struct UIOffset { 
-        float horizontal; 
-        float vertical; 
-    Class _appearanceGuideClass;
-    _UIBadgeView *_badge;
-    BOOL _badgeAnimated;
-    BOOL _barHeight;
-    NSMutableDictionary *_buttonTintColorsForState;
-    BOOL _centerAllContents;
-    NSMutableDictionary *_contentTintColorsForState;
-    UIImage *_customSelectedIndicatorImage;
-    } _hitRect;
-    UIView *_info;
     } _infoInsets;
+    struct UIOffset { 
+        float horizontal; 
+        float vertical; 
     } _infoOffset;
     UITabBarButtonLabel *_label;
     NSValue *_labelOffsetValue;
     BOOL _selected;
     UITabBarSelectionIndicatorView *_selectedIndicator;
+    struct UIOffset { 
+        float horizontal; 
+        float vertical; 
     } _selectedInfoOffset;
     BOOL _showsHighlightedState;
     UIColor *_unselectedTintColor;
+    UIVisualEffectView *_vibrancyEffectView;
 }
 
-@property(setter=_setAppearanceGuideClass:) Class _appearanceGuideClass;
-@property(setter=_setCenterAllContents:) BOOL _centerAllContents;
-@property(getter=_isSelected,setter=_setSelected:) BOOL _selected;
-@property(setter=_setShowsHighlightedState:) BOOL _showsHighlightedState;
-@property(retain) NSValue * labelOffsetValue;
-@property(readonly) UITabBarButtonLabel * tabBarButtonLabel;
-@property(getter=_unselectedTintColor,setter=_setUnselectedTintColor:,retain) UIColor * unselectedTintColor;
+@property (setter=_setAppearanceGuideClass:, nonatomic) Class _appearanceGuideClass;
+@property (setter=_setCenterAllContents:, nonatomic) BOOL _centerAllContents;
+@property (getter=_isSelected, setter=_setSelected:, nonatomic) BOOL _selected;
+@property (setter=_setShowsHighlightedState:, nonatomic) BOOL _showsHighlightedState;
+@property (nonatomic, retain) NSValue *labelOffsetValue;
+@property (nonatomic, readonly) UITabBarButtonLabel *tabBarButtonLabel;
+@property (getter=_unselectedTintColor, setter=_setUnselectedTintColor:, nonatomic, retain) UIColor *unselectedTintColor;
 
 + (id)_defaultLabelColor;
 
@@ -64,9 +63,7 @@
 - (id)_buttonTintColorForState:(unsigned int)arg1;
 - (BOOL)_centerAllContents;
 - (id)_contentTintColorForState:(unsigned int)arg1;
-- (void)_focusStateDidChange;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_frameForSelectedIndicator;
-- (BOOL)_isFocusableElement;
 - (BOOL)_isSelected;
 - (void)_positionBadge;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_responderSelectionRectForWindow:(id)arg1;
@@ -88,8 +85,8 @@
 - (void)_setTabBarHitRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)_setTitlePositionAdjustment:(struct UIOffset { float x1; float x2; })arg1;
 - (void)_setTitleTextAttributes:(id)arg1 forState:(unsigned int)arg2;
-- (void)_setUnselectedTintColor:(id)arg1 forceLabelToConform:(BOOL)arg2;
 - (void)_setUnselectedTintColor:(id)arg1;
+- (void)_setUnselectedTintColor:(id)arg1 forceLabelToConform:(BOOL)arg2;
 - (void)_setUpSelectedIndicatorViewIfNeeded;
 - (void)_showSelectedIndicator:(BOOL)arg1 changeSelection:(BOOL)arg2;
 - (BOOL)_showsHighlightedState;
@@ -101,7 +98,9 @@
 - (void)_updateSelectedIndicatorView;
 - (void)_updateToMatchCurrentState;
 - (BOOL)_useBarHeight;
+- (BOOL)canBecomeFocused;
 - (void)dealloc;
+- (void)focusedViewDidChange;
 - (id)initWithImage:(id)arg1 selectedImage:(id)arg2 label:(id)arg3 withInsets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg4;
 - (id)labelOffsetValue;
 - (void)layoutSubviews;

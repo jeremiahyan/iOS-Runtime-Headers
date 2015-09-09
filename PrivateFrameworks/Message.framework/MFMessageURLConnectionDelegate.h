@@ -2,14 +2,17 @@
    Image: /System/Library/PrivateFrameworks/Message.framework/Message
  */
 
-@class NSError, NSMutableData, NSURLResponse;
-
 @interface MFMessageURLConnectionDelegate : NSObject <NSURLConnectionDelegate> {
     BOOL _done;
     NSError *_error;
     NSURLResponse *_response;
     NSMutableData *_responseBody;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)connection:(id)arg1 didFailWithError:(id)arg2;
 - (void)connection:(id)arg1 didReceiveData:(id)arg2;

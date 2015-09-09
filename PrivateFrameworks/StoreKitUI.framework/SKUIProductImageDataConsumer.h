@@ -2,20 +2,19 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class SKUIColorScheme, UIColor;
-
 @interface SKUIProductImageDataConsumer : SKUIImageDataConsumer <NSCopying> {
+    UIColor *_backgroundColor;
+    SKUIColorScheme *_colorScheme;
     struct CGSize { 
         float width; 
         float height; 
-    UIColor *_backgroundColor;
-    SKUIColorScheme *_colorScheme;
     } _iconSize;
 }
 
-@property(retain) UIColor * backgroundColor;
-@property(retain) SKUIColorScheme * colorScheme;
-@property(readonly) struct CGSize { float x1; float x2; } iconSize;
+@property (nonatomic, retain) UIColor *backgroundColor;
+@property (nonatomic, retain) SKUIColorScheme *colorScheme;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } iconSize;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } imageSize;
 
 + (id)cardConsumer;
 + (id)chartsConsumer;
@@ -42,8 +41,9 @@
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (struct CGSize { float x1; float x2; })iconSize;
 - (id)imageForColor:(id)arg1;
+- (id)imageForColor:(id)arg1 size:(struct CGSize { float x1; float x2; })arg2;
 - (id)imageForImage:(id)arg1;
-- (id)imageForSize:(struct CGSize { float x1; float x2; })arg1;
+- (struct CGSize { float x1; float x2; })imageSize;
 - (void)setBackgroundColor:(id)arg1;
 - (void)setColorScheme:(id)arg1;
 

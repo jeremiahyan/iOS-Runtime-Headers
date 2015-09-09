@@ -2,8 +2,12 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@interface PSStoreSettingsDetail : NSObject <PSSettingsLink> {
-}
+@interface PSStoreSettingsDetail : NSObject <PSSettingsLink>
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)preferencesURL;
 

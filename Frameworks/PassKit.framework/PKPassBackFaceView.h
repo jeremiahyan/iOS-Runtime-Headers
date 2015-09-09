@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/PassKit.framework/PassKit
  */
 
-@class BluetoothManager, NSArray, NSMutableDictionary, NSTimer, PKLinkedAppView, PKSettingTableCell, UIAlertView, UIButton, UILabel, UIRefreshControl, UITableView, UIView;
-
 @interface PKPassBackFaceView : PKPassFaceView <UITableViewDataSource, UITableViewDelegate, UITextViewDelegate> {
     PKSettingTableCell *_automaticUpdates;
     UITableView *_bodyTable;
@@ -26,17 +24,19 @@
     BOOL _showsLinkedApp;
     BOOL _showsLinks;
     BOOL _showsSettings;
-    UIAlertView *_storeDemoRefuseDeleteAlert;
     BOOL _tall;
     UILabel *_updateDateLabel;
 }
 
-@property PKLinkedAppView * linkedApp;
-@property BOOL showsDelete;
-@property BOOL showsLinkedApp;
-@property BOOL showsLinks;
-@property BOOL showsSettings;
-@property(retain) UIAlertView * storeDemoRefuseDeleteAlert;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) PKLinkedAppView *linkedApp;
+@property (nonatomic) BOOL showsDelete;
+@property (nonatomic) BOOL showsLinkedApp;
+@property (nonatomic) BOOL showsLinks;
+@property (nonatomic) BOOL showsSettings;
+@property (readonly) Class superclass;
 
 + (id)_linkColor;
 + (id)_linkTextAttributes;
@@ -47,7 +47,6 @@
 - (void)_doneButtonPressed:(id)arg1;
 - (id)_fieldCellForIndexPath:(id)arg1;
 - (id)_fieldForIndexPath:(id)arg1;
-- (id)_formattedUpdateDate:(id)arg1;
 - (BOOL)_isBluetoothEnabled;
 - (BOOL)_linkedAppAvailable;
 - (id)_locationHelpViewForTableView:(id)arg1;
@@ -56,10 +55,9 @@
 - (id)_relevantBuckets;
 - (BOOL)_settingsAvailable;
 - (id)_settingsCellForRow:(unsigned int)arg1;
+- (id)_updateLabelAttributedStringWithDate:(id)arg1;
 - (id)_updateLabelAttributedStringWithString:(id)arg1;
 - (void)_wifiChanged:(id)arg1;
-- (void)alertView:(id)arg1 clickedButtonAtIndex:(int)arg2;
-- (void)applicationDidEnterBackground:(id)arg1;
 - (struct CGSize { float x1; float x2; })contentSize;
 - (void)createBodyInvariantViews;
 - (void)dealloc;
@@ -72,13 +70,11 @@
 - (int)numberOfSectionsInTableView:(id)arg1;
 - (void)pushSettingsFromViewToModel;
 - (void)refreshControlValueChanged:(id)arg1;
-- (void)registerForEnterBackgroundNotification;
 - (void)setLinkedApp:(id)arg1;
 - (void)setShowsDelete:(BOOL)arg1;
 - (void)setShowsLinkedApp:(BOOL)arg1;
 - (void)setShowsLinks:(BOOL)arg1;
 - (void)setShowsSettings:(BOOL)arg1;
-- (void)setStoreDemoRefuseDeleteAlert:(id)arg1;
 - (void)setupRefreshControl:(id)arg1;
 - (BOOL)shouldAllowRefresh;
 - (BOOL)showBackgroundMatte;
@@ -87,7 +83,6 @@
 - (BOOL)showsLinkedApp;
 - (BOOL)showsLinks;
 - (BOOL)showsSettings;
-- (id)storeDemoRefuseDeleteAlert;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
 - (float)tableView:(id)arg1 estimatedHeightForRowAtIndexPath:(id)arg2;
 - (float)tableView:(id)arg1 heightForFooterInSection:(int)arg2;
@@ -96,7 +91,6 @@
 - (int)tableView:(id)arg1 numberOfRowsInSection:(int)arg2;
 - (id)tableView:(id)arg1 viewForFooterInSection:(int)arg2;
 - (BOOL)textView:(id)arg1 shouldInteractWithURL:(id)arg2 inRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg3;
-- (void)unregisterForEnterBackgroundNotification;
 - (void)willMoveToSuperview:(id)arg1;
 
 @end

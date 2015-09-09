@@ -7,6 +7,8 @@
     unsigned int _objectAddress;
 }
 
+@property (nonatomic, readonly) id object;
+
 + (id)weakReferenceWithObject:(id)arg1;
 
 - (void)dealloc;

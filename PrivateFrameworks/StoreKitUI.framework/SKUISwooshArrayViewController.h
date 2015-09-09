@@ -2,10 +2,9 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class <SKUIProductPageChildViewControllerDelegate>, NSArray, NSMutableArray, NSOperationQueue, SKUIClientContext, SKUIColorScheme, SKUIMetricsController, SKUIProductPageHeaderViewController, SKUIResourceLoader, SSVPlatformRequestOperation, UIScrollView;
-
-@interface SKUISwooshArrayViewController : UIViewController <SKUIMetricsViewController, SKUIResourceLoaderDelegate, SKUISwooshViewControllerDelegate, UIScrollViewDelegate, SKUIProductPageChildViewController> {
+@interface SKUISwooshArrayViewController : UIViewController <SKUIMetricsViewController, SKUIProductPageChildViewController, SKUIResourceLoaderDelegate, SKUISwooshViewControllerDelegate, UIScrollViewDelegate> {
     SKUIResourceLoader *_artworkLoader;
+    BOOL _askPermission;
     SKUIClientContext *_clientContext;
     SKUIColorScheme *_colorScheme;
     <SKUIProductPageChildViewControllerDelegate> *_delegate;
@@ -19,14 +18,19 @@
     NSMutableArray *_viewControllers;
 }
 
-@property(retain) SKUIClientContext * clientContext;
-@property(retain) SKUIColorScheme * colorScheme;
-@property <SKUIProductPageChildViewControllerDelegate> * delegate;
-@property(retain) SKUIProductPageHeaderViewController * headerViewController;
-@property(retain) SKUIMetricsController * metricsController;
-@property(retain) NSOperationQueue * operationQueue;
-@property(readonly) UIScrollView * scrollView;
-@property(copy) NSArray * swooshComponents;
+@property (nonatomic) BOOL askPermission;
+@property (nonatomic, retain) SKUIClientContext *clientContext;
+@property (nonatomic, retain) SKUIColorScheme *colorScheme;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SKUIProductPageChildViewControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) SKUIProductPageHeaderViewController *headerViewController;
+@property (nonatomic, retain) SKUIMetricsController *metricsController;
+@property (nonatomic, retain) NSOperationQueue *operationQueue;
+@property (nonatomic, readonly) UIScrollView *scrollView;
+@property (readonly) Class superclass;
+@property (nonatomic, copy) NSArray *swooshComponents;
 
 - (void).cxx_destruct;
 - (void)_addHeaderView;
@@ -40,6 +44,7 @@
 - (id)_scrollView;
 - (id)activeMetricsController;
 - (void)artworkLoaderDidIdle:(id)arg1;
+- (BOOL)askPermission;
 - (id)clientContext;
 - (id)colorScheme;
 - (void)dealloc;
@@ -53,6 +58,7 @@
 - (id)operationQueue;
 - (id)scrollView;
 - (void)scrollViewDidScroll:(id)arg1;
+- (void)setAskPermission:(BOOL)arg1;
 - (void)setClientContext:(id)arg1;
 - (void)setColorScheme:(id)arg1;
 - (void)setDelegate:(id)arg1;

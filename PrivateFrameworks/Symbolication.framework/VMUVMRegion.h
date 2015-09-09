@@ -2,12 +2,7 @@
    Image: /System/Library/PrivateFrameworks/Symbolication.framework/Symbolication
  */
 
-@class NSString;
-
 @interface VMUVMRegion : NSObject {
-    struct _VMURange { 
-        unsigned long long location; 
-        unsigned long long length; 
     unsigned char external_pager;
     BOOL is_submap;
     unsigned int mallocBlockCount;
@@ -25,6 +20,9 @@
     NSString *path;
     unsigned int prot;
     int purgeable;
+    struct _VMURange { 
+        unsigned long long location; 
+        unsigned long long length; 
     } range;
     BOOL recalculate_pages_resident;
     unsigned int ref_count;
@@ -35,8 +33,10 @@
     unsigned int virtual_pages;
 }
 
++ (id)columnHeadersWithOptions:(unsigned int)arg1 maximumLength:(unsigned int)arg2;
+
 - (void)addInfoFromRegion:(id)arg1;
-- (id)breakAtLength:(unsigned long)arg1;
+- (id)breakAtLength:(unsigned long long)arg1;
 - (void)dealloc;
 - (id)description;
 - (id)descriptionWithOptions:(unsigned int)arg1 maximumLength:(unsigned int)arg2;

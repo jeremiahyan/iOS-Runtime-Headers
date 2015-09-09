@@ -2,13 +2,6 @@
    Image: /System/Library/PrivateFrameworks/ScreenReaderBrailleDriver.framework/ScreenReaderBrailleDriver
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class NSString;
-
 @interface SCRDUSBDevice : NSObject {
     struct IOUSBDeviceStruct300 {} **_device;
     struct IOUSBInterfaceStruct220 {} **_interface;
@@ -19,7 +12,7 @@
     NSString *_privateRunLoopMode;
 }
 
-- (unsigned long)_transferData:(void*)arg1 withSize:(unsigned long)arg2 toPipe:(unsigned char)arg3 withTimeout:(double)arg4 withFunction:(int (*)())arg5;
+- (unsigned long)_transferData:(void*)arg1 withSize:(unsigned long)arg2 toPipe:(unsigned char)arg3 withTimeout:(double)arg4 withFunction:(int (*)arg5;
 - (void)abortPipe:(unsigned char)arg1;
 - (BOOL)clearPipe:(unsigned char)arg1 bothEnds:(BOOL)arg2;
 - (BOOL)close;
@@ -32,8 +25,8 @@
 - (BOOL)open;
 - (BOOL)openWithSeize:(BOOL)arg1;
 - (long)product;
-- (BOOL)readData:(void*)arg1 withSize:(unsigned int*)arg2 fromPipe:(unsigned char)arg3;
 - (unsigned long)readData:(void*)arg1 withSize:(unsigned long)arg2 fromBulkPipe:(unsigned char)arg3 withNoDataTimeout:(unsigned long)arg4 andCompletionTimeOut:(unsigned long)arg5;
+- (BOOL)readData:(void*)arg1 withSize:(unsigned int*)arg2 fromPipe:(unsigned char)arg3;
 - (unsigned long)readData:(void*)arg1 withSize:(unsigned long)arg2 fromPipe:(unsigned char)arg3 withTimeout:(double)arg4;
 - (void)registerForDisconnectNotifications:(BOOL)arg1;
 - (BOOL)reset;

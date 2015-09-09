@@ -2,16 +2,13 @@
    Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
  */
 
-@class MPMediaPlaylist;
+@interface SUScriptMediaPlaylist : SUScriptMediaItemCollection
 
-@interface SUScriptMediaPlaylist : SUScriptMediaItemCollection {
-}
-
-@property(readonly) MPMediaPlaylist * nativePlaylist;
+@property (nonatomic, readonly) MPMediaPlaylist *nativePlaylist;
 
 + (void)initialize;
-+ (int)nativePlaylistAttributesForScriptPlaylistAttributes:(id)arg1;
-+ (id)scriptPlaylistAttributesForNativePlaylistAttributes:(int)arg1;
++ (unsigned int)nativePlaylistAttributesForScriptPlaylistAttributes:(id)arg1;
++ (id)scriptPlaylistAttributesForNativePlaylistAttributes:(unsigned int)arg1;
 + (id)webScriptNameForSelector:(SEL)arg1;
 
 - (id)_className;

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@class <KeychainSyncPhoneSettingsFragmentDelegate>, KeychainSyncCountryInfo, NSArray, NSString, PSEditableTableCell, PSListController, PSPhoneNumberSpecifier, PSSpecifier;
-
 @interface KeychainSyncPhoneSettingsFragment : NSObject {
     KeychainSyncCountryInfo *_countryInfo;
     PSSpecifier *_countrySpecifier;
@@ -15,12 +13,12 @@
     NSString *_title;
 }
 
-@property(retain) KeychainSyncCountryInfo * countryInfo;
-@property <KeychainSyncPhoneSettingsFragmentDelegate> * delegate;
-@property(retain) NSString * phoneNumber;
-@property(readonly) PSEditableTableCell * phoneNumberCell;
-@property(readonly) NSArray * specifiers;
-@property(retain) NSString * title;
+@property (nonatomic, retain) KeychainSyncCountryInfo *countryInfo;
+@property (nonatomic) <KeychainSyncPhoneSettingsFragmentDelegate> *delegate;
+@property (nonatomic, retain) NSString *phoneNumber;
+@property (nonatomic, readonly, retain) PSEditableTableCell *phoneNumberCell;
+@property (nonatomic, readonly, retain) NSArray *specifiers;
+@property (nonatomic, retain) NSString *title;
 
 - (id)countryInfo;
 - (void)dealloc;
@@ -35,8 +33,8 @@
 - (void)setCountryInfo:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setDialingCountryInfo:(id)arg1 forSpecifier:(id)arg2;
-- (void)setPhoneNumber:(id)arg1 forSpecifier:(id)arg2;
 - (void)setPhoneNumber:(id)arg1;
+- (void)setPhoneNumber:(id)arg1 forSpecifier:(id)arg2;
 - (void)setTitle:(id)arg1;
 - (id)specifiers;
 - (void)textFieldChanged:(id)arg1;

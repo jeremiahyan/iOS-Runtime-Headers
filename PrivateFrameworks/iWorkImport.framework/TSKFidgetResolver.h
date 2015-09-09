@@ -9,8 +9,8 @@
     id *_values;
 }
 
-@property double fidgetThreshold;
-@property(readonly) id nonFidgetValue;
+@property (nonatomic) double fidgetThreshold;
+@property (nonatomic, readonly) id nonFidgetValue;
 
 - (void)dealloc;
 - (double)fidgetThreshold;
@@ -18,8 +18,8 @@
 - (id)nonFidgetValue;
 - (void)p_advanceHead;
 - (unsigned int)p_previousValidIndexFromIndex:(unsigned int)arg1;
-- (void)pushValue:(id)arg1 withTime:(double)arg2;
 - (void)pushValue:(id)arg1;
+- (void)pushValue:(id)arg1 withTime:(double)arg2;
 - (void)setFidgetThreshold:(double)arg1;
 
 @end

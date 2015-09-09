@@ -2,14 +2,17 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class CHDDataLabel, CHDMarker, OADGraphicProperties;
-
 @interface CHDDataValueProperties : NSObject <EDKeyedObject> {
     CHDDataLabel *mDataLabel;
     unsigned int mDataValueIndex;
     OADGraphicProperties *mGraphicProperties;
     CHDMarker *mMarker;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)dataValueProperties;
 

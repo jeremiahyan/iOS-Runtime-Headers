@@ -2,9 +2,7 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class <ABPersonImageDataDelegate>, CAKeyframeAnimation, NSArray, NSDictionary, UIImagePickerController, UIPopoverController;
-
-@interface ABImagePickerController : ABContentController <UIModalViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, UIAlertViewDelegate, UIPopoverControllerDelegate, ABMultipleSourceImagePickerDelegate> {
+@interface ABImagePickerController : ABContentController <ABMultipleSourceImagePickerDelegate, UIActionSheetDelegate, UIAlertViewDelegate, UIImagePickerControllerDelegate, UIModalViewDelegate, UINavigationControllerDelegate, UIPopoverControllerDelegate> {
     BOOL _allowsEditingExistingPhoto;
     NSDictionary *_animationContextDictionary;
     BOOL _applyImageChangesToAllPeople;
@@ -21,7 +19,11 @@
     NSArray *_writablePeople;
 }
 
-@property <ABPersonImageDataDelegate> * imageDataDelegate;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) <ABPersonImageDataDelegate> *imageDataDelegate;
+@property (readonly) Class superclass;
 
 - (id)_createImagePicker;
 - (id)_createImagePickerForEditingImageData:(id)arg1 shouldSaveFullSize:(BOOL)arg2 cropRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg3;
@@ -46,15 +48,15 @@
 - (void)choosePhoto;
 - (id)contentView;
 - (void)dealloc;
-- (void)delayedPerform:(SEL)arg1 withObject:(id)arg2;
 - (void)delayedPerform:(SEL)arg1;
+- (void)delayedPerform:(SEL)arg1 withObject:(id)arg2;
 - (void)deletePhoto:(BOOL)arg1;
 - (void)deletePhotoNoConfirm;
 - (void)doEditPhoto;
 - (void)editPhoto;
 - (BOOL)hasMultipleActions;
 - (id)imageDataDelegate;
-- (void)imagePickerController:(id)arg1 didFinishPickingImage:(id)arg2 editingInfo:(id)arg3;
+- (void)imagePickerController:(id)arg1 didFinishPickingMediaWithInfo:(id)arg2;
 - (void)imagePickerControllerDidCancel:(id)arg1;
 - (id)initWithContentControllerDelegate:(id)arg1 addressBook:(void*)arg2;
 - (void)multipleSourcePicker:(id)arg1 didSelectPerson:(id)arg2;

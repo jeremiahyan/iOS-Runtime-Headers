@@ -2,30 +2,29 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class AVCaptureMovieFileOutputInternal, NSArray;
-
 @interface AVCaptureMovieFileOutput : AVCaptureFileOutput {
     AVCaptureMovieFileOutputInternal *_internal;
 }
 
-@property(copy) NSArray * metadata;
-@property struct { long long x1; int x2; unsigned int x3; long long x4; } movieFragmentInterval;
+@property (nonatomic, copy) NSArray *metadata;
+@property (nonatomic) struct { long long x1; int x2; unsigned int x3; long long x4; } movieFragmentInterval;
 
++ (id)alloc;
 + (BOOL)consolidateMovieFragmentsInFile:(id)arg1 error:(id*)arg2;
 + (void)initialize;
++ (long long)nextMovieFileSettingsID;
 + (id)recorderCommonMetadataForAVMetadataItemArray:(id)arg1;
 + (BOOL)updateMovieMetadataInFile:(id)arg1 withMetadata:(id)arg2 error:(id*)arg3;
 
-- (void)_applyOverridesToCaptureOptions:(id)arg1;
 - (id)_avErrorUserInfoDictionaryForError:(long)arg1 wrapper:(id)arg2;
-- (void)_handleStartRecordingError:(long)arg1 info:(id)arg2;
-- (long)_startRecording:(id)arg1;
+- (void)_removeRecordingDelegateWrapper:(id)arg1;
+- (void)_startRecording:(id)arg1;
 - (long)_stopRecording;
+- (void)attachSafelyToFigCaptureSession:(struct OpaqueFigCaptureSession { }*)arg1;
 - (id)connectionMediaTypes;
 - (void)dealloc;
-- (void)didStopForSession:(id)arg1 error:(id)arg2;
-- (BOOL)getRecorderBoolForKey:(id)arg1 withDefault:(BOOL)arg2;
-- (void)handleEnabledChangedForConnection:(id)arg1;
+- (void)detachSafelyFromFigCaptureSession:(struct OpaqueFigCaptureSession { }*)arg1;
+- (void)handleDidStopRecordingNotificationForWrapper:(id)arg1 withPayload:(id)arg2 demoof:(BOOL)arg3 addMetadata:(BOOL)arg4;
 - (void)handleNotification:(id)arg1 payload:(id)arg2;
 - (id)init;
 - (BOOL)isRecording;

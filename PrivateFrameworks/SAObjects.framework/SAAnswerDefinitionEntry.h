@@ -2,14 +2,15 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSArray, NSString;
+@interface SAAnswerDefinitionEntry : AceObject <SAAceSerializable>
 
-@interface SAAnswerDefinitionEntry : AceObject <SAAceSerializable> {
-}
-
-@property(copy) NSString * definition;
-@property(copy) NSArray * examples;
-@property(copy) NSArray * variations;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic, copy) NSString *definition;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, copy) NSArray *examples;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+@property (nonatomic, copy) NSArray *variations;
 
 + (id)definitionEntry;
 + (id)definitionEntryWithDictionary:(id)arg1 context:(id)arg2;

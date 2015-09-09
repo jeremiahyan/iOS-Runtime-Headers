@@ -2,16 +2,7 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class <UIKeyboardCandidateBarDelegate>, <UIKeyboardCandidateListDelegate>, NSArray, NSIndexPath, NSString, TIKeyboardCandidateResultSet, UIImageView, UIKBCandidateCollectionView, UIKBThemedView;
-
-@interface UIKeyboardCandidateBar : UIView <UIKeyboardCandidateList, UIKeyboardCandidateListDelegate, UIKeyboardCandidateBarLayoutDelegate, UICollectionViewDataSource> {
-    struct CGPoint { 
-        float x; 
-        float y; 
+@interface UIKeyboardCandidateBar : UIView <UICollectionViewDataSource, UIKeyboardCandidateBarLayoutDelegate, UIKeyboardCandidateList, UIKeyboardCandidateListDelegate> {
     BOOL _canExtend;
     <UIKeyboardCandidateListDelegate> *_candidateListDelegate;
     UIImageView *_candidateMaskView;
@@ -21,6 +12,9 @@
     <UIKeyboardCandidateBarDelegate> *_delegate;
     BOOL _didSkipLayout;
     NSIndexPath *_dragStartNextPageIndexPath;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _dragStartOffset;
     NSIndexPath *_dragStartPreviousPageIndexPath;
     NSArray *_filteredCandidates;
@@ -28,30 +22,34 @@
     NSString *_inlineText;
     UIKBThemedView *_secondaryCandidatesViewEdgeGradient;
     BOOL _shouldSkipLayoutUntilScrollViewAnimationEnds;
-    id _skippedSetCandidatesBlock;
+    id /* block */ _skippedSetCandidatesBlock;
     float _upArrowWidth;
 }
 
-@property BOOL canExtend;
-@property <UIKeyboardCandidateListDelegate> * candidateListDelegate;
-@property(retain) UIImageView * candidateMaskView;
-@property(retain) TIKeyboardCandidateResultSet * candidateResultSet;
-@property(retain) NSArray * candidateViews;
-@property(readonly) TIKeyboardCandidateResultSet * candidates;
-@property(readonly) UIKBCandidateCollectionView * currentCandidateView;
-@property unsigned int currentCandidateViewIndex;
-@property <UIKeyboardCandidateBarDelegate> * delegate;
-@property BOOL didSkipLayout;
-@property(copy) NSIndexPath * dragStartNextPageIndexPath;
-@property struct CGPoint { float x1; float x2; } dragStartOffset;
-@property(copy) NSIndexPath * dragStartPreviousPageIndexPath;
-@property(retain) NSArray * filteredCandidates;
-@property BOOL forceReloadInitiallyHiddenCandidates;
-@property(copy) NSString * inlineText;
-@property(retain) UIKBThemedView * secondaryCandidatesViewEdgeGradient;
-@property BOOL shouldSkipLayoutUntilScrollViewAnimationEnds;
-@property(copy) id skippedSetCandidatesBlock;
-@property float upArrowWidth;
+@property (nonatomic) BOOL canExtend;
+@property (nonatomic) <UIKeyboardCandidateListDelegate> *candidateListDelegate;
+@property (nonatomic, retain) UIImageView *candidateMaskView;
+@property (nonatomic, retain) TIKeyboardCandidateResultSet *candidateResultSet;
+@property (nonatomic, retain) NSArray *candidateViews;
+@property (nonatomic, readonly) TIKeyboardCandidateResultSet *candidates;
+@property (nonatomic, readonly) UIKBCandidateCollectionView *currentCandidateView;
+@property (nonatomic) unsigned int currentCandidateViewIndex;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <UIKeyboardCandidateBarDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL didSkipLayout;
+@property (nonatomic, copy) NSIndexPath *dragStartNextPageIndexPath;
+@property (nonatomic) struct CGPoint { float x1; float x2; } dragStartOffset;
+@property (nonatomic, copy) NSIndexPath *dragStartPreviousPageIndexPath;
+@property (nonatomic, retain) NSArray *filteredCandidates;
+@property (nonatomic) BOOL forceReloadInitiallyHiddenCandidates;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *inlineText;
+@property (nonatomic, retain) UIKBThemedView *secondaryCandidatesViewEdgeGradient;
+@property (nonatomic) BOOL shouldSkipLayoutUntilScrollViewAnimationEnds;
+@property (nonatomic, copy) id /* block */ skippedSetCandidatesBlock;
+@property (readonly) Class superclass;
+@property (nonatomic) float upArrowWidth;
 
 + (float)defaultCandidateWidth;
 + (float)defaultPagingDistanceThreshold;
@@ -59,8 +57,9 @@
 + (float)height;
 + (float)heightForInterfaceOrientation:(int)arg1;
 + (float)heightForLastRow;
-+ (float)heightForRowAtIndex:(unsigned int)arg1 interfaceOrientation:(int)arg2;
 + (float)heightForRowAtIndex:(unsigned int)arg1;
++ (float)heightForRowAtIndex:(unsigned int)arg1 interfaceOrientation:(int)arg2;
++ (float)interRowOverlap;
 + (unsigned int)numberOfRows;
 + (unsigned int)numberOfRowsForInterfaceOrientation:(int)arg1;
 + (void)setScreenTraits:(id)arg1;
@@ -86,11 +85,12 @@
 - (void)_showCandidateAtIndex:(unsigned int)arg1 inSection:(int)arg2 scrollCellToVisible:(BOOL)arg3 animated:(BOOL)arg4;
 - (void)_showPageAtIndexPath:(id)arg1;
 - (BOOL)_showingInitiallyHiddenCandidates;
-- (void)_stepSelectedCandidateInDirection:(BOOL)arg1 candidateView:(id)arg2 section:(int)arg3;
 - (void)_stepSelectedCandidateInDirection:(BOOL)arg1;
+- (void)_stepSelectedCandidateInDirection:(BOOL)arg1 candidateView:(id)arg2 section:(int)arg3;
 - (void)_updateCanExtendState;
 - (void)_updateCandidateViews;
 - (float)_widthOfItemAtIndex:(unsigned int)arg1 inSection:(int)arg2;
+- (void)adjustSelectionToNearestVisibleCandidate;
 - (BOOL)canExtend;
 - (void)candidateAcceptedAtIndex:(unsigned int)arg1;
 - (void)candidateBarLayoutDidFinishPreparingLayout;
@@ -131,6 +131,8 @@
 - (id)keyboardBehaviors;
 - (int)numberOfSectionsInCollectionView:(id)arg1;
 - (void)revealHiddenCandidates;
+- (void)scrollViewDidEndDecelerating:(id)arg1;
+- (void)scrollViewDidEndDragging:(id)arg1 willDecelerate:(BOOL)arg2;
 - (void)scrollViewDidEndScrollingAnimation:(id)arg1;
 - (void)scrollViewDidScroll:(id)arg1;
 - (void)scrollViewWillBeginDragging:(id)arg1;
@@ -155,11 +157,11 @@
 - (void)setInlineText:(id)arg1;
 - (void)setSecondaryCandidatesViewEdgeGradient:(id)arg1;
 - (void)setShouldSkipLayoutUntilScrollViewAnimationEnds:(BOOL)arg1;
-- (void)setSkippedSetCandidatesBlock:(id)arg1;
+- (void)setSkippedSetCandidatesBlock:(id /* block */)arg1;
 - (void)setUIKeyboardCandidateListDelegate:(id)arg1;
 - (void)setUpArrowWidth:(float)arg1;
 - (BOOL)shouldSkipLayoutUntilScrollViewAnimationEnds;
-- (void)showCandidate:(id)arg1;
+- (BOOL)showCandidate:(id)arg1;
 - (void)showCandidateAtIndex:(unsigned int)arg1;
 - (void)showNextCandidate;
 - (void)showNextPage;
@@ -168,9 +170,10 @@
 - (void)showPreviousPage;
 - (void)showPreviousRow;
 - (struct CGSize { float x1; float x2; })sizeOfDummyItemForCollectionView:(id)arg1 layout:(id)arg2;
-- (id)skippedSetCandidatesBlock;
+- (id /* block */)skippedSetCandidatesBlock;
 - (id)statisticsIdentifier;
 - (float)upArrowWidth;
 - (unsigned int)viewOffsetForCandidateAtIndex:(unsigned int)arg1;
+- (id)visibleCandidates;
 
 @end

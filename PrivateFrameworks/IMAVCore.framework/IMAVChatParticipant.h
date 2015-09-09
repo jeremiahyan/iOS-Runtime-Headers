@@ -2,39 +2,7 @@
    Image: /System/Library/PrivateFrameworks/IMAVCore.framework/IMAVCore
  */
 
-@class IMAVChat, IMHandle, NSArray, NSDictionary, NSMutableArray, NSString, NSTimer;
-
 @interface IMAVChatParticipant : NSObject {
-    struct CGSize { 
-        float width; 
-        float height; 
-    struct CGSize { 
-        float width; 
-        float height; 
-    struct CGSize { 
-        float width; 
-        float height; 
-    struct CGSize { 
-        float width; 
-        float height; 
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
     NSArray *_additionalPeers;
     BOOL _audioMuted;
     IMAVChat *_avChat;
@@ -46,17 +14,49 @@
     NSTimer *_connectTimeoutTimer;
     BOOL _hasReinitiateCapability;
     IMHandle *_imHandle;
+    NSData *_inFrequencyLevel;
     BOOL _inviteDelivered;
     IMHandle *_inviter;
     BOOL _isInitiator;
     BOOL _mediaStalled;
+    NSData *_outFrequencyLevel;
     NSMutableArray *_participantsCallInfo;
     NSDictionary *_properties;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } _remoteLandscapeContentRect;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _remoteLandscapeOrientation;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _remotePIPLandscapeOrientation;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _remotePIPPortraitOrientation;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } _remotePortraitContentRect;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _remotePortraitOrientation;
     unsigned int _screenOrientation;
     BOOL _sendingAudio;
@@ -65,51 +65,51 @@
     NSString *_vcPartyID;
     BOOL _videoDegraded;
     BOOL _videoPaused;
+    float _volumeMeter;
 }
 
-@property(readonly) int _activeCallID;
-@property(setter=_setConferenceID:,retain) NSString * _conferenceID;
-@property(setter=_setConnectTimeoutTimer:,retain) NSTimer * _connectTimeoutTimer;
-@property(setter=_setInviteDelivered:) BOOL _inviteDelivered;
-@property(retain) NSMutableArray * _participantsCallInfo;
-@property(setter=_setRemoteLandscapeContentRect:) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } _remoteLandscapeContentRect;
-@property(setter=_setRemoteLandscapeOrientation:) struct CGSize { float x1; float x2; } _remoteLandscapeOrientation;
-@property(setter=_setRemotePIPLandscapeOrientation:) struct CGSize { float x1; float x2; } _remotePIPLandscapeOrientation;
-@property(setter=_setRemotePIPPortraitOrientation:) struct CGSize { float x1; float x2; } _remotePIPPortraitOrientation;
-@property(setter=_setRemotePortraitContentRect:) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } _remotePortraitContentRect;
-@property(setter=_setRemotePortraitOrientation:) struct CGSize { float x1; float x2; } _remotePortraitOrientation;
-@property(setter=_setScreenOrientation:) unsigned int _screenOrientation;
-@property(retain) NSArray * additionalPeers;
-@property IMAVChat * avChat;
-@property(setter=_setCameraOrientation:) unsigned int cameraOrientation;
-@property(setter=_setCameraType:) unsigned int cameraType;
-@property int error;
-@property(readonly) BOOL hasConnectingSessions;
-@property BOOL hasReinitiateCapability;
-@property(readonly) BOOL hasUnfinishedSessions;
-@property(readonly) IMHandle * imHandle;
-@property(readonly) IMHandle * invitedBy;
-@property(setter=setAudioMuted:) BOOL isAudioMuted;
-@property(setter=setAudioMuted:) BOOL isAudioMuted;
-@property(readonly) BOOL isInitiator;
-@property(readonly) BOOL isLocalParticipant;
-@property(readonly) BOOL isMediaStalled;
-@property(setter=setMediaStalled:) BOOL isMediaStalled;
-@property(readonly) BOOL isSendingAudio;
-@property(readonly) BOOL isSendingAudio;
-@property(readonly) BOOL isSendingVideo;
-@property(readonly) BOOL isSendingVideo;
-@property(readonly) BOOL isVideoDegraded;
-@property(setter=setVideoDegraded:) BOOL isVideoDegraded;
-@property(setter=setVideoPaused:) BOOL isVideoPaused;
-@property(setter=setVideoPaused:) BOOL isVideoPaused;
-@property(readonly) NSString * name;
-@property(retain) NSDictionary * properties;
-@property(readonly) unsigned int reasonChatEnded;
-@property unsigned int state;
-@property(setter=setVCPartyID:,retain) NSString * vcPartyID;
-@property void* videoBackLayer;
-@property void* videoLayer;
+@property (nonatomic, readonly) int _activeCallID;
+@property (setter=_setConferenceID:, nonatomic, retain) NSString *_conferenceID;
+@property (setter=_setConnectTimeoutTimer:, retain) NSTimer *_connectTimeoutTimer;
+@property (setter=_setInviteDelivered:) BOOL _inviteDelivered;
+@property (nonatomic, retain) NSMutableArray *_participantsCallInfo;
+@property (setter=_setRemoteLandscapeContentRect:, nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } _remoteLandscapeContentRect;
+@property (setter=_setRemoteLandscapeOrientation:, nonatomic) struct CGSize { float x1; float x2; } _remoteLandscapeOrientation;
+@property (setter=_setRemotePIPLandscapeOrientation:, nonatomic) struct CGSize { float x1; float x2; } _remotePIPLandscapeOrientation;
+@property (setter=_setRemotePIPPortraitOrientation:, nonatomic) struct CGSize { float x1; float x2; } _remotePIPPortraitOrientation;
+@property (setter=_setRemotePortraitContentRect:, nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } _remotePortraitContentRect;
+@property (setter=_setRemotePortraitOrientation:, nonatomic) struct CGSize { float x1; float x2; } _remotePortraitOrientation;
+@property (setter=_setScreenOrientation:, nonatomic) unsigned int _screenOrientation;
+@property (nonatomic, retain) NSArray *additionalPeers;
+@property (nonatomic) IMAVChat *avChat;
+@property (setter=_setCameraOrientation:) unsigned int cameraOrientation;
+@property (setter=_setCameraType:) unsigned int cameraType;
+@property (nonatomic) int error;
+@property (nonatomic, readonly) BOOL hasConnectingSessions;
+@property (nonatomic) BOOL hasReinitiateCapability;
+@property (nonatomic, readonly) BOOL hasUnfinishedSessions;
+@property (nonatomic, readonly, retain) IMHandle *imHandle;
+@property (nonatomic, retain) NSData *inFrequencyLevel;
+@property (nonatomic, readonly, retain) IMHandle *invitedBy;
+@property (setter=setAudioMuted:, nonatomic) BOOL isAudioMuted;
+@property (nonatomic, readonly) BOOL isInitiator;
+@property (nonatomic, readonly) BOOL isLocalParticipant;
+@property (nonatomic, readonly) BOOL isMediaStalled;
+@property (setter=setMediaStalled:) BOOL isMediaStalled;
+@property (nonatomic, readonly) BOOL isSendingAudio;
+@property (nonatomic, readonly) BOOL isSendingVideo;
+@property (nonatomic, readonly) BOOL isVideoDegraded;
+@property (setter=setVideoDegraded:) BOOL isVideoDegraded;
+@property (setter=setVideoPaused:, nonatomic) BOOL isVideoPaused;
+@property (nonatomic, readonly, retain) NSString *name;
+@property (nonatomic, retain) NSData *outFrequencyLevel;
+@property (nonatomic, retain) NSDictionary *properties;
+@property (nonatomic, readonly) unsigned int reasonChatEnded;
+@property (nonatomic) unsigned int state;
+@property (setter=setVCPartyID:, retain) NSString *vcPartyID;
+@property (nonatomic) void*videoBackLayer;
+@property (nonatomic) void*videoLayer;
+@property (nonatomic) float volumeMeter;
 
 - (int)_activeCallID;
 - (id)_callInfoForCallID:(int)arg1;
@@ -175,6 +175,7 @@
 - (BOOL)hasReinitiateCapability;
 - (BOOL)hasUnfinishedSessions;
 - (id)imHandle;
+- (id)inFrequencyLevel;
 - (id)init;
 - (id)initAs:(id)arg1 invitedBy:(id)arg2 toChat:(id)arg3 account:(id)arg4;
 - (id)invitedBy;
@@ -189,9 +190,10 @@
 - (struct CGSize { float x1; float x2; })localAspectRatioForCameraOrientation:(unsigned int)arg1 cameraType:(unsigned int)arg2;
 - (BOOL)matchesAVConferenceCallID:(int)arg1;
 - (id)name;
+- (id)outFrequencyLevel;
 - (id)properties;
 - (unsigned int)reasonChatEnded;
-- (void)receivedNoPacketsForCallID:(int)arg1 time:(double)arg2;
+- (void)reinitializeCallForCallID:(unsigned long)arg1;
 - (void)requestIconIfNecessary;
 - (void)resetWaitingToConnectTimer;
 - (void)sendAVMessage:(unsigned int)arg1 userInfo:(id)arg2;
@@ -201,7 +203,9 @@
 - (void)setAdditionalPeers:(id)arg1;
 - (void)setAudioMuted:(BOOL)arg1;
 - (void)setHasReinitiateCapability:(BOOL)arg1;
+- (void)setInFrequencyLevel:(id)arg1;
 - (void)setMediaStalled:(BOOL)arg1;
+- (void)setOutFrequencyLevel:(id)arg1;
 - (void)setProperties:(id)arg1;
 - (void)setState:(unsigned int)arg1;
 - (void)setStateToEndedWithReason:(unsigned int)arg1 andError:(int)arg2;
@@ -210,6 +214,7 @@
 - (void)setVideoDegraded:(BOOL)arg1;
 - (void)setVideoLayer:(void*)arg1;
 - (void)setVideoPaused:(BOOL)arg1;
+- (void)setVolumeMeter:(float)arg1;
 - (void)setWaitingToConnect:(BOOL)arg1;
 - (void)set_participantsCallInfo:(id)arg1;
 - (unsigned int)state;
@@ -217,5 +222,6 @@
 - (id)vcPartyID;
 - (void*)videoBackLayer;
 - (void*)videoLayer;
+- (float)volumeMeter;
 
 @end

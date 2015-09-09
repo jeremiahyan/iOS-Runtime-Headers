@@ -2,17 +2,20 @@
    Image: /System/Library/PrivateFrameworks/AssistantServices.framework/AssistantServices
  */
 
-@class NSXPCConnection;
-
 @interface AFManagedStorageConnection : NSObject <AFManagedStore> {
     NSXPCConnection *_connection;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_clearConnection;
 - (id)_connection;
 - (id)_managedStoreService;
-- (id)_managedStoreServiceWithErrorHandler:(id)arg1;
+- (id)_managedStoreServiceWithErrorHandler:(id /* block */)arg1;
 - (void)dealloc;
 - (id)domainObjectForKey:(id)arg1;
 - (id)init;

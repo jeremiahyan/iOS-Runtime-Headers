@@ -2,12 +2,11 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class SAAceView;
+@interface SAUIClearScreen : SABaseClientBoundCommand
 
-@interface SAUIClearScreen : SABaseClientBoundCommand {
-}
+@property (nonatomic, retain) SAAceView *initialView;
 
-@property(retain) SAAceView * initialView;
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
 
 + (id)clearScreen;
 + (id)clearScreenWithDictionary:(id)arg1 context:(id)arg2;
@@ -17,5 +16,9 @@
 - (id)initialView;
 - (BOOL)requiresResponse;
 - (void)setInitialView:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/AssistantUI.framework/AssistantUI
+
+- (BOOL)_afui_isUsefulUserResultCommand;
 
 @end

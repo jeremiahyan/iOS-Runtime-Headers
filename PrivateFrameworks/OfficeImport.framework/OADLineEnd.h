@@ -3,17 +3,21 @@
  */
 
 @interface OADLineEnd : OADProperties <NSCopying> {
-    unsigned int mIsTypeOverridden : 1;
-    unsigned int mIsWidthOverridden : 1;
-    unsigned int mIsLengthOverridden : 1;
+    unsigned int mIsLengthOverridden;
+    unsigned int mIsTypeOverridden;
+    unsigned int mIsWidthOverridden;
     unsigned char mLength;
     unsigned char mType;
     unsigned char mWidth;
 }
 
 + (id)defaultProperties;
++ (id)stringForLineEndLength:(int)arg1;
++ (id)stringForLineEndType:(int)arg1;
++ (id)stringForLineEndWidth:(int)arg1;
 
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (id)description;
 - (unsigned int)hash;
 - (id)initWithDefaults;
 - (id)initWithType:(int)arg1 width:(int)arg2 length:(int)arg3;

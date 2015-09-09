@@ -2,39 +2,31 @@
    Image: /System/Library/PrivateFrameworks/Stocks.framework/Stocks
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class <NewsUpdaterDelegate>, NewsParserData, Stock, StockNewsItemCollection;
-
-@interface NewsUpdater : XMLHTTPRequest {
+@interface NewsUpdater : YQLRequest {
     <NewsUpdaterDelegate> *_delegate;
     BOOL _firstLoad;
     StockNewsItemCollection *_lastNewsItemCollection;
     double _lastResponseTimestamp;
-    NewsParserData *_newsParserData;
     Stock *_stock;
-    id _updateCompletionHandler;
+    id /* block */ _updateCompletionHandler;
 }
 
-@property <NewsUpdaterDelegate> * delegate;
+@property (nonatomic) <NewsUpdaterDelegate> *delegate;
 
 + (id)_newsItemCollectionCache;
 + (id)sharedNewsUpdater;
 
 - (void).cxx_destruct;
 - (id)aggregateDictionaryDomain;
-- (void)cancel;
 - (void)clearNewsCacheOnDisk;
 - (id)delegate;
 - (void)didParseData;
 - (void)failWithError:(id)arg1;
-- (void)fetchNewsForStock:(id)arg1 withCompletion:(id)arg2;
-- (BOOL)fetchNewsForStock:(id)arg1;
+- (void)fetchNewsForStock:(id)arg1;
+- (void)fetchNewsForStock:(id)arg1 withCompletion:(id /* block */)arg2;
 - (id)init;
 - (void)loadNewsCacheFromDiskForSymbol:(id)arg1;
-- (int)parseData:(id)arg1;
+- (void)parseData:(id)arg1;
 - (void)resetLocale;
 - (void)saveLastResponse;
 - (void)setDelegate:(id)arg1;

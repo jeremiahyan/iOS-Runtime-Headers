@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class NSOperationQueue, SKUIClientContext, SKUIIPadSearchController, SKUINetworkErrorViewController, SKUIPopoverObserver, SKUIProductPageOverlayController, SKUIWishlistViewController, UIBarButtonItem;
-
-@interface SKUIViewController : UIViewController <SKUINetworkErrorDelegate, SKUIProductPageOverlayDelegate, SKUIWishlistDelegate, UIPopoverControllerDelegate> {
+@interface SKUIViewController : UIViewController <SKUIClientContextConsuming, SKUINetworkErrorDelegate, SKUIProductPageOverlayDelegate, SKUITabBarItemRootViewController, SKUIWishlistDelegate, UIPopoverControllerDelegate> {
     SKUIClientContext *_clientContext;
     SKUINetworkErrorViewController *_networkErrorViewController;
     NSOperationQueue *_operationQueue;
@@ -16,10 +14,14 @@
     SKUIWishlistViewController *_wishlistViewController;
 }
 
-@property(readonly) SKUIIPadSearchController * IPadSearchController;
-@property(readonly) UIBarButtonItem * _wishlistButtonItem;
-@property(retain) SKUIClientContext * clientContext;
-@property(retain) NSOperationQueue * operationQueue;
+@property (nonatomic, readonly) SKUIIPadSearchController *IPadSearchController;
+@property (nonatomic, readonly) UIBarButtonItem *_wishlistButtonItem;
+@property (nonatomic, retain) SKUIClientContext *clientContext;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) NSOperationQueue *operationQueue;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (id)IPadSearchController;
@@ -31,6 +33,7 @@
 - (void)_wishlistPopoverDidDismiss;
 - (id)clientContext;
 - (void)dealloc;
+- (id)initWithTabBarItem:(id)arg1;
 - (void)networkErrorViewControllerInvalidated:(id)arg1;
 - (id)operationQueue;
 - (void)productPageOverlayDidDismiss:(id)arg1;
@@ -39,6 +42,9 @@
 - (void)setOperationQueue:(id)arg1;
 - (void)showDefaultNavigationItems;
 - (void)showError:(id)arg1;
+- (BOOL)showingError;
+- (void)skui_viewWillAppear:(BOOL)arg1;
+- (unsigned int)supportedInterfaceOrientations;
 - (void)viewWillAppear:(BOOL)arg1;
 - (void)willAnimateRotationToInterfaceOrientation:(int)arg1 duration:(double)arg2;
 - (void)wishlist:(id)arg1 didSelectItem:(id)arg2 atIndexPath:(id)arg3;

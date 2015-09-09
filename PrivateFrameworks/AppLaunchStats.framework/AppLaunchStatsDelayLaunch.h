@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/AppLaunchStats.framework/AppLaunchStats
  */
 
-@class AppLaunchStatsSaveAndRestore, NSMutableDictionary, NSObject<OS_dispatch_queue>;
-
 @interface AppLaunchStatsDelayLaunch : NSObject <DuetLoggerProtocol, DuetSaveAndRestore> {
     NSObject<OS_dispatch_queue> *aplsDelayLaunchQueue;
     NSMutableDictionary *delayLaunchList;
@@ -14,8 +12,8 @@
 - (void).cxx_destruct;
 - (void)delayLaunch:(id)arg1 with:(double)arg2;
 - (id)init;
-- (void)logAll:(struct __aslclient { }*)arg1 withMsg:(struct __aslmsg { }*)arg2 withLevel:(int)arg3;
-- (void)logLight:(struct __aslclient { }*)arg1 withMsg:(struct __aslmsg { }*)arg2 withLevel:(int)arg3;
+- (void)logAll:(struct __asl_object_s { }*)arg1 withMsg:(struct __asl_object_s { }*)arg2 withLevel:(int)arg3;
+- (void)logLight:(struct __asl_object_s { }*)arg1 withMsg:(struct __asl_object_s { }*)arg2 withLevel:(int)arg3;
 - (void)resetDelayLaunch:(id)arg1;
 - (void)restore:(id)arg1;
 - (void)save:(id)arg1;

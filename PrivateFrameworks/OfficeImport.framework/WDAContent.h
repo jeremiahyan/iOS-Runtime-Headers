@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class OADDrawable, WDAAnchor, WDATextBox;
-
 @interface WDAContent : NSObject <OADClient, OADTextClient> {
     WDAAnchor *mAnchor;
     OADDrawable *mDrawable;
@@ -11,7 +9,11 @@
     int mTextType;
 }
 
-@property(readonly) WDAAnchor * anchor;
+@property (nonatomic, readonly) WDAAnchor *anchor;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (Class)classForType:(unsigned short)arg1;
 
@@ -21,6 +23,7 @@
 - (id)createAnchor;
 - (id)createTextBoxWithDocument:(id)arg1 textType:(int)arg2;
 - (void)dealloc;
+- (id)description;
 - (id)drawable;
 - (BOOL)floating;
 - (BOOL)hasBounds;

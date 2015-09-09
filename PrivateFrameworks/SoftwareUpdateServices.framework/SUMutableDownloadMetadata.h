@@ -2,11 +2,11 @@
    Image: /System/Library/PrivateFrameworks/SoftwareUpdateServices.framework/SoftwareUpdateServices
  */
 
-@interface SUMutableDownloadMetadata : SUDownloadMetadata {
-}
+@interface SUMutableDownloadMetadata : SUDownloadMetadata
 
-@property int downloadFeeAgreementStatus;
-@property BOOL enforceWifiOnlyOverride;
+@property (nonatomic) int downloadFeeAgreementStatus;
+@property (nonatomic) BOOL enforceWifiOnlyOverride;
+@property (nonatomic) int termsAndConditionsAgreementStatus;
 
 - (void)applyDownloadPolicy:(id)arg1;
 - (id)initWithMetadata:(id)arg1;

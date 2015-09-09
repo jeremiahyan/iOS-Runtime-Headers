@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSLayoutConstraint, UIView;
-
 @interface UISearchDisplayControllerContainerView : UIView {
     UIView *_behindView;
     UIView *_bottomView;
@@ -13,11 +11,11 @@
     NSLayoutConstraint *_topViewHeightConstraint;
 }
 
-@property(readonly) UIView * behindView;
-@property(readonly) UIView * bottomView;
-@property(readonly) UIView * topView;
-@property(retain) NSLayoutConstraint * topViewAttributeTopConstraint;
-@property(retain) NSLayoutConstraint * topViewHeightConstraint;
+@property (nonatomic, readonly) UIView *behindView;
+@property (nonatomic, readonly) UIView *bottomView;
+@property (nonatomic, readonly) UIView *topView;
+@property (nonatomic, retain) NSLayoutConstraint *topViewAttributeTopConstraint;
+@property (nonatomic, retain) NSLayoutConstraint *topViewHeightConstraint;
 
 - (void)_didMoveFromWindow:(id)arg1 toWindow:(id)arg2;
 - (void)adjustTopAttributeConstantByDelta:(float)arg1;
@@ -36,7 +34,7 @@
 - (id)topViewAttributeTopConstraint;
 - (id)topViewHeightConstraint;
 - (void)updateTopAttributeConstant:(float)arg1;
-- (void)updateTopViewHeight:(float)arg1 animateUpdate:(BOOL)arg2;
 - (void)updateTopViewHeight:(float)arg1;
+- (void)updateTopViewHeight:(float)arg1 animateUpdate:(BOOL)arg2;
 
 @end

@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@class NSExpression, NSSQLEntity, NSSQLProperty, NSString;
-
 @interface NSSQLExistenceSubqueryWhereIntermediate : NSSQLWhereIntermediate {
     NSSQLProperty *_collectionProperty;
     NSSQLEntity *_governingEntityForVariable;
@@ -12,7 +10,7 @@
     NSExpression *_variableExpression;
 }
 
-- (id)_generateSQLForVariableExpression:(id)arg1 inContext:(id)arg2;
+- (id)_generateSQLForVariableExpression:(id)arg1 allowToMany:(BOOL)arg2 inContext:(id)arg3;
 - (BOOL)_isKeypathScopedToSubquery:(id)arg1;
 - (id)fetchIntermediateForKeypathExpression:(id)arg1;
 - (id)generateSQLStringInContext:(id)arg1;

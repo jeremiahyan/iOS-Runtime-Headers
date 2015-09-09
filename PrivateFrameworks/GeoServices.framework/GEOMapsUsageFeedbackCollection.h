@@ -2,34 +2,49 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class GEOCarInfo, GEOPlaceActionDetails;
-
 @interface GEOMapsUsageFeedbackCollection : PBCodable <NSCopying> {
-    struct { 
-        unsigned long long _high; 
-        unsigned long long _low; 
+    int _actionType;
+    GEOCarInfo *_carInfo;
     struct { 
         unsigned int sessionID : 1; 
         unsigned int sessionRelativeTimestamp : 1; 
+        unsigned int zoomLevel : 1; 
         unsigned int actionType : 1; 
-    int _actionType;
-    GEOCarInfo *_carInfo;
+        unsigned int sequenceNumber : 1; 
     } _has;
+    GEOMapRegion *_mapRegion;
     GEOPlaceActionDetails *_placeActionDetails;
+    NSString *_providerId;
+    int _sequenceNumber;
+    struct { 
+        unsigned long long _high; 
+        unsigned long long _low; 
     } _sessionID;
     double _sessionRelativeTimestamp;
+    double _zoomLevel;
 }
 
-@property int actionType;
-@property(retain) GEOCarInfo * carInfo;
-@property BOOL hasActionType;
-@property(readonly) BOOL hasCarInfo;
-@property(readonly) BOOL hasPlaceActionDetails;
-@property BOOL hasSessionID;
-@property BOOL hasSessionRelativeTimestamp;
-@property(retain) GEOPlaceActionDetails * placeActionDetails;
-@property struct { unsigned long long x1; unsigned long long x2; } sessionID;
-@property double sessionRelativeTimestamp;
+@property (nonatomic) int actionType;
+@property (nonatomic, retain) GEOCarInfo *carInfo;
+@property (nonatomic) BOOL hasActionType;
+@property (nonatomic, readonly) BOOL hasCarInfo;
+@property (nonatomic, readonly) BOOL hasMapRegion;
+@property (nonatomic, readonly) BOOL hasPlaceActionDetails;
+@property (nonatomic, readonly) BOOL hasProviderId;
+@property (nonatomic) BOOL hasSequenceNumber;
+@property (nonatomic) BOOL hasSessionID;
+@property (nonatomic) BOOL hasSessionRelativeTimestamp;
+@property (nonatomic) BOOL hasZoomLevel;
+@property (nonatomic, retain) GEOMapRegion *mapRegion;
+@property (nonatomic, retain) GEOPlaceActionDetails *placeActionDetails;
+@property (nonatomic, retain) NSString *providerId;
+@property (nonatomic) int sequenceNumber;
+@property (nonatomic) struct { unsigned long long x1; unsigned long long x2; } sessionID;
+@property (nonatomic) double sessionRelativeTimestamp;
+@property (nonatomic) double zoomLevel;
+
++ (id)feedbackCollectionWithTraits:(id)arg1 flyoverAnimationID:(unsigned long long)arg2 timestamp:(double)arg3 resultIndex:(int)arg4;
++ (id)feedbackCollectionWithTraits:(id)arg1 mapItem:(id)arg2 timestamp:(double)arg3 resultIndex:(int)arg4;
 
 - (int)actionType;
 - (id)carInfo;
@@ -40,23 +55,40 @@
 - (id)dictionaryRepresentation;
 - (BOOL)hasActionType;
 - (BOOL)hasCarInfo;
+- (BOOL)hasMapRegion;
 - (BOOL)hasPlaceActionDetails;
+- (BOOL)hasProviderId;
+- (BOOL)hasSequenceNumber;
 - (BOOL)hasSessionID;
 - (BOOL)hasSessionRelativeTimestamp;
+- (BOOL)hasZoomLevel;
 - (unsigned int)hash;
+- (id)initWithTraits:(id)arg1 flyoverAnimationID:(unsigned long long)arg2 timestamp:(double)arg3 resultIndex:(int)arg4;
+- (id)initWithTraits:(id)arg1 mapItem:(id)arg2 timestamp:(double)arg3 resultIndex:(int)arg4;
 - (BOOL)isEqual:(id)arg1;
+- (id)mapRegion;
+- (void)mergeFrom:(id)arg1;
 - (id)placeActionDetails;
+- (id)providerId;
 - (BOOL)readFrom:(id)arg1;
+- (int)sequenceNumber;
 - (struct { unsigned long long x1; unsigned long long x2; })sessionID;
 - (double)sessionRelativeTimestamp;
 - (void)setActionType:(int)arg1;
 - (void)setCarInfo:(id)arg1;
 - (void)setHasActionType:(BOOL)arg1;
+- (void)setHasSequenceNumber:(BOOL)arg1;
 - (void)setHasSessionID:(BOOL)arg1;
 - (void)setHasSessionRelativeTimestamp:(BOOL)arg1;
+- (void)setHasZoomLevel:(BOOL)arg1;
+- (void)setMapRegion:(id)arg1;
 - (void)setPlaceActionDetails:(id)arg1;
+- (void)setProviderId:(id)arg1;
+- (void)setSequenceNumber:(int)arg1;
 - (void)setSessionID:(struct { unsigned long long x1; unsigned long long x2; })arg1;
 - (void)setSessionRelativeTimestamp:(double)arg1;
+- (void)setZoomLevel:(double)arg1;
 - (void)writeTo:(id)arg1;
+- (double)zoomLevel;
 
 @end

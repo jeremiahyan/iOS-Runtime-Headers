@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/MusicLibrary.framework/MusicLibrary
  */
 
-@class ML3DatabaseConnection, ML3MusicLibrary, NSData, NSMutableArray, NSMutableDictionary;
-
 @interface ML3SortMap : NSObject {
     ML3DatabaseConnection *_connection;
     NSMutableArray *_entries;
@@ -11,6 +9,7 @@
     NSData *_maxSortKey;
     NSData *_minSortKey;
     NSMutableDictionary *_nameOrders;
+    BOOL _preloadNames;
     long long _smallestNameDelta;
 }
 
@@ -23,8 +22,10 @@
 - (long long)_sortKeyDistance:(id)arg1 sortKey2:(id)arg2 offset:(unsigned int)arg3;
 - (id)_sortKeyString:(id)arg1;
 - (id)_sortedNameEntriesToInsertForNames:(id)arg1;
+- (BOOL)attemptInsertStringsIntoSortMap:(id)arg1;
+- (BOOL)commitFailedInsertedStrings:(id)arg1;
 - (BOOL)commitUpdates;
-- (id)initWithConnection:(id)arg1 library:(id)arg2;
+- (id)initWithConnection:(id)arg1 library:(id)arg2 preloadNames:(BOOL)arg3;
 - (BOOL)insertStringsIntoSortMap:(id)arg1 didReSortMap:(BOOL*)arg2;
 - (BOOL)loadExistingSortedEntries;
 - (id)nameOrders;

@@ -2,23 +2,21 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class ABStyleProvider, ABUIPerson, UIImageView;
-
 @interface ABContactListPhotoView : UIView {
     UIImageView *_contactImageView;
     ABUIPerson *_person;
     ABStyleProvider *_styleProvider;
 }
 
-@property(retain) ABUIPerson * person;
-@property void* record;
-@property(retain) ABStyleProvider * styleProvider;
+@property (nonatomic, retain) ABUIPerson *person;
+@property (nonatomic) void*record;
+@property (nonatomic, retain) ABStyleProvider *styleProvider;
 
 - (id)_framedPhoto;
 - (void)dealloc;
+- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 UIStyle:(int)arg2;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 styleProvider:(id)arg2;
-- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (struct CGSize { float x1; float x2; })intrinsicContentSize;
 - (id)person;
 - (void*)record;

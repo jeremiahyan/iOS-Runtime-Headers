@@ -2,13 +2,11 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSMutableAttributedString;
-
 @interface _UITextUndoOperationTyping : NSUndoTextOperation {
+    NSMutableAttributedString *_attributedString;
     struct _NSRange { 
         unsigned int location; 
         unsigned int length; 
-    NSMutableAttributedString *_attributedString;
     } _replacementRange;
 }
 

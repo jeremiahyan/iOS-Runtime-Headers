@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/CertInfo.framework/CertInfo
  */
 
-@class NSArray;
-
 @interface CertInfoDescriptionCellContentView : UIView {
     float _idealHeight;
     NSArray *_labelsAndValues;
@@ -11,6 +9,7 @@
     int _sizesCount;
 }
 
+- (void).cxx_destruct;
 - (id)_labelFont;
 - (void)_recalculateIdealHeight;
 - (id)_valueFont;

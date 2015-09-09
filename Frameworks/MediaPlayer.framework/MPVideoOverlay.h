@@ -2,9 +2,7 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@class <MPVideoControllerProtocol>, <MPVideoOverlayDelegate>, MPAVController, MPAVItem, MPDetailSlider, NSMutableDictionary, UINavigationBar;
-
-@interface MPVideoOverlay : UIView <MPVideoOverlay, MPDetailSliderDelegate> {
+@interface MPVideoOverlay : UIView <MPDetailSliderDelegate, MPVideoOverlay> {
     BOOL _controlsAutohideDisabled;
     <MPVideoOverlayDelegate> *_delegate;
     unsigned long long _desiredParts;
@@ -20,16 +18,20 @@
     BOOL _wantsTick;
 }
 
-@property BOOL allowsWirelessPlayback;
-@property <MPVideoOverlayDelegate> * delegate;
-@property unsigned long long desiredParts;
-@property unsigned long long disabledParts;
-@property(retain) MPAVItem * item;
-@property(readonly) UINavigationBar * navigationBar;
-@property BOOL navigationBarHidden;
-@property(retain) MPAVController * player;
-@property <MPVideoControllerProtocol> * videoViewController;
-@property unsigned long long visibleParts;
+@property (nonatomic) BOOL allowsWirelessPlayback;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <MPVideoOverlayDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) unsigned long long desiredParts;
+@property (nonatomic) unsigned long long disabledParts;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) MPAVItem *item;
+@property (nonatomic, readonly, retain) UINavigationBar *navigationBar;
+@property (nonatomic) BOOL navigationBarHidden;
+@property (nonatomic, retain) MPAVController *player;
+@property (readonly) Class superclass;
+@property (nonatomic) <MPVideoControllerProtocol> *videoViewController;
+@property (nonatomic) unsigned long long visibleParts;
 
 - (void).cxx_destruct;
 - (double)_duration;
@@ -60,15 +62,15 @@
 - (void)registerForPlayerNotifications;
 - (void)setAllowsWirelessPlayback:(BOOL)arg1;
 - (void)setDelegate:(id)arg1;
-- (void)setDesiredParts:(unsigned long long)arg1 animate:(BOOL)arg2;
 - (void)setDesiredParts:(unsigned long long)arg1;
+- (void)setDesiredParts:(unsigned long long)arg1 animate:(BOOL)arg2;
 - (void)setDisabledParts:(unsigned long long)arg1;
 - (void)setItem:(id)arg1;
 - (void)setNavigationBarHidden:(BOOL)arg1;
 - (void)setPlayer:(id)arg1;
 - (void)setVideoViewController:(id)arg1;
-- (void)setVisibleParts:(unsigned long long)arg1 animate:(BOOL)arg2;
 - (void)setVisibleParts:(unsigned long long)arg1;
+- (void)setVisibleParts:(unsigned long long)arg1 animate:(BOOL)arg2;
 - (void)showAlternateTracks;
 - (void)startTicking;
 - (void)stopTicking;

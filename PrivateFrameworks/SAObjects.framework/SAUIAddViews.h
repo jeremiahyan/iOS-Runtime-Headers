@@ -2,16 +2,15 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSArray, NSString;
+@interface SAUIAddViews : SABaseClientBoundCommand
 
-@interface SAUIAddViews : SABaseClientBoundCommand {
-}
+@property (nonatomic, copy) NSString *dialogPhase;
+@property (nonatomic, copy) NSString *displayTarget;
+@property (nonatomic) BOOL scrollToTop;
+@property (nonatomic) BOOL temporary;
+@property (nonatomic, copy) NSArray *views;
 
-@property(copy) NSString * dialogPhase;
-@property(copy) NSString * displayTarget;
-@property BOOL scrollToTop;
-@property BOOL temporary;
-@property(copy) NSArray * views;
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
 
 + (id)addViews;
 + (id)addViewsWithDictionary:(id)arg1 context:(id)arg2;
@@ -29,5 +28,10 @@
 - (void)setViews:(id)arg1;
 - (BOOL)temporary;
 - (id)views;
+
+// Image: /System/Library/PrivateFrameworks/AssistantUI.framework/AssistantUI
+
+- (BOOL)_afui_isUsefulUserResultCommand;
+- (id)afui_dialogPhase;
 
 @end

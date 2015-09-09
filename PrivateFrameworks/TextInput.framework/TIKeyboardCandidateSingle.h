@@ -2,15 +2,13 @@
    Image: /System/Library/PrivateFrameworks/TextInput.framework/TextInput
  */
 
-@class NSString;
-
 @interface TIKeyboardCandidateSingle : TIKeyboardCandidate {
     NSString *_candidate;
     NSString *_input;
 }
 
-@property(copy) NSString * candidate;
-@property(copy) NSString * input;
+@property (nonatomic, copy) NSString *candidate;
+@property (nonatomic, copy) NSString *input;
 
 + (id)candidateWithCandidate:(id)arg1 forInput:(id)arg2;
 + (id)candidateWithUnchangedInput:(id)arg1;
@@ -20,10 +18,11 @@
 - (id)candidate;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
+- (id)description;
 - (void)encodeWithCandidateResultSetCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
-- (id)initWithCandidate:(id)arg1 forInput:(id)arg2;
 - (id)initWithCandidate:(id)arg1;
+- (id)initWithCandidate:(id)arg1 forInput:(id)arg2;
 - (id)initWithCandidateResultSetCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithUnchangedInput:(id)arg1;

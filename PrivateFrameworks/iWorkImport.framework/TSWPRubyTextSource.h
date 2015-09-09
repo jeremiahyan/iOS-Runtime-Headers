@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class <TSWPTextSource>, TSWPRangeMap;
-
 @interface TSWPRubyTextSource : NSObject <TSWPTextSource> {
     struct vector<unsigned int, std::__1::allocator<unsigned int> > { 
         unsigned int *__begin_; 
@@ -11,26 +9,38 @@
         struct __compressed_pair<unsigned int *, std::__1::allocator<unsigned int> > { 
             unsigned int *__first_; 
         } __end_cap_; 
+    } _bidiCharIndexes;
+    struct vector<bool, std::__1::allocator<bool> > { 
+        unsigned long *__begin_; 
+        unsigned int __size_; 
+        struct __compressed_pair<unsigned long, std::__1::allocator<unsigned long> > { 
+            unsigned long __first_; 
+        } __cap_alloc_; 
+    } _bidiDirectionMarkIsRTLVector;
+    unsigned int _length;
+    TSWPRangeMap *_rangeMap;
+    <TSWPTextSource> *_source;
     struct vector<unsigned int, std::__1::allocator<unsigned int> > { 
         unsigned int *__begin_; 
         unsigned int *__end_; 
         struct __compressed_pair<unsigned int *, std::__1::allocator<unsigned int> > { 
             unsigned int *__first_; 
         } __end_cap_; 
-    } _bidiCharIndexes;
-    unsigned int _length;
-    TSWPRangeMap *_rangeMap;
-    <TSWPTextSource> *_source;
     } _spaceCharIndexes;
     unsigned int _storageLength;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (BOOL)adjustRangesByDelta:(int)arg1;
 - (id)attachmentAtCharIndex:(unsigned int)arg1;
 - (id)attachmentOrFootnoteAtCharIndex:(unsigned int)arg1;
-- (void)attributesAtCharIndex:(unsigned int)arg1 attributesOfInterest:(BOOL[19])arg2 attributesTable:(id[19])arg3 effectiveRange:(struct _NSRange { unsigned int x1; unsigned int x2; }*)arg4;
+- (void)attributesAtCharIndex:(unsigned int)arg1 attributesOfInterest:(BOOL)arg2 attributesTable:(/* Warning: unhandled array encoding: '[19@]' */ id)arg3 effectiveRange:(struct _NSRange { unsigned int x1; unsigned int x2; }*)arg4;
 - (unsigned int)charIndexMappedFromStorage:(unsigned int)arg1;
 - (unsigned int)charIndexMappedToStorage:(unsigned int)arg1;
 - (unsigned int)charIndexRemappedFromStorage:(unsigned int)arg1;

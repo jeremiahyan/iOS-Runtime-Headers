@@ -2,16 +2,11 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString;
-
 @interface UIKBTextStyle : NSObject <NSCopying> {
-    struct CGPoint { 
-        float x; 
-        float y; 
-    struct CGPoint { 
-        float x; 
-        float y; 
     NSString *_etchColor;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _etchOffset;
     NSString *_fontName;
     float _fontSize;
@@ -20,21 +15,24 @@
     float _pathWeight;
     int _selector;
     NSString *_textColor;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _textOffset;
     float _textOpacity;
 }
 
-@property(retain) NSString * etchColor;
-@property struct CGPoint { float x1; float x2; } etchOffset;
-@property(retain) NSString * fontName;
-@property float fontSize;
-@property float kerning;
-@property float minFontSize;
-@property float pathWeight;
-@property int selector;
-@property(retain) NSString * textColor;
-@property struct CGPoint { float x1; float x2; } textOffset;
-@property float textOpacity;
+@property (nonatomic, retain) NSString *etchColor;
+@property (nonatomic) struct CGPoint { float x1; float x2; } etchOffset;
+@property (nonatomic, retain) NSString *fontName;
+@property (nonatomic) float fontSize;
+@property (nonatomic) float kerning;
+@property (nonatomic) float minFontSize;
+@property (nonatomic) float pathWeight;
+@property (nonatomic) int selector;
+@property (nonatomic, retain) NSString *textColor;
+@property (nonatomic) struct CGPoint { float x1; float x2; } textOffset;
+@property (nonatomic) float textOpacity;
 
 + (id)styleWithFontName:(id)arg1 withFontSize:(float)arg2;
 + (id)styleWithTextColor:(id)arg1;

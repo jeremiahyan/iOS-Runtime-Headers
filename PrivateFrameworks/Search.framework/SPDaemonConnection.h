@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Search.framework/Search
  */
 
-@class NSObject<OS_dispatch_queue>, SPXPCConnection;
-
 @interface SPDaemonConnection : NSObject {
     SPXPCConnection *_connection;
     NSObject<OS_dispatch_queue> *_connectionQueue;
@@ -13,8 +11,10 @@
 
 - (id)_connection;
 - (void)_resetConnection;
-- (void)_sendMessage:(id)arg1 info:(id)arg2 reply:(id)arg3;
+- (void)_sendMessage:(id)arg1 info:(id)arg2 reply:(id /* block */)arg3;
+- (void)activate;
 - (void)cancelQuery:(id)arg1;
+- (void)deactivate;
 - (void)dealloc;
 - (void)endRecordUpdatesForApplication:(id)arg1 andCategory:(id)arg2;
 - (void)indexUpdatedContent:(id)arg1 moreComing:(BOOL)arg2;
@@ -22,9 +22,10 @@
 - (void)preheat;
 - (void)registerApplication:(id)arg1 withCategories:(id)arg2;
 - (void)requestRecordUpdatesForApplication:(id)arg1 category:(id)arg2 andIDs:(id)arg3;
-- (void)retrieveImageDataForResult:(id)arg1 searchDomain:(unsigned int)arg2 size:(struct CGSize { float x1; float x2; })arg3 completion:(id)arg4;
+- (void)retrieveImageDataForResult:(id)arg1 searchDomain:(unsigned int)arg2 size:(struct CGSize { float x1; float x2; })arg3 completion:(id /* block */)arg4;
+- (void)retrieveImageDataWithIdentifier:(id)arg1 searchDomain:(unsigned int)arg2 size:(struct CGSize { float x1; float x2; })arg3 completion:(id /* block */)arg4;
 - (BOOL)retrieveUpdateList:(id*)arg1 forDisplayIdentifier:(id)arg2 category:(id)arg3;
-- (void)searchResultWasSelected:(id)arg1 inDomain:(unsigned int)arg2 queryString:(id)arg3;
+- (void)sendFeedback:(id)arg1;
 - (id)startQuery:(id)arg1;
 - (void)startRecordUpdatesForApplication:(id)arg1 andCategory:(id)arg2;
 

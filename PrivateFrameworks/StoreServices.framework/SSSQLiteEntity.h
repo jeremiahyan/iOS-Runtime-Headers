@@ -2,16 +2,18 @@
    Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
  */
 
-@class SSSQLiteDatabase;
-
 @interface SSSQLiteEntity : NSObject <SSSQLiteEntity> {
     SSSQLiteDatabase *_database;
     long long _persistentID;
 }
 
-@property(readonly) SSSQLiteDatabase * database;
-@property(readonly) BOOL existsInDatabase;
-@property(readonly) long long persistentID;
+@property (nonatomic, readonly) SSSQLiteDatabase *database;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) BOOL existsInDatabase;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) long long persistentID;
+@property (readonly) Class superclass;
 
 + (id)_aggregateValueForProperty:(id)arg1 function:(id)arg2 predicate:(id)arg3 database:(id)arg4;
 + (BOOL)_insertValues:(id)arg1 intoTable:(id)arg2 withPersistentID:(long long)arg3 database:(id)arg4;
@@ -31,8 +33,8 @@
 + (id)maxValueForProperty:(id)arg1 predicate:(id)arg2 database:(id)arg3;
 + (Class)memoryEntityClass;
 + (id)minValueForProperty:(id)arg1 predicate:(id)arg2 database:(id)arg3;
-+ (id)queryWithDatabase:(id)arg1 predicate:(id)arg2 orderingProperties:(id)arg3;
 + (id)queryWithDatabase:(id)arg1 predicate:(id)arg2;
++ (id)queryWithDatabase:(id)arg1 predicate:(id)arg2 orderingProperties:(id)arg3;
 
 - (id)_copyTableClusteredValuesWithValues:(id)arg1;
 - (BOOL)_deleteRowFromTable:(id)arg1 usingColumn:(id)arg2;

@@ -2,17 +2,18 @@
    Image: /System/Library/PrivateFrameworks/TelephonyUtilities.framework/TelephonyUtilities
  */
 
-@class NSRecursiveLock;
-
 @interface TUTelephonyCallModel : TUCallModel {
-    struct __CFDictionary { } *_callManagementState;
-    NSRecursiveLock *_lock;
+    NSDictionary *_callManagementState;
+    NSObject<OS_dispatch_semaphore> *_callManagementStateSemaphore;
 }
+
+@property (nonatomic, retain) NSDictionary *callManagementState;
+@property (nonatomic, retain) NSObject<OS_dispatch_semaphore> *callManagementStateSemaphore;
+@property (getter=isWiFiCallingCurrentlyAvailable, nonatomic, readonly) BOOL wiFiCallingCurrentlyAvailable;
 
 + (id)sharedInstance;
 
 - (BOOL)_booleanValueForKey:(struct __CFString { }*)arg1;
-- (struct __CFDictionary { }*)_callManagementDictionary;
 - (void)_invalidateCachedState;
 - (void)_invalidateNetworkCanTakeCallsPrivateCache;
 - (BOOL)_isAmbiguousCallList;
@@ -20,8 +21,9 @@
 - (BOOL)_networkCanTakeCallsPrivate;
 - (BOOL)_valueExistsForKey:(struct __CFString { }*)arg1;
 - (int)ambiguityState;
+- (id)callManagementState;
+- (id)callManagementStateSemaphore;
 - (void)dealloc;
-- (id)description;
 - (id)init;
 - (BOOL)isAddCallAllowed;
 - (BOOL)isEndAndAnswerAllowed;
@@ -29,7 +31,11 @@
 - (BOOL)isHoldAllowed;
 - (BOOL)isHoldAndAnswerAllowed;
 - (BOOL)isMergeable;
+- (BOOL)isSendToVoicemailAllowed;
 - (BOOL)isSwappable;
 - (BOOL)isTakingCallsPrivateAllowed;
+- (BOOL)isWiFiCallingCurrentlyAvailable;
+- (void)setCallManagementState:(id)arg1;
+- (void)setCallManagementStateSemaphore:(id)arg1;
 
 @end

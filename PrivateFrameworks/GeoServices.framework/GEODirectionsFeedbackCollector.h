@@ -2,19 +2,19 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class GEODirectionsFeedback, GEODirectionsFeedbackCollection, NSMutableSet;
-
 @interface GEODirectionsFeedbackCollector : NSObject {
     GEODirectionsFeedback *_currentDirectionsFeedback;
     GEODirectionsFeedbackCollection *_currentFeedbackCollection;
     NSMutableSet *_routeIDs;
 }
 
-@property(retain) GEODirectionsFeedback * currentDirectionsFeedback;
-@property(retain) GEODirectionsFeedbackCollection * currentFeedbackCollection;
-@property(retain) NSMutableSet * routeIDs;
+@property (nonatomic, retain) GEODirectionsFeedback *currentDirectionsFeedback;
+@property (nonatomic, retain) GEODirectionsFeedbackCollection *currentFeedbackCollection;
+@property (nonatomic, retain) NSMutableSet *routeIDs;
 
+- (void)_updateFeedbackSessionWithResponseID:(id)arg1;
 - (void)addRouteID:(id)arg1 stepID:(unsigned int)arg2 completeStep:(BOOL)arg3;
+- (void)addTrafficRerouteFeedback:(id)arg1;
 - (id)currentDirectionsFeedback;
 - (id)currentFeedbackCollection;
 - (void)dealloc;
@@ -26,6 +26,8 @@
 - (void)setCurrentFeedbackCollection:(id)arg1;
 - (void)setFinalLocation:(id)arg1 asArrival:(BOOL)arg2;
 - (void)setRouteIDs:(id)arg1;
+- (void)setupFeedbackSessionWithResponseID:(id)arg1;
+- (void)startFeedbackSession;
 - (void)startFeedbackSessionForResponseID:(id)arg1;
 
 @end

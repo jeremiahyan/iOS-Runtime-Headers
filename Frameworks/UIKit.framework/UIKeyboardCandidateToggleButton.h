@@ -2,15 +2,15 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString, UIKBThemedView;
-
 @interface UIKeyboardCandidateToggleButton : UIButton {
     NSString *_arrowDirection;
     UIKBThemedView *_themedView;
 }
 
-@property(copy) NSString * arrowDirection;
-@property(retain) UIKBThemedView * themedView;
+@property (nonatomic, copy) NSString *arrowDirection;
+@property (nonatomic, retain) UIKBThemedView *themedView;
+
++ (id)arrowImageName;
 
 - (void)_setRenderConfig:(id)arg1;
 - (id)arrowColorForState:(unsigned int)arg1;

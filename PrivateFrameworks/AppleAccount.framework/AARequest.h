@@ -2,28 +2,33 @@
    Image: /System/Library/PrivateFrameworks/AppleAccount.framework/AppleAccount
  */
 
-@class NSString, NSURLRequest;
-
-@interface AARequest : NSObject {
+@interface AARequest : NSObject <NSURLSessionDataDelegate> {
     struct OpaqueCFHTTPCookieStorage { } *_cookieStorage;
     BOOL _flushCache;
+    id /* block */ _handler;
+    NSString *_initialURLString;
     NSString *_machineId;
     NSString *_oneTimePassword;
-    NSString *_urlString;
 }
 
-@property BOOL flushCache;
-@property(readonly) NSURLRequest * urlRequest;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL flushCache;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+@property (readonly) NSURLRequest *urlRequest;
 
 + (id)protocolVersion;
 + (Class)responseClass;
 
 - (void).cxx_destruct;
+- (void)_handleDataTaskCompletionWithData:(id)arg1 response:(id)arg2 error:(id)arg3;
+- (id)_redactedHeadersFromHTTPHeaders:(id)arg1;
 - (id)bodyDictionary;
 - (void)dealloc;
 - (BOOL)flushCache;
 - (id)initWithURLString:(id)arg1;
-- (void)performRequestWithHandler:(id)arg1;
+- (void)performRequestWithHandler:(id /* block */)arg1;
 - (id)redactedBodyStringWithPropertyList:(id)arg1;
 - (void)setCookieStorage:(struct OpaqueCFHTTPCookieStorage { }*)arg1;
 - (void)setDeviceProvisioningMachineId:(id)arg1;

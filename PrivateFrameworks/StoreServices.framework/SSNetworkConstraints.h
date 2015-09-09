@@ -2,14 +2,16 @@
    Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
  */
 
-@class NSMutableDictionary, NSObject<OS_dispatch_queue>;
-
-@interface SSNetworkConstraints : NSObject <NSCoding, SSXPCCoding, NSCopying> {
+@interface SSNetworkConstraints : NSObject <NSCoding, NSCopying, SSXPCCoding> {
     NSObject<OS_dispatch_queue> *_dispatchQueue;
     NSMutableDictionary *_sizeLimits;
 }
 
-@property(getter=isAnyNetworkTypeEnabled,readonly) BOOL anyNetworkTypeEnabled;
+@property (getter=isAnyNetworkTypeEnabled, readonly) BOOL anyNetworkTypeEnabled;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (void)_addNetworkConstraintsToDictionary:(id)arg1 forNetworkType:(int)arg2 legacyDictionary:(id)arg3;
 + (id)_newLegacyNetworkConstraintsWithDictionary:(id)arg1;

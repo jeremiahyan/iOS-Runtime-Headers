@@ -2,50 +2,49 @@
    Image: /System/Library/PrivateFrameworks/iCalendar.framework/iCalendar
  */
 
-@class ICSDate, ICSDuration, ICSStructuredLocation, ICSTrigger, ICSUserAddress, NSArray, NSMutableArray, NSMutableDictionary, NSString, NSURL;
-
 @interface ICSComponent : NSObject <ICSWriting> {
     NSMutableArray *_components;
     NSMutableDictionary *_properties;
 }
 
-@property(retain) NSArray * attach;
-@property(retain) NSArray * attendee;
+@property (retain) NSArray *attach;
+@property (retain) NSArray *attendee;
 @property int classification;
-@property(retain) NSArray * components;
-@property(retain) NSArray * conferences;
-@property(retain) ICSDate * created;
-@property(retain) NSString * description;
-@property(retain) ICSDate * dtend;
-@property(retain) ICSDate * dtstamp;
-@property(retain) ICSDate * dtstart;
-@property(retain) ICSDuration * duration;
-@property(retain) NSArray * exdate;
-@property(retain) NSArray * exrule;
-@property(readonly) BOOL isAllDay;
-@property(retain) ICSDate * last_modified;
-@property(retain) NSString * location;
-@property(retain) ICSUserAddress * organizer;
+@property (retain) NSMutableArray *components;
+@property (retain) NSArray *conferences;
+@property (retain) ICSDate *created;
+@property (retain) NSString *description;
+@property (retain) ICSDate *dtend;
+@property (retain) ICSDate *dtstamp;
+@property (retain) ICSDate *dtstart;
+@property (retain) ICSDuration *duration;
+@property (retain) NSArray *exdate;
+@property (retain) NSArray *exrule;
+@property (readonly) BOOL isAllDay;
+@property (retain) ICSDate *last_modified;
+@property (retain) NSString *location;
+@property (retain) ICSUserAddress *organizer;
 @property unsigned int priority;
-@property(retain) NSArray * rdate;
-@property(retain) ICSDate * recurrence_id;
-@property(retain) NSArray * rrule;
+@property (retain) NSArray *rdate;
+@property (retain) ICSDate *recurrence_id;
+@property (retain) NSArray *rrule;
 @property unsigned int sequence;
 @property int status;
-@property(retain) NSString * summary;
-@property(retain) ICSTrigger * trigger;
-@property(retain) NSString * uid;
-@property(retain) NSURL * url;
-@property(retain) NSString * x_apple_dropbox;
-@property(retain) NSString * x_apple_etag;
-@property(retain) NSString * x_apple_ews_changekey;
-@property(retain) NSString * x_apple_ews_itemid;
+@property (retain) NSString *statusString;
+@property (retain) NSString *summary;
+@property (retain) ICSTrigger *trigger;
+@property (retain) NSString *uid;
+@property (retain) NSURL *url;
+@property (retain) NSString *x_apple_dropbox;
+@property (retain) NSString *x_apple_etag;
+@property (retain) NSString *x_apple_ews_changekey;
+@property (retain) NSString *x_apple_ews_itemid;
 @property BOOL x_apple_ews_needsserverconfirmation;
-@property(retain) NSString * x_apple_ews_permission;
+@property (retain) NSString *x_apple_ews_permission;
 @property BOOL x_apple_ignore_on_restore;
-@property(retain) NSString * x_apple_scheduletag;
-@property(retain) NSString * x_apple_serverFilename;
-@property(retain) ICSStructuredLocation * x_apple_structured_location;
+@property (retain) NSString *x_apple_scheduletag;
+@property (retain) NSString *x_apple_serverFilename;
+@property (retain) ICSStructuredLocation *x_apple_structured_location;
 @property int x_calendarserver_access;
 
 + (id)inheritanceKeywords;
@@ -54,8 +53,8 @@
 + (int)statusFromString:(id)arg1;
 + (id)stringFromStatus:(int)arg1;
 
-- (void)ICSStringWithOptions:(unsigned int)arg1 appendingToString:(id)arg2;
 - (id)ICSStringWithOptions:(unsigned int)arg1;
+- (void)ICSStringWithOptions:(unsigned int)arg1 appendingToString:(id)arg2;
 - (void)addComponent:(id)arg1;
 - (void)addProperty:(id)arg1 withValue:(id)arg2;
 - (id)allProperties;
@@ -91,11 +90,13 @@
 - (id)location;
 - (id)organizer;
 - (id)parametersToIncludeForChecksumVersion:(int)arg1;
+- (id)parametersToObscure;
 - (unsigned int)priority;
 - (id)properties;
 - (id)propertiesForName:(id)arg1;
 - (id)propertiesThatIfPresentExcludeThisComponentFromChecksummingForVersion:(int)arg1;
 - (id)propertiesToIncludeForChecksumVersion:(int)arg1;
+- (id)propertiesToObscure;
 - (id)rdate;
 - (id)recurrence_id;
 - (void)removeComponent:(id)arg1;
@@ -129,6 +130,7 @@
 - (void)setRrule:(id)arg1;
 - (void)setSequence:(unsigned int)arg1;
 - (void)setStatus:(int)arg1;
+- (void)setStatusString:(id)arg1;
 - (void)setSummary:(id)arg1;
 - (void)setTrigger:(id)arg1;
 - (void)setUid:(id)arg1;
@@ -143,10 +145,13 @@
 - (void)setX_apple_scheduletag:(id)arg1;
 - (void)setX_apple_serverFilename:(id)arg1;
 - (void)setX_apple_structured_location:(id)arg1;
+- (void)setX_apple_travel_advisory_behavior:(id)arg1;
 - (void)setX_apple_travel_duration:(id)arg1;
 - (void)setX_apple_travel_start:(id)arg1;
 - (void)setX_calendarserver_access:(int)arg1;
+- (BOOL)shouldObscureValue;
 - (int)status;
+- (id)statusString;
 - (id)summary;
 - (id)trigger;
 - (id)uid;
@@ -162,6 +167,7 @@
 - (id)x_apple_scheduletag;
 - (id)x_apple_serverFilename;
 - (id)x_apple_structured_location;
+- (id)x_apple_travel_advisory_behavior;
 - (id)x_apple_travel_duration;
 - (id)x_apple_travel_start;
 - (int)x_calendarserver_access;

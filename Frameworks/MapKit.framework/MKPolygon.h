@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@class NSArray, NSString;
-
 @interface MKPolygon : MKMultiPoint <MKOverlay> {
     struct { 
         double latitude; 
@@ -13,19 +11,23 @@
     BOOL _isDefinitelyConvex;
 }
 
-@property BOOL _isDefinitelyConvex;
-@property(readonly) struct { struct { double x_1_1_1; double x_1_1_2; } x1; struct { double x_2_1_1; double x_2_1_2; } x2; } boundingMapRect;
-@property(readonly) struct { double x1; double x2; } coordinate;
-@property(readonly) NSArray * interiorPolygons;
-@property(readonly) NSString * subtitle;
-@property(readonly) NSString * title;
+@property (nonatomic) BOOL _isDefinitelyConvex;
+@property (nonatomic, readonly) struct { struct { double x_1_1_1; double x_1_1_2; } x1; struct { double x_2_1_1; double x_2_1_2; } x2; } boundingMapRect;
+@property (nonatomic, readonly) struct { double x1; double x2; } coordinate;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) NSArray *interiorPolygons;
+@property (nonatomic, readonly, copy) NSString *subtitle;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly, copy) NSString *title;
 
 + (id)_polygonWithMapRect:(struct { struct { double x_1_1_1; double x_1_1_2; } x1; struct { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 + (id)polygonEnclosingMapPoints:(struct { double x1; double x2; }*)arg1 count:(unsigned int)arg2;
-+ (id)polygonWithCoordinates:(struct { double x1; double x2; }*)arg1 count:(unsigned int)arg2 interiorPolygons:(id)arg3;
 + (id)polygonWithCoordinates:(struct { double x1; double x2; }*)arg1 count:(unsigned int)arg2;
-+ (id)polygonWithPoints:(struct { double x1; double x2; }*)arg1 count:(unsigned int)arg2 interiorPolygons:(id)arg3;
++ (id)polygonWithCoordinates:(struct { double x1; double x2; }*)arg1 count:(unsigned int)arg2 interiorPolygons:(id)arg3;
 + (id)polygonWithPoints:(struct { double x1; double x2; }*)arg1 count:(unsigned int)arg2;
++ (id)polygonWithPoints:(struct { double x1; double x2; }*)arg1 count:(unsigned int)arg2 interiorPolygons:(id)arg3;
 
 - (void).cxx_destruct;
 - (BOOL)_isDefinitelyConvex;

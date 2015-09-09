@@ -2,12 +2,9 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
  */
 
-@class CLLocation, GEOPlace, NSDate, NSDateFormatter, NSDictionary, NSMutableOrderedSet, NSMutableSet, NSObject<OS_dispatch_queue>, NSOrderedSet, NSString, PLMomentAnalyzerWorkThread, PLPhotoLibrary, PLXPCTransaction;
-
 @interface PLMomentAnalyzer : NSObject {
-    NSMutableSet *_activeGEORequests;
+    NSMutableArray *_activeGEORequests;
     BOOL _addCountyIfNeeded;
-    void *_addressBook;
     double _analysisStartTime;
     BOOL _analyzingAllMoments;
     NSString *_currentProviderId;
@@ -24,18 +21,20 @@
     PLMomentAnalyzerWorkThread *_geoWorkThread;
     NSDictionary *_homeAddressDictionary;
     CLLocation *_homeLocation;
-    GEOPlace *_homePlace;
-    PLXPCTransaction *_keepAliveTransaction;
+    <GEOMapItemPrivate> *_homeMapItem;
     NSString *_languageAndLocale;
     NSString *_lastGeoProviderId;
     NSDate *_lastGeoVersionFileFetchDate;
     unsigned int _lastGeoVersionFileVersion;
     double _lastNetworkForcedAbortTime;
     double _lastRevGeoRequestTime;
+    double _lastRevGeoURLFetchAttemptTime;
     double _lastServerVersionInfoFetchAttemptTime;
-    NSMutableSet *_megaMomentListIdsToProcess;
+    PLMomentAnalyzerQueue *_megaMomentProcessingQueue;
     unsigned int _mode;
     BOOL _momentAnalysisPaused;
+    <PLMomentGenerationDataManagement> *_momentDataManager;
+    <PLMomentGenerationDataManagement> *_momentGenerationDataManager;
     BOOL _needToUpdateInvalidMomentsWhenPossible;
     BOOL _networkObservingReachability;
     BOOL _noResultErrorIsSuccess;
@@ -43,37 +42,33 @@
     BOOL _passSuccess;
     NSMutableOrderedSet *_pendingGEORequests;
     BOOL _pendingServerVersionInfoFetch;
-    PLPhotoLibrary *_photoLibrary;
     NSMutableSet *_processingMomentUuids;
     double _revGeoServerVersionInfoFetchNewVersionInterval;
     NSString *_revGeoServerVersionInfoURL;
+    unsigned int _revGeoURLFetchAttemptCount;
     NSDictionary *_serverVersionInfo;
     NSDateFormatter *_shortDateFormatter;
     BOOL _skippedMomentsDuringAnalysis;
+    BOOL _throttlesCollectionListAnalysis;
     double _timeToWaitBeforeNextRequest;
     int _triesAtCurrentBackoffLevel;
     NSObject<OS_dispatch_queue> *_workQueue;
-    NSMutableSet *_yearMomentListIdsToProcess;
+    PLMomentAnalyzerQueue *_yearMomentProcessingQueue;
 }
 
-@property(readonly) void* _addressBook;
-@property(readonly) CLLocation * _homeLocation;
-@property(readonly) PLPhotoLibrary * _photoLibrary;
-
-+ (BOOL)hasCompletedMomentsAndMomentListAnalysisInLibrary:(id)arg1;
-+ (id)sharedInstance;
+@property (nonatomic, readonly, retain) CLLocation *_homeLocation;
+@property (nonatomic, readonly, retain) <PLMomentGenerationDataManagement> *_momentDataManager;
+@property (nonatomic) <PLMomentGenerationDataManagement> *momentGenerationDataManager;
+@property BOOL throttlesCollectionListAnalysis;
 
 - (void)_addOrUpdateNameInfo:(id)arg1 inPlaceInfoMap:(id)arg2;
-- (void)_addRevGeoPlacesFromAssets:(id)arg1 toPlacesArray:(id)arg2;
-- (void*)_addressBook;
-- (void)_addressBookChanged;
-- (id)_addressDictionaryForABRecord:(void*)arg1 identifier:(int)arg2;
+- (void)_addRevGeoPlacesAndUserTitlesFromAssets:(id)arg1 toPlacesArray:(id)arg2 toMomentTitles:(id)arg3 toCollectionTitles:(id)arg4;
 - (void)_analysisComplete;
+- (void)_analysisDidComplete:(BOOL)arg1;
 - (BOOL)_canProcessMoments;
 - (void)_checkForNewServerVersionInfoIfNeeded;
-- (id)_compactPlaceDescriptionForPlaceResult:(id)arg1;
+- (id)_compactPlaceDescriptionForMapItem:(id)arg1;
 - (void)_countryCodeChanged:(id)arg1;
-- (id)_currentHomeAddressDictionary;
 - (id)_currentProviderId;
 - (id)_dictionaryFromLocation:(id)arg1;
 - (id)_dominantPlacesInPlaceInfoArray:(id)arg1 orderType:(unsigned int)arg2 totalPlaceCount:(unsigned int)arg3 includeAllPlaces:(BOOL)arg4 includeHome:(BOOL)arg5 homeAtEnd:(BOOL)arg6 atLastLevel:(BOOL)arg7 outOtherNonDominantPlaces:(id)arg8;
@@ -84,8 +79,8 @@
 - (void)_finalizeInitOnWorkQueue;
 - (void)_finishedGEORequestInfo:(id)arg1 withSuccess:(BOOL)arg2 errorType:(unsigned int)arg3;
 - (void)_finishedProcessingMomentWithUuid:(id)arg1 withSuccess:(BOOL)arg2;
-- (void)_forwardGeocodeAddressDictionary:(id)arg1 withCompletionBlock:(id)arg2;
-- (void)_forwardGeocodeAddressDictionaryOnGeoThread:(id)arg1 withCompletionBlock:(id)arg2;
+- (void)_forwardGeocodeAddressDictionary:(id)arg1 withCompletionBlock:(id /* block */)arg2;
+- (void)_forwardGeocodeAddressDictionaryOnGeoThread:(id)arg1 withCompletionBlock:(id /* block */)arg2;
 - (id)_geoLocationForCoordinate:(struct { double x1; double x2; })arg1 date:(id)arg2;
 - (unsigned int)_geoOrderInPrioritySet:(id)arg1 atIndex:(unsigned int)arg2;
 - (id)_homeLocation;
@@ -96,9 +91,8 @@
 - (id)_locationFromDictionary:(id)arg1;
 - (BOOL)_markInvalidLowQualityAssetsInMoment:(id)arg1 withCurrentProviderId:(id)arg2;
 - (BOOL)_markInvalidOutOfDateAssetsInMoment:(id)arg1 forCurrentCountryVersionMap:(id)arg2 withCurrentProviderId:(id)arg3;
-- (id)_metadataPath;
-- (void)_networkReachabilityDidChange:(id)arg1;
-- (id)_photoLibrary;
+- (id)_momentDataManager;
+- (void)_networkReachabilityDidChange:(BOOL)arg1;
 - (void)_processGEORequestWithRequestInfo:(id)arg1;
 - (unsigned int)_processMegaMomentList:(id)arg1;
 - (void)_processMegaMomentLists;
@@ -108,17 +102,17 @@
 - (unsigned int)_processYearMomentList:(id)arg1;
 - (void)_processYearMomentLists;
 - (void)_reAnalyzeCachedDataAndProcessOnlyHomeChanges:(BOOL)arg1;
-- (void)_removeKeepAlive;
+- (void)_refreshAllObjectsIfPossibleWithManager:(id)arg1;
 - (id)_resetAndSortedNameInfoArray:(id)arg1 homeAtEnd:(BOOL)arg2;
 - (void)_resetErrorState;
 - (void)_reverseGeocodeMoment:(id)arg1 shouldFilterIfInProgress:(BOOL)arg2 invalidOnly:(BOOL)arg3;
-- (void)_runBlockOnWorkQueue:(id)arg1;
-- (void)_runOnWorkQueueAferSeconds:(double)arg1 block:(id)arg2;
+- (void)_runBlockOnWorkQueue:(id /* block */)arg1;
+- (void)_runOnWorkQueueAferSeconds:(double)arg1 block:(id /* block */)arg2;
 - (void)_saveDataIfNeededAfterTimeDiff:(double)arg1;
 - (void)_saveDataIfReachedObjectChangeThreshold;
 - (void)_saveGlobalMetadata;
 - (void)_saveNow;
-- (id)_serverVersionInfoFilePath;
+- (void)_scheduleCollectionListAnalysisThrottleTimerIfNeeded;
 - (void)_setErrorState:(unsigned int)arg1;
 - (void)_setLocationDataValidForMomentId:(id)arg1;
 - (void)_setMomentAnalysisPaused:(BOOL)arg1;
@@ -142,16 +136,23 @@
 - (void)_updateInfoForAllMomentsWithReAnalyzeType:(unsigned int)arg1;
 - (void)_updateInformationForGeoProviderIfNeeded;
 - (void)_updateInformationForGeoProviderIfNeededOnWorkQueue;
-- (void)_updateKeepAlive;
 - (BOOL)_updateLanguageIfNeeded;
 - (void)_updateLocalServerVersionInfo:(id)arg1;
 - (void)_updateRevGeoServerFetchInfoConfig;
 - (void)_updateSecondaryInfoInCompoundNameInfo:(id)arg1 withRevGeoPlaces:(id)arg2 primaryCompoundNameInfo:(id)arg3 defaultGeoOrderingSet:(id)arg4 dominantPlaces:(id)arg5 otherNonDominantPlaces:(id)arg6 ordersCheckedOrUsed:(id)arg7 dominantOrder:(unsigned int)arg8 usedHome:(BOOL)arg9;
+- (id)_userSuppliedTitlesForCountedSet:(id)arg1;
 - (void)_waitForReachability;
+- (void)addressBookChanged;
 - (void)dealloc;
 - (id)init;
+- (id)momentGenerationDataManager;
 - (void)pauseMomentAnalysis;
 - (void)resumeMomentAnalysis;
+- (void)setMomentGenerationDataManager:(id)arg1;
+- (void)setThrottlesCollectionListAnalysis:(BOOL)arg1;
+- (BOOL)setVersionInfoURLIfAvailable:(id)arg1;
+- (void)startAnalyzer;
+- (BOOL)throttlesCollectionListAnalysis;
 - (void)updateInfoForAllMoments;
 - (void)updateInfoForInvalidMomentsIfNeeded;
 - (BOOL)updateInfoForMegaMomentLists:(id)arg1;

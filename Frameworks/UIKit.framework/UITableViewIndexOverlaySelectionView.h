@@ -2,13 +2,16 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UICollectionView, UITableView, UITableViewIndexOverlaySelectionViewCollectionViewFlowLayout;
-
 @interface UITableViewIndexOverlaySelectionView : UIView <UICollectionViewDataSource, UICollectionViewDelegate> {
     UICollectionView *_collectionView;
     UITableViewIndexOverlaySelectionViewCollectionViewFlowLayout *_flowLayout;
     UITableView *_table;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)_cellTapped:(id)arg1;
 - (void)_doneTapped;
@@ -20,5 +23,6 @@
 - (id)collectionView:(id)arg1 viewForSupplementaryElementOfKind:(id)arg2 atIndexPath:(id)arg3;
 - (id)initWithTable:(id)arg1;
 - (void)layoutSubviews;
+- (void)reloadData;
 
 @end

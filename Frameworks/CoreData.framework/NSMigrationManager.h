@@ -2,19 +2,17 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@class NSDictionary, NSError, NSManagedObjectContext, NSManagedObjectModel, NSMappingModel, NSMigrationContext;
-
 @interface NSMigrationManager : NSObject {
-    struct _migrationManagerFlags { 
-        unsigned int _migrationWasCancelled : 1; 
-        unsigned int _usesStoreSpecificMigrationManager : 1; 
-        unsigned int _reservedMigrationManager : 30; 
     NSDictionary *_destinationEntitiesByVersionHash;
     NSManagedObjectContext *_destinationManagedObjectContext;
     NSManagedObjectModel *_destinationModel;
     NSMappingModel *_mappingModel;
     NSError *_migrationCancellationError;
     NSMigrationContext *_migrationContext;
+    struct _migrationManagerFlags { 
+        unsigned int _migrationWasCancelled : 1; 
+        unsigned int _usesStoreSpecificMigrationManager : 1; 
+        unsigned int _reservedMigrationManager : 30; 
     } _migrationManagerFlags;
     id _reserved1;
     id _reserved2;
@@ -25,6 +23,16 @@
     NSManagedObjectModel *_sourceModel;
     NSDictionary *_userInfo;
 }
+
+@property (readonly) NSEntityMapping *currentEntityMapping;
+@property (readonly) NSManagedObjectContext *destinationContext;
+@property (readonly) NSManagedObjectModel *destinationModel;
+@property (readonly) NSMappingModel *mappingModel;
+@property (readonly) float migrationProgress;
+@property (readonly) NSManagedObjectContext *sourceContext;
+@property (readonly) NSManagedObjectModel *sourceModel;
+@property (nonatomic, retain) NSDictionary *userInfo;
+@property BOOL usesStoreSpecificMigrationManager;
 
 + (BOOL)_performSanityCheckForMapping:(id)arg1 fromSourceModel:(id)arg2 toDestinationModel:(id)arg3;
 + (int)migrationDebugLevel;
@@ -49,8 +57,8 @@
 - (id)destinationInstancesForEntityMappingNamed:(id)arg1 sourceInstances:(id)arg2;
 - (id)destinationInstancesForSourceRelationshipNamed:(id)arg1 sourceInstances:(id)arg2;
 - (id)destinationModel;
-- (id)fetchRequestForSourceEntityNamed:(id)arg1 predicateString:(id)arg2 includesSubentities:(BOOL)arg3;
 - (id)fetchRequestForSourceEntityNamed:(id)arg1 predicateString:(id)arg2;
+- (id)fetchRequestForSourceEntityNamed:(id)arg1 predicateString:(id)arg2 includesSubentities:(BOOL)arg3;
 - (id)initWithSourceModel:(id)arg1 destinationModel:(id)arg2;
 - (id)mappingModel;
 - (BOOL)migrateStoreFromURL:(id)arg1 type:(id)arg2 options:(id)arg3 withMappingModel:(id)arg4 toDestinationURL:(id)arg5 destinationType:(id)arg6 destinationOptions:(id)arg7 error:(id*)arg8;

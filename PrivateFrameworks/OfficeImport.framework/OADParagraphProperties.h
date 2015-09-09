@@ -2,25 +2,7 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSMutableArray, OADBulletColor, OADBulletFont, OADBulletProperties, OADBulletSize, OADTextSpacing;
-
 @interface OADParagraphProperties : OADCharacterProperties {
-    unsigned int mIsRightToLeft : 1;
-    unsigned int mIsLatinLineBreak : 1;
-    unsigned int mIsHangingPunctuation : 1;
-    unsigned int mHasTabStops : 1;
-    unsigned int mHasLeftMargin : 1;
-    unsigned int mHasRightMargin : 1;
-    unsigned int mHasLevel : 1;
-    unsigned int mHasIndent : 1;
-    unsigned int mHasAlign : 1;
-    unsigned int mHasDefaultTab : 1;
-    unsigned int mHasIsRightToLeft : 1;
-    unsigned int mHasWrap : 1;
-    unsigned int mHasFontAlign : 1;
-    unsigned int mHasIsLatinLineBreak : 1;
-    unsigned int mHasIsHangingPunctuation : 1;
-    unsigned int mHasBulletCharSet : 1;
     OADTextSpacing *mAfterSpacing;
     unsigned char mAlign;
     OADTextSpacing *mBeforeSpacing;
@@ -31,7 +13,21 @@
     OADBulletSize *mBulletSize;
     double mDefaultTab;
     unsigned char mFontAlign;
+    unsigned int mHasAlign;
+    unsigned int mHasBulletCharSet;
+    unsigned int mHasDefaultTab;
+    unsigned int mHasFontAlign;
+    unsigned int mHasIndent;
+    unsigned int mHasIsHangingPunctuation;
+    unsigned int mHasIsLatinLineBreak;
+    unsigned int mHasLeftMargin;
+    unsigned int mHasLevel;
+    unsigned int mHasRightMargin;
+    unsigned int mHasTabStops;
+    unsigned int mHasWrap;
     double mIndent;
+    unsigned int mIsHangingPunctuation;
+    unsigned int mIsLatinLineBreak;
     double mLeftMargin;
     int mLevel;
     OADTextSpacing *mLineSpacing;
@@ -68,7 +64,6 @@
 - (BOOL)hasIndent;
 - (BOOL)hasIsHangingPunctuation;
 - (BOOL)hasIsLatinLineBreak;
-- (BOOL)hasIsRightToLeft;
 - (BOOL)hasLeftMargin;
 - (BOOL)hasLevel;
 - (BOOL)hasLineSpacing;
@@ -82,11 +77,11 @@
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isHangingPunctuation;
 - (BOOL)isLatinLineBreak;
-- (BOOL)isRightToLeft;
 - (double)leftMargin;
 - (int)level;
 - (id)lineSpacing;
 - (double)nonOveridenLeftMargin;
+- (void)overrideWithCharacterProperties:(id)arg1;
 - (void)overrideWithProperties:(id)arg1;
 - (void)removeUnnecessaryOverrides;
 - (double)rightMargin;
@@ -103,7 +98,6 @@
 - (void)setIndent:(double)arg1;
 - (void)setIsHangingPunctuation:(BOOL)arg1;
 - (void)setIsLatinLineBreak:(BOOL)arg1;
-- (void)setIsRightToLeft:(BOOL)arg1;
 - (void)setLeftMargin:(double)arg1;
 - (void)setLevel:(int)arg1;
 - (void)setLineSpacing:(id)arg1;

@@ -2,21 +2,19 @@
    Image: /System/Library/PrivateFrameworks/TelephonyUI.framework/TelephonyUI
  */
 
-@class TPLegacyLCDSubImageView, TPLegacyLCDTextView, UIView;
-
 @interface TPLegacyLCDView : TPLegacyLCDBar {
-    unsigned int _layoutAsLabelled : 1;
     UIView *_backgroundGradientView;
     UIView *_contentView;
     BOOL _hasBackgroundGradient;
     TPLegacyLCDSubImageView *_imageView;
     TPLegacyLCDTextView *_labelView;
+    unsigned int _layoutAsLabelled;
     TPLegacyLCDTextView *_secondLineTextView;
     TPLegacyLCDTextView *_textView;
 }
 
-@property(retain) UIView * backgroundGradientView;
-@property BOOL hasBackgroundGradient;
+@property (nonatomic, retain) UIView *backgroundGradientView;
+@property (nonatomic) BOOL hasBackgroundGradient;
 
 + (float)labelFontSize;
 + (float)textFontSize;
@@ -41,8 +39,8 @@
 - (void)setBackgroundGradientView:(id)arg1;
 - (void)setContentsAlpha:(float)arg1;
 - (void)setHasBackgroundGradient:(BOOL)arg1;
-- (void)setLabel:(id)arg1 animate:(BOOL)arg2;
 - (void)setLabel:(id)arg1;
+- (void)setLabel:(id)arg1 animate:(BOOL)arg2;
 - (void)setLayoutAsLabelled:(BOOL)arg1;
 - (void)setSecondLineText:(id)arg1;
 - (void)setShadowColor:(id)arg1;

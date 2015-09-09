@@ -2,21 +2,19 @@
    Image: /System/Library/PrivateFrameworks/AXHearingAidSupport.framework/AXHearingAidSupport
  */
 
-@class AXRemoteHearingAidDevice, NSString;
-
 @interface AXHearingDetailViewController : PSListController {
     AXRemoteHearingAidDevice *_device;
-    NSString *_liveListenerUUID;
+    BOOL _isLiveListening;
 }
 
-@property(retain) AXRemoteHearingAidDevice * device;
+@property (nonatomic, retain) AXRemoteHearingAidDevice *device;
 
 - (id)_modeSpecifiers;
 - (id)_volumeSpecifiers;
-- (void)addVolumesForStream:(id)arg1;
 - (id)device;
 - (id)deviceSpecifiers;
 - (id)disconnectedSpecifiers;
+- (id)init;
 - (void)liveListenToggle:(id)arg1;
 - (struct _NSRange { unsigned int x1; unsigned int x2; })programsRange;
 - (void)setDevice:(id)arg1;

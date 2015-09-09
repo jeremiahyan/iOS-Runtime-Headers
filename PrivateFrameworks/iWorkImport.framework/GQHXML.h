@@ -2,10 +2,8 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class <GQHXMLOutput>;
-
 @interface GQHXML : NSObject {
-    boolisProgressive;
+    bool isProgressive;
     struct __CFString { } *mCss;
     struct __CFString { } *mCssFilename;
     struct __CFString { } *mFilename;
@@ -14,15 +12,15 @@
     BOOL mUseExternalCss;
 }
 
-@property(readonly) bool isProgressive;
+@property (readonly) bool isProgressive;
 
 - (void)addCharRef:(const char *)arg1;
 - (void)addContent:(struct __CFString { }*)arg1;
 - (void)addMetaTagWithTextFormat:(struct __CFString { }*)arg1;
 - (void)addStyleClass:(struct __CFString { }*)arg1;
 - (void)addStyleClassLast:(struct __CFString { }*)arg1;
-- (void)addViewportMetaTagForDocumentSize:(struct CGSize { float x1; float x2; })arg1 maximumScale:(float)arg2;
 - (void)addViewportMetaTagForDocumentSize:(struct CGSize { float x1; float x2; })arg1;
+- (void)addViewportMetaTagForDocumentSize:(struct CGSize { float x1; float x2; })arg1 maximumScale:(float)arg2;
 - (void)addXmlCharContent:(const char *)arg1;
 - (struct __CFData { }*)createProgressiveHtml;
 - (struct __CFData { }*)createProgressiveeCSSwithStyleTags:(unsigned char)arg1;

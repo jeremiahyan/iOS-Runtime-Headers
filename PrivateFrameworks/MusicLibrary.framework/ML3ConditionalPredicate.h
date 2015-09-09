@@ -2,17 +2,15 @@
    Image: /System/Library/PrivateFrameworks/MusicLibrary.framework/MusicLibrary
  */
 
-@class ML3Predicate;
-
 @interface ML3ConditionalPredicate : ML3Predicate {
     ML3Predicate *_conditionPredicate;
     ML3Predicate *_elsePredicate;
     ML3Predicate *_thenPredicate;
 }
 
-@property(readonly) ML3Predicate * conditionPredicate;
-@property(readonly) ML3Predicate * elsePredicate;
-@property(readonly) ML3Predicate * thenPredicate;
+@property (nonatomic, readonly, copy) ML3Predicate *conditionPredicate;
+@property (nonatomic, readonly, copy) ML3Predicate *elsePredicate;
+@property (nonatomic, readonly, copy) ML3Predicate *thenPredicate;
 
 + (id)predicateWithConditionPredicate:(id)arg1 thenPredicate:(id)arg2 elsePredicate:(id)arg3;
 
@@ -29,7 +27,6 @@
 - (id)initWithConditionPredicate:(id)arg1 thenPredicate:(id)arg2 elsePredicate:(id)arg3;
 - (BOOL)isDynamicForEntityClass:(Class)arg1;
 - (BOOL)isEqual:(id)arg1;
-- (id)predicateOptimizedForEntityClass:(Class)arg1;
 - (id)spotlightPredicate;
 - (id)thenPredicate;
 

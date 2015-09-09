@@ -2,15 +2,7 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, NSDate, NSDateComponents, NSNumberFormatter, NSString, UIColor, UIFont, _UIDatePickerView;
-
 @interface _UIDatePickerMode : NSObject {
-    struct _NSRange { 
-        unsigned int location; 
-        unsigned int length; 
-    struct _NSRange { 
-        unsigned int location; 
-        unsigned int length; 
     UIFont *_amPmFont;
     NSString *_amString;
     NSDate *_baseDate;
@@ -21,8 +13,15 @@
     unsigned int *_elements;
     UIFont *_font;
     NSNumberFormatter *_formatter;
+    BOOL _isUsingJapaneseCalendar;
     NSString *_localizedFormatString;
+    struct _NSRange { 
+        unsigned int location; 
+        unsigned int length; 
     } _maxDayRange;
+    struct _NSRange { 
+        unsigned int location; 
+        unsigned int length; 
     } _maxMonthRange;
     NSDate *_maximumDate;
     NSDateComponents *_maximumDateComponents;
@@ -39,35 +38,35 @@
     int _yearsSinceBaseDate;
 }
 
-@property(readonly) UIFont * amPmFont;
-@property(readonly) NSString * amString;
-@property(retain) NSDate * baseDate;
-@property(retain) NSDateComponents * baseDateComponents;
-@property(readonly) int datePickerMode;
-@property _UIDatePickerView * datePickerView;
-@property(readonly) UIFont * defaultTimeFont;
-@property(readonly) int displayedCalendarUnits;
-@property unsigned int* elements;
-@property(readonly) UIFont * font;
-@property(getter=is24Hour,readonly) BOOL is24Hour;
-@property(getter=isTimeIntervalMode,readonly) BOOL isTimeIntervalMode;
-@property(retain) NSString * localizedFormatString;
-@property(readonly) NSDate * maximumDate;
-@property(readonly) NSDateComponents * maximumDateComponents;
-@property(readonly) NSDate * minimumDate;
-@property(readonly) NSDateComponents * minimumDateComponents;
-@property int minuteInterval;
-@property unsigned int numberOfComponents;
-@property(retain) NSDate * originatingDate;
-@property(readonly) NSString * pmString;
-@property(readonly) float rowHeight;
-@property(retain) NSDateComponents * selectedDateComponents;
-@property(readonly) UIFont * sizedFont;
-@property(retain) NSDateComponents * todayDateComponents;
-@property double todaySinceReferenceDate;
-@property(readonly) UIColor * todayTextColor;
-@property(readonly) float totalComponentWidth;
-@property int yearsSinceBaseDate;
+@property (nonatomic, readonly) UIFont *amPmFont;
+@property (nonatomic, readonly) NSString *amString;
+@property (nonatomic, retain) NSDate *baseDate;
+@property (nonatomic, retain) NSDateComponents *baseDateComponents;
+@property (nonatomic, readonly) int datePickerMode;
+@property (nonatomic) _UIDatePickerView *datePickerView;
+@property (nonatomic, readonly) UIFont *defaultTimeFont;
+@property (nonatomic, readonly) int displayedCalendarUnits;
+@property (nonatomic) unsigned int*elements;
+@property (nonatomic, readonly) UIFont *font;
+@property (getter=is24Hour, nonatomic, readonly) BOOL is24Hour;
+@property (getter=isTimeIntervalMode, nonatomic, readonly) BOOL isTimeIntervalMode;
+@property (nonatomic, retain) NSString *localizedFormatString;
+@property (nonatomic, readonly) NSDate *maximumDate;
+@property (nonatomic, readonly) NSDateComponents *maximumDateComponents;
+@property (nonatomic, readonly) NSDate *minimumDate;
+@property (nonatomic, readonly) NSDateComponents *minimumDateComponents;
+@property (nonatomic) int minuteInterval;
+@property (nonatomic) unsigned int numberOfComponents;
+@property (nonatomic, retain) NSDate *originatingDate;
+@property (nonatomic, readonly) NSString *pmString;
+@property (nonatomic, readonly) float rowHeight;
+@property (nonatomic, retain) NSDateComponents *selectedDateComponents;
+@property (nonatomic, readonly) UIFont *sizedFont;
+@property (nonatomic, retain) NSDateComponents *todayDateComponents;
+@property (nonatomic) double todaySinceReferenceDate;
+@property (nonatomic, readonly) UIColor *todayTextColor;
+@property (nonatomic, readonly) float totalComponentWidth;
+@property (nonatomic) int yearsSinceBaseDate;
 
 + (id)_datePickerModeWithFormatString:(id)arg1 datePickerView:(id)arg2;
 + (id)_datePickerModeWithMode:(int)arg1 datePickerView:(id)arg2;
@@ -87,12 +86,14 @@
 - (BOOL)_shouldEnableValueForRow:(int)arg1 inComponent:(int)arg2 calendarUnit:(unsigned int)arg3;
 - (void)_shouldReset:(id)arg1;
 - (void)_updateSelectedDateComponentsWithNewValueInComponent:(int)arg1 usingSelectionBarValue:(BOOL)arg2;
+- (int)_yearlessYearForMonth:(int)arg1;
 - (id)amPmFont;
 - (id)amString;
 - (BOOL)areValidDateComponents:(id)arg1 comparingUnits:(int)arg2;
 - (id)baseDate;
 - (id)baseDateComponents;
 - (id)calendar;
+- (id)calendarForFormatters;
 - (unsigned int)calendarUnitForComponent:(int)arg1;
 - (void)clearBaseDate;
 - (int)componentForCalendarUnit:(unsigned int)arg1;

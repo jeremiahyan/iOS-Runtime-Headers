@@ -2,15 +2,13 @@
    Image: /System/Library/PrivateFrameworks/ManagedConfiguration.framework/ManagedConfiguration
  */
 
-@class NSMutableArray;
-
 @interface MCAirPrintPayload : MCPayload {
     unsigned int _airPrintCount;
     NSMutableArray *_ippAddresses;
 }
 
-@property unsigned int airPrintCount;
-@property(retain) NSMutableArray * ippAddresses;
+@property (nonatomic) unsigned int airPrintCount;
+@property (nonatomic, retain) NSMutableArray *ippAddresses;
 
 + (id)localizedPluralForm;
 + (id)localizedSingularForm;
@@ -21,6 +19,7 @@
 - (id)description;
 - (id)initWithDictionary:(id)arg1 profile:(id)arg2 outError:(id*)arg3;
 - (id)ippAddresses;
+- (id)payloadDescriptionKeyValueSections;
 - (id)restrictions;
 - (void)setAirPrintCount:(unsigned int)arg1;
 - (void)setIppAddresses:(id)arg1;

@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/EventKit.framework/EventKit
  */
 
-@class EKObjectID, NSDate, NSString, NSTimeZone;
-
 @interface EKAlarmOccurrence : NSObject {
     NSDate *_acknowledgedDate;
     EKObjectID *_alarmID;
@@ -12,17 +10,19 @@
     NSDate *_ownerDate;
     EKObjectID *_ownerID;
     NSTimeZone *_ownerTimeZone;
+    NSURL *_ownerURI;
 }
 
-@property(readonly) NSDate * acknowledgedDate;
-@property(readonly) EKObjectID * alarmID;
-@property(readonly) NSString * externalID;
-@property(readonly) NSDate * fireDate;
-@property(readonly) NSDate * ownerDate;
-@property(readonly) EKObjectID * ownerID;
-@property(readonly) NSTimeZone * ownerTimeZone;
+@property (nonatomic, readonly) NSDate *acknowledgedDate;
+@property (nonatomic, readonly) EKObjectID *alarmID;
+@property (nonatomic, readonly) NSString *externalID;
+@property (nonatomic, readonly) NSDate *fireDate;
+@property (nonatomic, readonly) NSDate *ownerDate;
+@property (nonatomic, readonly) EKObjectID *ownerID;
+@property (nonatomic, readonly) NSTimeZone *ownerTimeZone;
+@property (nonatomic, readonly) NSURL *ownerURI;
 
-+ (id)alarmOccurrenceWithAlarmID:(id)arg1 ownerID:(id)arg2 ownerDate:(id)arg3 ownerTimeZone:(id)arg4 fireDate:(id)arg5 externalID:(id)arg6 acknowledgedDate:(id)arg7;
++ (id)alarmOccurrenceWithAlarmID:(id)arg1 ownerID:(id)arg2 ownerDate:(id)arg3 ownerTimeZone:(id)arg4 ownerURI:(id)arg5 fireDate:(id)arg6 externalID:(id)arg7 acknowledgedDate:(id)arg8;
 
 - (id)acknowledgedDate;
 - (id)alarmID;
@@ -31,11 +31,12 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)externalID;
 - (id)fireDate;
-- (id)initWithAlarmID:(id)arg1 ownerID:(id)arg2 ownerDate:(id)arg3 ownerTimeZone:(id)arg4 fireDate:(id)arg5 externalID:(id)arg6 acknowledgedDate:(id)arg7;
+- (id)initWithAlarmID:(id)arg1 ownerID:(id)arg2 ownerDate:(id)arg3 ownerTimeZone:(id)arg4 ownerURI:(id)arg5 fireDate:(id)arg6 externalID:(id)arg7 acknowledgedDate:(id)arg8;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithDictionaryRepresentation:(id)arg1;
 - (id)ownerDate;
 - (id)ownerID;
 - (id)ownerTimeZone;
+- (id)ownerURI;
 
 @end

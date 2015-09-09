@@ -2,28 +2,31 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSNumber, NSString;
+@interface SADistance : AceObject <SAAceSerializable>
 
-@interface SADistance : AceObject <SAAceSerializable> {
-}
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+@property (nonatomic, copy) NSString *unit;
+@property (nonatomic, copy) NSNumber *value;
 
-@property(copy) NSString * unit;
-@property(copy) NSString * units;
-@property(retain) NSNumber * value;
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
 
 + (id)distance;
 + (id)distanceWithDictionary:(id)arg1 context:(id)arg2;
 
-- (id)afui_abbreviatedUnit;
-- (int)afui_compare:(id)arg1;
-- (id)afui_metersValue;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 - (void)setUnit:(id)arg1;
-- (void)setUnits:(id)arg1;
 - (void)setValue:(id)arg1;
 - (id)unit;
-- (id)units;
 - (id)value;
+
+// Image: /System/Library/PrivateFrameworks/AssistantUI.framework/AssistantUI
+
+- (id)afui_abbreviatedUnit;
+- (int)afui_compare:(id)arg1;
+- (id)afui_metersValue;
 
 @end

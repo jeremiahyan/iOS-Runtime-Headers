@@ -2,11 +2,11 @@
    Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
  */
 
-@interface CKMultiCache : CKMultiDict {
+@interface CKMultiCache : IMMultiDict {
     unsigned int _limit;
 }
 
-@property unsigned int limit;
+@property (nonatomic) unsigned int limit;
 
 - (void)dealloc;
 - (id)init;

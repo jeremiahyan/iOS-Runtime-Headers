@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class NSString, UIColor, UIFont, UIImage;
-
 @interface ABMonogrammer : NSObject {
     UIColor *_backgroundColor;
     float _diameter;
@@ -12,17 +10,19 @@
     UIImage *_knockoutMaskMonogram;
     int _monogrammerStyle;
     UIImage *_questionMarkMonogram;
+    float _scale;
     NSString *_silhouetteImageName;
     UIImage *_silhouetteMonogram;
     UIColor *_textColor;
     BOOL _textKnockout;
+    UIColor *_tintColor;
 }
 
-@property(retain) UIColor * backgroundColor;
-@property float diameter;
-@property(retain) UIFont * font;
-@property(retain) UIColor * textColor;
-@property BOOL textKnockout;
+@property (nonatomic, retain) UIColor *backgroundColor;
+@property (nonatomic) float diameter;
+@property (nonatomic, retain) UIFont *font;
+@property (nonatomic, retain) UIColor *textColor;
+@property (nonatomic) BOOL textKnockout;
 
 - (void)_clearMonogramCache;
 - (id)_copyMonogramWithImageData:(struct __CFData { }*)arg1;
@@ -43,10 +43,12 @@
 - (float)innerBorderWidth;
 - (id)knockoutMaskMonogram;
 - (id)maskForMonogram;
-- (id)monogramForPerson:(void*)arg1 isPersonImage:(BOOL*)arg2;
 - (id)monogramForPerson:(void*)arg1;
+- (id)monogramForPerson:(void*)arg1 isPersonImage:(BOOL*)arg2;
 - (id)monogramForPersonWithFirstName:(id)arg1 lastName:(id)arg2;
 - (void)monogramsAsFlatImages;
+- (void)monogramsForStark;
+- (void)monogramsWithTint:(id)arg1;
 - (id)questionMarkMonogram;
 - (void)setBackgroundColor:(id)arg1;
 - (void)setDiameter:(float)arg1;

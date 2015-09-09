@@ -2,8 +2,7 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface TSCHChartFeatureBar : TSCHChartFeatureCategory {
-}
+@interface TSCHChartFeatureBar : TSCHChartFeatureCategory
 
 - (id)categoryLabelPositioner;
 - (id)columnShapeUIName;
@@ -17,6 +16,7 @@
 - (float)maxDepthRatio;
 - (void)p_initializeAxisIDs;
 - (Class)presetImagerClass;
+- (int)representativeGridValueAxisType;
 - (float)sageMaxDepthRatio;
 - (Class)stageClass;
 - (id)supportedAxisScales;

@@ -2,23 +2,21 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UILabel, UINavigationItem, UIView;
-
 @interface UINavigationItemView : UIView {
-    struct CGSize { 
-        float width; 
-        float height; 
     UIView *_bottomCrossView;
     BOOL _customFontSet;
     BOOL _isCrossFading;
     BOOL _isFadingInFromCustomAlpha;
     UINavigationItem *_item;
     UILabel *_label;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _titleSize;
     UIView *_topCrossView;
 }
 
-@property(setter=_setFadingInFromCustomAlpha:) BOOL _isFadingInFromCustomAlpha;
+@property (setter=_setFadingInFromCustomAlpha:, nonatomic) BOOL _isFadingInFromCustomAlpha;
 
 - (void)_adjustLabelTrackingIfNecessary;
 - (void)_cleanUpCrossView;

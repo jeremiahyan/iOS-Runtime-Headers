@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/EventKit.framework/EventKit
  */
 
-@class NSArray, NSCalendar, NSDate, NSTimeZone;
-
 @interface EKRecurrenceGenerator : NSObject {
     BOOL _allDay;
     NSCalendar *_calendar;
@@ -16,33 +14,34 @@
     NSDate *_eventStartDate;
     NSTimeZone *_eventTimeZone;
     int _frequency;
-    int _interval;
+    long _interval;
     NSArray *_monthsOfTheYear;
     NSArray *_setPositions;
     BOOL _shouldPinMonthDays;
-    int _weekStart;
+    long _weekStart;
     NSArray *_weeksOfTheYear;
 }
 
-@property BOOL allDay;
-@property(copy) NSArray * daysOfTheMonth;
-@property(copy) NSArray * daysOfTheWeek;
-@property(copy) NSArray * daysOfTheYear;
-@property(copy) NSDate * endDate;
-@property(copy) NSDate * eventEndDate;
-@property(copy) NSDate * eventStartDate;
-@property(copy) NSTimeZone * eventTimeZone;
-@property(copy) NSArray * monthsOfTheYear;
-@property(copy) NSArray * setPositions;
-@property(copy) NSArray * weeksOfTheYear;
+@property (nonatomic) BOOL allDay;
+@property (nonatomic, copy) NSArray *daysOfTheMonth;
+@property (nonatomic, copy) NSArray *daysOfTheWeek;
+@property (nonatomic, copy) NSArray *daysOfTheYear;
+@property (nonatomic, copy) NSDate *endDate;
+@property (nonatomic, copy) NSDate *eventEndDate;
+@property (nonatomic, copy) NSDate *eventStartDate;
+@property (nonatomic, copy) NSTimeZone *eventTimeZone;
+@property (nonatomic, copy) NSArray *monthsOfTheYear;
+@property (nonatomic, copy) NSArray *setPositions;
+@property (nonatomic, copy) NSArray *weeksOfTheYear;
 
 + (id)generator;
 
-- (id)_computeRecurrenceEndDate:(int)arg1;
+- (id)_computeRecurrenceEndDate:(unsigned int)arg1;
 - (double)_convertAbsoluteTime:(double)arg1 fromTimeZone:(id)arg2 toTimeZone:(id)arg3;
 - (id)_copyDailyOccurrencesWithInitialDate:(id)arg1 startDate:(id)arg2 endDate:(id)arg3 count:(unsigned int)arg4;
 - (id)_copyMonthlyOccurrencesWithInitialDate:(id)arg1 startDate:(id)arg2 endDate:(id)arg3 count:(unsigned int)arg4;
 - (id)_copyOccurrenceDatesBetweenStartDate:(struct { int x1; BOOL x2; BOOL x3; BOOL x4; BOOL x5; double x6; })arg1 endDate:(struct { int x1; BOOL x2; BOOL x3; BOOL x4; BOOL x5; double x6; })arg2 timeZone:(id)arg3 limit:(int)arg4;
+- (id)_copyOccurrenceDatesWithBirthdayEvent:(void*)arg1 startDate:(struct { int x1; BOOL x2; BOOL x3; BOOL x4; BOOL x5; double x6; })arg2 endDate:(struct { int x1; BOOL x2; BOOL x3; BOOL x4; BOOL x5; double x6; })arg3 timeZone:(id)arg4 limit:(int)arg5 locked:(BOOL)arg6;
 - (id)_copySimpleYearlyOccurrencesWithInitialDate:(id)arg1 startDate:(id)arg2 endDate:(id)arg3 count:(unsigned int)arg4;
 - (id)_copyWeeklyOccurrencesWithInitialDate:(id)arg1 startDate:(id)arg2 endDate:(id)arg3 count:(unsigned int)arg4;
 - (id)_copyYearlyOccurrencesWithInitialDate:(id)arg1 startDate:(id)arg2 endDate:(id)arg3 count:(unsigned int)arg4;
@@ -55,6 +54,7 @@
 - (void)_setupForPersistentEvent:(id)arg1;
 - (BOOL)_validateCalDate:(struct { int x1; BOOL x2; BOOL x3; BOOL x4; BOOL x5; double x6; })arg1 pinned:(BOOL)arg2;
 - (BOOL)allDay;
+- (id)computeRecurrenceEndDateForCalEvent:(void*)arg1 recurrenceRule:(void*)arg2 count:(unsigned int)arg3 locked:(BOOL)arg4;
 - (id)copyOccurrenceDatesWithCalEvent:(void*)arg1 startDate:(struct { int x1; BOOL x2; BOOL x3; BOOL x4; BOOL x5; double x6; })arg2 endDate:(struct { int x1; BOOL x2; BOOL x3; BOOL x4; BOOL x5; double x6; })arg3 timeZone:(id)arg4 limit:(int)arg5 locked:(BOOL)arg6;
 - (id)copyOccurrenceDatesWithEKEvent:(id)arg1 recurrenceRule:(id)arg2 startDate:(struct { int x1; BOOL x2; BOOL x3; BOOL x4; BOOL x5; double x6; })arg3 endDate:(struct { int x1; BOOL x2; BOOL x3; BOOL x4; BOOL x5; double x6; })arg4 timeZone:(id)arg5 exceptionDates:(id)arg6 limit:(int)arg7;
 - (id)copyOccurrenceDatesWithEKEvent:(id)arg1 recurrenceRule:(id)arg2 startDate:(struct { int x1; BOOL x2; BOOL x3; BOOL x4; BOOL x5; double x6; })arg3 endDate:(struct { int x1; BOOL x2; BOOL x3; BOOL x4; BOOL x5; double x6; })arg4 timeZone:(id)arg5 limit:(int)arg6;

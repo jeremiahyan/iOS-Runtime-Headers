@@ -2,9 +2,14 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface KNBaseCompatibilityDelegate : NSObject <TSKCompatibilityDelegate> {
-}
+@interface KNBaseCompatibilityDelegate : NSObject <TSKCompatibilityDelegate>
 
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+
+- (id)backwardsCompatibleTypeForType:(id)arg1;
 - (Class)exportOptionsControllerClass;
 - (id)exportableTypes;
 - (Class)exporterClassForType:(id)arg1 options:(id)arg2;

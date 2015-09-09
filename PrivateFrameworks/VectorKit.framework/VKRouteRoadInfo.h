@@ -2,20 +2,18 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-@class NSString;
-
 @interface VKRouteRoadInfo : NSObject {
+    NSString *_name;
     struct PolylineCoordinate { 
         unsigned int index; 
         float offset; 
-    NSString *_name;
     } _routeOffset;
     NSString *_shieldGroup;
 }
 
-@property(readonly) NSString * name;
-@property(readonly) struct PolylineCoordinate { unsigned int x1; float x2; } routeOffset;
-@property(readonly) NSString * shieldGroup;
+@property (nonatomic, readonly, retain) NSString *name;
+@property (nonatomic, readonly) struct PolylineCoordinate { unsigned int x1; float x2; } routeOffset;
+@property (nonatomic, readonly, retain) NSString *shieldGroup;
 
 - (id).cxx_construct;
 - (void)dealloc;

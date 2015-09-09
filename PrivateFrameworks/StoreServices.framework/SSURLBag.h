@@ -2,34 +2,37 @@
    Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
  */
 
-@class NSDictionary, NSMutableArray, NSObject<OS_dispatch_queue>, SSURLBagContext, SSXPCConnection;
-
 @interface SSURLBag : NSObject {
     SSXPCConnection *_connection;
     SSURLBagContext *_context;
     NSDictionary *_dictionary;
     NSObject<OS_dispatch_queue> *_dispatchQueue;
     double _expirationTime;
+    BOOL _ignoreCacheForNextLookup;
     NSMutableArray *_pendingLookups;
+    NSString *_storeFrontIdentifier;
 }
 
-@property(readonly) SSURLBagContext * URLBagContext;
+@property (readonly) SSURLBagContext *URLBagContext;
 
 + (id)URLBagForContext:(id)arg1;
++ (void)setURLBag:(id)arg1 forContext:(id)arg2;
 
 - (id)URLBagContext;
 - (id)_connection;
 - (void)_drainPendingLookupsWithError:(id)arg1;
 - (void)_loadURLBag;
-- (void)_loadWithCompletionBlock:(id)arg1;
+- (void)_loadWithCompletionBlock:(id /* block */)arg1;
 - (void)dealloc;
+- (void)dispatchAsync:(id /* block */)arg1;
+- (void)dispatchSync:(id /* block */)arg1;
 - (id)existingBagDictionary;
-- (void)getTrustForURL:(id)arg1 completionBlock:(id)arg2;
+- (void)getTrustForURL:(id)arg1 completionBlock:(id /* block */)arg2;
 - (id)init;
 - (id)initWithURLBagContext:(id)arg1;
 - (void)invalidate;
-- (void)loadValueForKey:(id)arg1 completionBlock:(id)arg2;
-- (void)loadWithCompletionBlock:(id)arg1;
+- (void)loadValueForKey:(id)arg1 completionBlock:(id /* block */)arg2;
+- (void)loadWithCompletionBlock:(id /* block */)arg1;
 - (id)valueForKey:(id)arg1 error:(id*)arg2;
 
 @end

@@ -2,10 +2,9 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UITextInputTraits, UIView;
-
 @interface UIKeyboard : UIView <UIKeyboardImplGeometryDelegate> {
     UITextInputTraits *m_defaultTraits;
+    BOOL m_hasExplicitOrientation;
     int m_idiom;
     BOOL m_minimized;
     int m_orientation;
@@ -14,12 +13,12 @@
     BOOL m_typingDisabled;
 }
 
-@property BOOL caretBlinks;
-@property BOOL caretVisible;
-@property int keyboardIdiom;
-@property(getter=isMinimized) BOOL minimized;
-@property BOOL showsCandidatesInline;
-@property BOOL typingEnabled;
+@property (nonatomic) BOOL caretBlinks;
+@property (nonatomic) BOOL caretVisible;
+@property (nonatomic) int keyboardIdiom;
+@property (getter=isMinimized, nonatomic) BOOL minimized;
+@property (nonatomic) BOOL showsCandidatesInline;
+@property (nonatomic) BOOL typingEnabled;
 
 + (void)_clearActiveKeyboard;
 + (id)activeKeyboard;
@@ -48,14 +47,16 @@
 - (id)_getCurrentKeyplaneName;
 - (id)_getLocalizedInputMode;
 - (BOOL)_hasCandidates;
+- (id)_initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 lazily:(BOOL)arg2;
 - (BOOL)_isAutomaticKeyboard;
 - (id)_keyplaneForKey:(id)arg1;
 - (id)_keyplaneNamed:(id)arg1;
-- (void)_moveWithEvent:(id)arg1;
+- (BOOL)_mayRemainFocused;
 - (void)_physicalButtonsBegan:(id)arg1 withEvent:(id)arg2;
 - (void)_physicalButtonsCancelled:(id)arg1 withEvent:(id)arg2;
 - (void)_physicalButtonsEnded:(id)arg1 withEvent:(id)arg2;
 - (int)_positionInCandidateList:(id)arg1;
+- (void)_resizeForKeyplaneSize:(struct CGSize { float x1; float x2; })arg1 splitWidthsChanged:(BOOL)arg2;
 - (void)_setAutocorrects:(BOOL)arg1;
 - (void)_setInputMode:(id)arg1;
 - (void)_setPasscodeOutlineAlpha:(float)arg1;
@@ -67,8 +68,10 @@
 - (void)_wheelChangedWithEvent:(id)arg1;
 - (void)acceptAutocorrection;
 - (void)activate;
+- (BOOL)allowExternalChangeForFocusHeading:(unsigned int)arg1 cursorLocation:(int)arg2;
 - (void)autoAdjustOrientation;
 - (void)autoAdjustOrientationForSize:(struct CGSize { float x1; float x2; })arg1;
+- (BOOL)canBecomeFocused;
 - (BOOL)canDismiss;
 - (BOOL)canHandleEvent:(id)arg1;
 - (BOOL)caretBlinks;
@@ -89,9 +92,11 @@
 - (BOOL)hasAutocorrectPrompt;
 - (id)hitTest:(struct CGPoint { float x1; float x2; })arg1 withEvent:(id)arg2;
 - (void)implBoundsHeightChangeDone:(float)arg1 suppressNotification:(BOOL)arg2;
+- (id)initLazily;
 - (id)initWithDefaultSize;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (int)interfaceOrientation;
+- (struct CGSize { float x1; float x2; })intrinsicContentSize;
 - (BOOL)isActive;
 - (BOOL)isActivePerScreen;
 - (BOOL)isMinimized;
@@ -103,16 +108,15 @@
 - (void)manualKeyboardWillBeOrderedOut;
 - (void)maximize;
 - (void)minimize;
-- (void)movedFromSuperview:(id)arg1;
 - (BOOL)pointInside:(struct CGPoint { float x1; float x2; })arg1 forEvent:(struct __GSEvent { }*)arg2;
 - (BOOL)pointInside:(struct CGPoint { float x1; float x2; })arg1 withEvent:(id)arg2;
 - (void)prepareForGeometryChange;
 - (void)prepareForImplBoundsHeightChange:(float)arg1 suppressNotification:(BOOL)arg2;
 - (void)remoteControlReceivedWithEvent:(id)arg1;
 - (void)removeAutocorrectPrompt;
-- (void)removeFromSuperview;
-- (void)resizeForKeyplaneSize:(struct CGSize { float x1; float x2; })arg1;
+- (void)responseContextDidChange;
 - (BOOL)returnKeyEnabled;
+- (void)setBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)setCaretBlinks:(BOOL)arg1;
 - (void)setCaretVisible:(BOOL)arg1;
 - (void)setCorrectionLearningAllowed:(BOOL)arg1;
@@ -123,10 +127,14 @@
 - (void)setKeyboardIdiom:(int)arg1;
 - (void)setMinimized:(BOOL)arg1;
 - (void)setNeedsDisplay;
+- (void)setOrientation:(int)arg1;
 - (void)setReturnKeyEnabled:(BOOL)arg1;
+- (void)setShowPredictionBar:(BOOL)arg1;
 - (void)setShowsCandidatesInline:(BOOL)arg1;
 - (void)setTypingEnabled:(BOOL)arg1;
+- (BOOL)shouldChangeFocusedItem:(id)arg1 heading:(unsigned int)arg2;
 - (BOOL)shouldSaveMinimizationState;
+- (BOOL)showPredictionBar;
 - (BOOL)showsCandidatesInline;
 - (void)syncMinimizedStateToHardwareKeyboardAttachedState;
 - (void)takeSnapshot;

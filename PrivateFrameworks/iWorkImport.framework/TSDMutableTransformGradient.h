@@ -2,25 +2,27 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSArray, TSUColor;
+@interface TSDMutableTransformGradient : TSDTransformGradient <TSDGradientStopContainer>
 
-@interface TSDMutableTransformGradient : TSDTransformGradient <TSDGradientStopContainer> {
-}
+@property (nonatomic) struct CGSize { float x1; float x2; } baseNaturalSize;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) struct CGPoint { float x1; float x2; } endPoint;
+@property (nonatomic, retain) TSUColor *firstColor;
+@property (nonatomic, retain) NSArray *gradientStops;
+@property (nonatomic) unsigned int gradientType;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL isAdvancedGradient;
+@property (nonatomic, retain) TSUColor *lastColor;
+@property (nonatomic) float opacity;
+@property (nonatomic) struct CGPoint { float x1; float x2; } startPoint;
+@property (readonly) Class superclass;
 
-@property struct CGSize { float x1; float x2; } baseNaturalSize;
-@property struct CGPoint { float x1; float x2; } endPoint;
-@property(retain) TSUColor * firstColor;
-@property(retain) NSArray * gradientStops;
-@property unsigned int gradientType;
-@property BOOL isAdvancedGradient;
-@property(retain) TSUColor * lastColor;
-@property float opacity;
-@property struct CGPoint { float x1; float x2; } startPoint;
-
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)evenlyDistributeStops;
 - (void)insertGradientStop:(id)arg1;
-- (void)insertStopAtFraction:(float)arg1 withColor:(id)arg2;
-- (void)insertStopAtFraction:(float)arg1;
+- (id)insertStopAtFraction:(float)arg1;
+- (id)insertStopAtFraction:(float)arg1 withColor:(id)arg2;
 - (void)moveStopAtIndex:(unsigned int)arg1 toFraction:(float)arg2;
 - (void)removeStop:(id)arg1;
 - (id)removeStopAtIndex:(unsigned int)arg1;

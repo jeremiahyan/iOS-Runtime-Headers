@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
  */
 
-@class SSSQLiteDatabase;
-
 @interface SSAppPurchaseHistoryDatabase : NSObject {
     SSSQLiteDatabase *_database;
 }
@@ -11,7 +9,6 @@
 + (void)_createDatabaseDirectory;
 + (BOOL)_setupDatabase:(id)arg1;
 + (id)accountUniqueIdentifierKey;
-+ (id)localRevisionKey;
 + (id)newDefaultInstance;
 
 - (id)allProperties:(id)arg1 accountID:(id)arg2 includingHidden:(BOOL)arg3;
@@ -21,10 +18,12 @@
 - (id)init;
 - (id)initWithDatabaseURL:(id)arg1 readOnly:(BOOL)arg2;
 - (int)localRevisionForAccountUniqueIdentifier:(id)arg1;
-- (void)modifyUsingAppPurchaseHistoryTransactionBlock:(id)arg1;
-- (void)readAsyncUsingTransactionBlock:(id)arg1;
-- (void)readUsingTransactionBlock:(id)arg1;
+- (void)modifyUsingAppPurchaseHistoryTransactionBlock:(id /* block */)arg1;
+- (void)readAsyncUsingTransactionBlock:(id /* block */)arg1;
+- (void)readUsingTransactionBlock:(id /* block */)arg1;
+- (BOOL)removeValueForDatabaseProperty:(id)arg1;
 - (BOOL)resetCacheForNewAccountID:(id)arg1;
+- (BOOL)setCurrentAccountUniqueIdentifier:(id)arg1;
 - (BOOL)setLocalRevision:(int)arg1 forAccountUniqueIdentifier:(id)arg2;
 - (BOOL)setValue:(id)arg1 forDatabaseProperty:(id)arg2;
 - (id)valueForDatabaseProperty:(id)arg1;

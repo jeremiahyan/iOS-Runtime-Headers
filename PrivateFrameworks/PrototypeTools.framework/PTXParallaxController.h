@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/PrototypeTools.framework/PrototypeTools
  */
 
-@class CADisplayLink, CMMotionManager, NSHashTable, NSMutableSet, PTXParallaxEngineSettings, PTXParallaxReferenceFrame;
-
 @interface PTXParallaxController : NSObject <_UISettingsKeyObserver> {
     CADisplayLink *_displayLink;
     BOOL _generatingUpdates;
@@ -14,6 +12,11 @@
     double _startUpdatesTimestamp;
     NSMutableSet *_suspendReasons;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_defaultsChanged:(id)arg1;

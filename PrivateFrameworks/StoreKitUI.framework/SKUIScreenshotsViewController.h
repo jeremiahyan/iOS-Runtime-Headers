@@ -2,18 +2,16 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class <SKUIScreenshotsDelegate>, NSArray, NSMutableArray, NSOperationQueue, SKUIClientContext, SKUIScreenshotDataConsumer, SKUIVideoImageDataConsumer, UICollectionView;
-
-@interface SKUIScreenshotsViewController : UIViewController <SKUISlideshowViewControllerDataSource, SKUISlideshowViewControllerDelegate, UIScrollViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource> {
-    struct CGSize { 
-        float width; 
-        float height; 
+@interface SKUIScreenshotsViewController : UIViewController <SKUISlideshowViewControllerDataSource, SKUISlideshowViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate> {
     SKUIClientContext *_clientContext;
     UICollectionView *_collectionView;
     SKUIScreenshotDataConsumer *_dataConsumer;
     <SKUIScreenshotsDelegate> *_delegate;
     NSOperationQueue *_operationQueue;
     NSMutableArray *_screenshotImages;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _screenshotMaxSize;
     NSMutableArray *_screenshotRawImages;
     NSArray *_screenshots;
@@ -22,9 +20,13 @@
     NSArray *_trailers;
 }
 
-@property(readonly) SKUIClientContext * clientContext;
-@property <SKUIScreenshotsDelegate> * delegate;
-@property(retain) NSOperationQueue * operationQueue;
+@property (nonatomic, readonly) SKUIClientContext *clientContext;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SKUIScreenshotsDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) NSOperationQueue *operationQueue;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_setImage:(id)arg1 forIndex:(int)arg2;

@@ -2,15 +2,13 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSNumber;
+@interface TSCHChartValueAxis : TSCHChartAxis
 
-@interface TSCHChartValueAxis : TSCHChartAxis {
-}
-
-@property(readonly) NSNumber * userMax;
-@property(readonly) NSNumber * userMin;
+@property (nonatomic, readonly) NSNumber *userMax;
+@property (nonatomic, readonly) NSNumber *userMin;
 
 + (id)axisForInfo:(id)arg1;
++ (unsigned char)styleOwnerPathType;
 
 - (void)adjustMinMaxForDataRangeInAnalysis:(id)arg1;
 - (id)computeMajorGridlinesFromMinMaxInAnalysis:(id)arg1;
@@ -18,7 +16,7 @@
 - (id)defaultProperties;
 - (BOOL)editableFormatForValueStrings;
 - (id)g_genericToSpecificPropertyMap;
-- (struct pair<TSCH3DAxisLabelEnumerator *, TSCH3DAxisLabelEnumerator *> { id x1; id x2; })labelEnumeratorPair;
+- (struct pair<TSCH3DAxisLabelEnumerator *, TSCH3DAxisLabelEnumerator *> { id x1; })labelEnumeratorPair;
 - (id)p_GetGenericToValuePropertyMap;
 - (struct { double x1; double x2; double x3; unsigned int x4; })p_axisDescFromFixedMinValue:(double)arg1 fixedMaxValue:(double)arg2 spreadRanges:(const struct { double x1; double x2; }*)arg3;
 - (struct { double x1; double x2; double x3; unsigned int x4; })p_axisDescFromFixedNegativeMinValue:(double)arg1 positiveMaxValue:(double)arg2 spreadRanges:(const struct { double x1; double x2; }*)arg3;
@@ -34,9 +32,11 @@
 - (id)p_computeMajorGridlinesAutomaticallyInAnalysis:(id)arg1 forHorizChart:(BOOL)arg2;
 - (void)p_includeZeroWithMinValue:(double*)arg1 maxValue:(double*)arg2 userValues:(int)arg3;
 - (int)specificPropertyForGeneric:(int)arg1;
+- (BOOL)supportsAxisValueLabels;
+- (BOOL)supportsReferenceLines;
+- (void)updateModelAxisAnalysis:(id)arg1;
 - (void)updateModelMinMaxForErrorBarsOnSeries:(id)arg1 axisID:(id)arg2 analysis:(id)arg3;
 - (void)updateModelMinMaxForTrendLineOnSeries:(id)arg1 axisID:(id)arg2 analysis:(id)arg3;
-- (void)updateModelMinMaxInAnalysis:(id)arg1;
 - (id)userMax;
 - (id)userMin;
 - (double)validateUserMaxForDouble:(double)arg1;

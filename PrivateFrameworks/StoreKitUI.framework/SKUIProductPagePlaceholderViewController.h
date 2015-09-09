@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class <SKUIProductPageChildViewControllerDelegate>, SKUIClientContext, SKUIColorScheme, SKUIProductPageHeaderViewController, SKUIProductPagePlaceholderScrollView, UIActivityIndicatorView, UIScrollView;
-
-@interface SKUIProductPagePlaceholderViewController : UIViewController <UIScrollViewDelegate, SKUIProductPageChildViewController> {
+@interface SKUIProductPagePlaceholderViewController : UIViewController <SKUIProductPageChildViewController, UIScrollViewDelegate> {
     SKUIClientContext *_clientContext;
     SKUIColorScheme *_colorScheme;
     <SKUIProductPageChildViewControllerDelegate> *_delegate;
@@ -14,11 +12,15 @@
     int _style;
 }
 
-@property(retain) SKUIClientContext * clientContext;
-@property(retain) SKUIColorScheme * colorScheme;
-@property <SKUIProductPageChildViewControllerDelegate> * delegate;
-@property(retain) SKUIProductPageHeaderViewController * headerViewController;
-@property(readonly) UIScrollView * scrollView;
+@property (nonatomic, retain) SKUIClientContext *clientContext;
+@property (nonatomic, retain) SKUIColorScheme *colorScheme;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SKUIProductPageChildViewControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) SKUIProductPageHeaderViewController *headerViewController;
+@property (nonatomic, readonly) UIScrollView *scrollView;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_addHeaderView;

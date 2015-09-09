@@ -2,46 +2,56 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class NSString, SKUILockupMetadataView, UILabel;
-
 @interface SKUILockupItemCellLayout : SKUIItemCellLayout {
     struct UIEdgeInsets { 
         float top; 
         float left; 
         float bottom; 
         float right; 
+    } _contentInsets;
     struct CGSize { 
         float width; 
         float height; 
-    } _contentInsets;
     } _imageBoundingSize;
     int _itemOfferStyle;
     UILabel *_itemOfferTextLabel;
     int _layoutStyle;
     int _lockupSize;
     SKUILockupMetadataView *_metadataView;
+    BOOL _playsInlineVideo;
     int _verticalAlignment;
+    struct CGSize { 
+        float width; 
+        float height; 
+    } _videoThumbnailSize;
+    SKUIEmbeddedMediaView *_videoThumbnailView;
 }
 
-@property(copy) NSString * artistName;
-@property(copy) NSString * categoryString;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } contentInsets;
-@property struct CGSize { float x1; float x2; } imageBoundingSize;
-@property(copy) NSString * itemCountString;
-@property int itemOfferStyle;
-@property int layoutStyle;
-@property int lockupSize;
-@property int numberOfUserRatings;
-@property(copy) NSString * releaseDateString;
-@property(copy) NSString * title;
-@property float userRating;
-@property int verticalAlignment;
-@property unsigned int visibleFields;
+@property (nonatomic, copy) NSString *artistName;
+@property (nonatomic, copy) NSString *categoryString;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } contentInsets;
+@property (nonatomic, copy) NSString *editorialBadgeString;
+@property (nonatomic) struct CGSize { float x1; float x2; } imageBoundingSize;
+@property (nonatomic, copy) NSString *itemCountString;
+@property (nonatomic) int itemOfferStyle;
+@property (nonatomic) int layoutStyle;
+@property (nonatomic) int lockupSize;
+@property (nonatomic) int numberOfUserRatings;
+@property (nonatomic) BOOL playsInlineVideo;
+@property (nonatomic, copy) NSString *releaseDateString;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic) float userRating;
+@property (nonatomic) int verticalAlignment;
+@property (nonatomic, retain) UIImage *videoThumbnailImage;
+@property (nonatomic) struct CGSize { float x1; float x2; } videoThumbnailSize;
+@property (nonatomic) unsigned int visibleFields;
 
-+ (float)heightForLockupComponent:(id)arg1;
-+ (float)heightForLockupStyle:(struct SKUILockupStyle { int x1; int x2; unsigned int x3; })arg1 itemKind:(int)arg2 editorial:(id)arg3;
++ (float)heightForLockupComponent:(id)arg1 clientContext:(id)arg2;
++ (float)heightForLockupStyle:(struct SKUILockupStyle { int x1; int x2; unsigned int x3; })arg1 item:(id)arg2 editorial:(id)arg3 clientContext:(id)arg4;
++ (struct CGSize { float x1; float x2; })videoThumbnailSizeForVideo:(id)arg1 clientContext:(id)arg2;
 
 - (void).cxx_destruct;
+- (void)_beginVideoPlaybackAction:(id)arg1;
 - (void)_initSKUILockupItemCellLayout;
 - (BOOL)_isItemOfferHidden;
 - (id)_itemOfferTextLabel;
@@ -51,6 +61,9 @@
 - (id)artistName;
 - (id)categoryString;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })contentInsets;
+- (void)dealloc;
+- (id)editorialBadgeString;
+- (void)endVideoPlaybackAnimated:(BOOL)arg1;
 - (struct CGSize { float x1; float x2; })imageBoundingSize;
 - (id)initWithCollectionViewCell:(id)arg1;
 - (id)initWithParentView:(id)arg1;
@@ -62,6 +75,9 @@
 - (void)layoutSubviews;
 - (int)lockupSize;
 - (int)numberOfUserRatings;
+- (void)playInlineVideoWithURL:(id)arg1;
+- (BOOL)playsInlineVideo;
+- (void)prepareForReuse;
 - (id)releaseDateString;
 - (void)setArtistName:(id)arg1;
 - (void)setBackgroundColor:(id)arg1;
@@ -69,6 +85,7 @@
 - (void)setClientContext:(id)arg1;
 - (void)setColoringWithColorScheme:(id)arg1;
 - (void)setContentInsets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
+- (void)setEditorialBadgeString:(id)arg1;
 - (void)setIconImage:(id)arg1;
 - (void)setImageBoundingSize:(struct CGSize { float x1; float x2; })arg1;
 - (void)setItemCountString:(id)arg1;
@@ -76,14 +93,19 @@
 - (void)setLayoutStyle:(int)arg1;
 - (void)setLockupSize:(int)arg1;
 - (void)setNumberOfUserRatings:(int)arg1;
+- (void)setPlaysInlineVideo:(BOOL)arg1;
 - (void)setReleaseDateString:(id)arg1;
 - (void)setTitle:(id)arg1;
 - (void)setUserRating:(float)arg1;
 - (void)setVerticalAlignment:(int)arg1;
+- (void)setVideoThumbnailImage:(id)arg1;
+- (void)setVideoThumbnailSize:(struct CGSize { float x1; float x2; })arg1;
 - (void)setVisibleFields:(unsigned int)arg1;
 - (id)title;
 - (float)userRating;
 - (int)verticalAlignment;
+- (id)videoThumbnailImage;
+- (struct CGSize { float x1; float x2; })videoThumbnailSize;
 - (unsigned int)visibleFields;
 
 @end

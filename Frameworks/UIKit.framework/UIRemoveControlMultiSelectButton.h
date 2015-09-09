@@ -3,8 +3,8 @@
  */
 
 @interface UIRemoveControlMultiSelectButton : UIRemoveControlMinusButton {
-    unsigned int _isHighlighted : 1;
-    unsigned int _isSelected : 1;
+    unsigned int _isHighlighted;
+    unsigned int _isSelected;
 }
 
 + (float)defaultWidth;
@@ -20,8 +20,8 @@
 - (BOOL)isRotating;
 - (void)setHiding:(BOOL)arg1;
 - (void)setHighlighted:(BOOL)arg1;
-- (void)setSelected:(BOOL)arg1 highlighted:(BOOL)arg2;
 - (void)setSelected:(BOOL)arg1;
+- (void)setSelected:(BOOL)arg1 highlighted:(BOOL)arg2;
 - (void)toggleRotate:(BOOL)arg1;
 
 @end

@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/StoreBookkeeper.framework/StoreBookkeeper
  */
 
-@class NSString;
-
-@interface SBKUniversalPlaybackPositionMetadata : NSObject <SBKSyncKeyValuePair, NSCopying> {
+@interface SBKUniversalPlaybackPositionMetadata : NSObject <NSCopying, SBKKeyValuePayloadPair> {
     double _bookmarkTime;
     BOOL _hasBeenPlayed;
     NSString *_itemIdentifier;
@@ -13,16 +11,23 @@
 }
 
 @property double bookmarkTime;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
 @property BOOL hasBeenPlayed;
-@property(copy) NSString * itemIdentifier;
+@property (readonly) unsigned int hash;
+@property (copy) NSString *itemIdentifier;
 @property unsigned int playCount;
+@property (readonly) Class superclass;
 @property double timestamp;
 
 + (id)_testableMetadataItem_1;
 + (id)keyValueStoreItemIdentifierForItem:(id)arg1;
-+ (id)metadataWithItemIdentifier:(id)arg1 keyValueStorePayload:(id)arg2 failuresOkay:(BOOL)arg3;
++ (id)keyValueStoreItemIdentifierForUniqueStoreID:(long long)arg1 itemTitle:(id)arg2 albumName:(id)arg3 itemArtistName:(id)arg4 feedURL:(id)arg5 feedGUID:(id)arg6;
++ (id)metadataWithItemIdentifier:(id)arg1 bookmarkTime:(double)arg2 bookmarkTimestamp:(double)arg3 hasBeenPlayed:(BOOL)arg4 playCount:(unsigned int)arg5;
 + (id)metadataWithItemIdentifier:(id)arg1 keyValueStorePayload:(id)arg2;
++ (id)metadataWithItemIdentifier:(id)arg1 keyValueStorePayload:(id)arg2 failuresOkay:(BOOL)arg3;
 + (id)metadataWithValuesFromDataSourceItem:(id)arg1;
++ (id)pairWithKVSKey:(id)arg1 kvsPayload:(id)arg2;
 
 - (void).cxx_destruct;
 - (double)bookmarkTime;

@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class <ABNewPersonViewControllerDelegate>, <ABPresenterDelegate>, <ABStyleProvider>, ABContactViewController, ABContactsFilter, ABPersonTableViewDataSource, ABPersonViewControllerHelper, CNContact, _UIAccessDeniedView;
-
 @interface ABNewPersonViewController : UIViewController {
     _UIAccessDeniedView *_accessDeniedView;
     ABContactViewController *_contactViewController;
@@ -18,25 +16,27 @@
     void *_recordForNewPerson;
 }
 
-@property(readonly) _UIAccessDeniedView * accessDeniedView;
-@property void* addressBook;
-@property(readonly) ABContactViewController * contactViewController;
-@property(readonly) ABPersonTableViewDataSource * dataSource;
-@property void* displayedPerson;
-@property(readonly) ABPersonViewControllerHelper * helper;
-@property BOOL isRealViewLoaded;
-@property(retain) CNContact * mergeContact;
-@property <ABNewPersonViewControllerDelegate> * newPersonViewDelegate;
-@property(retain) ABContactsFilter * parentContactsFilter;
-@property void* parentGroup;
-@property void* parentSource;
-@property <ABPresenterDelegate> * presentingDelegate;
-@property BOOL savesNewContactOnSuspend;
-@property BOOL showsCancelButton;
-@property(retain) <ABStyleProvider> * styleProvider;
+@property (nonatomic, readonly) _UIAccessDeniedView *accessDeniedView;
+@property (nonatomic) void*addressBook;
+@property (nonatomic, readonly) ABContactViewController *contactViewController;
+@property (nonatomic, readonly) ABPersonTableViewDataSource *dataSource;
+@property (nonatomic) void*displayedPerson;
+@property (nonatomic, readonly) ABPersonViewControllerHelper *helper;
+@property (nonatomic) BOOL isRealViewLoaded;
+@property (nonatomic, retain) CNContact *mergeContact;
+@property (nonatomic) <ABNewPersonViewControllerDelegate> *newPersonViewDelegate;
+@property (nonatomic, retain) ABContactsFilter *parentContactsFilter;
+@property (nonatomic) void*parentGroup;
+@property (nonatomic) void*parentSource;
+@property (nonatomic) <ABPresenterDelegate> *presentingDelegate;
+@property (nonatomic) BOOL savesNewContactOnSuspend;
+@property (nonatomic) BOOL showsCancelButton;
+@property (nonatomic, retain) <ABStyleProvider> *styleProvider;
+
+// Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
 
 - (BOOL)_allowsAutorotation;
-- (void)_getRotationContentSettings:(struct { BOOL x1; BOOL x2; BOOL x3; BOOL x4; float x5; int x6; }*)arg1;
+- (void)_getRotationContentSettings:(struct { BOOL x1; BOOL x2; BOOL x3; BOOL x4; BOOL x5; float x6; int x7; }*)arg1;
 - (int)abViewControllerType;
 - (float)ab_heightToFitForViewInPopoverView;
 - (void)accessChanged;
@@ -47,7 +47,6 @@
 - (void)applicationWillTerminate:(id)arg1;
 - (void)attemptSaveAndTellDelegate:(BOOL)arg1;
 - (void)cancel:(id)arg1;
-- (BOOL)ckCanDismissWhenSuspending;
 - (id)contactViewController;
 - (id)dataSource;
 - (void)dealloc;
@@ -57,8 +56,8 @@
 - (void)encodeRestorableStateWithCoder:(id)arg1;
 - (id)helper;
 - (id)init;
-- (id)initWithNibName:(id)arg1 bundle:(id)arg2 style:(int)arg3;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
+- (id)initWithNibName:(id)arg1 bundle:(id)arg2 style:(int)arg3;
 - (id)initWithStyle:(int)arg1;
 - (BOOL)isRealViewLoaded;
 - (void)loadView;
@@ -93,9 +92,11 @@
 - (void)updateNavigationButtons;
 - (void)viewDidAppear:(BOOL)arg1;
 - (void)viewDidLoad;
-- (void)viewDidUnload;
 - (void)viewWillAppear:(BOOL)arg1;
 - (void)viewWillDisappear:(BOOL)arg1;
-- (void)willAnimateRotationToInterfaceOrientation:(int)arg1 duration:(double)arg2;
+
+// Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
+
+- (BOOL)ckCanDismissWhenSuspending;
 
 @end

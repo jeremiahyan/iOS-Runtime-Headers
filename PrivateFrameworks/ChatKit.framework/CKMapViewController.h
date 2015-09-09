@@ -2,28 +2,35 @@
    Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
  */
 
-@class <MKAnnotation>, MKMapView;
-
 @interface CKMapViewController : UIViewController <MKMapViewDelegate> {
     <MKAnnotation> *_annotation;
+    MKMapItem *_mapItem;
     MKMapView *_mapView;
 }
 
-@property(retain) <MKAnnotation> * annotation;
-@property(retain) MKMapView * mapView;
+@property (nonatomic, retain) <MKAnnotation> *annotation;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) MKMapItem *mapItem;
+@property (nonatomic, retain) MKMapView *mapView;
+@property (readonly) Class superclass;
 
+- (void)_toolbarItemPressed:(id)arg1;
 - (id)annotation;
 - (void)dealloc;
 - (id)initWithAnnotation:(id)arg1;
 - (void)loadView;
+- (id)mapItem;
+- (id)mapView;
 - (void)mapView:(id)arg1 annotationView:(id)arg2 calloutAccessoryControlTapped:(id)arg3;
 - (void)mapView:(id)arg1 didAddAnnotationViews:(id)arg2;
 - (id)mapView:(id)arg1 viewForAnnotation:(id)arg2;
-- (id)mapView;
 - (void)selectPin;
 - (void)setAnnotation:(id)arg1;
+- (void)setMapItem:(id)arg1;
 - (void)setMapView:(id)arg1;
-- (void)viewDidAppear:(BOOL)arg1;
+- (void)viewWillAppear:(BOOL)arg1;
 - (void)viewWillDisappear:(BOOL)arg1;
 - (BOOL)wantsFullScreenLayout;
 

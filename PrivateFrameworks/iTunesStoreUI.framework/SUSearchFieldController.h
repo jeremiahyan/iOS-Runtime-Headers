@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
  */
 
-@class ISStoreURLOperation, NSArray, SUClientInterface, SUScriptTextFieldDelegate, SUSearchDisplayController, SUSearchFieldConfiguration, UIControl, UISearchBar;
-
 @interface SUSearchFieldController : NSObject <ISStoreURLOperationDelegate, SUScriptTextFieldDelegate, UISearchDisplayDelegate, UITableViewDataSource, UITableViewDelegate> {
     SUClientInterface *_clientInterface;
     NSArray *_completions;
@@ -16,18 +14,21 @@
     SUScriptTextFieldDelegate *_textFieldDelegate;
 }
 
-@property(getter=isActive,readonly) BOOL active;
-@property(readonly) UISearchBar * searchBar;
-@property(copy) SUSearchFieldConfiguration * searchFieldConfiguration;
-@property int searchFieldStyle;
+@property (getter=isActive, nonatomic, readonly) BOOL active;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) UISearchBar *searchBar;
+@property (nonatomic, copy) SUSearchFieldConfiguration *searchFieldConfiguration;
+@property (nonatomic) int searchFieldStyle;
+@property (readonly) Class superclass;
 
 - (id)_cancelButtonView;
 - (void)_cancelCompletionsOperation;
 - (id)_defaultSearchTerm;
 - (void)_dimmerViewAction:(id)arg1;
 - (void)_fetchCompletions;
-- (void)_fetchResultsForTerm:(id)arg1;
-- (void)_fetchResultsForURL:(id)arg1;
+- (void)_fetchResultsForTerm:(id)arg1 URL:(id)arg2;
 - (void)_fetchResultsForURLRequestProperties:(id)arg1;
 - (BOOL)_focusTransientViewController;
 - (id)_newBlankStorePageViewController;
@@ -39,24 +40,27 @@
 - (void)_resizeSearchBarForOrientation:(int)arg1;
 - (void)_saveSearchTermToDefaults:(id)arg1;
 - (void)_savedSearchTermChangedNotification:(id)arg1;
+- (id)_searchGroupForSearchKind:(id)arg1;
+- (void)_sendOnXEventWithTerm:(id)arg1 URL:(id)arg2 completionBlock:(id /* block */)arg3;
 - (void)_showDimmerView;
 - (id)_targetViewController;
 - (void)_tearDownDimmerView;
 - (void)dealloc;
 - (void)handleSearchURL:(id)arg1 withSourceApplication:(id)arg2 sourceURL:(id)arg3;
 - (id)init;
-- (id)initWithContentsController:(id)arg1 clientInterface:(id)arg2 style:(int)arg3;
-- (id)initWithContentsController:(id)arg1 clientInterface:(id)arg2;
-- (id)initWithContentsController:(id)arg1 style:(int)arg2;
 - (id)initWithContentsController:(id)arg1;
+- (id)initWithContentsController:(id)arg1 clientInterface:(id)arg2;
+- (id)initWithContentsController:(id)arg1 clientInterface:(id)arg2 style:(int)arg3;
+- (id)initWithContentsController:(id)arg1 style:(int)arg2;
 - (BOOL)isActive;
 - (id)newRequestPropertiesWithSearchTerm:(id)arg1;
+- (id)newRequestPropertiesWithSearchTerm:(id)arg1 kind:(id)arg2;
 - (void)operation:(id)arg1 failedWithError:(id)arg2;
 - (void)operation:(id)arg1 finishedWithOutput:(id)arg2;
 - (void)operationDidFinish:(id)arg1;
 - (void)scriptDidChangeTextForField:(id)arg1;
-- (void)searchBar:(id)arg1 textDidChange:(id)arg2;
 - (id)searchBar;
+- (void)searchBar:(id)arg1 textDidChange:(id)arg2;
 - (void)searchBarSearchButtonClicked:(id)arg1;
 - (BOOL)searchBarShouldBeginEditing:(id)arg1;
 - (BOOL)searchBarShouldEndEditing:(id)arg1;

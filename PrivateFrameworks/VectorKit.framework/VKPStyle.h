@@ -2,31 +2,29 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-@class NSData, NSMutableArray, NSString, VKPStyleProperties;
-
 @interface VKPStyle : PBCodable <NSCopying> {
+    NSMutableArray *_attributes;
+    NSData *_contents;
     struct { 
         unsigned int *list; 
         unsigned int count; 
         unsigned int size; 
-    NSMutableArray *_attributes;
-    NSData *_contents;
     } _inherits;
     NSString *_name;
     VKPStyleProperties *_properties;
     NSMutableArray *_zooms;
 }
 
-@property(retain) NSMutableArray * attributes;
-@property(retain) NSData * contents;
-@property(readonly) BOOL hasContents;
-@property(readonly) BOOL hasName;
-@property(readonly) BOOL hasProperties;
-@property(readonly) unsigned int* inherits;
-@property(readonly) unsigned int inheritsCount;
-@property(retain) NSString * name;
-@property(retain) VKPStyleProperties * properties;
-@property(retain) NSMutableArray * zooms;
+@property (nonatomic, retain) NSMutableArray *attributes;
+@property (nonatomic, retain) NSData *contents;
+@property (nonatomic, readonly) BOOL hasContents;
+@property (nonatomic, readonly) BOOL hasName;
+@property (nonatomic, readonly) BOOL hasProperties;
+@property (nonatomic, readonly) unsigned int*inherits;
+@property (nonatomic, readonly) unsigned int inheritsCount;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) VKPStyleProperties *properties;
+@property (nonatomic, retain) NSMutableArray *zooms;
 
 - (void)addAttributes:(id)arg1;
 - (void)addInherit:(unsigned int)arg1;
@@ -51,6 +49,7 @@
 - (unsigned int*)inherits;
 - (unsigned int)inheritsCount;
 - (BOOL)isEqual:(id)arg1;
+- (void)mergeFrom:(id)arg1;
 - (id)name;
 - (id)properties;
 - (BOOL)readFrom:(id)arg1;

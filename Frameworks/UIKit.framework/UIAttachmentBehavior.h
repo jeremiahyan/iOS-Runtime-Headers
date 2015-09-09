@@ -2,42 +2,40 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, PKExtendedPhysicsBody, PKPhysicsJoint;
-
 @interface UIAttachmentBehavior : UIDynamicBehavior {
-    struct CGPoint { 
-        float x; 
-        float y; 
-    struct CGPoint { 
-        float x; 
-        float y; 
-    struct CGPoint { 
-        float x; 
-        float y; 
-    struct { 
-        unsigned int dampingSet : 1; 
-        unsigned int frequencySet : 1; 
-        unsigned int lengthSet : 1; 
-        unsigned int isRevolute : 1; 
     PKExtendedPhysicsBody *_anchorBody;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _anchorPoint;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _anchorPointA;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _anchorPointB;
     int _attachedBehaviorType;
     float _damping;
     float _frequency;
     PKPhysicsJoint *_joint;
     float _length;
+    struct { 
+        unsigned int dampingSet : 1; 
+        unsigned int frequencySet : 1; 
+        unsigned int lengthSet : 1; 
+        unsigned int isRevolute : 1; 
     } _stateFlags;
     int _type;
 }
 
-@property struct CGPoint { float x1; float x2; } anchorPoint;
-@property(readonly) int attachedBehaviorType;
-@property float damping;
-@property float frequency;
-@property(readonly) NSArray * items;
-@property float length;
+@property (nonatomic) struct CGPoint { float x1; float x2; } anchorPoint;
+@property (nonatomic, readonly) int attachedBehaviorType;
+@property (nonatomic) float damping;
+@property (nonatomic) float frequency;
+@property (nonatomic, readonly, copy) NSArray *items;
+@property (nonatomic) float length;
 
 - (void)_associate;
 - (void)_changedParameter;

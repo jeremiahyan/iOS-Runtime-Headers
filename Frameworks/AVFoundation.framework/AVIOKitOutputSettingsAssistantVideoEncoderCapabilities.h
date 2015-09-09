@@ -2,8 +2,12 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@interface AVIOKitOutputSettingsAssistantVideoEncoderCapabilities : NSObject <AVOutputSettingsAssistantVideoEncoderCapabilities> {
-}
+@interface AVIOKitOutputSettingsAssistantVideoEncoderCapabilities : NSObject <AVOutputSettingsAssistantVideoEncoderCapabilities>
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (BOOL)averageNonDroppableFrameIntervalIsSupportedByDefaultEncoderForVideoCodec:(id)arg1;
 

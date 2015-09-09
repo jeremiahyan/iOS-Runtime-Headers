@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/ScreenReaderOutputServer.framework/ScreenReaderOutputServer
  */
 
-@class <SCROServerDelegate>, NSLock;
-
 @interface SCROServer : NSObject {
     long _clientCount;
     NSLock *_contentLock;
@@ -27,6 +25,7 @@
 - (void)_setClientCount:(long)arg1;
 - (id)autorelease;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (void)dealloc;
 - (id)delegate;
 - (id)init;
 - (BOOL)isRegisteredWithMach;

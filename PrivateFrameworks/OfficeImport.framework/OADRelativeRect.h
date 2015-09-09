@@ -11,6 +11,7 @@
 
 - (float)bottom;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (id)description;
 - (unsigned int)hash;
 - (id)init;
 - (id)initWithLeft:(float)arg1 top:(float)arg2 right:(float)arg3 bottom:(float)arg4;

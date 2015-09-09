@@ -2,20 +2,20 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@interface GEOVPointOnRoad : PBCodable {
+@interface GEOVPointOnRoad : PBCodable <NSCopying> {
+    int _featureIndex;
     struct { 
         unsigned int vertexIndex : 1; 
-    int _featureIndex;
     } _has;
     int _vertexIndex;
 }
 
-@property int featureIndex;
-@property BOOL hasVertexIndex;
-@property int vertexIndex;
+@property (nonatomic) int featureIndex;
+@property (nonatomic) BOOL hasVertexIndex;
+@property (nonatomic) int vertexIndex;
 
 - (void)copyTo:(id)arg1;
-- (void)dealloc;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (id)dictionaryRepresentation;
 - (int)featureIndex;

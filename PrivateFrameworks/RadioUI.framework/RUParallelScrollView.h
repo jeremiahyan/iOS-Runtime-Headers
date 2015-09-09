@@ -2,20 +2,22 @@
    Image: /System/Library/PrivateFrameworks/RadioUI.framework/RadioUI
  */
 
-@class UIScrollView;
-
 @interface RUParallelScrollView : UIScrollView {
+    float _displayScale;
     UIScrollView *_targetScrollView;
+    float _targetScrollViewWidth;
 }
 
-@property UIScrollView * targetScrollView;
+@property (nonatomic, retain) UIScrollView *targetScrollView;
+@property (nonatomic) float targetScrollViewWidth;
 
 - (void).cxx_destruct;
-- (void)_layoutTargetScrollView;
-- (void)setBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
-- (void)setContentInset:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
-- (void)setContentOffset:(struct CGPoint { float x1; float x2; })arg1;
+- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (void)layoutSubviews;
 - (void)setTargetScrollView:(id)arg1;
+- (void)setTargetScrollViewWidth:(float)arg1;
 - (id)targetScrollView;
+- (float)targetScrollViewWidth;
+- (void)traitCollectionDidChange:(id)arg1;
 
 @end

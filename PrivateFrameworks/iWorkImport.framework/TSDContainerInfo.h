@@ -2,34 +2,33 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class NSMutableArray, NSObject<TSDContainerInfo>, TSDInfoGeometry, TSPObject<TSDOwningAttachment>;
-
 @interface TSDContainerInfo : TSPObject <TSDMutableContainerInfo, TSKDocumentObject> {
     NSMutableArray *mChildInfos;
     TSDInfoGeometry *mGeometry;
     NSObject<TSDContainerInfo> *mParentInfo;
 }
 
-@property(getter=isAnchoredToText,readonly) BOOL anchoredToText;
-@property(getter=isAttachedToBodyText,readonly) BOOL attachedToBodyText;
-@property(getter=isFloatingAboveText,readonly) BOOL floatingAboveText;
-@property(copy) TSDInfoGeometry * geometry;
-@property(getter=isInlineWithText,readonly) BOOL inlineWithText;
-@property BOOL matchesObjectPlaceholderGeometry;
-@property TSPObject<TSDOwningAttachment> * owningAttachment;
-@property(readonly) TSPObject<TSDOwningAttachment> * owningAttachmentNoRecurse;
-@property NSObject<TSDContainerInfo> * parentInfo;
+@property (getter=isAnchoredToText, nonatomic, readonly) BOOL anchoredToText;
+@property (getter=isAttachedToBodyText, nonatomic, readonly) BOOL attachedToBodyText;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (getter=isFloatingAboveText, nonatomic, readonly) BOOL floatingAboveText;
+@property (nonatomic, copy) TSDInfoGeometry *geometry;
+@property (readonly) unsigned int hash;
+@property (getter=isInlineWithText, nonatomic, readonly) BOOL inlineWithText;
+@property (nonatomic) BOOL matchesObjectPlaceholderGeometry;
+@property (nonatomic) TSPObject<TSDOwningAttachment> *owningAttachment;
+@property (nonatomic, readonly) TSPObject<TSDOwningAttachment> *owningAttachmentNoRecurse;
+@property (nonatomic) NSObject<TSDContainerInfo> *parentInfo;
+@property (readonly) Class superclass;
 
 - (void)addChildInfo:(id)arg1;
 - (id)childInfos;
+- (void)clearBackPointerToParentInfoIfNeeded:(id)arg1;
 - (id)copyWithContext:(id)arg1;
 - (void)dealloc;
 - (id)geometry;
+- (id)infoForSelectionPath:(id)arg1;
 - (id)initFromUnarchiver:(id)arg1;
 - (id)initWithContext:(id)arg1 geometry:(id)arg2;
 - (void)insertChildInfo:(id)arg1 above:(id)arg2;
@@ -41,9 +40,9 @@
 - (BOOL)isInlineWithText;
 - (BOOL)isThemeContent;
 - (Class)layoutClass;
-- (void)loadFromArchive:(const struct ContainerArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; struct GeometryArchive {} *x3; struct Reference {} *x4; struct RepeatedPtrField<TSP::Reference> { void **x_5_1_1; int x_5_1_2; int x_5_1_3; int x_5_1_4; } x5; int x6; unsigned int x7[1]; }*)arg1 unarchiver:(id)arg2;
+- (void)loadFromArchive:(const struct ContainerArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; struct GeometryArchive {} *x5; struct Reference {} *x6; struct RepeatedPtrField<TSP::Reference> { void **x_7_1_1; int x_7_1_2; int x_7_1_3; int x_7_1_4; } x7; }*)arg1 unarchiver:(id)arg2;
 - (id)mixedObjectWithFraction:(float)arg1 ofObject:(id)arg2;
-- (int)mixingTypeWithObject:(id)arg1;
+- (int)mixingTypeWithObject:(id)arg1 context:(id)arg2;
 - (void)moveChildren:(id)arg1 toIndexes:(id)arg2;
 - (id)owningAttachment;
 - (id)owningAttachmentNoRecurse;
@@ -51,15 +50,16 @@
 - (void)removeChildInfo:(id)arg1;
 - (Class)repClass;
 - (void)replaceChildInfo:(id)arg1 with:(id)arg2;
-- (void)saveToArchive:(struct ContainerArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; struct GeometryArchive {} *x3; struct Reference {} *x4; struct RepeatedPtrField<TSP::Reference> { void **x_5_1_1; int x_5_1_2; int x_5_1_3; int x_5_1_4; } x5; int x6; unsigned int x7[1]; }*)arg1 archiver:(id)arg2;
+- (void)saveToArchive:(struct ContainerArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; struct GeometryArchive {} *x5; struct Reference {} *x6; struct RepeatedPtrField<TSP::Reference> { void **x_7_1_1; int x_7_1_2; int x_7_1_3; int x_7_1_4; } x7; }*)arg1 archiver:(id)arg2;
 - (void)saveToArchiver:(id)arg1;
 - (void)setChildInfos:(id)arg1;
 - (void)setGeometry:(id)arg1;
 - (void)setOwningAttachment:(id)arg1;
 - (void)setParentInfo:(id)arg1;
-- (void)wasAddedToDocumentRoot:(id)arg1 context:(id)arg2;
+- (void)setPrimitiveGeometry:(id)arg1;
+- (void)wasAddedToDocumentRoot:(id)arg1 dolcContext:(id)arg2;
 - (void)wasRemovedFromDocumentRoot:(id)arg1;
-- (void)willBeAddedToDocumentRoot:(id)arg1 context:(id)arg2;
+- (void)willBeAddedToDocumentRoot:(id)arg1 dolcContext:(id)arg2;
 - (void)willBeRemovedFromDocumentRoot:(id)arg1;
 
 @end

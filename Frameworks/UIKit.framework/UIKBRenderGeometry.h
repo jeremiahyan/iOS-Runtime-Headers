@@ -2,79 +2,80 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSValue;
-
 @interface UIKBRenderGeometry : NSObject <NSCopying> {
+    BOOL _detachedVariants;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
+    } _displayFrame;
+    int _flickDirection;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
+    } _frame;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
+    } _paddedFrame;
+    int _popupBias;
     struct CGPoint { 
         float x; 
         float y; 
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
-    BOOL _detachedVariants;
-    } _displayFrame;
-    int _flickDirection;
-    } _frame;
-    } _paddedFrame;
-    int _popupBias;
     } _popupSource;
     int _roundRectCorners;
     float _roundRectRadius;
     NSValue *_splitLeftRect;
     NSValue *_splitRightRect;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } _symbolFrame;
+    BOOL _tallPopup;
 }
 
-@property BOOL detachedVariants;
-@property struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } displayFrame;
-@property(readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } displayInsets;
-@property int flickDirection;
-@property struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } frame;
-@property struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } paddedFrame;
-@property(readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } paddedInsets;
-@property int popupBias;
-@property struct CGPoint { float x1; float x2; } popupSource;
-@property int roundRectCorners;
-@property float roundRectRadius;
-@property(retain) NSValue * splitLeftRect;
-@property(retain) NSValue * splitRightRect;
-@property struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } symbolFrame;
+@property (nonatomic) BOOL detachedVariants;
+@property (nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } displayFrame;
+@property (nonatomic, readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } displayInsets;
+@property (nonatomic) int flickDirection;
+@property (nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } frame;
+@property (nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } paddedFrame;
+@property (nonatomic, readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } paddedInsets;
+@property (nonatomic) int popupBias;
+@property (nonatomic) struct CGPoint { float x1; float x2; } popupSource;
+@property (nonatomic) int roundRectCorners;
+@property (nonatomic) float roundRectRadius;
+@property (nonatomic, retain) NSValue *splitLeftRect;
+@property (nonatomic, retain) NSValue *splitRightRect;
+@property (nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } symbolFrame;
+@property (nonatomic) BOOL tallPopup;
 
 + (id)geometryWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 paddedFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2;
 + (id)geometryWithShape:(id)arg1;
++ (id)sortedGeometries:(id)arg1 leftToRight:(BOOL)arg2;
 
 - (id)_copyForDirection:(int)arg1 positionFactor:(float)arg2 sizeFactor:(float)arg3 scale:(float)arg4;
 - (unsigned int)adjustForTranslucentGapsInFrameWithSize_10Key:(struct CGSize { float x1; float x2; })arg1 centerX:(float)arg2 isInBottomRow:(BOOL)arg3;
@@ -93,7 +94,7 @@
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })displayInsets;
 - (int)flickDirection;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })frame;
-- (id)iPadVariantGeometries:(unsigned int)arg1;
+- (id)iPadVariantGeometries:(unsigned int)arg1 rowLimit:(int)arg2;
 - (id)iPhoneVariantGeometries:(unsigned int)arg1;
 - (id)initWithShape:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
@@ -117,9 +118,11 @@
 - (void)setSplitLeftRect:(id)arg1;
 - (void)setSplitRightRect:(id)arg1;
 - (void)setSymbolFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (void)setTallPopup:(BOOL)arg1;
 - (id)similarShape;
 - (id)splitLeftRect;
 - (id)splitRightRect;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })symbolFrame;
+- (BOOL)tallPopup;
 
 @end

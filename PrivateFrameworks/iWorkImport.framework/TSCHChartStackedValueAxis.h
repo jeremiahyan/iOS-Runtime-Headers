@@ -2,12 +2,17 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface TSCHChartStackedValueAxis : TSCHChartValueAxis {
-}
+@interface TSCHChartStackedValueAxis : TSCHChartValueAxis
 
+- (double)doubleAxisToModelValue:(double)arg1;
+- (double)doubleModelToAxisValue:(double)arg1 forSeries:(id)arg2;
+- (double)interceptForAxis:(id)arg1;
 - (id)p_orthogonalAxisForSeries:(id)arg1;
+- (BOOL)supportsReferenceLines;
 - (double)unitSpaceValueForSeries:(id)arg1 index:(unsigned int)arg2 min:(double)arg3 max:(double)arg4;
 - (double*)unitSpaceValuesForSeries:(id)arg1 indexes:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2 min:(double)arg3 max:(double)arg4;
-- (void)updateModelMinMaxInAnalysis:(id)arg1;
+- (void)updateGridValueTypeInterceptInAnalysis:(id)arg1;
+- (void)updateModelAxisAnalysis:(id)arg1;
+- (void)updateMultiDataModelAxisAnalysis:(id)arg1;
 
 @end

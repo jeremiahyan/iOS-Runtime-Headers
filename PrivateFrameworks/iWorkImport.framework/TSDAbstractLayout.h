@@ -2,34 +2,33 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSArray, NSMutableArray, TPPageLayout, TSDAbstractLayout, TSDLayoutGeometry;
-
 @interface TSDAbstractLayout : NSObject {
-    struct CGPoint { 
-        float x; 
-        float y; 
-    struct CGPoint { 
-        float x; 
-        float y; 
     NSMutableArray *mChildren;
     TSDLayoutGeometry *mGeometry;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } mInterimPosition;
     BOOL mInterimPositionXSet;
     BOOL mInterimPositionYSet;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } mLastInterimPosition;
     BOOL mLastInterimPositionXSet;
     BOOL mLastInterimPositionYSet;
     TSDAbstractLayout *mParent;
 }
 
-@property(copy) NSArray * children;
-@property(copy) TSDLayoutGeometry * geometry;
-@property float interimPositionX;
-@property float interimPositionY;
-@property(readonly) unsigned int pageIndex;
-@property(readonly) TPPageLayout * pageLayout;
-@property TSDAbstractLayout * parent;
-@property(readonly) TSDAbstractLayout * root;
+@property (nonatomic, copy) NSArray *children;
+@property (nonatomic, copy) TSDLayoutGeometry *geometry;
+@property (nonatomic) float interimPositionX;
+@property (nonatomic) float interimPositionY;
+@property (nonatomic, readonly) struct CGPoint { float x1; float x2; } lastInterimPosition;
+@property (nonatomic, readonly) unsigned int pageIndex;
+@property (nonatomic, readonly) TPPageLayout *pageLayout;
+@property (nonatomic) TSDAbstractLayout *parent;
+@property (nonatomic, readonly) TSDAbstractLayout *root;
 
 - (void)addChild:(id)arg1;
 - (void)addLayoutsInRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 toArray:(id)arg2 deep:(BOOL)arg3;
@@ -40,6 +39,8 @@
 - (struct CGPoint { float x1; float x2; })alignmentFrameOriginForFixingInterimPosition;
 - (BOOL)canRotateChildLayout:(id)arg1;
 - (id)children;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })clipRect;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })clippedRectInRoot:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)dealloc;
 - (void)exchangeChildAtIndex:(unsigned int)arg1 withChildAtIndex:(unsigned int)arg2;
 - (void)fixTransformFromInterimPosition;
@@ -51,16 +52,18 @@
 - (id)geometry;
 - (id)geometryForTransforming;
 - (id)geometryInParent;
-- (id)geometryInRoot:(id)arg1;
 - (id)geometryInRoot;
+- (id)geometryInRoot:(id)arg1;
 - (id)init;
 - (void)insertChild:(id)arg1 above:(id)arg2;
 - (void)insertChild:(id)arg1 atIndex:(unsigned int)arg2;
 - (void)insertChild:(id)arg1 below:(id)arg2;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })insertionFrame;
 - (float)interimPositionX;
 - (float)interimPositionY;
 - (BOOL)isAxisAlignedUnflippedInRoot;
 - (BOOL)isRootLayoutForInspectorGeometry;
+- (struct CGPoint { float x1; float x2; })lastInterimPosition;
 - (id)layoutsForProvidingGuidesForChildLayouts;
 - (void)offsetGeometryBy:(struct CGPoint { float x1; float x2; })arg1;
 - (void)p_fixTransformFromInterimPosition:(struct CGPoint { float x1; float x2; })arg1 interimPositionXSet:(BOOL)arg2 interimPositionYSet:(BOOL)arg3;

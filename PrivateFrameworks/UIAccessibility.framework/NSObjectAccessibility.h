@@ -2,15 +2,15 @@
    Image: /System/Library/PrivateFrameworks/UIAccessibility.framework/UIAccessibility
  */
 
-@interface NSObjectAccessibility : NSObjectAccessibility_super {
-}
+@interface NSObjectAccessibility : __NSObjectAccessibility_super
 
-+ (id)_accessibilityTargetClassName;
-+ (void)_initializeSafeCategory;
-+ (id)_initializeSafeCategoryFromValidationManager;
-+ (id)_installSafeCategoryValidationMethod;
++ (Class)safeCategoryTargetClass;
++ (id)safeCategoryTargetClassName;
 
+- (id)accessibilityElementAtIndex:(int)arg1;
+- (int)accessibilityElementCount;
 - (id)accessibilityUserDefinedActivationPoint;
+- (id)accessibilityUserDefinedContainer;
 - (id)accessibilityUserDefinedFrame;
 - (id)accessibilityUserDefinedHint;
 - (id)accessibilityUserDefinedIdentifier;
@@ -19,6 +19,8 @@
 - (id)accessibilityUserDefinedShouldGroupChildren;
 - (id)accessibilityUserDefinedTraits;
 - (id)accessibilityUserDefinedValue;
+- (int)indexOfAccessibilityElement:(id)arg1;
 - (id)isAccessibilityUserDefinedElement;
+- (void)setAccessibilityElements:(id)arg1;
 
 @end

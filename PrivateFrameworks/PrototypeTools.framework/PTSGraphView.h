@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/PrototypeTools.framework/PrototypeTools
  */
 
-@class NSString, _UISettings, _UISettingsGroup;
-
 @interface PTSGraphView : PT2DGraphView <PTSHUDControl, _UISettingsKeyPathObserver> {
     int _alignment;
     BOOL _enabled;
@@ -14,13 +12,17 @@
     NSString *_yAxisValueKeyPath;
 }
 
-@property int alignment;
-@property BOOL enabled;
-@property _UISettings * settings;
-@property _UISettingsGroup * settingsGroup;
-@property(copy) NSString * valueKeyPath;
-@property(copy) NSString * xAxisValueKeyPath;
-@property(copy) NSString * yAxisValueKeyPath;
+@property (nonatomic) int alignment;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL enabled;
+@property (readonly) unsigned int hash;
+@property (nonatomic) _UISettings *settings;
+@property (nonatomic) _UISettingsGroup *settingsGroup;
+@property (readonly) Class superclass;
+@property (nonatomic, copy) NSString *valueKeyPath;
+@property (nonatomic, copy) NSString *xAxisValueKeyPath;
+@property (nonatomic, copy) NSString *yAxisValueKeyPath;
 
 + (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })defaultFrame;
 + (id)graphView;
@@ -32,14 +34,14 @@
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)setAlignment:(int)arg1;
 - (void)setEnabled:(BOOL)arg1;
-- (void)setSettings:(id)arg1 valueKeyPath:(id)arg2;
 - (void)setSettings:(id)arg1;
+- (void)setSettings:(id)arg1 valueKeyPath:(id)arg2;
 - (void)setSettingsGroup:(id)arg1;
 - (void)setValueKeyPath:(id)arg1;
 - (void)setXAxisValueKeyPath:(id)arg1;
 - (void)setYAxisValueKeyPath:(id)arg1;
-- (void)settings:(id)arg1 changedValueForKeyPath:(id)arg2;
 - (id)settings;
+- (void)settings:(id)arg1 changedValueForKeyPath:(id)arg2;
 - (id)settingsGroup;
 - (void)updateGraphData;
 - (id)valueKeyPath;

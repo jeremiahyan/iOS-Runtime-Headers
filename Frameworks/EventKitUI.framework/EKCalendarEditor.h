@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-@class <EKCalendarEditorDelegate>, <EKStyleProvider>, EKCalendar, EKCalendarShareesEditItem, EKEventStore, EKSource, NSArray, UITableView;
-
 @interface EKCalendarEditor : UIViewController <EKCalendarEditItemDelegate> {
     EKCalendar *_calendar;
     <EKCalendarEditorDelegate> *_delegate;
@@ -17,11 +15,15 @@
     UITableView *_tableView;
 }
 
-@property(retain) EKCalendar * calendar;
-@property <EKCalendarEditorDelegate> * delegate;
-@property(retain) EKEventStore * eventStore;
-@property BOOL isNewCalendar;
-@property(retain) <EKStyleProvider> * styleProvider;
+@property (nonatomic, retain) EKCalendar *calendar;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <EKCalendarEditorDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) EKEventStore *eventStore;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL isNewCalendar;
+@property (nonatomic, retain) <EKStyleProvider> *styleProvider;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_deleteCalendar;
@@ -31,7 +33,6 @@
 - (void)_localeChanged;
 - (void)_presentValidationAlert:(id)arg1;
 - (BOOL)_shouldShowDeleteButton;
-- (void)actionSheet:(id)arg1 clickedButtonAtIndex:(int)arg2;
 - (id)calendar;
 - (void)calendarItemStartedEditing:(id)arg1;
 - (void)cancel:(id)arg1;
@@ -55,6 +56,7 @@
 - (void)setStyleProvider:(id)arg1;
 - (void)setupForCalendar;
 - (id)styleProvider;
+- (id)tableView;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
 - (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
 - (float)tableView:(id)arg1 heightForFooterInSection:(int)arg2;
@@ -62,7 +64,6 @@
 - (int)tableView:(id)arg1 numberOfRowsInSection:(int)arg2;
 - (id)tableView:(id)arg1 titleForHeaderInSection:(int)arg2;
 - (id)tableView:(id)arg1 viewForFooterInSection:(int)arg2;
-- (id)tableView;
 - (void)viewDidAppear:(BOOL)arg1;
 - (void)viewDidLoad;
 - (void)viewWillAppear:(BOOL)arg1;

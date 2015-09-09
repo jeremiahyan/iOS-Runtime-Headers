@@ -2,9 +2,12 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class TNPageController, TNPageCoordinateDictionary, TSDDrawableInfo;
-
 @interface TNHintCache : NSObject {
+    TNPageCoordinateDictionary *mHintCacheEntryDictionary;
+    TSDDrawableInfo *mInfo;
+    BOOL mIsMaxColumnValid;
+    BOOL mIsMaxRowValid;
+    TNPageController *mPageController;
     struct { 
         struct { 
             unsigned short row; 
@@ -16,16 +19,11 @@
             unsigned char column; 
             unsigned char reserved; 
         } bottomRight; 
-    TNPageCoordinateDictionary *mHintCacheEntryDictionary;
-    TSDDrawableInfo *mInfo;
-    BOOL mIsMaxColumnValid;
-    BOOL mIsMaxRowValid;
-    TNPageController *mPageController;
     } mPageRange;
 }
 
-@property(retain) TSDDrawableInfo * info;
-@property(readonly) TNPageController * pageController;
+@property (retain) TSDDrawableInfo *info;
+@property (readonly) TNPageController *pageController;
 
 - (id).cxx_construct;
 - (void)dealloc;

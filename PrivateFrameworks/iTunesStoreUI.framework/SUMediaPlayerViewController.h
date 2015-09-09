@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
  */
 
-@class NSMutableArray, SUClientInterface, SUMediaPlayerItem, UIView;
-
 @interface SUMediaPlayerViewController : MPMoviePlayerViewController <ISOperationDelegate> {
     UIView *_backgroundContainerView;
     SUClientInterface *_clientInterface;
@@ -12,8 +10,12 @@
     int _playerState;
 }
 
-@property(retain) SUClientInterface * clientInterface;
-@property(readonly) SUMediaPlayerItem * mediaPlayerItem;
+@property (nonatomic, retain) SUClientInterface *clientInterface;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly, copy) SUMediaPlayerItem *mediaPlayerItem;
+@property (readonly) Class superclass;
 
 + (BOOL)_URLIsITunesU:(id)arg1;
 + (void)_sendPingRequestsForURLs:(id)arg1 URLBagKey:(id)arg2 playerItem:(id)arg3;

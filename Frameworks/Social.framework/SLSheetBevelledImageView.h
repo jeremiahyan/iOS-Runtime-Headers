@@ -2,15 +2,22 @@
    Image: /System/Library/Frameworks/Social.framework/Social
  */
 
-@class CALayer;
-
 @interface SLSheetBevelledImageView : SLSheetImagePreviewView {
-    CALayer *_frameLayer;
+    BOOL _needsURLPlaceholderImage;
+    UIImageView *_placeholderGlyphView;
+    UIView *_placeholderPreviewView;
 }
 
+@property (nonatomic) BOOL needsURLPlaceholderImage;
+
 - (void).cxx_destruct;
-- (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })alignmentRectInsets;
+- (void)ensurePlaceholderPreviewImage;
+- (BOOL)generatePreviewImageFromAttachments;
 - (id)init;
 - (struct CGSize { float x1; float x2; })intrinsicContentSize;
+- (void)layoutSubviews;
+- (BOOL)needsURLPlaceholderImage;
+- (void)setImage:(id)arg1;
+- (void)setNeedsURLPlaceholderImage:(BOOL)arg1;
 
 @end

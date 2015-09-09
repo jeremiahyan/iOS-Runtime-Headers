@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class SKUICellImageView, SKUIItemOffer, SKUIItemOfferButton, SKUIItemOfferButtonAppearance, SKUIItemState, UIImage, UIView;
-
 @interface SKUIItemCellLayout : SKUICellLayout <SKUIItemOfferButtonDelegate> {
     BOOL _hidesItemOfferButton;
     BOOL _highlighted;
@@ -12,26 +10,34 @@
     SKUIItemOffer *_itemOffer;
     SKUIItemOfferButton *_itemOfferButton;
     SKUIItemOfferButtonAppearance *_itemOfferButtonAppearance;
+    UILabel *_itemOfferNoticeLabel;
     SKUIItemState *_itemState;
     UIView *_removeControlView;
     BOOL _restricted;
     BOOL _selected;
 }
 
-@property BOOL displaysItemOfferButton;
-@property(getter=isHighlighted) BOOL highlighted;
-@property(retain) UIImage * iconImage;
-@property(getter=isIconImageHidden) BOOL iconImageHidden;
-@property(readonly) UIView * iconImageView;
-@property(retain) SKUIItemOffer * itemOffer;
-@property(readonly) SKUIItemOfferButton * itemOfferButton;
-@property(retain) SKUIItemOfferButtonAppearance * itemOfferButtonAppearance;
-@property(copy) SKUIItemState * itemState;
-@property(readonly) UIView * removeControlView;
-@property(getter=isRestricted) BOOL restricted;
-@property(getter=isSelected) BOOL selected;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL displaysItemOfferButton;
+@property (readonly) unsigned int hash;
+@property (getter=isHighlighted, nonatomic) BOOL highlighted;
+@property (nonatomic, retain) UIImage *iconImage;
+@property (getter=isIconImageHidden, nonatomic) BOOL iconImageHidden;
+@property (nonatomic, readonly) UIView *iconImageView;
+@property (nonatomic, retain) SKUIItemOffer *itemOffer;
+@property (nonatomic, readonly) SKUIItemOfferButton *itemOfferButton;
+@property (nonatomic, retain) SKUIItemOfferButtonAppearance *itemOfferButtonAppearance;
+@property (nonatomic, readonly) UILabel *itemOfferNoticeLabel;
+@property (nonatomic, copy) NSString *itemOfferNoticeString;
+@property (nonatomic, copy) SKUIItemState *itemState;
+@property (nonatomic, readonly) UIView *removeControlView;
+@property (getter=isRestricted, nonatomic) BOOL restricted;
+@property (getter=isSelected, nonatomic) BOOL selected;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
+- (BOOL)_canShowItemOfferNotice;
 - (void)_cancelItemOfferConfirmationAction:(id)arg1;
 - (void)_getParentTableView:(id*)arg1 collectionView:(id*)arg2;
 - (void)_itemOfferConfirmAction:(id)arg1;
@@ -52,6 +58,8 @@
 - (id)itemOfferButton;
 - (id)itemOfferButtonAppearance;
 - (void)itemOfferButtonWillAnimateTransition:(id)arg1;
+- (id)itemOfferNoticeLabel;
+- (id)itemOfferNoticeString;
 - (id)itemState;
 - (void)layoutForItemOfferChange;
 - (void)prepareForReuse;
@@ -64,8 +72,9 @@
 - (void)setIconImageHidden:(BOOL)arg1;
 - (void)setItemOffer:(id)arg1;
 - (void)setItemOfferButtonAppearance:(id)arg1;
-- (void)setItemState:(id)arg1 animated:(BOOL)arg2;
+- (void)setItemOfferNoticeString:(id)arg1;
 - (void)setItemState:(id)arg1;
+- (void)setItemState:(id)arg1 animated:(BOOL)arg2;
 - (void)setRestricted:(BOOL)arg1;
 - (void)setSelected:(BOOL)arg1;
 

@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/QuartzCore.framework/QuartzCore
  */
 
-@class CAState, CAStateControllerUndo, NSMutableArray;
-
 @interface CAStateControllerUndo : NSObject <CAStateRecorder> {
     NSMutableArray *_elements;
     CAStateControllerUndo *_next;
@@ -11,10 +9,14 @@
     NSMutableArray *_transitions;
 }
 
-@property(retain) NSMutableArray * elements;
-@property(readonly) CAStateControllerUndo * next;
-@property(retain) CAState * state;
-@property(retain) NSMutableArray * transitions;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) NSMutableArray *elements;
+@property (readonly) unsigned int hash;
+@property (readonly) CAStateControllerUndo *next;
+@property (nonatomic, retain) CAState *state;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) NSMutableArray *transitions;
 
 - (void)addElement:(id)arg1;
 - (void)addTransition:(id)arg1;

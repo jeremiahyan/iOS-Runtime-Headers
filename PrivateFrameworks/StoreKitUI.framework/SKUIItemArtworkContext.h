@@ -2,26 +2,24 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class NSMutableDictionary, SKUIColorScheme, SKUIIconDataConsumer, SKUINewsstandImageDataConsumer, SKUIProductImageDataConsumer, UIColor;
-
 @interface SKUIItemArtworkContext : NSObject {
     UIColor *_backgroundColor;
     SKUIColorScheme *_colorScheme;
     SKUIProductImageDataConsumer *_generalImageConsumer;
-    SKUIIconDataConsumer *_iconConsumer;
+    SKUIStyledImageDataConsumer *_iconConsumer;
     SKUIProductImageDataConsumer *_letterboxConsumer;
-    SKUINewsstandImageDataConsumer *_newsstandConsumer;
+    SKUIStyledImageDataConsumer *_newsstandConsumer;
     NSMutableDictionary *_placeholders;
     SKUIProductImageDataConsumer *_posterConsumer;
 }
 
-@property(retain) UIColor * backgroundColor;
-@property(retain) SKUIColorScheme * colorScheme;
-@property(retain) SKUIProductImageDataConsumer * generalConsumer;
-@property(retain) SKUIIconDataConsumer * iconConsumer;
-@property(retain) SKUIProductImageDataConsumer * letterboxConsumer;
-@property(retain) SKUINewsstandImageDataConsumer * newsstandConsumer;
-@property(retain) SKUIProductImageDataConsumer * posterConsumer;
+@property (nonatomic, retain) UIColor *backgroundColor;
+@property (nonatomic, retain) SKUIColorScheme *colorScheme;
+@property (nonatomic, retain) SKUIProductImageDataConsumer *generalConsumer;
+@property (nonatomic, retain) SKUIStyledImageDataConsumer *iconConsumer;
+@property (nonatomic, retain) SKUIProductImageDataConsumer *letterboxConsumer;
+@property (nonatomic, retain) SKUIStyledImageDataConsumer *newsstandConsumer;
+@property (nonatomic, retain) SKUIProductImageDataConsumer *posterConsumer;
 
 + (id)lockupContextWithSize:(int)arg1;
 + (id)roomContext;

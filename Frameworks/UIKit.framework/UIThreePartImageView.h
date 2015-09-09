@@ -2,9 +2,8 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIImage;
-
 @interface UIThreePartImageView : UIView {
+    UIImage *_image;
     struct { 
         struct CGRect { 
             struct CGPoint { 
@@ -36,7 +35,6 @@
                 float height; 
             } size; 
         } right; 
-    UIImage *_image;
     } _slices;
 }
 

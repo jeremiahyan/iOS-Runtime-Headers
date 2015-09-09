@@ -3,16 +3,16 @@
  */
 
 @interface UnreadBubbleCount : UIView {
+    int _count;
+    BOOL _isSelected;
     struct CGSize { 
         float width; 
         float height; 
-    int _count;
-    BOOL _isSelected;
     } _textSize;
 }
 
-@property int count;
-@property BOOL isSelected;
+@property (nonatomic) int count;
+@property (nonatomic) BOOL isSelected;
 
 + (void)deallocImageCache;
 + (long)initImageCache;

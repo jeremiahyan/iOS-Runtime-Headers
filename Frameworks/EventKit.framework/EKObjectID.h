@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/EventKit.framework/EventKit
  */
 
-@interface EKObjectID : NSObject <NSCopying, NSCoding> {
+@interface EKObjectID : NSObject <NSCopying, NSSecureCoding> {
     int _entityType;
     int _rowID;
     BOOL _temporary;
@@ -11,6 +11,7 @@
 + (id)objectIDWithCADObjectID:(struct { int x1; int x2; })arg1;
 + (id)objectIDWithEntityType:(int)arg1 rowID:(int)arg2;
 + (id)objectIDWithURL:(id)arg1;
++ (BOOL)supportsSecureCoding;
 + (id)temporaryObjectIDWithEntityType:(int)arg1;
 
 - (struct { int x1; int x2; })CADObjectID;

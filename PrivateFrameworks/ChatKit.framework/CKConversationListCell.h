@@ -2,13 +2,10 @@
    Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
  */
 
-@class NSDate, NSString, UIDateLabel, UIImageView, UILabel;
-
 @interface CKConversationListCell : UITableViewCell {
     UIImageView *_chevronImageView;
     UIDateLabel *_dateLabel;
     UILabel *_fromLabel;
-    UIImageView *_groupImageView;
     BOOL _isPlaceholder;
     UIImageView *_recipientPhotoView;
     NSDate *_searchMessageDate;
@@ -18,15 +15,17 @@
     UIImageView *_unreadIndicatorImageView;
 }
 
-@property(retain) NSDate * searchMessageDate;
-@property(copy) NSString * searchMessageGUID;
-@property(copy) NSString * searchSummaryText;
+@property (nonatomic, retain) NSDate *searchMessageDate;
+@property (nonatomic, copy) NSString *searchMessageGUID;
+@property (nonatomic, copy) NSString *searchSummaryText;
 
 + (float)cellHeight;
 + (id)identifier;
 
 - (void)_calculateLayoutFrames;
 - (void)_contentSizeCategoryDidChange:(id)arg1;
+- (void)_conversationThumbnailChanged:(id)arg1;
+- (void)_setupThumbnailForConversation:(id)arg1;
 - (void)dealloc;
 - (id)initWithStyle:(int)arg1 reuseIdentifier:(id)arg2;
 - (void)layoutSubviews;
@@ -40,6 +39,7 @@
 - (void)setSearchSummaryText:(id)arg1;
 - (BOOL)showingEditControl;
 - (struct CGSize { float x1; float x2; })sizeThatFits:(struct CGSize { float x1; float x2; })arg1;
+- (void)superLayoutSubviews;
 - (void)updateContentsForConversation:(id)arg1;
 - (void)updateWithSearchResult:(id)arg1;
 

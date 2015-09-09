@@ -2,19 +2,19 @@
    Image: /System/Library/PrivateFrameworks/CoreThemeDefinition.framework/CoreThemeDefinition
  */
 
-@class NSString, TDThemeBitSource;
-
 @interface TDAsset : NSManagedObject {
     unsigned int _scaleFactor;
 }
 
-@property(readonly) NSString * baseName;
-@property(retain) NSString * category;
-@property(retain) NSString * name;
-@property(retain) TDThemeBitSource * source;
+@property (nonatomic, readonly) NSString *baseName;
+@property (nonatomic, retain) NSString *category;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) TDThemeBitSource *source;
+@property (nonatomic, retain) TDTemplateRenderingMode *templateRenderingMode;
 
 + (id)_filenameRegex;
 + (int)idiomFromImageFilename:(id)arg1;
++ (BOOL)isTemplateFromImageFilename:(id)arg1;
 + (unsigned int)scaleFactorFromImageFilename:(id)arg1;
 + (int)subtypeFromImageFilename:(id)arg1;
 

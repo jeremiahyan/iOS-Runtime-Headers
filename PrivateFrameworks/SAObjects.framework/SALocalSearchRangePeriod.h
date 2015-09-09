@@ -2,11 +2,14 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@interface SALocalSearchRangePeriod : AceObject <SALocalSearchPeriod> {
-}
+@interface SALocalSearchRangePeriod : AceObject <SALocalSearchPeriod>
 
-@property int endSecondsSinceMidnight;
-@property int startSecondsSinceMidnight;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) int endSecondsSinceMidnight;
+@property (readonly) unsigned int hash;
+@property (nonatomic) int startSecondsSinceMidnight;
+@property (readonly) Class superclass;
 
 + (id)rangePeriod;
 + (id)rangePeriodWithDictionary:(id)arg1 context:(id)arg2;

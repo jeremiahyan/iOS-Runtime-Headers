@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@class NSMutableArray, UIColor, UIImageView, UIView, _MKCalloutBackgroundMaskView;
-
 @interface MKCalloutBackgroundView : UIPopoverBackgroundView {
     unsigned int _arrowDirection;
     float _arrowOffset;
@@ -11,12 +9,12 @@
     UIView *_containerView;
     UIImageView *_currentArrowShadow;
     _MKCalloutBackgroundMaskView *_mainMaskView;
-    int _mapDisplayStyle;
+    unsigned int _mapDisplayStyle;
     NSMutableArray *_vendedMaskViews;
 }
 
-@property(readonly) UIColor * calloutBackgroundColor;
-@property int mapDisplayStyle;
+@property (nonatomic, readonly) UIColor *calloutBackgroundColor;
+@property (nonatomic) unsigned int mapDisplayStyle;
 
 + (float)_contentViewCornerRadiusForArrowDirection:(unsigned int)arg1;
 + (float)arrowBase;
@@ -39,10 +37,10 @@
 - (id)calloutBackgroundColor;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)layoutSubviews;
-- (int)mapDisplayStyle;
+- (unsigned int)mapDisplayStyle;
 - (id)newMaskLayer;
 - (void)setArrowDirection:(unsigned int)arg1;
 - (void)setArrowOffset:(float)arg1;
-- (void)setMapDisplayStyle:(int)arg1;
+- (void)setMapDisplayStyle:(unsigned int)arg1;
 
 @end

@@ -2,18 +2,14 @@
    Image: /System/Library/PrivateFrameworks/MusicCarDisplayUI.framework/MusicCarDisplayUI
  */
 
-@class MPImageCache;
-
 @interface MCDAlbumsDetailViewController : MCDTableViewController {
-    MPImageCache *_imageCache;
     float _maximumDurationWidth;
 }
 
-@property(readonly) float maximumDurationWidth;
+@property (nonatomic, readonly) float maximumDurationWidth;
 
 + (id)actionCellConfigurationClasses;
 
-- (void).cxx_destruct;
 - (void)_updateTitle;
 - (id)initWithDataSource:(id)arg1 cellConfigurationClass:(Class)arg2;
 - (float)maximumDurationWidth;

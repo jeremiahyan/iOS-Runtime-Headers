@@ -2,15 +2,9 @@
    Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSString, SUActivityItemProvider, SUScriptFunction, WebScriptObject;
-
 @interface SUScriptActivityItemProvider : SUScriptObject <SUActivityItemProviderDelegate> {
     id _item;
-    id _itemBlock;
+    id /* block */ _itemBlock;
     SUScriptFunction *_itemFunction;
     int _loadState;
     NSString *_mimeType;
@@ -18,12 +12,16 @@
     int _previewLoadState;
 }
 
-@property(readonly) NSString * MIMEType;
-@property(readonly) NSString * activityType;
-@property(retain) WebScriptObject * itemFunction;
-@property(readonly) SUActivityItemProvider * nativeActivityItemProvider;
+@property (readonly) NSString *MIMEType;
+@property (readonly) NSString *activityType;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (retain) WebScriptObject *itemFunction;
+@property (readonly) SUActivityItemProvider *nativeActivityItemProvider;
 @property float progress;
-@property(copy) NSString * status;
+@property (copy) NSString *status;
+@property (readonly) Class superclass;
 
 + (void)initialize;
 + (id)webScriptNameForKeyName:(id)arg1;
@@ -34,7 +32,7 @@
 - (void)_finishItemWithItem:(id)arg1;
 - (void)_finishPreviewWithImage:(id)arg1;
 - (id)_newPlaceholderWithMIMEType:(id)arg1;
-- (void)activityItemProvider:(id)arg1 provideItemUsingBlock:(id)arg2;
+- (void)activityItemProvider:(id)arg1 provideItemUsingBlock:(id /* block */)arg2;
 - (id)activitySupportsMIMEType:(id)arg1;
 - (id)activityType;
 - (id)attributeKeys;

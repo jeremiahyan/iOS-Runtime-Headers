@@ -2,31 +2,28 @@
    Image: /System/Library/PrivateFrameworks/WebCore.framework/WebCore
  */
 
-@class WAKClipView, WAKView;
-
 @interface WAKScrollView : WAKView <WebCoreFrameScrollView> {
-    struct CGPoint { 
-        float x; 
-        float y; 
     WAKClipView *_contentView;
     id _delegate;
     WAKView *_documentView;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _scrollOrigin;
 }
 
 - (id).cxx_construct;
 - (void)_adjustScrollers;
 - (BOOL)_selfHandleEvent:(id)arg1;
-- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })actualDocumentVisibleRect;
 - (id)contentView;
 - (void)dealloc;
 - (id)delegate;
 - (id)description;
 - (id)documentView;
-- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })documentVisibleExtent;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })documentVisibleRect;
 - (void)drawRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (BOOL)drawsBackground;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })exposedContentRect;
 - (BOOL)hasHorizontalScroller;
 - (BOOL)hasVerticalScroller;
 - (float)horizontalLineScroll;
@@ -51,6 +48,7 @@
 - (void)setScrollingMode:(int)arg1;
 - (void)setScrollingModes:(int)arg1 vertical:(int)arg2 andLock:(BOOL)arg3;
 - (void)setVerticalScrollingMode:(int)arg1;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })unobscuredContentRect;
 - (float)verticalLineScroll;
 - (int)verticalScrollingMode;
 

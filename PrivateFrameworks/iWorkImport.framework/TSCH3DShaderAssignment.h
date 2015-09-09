@@ -2,34 +2,36 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSArray, NSString, TSCH3DShaderProgram, TSCH3DShaderVariableLinkage;
-
 @interface TSCH3DShaderAssignment : NSObject <TSCH3DShaderStatement> {
+    TSCH3DShaderVariableLinkage *mAssignee;
     struct TSCH3DShaderVariableScopeType { 
         unsigned int mValue; 
-    struct TSCH3DShaderType { 
-        unsigned int mValue; 
+    } mAssigneeScope;
     struct vector<TSCH3DShaderVariableScopeType, std::__1::allocator<TSCH3DShaderVariableScopeType> > { 
         struct TSCH3DShaderVariableScopeType {} *__begin_; 
         struct TSCH3DShaderVariableScopeType {} *__end_; 
         struct __compressed_pair<TSCH3DShaderVariableScopeType *, std::__1::allocator<TSCH3DShaderVariableScopeType> > { 
             struct TSCH3DShaderVariableScopeType {} *__first_; 
         } __end_cap_; 
-    TSCH3DShaderVariableLinkage *mAssignee;
-    } mAssigneeScope;
     } mDependeeScopes;
     NSArray *mDependees;
+    struct TSCH3DShaderType { 
+        unsigned int mValue; 
     } mLinkageType;
     TSCH3DShaderProgram *mProgram;
     NSString *mStatement;
 }
 
-@property(readonly) TSCH3DShaderVariableLinkage * assignee;
-@property(readonly) struct TSCH3DShaderVariableScopeType { unsigned int x1; } assigneeScope;
-@property(readonly) NSArray * dependees;
-@property(readonly) BOOL isLinked;
-@property struct TSCH3DShaderType { unsigned int x1; } linkageType;
-@property(readonly) NSString * string;
+@property (nonatomic, readonly) TSCH3DShaderVariableLinkage *assignee;
+@property (nonatomic, readonly) struct TSCH3DShaderVariableScopeType { unsigned int x1; } assigneeScope;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic, readonly) NSArray *dependees;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) BOOL isLinked;
+@property (nonatomic) struct TSCH3DShaderType { unsigned int x1; } linkageType;
+@property (nonatomic, readonly) NSString *string;
+@property (readonly) Class superclass;
 
 + (id)assignmentWithAssignee:(id)arg1 statement:(id)arg2 dependees:(id)arg3 program:(id)arg4;
 

@@ -2,31 +2,30 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSMutableArray, WDDocument, WDStyle;
-
 @interface WDListDefinition : NSObject <NSCopying> {
     WDDocument *mDocument;
     NSMutableArray *mLevels;
-    long mListId;
-    WDStyle *mListStyle;
-    WDStyle *mListStyleLink;
+    long mListDefinitionId;
+    NSString *mStyleId;
+    NSString *mStyleRefId;
     int mType;
 }
+
+@property (nonatomic, readonly) long listDefinitionId;
+@property (nonatomic, readonly) NSString *styleId;
+@property (nonatomic, copy) NSString *styleRefId;
 
 - (id)addLevel;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
-- (id)document;
-- (id)initWithDocument:(id)arg1;
+- (id)initWithDocument:(id)arg1 listDefinitionId:(long)arg2 styleId:(id)arg3;
 - (id)levelAt:(int)arg1;
 - (int)levelCount;
-- (long)listId;
-- (id)listStyle;
-- (id)listStyleLink;
-- (void)setListId:(long)arg1;
-- (void)setListStyle:(id)arg1;
-- (void)setListStyleLink:(id)arg1;
+- (long)listDefinitionId;
+- (void)setStyleRefId:(id)arg1;
 - (void)setType:(int)arg1;
+- (id)styleId;
+- (id)styleRefId;
 - (int)type;
 
 @end

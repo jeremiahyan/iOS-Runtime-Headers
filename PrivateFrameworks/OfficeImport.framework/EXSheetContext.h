@@ -2,13 +2,16 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class EXState, NSString, NSURL;
-
 @interface EXSheetContext : NSObject <OCDDelayedNodeContext> {
     NSURL *mPackageLocation;
-    EXState *mSheetState;
+    EXReadState *mSheetState;
     NSString *mType;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)dealloc;
 - (id)initWithSheetLocation:(id)arg1 sheetXmlType:(id)arg2 state:(id)arg3;

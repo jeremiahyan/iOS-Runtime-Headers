@@ -2,17 +2,19 @@
    Image: /System/Library/PrivateFrameworks/CalDAV.framework/CalDAV
  */
 
-@class CalDAVPrincipalEmailDetailsResult, NSSet, NSString, NSURL;
-
 @interface CalDAVGetPrincipalEmailDetailsTaskGroup : CoreDAVTaskGroup <CoreDAVTaskDelegate> {
     CalDAVPrincipalEmailDetailsResult *_principalResult;
     NSURL *_principalURL;
 }
 
-@property(readonly) NSSet * addresses;
-@property(readonly) NSString * displayName;
-@property(retain) CalDAVPrincipalEmailDetailsResult * principalResult;
-@property(retain) NSURL * principalURL;
+@property (nonatomic, readonly, retain) NSSet *addresses;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly, retain) NSString *displayName;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) CalDAVPrincipalEmailDetailsResult *principalResult;
+@property (nonatomic, retain) NSURL *principalURL;
+@property (readonly) Class superclass;
 
 - (void)_finishWithError:(id)arg1;
 - (void)_processPropFind:(id)arg1;

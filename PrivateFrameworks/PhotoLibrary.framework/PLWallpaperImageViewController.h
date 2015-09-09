@@ -2,10 +2,8 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibrary.framework/PhotoLibrary
  */
 
-@class NSArray, NSString, PLWallpaperNavigationItem, SBSUIWallpaperPreviewViewController, UIActionSheet;
-
-@interface PLWallpaperImageViewController : PLUIEditImageViewController <SBFLegibilitySettingsProviderDelegate, UIActionSheetDelegate> {
-    unsigned int _didSetImageMode : 1;
+@interface PLWallpaperImageViewController : PLUIEditImageViewController <SBFLegibilitySettingsProviderDelegate> {
+    unsigned int _didSetImageMode;
     BOOL _isWallpaperEdit;
     PLWallpaperNavigationItem *_navItem;
     NSArray *_navigationToolbarItems;
@@ -13,17 +11,16 @@
     int _previewVariant;
     BOOL _saveWallpaperData;
     int _wallpaperMode;
-    UIActionSheet *_wallpaperOptionsSheet;
     SBSUIWallpaperPreviewViewController *_wallpaperPreviewViewController;
     NSString *_wallpaperTitle;
 }
 
-@property BOOL isWallpaperEdit;
-@property int previewType;
-@property int previewVariant;
-@property BOOL saveWallpaperData;
-@property(retain) SBSUIWallpaperPreviewViewController * wallpaperPreviewViewController;
-@property(copy) NSString * wallpaperTitle;
+@property (nonatomic) BOOL isWallpaperEdit;
+@property (nonatomic) int previewType;
+@property (nonatomic) int previewVariant;
+@property (nonatomic) BOOL saveWallpaperData;
+@property (nonatomic, retain) SBSUIWallpaperPreviewViewController *wallpaperPreviewViewController;
+@property (nonatomic, copy) NSString *wallpaperTitle;
 
 - (void)_adjustScrollViewGeometry;
 - (void)_backgroundCropWallpaper;
@@ -35,7 +32,6 @@
 - (void)_updatePreviewFrame:(id)arg1;
 - (void)_updateTitles;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_viewFrame;
-- (void)actionSheet:(id)arg1 clickedButtonAtIndex:(int)arg2;
 - (BOOL)clientIsWallpaper;
 - (int)cropOverlayMode;
 - (void)cropOverlayWasCancelled:(id)arg1;
@@ -52,6 +48,7 @@
 - (id)navigationItem;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void*)arg4;
 - (void)photoTileViewControllerRequestsFullScreenImage:(id)arg1;
+- (BOOL)prefersStatusBarHidden;
 - (void)prepareForBackground:(id)arg1;
 - (void)prepareForForeground:(id)arg1;
 - (int)previewType;

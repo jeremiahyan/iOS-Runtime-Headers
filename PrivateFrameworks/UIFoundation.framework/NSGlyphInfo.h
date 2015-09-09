@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIFoundation.framework/UIFoundation
  */
 
-@class NSString;
-
-@interface NSGlyphInfo : NSObject <NSCopying, NSCoding> {
+@interface NSGlyphInfo : NSObject <NSCoding, NSCopying> {
     NSString *_baseString;
 }
 
@@ -12,6 +10,7 @@
 + (id)glyphInfoWithGlyph:(unsigned int)arg1 forFont:(id)arg2 baseString:(id)arg3;
 + (id)glyphInfoWithGlyphName:(id)arg1 forFont:(id)arg2 baseString:(id)arg3;
 + (void)initialize;
++ (BOOL)supportsSecureCoding;
 
 - (id)_baseString;
 - (unsigned int)_glyphForFont:(id)arg1 baseString:(id)arg2;

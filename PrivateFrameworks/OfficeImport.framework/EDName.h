@@ -2,26 +2,37 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class EDFormula, EDString, TSUPointerKeyDictionary;
-
 @interface EDName : NSObject {
-    EDFormula *mFormula;
-    TSUPointerKeyDictionary *mMaxWorksheetReferences;
-    EDString *mNameString;
-    unsigned int mSheetIndex;
+    EDFormula *_formula;
+    NSString *_formulaString;
+    OITSUPointerKeyDictionary *_maxWorksheetReferences;
+    EDString *_nameString;
+    unsigned int _sheetIndex;
 }
+
+@property (nonatomic, readonly) EDFormula *formula;
+@property (nonatomic, readonly) NSString *internalFunctionName;
+@property (nonatomic, readonly) BOOL isInternalFunction;
+@property (nonatomic, readonly) OITSUPointerKeyDictionary *maxWorksheetReferences;
+@property (nonatomic, retain) EDString *nameString;
+@property (nonatomic) unsigned int sheetIndex;
+
++ (id)name;
 
 - (void)dealloc;
 - (id)formula;
+- (id)formulaString;
 - (unsigned int)hash;
 - (id)init;
+- (id)internalFunctionName;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isEqualToEDName:(id)arg1;
 - (BOOL)isEqualToString:(id)arg1;
+- (BOOL)isInternalFunction;
 - (id)maxWorksheetReferences;
 - (id)nameString;
-- (void)setCleanedFormula:(id)arg1;
 - (void)setFormula:(id)arg1 workbook:(id)arg2;
+- (void)setFormulaString:(id)arg1 workbook:(id)arg2;
 - (void)setNameString:(id)arg1;
 - (void)setSheetIndex:(unsigned int)arg1;
 - (unsigned int)sheetIndex;

@@ -2,18 +2,22 @@
    Image: /System/Library/Frameworks/PassKit.framework/PassKit
  */
 
-@class <PKPassDeleteDelegate>, PKPassView, UIActionSheet;
-
 @interface PKPassDeleteSheet : NSObject <UIActionSheetDelegate> {
     UIActionSheet *_actionSheet;
     <PKPassDeleteDelegate> *_delegate;
+    PKPassGroupView *_groupView;
     PKPassView *_passView;
 }
 
-@property <PKPassDeleteDelegate> * delegate;
-@property(retain) PKPassView * passView;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <PKPassDeleteDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly, retain) PKPassGroupView *groupView;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly, retain) PKPassView *passView;
+@property (readonly) Class superclass;
 
-+ (void)performPassbookDeleteWithView:(id)arg1 completion:(id)arg2;
++ (void)performPassbookDeleteWithView:(id)arg1 completion:(id /* block */)arg2;
 
 - (void)_applicationDidEnterBackground:(id)arg1;
 - (void)_registerForEnterBackgroundNotification;
@@ -24,10 +28,11 @@
 - (void)dealloc;
 - (id)delegate;
 - (void)finished:(BOOL)arg1;
-- (id)initWithPassView:(id)arg1;
+- (void)forceDeleteAnimation;
+- (id)groupView;
+- (id)initWithPassView:(id)arg1 groupView:(id)arg2;
 - (id)passView;
 - (void)setDelegate:(id)arg1;
-- (void)setPassView:(id)arg1;
 - (void)showInView:(id)arg1;
 
 @end

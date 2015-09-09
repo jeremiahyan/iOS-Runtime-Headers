@@ -2,13 +2,16 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@class NSMutableDictionary, NSMutableSet;
-
 @interface NSISPlaybackOperation : NSObject <NSISVariableDelegate> {
     NSMutableDictionary *oldIdentsToNewVariables;
     NSMutableSet *userObservableVariables;
     NSMutableSet *variablesToIntegralize;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)dealloc;
 - (id)init;

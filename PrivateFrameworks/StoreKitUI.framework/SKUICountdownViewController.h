@@ -2,17 +2,19 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class SKUIClientContext, SKUICountdownComponent, SKUIResourceLoader;
-
 @interface SKUICountdownViewController : UIViewController <SKUIArtworkRequestDelegate> {
     SKUIResourceLoader *_artworkLoader;
     SKUIClientContext *_clientContext;
     SKUICountdownComponent *_countdownComponent;
 }
 
-@property(readonly) SKUIResourceLoader * artworkLoader;
-@property(retain) SKUIClientContext * clientContext;
-@property(readonly) SKUICountdownComponent * countdownComponent;
+@property (nonatomic, readonly) SKUIResourceLoader *artworkLoader;
+@property (nonatomic, retain) SKUIClientContext *clientContext;
+@property (nonatomic, readonly) SKUICountdownComponent *countdownComponent;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (id)artworkLoader;

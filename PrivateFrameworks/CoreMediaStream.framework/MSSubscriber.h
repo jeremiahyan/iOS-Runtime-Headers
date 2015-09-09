@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/CoreMediaStream.framework/CoreMediaStream
  */
 
-@class <MSSubscribeStorageProtocol>, <MSSubscriberDelegate>, MSMediaStreamDaemon, MSObjectQueue, MSReauthorizationProtocol, MSSubscribeStreamsProtocol, NSMutableArray, NSMutableDictionary;
-
-@interface MSSubscriber : MSCupidStateMachine <MSSubscriber, MSSubscribeStreamsProtocolDelegate, MSSubscribeStorageProtocolDelegate, MSReauthorizationProtocolDelegate> {
+@interface MSSubscriber : MSCupidStateMachine <MSReauthorizationProtocolDelegate, MSSubscribeStorageProtocolDelegate, MSSubscribeStreamsProtocolDelegate, MSSubscriber> {
     NSMutableArray *_assetsBeingRetrieved;
     BOOL _checkOneMoreTime;
     MSMediaStreamDaemon *_daemon;
@@ -21,10 +19,14 @@
     long long _targetRetrievalByteCount;
 }
 
-@property MSMediaStreamDaemon * daemon;
-@property <MSSubscriberDelegate> * delegate;
-@property int retrievalBatchSize;
-@property long long targetRetrievalByteCount;
+@property (nonatomic) MSMediaStreamDaemon *daemon;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <MSSubscriberDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) int retrievalBatchSize;
+@property (readonly) Class superclass;
+@property (nonatomic) long long targetRetrievalByteCount;
 
 + (id)_clearInstantiatedSubscribersByPersonID;
 + (id)_descriptionForRetrievalState:(int)arg1;

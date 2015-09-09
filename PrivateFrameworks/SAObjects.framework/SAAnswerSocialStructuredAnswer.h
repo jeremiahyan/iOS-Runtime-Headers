@@ -2,13 +2,14 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSArray, NSString;
+@interface SAAnswerSocialStructuredAnswer : AceObject <SAAnswerStructuredAnswer>
 
-@interface SAAnswerSocialStructuredAnswer : AceObject <SAAnswerStructuredAnswer> {
-}
-
-@property(copy) NSString * category;
-@property(copy) NSArray * socialQuestions;
+@property (nonatomic, copy) NSString *category;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSArray *socialQuestions;
+@property (readonly) Class superclass;
 
 + (id)socialStructuredAnswer;
 + (id)socialStructuredAnswerWithDictionary:(id)arg1 context:(id)arg2;

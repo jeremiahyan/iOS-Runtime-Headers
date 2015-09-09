@@ -2,40 +2,31 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class UIActionSheet, UIAlertView;
-
 @interface EKUIRecurrenceAlertController : NSObject <UIActionSheetDelegate> {
-    UIActionSheet *_alertSheet;
-    UIAlertView *_alertView;
-    int _buttonConfiguration;
-    id _completionHandler;
+    UIAlertController *_alertController;
+    id /* block */ _completionHandler;
 }
 
-@property(copy) id completionHandler;
+@property (copy) id /* block */ completionHandler;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
-+ (void)initialize;
-+ (id)newAlertControllerWithCompletionHandler:(id)arg1;
-+ (id)presentDeleteAlertWithOptions:(int)arg1 viewController:(id)arg2 toolbarForSheet:(id)arg3 stringForDeleteButton:(id)arg4 withCompletionHandler:(id)arg5;
-+ (id)presentDeleteAlertWithOptions:(int)arg1 viewController:(id)arg2 toolbarForSheet:(id)arg3 withCompletionHandler:(id)arg4;
-+ (id)presentDeleteAlertWithOptions:(int)arg1 viewController:(id)arg2 viewForSheet:(id)arg3 stringForDeleteButton:(id)arg4 withCompletionHandler:(id)arg5;
-+ (id)presentDeleteAlertWithOptions:(int)arg1 viewController:(id)arg2 viewForSheet:(id)arg3 withCompletionHandler:(id)arg4;
-+ (id)presentDetachAlertWithOptions:(int)arg1 viewController:(id)arg2 toolbarForSheet:(id)arg3 withCompletionHandler:(id)arg4;
-+ (id)presentDetachAlertWithOptions:(int)arg1 viewController:(id)arg2 viewForSheet:(id)arg3 withCompletionHandler:(id)arg4;
++ (id)newAlertControllerWithCompletionHandler:(id /* block */)arg1;
++ (id)presentDeleteAlertWithOptions:(unsigned int)arg1 viewController:(id)arg2 stringForDeleteButton:(id)arg3 withCompletionHandler:(id /* block */)arg4;
++ (id)presentDeleteAlertWithOptions:(unsigned int)arg1 viewController:(id)arg2 withCompletionHandler:(id /* block */)arg3;
++ (id)presentDetachAlertWithOptions:(unsigned int)arg1 viewController:(id)arg2 withCompletionHandler:(id /* block */)arg3;
 
 - (void).cxx_destruct;
-- (void)_alertButtonClickedWithButtonIndex:(int)arg1;
-- (void)_presentDeleteAlertWithOptions:(int)arg1 viewController:(id)arg2 viewForSheet:(id)arg3 toolbarForSheet:(id)arg4 stringForDeleteButton:(id)arg5;
-- (void)_presentDetachAlertWithOptions:(int)arg1 viewController:(id)arg2 viewForSheet:(id)arg3 toolbarForSheet:(id)arg4;
+- (void)_cleanup;
+- (void)_completeWithSelection:(int)arg1;
+- (void)_presentDeleteAlertWithOptions:(unsigned int)arg1 viewController:(id)arg2 stringForDeleteButton:(id)arg3;
+- (void)_presentDetachAlertWithOptions:(unsigned int)arg1 viewController:(id)arg2;
 - (BOOL)_useSheetForViewController:(id)arg1;
-- (void)actionSheet:(id)arg1 clickedButtonAtIndex:(int)arg2;
-- (void)alertView:(id)arg1 clickedButtonAtIndex:(int)arg2;
 - (void)cancelAnimated:(BOOL)arg1;
-- (id)completionHandler;
+- (id /* block */)completionHandler;
 - (void)dealloc;
-- (void)setCompletionHandler:(id)arg1;
+- (void)setCompletionHandler:(id /* block */)arg1;
 
 @end

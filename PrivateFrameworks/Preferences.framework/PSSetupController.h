@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@class NSDictionary, PSRootController, UIViewController<PSController>;
-
 @interface PSSetupController : PSRootController {
     UIViewController<PSController> *_parentController;
     PSRootController *_parentRootController;
@@ -13,18 +11,18 @@
 - (id)controller;
 - (void)dealloc;
 - (void)dismiss;
-- (void)dismissAnimated:(BOOL)arg1 completion:(id)arg2;
 - (void)dismissAnimated:(BOOL)arg1;
-- (void)dismissWithCompletion:(id)arg1;
+- (void)dismissAnimated:(BOOL)arg1 completion:(id /* block */)arg2;
+- (void)dismissWithCompletion:(id /* block */)arg1;
 - (void)handleURL:(id)arg1;
 - (id)init;
 - (id)parentController;
 - (void)popControllerOnParent;
 - (BOOL)popupStyleIsModal;
-- (void)pushController:(id)arg1;
 - (void)pushControllerOnParentWithSpecifier:(id)arg1;
 - (void)setParentController:(id)arg1;
 - (void)setupController;
+- (void)showController:(id)arg1 animate:(BOOL)arg2;
 - (void)statusBarWillChangeHeight:(id)arg1;
 - (BOOL)usePopupStyle;
 - (void)viewDidDisappear:(BOOL)arg1;

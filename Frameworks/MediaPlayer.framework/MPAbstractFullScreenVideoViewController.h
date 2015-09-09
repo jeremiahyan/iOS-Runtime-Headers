@@ -3,17 +3,22 @@
  */
 
 @interface MPAbstractFullScreenVideoViewController : MPVideoViewController <MPSwipableViewDelegate> {
-    unsigned int _requestExitAfterHidingControls : 1;
-    unsigned int _rotateAfterHidingControls : 1;
-    unsigned int _showControlsAfterRotate : 1;
-    unsigned int _autoHidingForItemChange : 1;
-    unsigned int _scheduledAutoHide : 1;
+    unsigned int _autoHidingForItemChange;
+    unsigned int _requestExitAfterHidingControls;
+    unsigned int _rotateAfterHidingControls;
+    unsigned int _scheduledAutoHide;
+    unsigned int _showControlsAfterRotate;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)_applicationDidBecomeActive:(id)arg1;
 - (void)_autohideControlsOverlay;
-- (void)_hideOverlayWithAnimation:(BOOL)arg1 shouldUpdateAutohideFlag:(BOOL)arg2;
 - (void)_hideOverlayWithAnimation:(BOOL)arg1;
+- (void)_hideOverlayWithAnimation:(BOOL)arg1 shouldUpdateAutohideFlag:(BOOL)arg2;
 - (void)_resumedEventsOnlyNotification:(id)arg1;
 - (BOOL)_shouldUseFullScreenLayoutInWindow:(id)arg1 parentViewController:(id)arg2;
 - (int)_validInterfaceOrientation;

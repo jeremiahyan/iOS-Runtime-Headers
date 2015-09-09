@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class UIImage, UIImageView;
-
 @interface SKUISlideshowImageScrollView : UIScrollView {
     struct CGPoint { 
         float x; 
@@ -14,11 +12,10 @@
     float _scaleBeforeResize;
 }
 
-@property(retain) UIImage * image;
-@property(readonly) UIImageView * imageView;
+@property (nonatomic, retain) UIImage *image;
+@property (nonatomic, readonly) UIImageView *imageView;
 
 - (void).cxx_destruct;
-- (float)_computeMinimumZoomScale;
 - (void)_prepareToResize;
 - (void)_recoverFromResize;
 - (void)_resetMinMaxZoomScales;

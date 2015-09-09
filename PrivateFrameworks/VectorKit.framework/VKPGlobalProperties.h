@@ -3,60 +3,14 @@
  */
 
 @interface VKPGlobalProperties : PBCodable <NSCopying> {
-    struct { 
-        unsigned int *list; 
-        unsigned int count; 
-        unsigned int size; 
-    struct { 
-        unsigned int *list; 
-        unsigned int count; 
-        unsigned int size; 
-    struct { 
-        unsigned int *list; 
-        unsigned int count; 
-        unsigned int size; 
-    struct { 
-        unsigned int *list; 
-        unsigned int count; 
-        unsigned int size; 
-    struct { 
-        unsigned int *list; 
-        unsigned int count; 
-        unsigned int size; 
-    struct { 
-        unsigned int *list; 
-        unsigned int count; 
-        unsigned int size; 
-    struct { 
-        unsigned int *list; 
-        unsigned int count; 
-        unsigned int size; 
-    struct { 
-        unsigned int *list; 
-        unsigned int count; 
-        unsigned int size; 
-    struct { 
-        unsigned int *list; 
-        unsigned int count; 
-        unsigned int size; 
-    struct { 
-        unsigned int *list; 
-        unsigned int count; 
-        unsigned int size; 
-    struct { 
-        unsigned int *list; 
-        unsigned int count; 
-        unsigned int size; 
-    struct { 
-        unsigned int *list; 
-        unsigned int count; 
-        unsigned int size; 
+    unsigned int _buildingChangeoverZ;
+    float _globalScaleFactor;
+    float _globeLODScale;
     struct { 
         unsigned int buildingChangeoverZ : 1; 
         unsigned int globalScaleFactor : 1; 
         unsigned int globeLODScale : 1; 
         unsigned int labelIconScale : 1; 
-        unsigned int labelRoadCrossingThreshold : 1; 
         unsigned int lodOffset : 1; 
         unsigned int minLineTriangleWidth : 1; 
         unsigned int minTrafficTypeAccidentZ : 1; 
@@ -79,23 +33,69 @@
         unsigned int realisticShieldNightBrightness : 1; 
         unsigned int shieldNightBrightness : 1; 
         unsigned int tiltLimitSatelliteScale : 1; 
-    unsigned int _buildingChangeoverZ;
-    float _globalScaleFactor;
-    float _globeLODScale;
+        unsigned int labelDisableAlternateTextPositions : 1; 
     } _has;
+    BOOL _labelDisableAlternateTextPositions;
     float _labelIconScale;
-    int _labelRoadCrossingThreshold;
+    struct { 
+        unsigned int *list; 
+        unsigned int count; 
+        unsigned int size; 
     } _layerZoomRangeBackgroundRasters;
+    struct { 
+        unsigned int *list; 
+        unsigned int count; 
+        unsigned int size; 
     } _layerZoomRangeGroundCovers;
+    struct { 
+        unsigned int *list; 
+        unsigned int count; 
+        unsigned int size; 
     } _layerZoomRangeHybridRasters;
+    struct { 
+        unsigned int *list; 
+        unsigned int count; 
+        unsigned int size; 
     } _layerZoomRangePOIs;
+    struct { 
+        unsigned int *list; 
+        unsigned int count; 
+        unsigned int size; 
     } _layerZoomRangeRasterTraffics;
+    struct { 
+        unsigned int *list; 
+        unsigned int count; 
+        unsigned int size; 
     } _layerZoomRangeSatelliteRasters;
+    struct { 
+        unsigned int *list; 
+        unsigned int count; 
+        unsigned int size; 
     } _layerZoomRangeStandardRasters;
+    struct { 
+        unsigned int *list; 
+        unsigned int count; 
+        unsigned int size; 
     } _layerZoomRangeVectorBuildings;
+    struct { 
+        unsigned int *list; 
+        unsigned int count; 
+        unsigned int size; 
     } _layerZoomRangeVectorPolygons;
+    struct { 
+        unsigned int *list; 
+        unsigned int count; 
+        unsigned int size; 
     } _layerZoomRangeVectorRealistics;
+    struct { 
+        unsigned int *list; 
+        unsigned int count; 
+        unsigned int size; 
     } _layerZoomRangeVectorRoadTraffics;
+    struct { 
+        unsigned int *list; 
+        unsigned int count; 
+        unsigned int size; 
     } _layerZoomRangeVectorRoads;
     float _lodOffset;
     float _minLineTriangleWidth;
@@ -121,84 +121,84 @@
     float _tiltLimitSatelliteScale;
 }
 
-@property unsigned int buildingChangeoverZ;
-@property float globalScaleFactor;
-@property float globeLODScale;
-@property BOOL hasBuildingChangeoverZ;
-@property BOOL hasGlobalScaleFactor;
-@property BOOL hasGlobeLODScale;
-@property BOOL hasLabelIconScale;
-@property BOOL hasLabelRoadCrossingThreshold;
-@property BOOL hasLodOffset;
-@property BOOL hasMinLineTriangleWidth;
-@property BOOL hasMinTrafficTypeAccidentZ;
-@property BOOL hasMinTrafficTypeConstructionZ;
-@property BOOL hasMinTrafficTypeEventZ;
-@property BOOL hasMinTrafficTypeHazardZ;
-@property BOOL hasMinTrafficTypeLaneClosureZ;
-@property BOOL hasMinTrafficTypeRampClosureZ;
-@property BOOL hasMinTrafficTypeRoadClosureZ;
-@property BOOL hasMinTrafficTypeUnknownZ;
-@property BOOL hasNavLabelMaxRoadSigns;
-@property BOOL hasNavLabelRoadSignHeight;
-@property BOOL hasNavLabelRoadSignScaleLarge;
-@property BOOL hasNavLabelRoadSignScaleMedium;
-@property BOOL hasNavLabelRoadSignScaleSmall;
-@property BOOL hasNavLabelRoadSignScaleXLarge;
-@property BOOL hasNavLabelRoadSignScaleXXLarge;
-@property BOOL hasRasterPolygonChangeoverZ;
-@property BOOL hasRealisticNightBrightness;
-@property BOOL hasRealisticShieldNightBrightness;
-@property BOOL hasShieldNightBrightness;
-@property BOOL hasTiltLimitSatelliteScale;
-@property float labelIconScale;
-@property int labelRoadCrossingThreshold;
-@property(readonly) unsigned int* layerZoomRangeBackgroundRasters;
-@property(readonly) unsigned int layerZoomRangeBackgroundRastersCount;
-@property(readonly) unsigned int* layerZoomRangeGroundCovers;
-@property(readonly) unsigned int layerZoomRangeGroundCoversCount;
-@property(readonly) unsigned int* layerZoomRangeHybridRasters;
-@property(readonly) unsigned int layerZoomRangeHybridRastersCount;
-@property(readonly) unsigned int* layerZoomRangePOIs;
-@property(readonly) unsigned int layerZoomRangePOIsCount;
-@property(readonly) unsigned int* layerZoomRangeRasterTraffics;
-@property(readonly) unsigned int layerZoomRangeRasterTrafficsCount;
-@property(readonly) unsigned int* layerZoomRangeSatelliteRasters;
-@property(readonly) unsigned int layerZoomRangeSatelliteRastersCount;
-@property(readonly) unsigned int* layerZoomRangeStandardRasters;
-@property(readonly) unsigned int layerZoomRangeStandardRastersCount;
-@property(readonly) unsigned int* layerZoomRangeVectorBuildings;
-@property(readonly) unsigned int layerZoomRangeVectorBuildingsCount;
-@property(readonly) unsigned int* layerZoomRangeVectorPolygons;
-@property(readonly) unsigned int layerZoomRangeVectorPolygonsCount;
-@property(readonly) unsigned int* layerZoomRangeVectorRealistics;
-@property(readonly) unsigned int layerZoomRangeVectorRealisticsCount;
-@property(readonly) unsigned int* layerZoomRangeVectorRoadTraffics;
-@property(readonly) unsigned int layerZoomRangeVectorRoadTrafficsCount;
-@property(readonly) unsigned int* layerZoomRangeVectorRoads;
-@property(readonly) unsigned int layerZoomRangeVectorRoadsCount;
-@property float lodOffset;
-@property float minLineTriangleWidth;
-@property unsigned int minTrafficTypeAccidentZ;
-@property unsigned int minTrafficTypeConstructionZ;
-@property unsigned int minTrafficTypeEventZ;
-@property unsigned int minTrafficTypeHazardZ;
-@property unsigned int minTrafficTypeLaneClosureZ;
-@property unsigned int minTrafficTypeRampClosureZ;
-@property unsigned int minTrafficTypeRoadClosureZ;
-@property unsigned int minTrafficTypeUnknownZ;
-@property unsigned int navLabelMaxRoadSigns;
-@property float navLabelRoadSignHeight;
-@property float navLabelRoadSignScaleLarge;
-@property float navLabelRoadSignScaleMedium;
-@property float navLabelRoadSignScaleSmall;
-@property float navLabelRoadSignScaleXLarge;
-@property float navLabelRoadSignScaleXXLarge;
-@property unsigned int rasterPolygonChangeoverZ;
-@property float realisticNightBrightness;
-@property float realisticShieldNightBrightness;
-@property float shieldNightBrightness;
-@property float tiltLimitSatelliteScale;
+@property (nonatomic) unsigned int buildingChangeoverZ;
+@property (nonatomic) float globalScaleFactor;
+@property (nonatomic) float globeLODScale;
+@property (nonatomic) BOOL hasBuildingChangeoverZ;
+@property (nonatomic) BOOL hasGlobalScaleFactor;
+@property (nonatomic) BOOL hasGlobeLODScale;
+@property (nonatomic) BOOL hasLabelDisableAlternateTextPositions;
+@property (nonatomic) BOOL hasLabelIconScale;
+@property (nonatomic) BOOL hasLodOffset;
+@property (nonatomic) BOOL hasMinLineTriangleWidth;
+@property (nonatomic) BOOL hasMinTrafficTypeAccidentZ;
+@property (nonatomic) BOOL hasMinTrafficTypeConstructionZ;
+@property (nonatomic) BOOL hasMinTrafficTypeEventZ;
+@property (nonatomic) BOOL hasMinTrafficTypeHazardZ;
+@property (nonatomic) BOOL hasMinTrafficTypeLaneClosureZ;
+@property (nonatomic) BOOL hasMinTrafficTypeRampClosureZ;
+@property (nonatomic) BOOL hasMinTrafficTypeRoadClosureZ;
+@property (nonatomic) BOOL hasMinTrafficTypeUnknownZ;
+@property (nonatomic) BOOL hasNavLabelMaxRoadSigns;
+@property (nonatomic) BOOL hasNavLabelRoadSignHeight;
+@property (nonatomic) BOOL hasNavLabelRoadSignScaleLarge;
+@property (nonatomic) BOOL hasNavLabelRoadSignScaleMedium;
+@property (nonatomic) BOOL hasNavLabelRoadSignScaleSmall;
+@property (nonatomic) BOOL hasNavLabelRoadSignScaleXLarge;
+@property (nonatomic) BOOL hasNavLabelRoadSignScaleXXLarge;
+@property (nonatomic) BOOL hasRasterPolygonChangeoverZ;
+@property (nonatomic) BOOL hasRealisticNightBrightness;
+@property (nonatomic) BOOL hasRealisticShieldNightBrightness;
+@property (nonatomic) BOOL hasShieldNightBrightness;
+@property (nonatomic) BOOL hasTiltLimitSatelliteScale;
+@property (nonatomic) BOOL labelDisableAlternateTextPositions;
+@property (nonatomic) float labelIconScale;
+@property (nonatomic, readonly) unsigned int*layerZoomRangeBackgroundRasters;
+@property (nonatomic, readonly) unsigned int layerZoomRangeBackgroundRastersCount;
+@property (nonatomic, readonly) unsigned int*layerZoomRangeGroundCovers;
+@property (nonatomic, readonly) unsigned int layerZoomRangeGroundCoversCount;
+@property (nonatomic, readonly) unsigned int*layerZoomRangeHybridRasters;
+@property (nonatomic, readonly) unsigned int layerZoomRangeHybridRastersCount;
+@property (nonatomic, readonly) unsigned int*layerZoomRangePOIs;
+@property (nonatomic, readonly) unsigned int layerZoomRangePOIsCount;
+@property (nonatomic, readonly) unsigned int*layerZoomRangeRasterTraffics;
+@property (nonatomic, readonly) unsigned int layerZoomRangeRasterTrafficsCount;
+@property (nonatomic, readonly) unsigned int*layerZoomRangeSatelliteRasters;
+@property (nonatomic, readonly) unsigned int layerZoomRangeSatelliteRastersCount;
+@property (nonatomic, readonly) unsigned int*layerZoomRangeStandardRasters;
+@property (nonatomic, readonly) unsigned int layerZoomRangeStandardRastersCount;
+@property (nonatomic, readonly) unsigned int*layerZoomRangeVectorBuildings;
+@property (nonatomic, readonly) unsigned int layerZoomRangeVectorBuildingsCount;
+@property (nonatomic, readonly) unsigned int*layerZoomRangeVectorPolygons;
+@property (nonatomic, readonly) unsigned int layerZoomRangeVectorPolygonsCount;
+@property (nonatomic, readonly) unsigned int*layerZoomRangeVectorRealistics;
+@property (nonatomic, readonly) unsigned int layerZoomRangeVectorRealisticsCount;
+@property (nonatomic, readonly) unsigned int*layerZoomRangeVectorRoadTraffics;
+@property (nonatomic, readonly) unsigned int layerZoomRangeVectorRoadTrafficsCount;
+@property (nonatomic, readonly) unsigned int*layerZoomRangeVectorRoads;
+@property (nonatomic, readonly) unsigned int layerZoomRangeVectorRoadsCount;
+@property (nonatomic) float lodOffset;
+@property (nonatomic) float minLineTriangleWidth;
+@property (nonatomic) unsigned int minTrafficTypeAccidentZ;
+@property (nonatomic) unsigned int minTrafficTypeConstructionZ;
+@property (nonatomic) unsigned int minTrafficTypeEventZ;
+@property (nonatomic) unsigned int minTrafficTypeHazardZ;
+@property (nonatomic) unsigned int minTrafficTypeLaneClosureZ;
+@property (nonatomic) unsigned int minTrafficTypeRampClosureZ;
+@property (nonatomic) unsigned int minTrafficTypeRoadClosureZ;
+@property (nonatomic) unsigned int minTrafficTypeUnknownZ;
+@property (nonatomic) unsigned int navLabelMaxRoadSigns;
+@property (nonatomic) float navLabelRoadSignHeight;
+@property (nonatomic) float navLabelRoadSignScaleLarge;
+@property (nonatomic) float navLabelRoadSignScaleMedium;
+@property (nonatomic) float navLabelRoadSignScaleSmall;
+@property (nonatomic) float navLabelRoadSignScaleXLarge;
+@property (nonatomic) float navLabelRoadSignScaleXXLarge;
+@property (nonatomic) unsigned int rasterPolygonChangeoverZ;
+@property (nonatomic) float realisticNightBrightness;
+@property (nonatomic) float realisticShieldNightBrightness;
+@property (nonatomic) float shieldNightBrightness;
+@property (nonatomic) float tiltLimitSatelliteScale;
 
 - (void)addLayerZoomRangeBackgroundRasters:(unsigned int)arg1;
 - (void)addLayerZoomRangeGroundCover:(unsigned int)arg1;
@@ -235,8 +235,8 @@
 - (BOOL)hasBuildingChangeoverZ;
 - (BOOL)hasGlobalScaleFactor;
 - (BOOL)hasGlobeLODScale;
+- (BOOL)hasLabelDisableAlternateTextPositions;
 - (BOOL)hasLabelIconScale;
-- (BOOL)hasLabelRoadCrossingThreshold;
 - (BOOL)hasLodOffset;
 - (BOOL)hasMinLineTriangleWidth;
 - (BOOL)hasMinTrafficTypeAccidentZ;
@@ -261,8 +261,8 @@
 - (BOOL)hasTiltLimitSatelliteScale;
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
+- (BOOL)labelDisableAlternateTextPositions;
 - (float)labelIconScale;
-- (int)labelRoadCrossingThreshold;
 - (unsigned int*)layerZoomRangeBackgroundRasters;
 - (unsigned int)layerZoomRangeBackgroundRastersAtIndex:(unsigned int)arg1;
 - (unsigned int)layerZoomRangeBackgroundRastersCount;
@@ -300,6 +300,7 @@
 - (unsigned int)layerZoomRangeVectorRoadsAtIndex:(unsigned int)arg1;
 - (unsigned int)layerZoomRangeVectorRoadsCount;
 - (float)lodOffset;
+- (void)mergeFrom:(id)arg1;
 - (float)minLineTriangleWidth;
 - (unsigned int)minTrafficTypeAccidentZ;
 - (unsigned int)minTrafficTypeConstructionZ;
@@ -326,8 +327,8 @@
 - (void)setHasBuildingChangeoverZ:(BOOL)arg1;
 - (void)setHasGlobalScaleFactor:(BOOL)arg1;
 - (void)setHasGlobeLODScale:(BOOL)arg1;
+- (void)setHasLabelDisableAlternateTextPositions:(BOOL)arg1;
 - (void)setHasLabelIconScale:(BOOL)arg1;
-- (void)setHasLabelRoadCrossingThreshold:(BOOL)arg1;
 - (void)setHasLodOffset:(BOOL)arg1;
 - (void)setHasMinLineTriangleWidth:(BOOL)arg1;
 - (void)setHasMinTrafficTypeAccidentZ:(BOOL)arg1;
@@ -350,8 +351,8 @@
 - (void)setHasRealisticShieldNightBrightness:(BOOL)arg1;
 - (void)setHasShieldNightBrightness:(BOOL)arg1;
 - (void)setHasTiltLimitSatelliteScale:(BOOL)arg1;
+- (void)setLabelDisableAlternateTextPositions:(BOOL)arg1;
 - (void)setLabelIconScale:(float)arg1;
-- (void)setLabelRoadCrossingThreshold:(int)arg1;
 - (void)setLayerZoomRangeBackgroundRasters:(unsigned int*)arg1 count:(unsigned int)arg2;
 - (void)setLayerZoomRangeGroundCovers:(unsigned int*)arg1 count:(unsigned int)arg2;
 - (void)setLayerZoomRangeHybridRasters:(unsigned int*)arg1 count:(unsigned int)arg2;
@@ -390,6 +391,6 @@
 - (float)tiltLimitSatelliteScale;
 - (float)tiltLimitScale:(int)arg1;
 - (void)writeTo:(id)arg1;
-- (struct _NSRange { unsigned int x1; unsigned int x2; })zoomRangeForMapLayer:(unsigned int)arg1;
+- (struct _NSRange { unsigned int x1; unsigned int x2; })zoomRangeForMapLayer:(unsigned long long)arg1;
 
 @end

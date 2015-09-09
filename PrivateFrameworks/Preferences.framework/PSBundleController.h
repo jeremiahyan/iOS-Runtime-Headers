@@ -2,13 +2,12 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@class PSListController;
-
 @interface PSBundleController : NSObject {
     PSListController *_parent;
 }
 
 - (id)initWithParentListController:(id)arg1;
+- (id)initWithParentListController:(id)arg1 properties:(id)arg2;
 - (void)load;
 - (id)specifiersWithSpecifier:(id)arg1;
 - (void)unload;

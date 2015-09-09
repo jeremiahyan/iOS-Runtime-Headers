@@ -25,8 +25,9 @@
 - (Class)classForArchiver;
 - (Class)classForCoder;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (unsigned int)countByEnumeratingWithState:(struct { unsigned long x1; id *x2; unsigned long *x3; unsigned long x4[5]; }*)arg1 objects:(id*)arg2 count:(unsigned int)arg3;
+- (unsigned int)countByEnumeratingWithState:(struct { unsigned long x1; id *x2; unsigned long x3; unsigned long x4[5]; }*)arg1 objects:(id*)arg2 count:(unsigned int)arg3;
 - (void)dealloc;
+- (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (unsigned int)fastIndexForKnownKey:(id)arg1;
 - (unsigned int)hash;

@@ -2,28 +2,18 @@
    Image: /System/Library/PrivateFrameworks/TelephonyUI.framework/TelephonyUI
  */
 
-@class SBFGlintyStringView, UIScrollView, _UIBackdropView;
-
 @interface TPButton : UIButton {
     _UIBackdropView *_backdropView;
     BOOL _blursBackground;
     int _color;
     BOOL _roundsCorners;
-    UIScrollView *_shineLabelScrollView;
-    SBFGlintyStringView *_shineLabelView;
     BOOL _usesOverlayBlendingForContents;
 }
 
-@property BOOL blursBackground;
-@property BOOL roundsCorners;
-@property(retain) UIScrollView * shineLabelScrollView;
-@property(retain) SBFGlintyStringView * shineLabelView;
-@property BOOL usesOverlayBlendingForContents;
+@property (nonatomic) BOOL blursBackground;
+@property (nonatomic) BOOL roundsCorners;
+@property (nonatomic) BOOL usesOverlayBlendingForContents;
 
-+ (id)acceptVideoButtonImage;
-+ (id)answerButtonImage;
-+ (id)declineButtonImage;
-+ (id)declineVideoButtonImage;
 + (float)defaultHeight;
 + (float)defaultHeightForColor:(int)arg1;
 + (id)defaultStandardFont;
@@ -49,20 +39,14 @@
 - (void)setHighlighted:(BOOL)arg1;
 - (void)setIconVerticalOffset:(float)arg1;
 - (void)setImage:(id)arg1 forState:(unsigned int)arg2;
-- (void)setMinimumTitleFontSize:(float)arg1 maximumTitleFontSize:(float)arg2;
 - (void)setMinimumTitleFontSize:(float)arg1;
+- (void)setMinimumTitleFontSize:(float)arg1 maximumTitleFontSize:(float)arg2;
 - (void)setPlusSeparatedTitle:(id)arg1;
 - (void)setRoundsCorners:(BOOL)arg1;
 - (void)setSelected:(BOOL)arg1;
-- (void)setShineLabelScrollView:(id)arg1;
-- (void)setShineLabelShouldAnimate:(BOOL)arg1;
-- (void)setShineLabelView:(id)arg1;
 - (void)setTitleImagePadding:(float)arg1;
 - (void)setTitleVerticalOffset:(float)arg1;
 - (void)setUsesOverlayBlendingForContents:(BOOL)arg1;
-- (void)setUsesSlidingShineLabelWithText:(id)arg1;
-- (id)shineLabelScrollView;
-- (id)shineLabelView;
 - (BOOL)usesOverlayBlendingForContents;
 
 @end

@@ -2,29 +2,38 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class UIColor;
-
 @interface SKUIVideoImageDataConsumer : SKUIImageDataConsumer {
+    unsigned int _allowedOrientations;
+    UIColor *_backgroundColor;
+    SKUIColorScheme *_colorScheme;
     struct CGSize { 
         float width; 
         float height; 
-    UIColor *_backgroundColor;
-    } _constraintSize;
-    BOOL _forcesPortrait;
+    } _landscapeSize;
+    struct CGSize { 
+        float width; 
+        float height; 
+    } _portraitSize;
 }
 
-@property(retain) UIColor * backgroundColor;
-@property struct CGSize { float x1; float x2; } constraintSize;
-@property BOOL forcesPortrait;
+@property (nonatomic) unsigned int allowedOrientations;
+@property (nonatomic, retain) UIColor *backgroundColor;
+@property (nonatomic, retain) SKUIColorScheme *colorScheme;
+@property (nonatomic) struct CGSize { float x1; float x2; } landscapeSize;
+@property (nonatomic) struct CGSize { float x1; float x2; } portraitSize;
 
 - (void).cxx_destruct;
+- (unsigned int)allowedOrientations;
 - (id)backgroundColor;
-- (struct CGSize { float x1; float x2; })constraintSize;
-- (BOOL)forcesPortrait;
-- (id)imageForColor:(id)arg1 size:(struct CGSize { float x1; float x2; })arg2;
+- (id)colorScheme;
+- (id)imageForColor:(id)arg1 orientation:(unsigned int)arg2;
 - (id)imageForImage:(id)arg1;
+- (struct CGSize { float x1; float x2; })landscapeSize;
+- (struct CGSize { float x1; float x2; })portraitSize;
+- (void)setAllowedOrientations:(unsigned int)arg1;
 - (void)setBackgroundColor:(id)arg1;
-- (void)setConstraintSize:(struct CGSize { float x1; float x2; })arg1;
-- (void)setForcesPortrait:(BOOL)arg1;
+- (void)setColorScheme:(id)arg1;
+- (void)setLandscapeSize:(struct CGSize { float x1; float x2; })arg1;
+- (void)setPortraitSize:(struct CGSize { float x1; float x2; })arg1;
 
 @end

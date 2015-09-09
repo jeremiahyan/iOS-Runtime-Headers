@@ -2,25 +2,21 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSLock, NSMapTable;
-
 @interface GEOGeocodeRequester : NSObject {
     NSMapTable *_pendingBatchGeocodes;
     NSMapTable *_pendingGeocodes;
     NSLock *_pendingGeocodesLock;
-    NSMapTable *_providers;
 }
 
 + (void)_countryProvidersDidChange:(id)arg1;
 + (id)sharedGeocodeRequester;
 
-- (void)batchReverseGeocode:(id)arg1 success:(id)arg2 networkActivity:(id)arg3 error:(id)arg4;
+- (void)batchReverseGeocode:(id)arg1 success:(id /* block */)arg2 networkActivity:(id /* block */)arg3 error:(id /* block */)arg4;
 - (void)cancelBatchReverseGeocode:(id)arg1;
 - (void)cancelGeocode:(id)arg1;
 - (void)dealloc;
-- (void)forwardGeocode:(id)arg1 success:(id)arg2 networkActivity:(id)arg3 error:(id)arg4;
+- (void)forwardGeocode:(id)arg1 success:(id /* block */)arg2 networkActivity:(id /* block */)arg3 error:(id /* block */)arg4;
 - (id)init;
-- (void)registerProvider:(Class)arg1;
-- (void)reverseGeocode:(id)arg1 success:(id)arg2 networkActivity:(id)arg3 error:(id)arg4;
+- (void)reverseGeocode:(id)arg1 success:(id /* block */)arg2 networkActivity:(id /* block */)arg3 error:(id /* block */)arg4;
 
 @end

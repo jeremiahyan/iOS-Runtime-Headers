@@ -2,19 +2,19 @@
    Image: /System/Library/PrivateFrameworks/UIFoundation.framework/UIFoundation
  */
 
-@interface NSShadow : NSObject <NSCopying, NSCoding> {
+@interface NSShadow : NSObject <NSCoding, NSCopying> {
+    float _shadowBlurRadius;
+    NSColor *_shadowColor;
+    unsigned int _shadowFlags;
     struct CGSize { 
         float width; 
         float height; 
-    float _shadowBlurRadius;
-    id _shadowColor;
-    unsigned int _shadowFlags;
     } _shadowOffset;
 }
 
-@property float shadowBlurRadius;
-@property(retain) id shadowColor;
-@property struct CGSize { float x1; float x2; } shadowOffset;
+@property (nonatomic) float shadowBlurRadius;
+@property (nonatomic, retain) id shadowColor;
+@property (nonatomic) struct CGSize { float x1; float x2; } shadowOffset;
 
 + (id)defaultShadowColor;
 + (void)initialize;

@@ -2,14 +2,17 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-@class <VKPuckAnimatorDelegate>, <VKPuckAnimatorTarget>, VKAnimation, VKAttributedRouteMatch, VKPuckAnimatorLocationProjector, VKRunningCurve;
-
 @interface VKPuckAnimator : NSObject {
     VKAnimation *_animation;
     unsigned int _behavior;
     VKRunningCurve *_curve;
     <VKPuckAnimatorDelegate> *_delegate;
-    VKAttributedRouteMatch *_lastProjectedLocation;
+    GEORouteMatch *_lastProjectedLocation;
+    struct VKPoint { 
+        double x; 
+        double y; 
+        double z; 
+    } _lastProjectedPosition;
     VKPuckAnimatorLocationProjector *_locationProjector;
     int _pausedCount;
     BOOL _suspended;
@@ -18,12 +21,13 @@
     double _vehicleHeading;
 }
 
-@property unsigned int behavior;
-@property <VKPuckAnimatorDelegate> * delegate;
-@property(retain) VKAttributedRouteMatch * lastProjectedLocation;
-@property(retain) <VKPuckAnimatorTarget> * target;
-@property double tracePlaybackSpeedMultiplier;
+@property (nonatomic) unsigned int behavior;
+@property (nonatomic) <VKPuckAnimatorDelegate> *delegate;
+@property (nonatomic, retain) GEORouteMatch *lastProjectedLocation;
+@property (nonatomic, retain) <VKPuckAnimatorTarget> *target;
+@property (nonatomic) double tracePlaybackSpeedMultiplier;
 
+- (id).cxx_construct;
 - (void)_step;
 - (unsigned int)behavior;
 - (void)dealloc;

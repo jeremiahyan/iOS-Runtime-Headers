@@ -2,15 +2,9 @@
    Image: /System/Library/PrivateFrameworks/SpringBoardServices.framework/SpringBoardServices
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSLock, NSString;
-
 @interface SBLaunchAppListener : NSObject {
-    id _block;
-    NSString *_displayIdentifier;
+    id /* block */ _block;
+    NSString *_bundleIdentifier;
     BOOL _launched;
     NSLock *_lock;
     unsigned int _notifyAppExitedStatus;
@@ -24,7 +18,7 @@
 - (void)_didFailToLaunch;
 - (void)_didLaunch;
 - (void)dealloc;
-- (id)initWithDisplayIdentifier:(id)arg1 handlerBlock:(id)arg2;
+- (id)initWithBundleIdentifier:(id)arg1 handlerBlock:(id /* block */)arg2;
 - (void)invalidate;
 
 @end

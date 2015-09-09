@@ -2,63 +2,89 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@interface NSIndexPath : NSObject <NSCopying, NSCoding> {
+@interface NSIndexPath : NSObject <NSCopying, NSSecureCoding> {
     unsigned int *_indexes;
     unsigned int _length;
     void *_reserved;
 }
 
-@property(readonly) int ab_group;
-@property(readonly) int ab_item;
-@property(readonly) unsigned int gridColumn;
-@property(readonly) unsigned int gridRow;
-@property(readonly) unsigned int gridSection;
-@property(readonly) int item;
-@property(readonly) int row;
-@property(readonly) int section;
+@property (nonatomic, readonly) int ab_group;
+@property (nonatomic, readonly) int ab_item;
+@property (nonatomic, readonly) int item;
+@property (readonly) unsigned int length;
+@property (nonatomic, readonly) int row;
+@property (nonatomic, readonly) int section;
+@property (nonatomic, readonly) int tk_row;
+@property (nonatomic, readonly) int tk_section;
+
+// Image: /System/Library/Frameworks/Foundation.framework/Foundation
 
 + (id)indexPath;
-+ (id)indexPathForItem:(int)arg1 inGroup:(int)arg2;
-+ (id)indexPathForItem:(int)arg1 inSection:(int)arg2;
-+ (id)indexPathForRow:(int)arg1 inSection:(int)arg2;
-+ (id)indexPathForRow:(unsigned int)arg1 column:(unsigned int)arg2 inSection:(unsigned int)arg3;
 + (id)indexPathWithIndex:(unsigned int)arg1;
 + (id)indexPathWithIndexes:(const unsigned int*)arg1 length:(unsigned int)arg2;
-+ (id)pu_indexPathsForItems:(id)arg1 inSection:(int)arg2;
++ (BOOL)supportsSecureCoding;
 
-- (id)__ck_indexPathShiftedForInsertedIndexes:(id)arg1 deletedIndexes:(id)arg2;
-- (BOOL)_gkIsGlobal;
-- (int)ab_group;
-- (int)ab_item;
 - (int)compare:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (id)dd_stringValue;
 - (void)dealloc;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
-- (void)getIndexes:(unsigned int*)arg1 range:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2;
 - (void)getIndexes:(unsigned int*)arg1;
-- (unsigned int)gridColumn;
-- (unsigned int)gridRow;
-- (unsigned int)gridSection;
+- (void)getIndexes:(unsigned int*)arg1 range:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2;
 - (unsigned int)hash;
 - (unsigned int)indexAtPosition:(unsigned int)arg1;
 - (id)indexPathByAddingIndex:(unsigned int)arg1;
 - (id)indexPathByRemovingLastIndex;
-- (id)indexPathBySettingSection:(unsigned int)arg1;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithIndex:(unsigned int)arg1;
 - (id)initWithIndexes:(const unsigned int*)arg1 length:(unsigned int)arg2;
 - (BOOL)isEqual:(id)arg1;
-- (int)item;
 - (unsigned int)length;
+
+// Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
+
++ (id)indexPathForItem:(int)arg1 inGroup:(int)arg2;
+
+- (int)ab_group;
+- (int)ab_item;
+
+// Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
+
++ (id)pu_indexPathsForItems:(id)arg1 inSection:(int)arg2;
+
 - (id)pu_alteredIndexPathAfterDeletingItemAtIndexPath:(id)arg1;
 - (id)pu_alteredIndexPathAfterDeletingItemsAtIndexPaths:(id)arg1;
 - (id)pu_alteredIndexPathAfterInsertingItemAtIndexPath:(id)arg1;
 - (id)pu_alteredIndexPathAfterInsertingItemsAtIndexPaths:(id)arg1;
 - (id)pu_alteredIndexPathAfterMovingItemAtIndexPath:(id)arg1 toIndexPath:(id)arg2;
+
+// Image: /System/Library/Frameworks/UIKit.framework/UIKit
+
++ (id)indexPathForItem:(int)arg1 inSection:(int)arg2;
++ (id)indexPathForRow:(int)arg1 inSection:(int)arg2;
+
+- (int)item;
 - (int)row;
 - (int)section;
+
+// Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
+
+- (id)__ck_indexPathShiftedForInsertedIndexes:(id)arg1 deletedIndexes:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/DataDetectorsUI.framework/DataDetectorsUI
+
+- (id)dd_stringValue;
+
+// Image: /System/Library/PrivateFrameworks/GameCenterPrivateUI.framework/GameCenterPrivateUI
+
+- (BOOL)_gkIsGlobal;
+
+// Image: /System/Library/PrivateFrameworks/ToneKit.framework/ToneKit
+
++ (id)tk_indexPathForRow:(int)arg1 inSection:(int)arg2;
+
+- (int)tk_row;
+- (int)tk_section;
 
 @end

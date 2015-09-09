@@ -3,10 +3,16 @@
  */
 
 @interface NSMetadataQueryResultGroup : NSObject {
-    unsigned int _private2[1];
-    id _private[9];
+    /* Warning: unhandled array encoding: '[9@]' */ id _private;
+    unsigned int _private2;
     void *_reserved;
 }
+
+@property (readonly, copy) NSString *attribute;
+@property (readonly) unsigned int resultCount;
+@property (readonly, copy) NSArray *results;
+@property (readonly, copy) NSArray *subgroups;
+@property (readonly, retain) id value;
 
 - (void)_addResult:(unsigned int)arg1;
 - (id)_init:(id)arg1 attributes:(id)arg2 index:(unsigned int)arg3 value:(id)arg4;

@@ -2,14 +2,8 @@
    Image: /System/Library/Frameworks/Social.framework/Social
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSString;
-
 @interface SLNetworkReachabilityWarning : NSObject {
-    id _completionHandler;
+    id /* block */ _completionHandler;
     NSString *_serviceType;
 }
 
@@ -17,6 +11,6 @@
 - (void)alertView:(id)arg1 didDismissWithButtonIndex:(int)arg2;
 - (id)initWithServiceType:(id)arg1;
 - (void)showIfNecessary;
-- (void)showIfNecessaryWithCompletion:(id)arg1;
+- (void)showIfNecessaryWithCompletion:(id /* block */)arg1;
 
 @end

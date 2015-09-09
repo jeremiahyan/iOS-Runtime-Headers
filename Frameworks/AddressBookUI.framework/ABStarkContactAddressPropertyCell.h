@@ -2,12 +2,14 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@interface ABStarkContactAddressPropertyCell : ABPropertyPostalAddressCell {
-}
+@interface ABStarkContactAddressPropertyCell : ABPropertyPostalAddressCell
 
-- (id)contentViewConstraints;
-- (id)initWithStyle:(int)arg1 reuseIdentifier:(id)arg2;
+- (float)bottomBaselineConstant;
+- (id)constantConstraints;
+- (id)standardTransportIcon;
+- (float)topBaselineConstant;
 - (void)transportButtonClicked:(id)arg1;
 - (void)updateTransportButtons;
+- (id)variableConstraints;
 
 @end

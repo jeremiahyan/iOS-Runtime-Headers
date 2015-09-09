@@ -2,16 +2,15 @@
    Image: /System/Library/PrivateFrameworks/WebUI.framework/WebUI
  */
 
-@class <WBSFluidProgressControllerDelegate>, <WBSFluidProgressControllerWindowDelegate>;
-
 @interface WBSFluidProgressController : NSObject {
     <WBSFluidProgressControllerDelegate> *_delegate;
     <WBSFluidProgressControllerWindowDelegate> *_windowDelegate;
 }
 
-@property <WBSFluidProgressControllerDelegate> * delegate;
-@property <WBSFluidProgressControllerWindowDelegate> * windowDelegate;
+@property <WBSFluidProgressControllerDelegate> *delegate;
+@property <WBSFluidProgressControllerWindowDelegate> *windowDelegate;
 
+- (void).cxx_destruct;
 - (void)_updateFluidProgressWithProgressStateSource:(id)arg1;
 - (void)animationStepCompleted:(id)arg1;
 - (void)cancelFluidProgressWithProgressStateSource:(id)arg1;

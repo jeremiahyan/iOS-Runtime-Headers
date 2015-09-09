@@ -2,9 +2,8 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, UIKeyboardMenuView, _UIBackdropView;
-
 @interface UIInputSwitcherShadowView : UIView {
+    _UIBackdropView *_blurView;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -14,7 +13,6 @@
             float width; 
             float height; 
         } size; 
-    _UIBackdropView *_blurView;
     } _keyRect;
     UIKeyboardMenuView *_menu;
     NSArray *m_gradientColors;
@@ -22,12 +20,12 @@
     float m_pointerOffset;
 }
 
-@property(retain) _UIBackdropView * blurView;
-@property(retain) NSArray * gradientColors;
-@property struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } keyRect;
-@property UIKeyboardMenuView * menu;
-@property int mode;
-@property float pointerOffset;
+@property (nonatomic, retain) _UIBackdropView *blurView;
+@property (nonatomic, retain) NSArray *gradientColors;
+@property (nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } keyRect;
+@property (nonatomic) UIKeyboardMenuView *menu;
+@property (nonatomic) int mode;
+@property (nonatomic) float pointerOffset;
 
 - (id)blurView;
 - (void)dealloc;

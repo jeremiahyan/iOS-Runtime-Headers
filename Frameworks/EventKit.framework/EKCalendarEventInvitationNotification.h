@@ -2,10 +2,10 @@
    Image: /System/Library/Frameworks/EventKit.framework/EventKit
  */
 
-@class NSDate, NSString;
-
 @interface EKCalendarEventInvitationNotification : EKCalendarNotification {
     BOOL _allDay;
+    BOOL _attendeeReplyChanged;
+    NSArray *_attendees;
     BOOL _dateChanged;
     NSDate *_endDate;
     BOOL _hasRecurrenceRules;
@@ -19,19 +19,23 @@
     BOOL _timeChanged;
 }
 
-@property(getter=isAllDay) BOOL allDay;
-@property BOOL dateChanged;
-@property(retain) NSDate * endDate;
-@property BOOL hasRecurrenceRules;
-@property(retain) NSString * location;
-@property BOOL locationChanged;
-@property int participationStatus;
-@property(retain) NSDate * participationStatusModifiedDate;
-@property(retain) NSDate * startDate;
-@property(retain) NSDate * startDateForNextOccurrence;
-@property int status;
-@property BOOL timeChanged;
+@property (getter=isAllDay, nonatomic) BOOL allDay;
+@property (nonatomic) BOOL attendeeReplyChanged;
+@property (nonatomic, retain) NSArray *attendees;
+@property (nonatomic) BOOL dateChanged;
+@property (nonatomic, retain) NSDate *endDate;
+@property (nonatomic) BOOL hasRecurrenceRules;
+@property (nonatomic, retain) NSString *location;
+@property (nonatomic) BOOL locationChanged;
+@property (nonatomic) int participationStatus;
+@property (nonatomic, retain) NSDate *participationStatusModifiedDate;
+@property (nonatomic, retain) NSDate *startDate;
+@property (nonatomic, retain) NSDate *startDateForNextOccurrence;
+@property (nonatomic) int status;
+@property (nonatomic) BOOL timeChanged;
 
+- (BOOL)attendeeReplyChanged;
+- (id)attendees;
 - (BOOL)dateChanged;
 - (void)dealloc;
 - (id)endDate;
@@ -41,10 +45,11 @@
 - (BOOL)isAllDay;
 - (id)location;
 - (BOOL)locationChanged;
-- (BOOL)needsAlert;
 - (int)participationStatus;
 - (id)participationStatusModifiedDate;
 - (void)setAllDay:(BOOL)arg1;
+- (void)setAttendeeReplyChanged:(BOOL)arg1;
+- (void)setAttendees:(id)arg1;
 - (void)setDateChanged:(BOOL)arg1;
 - (void)setEndDate:(id)arg1;
 - (void)setHasRecurrenceRules:(BOOL)arg1;

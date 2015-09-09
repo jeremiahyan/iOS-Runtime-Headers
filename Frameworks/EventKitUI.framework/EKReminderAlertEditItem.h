@@ -2,13 +2,9 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-@class EKReminderDueDateEditItem, EKReminderLocationPickerModel, EKReminderRecurrenceEditItem, EKStructuredLocation, NSDate, NSString, UIAlertView, UIImageView, UILabel, UITableViewCell, UIView;
-
-@interface EKReminderAlertEditItem : EKReminderEditItem <EKReminderLocationPickerModelDelegate, EKReminderLocationPickerDelegate, UIAlertViewDelegate> {
-    struct CGSize { 
-        float width; 
-        float height; 
+@interface EKReminderAlertEditItem : EKReminderEditItem <EKReminderLocationPickerDelegate, EKReminderLocationPickerModelDelegate, UIAlertViewDelegate> {
     int _alarmProximity;
+    unsigned int _alertType;
     BOOL _allowsRecurrence;
     UIView *_chevronView;
     NSDate *_date;
@@ -22,6 +18,9 @@
     BOOL _ignoreLocationPickerModelSelectionChanges;
     BOOL _isAtALocation;
     BOOL _isOnADay;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _lastSeenFooterSize;
     BOOL _locationAlertsAvailable;
     UITableViewCell *_locationCell;
@@ -36,17 +35,22 @@
     UIAlertView *_wifiDisabledAlert;
 }
 
-@property int alarmProximity;
-@property(retain) NSDate * date;
-@property BOOL isAtALocation;
-@property BOOL isOnADay;
-@property BOOL showsLocation;
-@property(copy) EKStructuredLocation * structuredLocation;
+@property (nonatomic) int alarmProximity;
+@property unsigned int alertType;
+@property (nonatomic, retain) NSDate *date;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL isAtALocation;
+@property (nonatomic) BOOL isOnADay;
+@property (nonatomic) BOOL showsLocation;
+@property (nonatomic, copy) EKStructuredLocation *structuredLocation;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (id)_alarmDateFromReminder:(id)arg1 withAlarm:(id)arg2;
 - (id)_cellForProximity:(int)arg1;
-- (void)_cleanupAndCommitFromSubitem:(unsigned int)arg1 inSubsection:(unsigned int)arg2 wasAllDay:(BOOL)arg3;
+- (void)_cleanupAndCommitFromSubitem:(unsigned int)arg1 wasAllDay:(BOOL)arg2;
 - (void)_datePickerDateChanged:(id)arg1;
 - (void)_deselectDatePickerRowIfSelected;
 - (void)_dismissDatePickerAnimated:(BOOL)arg1;
@@ -54,12 +58,11 @@
 - (id)_footerLabel;
 - (id)_footerString;
 - (id)_getProximityCellAtIndex:(unsigned int)arg1;
-- (id)_indexPathsForDueDate;
 - (void)_isAtALocationChanged:(id)arg1;
-- (BOOL)_isDatePickerSubitem:(unsigned int)arg1 inSubsection:(unsigned int)arg2;
-- (BOOL)_isDueDateSubitem:(unsigned int)arg1 inSubsection:(unsigned int)arg2;
+- (BOOL)_isDatePickerSubitem:(unsigned int)arg1;
+- (BOOL)_isDueDateSubitem:(unsigned int)arg1;
 - (void)_isOnADayChanged:(id)arg1;
-- (BOOL)_isRecurrenceSubitem:(unsigned int)arg1 inSubsection:(unsigned int)arg2;
+- (BOOL)_isRecurrenceSubitem:(unsigned int)arg1;
 - (void)_localeChanged;
 - (id)_locationPickerModel;
 - (id)_makeSwitchCell:(BOOL)arg1;
@@ -67,6 +70,7 @@
 - (id)_reasonableAlarmDateForDueDate:(id)arg1;
 - (int)_recurrenceOffset;
 - (void)_removeExistingWifiAlert;
+- (struct _NSRange { unsigned int x1; unsigned int x2; })_rowsForDueDate;
 - (void)_selectedItemChangedInModel:(id)arg1;
 - (void)_setAlarmProximity:(int)arg1 updateTable:(BOOL)arg2;
 - (void)_setCell:(id)arg1 checked:(BOOL)arg2;
@@ -82,24 +86,25 @@
 - (void)_updateFooterString;
 - (void)_updateFooterStringAndUpdateHeight:(BOOL)arg1;
 - (void)_updateLocationTextAndAccessoryView;
-- (void)_updateReminderFromInlineSubitem:(unsigned int)arg1 inSubsection:(unsigned int)arg2;
+- (void)_updateReminderFromInlineSubitem:(unsigned int)arg1;
 - (void)_updateShowsDueDate;
 - (void)_wifiStatusDidChange:(id)arg1;
-- (void)addStylingToCell:(id)arg1 forSubitemAtIndex:(unsigned int)arg2 inSubsection:(unsigned int)arg3;
+- (void)addStylingToCell:(id)arg1 forSubitemAtIndex:(unsigned int)arg2;
 - (int)alarmProximity;
+- (unsigned int)alertType;
 - (void)alertView:(id)arg1 clickedButtonAtIndex:(int)arg2;
 - (void)applicationDidResume;
-- (id)cellForSubitemAtIndex:(unsigned int)arg1 inSubsection:(unsigned int)arg2;
+- (id)cellForSubitemAtIndex:(unsigned int)arg1;
 - (BOOL)configureForCalendarConstraints:(id)arg1;
 - (id)date;
 - (void)dealloc;
-- (id)detailViewControllerWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 forSubitemAtIndex:(unsigned int)arg2 inSubsection:(unsigned int)arg3;
+- (id)detailViewControllerWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 forSubitemAtIndex:(unsigned int)arg2;
 - (BOOL)editItemViewControllerCommit:(id)arg1;
-- (BOOL)editor:(id)arg1 canSelectSubitem:(unsigned int)arg2 inSubsection:(unsigned int)arg3;
-- (void)editor:(id)arg1 didDeselectSubitem:(unsigned int)arg2 inSubsection:(unsigned int)arg3;
-- (void)editor:(id)arg1 didSelectSubitem:(unsigned int)arg2 inSubsection:(unsigned int)arg3;
+- (BOOL)editor:(id)arg1 canSelectSubitem:(unsigned int)arg2;
+- (void)editor:(id)arg1 didDeselectSubitem:(unsigned int)arg2;
+- (void)editor:(id)arg1 didSelectSubitem:(unsigned int)arg2;
 - (void)editor:(id)arg1 didStartEditingItem:(id)arg2;
-- (BOOL)editor:(id)arg1 shouldClearSelectionFromSubitem:(unsigned int)arg2 inSubsection:(unsigned int)arg3;
+- (BOOL)editor:(id)arg1 shouldClearSelectionFromSubitem:(unsigned int)arg2;
 - (void)editorDidScroll:(id)arg1;
 - (float)footerHeightForWidth:(float)arg1;
 - (id)footerView;
@@ -113,11 +118,11 @@
 - (void)locationPickerModelDidUpdateCurrentLocation:(id)arg1;
 - (void)locationPickerModelDidUpdateCustomLocation:(id)arg1;
 - (void)locationPickerRequiresHeightChange:(id)arg1;
-- (unsigned int)numberOfSubitemsInSubsection:(unsigned int)arg1;
-- (unsigned int)numberOfSubsections;
+- (unsigned int)numberOfSubitems;
 - (void)refreshFromCalendarItemAndStore;
 - (void)reset;
 - (void)setAlarmProximity:(int)arg1;
+- (void)setAlertType:(unsigned int)arg1;
 - (void)setCalendarItem:(id)arg1 store:(id)arg2;
 - (void)setDate:(id)arg1;
 - (void)setDelegate:(id)arg1;
@@ -128,6 +133,6 @@
 - (void)setStyleProvider:(id)arg1;
 - (BOOL)showsLocation;
 - (id)structuredLocation;
-- (BOOL)usesDetailViewControllerForSubitem:(unsigned int)arg1 inSubsection:(unsigned int)arg2;
+- (BOOL)usesDetailViewControllerForSubitem:(unsigned int)arg1;
 
 @end

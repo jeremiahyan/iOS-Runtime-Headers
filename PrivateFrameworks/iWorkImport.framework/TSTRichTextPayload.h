@@ -2,13 +2,13 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class TSWPStorage;
-
 @interface TSTRichTextPayload : TSPObject <TSPCopying> {
     TSWPStorage *mStorage;
 }
 
-@property(retain) TSWPStorage * storage;
+@property (nonatomic, retain) TSWPStorage *storage;
+
++ (id)payloadWithStorage:(id)arg1;
 
 - (id)copyWithContext:(id)arg1;
 - (void)dealloc;

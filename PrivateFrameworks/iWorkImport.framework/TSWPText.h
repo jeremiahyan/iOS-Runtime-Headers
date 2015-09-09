@@ -2,19 +2,7 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class <TSWPFootnoteHeightMeasurer>, <TSWPFootnoteMarkProvider>, <TSWPOffscreenColumn>, NSMutableArray, NSObject<TSWPTextDelegate>, TSDCanvas, TSDLayout, TSPObject<TSDHint>, TSUColor, TSWPColumnStyle, TSWPListStyle, TSWPPadding, TSWPParagraphStyle, TSWPStorage;
-
-@interface TSWPText : NSObject <TSWPLayoutTarget, TSWPLayoutOwner, TSWPColumnMetrics> {
-    struct CGSize { 
-        float width; 
-        float height; 
-    struct CGSize { 
-        float width; 
-        float height; 
+@interface TSWPText : NSObject <TSWPColumnMetrics, TSWPLayoutOwner, TSWPLayoutTarget> {
     struct CGPoint { 
         float x; 
         float y; 
@@ -24,61 +12,71 @@
     NSObject<TSWPTextDelegate> *_delegate;
     int _flags;
     TSWPListStyle *_listStyle;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _maxSize;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _minSize;
     int _naturalAlignment;
     int _naturalDirection;
     unsigned int _pageCount;
     unsigned int _pageNumber;
     TSWPParagraphStyle *_paragraphStyle;
+    TSWPTextParentInfo *_parentInfo;
+    TSWPTextParentLayout *_parentLayout;
     TSWPStorage *_storage;
     TSUColor *_textColorOverride;
 }
 
-@property(readonly) const /* Warning: unhandled struct encoding: '{TSWPTopicNumberHints={map<const TSWPListStyle *' */ struct * previousTargetTopicNumbers; /* unknown property attribute:  true> >=L}}}II} */
-@property(readonly) const struct * nextTargetTopicNumbers; /* unknown property attribute:  true> >=L}}}II} */
-@property(readonly) struct CGSize { float x1; float x2; } adjustedInsets;
-@property(readonly) BOOL alwaysStartsNewTarget;
-@property(readonly) struct CGPoint { float x1; float x2; } anchorPoint;
-@property(retain) NSMutableArray * anchoredDrawablesForRelayout;
-@property(readonly) unsigned int autosizeFlags;
-@property(readonly) TSDCanvas * canvas;
-@property(readonly) unsigned int columnCount;
-@property(readonly) NSMutableArray * columns;
-@property(readonly) BOOL columnsAreLeftToRight;
-@property(readonly) struct CGSize { float x1; float x2; } currentSize;
-@property NSObject<TSWPTextDelegate> * delegate;
-@property(readonly) <TSWPFootnoteHeightMeasurer> * footnoteHeightMeasurer;
-@property(readonly) <TSWPFootnoteMarkProvider> * footnoteMarkProvider;
-@property(readonly) struct __CFLocale { }* hyphenationLocale;
-@property(readonly) BOOL layoutIsValid;
-@property(readonly) TSWPPadding * layoutMargins;
-@property(readonly) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } maskRect;
-@property(readonly) float maxAnchorY;
-@property(readonly) struct CGSize { float x1; float x2; } maxSize;
-@property(readonly) struct CGSize { float x1; float x2; } minSize;
-@property(readonly) int naturalAlignment;
-@property(readonly) int naturalDirection;
-@property(readonly) TSPObject<TSDHint> * nextTargetFirstChildHint;
-@property(readonly) <TSWPOffscreenColumn> * nextTargetFirstColumn;
-@property(readonly) unsigned int pageCount;
-@property(readonly) unsigned int pageNumber;
-@property(readonly) TSWPParagraphStyle * paragraphStyle;
-@property(readonly) TSDLayout * parentLayoutForInlineAttachments;
-@property(readonly) struct CGPoint { float x1; float x2; } position;
-@property(readonly) <TSWPOffscreenColumn> * previousTargetLastColumn;
-@property(readonly) BOOL shouldHyphenate;
-@property(readonly) BOOL shrinkTextToFit;
-@property(retain) TSUColor * textColorOverride;
-@property(readonly) BOOL textIsVertical;
-@property(readonly) float textScaleFactor;
-@property(readonly) int verticalAlignment;
-@property(readonly) BOOL wantsLineFragments;
+@property (nonatomic, readonly) BOOL alwaysStartsNewTarget;
+@property (nonatomic, readonly) struct CGPoint { float x1; float x2; } anchorPoint;
+@property (nonatomic, retain) NSMutableArray *anchoredDrawablesForRelayout;
+@property (nonatomic, readonly) unsigned int autosizeFlags;
+@property (nonatomic, readonly) TSDCanvas *canvas;
+@property (nonatomic, readonly) unsigned int columnCount;
+@property (nonatomic, readonly, retain) NSMutableArray *columns;
+@property (nonatomic, readonly) BOOL columnsAreLeftToRight;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } currentSize;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) NSObject<TSWPTextDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) <TSWPFootnoteHeightMeasurer> *footnoteHeightMeasurer;
+@property (nonatomic, readonly) <TSWPFootnoteMarkProvider> *footnoteMarkProvider;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) struct __CFLocale { }*hyphenationLocale;
+@property (nonatomic, readonly) BOOL layoutIsValid;
+@property (nonatomic, readonly) TSWPPadding *layoutMargins;
+@property (nonatomic, readonly) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } maskRect;
+@property (nonatomic, readonly) float maxAnchorY;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } maxSize;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } minSize;
+@property (nonatomic, readonly) int naturalAlignment;
+@property (nonatomic, readonly) int naturalDirection;
+@property (nonatomic, readonly) TSPObject<TSDHint> *nextTargetFirstChildHint;
+@property (nonatomic, readonly, retain) <TSWPOffscreenColumn> *nextTargetFirstColumn;
+@property (nonatomic, readonly) const /* Warning: unhandled struct encoding: '{TSWPTopicNumberHints={map<const TSWPListStyle *' */ struct *nextTargetTopicNumbers; /* unknown property attribute:  true> >=L}}}II} */
+@property (nonatomic, readonly) unsigned int pageCount;
+@property (nonatomic, readonly) unsigned int pageNumber;
+@property (nonatomic, readonly) TSWPParagraphStyle *paragraphStyle;
+@property (nonatomic, readonly) TSDLayout *parentLayoutForInlineAttachments;
+@property (nonatomic, readonly) struct CGPoint { float x1; float x2; } position;
+@property (nonatomic, readonly, retain) <TSWPOffscreenColumn> *previousTargetLastColumn;
+@property (nonatomic, readonly) const /* Warning: unhandled struct encoding: '{TSWPTopicNumberHints={map<const TSWPListStyle *' */ struct *previousTargetTopicNumbers; /* unknown property attribute:  true> >=L}}}II} */
+@property (nonatomic, readonly) BOOL shouldHyphenate;
+@property (nonatomic, readonly) BOOL shrinkTextToFit;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) TSUColor *textColorOverride;
+@property (nonatomic, readonly) BOOL textIsVertical;
+@property (nonatomic, readonly) float textScaleFactor;
+@property (nonatomic, readonly) int verticalAlignment;
+@property (nonatomic, readonly) BOOL wantsLineFragments;
 
 - (id).cxx_construct;
 - (void)addAttachmentLayout:(id)arg1;
-- (BOOL)adjustColumnOriginForAlignment;
-- (struct CGSize { float x1; float x2; })adjustedInsets;
+- (struct CGSize { float x1; float x2; })adjustedInsetsForTarget:(id)arg1;
 - (BOOL)alwaysStartsNewTarget;
 - (struct CGPoint { float x1; float x2; })anchorPoint;
 - (unsigned int)autosizeFlags;
@@ -99,12 +97,12 @@
 - (id)footnoteMarkProvider;
 - (BOOL)forceWesternLineBreaking;
 - (float)gapForColumnIndex:(unsigned int)arg1 bodyWidth:(float)arg2;
-- (id)initWithParagraphStyle:(id)arg1 columnStyle:(id)arg2 alignmentForNaturalAlignment:(int)arg3 naturalDirection:(int)arg4;
-- (id)initWithParagraphStyle:(id)arg1 columnStyle:(id)arg2;
-- (id)initWithParagraphStyle:(id)arg1 listStyle:(id)arg2 columnStyle:(id)arg3 alignmentForNaturalAlignment:(int)arg4 naturalDirection:(int)arg5;
-- (id)initWithParagraphStyle:(id)arg1 listStyle:(id)arg2 columnStyle:(id)arg3;
-- (id)initWithParagraphStyle:(id)arg1 listStyle:(id)arg2;
 - (id)initWithParagraphStyle:(id)arg1;
+- (id)initWithParagraphStyle:(id)arg1 columnStyle:(id)arg2;
+- (id)initWithParagraphStyle:(id)arg1 columnStyle:(id)arg2 alignmentForNaturalAlignment:(int)arg3 naturalDirection:(int)arg4;
+- (id)initWithParagraphStyle:(id)arg1 listStyle:(id)arg2;
+- (id)initWithParagraphStyle:(id)arg1 listStyle:(id)arg2 columnStyle:(id)arg3;
+- (id)initWithParagraphStyle:(id)arg1 listStyle:(id)arg2 columnStyle:(id)arg3 alignmentForNaturalAlignment:(int)arg4 naturalDirection:(int)arg5;
 - (BOOL)isLastTarget;
 - (BOOL)isLayoutOffscreen;
 - (BOOL)layoutIsValid;
@@ -123,14 +121,15 @@
 - (int)naturalDirection;
 - (id)nextTargetFirstChildHint;
 - (id)nextTargetFirstColumn;
-- (const struct TSWPTopicNumberHints { struct map<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> >, std::__1::less<const TSWPListStyle *>, std::__1::allocator<std::__1::pair<const TSWPListStyle *const, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > > > > { struct __tree<std::__1::pair<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > >, std::__1::__map_value_compare<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> >, std::__1::less<const TSWPListStyle *>, true>, std::__1::allocator<std::__1::pair<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > > > > { struct __tree_node<std::__1::pair<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > >, void *> {} *x_1_2_1; struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *> *>, std::__1::allocator<std::__1::__tree_node<std::__1::pair<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > >, void *> > > { struct __tree_end_node<std::__1::__tree_node_base<void *> *> { struct __tree_node_base<void *> {} *x_1_4_1; } x_2_3_1; } x_1_2_2; struct __compressed_pair<unsigned long, std::__1::__map_value_compare<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> >, std::__1::less<const TSWPListStyle *>, true> > { unsigned long x_3_3_1; } x_1_2_3; } x_1_1_1; } x1; unsigned int x2; unsigned int x3; }*)nextTargetTopicNumbers;
+- (const struct TSWPTopicNumberHints { struct map<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> >, std::__1::less<const TSWPListStyle *>, std::__1::allocator<std::__1::pair<const TSWPListStyle *const, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > > > > { struct __tree<std::__1::__value_type<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > >, std::__1::__map_value_compare<const TSWPListStyle *, std::__1::__value_type<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > >, std::__1::less<const TSWPListStyle *>, true>, std::__1::allocator<std::__1::__value_type<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > > > > { struct __tree_node<std::__1::__value_type<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > >, void *> {} *x_1_2_1; struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *> *>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > >, void *> > > { struct __tree_end_node<std::__1::__tree_node_base<void *> *> { struct __tree_node_base<void *> {} *x_1_4_1; } x_2_3_1; } x_1_2_2; struct __compressed_pair<unsigned long, std::__1::__map_value_compare<const TSWPListStyle *, std::__1::__value_type<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > >, std::__1::less<const TSWPListStyle *>, true> > { unsigned long x_3_3_1; } x_1_2_3; } x_1_1_1; } x1; unsigned int x2; unsigned int x3; }*)nextTargetTopicNumbers;
+- (void)p_setParentLayoutMaximumFrameSizeForChildren;
 - (unsigned int)pageCount;
 - (unsigned int)pageNumber;
 - (id)paragraphStyle;
 - (struct CGPoint { float x1; float x2; })position;
-- (float)positionForColumnIndex:(unsigned int)arg1 bodyWidth:(float)arg2 outWidth:(float*)arg3 outGap:(float*)arg4;
+- (float)positionForColumnIndex:(unsigned int)arg1 bodyWidth:(float)arg2 target:(id)arg3 outWidth:(float*)arg4 outGap:(float*)arg5;
 - (id)previousTargetLastColumn;
-- (const struct TSWPTopicNumberHints { struct map<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> >, std::__1::less<const TSWPListStyle *>, std::__1::allocator<std::__1::pair<const TSWPListStyle *const, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > > > > { struct __tree<std::__1::pair<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > >, std::__1::__map_value_compare<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> >, std::__1::less<const TSWPListStyle *>, true>, std::__1::allocator<std::__1::pair<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > > > > { struct __tree_node<std::__1::pair<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > >, void *> {} *x_1_2_1; struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *> *>, std::__1::allocator<std::__1::__tree_node<std::__1::pair<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > >, void *> > > { struct __tree_end_node<std::__1::__tree_node_base<void *> *> { struct __tree_node_base<void *> {} *x_1_4_1; } x_2_3_1; } x_1_2_2; struct __compressed_pair<unsigned long, std::__1::__map_value_compare<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> >, std::__1::less<const TSWPListStyle *>, true> > { unsigned long x_3_3_1; } x_1_2_3; } x_1_1_1; } x1; unsigned int x2; unsigned int x3; }*)previousTargetTopicNumbers;
+- (const struct TSWPTopicNumberHints { struct map<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> >, std::__1::less<const TSWPListStyle *>, std::__1::allocator<std::__1::pair<const TSWPListStyle *const, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > > > > { struct __tree<std::__1::__value_type<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > >, std::__1::__map_value_compare<const TSWPListStyle *, std::__1::__value_type<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > >, std::__1::less<const TSWPListStyle *>, true>, std::__1::allocator<std::__1::__value_type<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > > > > { struct __tree_node<std::__1::__value_type<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > >, void *> {} *x_1_2_1; struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *> *>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > >, void *> > > { struct __tree_end_node<std::__1::__tree_node_base<void *> *> { struct __tree_node_base<void *> {} *x_1_4_1; } x_2_3_1; } x_1_2_2; struct __compressed_pair<unsigned long, std::__1::__map_value_compare<const TSWPListStyle *, std::__1::__value_type<const TSWPListStyle *, std::__1::vector<TSWPTopicNumberEntry, std::__1::allocator<TSWPTopicNumberEntry> > >, std::__1::less<const TSWPListStyle *>, true> > { unsigned long x_3_3_1; } x_1_2_3; } x_1_1_1; } x1; unsigned int x2; unsigned int x3; }*)previousTargetTopicNumbers;
 - (void)setDelegate:(id)arg1;
 - (void)setNeedsDisplayInTargetRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)setTextColorOverride:(id)arg1;

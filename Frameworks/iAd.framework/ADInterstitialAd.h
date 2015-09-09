@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/iAd.framework/iAd
  */
 
-@class <ADInterstitialAdDelegate>, ADAdSpace, ADInterstitialView, UIView, UIViewController;
-
 @interface ADInterstitialAd : NSObject <ADAdRecipient> {
     BOOL _actionInProgress;
     ADAdSpace *_adSpace;
@@ -16,32 +14,43 @@
     ADInterstitialView *_interstitialView;
     BOOL _loaded;
     int _options;
+    ADInterstitialAdPresentationViewController *_presentationViewController;
 }
 
-@property(getter=isActionInProgress) BOOL actionInProgress;
-@property(retain) ADAdSpace * adSpace;
-@property(readonly) UIView * adSpaceView;
-@property BOOL canLoadMoreThanOnce;
-@property int creativeType;
-@property <ADInterstitialAdDelegate> * delegate;
-@property BOOL hasLoadedFirstAd;
-@property(readonly) int internalAdType;
-@property <ADInterstitialAdDelegate> * internalDelegate;
-@property UIViewController * internalPresentingViewController;
-@property(retain) ADInterstitialView * interstitialView;
-@property(getter=isLoaded,readonly) BOOL loaded;
-@property(readonly) int options;
-@property(readonly) UIViewController * presentingViewController;
+@property (getter=isActionInProgress, nonatomic) BOOL actionInProgress;
+@property (nonatomic, retain) ADAdSpace *adSpace;
+@property (nonatomic, readonly) UIView *adSpaceView;
+@property (nonatomic) BOOL canLoadMoreThanOnce;
+@property (nonatomic, copy) NSSet *context;
+@property (nonatomic) int creativeType;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <ADInterstitialAdDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL hasLoadedFirstAd;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) int internalAdType;
+@property (nonatomic) <ADInterstitialAdDelegate> *internalDelegate;
+@property (nonatomic) UIViewController *internalPresentingViewController;
+@property (nonatomic, retain) ADInterstitialView *interstitialView;
+@property (getter=isLoaded, nonatomic) BOOL loaded;
+@property (nonatomic, readonly) int options;
+@property (nonatomic, retain) ADInterstitialAdPresentationViewController *presentationViewController;
+@property (nonatomic, readonly) UIViewController *presentingViewController;
+@property (readonly) Class superclass;
 
 - (BOOL)_considerClosingAdSpace;
+- (void)_dismissModalInterstitial;
+- (void)_presentFromViewController:(id)arg1;
 - (id)adSpace;
 - (id)adSpaceView;
+- (void)bannerTappedAtPoint:(struct CGPoint { float x1; float x2; })arg1;
 - (BOOL)canLoadMoreThanOnce;
 - (void)cancelAction;
+- (int)clickAction;
+- (id)context;
 - (int)creativeType;
 - (void)dealloc;
 - (id)delegate;
-- (void)handleTapOnInterstitialViewAtLocation:(struct CGPoint { float x1; float x2; })arg1;
 - (BOOL)hasLoadedFirstAd;
 - (id)identifier;
 - (id)init;
@@ -53,10 +62,12 @@
 - (BOOL)isActionInProgress;
 - (BOOL)isLoaded;
 - (int)options;
-- (void)presentAsStoryboardFromViewController:(id)arg1;
+- (void)pauseBannerMedia;
 - (void)presentFromViewController:(id)arg1;
 - (BOOL)presentInView:(id)arg1;
+- (id)presentationViewController;
 - (id)presentingViewController;
+- (void)resumeBannerMedia;
 - (void)serverBannerViewDidFailToReceiveAdWithError:(id)arg1;
 - (void)serverBannerViewDidLoad;
 - (void)serverBannerViewWillLoad;
@@ -66,6 +77,7 @@
 - (void)setAdSpace:(id)arg1;
 - (void)setAuthenticationUserName:(id)arg1;
 - (void)setCanLoadMoreThanOnce:(BOOL)arg1;
+- (void)setContext:(id)arg1;
 - (void)setCreativeType:(int)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setHasLoadedFirstAd:(BOOL)arg1;
@@ -73,7 +85,7 @@
 - (void)setInternalPresentingViewController:(id)arg1;
 - (void)setInterstitialView:(id)arg1;
 - (void)setLoaded:(BOOL)arg1;
-- (void)setRemoteWindowContextId:(unsigned int)arg1;
+- (void)setPresentationViewController:(id)arg1;
 - (void)setSection:(id)arg1;
 - (void)setServerURL:(id)arg1;
 - (void)storyboardViewControllerDidPresent;

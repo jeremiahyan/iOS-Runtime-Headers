@@ -2,23 +2,25 @@
    Image: /System/Library/PrivateFrameworks/RadioUI.framework/RadioUI
  */
 
-@class UIImage, UIImageView, UIView;
-
-@interface _RUTrackActionsTableViewCell : UITableViewCell {
+@interface _RUTrackActionsTableViewCell : RUTableViewCell {
     struct UIOffset { 
         float horizontal; 
         float vertical; 
     } _accessoryImageOffset;
     UIImageView *_accessoryImageView;
     BOOL _displaysAsDisabled;
+    UILabel *_lastConfiguredTextLabel;
     UIView *_topSeparatorView;
 }
 
-@property(retain) UIImage * accessoryImage;
-@property struct UIOffset { float x1; float x2; } accessoryImageOffset;
-@property BOOL displaysAsDisabled;
-@property(retain) UIImage * highlightedAccessoryImage;
-@property BOOL showsTopSeparator;
+@property (nonatomic, retain) UIImage *accessoryImage;
+@property (nonatomic) struct UIOffset { float x1; float x2; } accessoryImageOffset;
+@property (nonatomic) BOOL displaysAsDisabled;
+@property (nonatomic, retain) UIImage *highlightedAccessoryImage;
+@property (nonatomic) BOOL showsTopSeparator;
+
++ (id)_textLabelFont;
++ (float)defaultHeightForTraitCollection:(id)arg1;
 
 - (void).cxx_destruct;
 - (id)accessoryImage;
@@ -33,5 +35,6 @@
 - (void)setHighlightedAccessoryImage:(id)arg1;
 - (void)setShowsTopSeparator:(BOOL)arg1;
 - (BOOL)showsTopSeparator;
+- (id)textLabel;
 
 @end

@@ -2,14 +2,12 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class GEOLocation, NSString;
-
 @interface GEOSignificantLocation : PBCodable <NSCopying> {
+    double _confidence;
     struct { 
         unsigned int confidence : 1; 
         unsigned int locationIndex : 1; 
         unsigned int numberOfVisitsBucket : 1; 
-    double _confidence;
     } _has;
     NSString *_identifier;
     GEOLocation *_location;
@@ -17,16 +15,16 @@
     unsigned int _numberOfVisitsBucket;
 }
 
-@property double confidence;
-@property BOOL hasConfidence;
-@property(readonly) BOOL hasIdentifier;
-@property(readonly) BOOL hasLocation;
-@property BOOL hasLocationIndex;
-@property BOOL hasNumberOfVisitsBucket;
-@property(retain) NSString * identifier;
-@property(retain) GEOLocation * location;
-@property unsigned int locationIndex;
-@property unsigned int numberOfVisitsBucket;
+@property (nonatomic) double confidence;
+@property (nonatomic) BOOL hasConfidence;
+@property (nonatomic, readonly) BOOL hasIdentifier;
+@property (nonatomic, readonly) BOOL hasLocation;
+@property (nonatomic) BOOL hasLocationIndex;
+@property (nonatomic) BOOL hasNumberOfVisitsBucket;
+@property (nonatomic, retain) NSString *identifier;
+@property (nonatomic, retain) GEOLocation *location;
+@property (nonatomic) unsigned int locationIndex;
+@property (nonatomic) unsigned int numberOfVisitsBucket;
 
 - (double)confidence;
 - (void)copyTo:(id)arg1;
@@ -44,6 +42,7 @@
 - (BOOL)isEqual:(id)arg1;
 - (id)location;
 - (unsigned int)locationIndex;
+- (void)mergeFrom:(id)arg1;
 - (unsigned int)numberOfVisitsBucket;
 - (BOOL)readFrom:(id)arg1;
 - (void)setConfidence:(double)arg1;

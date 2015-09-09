@@ -2,12 +2,13 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSArray;
+@interface SAValueCondition : AceObject <SASupportCondition>
 
-@interface SAValueCondition : AceObject <SASupportCondition> {
-}
-
-@property(copy) NSArray * legalValues;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSArray *legalValues;
+@property (readonly) Class superclass;
 
 + (id)valueCondition;
 + (id)valueConditionWithDictionary:(id)arg1 context:(id)arg2;

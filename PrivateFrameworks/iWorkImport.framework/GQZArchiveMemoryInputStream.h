@@ -2,13 +2,16 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSData;
-
 @interface GQZArchiveMemoryInputStream : NSObject <GQZArchiveInputStream> {
     const char *mBytes;
     NSData *mData;
     long long mSize;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (const char *)dataAtOffset:(long long)arg1 size:(unsigned long)arg2 end:(long long)arg3 readSize:(unsigned int*)arg4;
 - (void)dealloc;

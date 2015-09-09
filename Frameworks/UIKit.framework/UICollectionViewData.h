@@ -2,9 +2,34 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, NSMapTable, NSMutableArray, NSMutableDictionary, UICollectionView, UICollectionViewLayout;
-
 @interface UICollectionViewData : NSObject {
+    NSMutableArray *_clonedCellAttributes;
+    NSMutableArray *_clonedDecorationAttributes;
+    NSMutableArray *_clonedSupplementaryAttributes;
+    UICollectionView *_collectionView;
+    struct { 
+        unsigned int contentSizeIsValid : 1; 
+        unsigned int itemCountsAreValid : 1; 
+        unsigned int layoutIsPrepared : 1; 
+        unsigned int layoutLocked : 1; 
+    } _collectionViewDataFlags;
+    struct CGSize { 
+        float width; 
+        float height; 
+    } _contentSize;
+    NSMutableDictionary *_decorationLayoutAttributes;
+    NSMutableIndexSet *_globalIndexesOfItemsAwaitingValidation;
+    id *_globalItems;
+    NSMutableDictionary *_invalidatedDecorationIndexPaths;
+    NSMutableDictionary *_invalidatedSupplementaryIndexPaths;
+    int _lastResultForNumberOfItemsBeforeSection;
+    int _lastSectionTestedForNumberOfItemsBeforeSection;
+    UICollectionViewLayout *_layout;
+    int _numItems;
+    int _numSections;
+    NSMapTable *_screenPageMap;
+    int *_sectionItemCounts;
+    NSMutableDictionary *_supplementaryLayoutAttributes;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -14,39 +39,14 @@
             float width; 
             float height; 
         } size; 
-    struct CGSize { 
-        float width; 
-        float height; 
-    struct { 
-        unsigned int contentSizeIsValid : 1; 
-        unsigned int itemCountsAreValid : 1; 
-        unsigned int layoutIsPrepared : 1; 
-        unsigned int layoutLocked : 1; 
-    NSMutableArray *_clonedCellAttributes;
-    NSMutableArray *_clonedDecorationAttributes;
-    NSMutableArray *_clonedSupplementaryAttributes;
-    UICollectionView *_collectionView;
-    } _collectionViewDataFlags;
-    } _contentSize;
-    NSMutableDictionary *_decorationLayoutAttributes;
-    id *_globalItems;
-    NSMutableDictionary *_invalidatedSupplementaryViews;
-    int _lastResultForNumberOfItemsBeforeSection;
-    int _lastSectionTestedForNumberOfItemsBeforeSection;
-    UICollectionViewLayout *_layout;
-    int _numItems;
-    int _numSections;
-    NSMapTable *_screenPageMap;
-    int *_sectionItemCounts;
-    NSMutableDictionary *_supplementaryLayoutAttributes;
     } _validLayoutRect;
 }
 
-@property(readonly) NSArray * clonedCellAttributes;
-@property(readonly) NSArray * clonedDecorationAttributes;
-@property(readonly) NSArray * clonedSupplementaryAttributes;
-@property(readonly) BOOL layoutIsPrepared;
-@property(getter=isLayoutLocked) BOOL layoutLocked;
+@property (nonatomic, readonly) NSArray *clonedCellAttributes;
+@property (nonatomic, readonly) NSArray *clonedDecorationAttributes;
+@property (nonatomic, readonly) NSArray *clonedSupplementaryAttributes;
+@property (nonatomic, readonly) BOOL layoutIsPrepared;
+@property (getter=isLayoutLocked, nonatomic) BOOL layoutLocked;
 
 + (void)initialize;
 
@@ -69,7 +69,9 @@
 - (id)indexPathForItemAtGlobalIndex:(int)arg1;
 - (id)initWithCollectionView:(id)arg1 layout:(id)arg2;
 - (void)invalidate:(BOOL)arg1;
-- (void)invalidateSupplementaryViews:(id)arg1;
+- (void)invalidateDecorationIndexPaths:(id)arg1;
+- (void)invalidateItemsAtIndexPaths:(id)arg1;
+- (void)invalidateSupplementaryIndexPaths:(id)arg1;
 - (BOOL)isLayoutLocked;
 - (id)knownDecorationElementKinds;
 - (id)knownSupplementaryElementKinds;
@@ -89,6 +91,8 @@
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })rectForItemAtIndexPath:(id)arg1;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })rectForSupplementaryElementOfKind:(id)arg1 atIndexPath:(id)arg2;
 - (void)setLayoutLocked:(BOOL)arg1;
+- (void)shimMoveForItemAtIndexPath:(id)arg1 toIndexPath:(id)arg2;
+- (void)validateDecorationViews;
 - (void)validateLayoutInRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)validateSupplementaryViews;
 

@@ -2,11 +2,9 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSMutableDictionary, NSMutableString, NSString;
-
 @interface CMDictArchiveManager : CMArchiveManager {
-    boolmIsFrameset;
     NSMutableString *mCssString;
+    bool mIsFrameset;
     NSMutableString *mMainHtml;
     NSString *mName;
     NSString *mPrefix;
@@ -15,8 +13,8 @@
     NSMutableDictionary *mStyleCache;
 }
 
-- (void)addCssStyle:(id)arg1 withName:(id)arg2;
 - (id)addCssStyle:(id)arg1;
+- (void)addCssStyle:(id)arg1 withName:(id)arg2;
 - (id)copyDictionaryWithSizeInfos:(BOOL)arg1;
 - (id)copyResourceWithName:(id)arg1;
 - (id)cssStylesheetString;
@@ -26,7 +24,7 @@
 - (void)pushCssToPath:(id)arg1;
 - (void)pushData:(id)arg1 toPath:(id)arg2;
 - (void)pushText:(id)arg1 toPath:(id)arg2;
-- (int)resourceCount;
+- (unsigned int)resourceCount;
 - (id)resourceUrlProtocol;
 - (void)setIsFrameset;
 

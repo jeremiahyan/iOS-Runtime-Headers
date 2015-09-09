@@ -2,67 +2,65 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class TSCH3DLabelResourceAttributes;
-
 @interface TSCH3DLabelResource : TSCH3DResource <TSCH3DStringIndexableResource> {
-    struct tvec2<float> { 
-        union { 
-            float x; 
-            float r; 
-            float s; 
-        } ; 
-        union { 
-            float y; 
-            float g; 
-            float t; 
-        } ; 
-    struct tvec2<float> { 
-        union { 
-            float x; 
-            float r; 
-            float s; 
-        } ; 
-        union { 
-            float y; 
-            float g; 
-            float t; 
-        } ; 
-    struct tvec2<float> { 
-        union { 
-            float x; 
-            float r; 
-            float s; 
-        } ; 
-        union { 
-            float y; 
-            float g; 
-            float t; 
-        } ; 
-    struct tvec2<float> { 
-        union { 
-            float x; 
-            float r; 
-            float s; 
-        } ; 
-        union { 
-            float y; 
-            float g; 
-            float t; 
-        } ; 
     TSCH3DLabelResourceAttributes *mAttributes;
+    struct tvec2<float> { 
+        union { 
+            float x; 
+            float r; 
+            float s; 
+        } ; 
+        union { 
+            float y; 
+            float g; 
+            float t; 
+        } ; 
     } mBitmapLabelRenderOffset;
+    struct tvec2<float> { 
+        union { 
+            float x; 
+            float r; 
+            float s; 
+        } ; 
+        union { 
+            float y; 
+            float g; 
+            float t; 
+        } ; 
     } mLabelRenderOffset;
+    struct tvec2<float> { 
+        union { 
+            float x; 
+            float r; 
+            float s; 
+        } ; 
+        union { 
+            float y; 
+            float g; 
+            float t; 
+        } ; 
     } mSize;
     BOOL mSizeAndOffsetCalculated;
+    struct tvec2<float> { 
+        union { 
+            float x; 
+            float r; 
+            float s; 
+        } ; 
+        union { 
+            float y; 
+            float g; 
+            float t; 
+        } ; 
     } mTightSize;
 }
 
-@property(copy) TSCH3DLabelResourceAttributes * attributes;
-@property(readonly) struct tvec2<float> { union { float x_1_1_1; float x_1_1_2; float x_1_1_3; } x1; union { float x_2_1_1; float x_2_1_2; float x_2_1_3; } x2; } bitmapLabelRenderOffset;
-@property(readonly) struct tvec2<int> { union { int x_1_1_1; int x_1_1_2; int x_1_1_3; } x1; union { int x_2_1_1; int x_2_1_2; int x_2_1_3; } x2; } clampedLabelSampledSize;
-@property(readonly) struct tvec2<float> { union { float x_1_1_1; float x_1_1_2; float x_1_1_3; } x1; union { float x_2_1_1; float x_2_1_2; float x_2_1_3; } x2; } labelRenderOffset;
-@property(readonly) struct tvec2<float> { union { float x_1_1_1; float x_1_1_2; float x_1_1_3; } x1; union { float x_2_1_1; float x_2_1_2; float x_2_1_3; } x2; } labelSize;
-@property(readonly) struct tvec2<float> { union { float x_1_1_1; float x_1_1_2; float x_1_1_3; } x1; union { float x_2_1_1; float x_2_1_2; float x_2_1_3; } x2; } tightSize;
+@property (nonatomic, copy) TSCH3DLabelResourceAttributes *attributes;
+@property (nonatomic, readonly) struct tvec2<float> { union { float x_1_1_1; float x_1_1_2; float x_1_1_3; } x1; union { float x_2_1_1; float x_2_1_2; float x_2_1_3; } x2; } bitmapLabelRenderOffset;
+@property (nonatomic, readonly) struct tvec2<int> { union { int x_1_1_1; int x_1_1_2; int x_1_1_3; } x1; union { int x_2_1_1; int x_2_1_2; int x_2_1_3; } x2; } clampedLabelSampledSize;
+@property (nonatomic, readonly) struct tvec2<float> { union { float x_1_1_1; float x_1_1_2; float x_1_1_3; } x1; union { float x_2_1_1; float x_2_1_2; float x_2_1_3; } x2; } labelRenderOffset;
+@property (nonatomic, readonly) struct tvec2<float> { union { float x_1_1_1; float x_1_1_2; float x_1_1_3; } x1; union { float x_2_1_1; float x_2_1_2; float x_2_1_3; } x2; } labelSize;
+@property (nonatomic, readonly) struct tvec2<float> { union { float x_1_1_1; float x_1_1_2; float x_1_1_3; } x1; union { float x_2_1_1; float x_2_1_2; float x_2_1_3; } x2; } tightSize;
 
 + (id)resourceWithLabelAttributes:(id)arg1;
 

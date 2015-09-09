@@ -2,14 +2,16 @@
    Image: /System/Library/PrivateFrameworks/PrototypeTools.framework/PrototypeTools
  */
 
-@class NSIndexPath, PTSChoiceRow;
-
 @interface PTSChoiceViewController : UITableViewController <PTSRowObserver> {
     PTSChoiceRow *_row;
     NSIndexPath *_valueIndexPath;
 }
 
-@property(retain) PTSChoiceRow * row;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) PTSChoiceRow *row;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_checkAppropriateCell;
@@ -17,8 +19,8 @@
 - (void)dealloc;
 - (id)initWithPresentingRow:(id)arg1;
 - (int)numberOfSectionsInTableView:(id)arg1;
-- (void)row:(id)arg1 didChangeValue:(id)arg2;
 - (id)row;
+- (void)row:(id)arg1 didChangeValue:(id)arg2;
 - (void)setRow:(id)arg1;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
 - (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;

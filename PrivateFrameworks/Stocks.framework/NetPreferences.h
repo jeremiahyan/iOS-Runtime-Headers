@@ -2,18 +2,15 @@
    Image: /System/Library/PrivateFrameworks/Stocks.framework/Stocks
  */
 
-@class NSString, NSURL;
-
 @interface NetPreferences : NSObject {
     NSString *_UUID;
     NSString *_buildVersion;
     BOOL _isNetworkReachable;
     NSString *_productVersion;
     BOOL _serviceDebugging;
-    NSURL *_serviceURL;
 }
 
-@property(getter=isNetworkReachable) BOOL networkReachable;
+@property (getter=isNetworkReachable, nonatomic) BOOL networkReachable;
 
 + (void)clearSharedPreferences;
 + (id)sharedPreferences;
@@ -22,25 +19,25 @@
 - (id)UUID;
 - (id)_cacheDirectoryPath;
 - (id)_stocksAcceptLanguage;
-- (id)_stocksCountryCode;
 - (id)_stocksUserAgent;
 - (id)_urlStringWithHost:(id)arg1;
 - (void)addStocksHeadersToPostRequest:(id)arg1;
 - (id)backsideLogoURL;
+- (id)defaultBacksideLogoURL;
 - (id)financeRequestAttributes;
 - (id)fullQuoteURLOverrideForStock:(id)arg1;
 - (id)init;
 - (BOOL)isNetworkReachable;
 - (id)logoBacksideImage;
 - (id)logoButtonImage;
-- (id)newsServiceURLForStock:(id)arg1;
+- (void)resetLocale;
 - (BOOL)serviceDebugging;
 - (id)serviceDebuggingPath;
-- (id)serviceURL;
 - (void)setNetworkReachable:(BOOL)arg1;
 - (void)setupLogging;
 - (id)signedRequestForURL:(id)arg1 parameters:(id)arg2;
+- (id)stocksCountryCode;
+- (id)stocksLanguageCode;
 - (id)stocksYQLBaseURL;
-- (id)stocksYQLEnvParameter;
 
 @end

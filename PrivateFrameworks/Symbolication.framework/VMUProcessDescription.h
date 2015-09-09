@@ -2,24 +2,20 @@
    Image: /System/Library/PrivateFrameworks/Symbolication.framework/Symbolication
  */
 
-@class NSArray, NSCalendarDate, NSDictionary, NSMutableArray, NSString;
-
-@interface VMUProcessDescription : NSObject {
-    struct _CSTypeRef { 
-        unsigned int _opaque_1; 
-        unsigned int _opaque_2; 
+@interface VMUProcessDescription : NSObject <VMULibraryLoadDelegate> {
     NSDictionary *_binaryImageHints;
     BOOL _binaryImagePostProcessingComplete;
     NSMutableArray *_binaryImages;
     NSDictionary *_buildVersionDictionary;
     int _cpuType;
-    NSCalendarDate *_date;
+    NSDate *_date;
     unsigned long long _executableLoadAddress;
     NSString *_executablePath;
     BOOL _executablePathNeedsCorrection;
-    NSString *_internalError;
     BOOL _is64Bit;
+    _VMULibraryLoadObserver *_loadUnloadObserver;
     NSDictionary *_lsApplicationInformation;
+    struct mapped_memory_t { } *_mappedMemory;
     NSDictionary *_osVersionDictionary;
     NSString *_parentExecutablePath;
     NSString *_parentProcessName;
@@ -28,10 +24,14 @@
     NSString *_processName;
     BOOL _processNameNeedsCorrection;
     NSArray *_sortedBinaryImages;
-    } _symbolicator;
     unsigned int _task;
     NSArray *_unreadableBinaryImagePaths;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)parseBinaryImagesDescription:(id)arg1;
 
@@ -40,12 +40,9 @@
 - (id)_buildVersionDictionary;
 - (id)_bundleLock;
 - (id)_cpuTypeDescription;
-- (void)_extractBinaryImageInfoFromSymbolOwner:(struct _CSTypeRef { unsigned int x1; unsigned int x2; })arg1;
-- (double)_extractDyldInfoFromSymbolOwner:(struct _CSTypeRef { unsigned int x1; unsigned int x2; })arg1 withNonContiguousMemory:(id)arg2;
-- (id)_extractInfoPlistFromSymbolOwner:(struct _CSTypeRef { unsigned int x1; unsigned int x2; })arg1 withNonContiguousMemory:(id)arg2;
+- (void)_libraryLoaded:(struct _CSTypeRef { unsigned int x1; unsigned int x2; })arg1;
 - (id)_osVersionDictionary;
 - (id)_rangesOfBinaryImages:(id)arg1 forBacktraces:(id)arg2;
-- (id)_readDataFromMemory:(id)arg1 atAddress:(unsigned long long)arg2 size:(unsigned long)arg3;
 - (id)_sanitizeVersion:(id)arg1;
 - (id)_systemVersionDescription;
 - (id)binaryImageDictionaryForAddress:(unsigned long long)arg1;
@@ -62,6 +59,7 @@
 - (id)displayName;
 - (id)executablePath;
 - (id)initWithPid:(int)arg1 orTask:(unsigned int)arg2;
+- (id)initWithPid:(int)arg1 orTask:(unsigned int)arg2 getBinariesList:(BOOL)arg3;
 - (BOOL)isAppleApplication;
 - (id)parentProcessName;
 - (int)pid;

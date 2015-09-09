@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class UILabel, UIView;
-
 @interface SKUIRoundedRectButton : UIButton {
     UIView *_borderView;
     UILabel *_subtitleLabel;
@@ -12,7 +10,9 @@
 - (void).cxx_destruct;
 - (id)_basicAnimationWithKeyPath:(id)arg1;
 - (void)_reloadColors;
+- (void)_reloadFonts;
 - (void)animationDidStop:(id)arg1 finished:(BOOL)arg2;
+- (void)dealloc;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)layoutSubviews;
 - (void)setEnabled:(BOOL)arg1;
@@ -20,5 +20,6 @@
 - (void)setSubtitleWithLabel:(id)arg1;
 - (void)setTitleEdgeInsets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
 - (struct CGSize { float x1; float x2; })sizeThatFits:(struct CGSize { float x1; float x2; })arg1;
+- (void)tintColorDidChange;
 
 @end

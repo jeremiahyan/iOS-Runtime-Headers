@@ -2,36 +2,54 @@
    Image: /System/Library/Frameworks/GameController.framework/GameController
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSMutableArray, NSObject<OS_dispatch_queue>;
-
 @interface GCControllerManager : NSObject <GameControllerDaemonListener> {
-    NSMutableArray *_controllers;
+    NSXPCConnection *_connection;
+    NSMutableDictionary *_controllersByUDID;
     NSObject<OS_dispatch_queue> *_controllersQueue;
     struct __IOHIDManager { } *_hidManager;
-    id _logger;
+    BOOL _idleTimerNeedsReset;
+    NSTimer *_idleWatchTimer;
+    id /* block */ _logger;
+    <GameControllerDaemon> *_remote;
+    id /* block */ _requestConnectedHostsCallback;
     unsigned int _usbAddedIterator;
     struct IONotificationPort { } *_usbNotify;
     unsigned int _usbRemovedIterator;
 }
 
-@property struct __IOHIDManager { }* hidManager;
-@property(copy) id logger;
+@property (nonatomic, retain) NSXPCConnection *connection;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) struct __IOHIDManager { }*hidManager;
+@property (nonatomic) BOOL idleTimerNeedsReset;
+@property (nonatomic, copy) id /* block */ logger;
+@property (nonatomic, retain) <GameControllerDaemon> *remote;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)addController:(id)arg1;
-- (void)controllerIndex:(int)arg1 setData:(id)arg2;
+- (id)connection;
+- (void)controllerWithUDID:(unsigned int)arg1 setArrayValue:(struct { float x1[4]; })arg2 forElement:(int)arg3;
+- (void)controllerWithUDID:(unsigned int)arg1 setData:(id)arg2;
+- (void)controllerWithUDID:(unsigned int)arg1 setValue:(float)arg2 forElement:(int)arg3;
 - (id)controllers;
 - (void)dealloc;
 - (struct __IOHIDManager { }*)hidManager;
+- (BOOL)idleTimerNeedsReset;
 - (id)init;
-- (id)logger;
+- (id /* block */)logger;
 - (void)open;
+- (id)remote;
 - (void)removeController:(id)arg1;
+- (void)replyConnectedHosts:(id)arg1;
+- (void)requestConnectedHostsWithHandler:(id /* block */)arg1;
+- (void)setConnection:(id)arg1;
 - (void)setHidManager:(struct __IOHIDManager { }*)arg1;
-- (void)setLogger:(id)arg1;
+- (void)setIdleTimerNeedsReset:(BOOL)arg1;
+- (void)setLogger:(id /* block */)arg1;
+- (void)setRemote:(id)arg1;
+- (void)startIdleWatchTimer;
+- (void)updateIdleTimer:(id)arg1;
 
 @end

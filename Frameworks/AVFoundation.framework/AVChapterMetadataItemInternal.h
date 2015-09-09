@@ -2,29 +2,28 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class AVWeakReference, NSLocale, NSMutableArray, NSObject<OS_dispatch_queue>, NSString;
-
 @interface AVChapterMetadataItemInternal : NSObject {
-    struct { 
-        long long value; 
-        int timescale; 
-        unsigned int flags; 
-        long long epoch; 
-    struct { 
-        long long value; 
-        int timescale; 
-        unsigned int flags; 
-        long long epoch; 
+    NSString *chapterDataType;
     long chapterGroupIndex;
     long chapterIndex;
     NSString *chapterType;
     NSMutableArray *completions;
+    struct { 
+        long long value; 
+        int timescale; 
+        unsigned int flags; 
+        long long epoch; 
     } duration;
     struct OpaqueFigAsset { } *figAsset;
     NSLocale *locale;
     NSObject<OS_dispatch_queue> *readWriteQueue;
+    struct { 
+        long long value; 
+        int timescale; 
+        unsigned int flags; 
+        long long epoch; 
     } time;
-    id value;
+    <NSObject><NSCopying> *value;
     long valueErrorCode;
     int valueStatus;
     AVWeakReference *weakReference;

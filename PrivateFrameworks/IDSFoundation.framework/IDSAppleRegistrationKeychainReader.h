@@ -2,15 +2,9 @@
    Image: /System/Library/PrivateFrameworks/IDSFoundation.framework/IDSFoundation
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class IMTimer, NSMutableArray;
-
 @interface IDSAppleRegistrationKeychainReader : NSObject {
-    id _purgeCancelBlock;
-    id _purgeEnqueueBlock;
+    id /* block */ _purgeCancelBlock;
+    id /* block */ _purgeEnqueueBlock;
     IMTimer *_purgeTimer;
     NSMutableArray *_registrationData;
 }
@@ -25,6 +19,7 @@
 - (void)_reloadFromKeychainLocked;
 - (void)_setPurgeTimer;
 - (void)dealloc;
+- (void)flushCache;
 - (id)init;
 - (id)registrationData;
 - (id)registrationWithServiceType:(id)arg1 accountType:(int)arg2 value:(id)arg3;

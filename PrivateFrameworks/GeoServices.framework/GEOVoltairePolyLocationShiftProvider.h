@@ -2,17 +2,16 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class GEORequester;
-
 @interface GEOVoltairePolyLocationShiftProvider : GEOLocationShiftProvider <PBRequesterDelegate> {
-    id _errorHandler;
-    id _finishedHandler;
+    id /* block */ _errorHandler;
+    id /* block */ _finishedHandler;
     GEORequester *_requester;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (unsigned short)providerID;
 
@@ -21,6 +20,6 @@
 - (void)requester:(id)arg1 didFailWithError:(id)arg2;
 - (void)requesterDidCancel:(id)arg1;
 - (void)requesterDidFinish:(id)arg1;
-- (void)startRequest:(id)arg1 finished:(id)arg2 error:(id)arg3;
+- (void)startRequest:(id)arg1 finished:(id /* block */)arg2 error:(id /* block */)arg3;
 
 @end

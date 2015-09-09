@@ -2,17 +2,19 @@
    Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
  */
 
-@class <MFMailPopoverManagerDelegate>;
-
 @interface MFPopoverController : UIPopoverController <UIPopoverControllerDelegate> {
     BOOL _isRotating;
     id _mailDelegate;
     id _mailPopoverManager;
 }
 
-@property BOOL isRotating;
-@property <MFMailPopoverManagerDelegate> * mailDelegate;
-@property id mailPopoverManager;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL isRotating;
+@property (nonatomic) <MFMailPopoverManagerDelegate> *mailDelegate;
+@property (nonatomic) id mailPopoverManager;
+@property (readonly) Class superclass;
 
 - (void)dealloc;
 - (void)dismissPopoverAnimated:(BOOL)arg1;

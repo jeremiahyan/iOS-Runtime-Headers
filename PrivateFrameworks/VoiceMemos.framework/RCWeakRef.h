@@ -3,13 +3,13 @@
  */
 
 @interface RCWeakRef : NSObject {
-    id _object;
-    unsigned int _objectAddress;
+    BOOL _useWeakStorage;
+    id _weakPointer;
+    id _weakStorage;
 }
 
 + (id)weakRefWithObject:(id)arg1;
 
-- (void).cxx_destruct;
 - (void)dealloc;
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;

@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@class NSString;
-
 @interface NSFileWatcherObservations : NSObject {
     BOOL _attributesChanged;
     BOOL _contentsChanged;
@@ -20,7 +18,8 @@
 - (void)addDeletion;
 - (void)addDetectedMoveToPath:(id)arg1;
 - (void)dealloc;
+- (id)description;
 - (id)initWithPath:(id)arg1;
-- (void)notifyObserver:(id)arg1;
+- (void)notifyObserver:(id /* block */)arg1;
 
 @end

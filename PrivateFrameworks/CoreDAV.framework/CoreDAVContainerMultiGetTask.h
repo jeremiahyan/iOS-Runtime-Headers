@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/CoreDAV.framework/CoreDAV
  */
 
-@class <CoreDAVAccountInfoProvider>, <CoreDAVTaskManager>, NSError, NSSet, NSString;
-
 @interface CoreDAVContainerMultiGetTask : CoreDAVTask <CoreDAVContainerMultiGetSubmittable> {
     NSSet *_additionalPropElements;
     Class _appSpecificDataItemClass;
@@ -18,16 +16,20 @@
     NSSet *_urls;
 }
 
-@property <CoreDAVAccountInfoProvider> * accountInfoProvider;
-@property(retain) NSSet * additionalPropElements;
-@property(copy) id completionBlock;
-@property(readonly) NSSet * deletedURLs;
-@property(readonly) NSError * error;
-@property(readonly) NSSet * missingURLs;
-@property(readonly) NSSet * parsedContents;
-@property BOOL shouldIgnoreResponseErrors;
-@property <CoreDAVTaskManager> * taskManager;
-@property double timeoutInterval;
+@property (nonatomic) <CoreDAVAccountInfoProvider> *accountInfoProvider;
+@property (nonatomic, retain) NSSet *additionalPropElements;
+@property (nonatomic, copy) id /* block */ completionBlock;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic, readonly) NSSet *deletedURLs;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) NSError *error;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) NSSet *missingURLs;
+@property (nonatomic, readonly) NSSet *parsedContents;
+@property (nonatomic) BOOL shouldIgnoreResponseErrors;
+@property (readonly) Class superclass;
+@property (nonatomic) <CoreDAVTaskManager> *taskManager;
+@property (nonatomic) double timeoutInterval;
 
 - (id)additionalPropElements;
 - (id)copyAdditionalPropElements;

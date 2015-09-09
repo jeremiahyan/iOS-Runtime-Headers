@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/UIFoundation.framework/UIFoundation
  */
 
-@class NSAttributeDictionary;
-
 @interface _NSCachedAttributedString : NSMutableAttributedString {
     long _allocedRunsSize;
     NSAttributeDictionary *_baseAttributes;
@@ -12,7 +10,7 @@
     long _length;
     long _numHits;
     long _numRuns;
-    struct { id x1; int x2; } *_runs;
+    struct { id x1; } *_runs;
 }
 
 + (id)allocWithZone:(struct _NSZone { }*)arg1;
@@ -31,8 +29,8 @@
 - (unsigned int)hash;
 - (id)init;
 - (id)initWithAttributedString:(id)arg1;
-- (id)initWithString:(id)arg1 attributes:(id)arg2;
 - (id)initWithString:(id)arg1;
+- (id)initWithString:(id)arg1 attributes:(id)arg2;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned int)length;
 - (oneway void)release;

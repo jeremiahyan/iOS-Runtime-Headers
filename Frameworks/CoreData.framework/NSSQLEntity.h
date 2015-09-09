@@ -2,17 +2,14 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@class NSArray, NSEntityDescription, NSKnownKeysMappingStrategy, NSMutableArray, NSMutableDictionary, NSSQLEntity, NSSQLEntityKey, NSSQLModel, NSSQLOptLockKey, NSSQLPrimaryKey, NSSQLStatement, NSSQLStoreMappingGenerator, NSString;
-
 @interface NSSQLEntity : NSStoreMapping {
-    struct _NSRange { 
-        unsigned int location; 
-        unsigned int length; 
-    struct __sqlentityFlags { 
-        unsigned int _hasAttributesWithExternalDataReferences : 1; 
-        unsigned int _reserved : 31; 
     NSMutableArray *_attrColumns;
     NSMutableArray *_columnsToFetch;
+    struct __CFDictionary { } *_correlationDeleteCache;
+    struct __CFDictionary { } *_correlationInsertCache;
+    struct __CFDictionary { } *_correlationMasterReorderCache;
+    struct __CFDictionary { } *_correlationMasterReorderCachePart2;
+    struct __CFDictionary { } *_correlationReorderCache;
     NSSQLStatement *_deletionStatementCache;
     NSMutableArray *_ekColumns;
     NSEntityDescription *_entityDescription;
@@ -36,12 +33,18 @@
     NSArray *_propertyManyToManyCache;
     NSKnownKeysMappingStrategy *_propertyMapping;
     NSSQLEntity *_rootEntity;
+    struct __sqlentityFlags { 
+        unsigned int _hasAttributesWithExternalDataReferences : 1; 
+        unsigned int _reserved : 31; 
     } _sqlentityFlags;
     NSMutableArray *_subentities;
     unsigned int _subentityMaxID;
     NSSQLEntity *_superentity;
     NSString *_tableName;
     NSMutableDictionary *_toManyRelationshipStatementCache;
+    struct _NSRange { 
+        unsigned int location; 
+        unsigned int length; 
     } _toOneRange;
     NSMutableArray *_virtualFKs;
 }
@@ -69,14 +72,25 @@
 - (id)attributeColumns;
 - (id)attributeNamed:(id)arg1;
 - (id)attributes;
+- (void)cacheCorrelationDeleteStatement:(id)arg1 forRelationship:(id)arg2;
+- (void)cacheCorrelationInsertStatement:(id)arg1 forRelationship:(id)arg2;
+- (void)cacheCorrelationMasterReorderStatement:(id)arg1 forRelationship:(id)arg2;
+- (void)cacheCorrelationMasterReorderStatementPart2:(id)arg1 forRelationship:(id)arg2;
+- (void)cacheCorrelationReorderStatement:(id)arg1 forRelationship:(id)arg2;
 - (void)cacheDeletionStatement:(id)arg1;
-- (void)cacheFaultingStatement:(id)arg1 andFetchRequest:(id)arg2 forRelationship:(id)arg3;
 - (void)cacheFaultingStatement:(id)arg1;
+- (void)cacheFaultingStatement:(id)arg1 andFetchRequest:(id)arg2 forRelationship:(id)arg3;
 - (void)cacheInsertStatement:(id)arg1;
 - (void)clearCachedStatements;
 - (id)columnsToCreate;
 - (id)columnsToFetch;
 - (void)copyValuesForReadOnlyFetch:(id)arg1;
+- (id)correlationDeleteStatementForRelationship:(id)arg1;
+- (id)correlationInsertStatementForRelationship:(id)arg1;
+- (id)correlationMasterReorderStatementForRelationship:(id)arg1;
+- (id)correlationMasterReorderStatementPart2ForRelationship:(id)arg1;
+- (id)correlationReorderStatementForRelationship:(id)arg1;
+- (struct __CFDictionary { }*)createCorrelationCacheDictionary;
 - (void)dealloc;
 - (id)deletionStatement;
 - (id)description;
@@ -93,6 +107,7 @@
 - (BOOL)hasInheritance;
 - (BOOL)hasSubentities;
 - (id)initWithModel:(id)arg1 entityDescription:(id)arg2;
+- (void)insertOrReplaceStatement:(id)arg1 forRelationship:(id)arg2 inDictionary:(struct __CFDictionary { }*)arg3;
 - (id)insertStatement;
 - (BOOL)isKindOfSQLEntity:(id)arg1;
 - (BOOL)isRootEntity;

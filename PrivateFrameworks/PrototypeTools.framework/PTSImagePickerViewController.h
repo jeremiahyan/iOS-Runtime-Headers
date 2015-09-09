@@ -2,14 +2,8 @@
    Image: /System/Library/PrivateFrameworks/PrototypeTools.framework/PrototypeTools
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSMutableArray, PTSImageLoader, UIImagePickerController, UIPopoverController;
-
-@interface PTSImagePickerViewController : UITableViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, PTSImageLoaderDelegate, UIPopoverControllerDelegate> {
-    id _completion;
+@interface PTSImagePickerViewController : UITableViewController <PTSImageLoaderDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPopoverControllerDelegate> {
+    id /* block */ _completion;
     BOOL _doneLoading;
     NSMutableArray *_filenames;
     PTSImageLoader *_imageLoader;
@@ -19,7 +13,11 @@
     UIPopoverController *_popoverController;
 }
 
-@property BOOL includePhotoLibrary;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL includePhotoLibrary;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)dealloc;
@@ -29,7 +27,7 @@
 - (void)imagePickerController:(id)arg1 didFinishPickingMediaWithInfo:(id)arg2;
 - (void)imagePickerControllerDidCancel:(id)arg1;
 - (BOOL)includePhotoLibrary;
-- (id)initWithResourcePath:(id)arg1 completion:(id)arg2;
+- (id)initWithResourcePath:(id)arg1 completion:(id /* block */)arg2;
 - (int)numberOfSectionsInTableView:(id)arg1;
 - (void)popoverControllerDidDismissPopover:(id)arg1;
 - (void)setIncludePhotoLibrary:(BOOL)arg1;

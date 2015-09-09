@@ -2,15 +2,17 @@
    Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
  */
 
-@class NSSet, NSString;
-
-@interface SSDownloadPolicyApplicationState : NSObject <NSCoding, SSXPCCoding, NSCopying> {
+@interface SSDownloadPolicyApplicationState : NSObject <NSCoding, NSCopying, SSXPCCoding> {
     NSString *_applicationIdentifier;
     NSSet *_applicationStates;
 }
 
-@property(copy) NSString * applicationIdentifier;
-@property(copy) NSSet * applicationStates;
+@property (nonatomic, copy) NSString *applicationIdentifier;
+@property (nonatomic, copy) NSSet *applicationStates;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)addApplicationState:(int)arg1;
 - (id)applicationIdentifier;

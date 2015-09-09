@@ -2,17 +2,31 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@class NSLock, NSString;
-
 @interface _NSActivityAssertion : NSObject {
-    BOOL _ended;
-    NSLock *_lock;
+    long long _ended;
+    id /* block */ _expirationHandler;
     unsigned long long _options;
+    NSObject<OS_voucher> *_previousVoucher;
+    BKSProcessAssertion *_processAssertion;
     NSString *_reason;
+    unsigned int _systemSleepAssertionID;
+    NSObject<OS_voucher> *_voucher;
+    <NSObject> *_xpcBoost;
 }
 
++ (void)_dumpExpiringActivitives;
++ (id)_expirationHandlerExecutionQueue;
++ (void)_expireAllActivies;
++ (id)_expiringActivities;
++ (id)_expiringAssertionManagementQueue;
++ (id)_expiringTaskExecutionQueue;
++ (void)_performActivityWithOptions:(unsigned long long)arg1 reason:(id)arg2 usingBlock:(id /* block */)arg3;
++ (void)_performExpiringActivityWithReason:(id)arg1 usingBlock:(id /* block */)arg2;
+
 - (void)_end;
-- (id)_initWithActivityOptions:(unsigned long long)arg1 reason:(id)arg2;
+- (void)_fireExpirationHandler;
+- (id)_initWithActivityOptions:(unsigned long long)arg1 reason:(id)arg2 expirationHandler:(id /* block */)arg3;
+- (void)_reactivate;
 - (void)dealloc;
 - (id)debugDescription;
 

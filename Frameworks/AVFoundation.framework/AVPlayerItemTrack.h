@@ -2,27 +2,24 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class AVAssetTrack, AVPlayerItemTrackInternal;
-
 @interface AVPlayerItemTrack : NSObject {
     AVPlayerItemTrackInternal *_playerItemTrack;
 }
 
-@property(readonly) AVAssetTrack * assetTrack;
-@property(readonly) float currentVideoFrameRate;
-@property(getter=isEnabled) BOOL enabled;
+@property (nonatomic, readonly) AVAssetTrack *assetTrack;
+@property (nonatomic, readonly) float currentVideoFrameRate;
+@property (getter=isEnabled, nonatomic) BOOL enabled;
 
-+ (id)playerItemTrackWithFigPlaybackItem:(struct OpaqueFigPlaybackItem { }*)arg1 trackID:(int)arg2 asset:(id)arg3 playerItem:(id)arg4;
++ (id)playerItemTrackWithFigPlaybackItem:(struct OpaqueFigPlaybackItem { }*)arg1 readyForInspection:(BOOL)arg2 trackID:(int)arg3 asset:(id)arg4 playerItem:(id)arg5;
 
-- (void)_addLayer:(id)arg1;
-- (id)_audioVolumeCurve;
-- (struct OpaqueFigPlaybackItem { }*)_figPlaybackItem;
-- (id)_initWithFigPlaybackItem:(struct OpaqueFigPlaybackItem { }*)arg1 trackID:(int)arg2 asset:(id)arg3 playerItem:(id)arg4;
+- (void)_attachToFigPlaybackItemOfPlayerItem:(id)arg1;
+- (id)_initWithFigPlaybackItem:(struct OpaqueFigPlaybackItem { }*)arg1 readyForInspection:(BOOL)arg2 trackID:(int)arg3 asset:(id)arg4 playerItem:(id)arg5;
 - (id)_playerItem;
-- (void)_removeLayer:(id)arg1;
-- (void)_setAudioTapProcessor:(struct opaqueMTAudioProcessingTap { }*)arg1;
-- (void)_setAudioTimePitchAlgorithm:(id)arg1;
-- (void)_setAudioVolumeCurve:(id)arg1;
+- (void)_respondToFigPlaybackItemBecomingReadyForInpection;
+- (void)_transferCachedValuesToFig;
+- (void)_transferEnabledToFig;
+- (void)_transferLoudnessInfoToFig;
+- (id)_weakReferenceToPlayerItem;
 - (id)assetTrack;
 - (float)currentVideoFrameRate;
 - (void)dealloc;

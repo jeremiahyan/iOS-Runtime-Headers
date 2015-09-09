@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@class CNFRegAlias, IMAccount, NSArray, NSDictionary, NSMutableDictionary, NSString;
-
 @interface PSSpecifier : NSObject {
     SEL _buttonAction;
     SEL _confirmationAction;
@@ -30,51 +28,38 @@
     unsigned int textFieldType;
 }
 
-@property(retain) IMAccount * CNFRegAccount;
-@property(retain) CNFRegAlias * CNFRegAlias;
-@property(retain) CNFRegAlias * CNFRegCallerIdAlias;
-@property SEL buttonAction;
-@property int cellType;
-@property SEL confirmationAction;
-@property SEL confirmationCancelAction;
-@property SEL controllerLoadAction;
-@property Class detailControllerClass;
-@property Class editPaneClass;
-@property(retain) NSString * identifier;
-@property(retain) NSString * name;
-@property(retain) NSDictionary * shortTitleDictionary;
-@property BOOL showContentString;
-@property id target;
-@property(retain) NSDictionary * titleDictionary;
-@property(retain) id userInfo;
-@property(retain) NSArray * values;
+@property (nonatomic, retain) IMAccount *CNFRegAccount;
+@property (nonatomic, retain) CNFRegAlias *CNFRegAlias;
+@property (nonatomic, retain) CNFRegAlias *CNFRegCallerIdAlias;
+@property (nonatomic) SEL buttonAction;
+@property (nonatomic) int cellType;
+@property (nonatomic) SEL confirmationAction;
+@property (nonatomic) SEL confirmationCancelAction;
+@property (nonatomic) SEL controllerLoadAction;
+@property (nonatomic) Class detailControllerClass;
+@property (nonatomic) Class editPaneClass;
+@property (nonatomic, retain) NSString *identifier;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSDictionary *shortTitleDictionary;
+@property (nonatomic) BOOL showContentString;
+@property (nonatomic) id target;
+@property (nonatomic, retain) NSDictionary *titleDictionary;
+@property (nonatomic, retain) id userInfo;
+@property (nonatomic, retain) NSArray *values;
 
-+ (id)_bundle;
-+ (id)_dataclassIconCache;
-+ (id)_iconForDataclass:(id)arg1;
-+ (id)acui_linkListCellSpecifierForDataclass:(id)arg1 target:(id)arg2 set:(SEL)arg3 get:(SEL)arg4 detail:(Class)arg5;
-+ (id)acui_specifierForAppWithBundleID:(id)arg1 target:(id)arg2 set:(SEL)arg3 get:(SEL)arg4;
-+ (id)acui_specifierForDataclass:(id)arg1 target:(id)arg2 set:(SEL)arg3 get:(SEL)arg4;
+// Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
+
 + (int)autoCapsTypeForString:(id)arg1;
 + (int)autoCorrectionTypeForNumber:(id)arg1;
-+ (id)buttonSpecifierWithTitle:(id)arg1 target:(id)arg2 action:(SEL)arg3 confirmationInfo:(id)arg4;
 + (id)deleteButtonSpecifierWithName:(id)arg1 target:(id)arg2 action:(SEL)arg3;
 + (id)emptyGroupSpecifier;
-+ (id)groupSpecifierWithFooterLinkButton:(id)arg1;
-+ (id)groupSpecifierWithFooterText:(id)arg1 linkButton:(id)arg2;
-+ (id)groupSpecifierWithFooterText:(id)arg1 linkButtons:(id)arg2;
-+ (id)groupSpecifierWithHeader:(id)arg1 footer:(id)arg2 linkButtons:(id)arg3;
-+ (id)groupSpecifierWithHeader:(id)arg1 footer:(id)arg2;
++ (id)groupSpecifierWithID:(id)arg1;
++ (id)groupSpecifierWithID:(id)arg1 name:(id)arg2;
 + (id)groupSpecifierWithName:(id)arg1;
 + (int)keyboardTypeForString:(id)arg1;
 + (id)preferenceSpecifierNamed:(id)arg1 target:(id)arg2 set:(SEL)arg3 get:(SEL)arg4 detail:(Class)arg5 cell:(int)arg6 edit:(Class)arg7;
-+ (id)switchSpecifierWithTitle:(id)arg1 target:(id)arg2 setter:(SEL)arg3 getter:(SEL)arg4 key:(id)arg5;
++ (id)specifierWithSpecifier:(id)arg1;
 
-- (id)CNFRegAccount;
-- (id)CNFRegAlias;
-- (id)CNFRegCallerIdAlias;
-- (id)acui_appBundleID;
-- (id)acui_dataclass;
 - (SEL)buttonAction;
 - (int)cellType;
 - (SEL)confirmationAction;
@@ -86,15 +71,14 @@
 - (Class)editPaneClass;
 - (id)identifier;
 - (id)init;
+- (BOOL)isEqualToSpecifier:(id)arg1;
 - (void)loadValuesAndTitlesFromDataSource;
 - (id)name;
+- (id)objectForKeyedSubscript:(id)arg1;
 - (id)properties;
 - (id)propertyForKey:(id)arg1;
 - (void)removePropertyForKey:(id)arg1;
 - (void)setButtonAction:(SEL)arg1;
-- (void)setCNFRegAccount:(id)arg1;
-- (void)setCNFRegAlias:(id)arg1;
-- (void)setCNFRegCallerIdAlias:(id)arg1;
 - (void)setCellType:(int)arg1;
 - (void)setConfirmationAction:(SEL)arg1;
 - (void)setConfirmationCancelAction:(SEL)arg1;
@@ -104,6 +88,7 @@
 - (void)setIdentifier:(id)arg1;
 - (void)setKeyboardType:(int)arg1 autoCaps:(int)arg2 autoCorrection:(int)arg3;
 - (void)setName:(id)arg1;
+- (void)setObject:(id)arg1 forKeyedSubscript:(id)arg2;
 - (void)setProperties:(id)arg1;
 - (void)setProperty:(id)arg1 forKey:(id)arg2;
 - (void)setShortTitleDictionary:(id)arg1;
@@ -111,10 +96,10 @@
 - (void)setTarget:(id)arg1;
 - (void)setTitleDictionary:(id)arg1;
 - (void)setUserInfo:(id)arg1;
-- (void)setValues:(id)arg1 titles:(id)arg2 shortTitles:(id)arg3 usingLocalizedTitleSorting:(BOOL)arg4;
-- (void)setValues:(id)arg1 titles:(id)arg2 shortTitles:(id)arg3;
-- (void)setValues:(id)arg1 titles:(id)arg2;
 - (void)setValues:(id)arg1;
+- (void)setValues:(id)arg1 titles:(id)arg2;
+- (void)setValues:(id)arg1 titles:(id)arg2 shortTitles:(id)arg3;
+- (void)setValues:(id)arg1 titles:(id)arg2 shortTitles:(id)arg3 usingLocalizedTitleSorting:(BOOL)arg4;
 - (void)setupIconImageWithBundle:(id)arg1;
 - (void)setupIconImageWithPath:(id)arg1;
 - (id)shortTitleDictionary;
@@ -124,5 +109,36 @@
 - (id)titleDictionary;
 - (id)userInfo;
 - (id)values;
+
+// Image: /System/Library/PrivateFrameworks/AccountsUI.framework/AccountsUI
+
++ (id)_bundle;
++ (id)_dataclassIconCache;
++ (id)_iconForDataclass:(id)arg1;
++ (id)acui_linkListCellSpecifierForDataclass:(id)arg1 target:(id)arg2 set:(SEL)arg3 get:(SEL)arg4 detail:(Class)arg5;
++ (id)acui_specifierForAppWithBundleID:(id)arg1 target:(id)arg2 set:(SEL)arg3 get:(SEL)arg4;
++ (id)acui_specifierForDataclass:(id)arg1 target:(id)arg2 set:(SEL)arg3 get:(SEL)arg4;
++ (id)groupSpecifierWithFooterLinkButton:(id)arg1;
++ (id)groupSpecifierWithFooterText:(id)arg1 linkButton:(id)arg2;
++ (id)groupSpecifierWithFooterText:(id)arg1 linkButtons:(id)arg2;
++ (id)groupSpecifierWithHeader:(id)arg1 footer:(id)arg2;
++ (id)groupSpecifierWithHeader:(id)arg1 footer:(id)arg2 linkButtons:(id)arg3;
+
+- (id)acui_appBundleID;
+- (id)acui_dataclass;
+
+// Image: /System/Library/PrivateFrameworks/CommunicationsSetupUI.framework/CommunicationsSetupUI
+
+- (id)CNFRegAccount;
+- (id)CNFRegAlias;
+- (id)CNFRegCallerIdAlias;
+- (void)setCNFRegAccount:(id)arg1;
+- (void)setCNFRegAlias:(id)arg1;
+- (void)setCNFRegCallerIdAlias:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/DataAccessUI.framework/DataAccessUI
+
++ (id)buttonSpecifierWithTitle:(id)arg1 target:(id)arg2 action:(SEL)arg3 confirmationInfo:(id)arg4;
++ (id)switchSpecifierWithTitle:(id)arg1 target:(id)arg2 setter:(SEL)arg3 getter:(SEL)arg4 key:(id)arg5;
 
 @end

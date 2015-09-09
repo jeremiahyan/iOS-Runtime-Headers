@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-@class NSMutableSet, NSSet, VKMapModel, VKStylesheet;
-
-@interface VKMapTileModel : VKModelObject <VKMapLayer, VKStylesheetObserver> {
+@interface VKMapTileModel : VKModelObject <VKMapLayer, VKStyleManagerObserver> {
     VKMapModel *_mapModel;
     unsigned char _maximumZ;
     unsigned char _minimumZ;
@@ -16,9 +14,16 @@
     NSMutableSet *_tilesWillExitScene;
 }
 
-@property VKMapModel * mapModel;
-@property(readonly) VKStylesheet * stylesheet;
-@property(readonly) NSSet * tilesInScene;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) VKMapModel *mapModel;
+@property (nonatomic, readonly) unsigned char maximumZ;
+@property (nonatomic, readonly) unsigned char minimumZ;
+@property (nonatomic, readonly) VKStyleManager *styleManager;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) NSSet *tilesInScene;
+@property (nonatomic, readonly) NSSet *tilesInScenePlusExitingTiles;
 
 + (BOOL)reloadOnActiveTileGroupChange;
 + (BOOL)reloadOnStylesheetChange;
@@ -30,17 +35,21 @@
 - (void)dealloc;
 - (void)didMoveToSupermodel;
 - (id)init;
-- (unsigned int)mapLayerPosition;
+- (unsigned long long)mapLayerPosition;
 - (id)mapModel;
+- (unsigned char)maximumZ;
 - (BOOL)maximumZoomLevelBoundsCamera;
+- (unsigned char)minimumZ;
 - (BOOL)minimumZoomLevelBoundsCamera;
 - (void)removePersistingExitingTiles:(id)arg1;
 - (void)reset;
 - (void)setMapModel:(id)arg1;
-- (id)stylesheet;
+- (BOOL)shouldLayoutWithoutStyleManager;
+- (id)styleManager;
 - (void)stylesheetDidChange;
 - (void)stylesheetWillChange;
 - (id)tilesInScene;
+- (id)tilesInScenePlusExitingTiles;
 - (void)updateTilesInScene:(id)arg1 withContext:(id)arg2 categorize:(BOOL)arg3;
 - (void)willStartDrawingTiles:(id)arg1;
 - (void)willStopDrawingTiles:(id)arg1;

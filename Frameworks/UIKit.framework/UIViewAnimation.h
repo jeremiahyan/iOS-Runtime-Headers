@@ -2,9 +2,12 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSIndexPath, UIView;
-
 @interface UIViewAnimation : NSObject {
+    BOOL _animateFromCurrentPosition;
+    int _curve;
+    BOOL _editing;
+    float _endAlpha;
+    float _endFraction;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -14,11 +17,6 @@
             float width; 
             float height; 
         } size; 
-    BOOL _animateFromCurrentPosition;
-    int _curve;
-    BOOL _editing;
-    float _endAlpha;
-    float _endFraction;
     } _endRect;
     NSIndexPath *_indexPath;
     BOOL _shouldAllowGroupOpacityAfterAnimation;
@@ -30,20 +28,20 @@
     UIView *_view;
 }
 
-@property(readonly) BOOL animateFromCurrentPosition;
-@property(readonly) int curve;
-@property(readonly) BOOL editing;
-@property(readonly) float endAlpha;
-@property(readonly) float endFraction;
-@property(readonly) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } endRect;
-@property(readonly) NSIndexPath * indexPath;
-@property BOOL shouldAllowGroupOpacityAfterAnimation;
-@property BOOL shouldAnimateShadow;
-@property BOOL shouldClipToBoundsAfterAnimation;
-@property(readonly) BOOL shouldDeleteAfterAnimation;
-@property BOOL shouldResetGroupOpacityAfterAnimation;
-@property(readonly) float startFraction;
-@property(readonly) UIView * view;
+@property (nonatomic, readonly) BOOL animateFromCurrentPosition;
+@property (nonatomic, readonly) int curve;
+@property (nonatomic, readonly) BOOL editing;
+@property (nonatomic, readonly) float endAlpha;
+@property (nonatomic, readonly) float endFraction;
+@property (nonatomic, readonly) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } endRect;
+@property (nonatomic, readonly) NSIndexPath *indexPath;
+@property (nonatomic) BOOL shouldAllowGroupOpacityAfterAnimation;
+@property (nonatomic) BOOL shouldAnimateShadow;
+@property (nonatomic) BOOL shouldClipToBoundsAfterAnimation;
+@property (nonatomic, readonly) BOOL shouldDeleteAfterAnimation;
+@property (nonatomic) BOOL shouldResetGroupOpacityAfterAnimation;
+@property (nonatomic, readonly) float startFraction;
+@property (nonatomic, readonly) UIView *view;
 
 - (BOOL)animateFromCurrentPosition;
 - (int)curve;

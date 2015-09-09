@@ -2,30 +2,31 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class AVVideoCompositionCoreAnimationTool, AVVideoCompositionInternal, NSArray;
-
 @interface AVVideoComposition : NSObject <NSCopying, NSMutableCopying> {
     AVVideoCompositionInternal *_videoComposition;
 }
 
-@property(readonly) AVVideoCompositionCoreAnimationTool * animationTool;
-@property(readonly) Class customVideoCompositorClass;
-@property(readonly) struct { long long x1; int x2; unsigned int x3; long long x4; } frameDuration;
-@property(readonly) NSArray * instructions;
-@property(readonly) float renderScale;
-@property(readonly) struct CGSize { float x1; float x2; } renderSize;
+@property (nonatomic, readonly, retain) AVVideoCompositionCoreAnimationTool *animationTool;
+@property (nonatomic, readonly) Class customVideoCompositorClass;
+@property (nonatomic, readonly) struct { long long x1; int x2; unsigned int x3; long long x4; } frameDuration;
+@property (nonatomic, readonly, copy) NSArray *instructions;
+@property (nonatomic, readonly) float renderScale;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } renderSize;
 
 + (void)initialize;
-+ (id)videoCompositionWithPropertiesOfAsset:(id)arg1 videoGravity:(id)arg2;
 + (id)videoCompositionWithPropertiesOfAsset:(id)arg1;
++ (id)videoCompositionWithPropertiesOfAsset:(id)arg1 videoGravity:(id)arg2;
 
 - (int)_auxiliaryTrackID;
 - (id)_auxiliaryTrackLayer;
+- (void)_bumpChangeSeed;
+- (unsigned int)_changeSeed;
 - (BOOL)_copyFigVideoCompositor:(const void**)arg1 andSession:(id*)arg2 recyclingSession:(id)arg3 forFigRemaker:(BOOL)arg4 error:(id*)arg5;
 - (BOOL)_hasLayerAsAuxiliaryTrack;
 - (BOOL)_hasPostProcessingLayers;
 - (BOOL)_isValidReturningExceptionReason:(id*)arg1;
 - (id)_postProcessingRootLayer;
+- (id)_postProcessingVideoLayer;
 - (id)_postProcessingVideoLayers;
 - (id)_serializableInstructions;
 - (id)animationTool;

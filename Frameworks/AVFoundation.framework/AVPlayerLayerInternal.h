@@ -2,52 +2,52 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class AVPlayer, AVPlayerItem, AVSubtitleLayer, CALayer, NSObject<OS_dispatch_queue>, NSString;
-
 @interface AVPlayerLayerInternal : NSObject {
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
-    struct CGSize { 
-        float width; 
-        float height; 
-    struct CGSize { 
-        float width; 
-        float height; 
     AVPlayer *_player;
-    CALayer *contentLayer;
+    CALayer *closedCaptionLayer;
     BOOL hasPlayerToObserve;
+    BOOL isInPIPMode;
     BOOL isObservingPlayer;
-    BOOL isOverscanSubtitleSupportEnabled;
     BOOL isPresentationLayer;
     BOOL isReadyForDisplay;
     struct OpaqueFigSimpleMutex { } *isReadyForDisplayMutex;
     AVPlayerItem *itemMarkedReadyForDisplay;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } latestPlayerLayerBoundsAtRendering;
+    struct CGSize { 
+        float width; 
+        float height; 
     } latestPresentationSizeAtRendering;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } latestSubtitleLayoutAtRendering;
     CALayer *maskLayer;
+    NSDictionary *pixelBufferAttributes;
+    struct CGSize { 
+        float width; 
+        float height; 
     } presentationSize;
     NSObject<OS_dispatch_queue> *serialQueue;
     BOOL shouldObservePlayer;
     NSString *subtitleGravity;
-    AVSubtitleLayer *subtitleLayer;
+    FigSubtitleCALayer *subtitleLayer;
     NSString *videoGravity;
+    CALayer *videoLayer;
 }
 
 @end

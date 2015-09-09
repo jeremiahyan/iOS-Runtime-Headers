@@ -2,11 +2,16 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface TPBaseCompatibilityDelegate : NSObject <TSKCompatibilityDelegate> {
-}
+@interface TPBaseCompatibilityDelegate : NSObject <TSKCompatibilityDelegate>
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (id)backwardsCompatibleTypeForType:(id)arg1;
 - (id)epubExportCategories;
+- (id)epubExportLanguageCodes;
 - (Class)exportOptionsControllerClass;
 - (id)exportableTypes;
 - (Class)exporterClassForType:(id)arg1 options:(id)arg2;

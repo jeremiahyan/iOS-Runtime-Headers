@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/Weather.framework/Weather
  */
 
-@class NSString;
-
-@interface HourlyForecast : NSObject {
+@interface HourlyForecast : NSObject <NSCopying> {
     int _conditionCode;
     NSString *_detail;
     unsigned int _eventType;
@@ -13,14 +11,17 @@
     NSString *_time;
 }
 
-@property int conditionCode;
-@property(copy) NSString * detail;
-@property unsigned int eventType;
-@property int hourIndex;
-@property float percentPrecipitation;
-@property(copy) NSString * time;
+@property (nonatomic) int conditionCode;
+@property (nonatomic, copy) NSString *detail;
+@property (nonatomic) unsigned int eventType;
+@property (nonatomic) int hourIndex;
+@property (nonatomic) float percentPrecipitation;
+@property (nonatomic, copy) NSString *time;
+
++ (int)TimeValueFromString:(id)arg1;
 
 - (int)conditionCode;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)description;
 - (id)detail;

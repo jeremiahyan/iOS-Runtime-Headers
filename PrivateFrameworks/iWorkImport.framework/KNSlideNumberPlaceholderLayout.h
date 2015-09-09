@@ -2,7 +2,9 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface KNSlideNumberPlaceholderLayout : KNPlaceholderLayout {
-}
+@interface KNSlideNumberPlaceholderLayout : KNPlaceholderLayout
+
+- (BOOL)isDraggable;
+- (BOOL)isSelectable;
 
 @end

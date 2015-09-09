@@ -2,11 +2,9 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@class BBSettingsGateway, NSArray, NSDateComponents;
-
 @interface QuietHoursStateController : NSObject {
     BBSettingsGateway *_bbGateway;
-    BOOL _enabled;
+    NSArray *_behaviorOverrides;
     NSDateComponents *_fromComponents;
     BOOL _isEffectiveWhileUnlocked;
     unsigned int _mode;
@@ -19,18 +17,18 @@
     BOOL _valid;
 }
 
-@property(readonly) BBSettingsGateway * bbGateway;
-@property BOOL enabled;
-@property(retain) NSDateComponents * fromComponents;
-@property BOOL isEffectiveWhileUnlocked;
-@property unsigned int mode;
-@property int overrideStatus;
-@property unsigned int overrideType;
-@property(copy) NSArray * overrides;
-@property unsigned int privilegeTypes;
-@property int recordID;
-@property(retain) NSDateComponents * toComponents;
-@property BOOL valid;
+@property (nonatomic, readonly) BBSettingsGateway *bbGateway;
+@property (nonatomic, copy) NSArray *behaviorOverrides;
+@property (nonatomic, retain) NSDateComponents *fromComponents;
+@property (nonatomic) BOOL isEffectiveWhileUnlocked;
+@property (nonatomic) unsigned int mode;
+@property (nonatomic) int overrideStatus;
+@property (nonatomic) unsigned int overrideType;
+@property (nonatomic, copy) NSArray *overrides;
+@property (nonatomic) unsigned int privilegeTypes;
+@property (nonatomic) int recordID;
+@property (nonatomic, retain) NSDateComponents *toComponents;
+@property (nonatomic) BOOL valid;
 
 + (BOOL)isDNDScheduled;
 + (void)setManualEnabled:(BOOL)arg1;
@@ -40,8 +38,8 @@
 
 - (unsigned int)allowedGroupType;
 - (id)bbGateway;
+- (id)behaviorOverrides;
 - (void)dealloc;
-- (BOOL)enabled;
 - (id)fromComponents;
 - (id)init;
 - (BOOL)isEffectiveWhileUnlocked;
@@ -55,7 +53,7 @@
 - (BOOL)repeatedCalls;
 - (void)resetToFallbackRange;
 - (void)setAllowedGroup:(id)arg1 recordID:(int)arg2 groupName:(id)arg3;
-- (void)setEnabled:(BOOL)arg1;
+- (void)setBehaviorOverrides:(id)arg1;
 - (void)setFromComponents:(id)arg1;
 - (void)setIsEffectiveWhileUnlocked:(BOOL)arg1;
 - (void)setMode:(unsigned int)arg1;
@@ -67,8 +65,6 @@
 - (void)setRepeatedCalls:(BOOL)arg1;
 - (void)setToComponents:(id)arg1;
 - (void)setValid:(BOOL)arg1;
-- (void)synchronizeEnabledState;
-- (void)synchronizeOverrides:(id)arg1 mode:(unsigned int)arg2 gateway:(id)arg3;
 - (id)toComponents;
 - (int)userSelectedGroupID;
 - (BOOL)valid;

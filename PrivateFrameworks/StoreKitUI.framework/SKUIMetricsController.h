@@ -2,15 +2,13 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class NSNumber, NSObject<OS_dispatch_source>, NSString, SKUIMetricsImpressionSession, SSMetricsConfiguration, SSMetricsController;
-
 @interface SKUIMetricsController : NSObject {
-    NSNumber *_accountID;
     SKUIMetricsImpressionSession *_activeImpressionsSession;
     NSString *_applicationIdentifier;
     SSMetricsController *_controller;
     BOOL _flushesImmediately;
     SSMetricsConfiguration *_globalConfiguration;
+    NSString *_hostApplicationIdentifier;
     BOOL _impressionsEnabled;
     NSObject<OS_dispatch_source> *_impressionsTimer;
     BOOL _loggingEnabled;
@@ -22,17 +20,18 @@
     NSString *_windowOrientation;
 }
 
-@property(copy) NSNumber * accountIdentifier;
-@property(readonly) SKUIMetricsImpressionSession * activeImpressionsSession;
-@property(copy) NSString * applicationIdentifier;
-@property(readonly) double flushInterval;
-@property(readonly) SSMetricsConfiguration * globalConfiguration;
-@property(retain) SSMetricsConfiguration * pageConfiguration;
-@property(copy) NSString * pageContext;
-@property(copy) NSString * pageURL;
-@property(copy) NSString * topic;
-@property(copy) NSString * userAgent;
-@property(copy) NSString * windowOrientation;
+@property (nonatomic, readonly) NSNumber *accountIdentifier;
+@property (nonatomic, readonly) SKUIMetricsImpressionSession *activeImpressionsSession;
+@property (nonatomic, copy) NSString *applicationIdentifier;
+@property (nonatomic, readonly) double flushInterval;
+@property (nonatomic, readonly) SSMetricsConfiguration *globalConfiguration;
+@property (nonatomic, copy) NSString *hostApplicationIdentifier;
+@property (nonatomic, retain) SSMetricsConfiguration *pageConfiguration;
+@property (nonatomic, copy) NSString *pageContext;
+@property (nonatomic, copy) NSString *pageURL;
+@property (nonatomic, copy) NSString *topic;
+@property (nonatomic, copy) NSString *userAgent;
+@property (nonatomic, copy) NSString *windowOrientation;
 
 + (void)flushImmediately;
 
@@ -51,6 +50,7 @@
 - (void)flushImmediately;
 - (double)flushInterval;
 - (id)globalConfiguration;
+- (id)hostApplicationIdentifier;
 - (id)initWithGlobalConfiguration:(id)arg1;
 - (id)itemOfferClickEventWithItem:(id)arg1 locationPosition:(int)arg2;
 - (id)locationWithPageComponent:(id)arg1;
@@ -58,15 +58,16 @@
 - (id)pageConfiguration;
 - (id)pageContext;
 - (id)pageURL;
+- (id)performActionForItem:(id)arg1;
 - (id)performActionForItem:(id)arg1 clientContext:(id)arg2;
 - (id)performActionForItem:(id)arg1 offer:(id)arg2 clientContext:(id)arg3;
-- (id)performActionForItem:(id)arg1;
-- (void)pingURLs:(id)arg1 withClientContext:(id)arg2;
+- (id)performActionForItem:(id)arg1 offer:(id)arg2 clientContext:(id)arg3 completionBlock:(id /* block */)arg4;
 - (void)pingURLs:(id)arg1;
+- (void)pingURLs:(id)arg1 withClientContext:(id)arg2;
 - (void)recordBuyConfirmedEventsForItems:(id)arg1 purchaseResponses:(id)arg2;
 - (void)recordEvent:(id)arg1;
-- (void)setAccountIdentifier:(id)arg1;
 - (void)setApplicationIdentifier:(id)arg1;
+- (void)setHostApplicationIdentifier:(id)arg1;
 - (void)setPageConfiguration:(id)arg1;
 - (void)setPageContext:(id)arg1;
 - (void)setPageURL:(id)arg1;

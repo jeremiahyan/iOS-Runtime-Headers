@@ -2,21 +2,28 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class EDReference;
-
 @interface EDSharedFormula : EDFormula {
-    unsigned int mBaseFormulaIndex;
-    EDReference *mBaseFormulaRange;
-    int mColumnBaseOrOffset;
-    int mRowBaseOrOffset;
+    unsigned int _baseFormulaIndex;
+    EDReference *_baseFormulaRange;
+    int _columnBaseOrOffset;
+    bool _forceNonBaseFormula;
+    int _rowBaseOrOffset;
 }
+
+@property (nonatomic) unsigned int baseFormulaIndex;
+@property (nonatomic, readonly) EDReference *baseFormulaRange;
+@property (nonatomic) int columnBaseOrOffset;
+@property (nonatomic) bool forceNonBaseFormula;
+@property (nonatomic) int rowBaseOrOffset;
 
 - (void)archiveByAppendingToMutableData:(struct __CFData { }*)arg1;
 - (unsigned int)baseFormulaIndex;
 - (id)baseFormulaRange;
 - (id)baseFormulaWithRowBlocks:(id)arg1;
 - (int)columnBaseOrOffset;
+- (bool)convertTokensToShared;
 - (void)dealloc;
+- (bool)forceNonBaseFormula;
 - (id)init;
 - (id)initWithFormula:(id)arg1;
 - (bool)isBaseFormula;
@@ -24,6 +31,7 @@
 - (int)rowBaseOrOffset;
 - (void)setBaseFormulaIndex:(unsigned int)arg1;
 - (void)setColumnBaseOrOffset:(int)arg1;
+- (void)setForceNonBaseFormula:(bool)arg1;
 - (void)setRowBaseOrOffset:(int)arg1;
 - (void)unarchiveFromData:(struct __CFData { }*)arg1 offset:(unsigned int*)arg2;
 - (void)updateBaseFormulaRangeWithRow:(int)arg1 column:(int)arg2;

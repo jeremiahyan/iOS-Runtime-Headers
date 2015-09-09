@@ -2,8 +2,9 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@interface _UISnapshotWindow : UIWindow {
-}
+@interface _UISnapshotWindow : UIWindow
+
++ (BOOL)_isSystemWindow;
 
 - (BOOL)_canBecomeKeyWindow;
 - (BOOL)_isSettingFirstResponder;

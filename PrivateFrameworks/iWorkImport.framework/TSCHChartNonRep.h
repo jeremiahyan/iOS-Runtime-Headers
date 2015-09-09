@@ -2,21 +2,24 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSArray, TSCHChartInfo, TSCHChartLayout;
-
 @interface TSCHChartNonRep : NSObject <TSCHSupportsRendering> {
     TSCHChartInfo *mChartInfo;
     TSCHChartLayout *mChartLayout;
     NSArray *mRenderers;
 }
 
-@property(retain) TSCHChartInfo * chartInfo;
-@property(retain) TSCHChartLayout * chartLayout;
+@property (nonatomic, retain) TSCHChartInfo *chartInfo;
+@property (nonatomic, retain) TSCHChartLayout *chartLayout;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (id)chartInfo;
 - (id)chartLayout;
 - (void)clearRenderers;
 - (id)commandController;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })convertNaturalRectToLayerRelative:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })convertUnscaledToBoundsRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)dealloc;
 - (void)didDrawInLayer:(id)arg1 context:(struct CGContext { }*)arg2;
@@ -29,11 +32,14 @@
 - (BOOL)renderElements;
 - (BOOL)renderElementsShadowOnly;
 - (BOOL)renderElementsWithoutShadows;
+- (BOOL)renderGrid;
 - (BOOL)renderLabels;
+- (BOOL)renderReferenceLines;
 - (id)renderSeriesIndexSet;
 - (BOOL)renderTrendLinesForSeriesIndex:(unsigned int)arg1;
 - (id)renderValueIndexSetForSeries:(unsigned int)arg1;
 - (id)renderers;
+- (BOOL)requireSeparateLabelLayer;
 - (void)setChartInfo:(id)arg1;
 - (void)setChartLayout:(id)arg1;
 - (void)setupForDrawingInLayer:(id)arg1 context:(struct CGContext { }*)arg2;

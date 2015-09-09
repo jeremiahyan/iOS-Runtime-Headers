@@ -2,23 +2,14 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
+@interface TSWPColumnStyle : TSSStyle <TSWPColumnMetrics>
 
-@class TSWPPadding;
-
-@interface TSWPColumnStyle : TSSStyle <TSWPColumnMetrics> {
-}
-
-@property(readonly) struct CGSize { float x1; float x2; } adjustedInsets;
-@property(readonly) BOOL alwaysStartsNewTarget;
-@property(readonly) unsigned int columnCount;
-@property(readonly) BOOL columnsAreLeftToRight;
-@property(readonly) TSWPPadding * layoutMargins;
-@property(readonly) BOOL shrinkTextToFit;
-@property(readonly) float textScaleFactor;
+@property (nonatomic, readonly) BOOL alwaysStartsNewTarget;
+@property (nonatomic, readonly) unsigned int columnCount;
+@property (nonatomic, readonly) BOOL columnsAreLeftToRight;
+@property (nonatomic, readonly) TSWPPadding *layoutMargins;
+@property (nonatomic, readonly) BOOL shrinkTextToFit;
+@property (nonatomic, readonly) float textScaleFactor;
 
 + (float)defaultFloatValueForProperty:(int)arg1;
 + (int)defaultIntValueForProperty:(int)arg1;
@@ -27,7 +18,7 @@
 + (id)properties;
 + (id)propertiesAllowingNSNull;
 
-- (struct CGSize { float x1; float x2; })adjustedInsets;
+- (struct CGSize { float x1; float x2; })adjustedInsetsForTarget:(id)arg1;
 - (BOOL)alwaysStartsNewTarget;
 - (unsigned int)columnCount;
 - (BOOL)columnsAreLeftToRight;
@@ -35,9 +26,9 @@
 - (float)gapForColumnIndex:(unsigned int)arg1 bodyWidth:(float)arg2;
 - (id)initFromUnarchiver:(id)arg1;
 - (id)layoutMargins;
-- (void)loadFromArchive:(const struct ColumnStyleArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; struct StyleArchive {} *x3; struct ColumnStylePropertiesArchive {} *x4; unsigned int x5; int x6; unsigned int x7[1]; }*)arg1 unarchiver:(id)arg2;
-- (float)positionForColumnIndex:(unsigned int)arg1 bodyWidth:(float)arg2 outWidth:(float*)arg3 outGap:(float*)arg4;
-- (void)saveToArchive:(struct ColumnStyleArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; struct StyleArchive {} *x3; struct ColumnStylePropertiesArchive {} *x4; unsigned int x5; int x6; unsigned int x7[1]; }*)arg1 archiver:(id)arg2;
+- (void)loadFromArchive:(const struct ColumnStyleArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; struct StyleArchive {} *x5; struct ColumnStylePropertiesArchive {} *x6; unsigned int x7; }*)arg1 unarchiver:(id)arg2;
+- (float)positionForColumnIndex:(unsigned int)arg1 bodyWidth:(float)arg2 target:(id)arg3 outWidth:(float*)arg4 outGap:(float*)arg5;
+- (void)saveToArchive:(struct ColumnStyleArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; struct StyleArchive {} *x5; struct ColumnStylePropertiesArchive {} *x6; unsigned int x7; }*)arg1 archiver:(id)arg2;
 - (void)saveToArchiver:(id)arg1;
 - (BOOL)shrinkTextToFit;
 - (float)widthForColumnIndex:(unsigned int)arg1 bodyWidth:(float)arg2;

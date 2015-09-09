@@ -2,10 +2,11 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface TSCHMultiDataBubbleChartRep : TSCHMultiDataChartRep {
-}
+@interface TSCHMultiDataBubbleChartRep : TSCHMultiDataChartRep
 
 - (id)createMultiDataElementShapeLayerForSeriesIndex:(unsigned int)arg1;
+- (id)interpolations;
+- (BOOL)overlayLabelsForSeriesIndex:(unsigned int)arg1;
 - (void)updateAppearanceForElementLayer:(id)arg1 seriesIndex:(unsigned int)arg2;
 
 @end

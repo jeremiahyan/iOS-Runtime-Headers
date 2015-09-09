@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Radio.framework/Radio
  */
 
-@class NSString, NSURL, RadioArtworkCollection;
-
 @interface RadioShareInformation : NSObject <NSCopying> {
     NSURL *_URL;
     RadioArtworkCollection *_artworkCollection;
@@ -12,11 +10,11 @@
     NSString *_subject;
 }
 
-@property(readonly) NSURL * URL;
-@property(readonly) RadioArtworkCollection * artworkCollection;
-@property(readonly) NSString * message;
-@property(readonly) NSString * messageMIMEType;
-@property(readonly) NSString * subject;
+@property (nonatomic, readonly, retain) NSURL *URL;
+@property (nonatomic, readonly, copy) RadioArtworkCollection *artworkCollection;
+@property (nonatomic, readonly, copy) NSString *message;
+@property (nonatomic, readonly, copy) NSString *messageMIMEType;
+@property (nonatomic, readonly, copy) NSString *subject;
 
 - (void).cxx_destruct;
 - (id)URL;

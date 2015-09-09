@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/AccessibilityUtilities.framework/AccessibilityUtilities
  */
 
-@class NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>;
-
 @interface AXDispatchTimer : NSObject <AXTimer> {
     BOOL _active;
     BOOL _automaticallyCancelPendingBlockUponSchedulingNewBlock;
@@ -13,16 +11,20 @@
     BOOL _pending;
 }
 
-@property(getter=isActive) BOOL active;
-@property BOOL automaticallyCancelPendingBlockUponSchedulingNewBlock;
-@property(getter=isCancelled) BOOL cancelled;
-@property(retain) NSObject<OS_dispatch_queue> * dispatchQueue;
-@property(retain) NSObject<OS_dispatch_source> * dispatchTimer;
-@property(getter=isPending) BOOL pending;
+@property (getter=isActive, nonatomic) BOOL active;
+@property (nonatomic) BOOL automaticallyCancelPendingBlockUponSchedulingNewBlock;
+@property (getter=isCancelled, nonatomic) BOOL cancelled;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) NSObject<OS_dispatch_queue> *dispatchQueue;
+@property (nonatomic, retain) NSObject<OS_dispatch_source> *dispatchTimer;
+@property (readonly) unsigned int hash;
+@property (getter=isPending, nonatomic) BOOL pending;
+@property (readonly) Class superclass;
 
 - (void)_reallyCancel;
-- (void)afterDelay:(double)arg1 processBlock:(id)arg2 cancelBlock:(id)arg3;
-- (void)afterDelay:(double)arg1 processBlock:(id)arg2;
+- (void)afterDelay:(double)arg1 processBlock:(id /* block */)arg2;
+- (void)afterDelay:(double)arg1 processBlock:(id /* block */)arg2 cancelBlock:(id /* block */)arg3;
 - (BOOL)automaticallyCancelPendingBlockUponSchedulingNewBlock;
 - (void)cancel;
 - (void)dealloc;

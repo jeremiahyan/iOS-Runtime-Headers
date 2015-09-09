@@ -2,18 +2,7 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class CALayer, NSString, UIKBRenderConfig, UIKBTree, UIKeyboardMenuView;
-
 @interface UIKBKeyView : UIView <UIKBCacheableView> {
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
     NSString *_cachedTraitsHashString;
     CALayer *_keyBackgrounds;
     CALayer *_keyBorders;
@@ -24,25 +13,40 @@
     BOOL _renderAsMask;
     int _renderedKeyState;
     struct __CFBoolean { } *m_allowsCaching;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } m_drawFrame;
     UIKBTree *m_key;
     UIKBTree *m_keyplane;
     UIKBRenderConfig *m_renderConfig;
 }
 
-@property(readonly) BOOL cacheDeferable;
-@property(readonly) NSString * cacheKey;
-@property(readonly) int cachedRenderFlags;
-@property(retain) NSString * cachedTraitsHashString;
-@property(readonly) float cachedWidth;
-@property(readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } displayInsets;
-@property struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } drawFrame;
-@property(readonly) BOOL keepNonPersistent;
-@property(readonly) UIKBTree * key;
-@property(readonly) UIKBTree * keyplane;
-@property UIKeyboardMenuView * popupMenu;
-@property BOOL renderAsMask;
-@property(retain) UIKBRenderConfig * renderConfig;
+@property (nonatomic, readonly) BOOL cacheDeferable;
+@property (nonatomic, readonly) NSString *cacheKey;
+@property (readonly) int cachedRenderFlags;
+@property (nonatomic, retain) NSString *cachedTraitsHashString;
+@property (nonatomic, readonly) float cachedWidth;
+@property (nonatomic, readonly) UIKBKeyView *contentsKeyView;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } displayInsets;
+@property (nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } drawFrame;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) BOOL keepNonPersistent;
+@property (nonatomic, readonly) UIKBTree *key;
+@property (nonatomic, readonly) UIKBTree *keyplane;
+@property (nonatomic) UIKeyboardMenuView *popupMenu;
+@property (nonatomic) BOOL renderAsMask;
+@property (nonatomic, retain) UIKBRenderConfig *renderConfig;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } variantFrame;
 
 - (void)_applyAppearanceInvocations;
 - (id)_generateBackdropMaskImage;
@@ -55,7 +59,9 @@
 - (int)cachedRenderFlags;
 - (id)cachedTraitsHashString;
 - (float)cachedWidth;
+- (id)contentsKeyView;
 - (void)dealloc;
+- (int)didInputSubTree:(id)arg1;
 - (void)dimKeyCaps:(float)arg1 duration:(float)arg2;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })displayInsets;
 - (void)displayLayer:(id)arg1;
@@ -76,8 +82,11 @@
 - (void)setPopupMenu:(id)arg1;
 - (void)setRenderAsMask:(BOOL)arg1;
 - (void)setRenderConfig:(id)arg1;
+- (id)subTreeHitTest:(struct CGPoint { float x1; float x2; })arg1;
 - (int)textEffectsVisibilityLevel;
 - (void)touchesEnded:(id)arg1 withEvent:(id)arg2;
 - (void)updateForKeyplane:(id)arg1 key:(id)arg2;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })variantFrame;
+- (void)willDisplayModalActionView:(id)arg1 withSubTreeKeyView:(id)arg2 completion:(id /* block */)arg3;
 
 @end

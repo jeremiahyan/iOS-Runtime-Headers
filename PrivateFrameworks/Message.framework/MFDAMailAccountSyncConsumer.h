@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Message.framework/Message
  */
 
-@class MFActivityMonitor, NSArray, NSMutableData, NSString;
-
 @interface MFDAMailAccountSyncConsumer : MFDAMailAccountConsumer <DAMailboxRequestConsumer, DAMailboxStreamingContentConsumer> {
     NSString *_accountID;
     NSMutableData *_bodyData;
@@ -19,9 +17,9 @@
     NSString *_tag;
 }
 
-@property(readonly) BOOL moreAvailable;
-@property(retain) id streamConsumer;
-@property(readonly) NSString * tag;
+@property (nonatomic, readonly) BOOL moreAvailable;
+@property (nonatomic, retain) id streamConsumer;
+@property (nonatomic, readonly) NSString *tag;
 
 - (void)_setTag:(id)arg1;
 - (id)actionsConsumer;
@@ -34,7 +32,7 @@
 - (id)originalThreadMonitor;
 - (void)partialResultsForMailbox:(id)arg1 actions:(id)arg2 responses:(id)arg3 percentComplete:(double)arg4 moreAvailable:(BOOL)arg5;
 - (void)reset;
-- (void)resultsForMailbox:(id)arg1 newTag:(id)arg2 actions:(id)arg3 responses:(id)arg4 percentComplete:(double)arg5 moreAvailable:(BOOL)arg6;
+- (void)resultsForMailbox:(id)arg1 newTag:(id)arg2 actions:(id)arg3 responses:(id)arg4 percentComplete:(double)arg5 moreAvailable:(BOOL)arg6 sentBytesCount:(unsigned int)arg7 receivedBytesCount:(unsigned int)arg8;
 - (void)setStreamConsumer:(id)arg1;
 - (BOOL)shouldBeginStreamingForMailMessage:(id)arg1 format:(int)arg2;
 - (id)streamConsumer;

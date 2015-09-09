@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class <SKUIProductPageOverlayDelegate>, NSArray, SKUIClientContext, SKUIItem, SKUIOverlayContainerViewController, UIView, UIViewController;
-
-@interface SKUIProductPageOverlayController : NSObject <SKUIIPadProductPageDelegate, SKStoreProductViewControllerDelegate> {
+@interface SKUIProductPageOverlayController : NSObject <SKStoreProductViewControllerDelegate, SKUIIPadProductPageDelegate> {
     SKUIClientContext *_clientContext;
     <SKUIProductPageOverlayDelegate> *_delegate;
     SKUIItem *_initialItem;
@@ -12,12 +10,16 @@
     UIViewController *_parentViewController;
 }
 
-@property(readonly) NSArray * URLs;
-@property(retain) SKUIClientContext * clientContext;
-@property <SKUIProductPageOverlayDelegate> * delegate;
-@property(readonly) int numberOfVisibleOverlays;
-@property(readonly) UIViewController * parentViewController;
-@property(readonly) UIView * view;
+@property (nonatomic, readonly) NSArray *URLs;
+@property (nonatomic, retain) SKUIClientContext *clientContext;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SKUIProductPageOverlayDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) int numberOfVisibleOverlays;
+@property (nonatomic, readonly) UIViewController *parentViewController;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) UIView *view;
 
 - (void).cxx_destruct;
 - (id)URLs;
@@ -31,7 +33,7 @@
 - (id)delegate;
 - (void)dismiss;
 - (void)iPadProductPage:(id)arg1 openItem:(id)arg2;
-- (void)iPadProductPage:(id)arg1 openURL:(id)arg2 viewControllerBlock:(id)arg3;
+- (void)iPadProductPage:(id)arg1 openURL:(id)arg2 viewControllerBlock:(id /* block */)arg3;
 - (void)iPadProductPageCannotOpen:(id)arg1;
 - (id)initWithParentViewController:(id)arg1;
 - (int)numberOfVisibleOverlays;

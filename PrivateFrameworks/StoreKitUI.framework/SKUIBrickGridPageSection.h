@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class NSMapTable, SKUIGridComponent, SKUIMissingItemLoader, UIImage;
-
 @interface SKUIBrickGridPageSection : SKUIStorePageSection <SKUIArtworkRequestDelegate, SKUIMissingItemDelegate> {
     NSMapTable *_artworkRequests;
     float _baseHeight;
@@ -16,12 +14,16 @@
     UIImage *_placeholderImage;
 }
 
-@property(readonly) SKUIGridComponent * pageComponent;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) SKUIGridComponent *pageComponent;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })_contentInsetsForColumnIndex:(int)arg1 rowWidth:(float)arg2;
 - (id)_editorialLayoutForBrick:(id)arg1;
-- (void)_enumerateVisibleBricksUsingBlock:(id)arg1;
+- (void)_enumerateVisibleBricksUsingBlock:(id /* block */)arg1;
 - (void)_loadArtworkForBrick:(id)arg1 artworkLoader:(id)arg2 reason:(int)arg3;
 - (void)_loadMissingItemsFromIndex:(int)arg1 withReason:(int)arg2;
 - (id)_missingItemLoader;
@@ -37,6 +39,6 @@
 - (int)numberOfCells;
 - (void)prefetchResourcesWithReason:(int)arg1;
 - (void)willAppearInContext:(id)arg1;
-- (void)willRotateToInterfaceOrientation:(int)arg1 duration:(double)arg2;
+- (void)willTransitionToSize:(struct CGSize { float x1; float x2; })arg1 withTransitionCoordinator:(id)arg2;
 
 @end

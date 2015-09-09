@@ -2,27 +2,10 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSMutableArray, NSMutableIndexSet, UIColor;
-
 @interface UIPickerTableView : UITableView <UITableViewDelegate> {
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
+    NSMutableIndexSet *_checkedRows;
+    float _lastClickedOffset;
+    int _lastSelectedRow;
     struct { 
         unsigned int allowsMultipleSelection : 1; 
         unsigned int scrollingDirection : 2; 
@@ -32,23 +15,42 @@
         unsigned int pickerViewImplementsSelectionBarChanged : 2; 
         unsigned int cancellingAnimation : 1; 
         unsigned int updatingContentInset : 1; 
-    NSMutableIndexSet *_checkedRows;
-    float _lastClickedOffset;
-    int _lastSelectedRow;
     } _pickerTableFlags;
     NSMutableArray *_referencingCells;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } _selectionBarRect;
     int _selectionBarRow;
     UIColor *_textColor;
     BOOL _usesModernStyle;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } _visibleRect;
 }
 
-@property(getter=_textColor,setter=_setTextColor:,retain) UIColor * _textColor;
-@property(getter=_usesModernStyle,setter=_setUsesModernStyle:) BOOL _usesModernStyle;
-@property int lastSelectedRow;
-@property struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } selectionBarRect;
-@property int selectionBarRow;
+@property (getter=_textColor, setter=_setTextColor:, nonatomic, retain) UIColor *_textColor;
+@property (getter=_usesModernStyle, setter=_setUsesModernStyle:) BOOL _usesModernStyle;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) int lastSelectedRow;
+@property (nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } selectionBarRect;
+@property (nonatomic) int selectionBarRow;
+@property (readonly) Class superclass;
 
 - (id)_anyDateLabel;
 - (BOOL)_beginTrackingWithEvent:(id)arg1;
@@ -92,7 +94,7 @@
 - (void)scrollViewDidEndScrollingAnimation:(id)arg1;
 - (BOOL)scrollViewShouldScrollToTop:(id)arg1;
 - (void)scrollViewWillBeginDragging:(id)arg1;
-- (void)scrollViewWillEndDragging:(id)arg1 withVelocity:(struct CGPoint { float x1; float x2; })arg2 targetContentOffset:(struct CGPoint { float x1; float x2; }*)arg3;
+- (void)scrollViewWillEndDragging:(id)arg1 withVelocity:(struct CGPoint { float x1; float x2; })arg2 targetContentOffset:(inout struct CGPoint { float x1; float x2; }*)arg3;
 - (BOOL)selectRow:(int)arg1 animated:(BOOL)arg2 notify:(BOOL)arg3;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })selectionBarRect;
 - (int)selectionBarRow;

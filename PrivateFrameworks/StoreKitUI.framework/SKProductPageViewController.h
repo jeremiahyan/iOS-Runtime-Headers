@@ -2,12 +2,12 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class <SKProductPageViewControllerDelegate>, <SKProductPageViewControllerDelegatePrivate>, NSDictionary, NSString, NSURL, SKUIBannerViewController, SKUIClientContext, SKUIIPadProductPageViewController, SKUIIPhoneProductPageViewController, SKUIITunesStoreUIPageViewController, SKUIItemStateCenter, SSMetricsPageEvent, SUBarButtonItem, SUDialogManager, SUPreviewOverlayViewController, SUPurchaseManager;
-
-@interface SKProductPageViewController : SUViewController <SKUIBannerViewDelegate, SKUIIPadProductPageDelegate, SKUIIPhoneProductPageDelegate, SUClientInterfaceDelegatePrivate, SUPurchaseManagerDelegate, SKUIItemStateCenterObserver> {
+@interface SKProductPageViewController : SUViewController <SKUIBannerViewDelegate, SKUIIPadProductPageDelegate, SKUIIPhoneProductPageDelegate, SKUIItemStateCenterObserver, SUClientInterfaceDelegatePrivate, SUPurchaseManagerDelegate> {
     NSString *_additionalPurchaseParameters;
     NSString *_affiliateIdentifier;
+    BOOL _askToBuy;
     SKUIBannerViewController *_bannerViewController;
+    NSString *_cancelButtonTitle;
     SKUIClientContext *_clientContext;
     <SKProductPageViewControllerDelegatePrivate> *_delegate;
     SUDialogManager *_dialogManager;
@@ -19,25 +19,38 @@
     NSURL *_nativeURL;
     SUPreviewOverlayViewController *_previewOverlay;
     NSDictionary *_productParameters;
+    NSString *_promptString;
     SUPurchaseManager *_purchaseManager;
+    SUBarButtonItem *_rightBarButtonItem;
+    NSString *_rightBarButtonTitle;
+    BOOL _showsRightBarButton;
     BOOL _showsStoreButton;
     SKUIITunesStoreUIPageViewController *_storePageViewController;
     int _style;
     int _urlBagType;
 }
 
-@property int URLBagType;
-@property(copy) NSString * additionalPurchaseParameters;
-@property(copy) NSString * affiliateIdentifier;
-@property <SKProductPageViewControllerDelegate> * delegate;
-@property int productPageStyle;
-@property(copy) NSDictionary * scriptContextDictionary;
-@property BOOL showsStoreButton;
+@property (nonatomic) int URLBagType;
+@property (nonatomic, copy) NSString *additionalPurchaseParameters;
+@property (nonatomic, copy) NSString *affiliateIdentifier;
+@property (nonatomic) BOOL askToBuy;
+@property (nonatomic, copy) NSString *cancelButtonTitle;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SKProductPageViewControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) int productPageStyle;
+@property (nonatomic, copy) NSString *promptString;
+@property (nonatomic, copy) NSString *rightBarButtonTitle;
+@property (nonatomic, copy) NSDictionary *scriptContextDictionary;
+@property (nonatomic) BOOL showsRightBarButton;
+@property (nonatomic) BOOL showsStoreButton;
+@property (readonly) Class superclass;
 
 + (id)_defaultClientIdentifier;
 + (id)_defaultClientInterface;
-+ (void)_validateURL:(id)arg1 withURLBag:(id)arg2 completionBlock:(id)arg3;
-+ (void)getCanLoadWithURL:(id)arg1 completionBlock:(id)arg2;
++ (void)_validateURL:(id)arg1 withURLBag:(id)arg2 completionBlock:(id /* block */)arg3;
++ (void)getCanLoadWithURL:(id)arg1 completionBlock:(id /* block */)arg2;
 
 - (void).cxx_destruct;
 - (int)URLBagType;
@@ -45,7 +58,7 @@
 - (void)_failWithError:(id)arg1;
 - (void)_gotoStoreButtonAction:(id)arg1;
 - (id)_initSKProductPageViewController;
-- (void)_loadClientContextWithCompletionBlock:(id)arg1;
+- (void)_loadClientContextWithCompletionBlock:(id /* block */)arg1;
 - (void)_loadProductWithRequest:(id)arg1;
 - (void)_loadRequestForProductParameters;
 - (id)_newRequestPropertiesWithRequest:(id)arg1;
@@ -54,8 +67,10 @@
 - (void)_purchaseFinishedNotification:(id)arg1;
 - (void)_reloadGotoStoreButton;
 - (void)_reloadViews;
+- (void)_rightBarButtonAction:(id)arg1;
 - (void)_sendDidFailLoadWithError:(id)arg1;
 - (void)_sendDidFinishWithResult:(int)arg1;
+- (void)_setClientContext:(id)arg1;
 - (void)_setResponse:(id)arg1 forProperties:(id)arg2 error:(id)arg3;
 - (void)_setShowsCancelButton:(BOOL)arg1;
 - (void)_showPageWithRequest:(id)arg1 animated:(BOOL)arg2;
@@ -63,8 +78,11 @@
 - (void)_showProductPage:(id)arg1 pageEvent:(id)arg2;
 - (id)additionalPurchaseParameters;
 - (id)affiliateIdentifier;
+- (BOOL)askToBuy;
 - (void)bannerView:(id)arg1 didFailWithError:(id)arg2;
 - (void)bannerViewDidClose:(id)arg1;
+- (id)cancelButtonTitle;
+- (id)cancelButtonTitle:(id)arg1;
 - (void)clientInterface:(id)arg1 exitStoreWithReason:(int)arg2;
 - (void)clientInterface:(id)arg1 hidePreviewOverlayAnimated:(BOOL)arg2;
 - (void)clientInterface:(id)arg1 presentDialog:(id)arg2;
@@ -76,11 +94,12 @@
 - (void)dealloc;
 - (id)delegate;
 - (void)iPadProductPage:(id)arg1 openItem:(id)arg2;
-- (void)iPadProductPage:(id)arg1 openURL:(id)arg2 viewControllerBlock:(id)arg3;
+- (void)iPadProductPage:(id)arg1 openURL:(id)arg2 viewControllerBlock:(id /* block */)arg3;
 - (BOOL)iPhoneProductPage:(id)arg1 shouldOpenItem:(id)arg2;
 - (BOOL)iPhoneProductPage:(id)arg1 shouldOpenURL:(id)arg2;
 - (id)init;
 - (id)initWithProductPageStyle:(int)arg1;
+- (id)initWithTabBarItem:(id)arg1;
 - (void)itemStateCenter:(id)arg1 didFinishPurchases:(id)arg2;
 - (void)loadProductWithParameters:(id)arg1;
 - (void)loadProductWithRequest:(id)arg1;
@@ -89,19 +108,27 @@
 - (void)loadWithStorePageRequest:(id)arg1;
 - (id)previewOverlayForClientInterface:(id)arg1;
 - (int)productPageStyle;
+- (id)promptString;
 - (void)purchaseManager:(id)arg1 didFinishPurchaseRequest:(id)arg2 withError:(id)arg3;
 - (void)purchaseManager:(id)arg1 willAddPurchases:(id)arg2;
+- (id)rightBarButtonTitle;
 - (id)scriptContextDictionary;
 - (id)scriptInterfaceForClientInterface:(id)arg1;
 - (void)setAdditionalPurchaseParameters:(id)arg1;
 - (void)setAffiliateIdentifier:(id)arg1;
+- (void)setAskToBuy:(BOOL)arg1;
+- (void)setCancelButtonTitle:(id)arg1;
 - (void)setClientInterface:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setProductPageStyle:(int)arg1;
+- (void)setPromptString:(id)arg1;
+- (void)setRightBarButtonTitle:(id)arg1;
 - (void)setScriptContextDictionary:(id)arg1;
+- (void)setShowsRightBarButton:(BOOL)arg1;
 - (void)setShowsStoreButton:(BOOL)arg1;
 - (void)setURLBagType:(int)arg1;
 - (BOOL)shouldAutorotateToInterfaceOrientation:(int)arg1;
+- (BOOL)showsRightBarButton;
 - (BOOL)showsStoreButton;
 - (void)storePage:(id)arg1 finishedWithSuccess:(BOOL)arg2;
 - (unsigned int)supportedInterfaceOrientations;

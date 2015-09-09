@@ -2,19 +2,22 @@
    Image: /System/Library/PrivateFrameworks/SiriUI.framework/SiriUI
  */
 
-@class <SiriUIAceObjectViewControllerDelegate>, AceObject;
-
 @interface SiriUIAceObjectViewController : UIViewController <SiriUIViewController> {
     AceObject *_aceObject;
     <SiriUIAceObjectViewControllerDelegate> *_delegate;
     BOOL _virgin;
 }
 
-@property(retain) AceObject * aceObject;
-@property <SiriUIAceObjectViewControllerDelegate> * delegate;
-@property(getter=isVirgin,readonly) BOOL virgin;
+@property (nonatomic, retain) AceObject *aceObject;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SiriUIAceObjectViewControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+@property (getter=isVirgin, nonatomic, readonly) BOOL virgin;
 
 - (void).cxx_destruct;
+- (void)_aceObjectViewControllerWillBeRemoved;
 - (float)_insertionAnimatedZPosition;
 - (int)_insertionAnimation;
 - (int)_pinAnimationType;
@@ -29,8 +32,8 @@
 - (BOOL)removedAfterDialogProgresses;
 - (void)setAceObject:(id)arg1;
 - (void)setDelegate:(id)arg1;
+- (void)siriDidDeactivate;
 - (void)siriWillActivateFromSource:(int)arg1;
-- (void)viewDidPresent;
 - (void)wasAddedToTranscript;
 
 @end

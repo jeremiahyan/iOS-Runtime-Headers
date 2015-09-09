@@ -3,6 +3,7 @@
  */
 
 @interface CUIShapeEffectPreset : NSObject {
+    unsigned int _effectIndex;
     struct { 
         unsigned int effectType; 
         unsigned int effectParameter; 
@@ -17,8 +18,7 @@
             short angleValue; 
             unsigned int enumValue; 
         } effectValue; 
-    unsigned int _effectIndex[8];
-    } _parameterList[35];
+    } _parameterList;
     float _scaleFactor;
 }
 
@@ -39,6 +39,7 @@
 - (void)addInnerShadowWithColorRed:(unsigned int)arg1 green:(unsigned int)arg2 blue:(unsigned int)arg3 opacity:(float)arg4 blur:(int)arg5 offset:(int)arg6 angle:(int)arg7 blendMode:(unsigned int)arg8;
 - (void)addIntValue:(unsigned int)arg1 forParameter:(unsigned int)arg2 withNewEffectType:(unsigned int)arg3;
 - (void)addOuterGlowWithColorRed:(unsigned int)arg1 green:(unsigned int)arg2 blue:(unsigned int)arg3 opacity:(float)arg4 blur:(int)arg5 spread:(int)arg6;
+- (void)addOutputOpacityWithOpacity:(float)arg1;
 - (void)addShapeOpacityWithOpacity:(float)arg1;
 - (void)addValue:(union { float x1; unsigned int x2; struct _rgbcolor { unsigned char x_3_1_1; unsigned char x_3_1_2; unsigned char x_3_1_3; } x3; short x4; unsigned int x5; })arg1 forParameter:(unsigned int)arg2 withEffectType:(unsigned int)arg3 atEffectIndex:(unsigned int)arg4;
 - (void)addValue:(union { float x1; unsigned int x2; struct _rgbcolor { unsigned char x_3_1_1; unsigned char x_3_1_2; unsigned char x_3_1_3; } x3; short x4; unsigned int x5; })arg1 forParameter:(unsigned int)arg2 withNewEffectType:(unsigned int)arg3;
@@ -55,6 +56,7 @@
 - (id)init;
 - (id)initWithConstantPreset:(const struct { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; struct { unsigned int x_5_1_1; unsigned int x_5_1_2; union { float x_3_2_1; unsigned int x_3_2_2; struct _rgbcolor { unsigned char x_3_3_1; unsigned char x_3_3_2; unsigned char x_3_3_3; } x_3_2_3; short x_3_2_4; unsigned int x_3_2_5; } x_5_1_3; } x5[35]; }*)arg1;
 - (id)initWithEffectScale:(float)arg1;
+- (id)layerEffectsRepresentation;
 - (union { float x1; unsigned int x2; struct _rgbcolor { unsigned char x_3_1_1; unsigned char x_3_1_2; unsigned char x_3_1_3; } x3; short x4; unsigned int x5; })valueForParameter:(unsigned int)arg1 inEffectAtIndex:(unsigned int)arg2;
 
 @end

@@ -2,17 +2,19 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibrary.framework/PhotoLibrary
  */
 
-@class <PLAirTunesServicePickerViewControllerDelegate>, NSArray, NSDictionary, UITableView;
-
-@interface PLAirTunesServicePickerViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+@interface PLAirTunesServicePickerViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
     NSArray *_availableRoutes;
     id _delegate;
     NSDictionary *_selectedRoute;
     UITableView *_table;
 }
 
-@property(retain) NSArray * availableRoutes;
-@property <PLAirTunesServicePickerViewControllerDelegate> * delegate;
+@property (nonatomic, retain) NSArray *availableRoutes;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <PLAirTunesServicePickerViewControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (int)_indexofRouteWithRouteID:(id)arg1;
 - (void)_setCell:(id)arg1 checked:(BOOL)arg2;

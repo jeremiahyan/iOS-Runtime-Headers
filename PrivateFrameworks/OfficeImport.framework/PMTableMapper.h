@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class CMDrawableStyle, CMTableGridInfo, OADOrientedBounds, OADTable;
-
 @interface PMTableMapper : CMMapper {
     OADOrientedBounds *mBounds;
     CMTableGridInfo *mGrid;
@@ -12,7 +10,7 @@
 }
 
 - (id)cellStyle;
-- (float)columnWidthAtIndex:(int)arg1 state:(id)arg2;
+- (float)columnWidthAtIndex:(unsigned int)arg1 state:(id)arg2;
 - (void)dealloc;
 - (id)defaultCellFillForRow:(unsigned int)arg1 withState:(id)arg2;
 - (id)defaultCellFillWithState:(id)arg1;

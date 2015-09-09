@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class <SKUIRedeemResultsViewDelegate>, NSArray;
-
-@interface SKUIRedeemResultsView : UITableView <UITableViewDelegate, UITableViewDataSource> {
+@interface SKUIRedeemResultsView : UITableView <UITableViewDataSource, UITableViewDelegate> {
     struct UIEdgeInsets { 
         float top; 
         float left; 
@@ -15,8 +13,12 @@
     NSArray *_sections;
 }
 
-@property <SKUIRedeemResultsViewDelegate> * resultsDelegate;
-@property(retain) NSArray * sections;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) <SKUIRedeemResultsViewDelegate> *resultsDelegate;
+@property (nonatomic, retain) NSArray *sections;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (id)init;

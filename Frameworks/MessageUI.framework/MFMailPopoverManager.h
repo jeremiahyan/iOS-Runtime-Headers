@@ -2,9 +2,11 @@
    Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
  */
 
-@class MFPopoverController, NSArray, NSMutableArray, UIActionSheet, UIBarButtonItem, UIView;
-
-@interface MFMailPopoverManager : NSObject <UIActionSheetDelegate> {
+@interface MFMailPopoverManager : NSObject <UIActionSheetDelegate, UIPopoverPresentationControllerDelegate> {
+    UIActionSheet *_actionSheet;
+    id _actionSheetDelegate;
+    unsigned int _currentArrowDirections;
+    UIBarButtonItem *_currentBarButtonItem;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -14,10 +16,6 @@
             float width; 
             float height; 
         } size; 
-    UIActionSheet *_actionSheet;
-    id _actionSheetDelegate;
-    unsigned int _currentArrowDirections;
-    UIBarButtonItem *_currentBarButtonItem;
     } _currentRect;
     UIView *_currentView;
     id _delegate;
@@ -31,21 +29,26 @@
     BOOL _popoverDismissalShouldBeAnimated;
 }
 
-@property(retain) UIActionSheet * actionSheet;
-@property unsigned int currentArrowDirections;
-@property(retain) UIBarButtonItem * currentBarButtonItem;
-@property struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } currentRect;
-@property(retain) UIView * currentView;
-@property BOOL popoverBeingHiddenDuringRotation;
-@property(retain) MFPopoverController * popoverController;
-@property BOOL rasterizePopoverLayer;
+@property (nonatomic, retain) UIActionSheet *actionSheet;
+@property (nonatomic) unsigned int currentArrowDirections;
+@property (nonatomic, retain) UIBarButtonItem *currentBarButtonItem;
+@property (nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } currentRect;
+@property (nonatomic, retain) UIView *currentView;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL popoverBeingHiddenDuringRotation;
+@property (nonatomic, retain) MFPopoverController *popoverController;
+@property (nonatomic) BOOL rasterizePopoverLayer;
+@property (readonly) Class superclass;
 
 + (void)dismissPopover:(id)arg1 animated:(BOOL)arg2;
-+ (void)enumerateManagersUsingBlock:(id)arg1;
++ (void)enumerateManagersUsingBlock:(id /* block */)arg1;
 + (id)managerForWindow:(id)arg1 createIfNeeded:(BOOL)arg2;
 
 - (id)_allPassthroughViewsIncludingViews:(id)arg1 excludingViews:(id)arg2;
 - (void)_cleanupCurrentPopover;
+- (void)_configureDelegate:(id)arg1 forPopoverController:(id)arg2;
 - (id)_currentPassthroughProviders;
 - (BOOL)_delegateSupportsRotation;
 - (void)_dismissPopoverNow;
@@ -53,11 +56,12 @@
 - (BOOL)_isEquivalentToCurrentPopover:(id)arg1;
 - (void)_popoverDismissalDidFinish;
 - (void)_willPresentPopover:(id)arg1;
+- (id)actionSheet;
 - (void)actionSheet:(id)arg1 clickedButtonAtIndex:(int)arg2;
 - (void)actionSheet:(id)arg1 didDismissWithButtonIndex:(int)arg2;
 - (void)actionSheet:(id)arg1 willDismissWithButtonIndex:(int)arg2;
-- (id)actionSheet;
 - (void)actionSheetCancel:(id)arg1;
+- (int)adaptivePresentationStyleForPresentationController:(id)arg1;
 - (void)addPassthroughView:(id)arg1;
 - (void)addPassthroughViewProvider:(id)arg1;
 - (void)beginModalPassthroughContext;

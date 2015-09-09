@@ -2,17 +2,11 @@
    Image: /System/Library/PrivateFrameworks/Message.framework/Message
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSError, NSInputStream, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSOutputStream;
-
 @interface MFStream : NSObject <NSStreamDelegate> {
     char *_buffer;
     unsigned int _bytesRead;
     unsigned int _bytesWritten;
-    id _callback;
+    id /* block */ _callback;
     unsigned long _capacity;
     BOOL _dispatchedBytesAvailable;
     BOOL _enableThroughputMonitoring;
@@ -26,21 +20,25 @@
     NSOutputStream *_wStream;
 }
 
-@property(readonly) BOOL isOpen;
-@property(readonly) NSError * streamError;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) BOOL isOpen;
+@property (nonatomic, readonly) NSError *streamError;
+@property (readonly) Class superclass;
 
 + (id)_networkDispatchQueue;
 + (id)networkThread;
 + (void)setNetworkThread:(id)arg1;
 
+- (void)_closeAndReleaseStream:(id)arg1 logMessage:(id)arg2;
 - (id)_copyPropertyForKey:(id)arg1;
 - (void)_readBytesFromStream;
 - (void)close;
 - (void)dealloc;
-- (void)enableExcessiveKeepaliveDetection:(BOOL)arg1;
 - (void)enableThroughputMonitoring:(BOOL)arg1;
 - (id)init;
-- (id)initCallBack:(id)arg1 onDispatchQueue:(id)arg2;
+- (id)initCallBack:(id /* block */)arg1 onDispatchQueue:(id)arg2;
 - (BOOL)isOpen;
 - (void)openToHostName:(id)arg1 port:(int)arg2;
 - (id)propertyForKey:(id)arg1;

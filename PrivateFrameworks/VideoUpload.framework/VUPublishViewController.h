@@ -2,18 +2,9 @@
    Image: /System/Library/PrivateFrameworks/VideoUpload.framework/VideoUpload
  */
 
-@class <VUPublishViewControllerDelegate>, NSArray, NSMutableArray, NSString, PLTableViewEditableCell, UIAlertView, UIImageView, UIPickerView, UITableView, UITableViewCell, UIView, VUCategory, VUCategoryCell, VUFooterContainerView;
-
-@interface VUPublishViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIAlertViewDelegate> {
-    struct { 
-        int title; 
-        int hd; 
-        int tags; 
-        int category; 
-        int access; 
-        int account; 
-    int _HDSize;
-    int _SDSize;
+@interface VUPublishViewController : UIViewController <UIAlertViewDelegate, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate> {
+    long long _HDSize;
+    long long _SDSize;
     NSArray *_accessCells;
     unsigned int _accessRow;
     UIAlertView *_accountAlert;
@@ -27,9 +18,16 @@
     BOOL _enableHDSection;
     VUFooterContainerView *_footerContainer;
     UIImageView *_headerImageView;
-    PLTableViewEditableCell *_optionCells[2];
+    PLTableViewEditableCell *_optionCells;
     UIPickerView *_picker;
     UIView *_pickerContainer;
+    struct { 
+        int title; 
+        int hd; 
+        int tags; 
+        int category; 
+        int access; 
+        int account; 
     } _sectionIndices;
     int _selectedOption;
     BOOL _showHDSection;
@@ -40,19 +38,24 @@
     BOOL _viewShrunk;
 }
 
-@property int HDSize;
-@property int SDSize;
-@property <VUPublishViewControllerDelegate> * delegate;
-@property BOOL enableHDSection;
-@property(readonly) int selectedOption;
-@property BOOL showHDSection;
-@property(readonly) VUCategory * videoCategory;
-@property(readonly) NSString * videoDescription;
-@property(readonly) NSArray * videoTags;
-@property(readonly) NSString * videoTitle;
+@property (nonatomic) long long HDSize;
+@property (nonatomic) long long SDSize;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <VUPublishViewControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL enableHDSection;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) int selectedOption;
+@property (nonatomic) BOOL showHDSection;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) VUCategory *videoCategory;
+@property (nonatomic, readonly) NSString *videoDescription;
+@property (nonatomic, readonly) NSArray *videoTags;
+@property (nonatomic, readonly) NSString *videoTitle;
 
-- (int)HDSize;
-- (int)SDSize;
+- (void).cxx_destruct;
+- (long long)HDSize;
+- (long long)SDSize;
 - (void)_addNewTagCell;
 - (void)_authenticatorFailed:(id)arg1;
 - (void)_authenticatorStateChanged:(id)arg1;
@@ -100,8 +103,8 @@
 - (int)selectedOption;
 - (void)setDelegate:(id)arg1;
 - (void)setEnableHDSection:(BOOL)arg1;
-- (void)setHDSize:(int)arg1;
-- (void)setSDSize:(int)arg1;
+- (void)setHDSize:(long long)arg1;
+- (void)setSDSize:(long long)arg1;
 - (void)setShowHDSection:(BOOL)arg1;
 - (BOOL)shouldAutorotateToInterfaceOrientation:(int)arg1;
 - (void)showAlertWithTitle:(id)arg1 message:(id)arg2;
@@ -120,7 +123,6 @@
 - (id)videoTags;
 - (id)videoTitle;
 - (void)viewDidAppear:(BOOL)arg1;
-- (void)viewDidUnload;
 - (void)viewWillAppear:(BOOL)arg1;
 
 @end

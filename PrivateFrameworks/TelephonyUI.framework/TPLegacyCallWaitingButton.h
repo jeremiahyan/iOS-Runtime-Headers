@@ -2,11 +2,9 @@
    Image: /System/Library/PrivateFrameworks/TelephonyUI.framework/TelephonyUI
  */
 
-@class TPLegacyButton;
-
 @interface TPLegacyCallWaitingButton : UIImageView {
-    unsigned int _type : 1;
     TPLegacyButton *_innerButton;
+    unsigned int _type;
 }
 
 + (id)_buttonForType:(int)arg1;

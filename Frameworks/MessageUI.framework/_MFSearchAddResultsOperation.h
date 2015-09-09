@@ -2,15 +2,13 @@
    Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
  */
 
-@class <_MFSearchResultsConsumer>, NSArray;
-
 @interface _MFSearchAddResultsOperation : NSOperation {
     <_MFSearchResultsConsumer> *_consumer;
     NSArray *_results;
-    int _type;
+    unsigned int _type;
 }
 
-+ (id)operationWithResults:(id)arg1 ofType:(int)arg2 consumer:(id)arg3;
++ (id)operationWithResults:(id)arg1 ofType:(unsigned int)arg2 consumer:(id)arg3;
 
 - (void)dealloc;
 - (void)main;

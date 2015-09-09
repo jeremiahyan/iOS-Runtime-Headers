@@ -2,18 +2,16 @@
    Image: /System/Library/PrivateFrameworks/SiriUI.framework/SiriUI
  */
 
-@class <SiriUISnippetViewControllerDelegate>, AceObject, NSArray, NSAttributedString, NSString, SAUIAppPunchOut, SAUIConfirmationOptions, SAUISnippet, UICollectionReusableView<SiriUIReusableView>;
-
 @interface SiriUISnippetViewController : UIViewController <SiriUIViewController> {
+    NSAttributedString *_attributedSubtitle;
+    BOOL _cancelled;
+    BOOL _confirmed;
+    int _defaultKeylineType;
     struct UIEdgeInsets { 
         float top; 
         float left; 
         float bottom; 
         float right; 
-    NSAttributedString *_attributedSubtitle;
-    BOOL _cancelled;
-    BOOL _confirmed;
-    int _defaultKeylineType;
     } _defaultViewInsets;
     <SiriUISnippetViewControllerDelegate> *_delegate;
     UICollectionReusableView<SiriUIReusableView> *_footerView;
@@ -38,30 +36,34 @@
     AceObject *aceObject;
 }
 
-@property(retain) AceObject * aceObject;
-@property(copy) NSAttributedString * attributedSubtitle;
-@property(getter=isCancelled) BOOL cancelled;
-@property(getter=isConfirmed) BOOL confirmed;
-@property int defaultKeylineType;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } defaultViewInsets;
-@property <SiriUISnippetViewControllerDelegate> * delegate;
-@property(retain) SAUIAppPunchOut * headerPunchOut;
-@property BOOL isFullPadWidth;
-@property(getter=isLoading) BOOL loading;
-@property(copy) NSString * navigationTitle;
-@property(getter=_previousConfirmationOptions,setter=_setPreviousConfirmationOptions:,retain) SAUIConfirmationOptions * previousConfirmationOptions;
-@property(getter=_isProvisional,setter=_setProvisional:) BOOL provisional;
-@property(copy) NSArray * requestContext;
-@property BOOL showHeaderChevron;
-@property(retain) SAUISnippet * snippet;
-@property(retain) SAUIAppPunchOut * snippetPunchOut;
-@property(copy) NSString * subtitle;
-@property(copy) NSString * title;
-@property BOOL topKeylineHidden;
-@property(getter=isVirgin,readonly) BOOL virgin;
-@property BOOL wantsConfirmationInsets;
-@property(getter=_willAnimateCancellation,setter=_setWillAnimateCancellation:) BOOL willAnimateCancellation;
-@property(getter=_willAnimateConfirmation,setter=_setWillAnimateConfirmation:) BOOL willAnimateConfirmation;
+@property (nonatomic, retain) AceObject *aceObject;
+@property (nonatomic, copy) NSAttributedString *attributedSubtitle;
+@property (getter=isCancelled, nonatomic) BOOL cancelled;
+@property (getter=isConfirmed, nonatomic) BOOL confirmed;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) int defaultKeylineType;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } defaultViewInsets;
+@property (nonatomic) <SiriUISnippetViewControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) SAUIAppPunchOut *headerPunchOut;
+@property (nonatomic) BOOL isFullPadWidth;
+@property (getter=isLoading, nonatomic) BOOL loading;
+@property (nonatomic, copy) NSString *navigationTitle;
+@property (getter=_previousConfirmationOptions, setter=_setPreviousConfirmationOptions:, nonatomic, retain) SAUIConfirmationOptions *previousConfirmationOptions;
+@property (getter=_isProvisional, setter=_setProvisional:, nonatomic) BOOL provisional;
+@property (nonatomic, copy) NSArray *requestContext;
+@property (nonatomic) BOOL showHeaderChevron;
+@property (nonatomic, retain) SAUISnippet *snippet;
+@property (nonatomic, retain) SAUIAppPunchOut *snippetPunchOut;
+@property (nonatomic, copy) NSString *subtitle;
+@property (readonly) Class superclass;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic) BOOL topKeylineHidden;
+@property (getter=isVirgin, nonatomic, readonly) BOOL virgin;
+@property (nonatomic) BOOL wantsConfirmationInsets;
+@property (getter=_willAnimateCancellation, setter=_setWillAnimateCancellation:, nonatomic) BOOL willAnimateCancellation;
+@property (getter=_willAnimateConfirmation, setter=_setWillAnimateConfirmation:, nonatomic) BOOL willAnimateConfirmation;
 
 - (void).cxx_destruct;
 - (void)_cellDidLayoutSubviews;
@@ -82,11 +84,13 @@
 - (void)_setWillAnimateCancellation:(BOOL)arg1;
 - (void)_setWillAnimateConfirmation:(BOOL)arg1;
 - (void)_snippetPunchOutButtonTapped;
+- (void)_snippetViewControllerWillBeRemoved;
 - (id)_transparentFooterView;
 - (id)_transparentHeaderView;
 - (BOOL)_willAnimateCancellation;
 - (BOOL)_willAnimateConfirmation;
 - (id)aceObject;
+- (id)alternativeAceCommandsToPerformIfNotExposingViews;
 - (id)attributedSubtitle;
 - (void)cancelButtonTapped:(id)arg1;
 - (void)configureReusableFooterView:(id)arg1;
@@ -134,6 +138,7 @@
 - (void)setTopKeylineHidden:(BOOL)arg1;
 - (void)setWantsConfirmationInsets:(BOOL)arg1;
 - (BOOL)showHeaderChevron;
+- (void)siriDidDeactivate;
 - (void)siriDidLayoutSnippetView;
 - (void)siriWillActivateFromSource:(int)arg1;
 - (void)siriWillLayoutSnippetView;
@@ -143,7 +148,6 @@
 - (BOOL)topKeylineHidden;
 - (Class)transparentFooterViewClass;
 - (Class)transparentHeaderViewClass;
-- (void)viewDidPresent;
 - (BOOL)wantsConfirmationInsets;
 - (void)wasAddedToTranscript;
 - (void)willCancel;

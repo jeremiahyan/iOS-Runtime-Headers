@@ -2,32 +2,24 @@
    Image: /System/Library/PrivateFrameworks/AirPortAssistant.framework/AirPortAssistant
  */
 
-@class TextLinkButton, UIView;
-
-@interface AssistantDiagsUsageStatsUIViewController : AssistantSubUIViewController <TableViewManagerDelegate, UINavigationControllerDelegate, TextLinkButtonDelegate> {
-    UIView *_blankTopView;
+@interface AssistantDiagsUsageStatsUIViewController : AssistantSubUIViewController <TableViewManagerDelegate, TextLinkButtonDelegate, UINavigationControllerDelegate> {
     UIView *_linkContainerView;
     TextLinkButton *linkButton;
     id previousNavDelegate;
-    UIView *tableHeaderContainerView;
 }
 
-@property(retain) UIView * blankTopView;
-@property(retain) UIView * linkContainerView;
-@property(retain) UIView * tableHeaderContainerView;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) UIView *linkContainerView;
+@property (readonly) Class superclass;
 
-- (id)blankTopView;
 - (void)dealloc;
 - (void)handleTextLinkTap;
 - (id)linkContainerView;
-- (void)setBlankTopView:(id)arg1;
+- (void)loadView;
 - (void)setLinkContainerView:(id)arg1;
-- (void)setTableHeaderContainerView:(id)arg1;
 - (void)setUpInitialTableFooter;
-- (void)setUpInitialTableHeaderConfiguration;
-- (id)tableHeaderContainerView;
 - (void)touchInCellAtIndexPath:(id)arg1;
-- (void)viewDidLoad;
-- (void)viewWillAppear:(BOOL)arg1;
 
 @end

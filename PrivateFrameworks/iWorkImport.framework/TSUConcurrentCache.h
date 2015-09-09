@@ -2,13 +2,11 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class TSUReadWriteQueue;
-
 @interface TSUConcurrentCache : TSUCache {
     TSUReadWriteQueue *mReadWriteQueue;
 }
 
-@property(readonly) TSUReadWriteQueue * readWriteQueue;
+@property (nonatomic, readonly) TSUReadWriteQueue *readWriteQueue;
 
 - (void)addEntriesFromDictionary:(id)arg1;
 - (unsigned int)count;
@@ -19,8 +17,8 @@
 - (id)objectsForKeys:(id)arg1 notFoundMarker:(id)arg2;
 - (id)readWriteQueue;
 - (void)removeAllObjects;
-- (void)removeObjectForKey:(id)arg1 andWait:(BOOL)arg2;
 - (void)removeObjectForKey:(id)arg1;
+- (void)removeObjectForKey:(id)arg1 andWait:(BOOL)arg2;
 - (void)setObject:(id)arg1 forKey:(id)arg2;
 - (void)unload;
 

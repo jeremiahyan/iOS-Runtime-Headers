@@ -2,30 +2,27 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class MPAVRoutingViewController, UIButton, UIView, UIWindow;
-
 @interface MPAVRoutingSheet : UIView <MPAVRoutingViewControllerDelegate> {
     UIView *_backgroundView;
     UIButton *_cancelButton;
-    id _completionHandler;
+    id /* block */ _completionHandler;
     UIView *_controlsView;
     UIWindow *_presentationWindow;
     MPAVRoutingViewController *_routingViewController;
 }
 
-@property(setter=setAVItemType:) unsigned int avItemType;
+@property (setter=setAVItemType:, nonatomic) unsigned int avItemType;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
-- (void)_animateControls:(BOOL)arg1 withCompletionHandler:(id)arg2;
+- (void)_animateControls:(BOOL)arg1 withCompletionHandler:(id /* block */)arg2;
 - (void)_cancelButtonAction:(id)arg1;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_cancelButtonFrame;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_controlsViewFrame;
 - (struct CGSize { float x1; float x2; })_maxRoutingViewSize;
-- (float)_rotationForCurrentOrientation;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_routingViewFrame;
 - (void)_updateRoutingSheetFrame;
 - (unsigned int)avItemType;
@@ -38,6 +35,7 @@
 - (void)routingViewControllerDidShowAirPlayDebugScreen:(id)arg1;
 - (void)routingViewControllerDidUpdateContents:(id)arg1;
 - (void)setAVItemType:(unsigned int)arg1;
-- (void)showInView:(id)arg1 withCompletionHandler:(id)arg2;
+- (void)showInView:(id)arg1 withCompletionHandler:(id /* block */)arg2;
+- (void)tintColorDidChange;
 
 @end

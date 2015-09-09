@@ -2,14 +2,16 @@
    Image: /System/Library/PrivateFrameworks/CoreDAV.framework/CoreDAV
  */
 
-@class <CoreDAVContainerInfoSyncProvider>, NSString, NSURL;
-
 @interface CoreDAVContainerInfoSyncTaskGroup : CoreDAVTaskGroup <CoreDAVTaskDelegate> {
     NSURL *_containerURL;
     NSString *_previousSyncToken;
 }
 
-@property <CoreDAVContainerInfoSyncProvider> * delegate;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <CoreDAVContainerInfoSyncProvider> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (Class)containerItemClass;
 - (id)copyContainerParserMappings;

@@ -2,9 +2,8 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSMutableArray;
-
 @interface TSCH3DArray2D : NSObject {
+    NSMutableArray *mElements;
     struct tvec2<int> { 
         union { 
             int x; 
@@ -16,11 +15,10 @@
             int g; 
             int t; 
         } ; 
-    NSMutableArray *mElements;
     } mSize;
 }
 
-@property(readonly) struct tvec2<int> { union { int x_1_1_1; int x_1_1_2; int x_1_1_3; } x1; union { int x_2_1_1; int x_2_1_2; int x_2_1_3; } x2; } size;
+@property (nonatomic, readonly) struct tvec2<int> { union { int x_1_1_1; int x_1_1_2; int x_1_1_3; } x1; union { int x_2_1_1; int x_2_1_2; int x_2_1_3; } x2; } size;
 
 + (id)array2D;
 + (id)array2DWithSize:(const struct tvec2<int> { union { int x_1_1_1; int x_1_1_2; int x_1_1_3; } x1; union { int x_2_1_1; int x_2_1_2; int x_2_1_3; } x2; }*)arg1;

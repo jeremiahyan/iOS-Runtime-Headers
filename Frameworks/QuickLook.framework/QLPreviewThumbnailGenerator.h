@@ -2,21 +2,19 @@
    Image: /System/Library/Frameworks/QuickLook.framework/QuickLook
  */
 
-@class <QLPreviewItem>, NSString, UIImage;
-
 @interface QLPreviewThumbnailGenerator : NSObject {
-    struct CGSize { 
-        float width; 
-        float height; 
     NSString *_contentType;
     <QLPreviewItem> *_item;
     float _scale;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _size;
     int _status;
     UIImage *_thumbnailImage;
 }
 
-@property(readonly) UIImage * thumbnailImage;
+@property (readonly) UIImage *thumbnailImage;
 
 + (BOOL)canGenerateThumbnailForPreviewItem:(id)arg1;
 + (id)generatorForPreviewItem:(id)arg1 size:(struct CGSize { float x1; float x2; })arg2;
@@ -29,7 +27,7 @@
 - (id)_thumbnailForPDF;
 - (void)cancel;
 - (void)dealloc;
-- (void)generateWithCompletionBlock:(id)arg1;
+- (void)generateWithCompletionBlock:(id /* block */)arg1;
 - (id)thumbnailImage;
 
 @end

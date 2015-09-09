@@ -2,25 +2,27 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class <ABPersonTabsLayoutManager>, UIView;
-
 @interface ABPersonOverlayingContainerView : UIScrollView <ABPersonTabsScrollView> {
+    UIView *_abContentView;
+    UIView *_backgroundView;
+    float _minimumBottomInset;
     struct UIEdgeInsets { 
         float top; 
         float left; 
         float bottom; 
         float right; 
-    UIView *_abContentView;
-    UIView *_backgroundView;
-    float _minimumBottomInset;
     } _savedContentInset;
     <ABPersonTabsLayoutManager> *_tabsLayoutManager;
 }
 
-@property(retain) UIView * backgroundView;
-@property(retain) UIView * contentView;
-@property float minimumBottomInset;
-@property(retain) <ABPersonTabsLayoutManager> * tabsLayoutManager;
+@property (nonatomic, retain) UIView *backgroundView;
+@property (nonatomic, retain) UIView *contentView;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) float minimumBottomInset;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) <ABPersonTabsLayoutManager> *tabsLayoutManager;
 
 - (void)_updateContentFrameAndSize;
 - (id)backgroundView;

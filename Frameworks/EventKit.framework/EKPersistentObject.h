@@ -2,25 +2,23 @@
    Image: /System/Library/Frameworks/EventKit.framework/EventKit
  */
 
-@class EKEventStore, NSMutableDictionary, NSMutableSet;
-
 @interface EKPersistentObject : NSObject {
-    struct _opaque_pthread_mutex_t { 
-        long __sig; 
-        BOOL __opaque[40]; 
     NSMutableDictionary *_committedProperties;
     NSMutableSet *_dirtyProperties;
     EKEventStore *_eventStore;
     unsigned int _flags;
     struct __CFDictionary { } *_loadedProperties;
+    struct _opaque_pthread_mutex_t { 
+        long __sig; 
+        BOOL __opaque[40]; 
     } _lock;
     id _objectID;
     NSMutableDictionary *_referencers;
 }
 
-@property(retain) NSMutableDictionary * committedProperties;
-@property(readonly) int entityType;
-@property(readonly) EKEventStore * eventStore;
+@property (nonatomic, retain) NSMutableDictionary *committedProperties;
+@property (nonatomic, readonly) int entityType;
+@property (nonatomic, readonly) EKEventStore *eventStore;
 
 + (id)defaultPropertiesToLoad;
 + (id)relations;
@@ -40,8 +38,8 @@
 - (BOOL)_loadRelationForKey:(id)arg1 value:(id*)arg2;
 - (id)_loadStringValueForKey:(id)arg1;
 - (id)_loadedPropertyKeys;
-- (void)_primitiveSetValue:(id)arg1 forKey:(id)arg2 daemonSetter:(id)arg3;
-- (id)_primitiveValueForKey:(id)arg1 loader:(id)arg2;
+- (void)_primitiveSetValue:(id)arg1 forKey:(id)arg2 daemonSetter:(id /* block */)arg3;
+- (id)_primitiveValueForKey:(id)arg1 loader:(id /* block */)arg2;
 - (id)_propertyForKey:(id)arg1;
 - (id)_relationForKey:(id)arg1;
 - (void)_releaseLoadedProperties;
@@ -93,10 +91,8 @@
 - (void)primitiveSetRelationValue:(id)arg1 forKey:(id)arg2;
 - (void)primitiveSetStringValue:(id)arg1 forKey:(id)arg2;
 - (void)primitiveSetURLValue:(id)arg1 forKey:(id)arg2;
-- (void)primitiveSetUnboundedStringValue:(id)arg1 forKey:(id)arg2;
 - (id)primitiveStringValueForKey:(id)arg1;
 - (id)primitiveURLValueForKey:(id)arg1;
-- (id)primitiveUnboundedStringValueForKey:(id)arg1;
 - (void)primitiveValueChangedForKey:(id)arg1;
 - (BOOL)pushDirtyProperties:(id*)arg1;
 - (BOOL)refresh;

@@ -2,18 +2,16 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class NSMutableDictionary, NSString;
-
 @interface CNSocialProfile : NSObject <NSCopying, NSMutableCopying> {
     NSMutableDictionary *_profileDictionary;
 }
 
-@property(readonly) NSString * displayname;
-@property(retain) NSMutableDictionary * profileDictionary;
-@property(readonly) NSString * service;
-@property(readonly) NSString * urlString;
-@property(readonly) NSString * userIdentifier;
-@property(readonly) NSString * username;
+@property (readonly, copy) NSString *displayname;
+@property (retain) NSMutableDictionary *profileDictionary;
+@property (readonly, copy) NSString *service;
+@property (readonly, copy) NSString *urlString;
+@property (readonly, copy) NSString *userIdentifier;
+@property (readonly, copy) NSString *username;
 
 + (id)socialProfile;
 + (id)socialProfileWithDictionary:(id)arg1;

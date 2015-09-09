@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class NSString, UILabel, UITextView, UIView;
-
 @interface SKUIGiftTextTableViewCell : UITableViewCell <UITextViewDelegate> {
     UIView *_bottomBorderView;
     UILabel *_label;
@@ -13,10 +11,14 @@
     UIView *_topBorderView;
 }
 
-@property(copy) NSString * label;
-@property int maximumCharacterCount;
-@property(copy) NSString * placeholder;
-@property(retain) UITextView * textView;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *label;
+@property (nonatomic) int maximumCharacterCount;
+@property (nonatomic, copy) NSString *placeholder;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) UITextView *textView;
 
 + (id)newTextView;
 
@@ -31,8 +33,8 @@
 - (void)setMaximumCharacterCount:(int)arg1;
 - (void)setPlaceholder:(id)arg1;
 - (void)setTextView:(id)arg1;
-- (BOOL)textView:(id)arg1 shouldChangeTextInRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2 replacementText:(id)arg3;
 - (id)textView;
+- (BOOL)textView:(id)arg1 shouldChangeTextInRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2 replacementText:(id)arg3;
 - (void)textViewDidBeginEditing:(id)arg1;
 - (void)textViewDidEndEditing:(id)arg1;
 

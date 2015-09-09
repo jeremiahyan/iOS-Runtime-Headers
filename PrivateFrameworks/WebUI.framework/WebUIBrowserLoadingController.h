@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/WebUI.framework/WebUI
  */
 
-@class <WebUIBrowserLoadingControllerDelegate>, NSArray, NSError, NSString, NSURL, UIWebBrowserView, WebDataSource;
-
 @interface WebUIBrowserLoadingController : NSObject {
     NSURL *_URL;
     NSString *_URLString;
@@ -30,19 +28,20 @@
     NSString *_userTypedAddress;
 }
 
-@property(retain) NSURL * URL;
-@property(readonly) NSString * URLString;
-@property(retain) UIWebBrowserView * browserView;
-@property(readonly) BOOL canGoBack;
-@property(readonly) BOOL canGoForward;
-@property <WebUIBrowserLoadingControllerDelegate> * delegate;
-@property float estimatedProgress;
-@property(getter=isLoading,readonly) BOOL loading;
-@property int loadingState;
-@property(getter=isSecure,readonly) BOOL secure;
-@property(getter=isSimulatingClick,readonly) BOOL simulatingClick;
-@property(copy) NSString * title;
+@property (nonatomic, retain) NSURL *URL;
+@property (nonatomic, readonly) NSString *URLString;
+@property (nonatomic, retain) UIWebBrowserView *browserView;
+@property (nonatomic, readonly) BOOL canGoBack;
+@property (nonatomic, readonly) BOOL canGoForward;
+@property (nonatomic) <WebUIBrowserLoadingControllerDelegate> *delegate;
+@property (nonatomic) float estimatedProgress;
+@property (getter=isLoading, nonatomic, readonly) BOOL loading;
+@property (nonatomic) int loadingState;
+@property (getter=isSecure, nonatomic, readonly) BOOL secure;
+@property (getter=isSimulatingClick, nonatomic, readonly) BOOL simulatingClick;
+@property (nonatomic, copy) NSString *title;
 
+- (void).cxx_destruct;
 - (id)URL;
 - (id)URLString;
 - (BOOL)_URLMayStartLoad:(id)arg1;
@@ -59,10 +58,10 @@
 - (void)_setBackURL:(id)arg1;
 - (void)_setFallbackURLs:(id)arg1;
 - (void)_setForwardURL:(id)arg1;
-- (void)_setLoading:(BOOL)arg1 withError:(BOOL)arg2 fromDelegate:(BOOL)arg3 fromFragmentLoad:(BOOL)arg4;
-- (void)_setLoading:(BOOL)arg1 withError:(BOOL)arg2 fromDelegate:(BOOL)arg3;
-- (void)_setLoading:(BOOL)arg1 withError:(BOOL)arg2 fromFragmentLoad:(BOOL)arg3;
 - (void)_setLoading:(BOOL)arg1 withError:(BOOL)arg2;
+- (void)_setLoading:(BOOL)arg1 withError:(BOOL)arg2 fromDelegate:(BOOL)arg3;
+- (void)_setLoading:(BOOL)arg1 withError:(BOOL)arg2 fromDelegate:(BOOL)arg3 fromFragmentLoad:(BOOL)arg4;
+- (void)_setLoading:(BOOL)arg1 withError:(BOOL)arg2 fromFragmentLoad:(BOOL)arg3;
 - (void)_setLoadingFromDelegate:(BOOL)arg1 withError:(id)arg2 dataSource:(id)arg3;
 - (void)_setSecurePageHasInsecureContent:(BOOL)arg1;
 - (void)_setUserTypedAddress:(id)arg1;
@@ -92,7 +91,6 @@
 - (void)loadWebClip:(id)arg1 userDriven:(BOOL)arg2;
 - (int)loadingState;
 - (void)reload;
-- (void)reportNetworkDataUsageOfRawBytesSent:(unsigned long long)arg1 rawBytesReceived:(unsigned long long)arg2 cellularBytesSent:(unsigned long long)arg3 cellularBytesReceived:(unsigned long long)arg4;
 - (void)setBrowserView:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setEstimatedProgress:(float)arg1;

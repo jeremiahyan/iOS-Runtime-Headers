@@ -2,14 +2,12 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UITableViewCellDeleteConfirmationGestureRecognizer;
-
 @interface UITableViewCellDeleteConfirmationControl_Legacy : UIControl {
     UITableViewCellDeleteConfirmationGestureRecognizer *_deleteConfirmationGesture;
     BOOL _visible;
 }
 
-@property(getter=isVisible) BOOL visible;
+@property (getter=isVisible, nonatomic) BOOL visible;
 
 + (struct CGSize { float x1; float x2; })defaultSizeForTitle:(id)arg1;
 
@@ -25,8 +23,8 @@
 - (id)initWithTitle:(id)arg1;
 - (BOOL)isVisible;
 - (void)layoutSubviews;
-- (void)setVisible:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setVisible:(BOOL)arg1;
+- (void)setVisible:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)touchUpInside:(id)arg1;
 - (void)touchUpOutside:(id)arg1;
 

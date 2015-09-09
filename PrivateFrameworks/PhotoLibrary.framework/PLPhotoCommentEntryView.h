@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibrary.framework/PhotoLibrary
  */
 
-@class <PLPhotoCommentEntryViewDelegate>, UIButton, UILabel, UITextView;
-
 @interface PLPhotoCommentEntryView : UIView <UITextViewDelegate> {
     <PLPhotoCommentEntryViewDelegate> *_delegate;
     UILabel *_placeholderLabel;
@@ -12,10 +10,14 @@
     UILabel *placeholderLabel;
 }
 
-@property <PLPhotoCommentEntryViewDelegate> * delegate;
-@property(readonly) UILabel * placeholderLabel;
-@property(readonly) UIButton * postButton;
-@property(readonly) UITextView * textView;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <PLPhotoCommentEntryViewDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly, retain) UILabel *placeholderLabel;
+@property (nonatomic, readonly, retain) UIButton *postButton;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly, retain) UITextView *textView;
 
 - (void)clearText;
 - (void)dealloc;
@@ -26,6 +28,7 @@
 - (id)postButton;
 - (float)preferredHeight;
 - (void)setDelegate:(id)arg1;
+- (void)setText:(id)arg1;
 - (id)textView;
 - (void)textViewDidChange:(id)arg1;
 - (id)trimmedText;

@@ -2,12 +2,13 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class SADomainObject;
+@interface SADomainObjectCommit : SABaseClientBoundCommand <SADomainObjectCommand>
 
-@interface SADomainObjectCommit : SABaseClientBoundCommand <SADomainObjectCommand> {
-}
-
-@property(retain) SADomainObject * identifier;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) SADomainObject *identifier;
+@property (readonly) Class superclass;
 
 + (id)domainObjectCommit;
 + (id)domainObjectCommitWithDictionary:(id)arg1 context:(id)arg2;

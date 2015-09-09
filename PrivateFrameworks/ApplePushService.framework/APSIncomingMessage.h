@@ -2,22 +2,22 @@
    Image: /System/Library/PrivateFrameworks/ApplePushService.framework/ApplePushService
  */
 
-@class NSDate;
+@interface APSIncomingMessage : APSMessage
 
-@interface APSIncomingMessage : APSMessage {
-}
-
-@property(getter=wasFromStorage) BOOL fromStorage;
-@property(getter=wasLastMessageFromStorage) BOOL lastMessageFromStorage;
-@property int priority;
-@property(copy) NSDate * timestamp;
+@property (getter=wasFromStorage, nonatomic) BOOL fromStorage;
+@property (getter=wasLastMessageFromStorage, nonatomic) BOOL lastMessageFromStorage;
+@property (nonatomic) int priority;
+@property (nonatomic, copy) NSDate *timestamp;
+@property (nonatomic, copy) NSData *token;
 
 - (int)priority;
 - (void)setFromStorage:(BOOL)arg1;
 - (void)setLastMessageFromStorage:(BOOL)arg1;
 - (void)setPriority:(int)arg1;
 - (void)setTimestamp:(id)arg1;
+- (void)setToken:(id)arg1;
 - (id)timestamp;
+- (id)token;
 - (BOOL)wasFromStorage;
 - (BOOL)wasLastMessageFromStorage;
 

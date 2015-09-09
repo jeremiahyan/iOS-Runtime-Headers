@@ -2,20 +2,19 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSString;
+@interface SABaseCommand : AceObject <SAAceCommand, SAAceSerializable>
 
-@interface SABaseCommand : AceObject <SAAceSerializable, SAAceCommand> {
-}
-
-@property(copy) NSString * aceId;
-@property(copy) NSString * refId;
+@property (nonatomic, copy) NSString *aceId;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *refId;
+@property (readonly) Class superclass;
 
 + (id)baseCommand;
 + (id)baseCommandWithDictionary:(id)arg1 context:(id)arg2;
 
 - (id)encodedClassName;
 - (id)groupIdentifier;
-- (void)setAceId:(id)arg1;
-- (void)setRefId:(id)arg1;
 
 @end

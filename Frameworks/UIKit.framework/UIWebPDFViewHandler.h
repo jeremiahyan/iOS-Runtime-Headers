@@ -2,9 +2,22 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, NSDictionary, NSMapTable, NSObject<UIWebPDFViewHandlerDelegate>, UIAlertView, UIColor, UIDocumentPasswordView, UIView, UIWebPDFLabelView, UIWebPDFView, WebPDFNSNumberFormatter, _UIHighlightView, _UIRotatingActionSheet;
-
-@interface UIWebPDFViewHandler : NSObject <UIWebPDFViewPrivateDelegate, UIDocumentPasswordViewDelegate, UIActionSheetDelegate, _UIRotatingActionSheetDelegate, UIWebPDFViewDelegate, _UIWebDoubleTapDelegate, _UIWebRotationDelegate> {
+@interface UIWebPDFViewHandler : NSObject <UIDocumentPasswordViewDelegate, UIWebPDFViewDelegate, UIWebPDFViewPrivateDelegate, _UIRotatingAlertControllerDelegate, _UIWebDoubleTapDelegate, _UIWebRotationDelegate> {
+    UIColor *_backgroundColorForUnRenderedContent;
+    BOOL _cachedScrollViewShadowsState;
+    UIAlertView *_currentAlert;
+    BOOL _hideActivityIndicatorForUnRenderedContent;
+    BOOL _hidePageViewsUntilReadyToRender;
+    float _initialZoomScale;
+    WebPDFNSNumberFormatter *_labelViewFormatter;
+    NSDictionary *_linkActionInfo;
+    _UIRotatingAlertController *_linkActionSheet;
+    NSArray *_linkActions;
+    _UIHighlightView *_linkHighlightView;
+    UIWebPDFLabelView *_pageLabelView;
+    UIDocumentPasswordView *_passwordEntryView;
+    NSObject<UIWebPDFViewHandlerDelegate> *_pdfHandlerDelegate;
+    UIWebPDFView *_pdfView;
     struct _PDFHistoryItem { 
         BOOL restorePending; 
         BOOL isInitialScale; 
@@ -13,6 +26,7 @@
             float x; 
             float y; 
         } contentOffset; 
+    } _pendingHistoryItemRestore;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -22,22 +36,6 @@
             float width; 
             float height; 
         } size; 
-    UIColor *_backgroundColorForUnRenderedContent;
-    BOOL _cachedScrollViewShadowsState;
-    UIAlertView *_currentAlert;
-    BOOL _hideActivityIndicatorForUnRenderedContent;
-    BOOL _hidePageViewsUntilReadyToRender;
-    float _initialZoomScale;
-    WebPDFNSNumberFormatter *_labelViewFormatter;
-    NSDictionary *_linkActionInfo;
-    _UIRotatingActionSheet *_linkActionSheet;
-    NSArray *_linkActions;
-    _UIHighlightView *_linkHighlightView;
-    UIWebPDFLabelView *_pageLabelView;
-    UIDocumentPasswordView *_passwordEntryView;
-    NSObject<UIWebPDFViewHandlerDelegate> *_pdfHandlerDelegate;
-    UIWebPDFView *_pdfView;
-    } _pendingHistoryItemRestore;
     } _rectOfInterest;
     BOOL _rectOfInterestConsidersHeight;
     BOOL _scalesPageToFit;
@@ -46,14 +44,14 @@
     BOOL _showsShadowsForHTMLContent;
 }
 
-@property(retain) UIColor * backgroundColorForUnRenderedContent;
-@property(readonly) UIView * frontView;
-@property BOOL hideActivityIndicatorForUnRenderedContent;
-@property BOOL hidePageViewsUntilReadyToRender;
-@property NSObject<UIWebPDFViewHandlerDelegate> * pdfHandlerDelegate;
-@property(readonly) UIWebPDFView * pdfView;
-@property BOOL scalesPageToFit;
-@property BOOL showPageLabels;
+@property (nonatomic, retain) UIColor *backgroundColorForUnRenderedContent;
+@property (nonatomic, readonly) UIView *frontView;
+@property (nonatomic) BOOL hideActivityIndicatorForUnRenderedContent;
+@property (nonatomic) BOOL hidePageViewsUntilReadyToRender;
+@property (nonatomic) NSObject<UIWebPDFViewHandlerDelegate> *pdfHandlerDelegate;
+@property (nonatomic, readonly) UIWebPDFView *pdfView;
+@property (nonatomic) BOOL scalesPageToFit;
+@property (nonatomic) BOOL showPageLabels;
 
 - (id)_absoluteUrlRelativeToDocumentURL:(id)arg1;
 - (id)_actionForType:(int)arg1;
@@ -85,8 +83,6 @@
 - (void)_showPasswordErrorAlert;
 - (void)_updateViewHierarchyForDocumentView:(id)arg1 ignoreIfSame:(BOOL)arg2;
 - (unsigned int)_verticalEdgeForContentOffsetInScrollView:(id)arg1;
-- (void)actionSheet:(id)arg1 clickedButtonAtIndex:(int)arg2;
-- (void)actionSheet:(id)arg1 didDismissWithButtonIndex:(int)arg2;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })activeRectForRectOfInterest:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)adjustZoomScalesForScrollView;
 - (void)alertView:(id)arg1 didDismissWithButtonIndex:(int)arg2;
@@ -127,8 +123,9 @@
 - (float)minimumVerticalContentOffset;
 - (id)passwordForPDFView:(id)arg1;
 - (id)pdfHandlerDelegate;
-- (void)pdfView:(id)arg1 zoomToRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2 forPoint:(struct CGPoint { float x1; float x2; })arg3 considerHeight:(BOOL)arg4;
 - (id)pdfView;
+- (void)pdfView:(id)arg1 zoomToRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2 forPoint:(struct CGPoint { float x1; float x2; })arg3 considerHeight:(BOOL)arg4;
+- (void)performAction:(id)arg1 fromAlertController:(id)arg2;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })presentationRectInHostViewForSheet:(id)arg1;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })rectOfInterestForPoint:(struct CGPoint { float x1; float x2; })arg1;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })rectOfInterestForRotation;
@@ -154,8 +151,8 @@
 - (void)updatePageNumberLabelWithUserScrolling:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)updateViewHierarchyForDocumentViewLoadComplete:(id)arg1;
 - (void)updateViewHierarchyForDocumentViewNewLoad:(id)arg1;
-- (void)updateViewHierarchyForDocumentViewTabSwitch:(id)arg1 restoringZoomScale:(float)arg2 andScrollPt:(struct CGPoint { float x1; float x2; })arg3;
 - (void)updateViewHierarchyForDocumentViewTabSwitch:(id)arg1;
+- (void)updateViewHierarchyForDocumentViewTabSwitch:(id)arg1 restoringZoomScale:(float)arg2 andScrollPt:(struct CGPoint { float x1; float x2; })arg3;
 - (void)updateViewHierarchyForFirstNonEmptyLayoutInFrame:(id)arg1;
 - (void)updateViewSettings;
 - (void)userDidEnterPassword:(id)arg1 forPasswordView:(id)arg2;

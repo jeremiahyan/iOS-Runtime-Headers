@@ -2,22 +2,21 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class <SKUIGiftViewControllerDelegate>, NSOperationQueue, SKUIClientContext, SKUIGift, SKUIGiftComposeViewController, SKUIGiftConfiguration, UIViewController;
-
 @interface SKUIGiftViewController : UINavigationController {
     SKUIClientContext *_clientContext;
     SKUIGift *_gift;
     SKUIGiftConfiguration *_giftConfiguration;
     <SKUIGiftViewControllerDelegate> *_giftDelegate;
+    int _initialBarStyle;
     NSOperationQueue *_operationQueue;
     UIViewController *_placeholderViewController;
     SKUIGiftComposeViewController *_rootViewController;
 }
 
-@property(retain) SKUIClientContext * clientContext;
-@property(readonly) SKUIGift * gift;
-@property <SKUIGiftViewControllerDelegate> * giftDelegate;
-@property(retain) NSOperationQueue * operationQueue;
+@property (nonatomic, retain) SKUIClientContext *clientContext;
+@property (nonatomic, readonly, copy) SKUIGift *gift;
+@property (nonatomic) <SKUIGiftViewControllerDelegate> *giftDelegate;
+@property (nonatomic, retain) NSOperationQueue *operationQueue;
 
 - (void).cxx_destruct;
 - (void)_cancelButtonAction:(id)arg1;
@@ -35,6 +34,9 @@
 - (void)setClientContext:(id)arg1;
 - (void)setGiftDelegate:(id)arg1;
 - (void)setOperationQueue:(id)arg1;
+- (unsigned int)supportedInterfaceOrientations;
+- (void)viewDidAppear:(BOOL)arg1;
 - (void)viewWillAppear:(BOOL)arg1;
+- (void)viewWillDisappear:(BOOL)arg1;
 
 @end

@@ -2,15 +2,13 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class CMArchiveManager, NSMutableArray, NSString;
-
 @interface CSVMapper : CMMapper {
-    struct CGSize { 
-        float width; 
-        float height; 
     CMArchiveManager *mArchiver;
     unsigned int mColumnCount;
     NSString *mFileName;
+    struct CGSize { 
+        float width; 
+        float height; 
     } mPageSize;
     NSMutableArray *mRows;
 }

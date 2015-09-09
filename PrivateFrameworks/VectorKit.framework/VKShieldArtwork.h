@@ -2,42 +2,50 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSCache, NSDictionary, NSMutableDictionary, NSString, VKObjectPool, VKPShieldVariant;
-
-@interface VKShieldArtwork : NSObject <VKObjectPoolObject> {
+@interface VKShieldArtwork : NSObject {
+    struct CGImage { } *_backgroundImage;
     struct CGPoint { 
         float x; 
         float y; 
+    } _center;
+    NSCache *_imageCache;
+    float _lineHeight;
+    float _lineSpacing;
+    id /* block */ _newContext;
+    struct __CTFont { } *_nonDigitFont;
+    BOOL _resizable;
+    struct { 
+        float leftCapWidth; 
+        float rightCapWidth; 
+        float leftPadding; 
+        float rightPadding; 
+    } _resizableInfo;
+    float _scale;
+    struct CGColor { } *_shadowColor;
     struct CGSize { 
         float width; 
         float height; 
-    } _center;
-    float _extraScale;
-    NSCache *_imageCache;
-    } _imageSize;
-    id _newContext;
-    struct __CTFont { } *_nonDigitFont;
-    VKObjectPool *_pool;
-    NSString *_poolKey;
-    float _scale;
-    struct CGColor { } *_shadowColor;
+    } _shadowOffset;
+    float _shadowRadius;
     NSDictionary *_stringAttributes;
     struct CGContext { } *_templateContext;
+    float _textBaseline;
+    float _textCenterOffsetX;
     NSMutableDictionary *_textSpecificArtworks;
-    VKPShieldVariant *_variantData;
 }
 
+@property (nonatomic, readonly) float scale;
+
 - (id).cxx_construct;
+- (id)_initWithBackgroundImage:(struct CGImage { }*)arg1 contentScale:(float)arg2 resizableInfo:(struct { float x1; float x2; float x3; float x4; }*)arg3 font:(struct __CTFont { }*)arg4 nonDigitFont:(struct __CTFont { }*)arg5 textColor:(struct CGColor { }*)arg6 textCenterOffsetX:(float)arg7 textBaseline:(float)arg8 textStrokeWidth:(float)arg9 textStrokeColor:(struct CGColor { }*)arg10 textShadowOffset:(struct CGSize { float x1; float x2; })arg11 textShadowRadius:(float)arg12 textShadowColor:(struct CGColor { }*)arg13 lineSpacing:(float)arg14;
 - (void)dealloc;
-- (id)imageWithShieldText:(id)arg1 allowMultiline:(BOOL)arg2;
 - (id)imageWithShieldText:(id)arg1;
-- (id)initWithPackedVariant:(id)arg1 imageAtlas:(id)arg2 quadSize:(struct CGSize { float x1; float x2; })arg3 scale:(float)arg4 extraScale:(float)arg5;
+- (id)imageWithShieldText:(id)arg1 allowMultiline:(BOOL)arg2;
+- (id)initWithBackgroundImage:(struct CGImage { }*)arg1 contentScale:(float)arg2 font:(struct __CTFont { }*)arg3 nonDigitFont:(struct __CTFont { }*)arg4 textColor:(struct CGColor { }*)arg5 textCenterOffsetX:(float)arg6 textBaseline:(float)arg7 textStrokeWidth:(float)arg8 textStrokeColor:(struct CGColor { }*)arg9 textShadowOffset:(struct CGSize { float x1; float x2; })arg10 textShadowRadius:(float)arg11 textShadowColor:(struct CGColor { }*)arg12;
+- (id)initWithPackedVariant:(id)arg1 backgroundImage:(struct CGImage { }*)arg2 scale:(float)arg3 colors:(struct { struct Matrix<float, 4, 1> { float x_1_1_1[4]; } x1; }*)arg4;
+- (id)initWithResizableBackgroundImage:(struct CGImage { }*)arg1 resizableInfo:(struct { float x1; float x2; float x3; float x4; }*)arg2 contentScale:(float)arg3 font:(struct __CTFont { }*)arg4 nonDigitFont:(struct __CTFont { }*)arg5 textColor:(struct CGColor { }*)arg6 textCenterOffsetX:(float)arg7 textBaseline:(float)arg8 textStrokeWidth:(float)arg9 textStrokeColor:(struct CGColor { }*)arg10 textShadowOffset:(struct CGSize { float x1; float x2; })arg11 textShadowRadius:(float)arg12 textShadowColor:(struct CGColor { }*)arg13 lineSpacing:(float)arg14;
 - (struct CGImage { }*)newImageWithShieldText:(id)arg1 allowMultiline:(BOOL)arg2 centerPoint:(struct CGPoint { float x1; float x2; }*)arg3;
-- (void)setPool:(id)arg1 withKey:(id)arg2;
+- (float)scale;
 - (void)setTextSpecificArtwork:(id)arg1 forStrings:(id)arg2;
 
 @end

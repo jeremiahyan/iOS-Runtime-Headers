@@ -2,23 +2,20 @@
    Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
  */
 
-@class <SUScriptNavigationItem>, NSArray, NSString, SUScriptButton, SUScriptNavigationItem;
+@interface SUScriptNavigationBar : SUScriptObject
 
-@interface SUScriptNavigationBar : SUScriptObject {
-}
-
-@property(readonly) SUScriptNavigationItem * backNavigationItem;
+@property (readonly) SUScriptNavigationItem *backNavigationItem;
 @property int barStyle;
-@property(readonly) int barStyleBlack;
-@property(readonly) int barStyleDefault;
-@property(retain) SUScriptButton * leftButton;
-@property(retain) <SUScriptNavigationItem> * leftItem;
-@property(readonly) NSArray * navigationItems;
-@property(retain) NSString * prompt;
-@property(retain) SUScriptButton * rightButton;
-@property(retain) <SUScriptNavigationItem> * rightItem;
-@property(readonly) SUScriptNavigationItem * topNavigationItem;
-@property(copy) id translucent;
+@property (readonly) int barStyleBlack;
+@property (readonly) int barStyleDefault;
+@property (retain) SUScriptButton *leftButton;
+@property (retain) <SUScriptNavigationItem> *leftItem;
+@property (readonly) NSArray *navigationItems;
+@property (retain) NSString *prompt;
+@property (retain) SUScriptButton *rightButton;
+@property (retain) <SUScriptNavigationItem> *rightItem;
+@property (readonly) SUScriptNavigationItem *topNavigationItem;
+@property (copy) id translucent;
 
 + (void)initialize;
 + (id)webScriptNameForKeyName:(id)arg1;
@@ -45,16 +42,16 @@
 - (id)scriptAttributeKeys;
 - (void)setBackNavigationItem:(id)arg1;
 - (void)setBarStyle:(int)arg1;
-- (void)setLeftButton:(id)arg1 animated:(BOOL)arg2;
 - (void)setLeftButton:(id)arg1;
-- (void)setLeftItem:(id)arg1 animated:(BOOL)arg2;
+- (void)setLeftButton:(id)arg1 animated:(BOOL)arg2;
 - (void)setLeftItem:(id)arg1;
+- (void)setLeftItem:(id)arg1 animated:(BOOL)arg2;
 - (void)setNavigationItems:(id)arg1;
 - (void)setPrompt:(id)arg1;
-- (void)setRightButton:(id)arg1 animated:(BOOL)arg2;
 - (void)setRightButton:(id)arg1;
-- (void)setRightItem:(id)arg1 animated:(BOOL)arg2;
+- (void)setRightButton:(id)arg1 animated:(BOOL)arg2;
 - (void)setRightItem:(id)arg1;
+- (void)setRightItem:(id)arg1 animated:(BOOL)arg2;
 - (void)setTopNavigationItem:(id)arg1;
 - (void)setTranslucent:(id)arg1;
 - (void)tearDownUserInterface;

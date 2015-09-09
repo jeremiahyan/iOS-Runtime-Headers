@@ -2,14 +2,7 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class <UITextContentViewDelegate>, <UITextInputDelegate>, <UITextInputTokenizer>, DOMHTMLElement, NSAttributedString, NSDictionary, NSString, UIColor, UIDelayedAction, UIFont, UITextInteractionAssistant, UITextPosition, UITextRange, UIView, UIWebDocumentView, WebFrame;
-
-@interface UITextContentView : UIView <UITextInput, UITextLinkInteraction, UITextInputTraits> {
-    struct UIEdgeInsets { 
-        float top; 
-        float left; 
-        float bottom; 
-        float right; 
+@interface UITextContentView : UIView <UITextInput, UITextInputTraits, UITextLinkInteraction> {
     BOOL m_allowsEditingTextAttributes;
     BOOL m_becomesEditableWithGestures;
     BOOL m_becomingFirstResponder;
@@ -24,8 +17,12 @@
     UITextInteractionAssistant *m_interactionAssistant;
     int m_marginTop;
     BOOL m_reentrancyGuard;
-    UIDelayedAction *m_scrollToVisibleTimer;
     BOOL m_scrollsSelectionOnWebDocumentChanges;
+    struct UIEdgeInsets { 
+        float top; 
+        float left; 
+        float bottom; 
+        float right; 
     } m_selectionInset;
     int m_textAlignment;
     UIColor *m_textColor;
@@ -33,35 +30,39 @@
     UIWebDocumentView *m_webView;
 }
 
-@property BOOL allowsEditingTextAttributes;
-@property(copy) NSAttributedString * attributedText;
-@property int autocapitalizationType;
-@property int autocorrectionType;
-@property(readonly) UITextPosition * beginningOfDocument;
-@property <UITextContentViewDelegate> * delegate;
-@property(getter=isEditable) BOOL editable;
-@property(getter=isEditing) BOOL editing;
-@property BOOL enablesReturnKeyAutomatically;
-@property(readonly) UITextPosition * endOfDocument;
-@property(retain) UIFont * font;
-@property <UITextInputDelegate> * inputDelegate;
-@property int keyboardAppearance;
-@property int keyboardType;
-@property(readonly) UITextRange * markedTextRange;
-@property(copy) NSDictionary * markedTextStyle;
-@property int returnKeyType;
-@property BOOL scrollsSelectionOnWebDocumentChanges;
-@property(getter=isSecureTextEntry) BOOL secureTextEntry;
-@property struct _NSRange { unsigned int x1; unsigned int x2; } selectedRange;
-@property(copy) UITextRange * selectedTextRange;
-@property int selectionAffinity;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } selectionInset;
-@property int spellCheckingType;
-@property(copy) NSString * text;
-@property int textAlignment;
-@property(retain) UIColor * textColor;
-@property(readonly) UIView * textInputView;
-@property(readonly) <UITextInputTokenizer> * tokenizer;
+@property (nonatomic) BOOL allowsEditingTextAttributes;
+@property (nonatomic, copy) NSAttributedString *attributedText;
+@property (nonatomic) int autocapitalizationType;
+@property (nonatomic) int autocorrectionType;
+@property (nonatomic, readonly) UITextPosition *beginningOfDocument;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <UITextContentViewDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (getter=isEditable, nonatomic) BOOL editable;
+@property (getter=isEditing, nonatomic) BOOL editing;
+@property (nonatomic) BOOL enablesReturnKeyAutomatically;
+@property (nonatomic, readonly) UITextPosition *endOfDocument;
+@property (nonatomic, retain) UIFont *font;
+@property (readonly) unsigned int hash;
+@property (nonatomic) <UITextInputDelegate> *inputDelegate;
+@property (nonatomic) int keyboardAppearance;
+@property (nonatomic) int keyboardType;
+@property (nonatomic, readonly) UITextRange *markedTextRange;
+@property (nonatomic, copy) NSDictionary *markedTextStyle;
+@property (nonatomic) int returnKeyType;
+@property (nonatomic) BOOL scrollsSelectionOnWebDocumentChanges;
+@property (getter=isSecureTextEntry, nonatomic) BOOL secureTextEntry;
+@property (nonatomic) struct _NSRange { unsigned int x1; unsigned int x2; } selectedRange;
+@property (copy) UITextRange *selectedTextRange;
+@property (nonatomic) int selectionAffinity;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } selectionInset;
+@property (nonatomic) int spellCheckingType;
+@property (readonly) Class superclass;
+@property (nonatomic, copy) NSString *text;
+@property (nonatomic) int textAlignment;
+@property (nonatomic, retain) UIColor *textColor;
+@property (nonatomic, readonly) UIView *textInputView;
+@property (nonatomic, readonly) <UITextInputTokenizer> *tokenizer;
 
 - (void)_addShortcut:(id)arg1;
 - (unsigned int)_allowedLinkTypes;
@@ -81,6 +82,8 @@
 - (void)_scrollViewWillBeginDragging;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_selectionClipRect;
 - (void)_showTextStyleOptions:(id)arg1;
+- (void)_sizeChanged;
+- (void)_transliterateChinese:(id)arg1;
 - (BOOL)allowsEditingTextAttributes;
 - (id)attributedText;
 - (id)automaticallySelectedOverlay;
@@ -100,10 +103,9 @@
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })caretRectForVisiblePosition:(id)arg1;
 - (id)characterRangeAtPoint:(struct CGPoint { float x1; float x2; })arg1;
 - (id)characterRangeByExtendingPosition:(id)arg1 inDirection:(int)arg2;
-- (void)clearScrollToVisibleTimer;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })closestCaretRectInMarkedTextRangeForPoint:(struct CGPoint { float x1; float x2; })arg1;
-- (id)closestPositionToPoint:(struct CGPoint { float x1; float x2; })arg1 withinRange:(id)arg2;
 - (id)closestPositionToPoint:(struct CGPoint { float x1; float x2; })arg1;
+- (id)closestPositionToPoint:(struct CGPoint { float x1; float x2; })arg1 withinRange:(id)arg2;
 - (void)commonInitWithWebDocumentView:(id)arg1 isDecoding:(BOOL)arg2;
 - (int)comparePosition:(id)arg1 toPosition:(id)arg2;
 - (struct CGPoint { float x1; float x2; })constrainedPoint:(struct CGPoint { float x1; float x2; })arg1;
@@ -134,8 +136,8 @@
 - (id)hitTest:(struct CGPoint { float x1; float x2; })arg1 withEvent:(id)arg2;
 - (void)increaseSize:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 webView:(id)arg2;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 webView:(id)arg2;
 - (id)inputDelegate;
 - (void)insertDictationResult:(id)arg1 withCorrectionIdentifier:(id)arg2;
 - (id)insertDictationResultPlaceholder;
@@ -145,7 +147,6 @@
 - (BOOL)isEditing;
 - (BOOL)isFirstResponder;
 - (BOOL)isInteractingWithLink;
-- (BOOL)isSMSTextView;
 - (void)keyboardDidShow:(id)arg1;
 - (BOOL)keyboardInput:(id)arg1 shouldInsertText:(id)arg2 isMarkedText:(BOOL)arg3;
 - (BOOL)keyboardInput:(id)arg1 shouldReplaceTextInRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2 replacementText:(id)arg3;
@@ -172,7 +173,6 @@
 - (void)recalculateStyle;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })rectForScrollToVisible;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })rectForSelection:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1;
-- (void)registerForEditingDelegateNotification:(id)arg1 selector:(SEL)arg2;
 - (void)removeDictationResultPlaceholder:(id)arg1 willInsertResult:(BOOL)arg2;
 - (void)removeFromSuperview;
 - (void)replace:(id)arg1;
@@ -182,13 +182,10 @@
 - (void)scrollRangeToVisible:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1;
 - (void)scrollRectToVisible:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 animated:(BOOL)arg2;
 - (void)scrollSelectionToVisible:(BOOL)arg1;
-- (void)scrollToVisibleTimerAction;
-- (id)scrollView;
-- (BOOL)scrollingEnabled;
 - (BOOL)scrollsSelectionOnWebDocumentChanges;
 - (void)select:(id)arg1;
-- (void)selectAll:(id)arg1;
 - (void)selectAll;
+- (void)selectAll:(id)arg1;
 - (struct _NSRange { unsigned int x1; unsigned int x2; })selectedRange;
 - (id)selectedText;
 - (id)selectedTextRange;
@@ -199,12 +196,11 @@
 - (id)selectionRectsForRange:(id)arg1;
 - (id)selectionView;
 - (void)setAllowsEditingTextAttributes:(BOOL)arg1;
-- (void)setAllowsFourWayRubberBanding:(BOOL)arg1;
-- (void)setAllowsRubberBanding:(BOOL)arg1;
 - (void)setAttributedText:(id)arg1;
 - (void)setBaseWritingDirection:(int)arg1 forRange:(id)arg2;
 - (void)setBecomesEditableWithGestures:(BOOL)arg1;
 - (void)setBottomBufferHeight:(float)arg1;
+- (void)setBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)setContentToAttributedString:(id)arg1;
 - (void)setContentToHTMLString:(id)arg1;
 - (void)setDataDetectorTypes:(unsigned int)arg1;
@@ -218,8 +214,6 @@
 - (void)setMarkedText:(id)arg1 selectedRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2;
 - (void)setMarkedTextStyle:(id)arg1;
 - (void)setOffset:(struct CGPoint { float x1; float x2; })arg1;
-- (void)setScrollerIndicatorSubrect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
-- (void)setScrollingEnabled:(BOOL)arg1;
 - (void)setScrollsSelectionOnWebDocumentChanges:(BOOL)arg1;
 - (void)setSelectedRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1;
 - (void)setSelectedTextRange:(id)arg1;
@@ -230,12 +224,10 @@
 - (void)setSelectionToEnd;
 - (void)setSelectionToStart;
 - (void)setSelectionWithPoint:(struct CGPoint { float x1; float x2; })arg1;
-- (void)setShowScrollerIndicators:(BOOL)arg1;
 - (void)setText:(id)arg1;
 - (void)setTextAlignment:(int)arg1;
 - (void)setTextColor:(id)arg1;
 - (BOOL)shouldStartDataDetectors;
-- (BOOL)showScrollerIndicators;
 - (void)startAutoscroll:(struct CGPoint { float x1; float x2; })arg1;
 - (void)startDataDetectorsWithWebLock;
 - (void)startInteractionWithLinkAtPoint:(struct CGPoint { float x1; float x2; })arg1;
@@ -249,13 +241,11 @@
 - (id)textInRange:(id)arg1;
 - (id)textInputTraits;
 - (id)textRangeFromPosition:(id)arg1 toPosition:(id)arg2;
-- (struct CGSize { float x1; float x2; })tileSizeForSize:(struct CGSize { float x1; float x2; })arg1;
+- (id)textStylingAtPosition:(id)arg1 inDirection:(int)arg2;
 - (void)toggleBoldface:(id)arg1;
 - (void)toggleItalics:(id)arg1;
 - (void)toggleUnderline:(id)arg1;
 - (id)tokenizer;
-- (void)touchScrollToVisibleTimer;
-- (void)touchScrollToVisibleTimerWithDelay:(double)arg1;
 - (void)touchesEnded:(id)arg1 withEvent:(id)arg2;
 - (id)undoManager;
 - (id)undoManagerForWebView:(id)arg1;
@@ -263,12 +253,11 @@
 - (void)updateContentEditableAttribute:(BOOL)arg1;
 - (void)updateInteractionWithLinkAtPoint:(struct CGPoint { float x1; float x2; })arg1;
 - (void)updateSelection;
-- (void)updateWebViewObjects;
 - (void)validateInteractionWithLinkAtPoint:(struct CGPoint { float x1; float x2; })arg1;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })visibleRect;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })visibleTextRect;
-- (void)webView:(id)arg1 decidePolicyForNavigationAction:(id)arg2 request:(id)arg3 frame:(id)arg4 decisionListener:(id)arg5;
 - (id)webView;
+- (void)webView:(id)arg1 decidePolicyForNavigationAction:(id)arg2 request:(id)arg3 frame:(id)arg4 decisionListener:(id)arg5;
 - (void)webViewDidChange:(id)arg1;
 - (BOOL)willInteractWithLinkAtPoint:(struct CGPoint { float x1; float x2; })arg1;
 

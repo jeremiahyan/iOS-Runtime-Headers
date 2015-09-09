@@ -2,25 +2,22 @@
    Image: /System/Library/PrivateFrameworks/WebCore.framework/WebCore
  */
 
-@class DOMHTMLCollection, NSString;
+@interface DOMHTMLElement : DOMElement
 
-@interface DOMHTMLElement : DOMElement {
-}
-
-@property(copy) NSString * accessKey;
-@property(readonly) DOMHTMLCollection * children;
-@property(copy) NSString * contentEditable;
-@property(copy) NSString * dir;
-@property(copy) NSString * idName;
-@property(copy) NSString * innerHTML;
-@property(copy) NSString * innerText;
-@property(readonly) BOOL isContentEditable;
-@property(copy) NSString * lang;
-@property(copy) NSString * outerHTML;
-@property(copy) NSString * outerText;
+@property (copy) NSString *accessKey;
+@property (readonly) DOMHTMLCollection *children;
+@property (copy) NSString *contentEditable;
+@property (copy) NSString *dir;
+@property (copy) NSString *idName;
+@property (copy) NSString *innerHTML;
+@property (copy) NSString *innerText;
+@property (readonly) BOOL isContentEditable;
+@property (copy) NSString *lang;
+@property (copy) NSString *outerHTML;
+@property (copy) NSString *outerText;
 @property int tabIndex;
-@property(copy) NSString * title;
-@property(readonly) NSString * titleDisplayString;
+@property (copy) NSString *title;
+@property (readonly, copy) NSString *titleDisplayString;
 
 - (void)absolutePosition:(int*)arg1 :(int*)arg2 :(int*)arg3 :(int*)arg4;
 - (id)accessKey;
@@ -53,8 +50,8 @@
 - (void)setLang:(id)arg1;
 - (void)setOuterHTML:(id)arg1;
 - (void)setOuterText:(id)arg1;
-- (void)setScrollXOffset:(int)arg1 scrollYOffset:(int)arg2 adjustForPurpleCaret:(BOOL)arg3;
 - (void)setScrollXOffset:(int)arg1 scrollYOffset:(int)arg2;
+- (void)setScrollXOffset:(int)arg1 scrollYOffset:(int)arg2 adjustForIOSCaret:(BOOL)arg3;
 - (void)setSpellcheck:(BOOL)arg1;
 - (void)setTabIndex:(int)arg1;
 - (void)setTitle:(id)arg1;

@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@class NSMutableRLEArray, NSMutableString;
-
 @interface NSConcreteMutableAttributedString : NSMutableAttributedString {
     struct { 
         unsigned int attributeFixingDisabled : 8; 
@@ -14,6 +12,7 @@
 }
 
 + (Class)_mutableStringClass;
++ (BOOL)supportsSecureCoding;
 
 - (id)_runArrayHoldingAttributes;
 - (void)addAttribute:(id)arg1 value:(id)arg2 range:(struct _NSRange { unsigned int x1; unsigned int x2; })arg3;
@@ -27,8 +26,8 @@
 - (id)init;
 - (id)initWithAttributedString:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithString:(id)arg1 attributes:(id)arg2;
 - (id)initWithString:(id)arg1;
+- (id)initWithString:(id)arg1 attributes:(id)arg2;
 - (unsigned int)length;
 - (void)replaceCharactersInRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1 withAttributedString:(id)arg2;
 - (void)replaceCharactersInRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1 withString:(id)arg2;

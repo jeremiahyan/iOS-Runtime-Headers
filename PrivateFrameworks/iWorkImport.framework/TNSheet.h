@@ -2,28 +2,20 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class NSArray, NSMutableArray, NSObject<TSDContainerInfo>, NSString, TNDocumentRoot, TSDGuideStorage, TSDInfoGeometry, TSPObject<TSDOwningAttachment>, TSWPStorage;
-
-@interface TNSheet : TSPObject <TSKDocumentObject, TSKSearchTarget, TSKModel, TSCEResolverContainer, TSDDrawableContainerInfo> {
+@interface TNSheet : TSPObject <TSCEResolverContainer, TSDDrawableContainerInfo, TSKDocumentObject, TSKModel, TSKSearchTarget, TSWPHeaderFooterProvider> {
+    float _pageFooterInset;
+    float _pageHeaderInset;
     struct UIEdgeInsets { 
         float top; 
         float left; 
         float bottom; 
         float right; 
-    TSWPStorage *_footerStorage;
-    TSWPStorage *_headerStorage;
-    float _pageFooterInset;
-    float _pageHeaderInset;
     } _printMargins;
     int _startPageNumber;
     BOOL _usingStartPageNumber;
     NSMutableArray *mChildInfos;
     float mContentScale;
+    TSWPStorage *mHeaderFooters;
     BOOL mInDocument;
     BOOL mInPortraitPageOrientation;
     BOOL mIsAutofitOn;
@@ -31,60 +23,70 @@
     int mPageOrder;
     BOOL mShowPageNumbers;
     unsigned int mTableNameCounter;
-    TSDGuideStorage *mUserDefinedGuideStorage;
+    BOOL mUsesSingleHeaderFooter;
 }
 
-@property(readonly) NSArray * alignmentGuides;
-@property(readonly) NSArray * alignmentGuidesForEditing;
-@property(getter=isAnchoredToText,readonly) BOOL anchoredToText;
-@property(getter=isAttachedToBodyText,readonly) BOOL attachedToBodyText;
-@property float contentScale;
-@property(readonly) TNDocumentRoot * documentRoot;
-@property(getter=isFloatingAboveText,readonly) BOOL floatingAboveText;
-@property(retain) TSWPStorage * footerStorage;
-@property(copy) TSDInfoGeometry * geometry;
-@property(retain) TSWPStorage * headerStorage;
-@property BOOL inPortraitPageOrientation;
-@property(getter=isInlineWithText,readonly) BOOL inlineWithText;
-@property BOOL isAutofitOn;
-@property BOOL matchesObjectPlaceholderGeometry;
-@property(retain) NSString * name;
-@property TSPObject<TSDOwningAttachment> * owningAttachment;
-@property(readonly) TSPObject<TSDOwningAttachment> * owningAttachmentNoRecurse;
+@property (getter=isAnchoredToText, nonatomic, readonly) BOOL anchoredToText;
+@property (getter=isAttachedToBodyText, nonatomic, readonly) BOOL attachedToBodyText;
+@property (nonatomic) float contentScale;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) TNDocumentRoot *documentRoot;
+@property (getter=isFloatingAboveText, nonatomic, readonly) BOOL floatingAboveText;
+@property (nonatomic, readonly) NSArray *footerStorages;
+@property (nonatomic, copy) TSDInfoGeometry *geometry;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) NSArray *headerStorages;
+@property (nonatomic) BOOL inPortraitPageOrientation;
+@property (getter=isInlineWithText, nonatomic, readonly) BOOL inlineWithText;
+@property (nonatomic) BOOL isAutofitOn;
+@property (nonatomic) BOOL matchesObjectPlaceholderGeometry;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic) TSPObject<TSDOwningAttachment> *owningAttachment;
+@property (nonatomic, readonly) TSPObject<TSDOwningAttachment> *owningAttachmentNoRecurse;
 @property float pageFooterInset;
 @property float pageHeaderInset;
 @property int pageOrder;
-@property NSObject<TSDContainerInfo> * parentInfo;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } printMargins;
-@property BOOL showPageNumbers;
+@property (nonatomic) NSObject<TSDContainerInfo> *parentInfo;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } printMargins;
+@property (nonatomic) BOOL showPageNumbers;
 @property int startPageNumber;
-@property(retain) TSDGuideStorage * userDefinedGuideStorage;
-@property(getter=isUsingStartPageNumber) BOOL usingStartPageNumber;
+@property (readonly) Class superclass;
+@property (nonatomic) BOOL usesSingleHeaderFooter;
+@property (getter=isUsingStartPageNumber) BOOL usingStartPageNumber;
 
-+ (id)sheetForSelectionModel:(id)arg1;
++ (BOOL)needsObjectUUID;
++ (id)sheetForSelectionModel:(id)arg1 outIsPaginated:(BOOL*)arg2;
 
 - (id).cxx_construct;
 - (void)addChildInfo:(id)arg1;
-- (id)alignmentGuides;
-- (id)alignmentGuidesForEditing;
+- (float)bodyWidth;
 - (BOOL)canMoveDrawables:(id)arg1 toIndexes:(id)arg2;
 - (id)chartAndTableInfos;
 - (id)childEnumerator;
 - (id)childInfos;
 - (id)childSearchTargets;
+- (void)clearBackPointerToParentInfoIfNeeded:(id)arg1;
 - (float)contentScale;
 - (id)copyWithContext:(id)arg1;
 - (void)dealloc;
-- (id)deletionRewriteCommandForAllTables;
 - (id)description;
 - (id)documentRoot;
-- (id)footerStorage;
+- (void)enumerateHeaderFooterStoragesWithBlock:(id /* block */)arg1;
+- (id)footerStorages;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })frame;
 - (id)geometry;
 - (BOOL)hasReferenceToTables:(id)arg1;
-- (id)headerStorage;
+- (id)headerFooter:(int)arg1 fragmentAtIndex:(int)arg2;
+- (id)headerFooterFragmentEnumerator;
+- (int)headerFooterTypeForModel:(id)arg1;
+- (int)headerFragmentIndexForModel:(id)arg1;
+- (id)headerStorages;
+- (void)i_importHeadersFooters:(id)arg1 headerType:(int)arg2 useSingleHeaderFooter:(BOOL)arg3;
+- (id)i_newHeaderFooterStorage;
 - (BOOL)inPortraitPageOrientation;
-- (id)initFromArchive:(const struct SheetArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > {} *x3; struct RepeatedPtrField<TSP::Reference> { void **x_4_1_1; int x_4_1_2; int x_4_1_3; int x_4_1_4; } x4; boolx5; boolx6; boolx7; boolx8; float x9; int x10; boolx11; struct EdgeInsetsArchive {} *x12; int x13; float x14; struct Reference {} *x15; struct Reference {} *x16; struct Reference {} *x17; float x18; int x19; unsigned int x20[1]; }*)arg1 unarchiver:(id)arg2;
+- (id)infoForSelectionPath:(id)arg1;
+- (id)initFromArchive:(const struct SheetArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > {} *x5; struct RepeatedPtrField<TSP::Reference> { void **x_6_1_1; int x_6_1_2; int x_6_1_3; int x_6_1_4; } x6; bool x7; bool x8; bool x9; bool x10; float x11; struct EdgeInsetsArchive {} *x12; int x13; int x14; float x15; float x16; struct Reference {} *x17; struct Reference {} *x18; struct Reference {} *x19; struct RepeatedPtrField<TSP::Reference> { void **x_20_1_1; int x_20_1_2; int x_20_1_3; int x_20_1_4; } x20; struct RepeatedPtrField<TSP::Reference> { void **x_21_1_1; int x_21_1_2; int x_21_1_3; int x_21_1_4; } x21; bool x22; bool x23; }*)arg1 unarchiver:(id)arg2;
 - (id)initFromUnarchiver:(id)arg1;
 - (id)initWithContext:(id)arg1;
 - (void)insertChildInfo:(id)arg1 above:(id)arg2;
@@ -99,6 +101,8 @@
 - (BOOL)isAutofitOn;
 - (BOOL)isFloatingAboveText;
 - (BOOL)isForm;
+- (BOOL)isHeaderFooterEmpty:(int)arg1;
+- (BOOL)isHeaderFooterEmpty:(int)arg1 fragmentAtIndex:(int)arg2;
 - (BOOL)isInlineWithText;
 - (BOOL)isThemeContent;
 - (BOOL)isUsingStartPageNumber;
@@ -109,7 +113,11 @@
 - (unsigned int)nextUntitledResolverIndex;
 - (id)owningAttachment;
 - (id)owningAttachmentNoRecurse;
+- (void)p_createHeadersFooters:(int)arg1 stylesheet:(id)arg2 mayAlreadyExist:(BOOL)arg3;
 - (void)p_dolcDispatch:(id)arg1 skippingTextBoxes:(BOOL)arg2;
+- (id)p_newHeaderFooterStorageWithStylesheet:(id)arg1;
+- (void)p_setupHeadersFooters;
+- (id)p_storagesForHeaderType:(int)arg1;
 - (float)pageFooterInset;
 - (float)pageHeaderInset;
 - (int)pageOrder;
@@ -123,13 +131,13 @@
 - (id)resolverMatchingName:(id)arg1;
 - (BOOL)resolverNameIsUsed:(id)arg1;
 - (id)resolversMatchingPrefix:(id)arg1;
-- (void)saveToArchive:(struct SheetArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > {} *x3; struct RepeatedPtrField<TSP::Reference> { void **x_4_1_1; int x_4_1_2; int x_4_1_3; int x_4_1_4; } x4; boolx5; boolx6; boolx7; boolx8; float x9; int x10; boolx11; struct EdgeInsetsArchive {} *x12; int x13; float x14; struct Reference {} *x15; struct Reference {} *x16; struct Reference {} *x17; float x18; int x19; unsigned int x20[1]; }*)arg1 archiver:(id)arg2;
+- (void)rollbackNextUntitledResolverIndex:(unsigned int)arg1;
+- (unsigned int)saveNextUntitledResolverIndex;
+- (void)saveToArchive:(struct SheetArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > {} *x5; struct RepeatedPtrField<TSP::Reference> { void **x_6_1_1; int x_6_1_2; int x_6_1_3; int x_6_1_4; } x6; bool x7; bool x8; bool x9; bool x10; float x11; struct EdgeInsetsArchive {} *x12; int x13; int x14; float x15; float x16; struct Reference {} *x17; struct Reference {} *x18; struct Reference {} *x19; struct RepeatedPtrField<TSP::Reference> { void **x_20_1_1; int x_20_1_2; int x_20_1_3; int x_20_1_4; } x20; struct RepeatedPtrField<TSP::Reference> { void **x_21_1_1; int x_21_1_2; int x_21_1_3; int x_21_1_4; } x21; bool x22; bool x23; }*)arg1 archiver:(id)arg2;
 - (void)saveToArchiver:(id)arg1;
 - (void)setChildInfos:(id)arg1;
 - (void)setContentScale:(float)arg1;
-- (void)setFooterStorage:(id)arg1;
 - (void)setGeometry:(id)arg1;
-- (void)setHeaderStorage:(id)arg1;
 - (void)setInPortraitPageOrientation:(BOOL)arg1;
 - (void)setIsAutofitOn:(BOOL)arg1;
 - (void)setName:(id)arg1;
@@ -138,19 +146,20 @@
 - (void)setPageHeaderInset:(float)arg1;
 - (void)setPageOrder:(int)arg1;
 - (void)setParentInfo:(id)arg1;
+- (void)setPrimitiveGeometry:(id)arg1;
 - (void)setPrintMargins:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
 - (void)setShowPageNumbers:(BOOL)arg1;
 - (void)setStartPageNumber:(int)arg1;
-- (void)setUserDefinedGuideStorage:(id)arg1;
+- (void)setUsesSingleHeaderFooter:(BOOL)arg1;
 - (void)setUsingStartPageNumber:(BOOL)arg1;
 - (BOOL)showPageNumbers;
 - (int)startPageNumber;
 - (id)tableInfoForName:(id)arg1 caseSensitive:(BOOL)arg2;
 - (id)tableInfos;
-- (id)userDefinedGuideStorage;
-- (void)wasAddedToDocumentRoot:(id)arg1 context:(id)arg2;
+- (BOOL)usesSingleHeaderFooter;
+- (void)wasAddedToDocumentRoot:(id)arg1 dolcContext:(id)arg2;
 - (void)wasRemovedFromDocumentRoot:(id)arg1;
-- (void)willBeAddedToDocumentRoot:(id)arg1 context:(id)arg2;
+- (void)willBeAddedToDocumentRoot:(id)arg1 dolcContext:(id)arg2;
 - (void)willBeRemovedFromDocumentRoot:(id)arg1;
 
 @end

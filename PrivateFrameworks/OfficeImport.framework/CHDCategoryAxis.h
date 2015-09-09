@@ -3,15 +3,18 @@
  */
 
 @interface CHDCategoryAxis : CHDAxis {
-    boolmAutomatic;
-    boolmNoMultipleLevelLabel;
+    bool mAutomatic;
     int mLabelAlignment;
     long mLabelFrequency;
+    bool mLabelFrequencyAutomatic;
+    bool mNoMultipleLevelLabel;
+    bool mShowSeriesNames;
 }
 
 - (void)adjustAxisPositionForHorizontalChart;
 - (id)initWithResources:(id)arg1;
 - (bool)isAutomatic;
+- (bool)isLabelFrequencyAutomatic;
 - (bool)isNoMultipleLabellevel;
 - (int)labelAlignment;
 - (long)labelFrequency;
@@ -19,5 +22,7 @@
 - (void)setLabelAlignment:(int)arg1;
 - (void)setLabelFrequency:(long)arg1;
 - (void)setNoMultipleLevelLabel:(bool)arg1;
+- (void)setShowSeriesLabels:(bool)arg1;
+- (bool)showSeriesLabels;
 
 @end

@@ -2,15 +2,13 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class CNPostalAddress;
+@interface ABPropertyGroupPostalAddressItem : ABPropertyGroupItem
 
-@interface ABPropertyGroupPostalAddressItem : ABPropertyGroupItem {
-}
-
-@property(readonly) CNPostalAddress * address;
+@property (nonatomic, readonly) CNPostalAddress *address;
 
 - (BOOL)_isMinimalAddress:(id)arg1;
 - (id)address;
+- (id)bestValue:(id)arg1;
 - (id)defaultActionURL;
 - (id)displayStringForValue:(id)arg1;
 - (BOOL)isEquivalentToItem:(id)arg1 whenEditing:(BOOL)arg2;

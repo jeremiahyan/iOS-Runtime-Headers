@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@class NSSQLCore;
-
 @interface NSSQLGenerator : NSObject {
     NSSQLCore *_persistentStore;
 }
@@ -18,12 +16,18 @@
 - (void)generateIntermediateForLimit:(unsigned int)arg1 inContext:(id)arg2;
 - (void)generateIntermediateForOffset:(unsigned int)arg1 inContext:(id)arg2;
 - (id)generateIntermediatesForFetchInContext:(id)arg1 countOnly:(BOOL)arg2;
+- (id)generateIntermediatesForUpdateInContext:(id)arg1;
 - (void)generateOrderIntermediateInContext:(id)arg1;
 - (void)generateSelectIntermediateInContext:(id)arg1;
+- (id)generateUpdateColumnsIntermediateInContext:(id)arg1;
 - (void)generateWhereIntermediatesInContext:(id)arg1;
 - (id)initWithPersistentStore:(id)arg1;
 - (id)initializeContextForFetchRequest:(id)arg1 ignoreInheritance:(BOOL)arg2 nestingLevel:(unsigned int)arg3;
+- (id)initializeContextForRequest:(id)arg1 ignoreInheritance:(BOOL)arg2 nestingLevel:(unsigned int)arg3;
+- (id)initializeContextForUpdateRequest:(id)arg1;
 - (id)newSQLStatementForFetchRequest:(id)arg1 ignoreInheritance:(BOOL)arg2 countOnly:(BOOL)arg3 nestingLevel:(unsigned int)arg4;
-- (id)predicateForFetchRequestInContext:(id)arg1;
+- (id)newSQLStatementForRequest:(id)arg1 ignoreInheritance:(BOOL)arg2 countOnly:(BOOL)arg3 nestingLevel:(unsigned int)arg4;
+- (id)newSQLStatementForUpdateRequest:(id)arg1;
+- (id)predicateForRequestInContext:(id)arg1;
 
 @end

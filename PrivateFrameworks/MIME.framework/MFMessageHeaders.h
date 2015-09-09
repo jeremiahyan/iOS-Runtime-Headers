@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/MIME.framework/MIME
  */
 
-@class NSData;
-
 @interface MFMessageHeaders : NSObject <NSCopying> {
     NSData *_data;
     unsigned long _preferredEncoding;
@@ -20,11 +18,11 @@
 - (id)_capitalizedKeyForKey:(id)arg1;
 - (unsigned long)_contentTypeEncoding;
 - (id)_copyAddressListForKey:(id)arg1;
-- (id)_copyHeaderValueForKey:(id)arg1 offset:(unsigned int*)arg2 decoded:(BOOL)arg3;
 - (id)_copyHeaderValueForKey:(id)arg1;
+- (id)_copyHeaderValueForKey:(id)arg1 offset:(unsigned int*)arg2 decoded:(BOOL)arg3;
 - (id)_decodeHeaderKeysFromData:(id)arg1;
-- (id)_headerValueForKey:(id)arg1 offset:(unsigned int*)arg2;
 - (id)_headerValueForKey:(id)arg1;
+- (id)_headerValueForKey:(id)arg1 offset:(unsigned int*)arg2;
 - (BOOL)_isStructuredHeaderKey:(id)arg1;
 - (void)_setCapitalizedKey:(id)arg1 forKey:(id)arg2;
 - (id)allHeaderKeys;

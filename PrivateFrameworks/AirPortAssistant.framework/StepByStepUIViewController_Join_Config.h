@@ -2,19 +2,19 @@
    Image: /System/Library/PrivateFrameworks/AirPortAssistant.framework/AirPortAssistant
  */
 
-@class NSString;
-
 @interface StepByStepUIViewController_Join_Config : StepByStepUIViewController_DevicePicker <StepByStepUIDevicePicker> {
     int deviceKind;
     NSString *personalizedBaseName;
     unsigned int productID;
+    BOOL supportsSpruce;
 }
 
-@property(retain) NSString * personalizedBaseName;
+@property (nonatomic, retain) NSString *personalizedBaseName;
 
 - (id)devicePickerLabel;
 - (id)deviceTableLabel;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
+- (void)loadView;
 - (id)personalizedBaseName;
 - (void)prepareParams;
 - (void)primaryActionSelected:(BOOL)arg1;
@@ -31,6 +31,5 @@
 - (void)textFieldDidChangeAtIndexPath:(id)arg1;
 - (void)updateNavigationButtons;
 - (void)validateAndUpdateNextButton;
-- (void)viewDidLoad;
 
 @end

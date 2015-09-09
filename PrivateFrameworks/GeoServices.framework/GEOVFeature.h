@@ -2,25 +2,21 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class GEOVCharacteristics, NSData, NSMutableArray;
-
-@interface GEOVFeature : PBCodable {
+@interface GEOVFeature : PBCodable <NSCopying> {
+    unsigned long long _businessID;
+    unsigned int _centerlineCount;
+    unsigned int _centerlineStart;
+    GEOVCharacteristics *_characteristics;
+    float _endLaneWidth;
+    float _endOffset;
+    float _endRoadOffset;
+    unsigned int _entryPointMask;
     struct { 
         int *list; 
         unsigned int count; 
         unsigned int size; 
-    struct { 
-        int *list; 
-        unsigned int count; 
-        unsigned int size; 
-    struct { 
-        int *list; 
-        unsigned int count; 
-        unsigned int size; 
-    struct { 
-        int *list; 
-        unsigned int count; 
-        unsigned int size; 
+    } _extrusionHeights;
+    int _formOfWay;
     struct { 
         unsigned int businessID : 1; 
         unsigned int uID : 1; 
@@ -44,17 +40,11 @@
         unsigned int travelDirection : 1; 
         unsigned int type : 1; 
         unsigned int polyIsConvex : 1; 
-    unsigned long long _businessID;
-    unsigned int _centerlineCount;
-    unsigned int _centerlineStart;
-    GEOVCharacteristics *_characteristics;
-    float _endLaneWidth;
-    float _endOffset;
-    float _endRoadOffset;
-    unsigned int _entryPointMask;
-    } _extrusionHeights;
-    int _formOfWay;
     } _has;
+    struct { 
+        int *list; 
+        unsigned int count; 
+        unsigned int size; 
     } _labelOffsets;
     float _minzoomRank;
     NSData *_oBSOLETECenterlines;
@@ -66,7 +56,15 @@
     int _roadClass;
     int _sectionCount;
     int _sectionStart;
+    struct { 
+        int *list; 
+        unsigned int count; 
+        unsigned int size; 
     } _shieldLabelOffsets;
+    struct { 
+        int *list; 
+        unsigned int count; 
+        unsigned int size; 
     } _shieldLabelTypes;
     int _speedLimit;
     float _startLaneWidth;
@@ -79,69 +77,69 @@
     long long _uID;
 }
 
-@property unsigned long long businessID;
-@property unsigned int centerlineCount;
-@property unsigned int centerlineStart;
-@property(retain) GEOVCharacteristics * characteristics;
-@property float endLaneWidth;
-@property float endOffset;
-@property float endRoadOffset;
-@property unsigned int entryPointMask;
-@property(readonly) int* extrusionHeights;
-@property(readonly) unsigned int extrusionHeightsCount;
-@property int formOfWay;
-@property BOOL hasBusinessID;
-@property BOOL hasCenterlineCount;
-@property BOOL hasCenterlineStart;
-@property(readonly) BOOL hasCharacteristics;
-@property BOOL hasEndLaneWidth;
-@property BOOL hasEndOffset;
-@property BOOL hasEndRoadOffset;
-@property BOOL hasEntryPointMask;
-@property BOOL hasFormOfWay;
-@property BOOL hasMinzoomRank;
-@property(readonly) BOOL hasOBSOLETECenterlines;
-@property(readonly) BOOL hasOBSOLETEShieldLabelPositions;
-@property(readonly) BOOL hasOBSOLETEVertexLabelPositions;
-@property BOOL hasPlaceType;
-@property(readonly) BOOL hasPointLabelPosition;
-@property BOOL hasPolyIsConvex;
-@property BOOL hasRoadClass;
-@property BOOL hasSectionCount;
-@property BOOL hasSectionStart;
-@property BOOL hasSpeedLimit;
-@property BOOL hasStartLaneWidth;
-@property BOOL hasStartOffset;
-@property BOOL hasStartRoadOffset;
-@property BOOL hasStyleGroup;
-@property BOOL hasTravelDirection;
-@property BOOL hasType;
-@property BOOL hasUID;
-@property(readonly) int* labelOffsets;
-@property(readonly) unsigned int labelOffsetsCount;
-@property float minzoomRank;
-@property(retain) NSData * oBSOLETECenterlines;
-@property(retain) NSData * oBSOLETEShieldLabelPositions;
-@property(retain) NSData * oBSOLETEVertexLabelPositions;
-@property int placeType;
-@property(retain) NSData * pointLabelPosition;
-@property BOOL polyIsConvex;
-@property int roadClass;
-@property int sectionCount;
-@property int sectionStart;
-@property(readonly) int* shieldLabelOffsets;
-@property(readonly) unsigned int shieldLabelOffsetsCount;
-@property(readonly) int* shieldLabelTypes;
-@property(readonly) unsigned int shieldLabelTypesCount;
-@property int speedLimit;
-@property float startLaneWidth;
-@property float startOffset;
-@property float startRoadOffset;
-@property(retain) NSMutableArray * styleAttributes;
-@property unsigned int styleGroup;
-@property int travelDirection;
-@property int type;
-@property long long uID;
+@property (nonatomic) unsigned long long businessID;
+@property (nonatomic) unsigned int centerlineCount;
+@property (nonatomic) unsigned int centerlineStart;
+@property (nonatomic, retain) GEOVCharacteristics *characteristics;
+@property (nonatomic) float endLaneWidth;
+@property (nonatomic) float endOffset;
+@property (nonatomic) float endRoadOffset;
+@property (nonatomic) unsigned int entryPointMask;
+@property (nonatomic, readonly) int*extrusionHeights;
+@property (nonatomic, readonly) unsigned int extrusionHeightsCount;
+@property (nonatomic) int formOfWay;
+@property (nonatomic) BOOL hasBusinessID;
+@property (nonatomic) BOOL hasCenterlineCount;
+@property (nonatomic) BOOL hasCenterlineStart;
+@property (nonatomic, readonly) BOOL hasCharacteristics;
+@property (nonatomic) BOOL hasEndLaneWidth;
+@property (nonatomic) BOOL hasEndOffset;
+@property (nonatomic) BOOL hasEndRoadOffset;
+@property (nonatomic) BOOL hasEntryPointMask;
+@property (nonatomic) BOOL hasFormOfWay;
+@property (nonatomic) BOOL hasMinzoomRank;
+@property (nonatomic, readonly) BOOL hasOBSOLETECenterlines;
+@property (nonatomic, readonly) BOOL hasOBSOLETEShieldLabelPositions;
+@property (nonatomic, readonly) BOOL hasOBSOLETEVertexLabelPositions;
+@property (nonatomic) BOOL hasPlaceType;
+@property (nonatomic, readonly) BOOL hasPointLabelPosition;
+@property (nonatomic) BOOL hasPolyIsConvex;
+@property (nonatomic) BOOL hasRoadClass;
+@property (nonatomic) BOOL hasSectionCount;
+@property (nonatomic) BOOL hasSectionStart;
+@property (nonatomic) BOOL hasSpeedLimit;
+@property (nonatomic) BOOL hasStartLaneWidth;
+@property (nonatomic) BOOL hasStartOffset;
+@property (nonatomic) BOOL hasStartRoadOffset;
+@property (nonatomic) BOOL hasStyleGroup;
+@property (nonatomic) BOOL hasTravelDirection;
+@property (nonatomic) BOOL hasType;
+@property (nonatomic) BOOL hasUID;
+@property (nonatomic, readonly) int*labelOffsets;
+@property (nonatomic, readonly) unsigned int labelOffsetsCount;
+@property (nonatomic) float minzoomRank;
+@property (nonatomic, retain) NSData *oBSOLETECenterlines;
+@property (nonatomic, retain) NSData *oBSOLETEShieldLabelPositions;
+@property (nonatomic, retain) NSData *oBSOLETEVertexLabelPositions;
+@property (nonatomic) int placeType;
+@property (nonatomic, retain) NSData *pointLabelPosition;
+@property (nonatomic) BOOL polyIsConvex;
+@property (nonatomic) int roadClass;
+@property (nonatomic) int sectionCount;
+@property (nonatomic) int sectionStart;
+@property (nonatomic, readonly) int*shieldLabelOffsets;
+@property (nonatomic, readonly) unsigned int shieldLabelOffsetsCount;
+@property (nonatomic, readonly) int*shieldLabelTypes;
+@property (nonatomic, readonly) unsigned int shieldLabelTypesCount;
+@property (nonatomic) int speedLimit;
+@property (nonatomic) float startLaneWidth;
+@property (nonatomic) float startOffset;
+@property (nonatomic) float startRoadOffset;
+@property (nonatomic, retain) NSMutableArray *styleAttributes;
+@property (nonatomic) unsigned int styleGroup;
+@property (nonatomic) int travelDirection;
+@property (nonatomic) int type;
+@property (nonatomic) long long uID;
 
 - (void)addExtrusionHeight:(int)arg1;
 - (void)addLabelOffset:(int)arg1;
@@ -158,6 +156,7 @@
 - (void)clearShieldLabelTypes;
 - (void)clearStyleAttributes;
 - (void)copyTo:(id)arg1;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)description;
 - (id)dictionaryRepresentation;

@@ -2,13 +2,15 @@
    Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
  */
 
-@class SSVPushNotificationParameters;
-
 @interface SSVPushNotificationRequest : SSRequest <SSXPCCoding> {
     SSVPushNotificationParameters *_parameters;
 }
 
-@property(copy) SSVPushNotificationParameters * pushNotificationParameters;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) SSVPushNotificationParameters *pushNotificationParameters;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (id)copyXPCEncoding;
@@ -17,7 +19,7 @@
 - (id)pushNotificationParameters;
 - (void)setPushNotificationParameters:(id)arg1;
 - (BOOL)start;
-- (void)startWithCompletionBlock:(id)arg1;
-- (void)startWithResponseBlock:(id)arg1;
+- (void)startWithCompletionBlock:(id /* block */)arg1;
+- (void)startWithResponseBlock:(id /* block */)arg1;
 
 @end

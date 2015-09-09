@@ -2,19 +2,19 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class LSApplicationProxy, UIDocumentInteractionController;
-
 @interface _UIOpenWithAppActivity : UIActivity {
+    NSString *_activityType;
     LSApplicationProxy *_appProxy;
     BOOL _defaultApp;
     UIDocumentInteractionController *_documentInteractionController;
 }
 
-@property(getter=isDefaultApp) BOOL defaultApp;
+@property (getter=isDefaultApp, nonatomic) BOOL defaultApp;
 
 + (int)activityCategory;
 
 - (id)_activityImage;
+- (id)_activitySettingsImage;
 - (id)activityTitle;
 - (id)activityType;
 - (BOOL)canPerformWithActivityItems:(id)arg1;

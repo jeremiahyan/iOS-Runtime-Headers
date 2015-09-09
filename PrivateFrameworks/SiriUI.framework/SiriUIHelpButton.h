@@ -9,6 +9,7 @@
 
 + (id)buttonWithHelpImageMask;
 
+- (float)_targetAlpha;
 - (void)pulse;
 - (void)setEmphasized:(BOOL)arg1;
 

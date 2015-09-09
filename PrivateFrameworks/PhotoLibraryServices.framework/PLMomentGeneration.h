@@ -2,39 +2,56 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
  */
 
-@class NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>;
-
 @interface PLMomentGeneration : NSObject {
+    PLMomentAnalyzer *_analyzer;
+    <PLMomentGenerationDataManagement> *_momentGenerationDataManager;
+    PLMomentAnalyzer *_pairedAnalyzer;
     NSMutableDictionary *_pendingDeletes;
     NSMutableSet *_pendingInsertsAndUpdates;
     NSObject<OS_dispatch_queue> *_pendingIsolation;
 }
 
-+ (BOOL)_deleteAllMomentDataInManagedObjectContext:(id)arg1 incremental:(BOOL)arg2 error:(id*)arg3;
-+ (id)_insertMegaMomentListsForMoments:(id)arg1 inManagedObjectContext:(id)arg2;
-+ (id)_insertMomentsForAssets:(id)arg1 inManagedObjectContext:(id)arg2;
-+ (id)_insertYearMomentListsForMoments:(id)arg1 earliestDate:(id)arg2 latestDate:(id)arg3 inManagedObjectContext:(id)arg4;
-+ (BOOL)_rebuildAllMomentListsInManagedObjectContext:(id)arg1 error:(id*)arg2;
-+ (BOOL)_rebuildAllMomentsInManagedObjectContext:(id)arg1 error:(id*)arg2;
-+ (void)_setManagedObjectContextMomentarilyBlessed:(id)arg1;
-+ (id)generator;
-+ (BOOL)isManagedObjectContextMomentarilyBlessed:(id)arg1;
-+ (BOOL)rebuildAllMomentsForOfflineStore:(id)arg1 error:(id*)arg2;
+@property (nonatomic) PLMomentAnalyzer *analyzer;
+@property (nonatomic) <PLMomentGenerationDataManagement> *momentGenerationDataManager;
 
-- (id)_insertMegaMomentListsForMoments:(id)arg1 inManagedObjectContext:(id)arg2;
-- (id)_insertMomentsForAssets:(id)arg1 inManagedObjectContext:(id)arg2;
-- (id)_insertYearMomentListsForMoments:(id)arg1 earliestDate:(id)arg2 latestDate:(id)arg3 inManagedObjectContext:(id)arg4;
++ (id)_insertMegaMomentListsForMoments:(id)arg1 inMomentDataManager:(id)arg2;
++ (id)_insertMomentsForAssets:(id)arg1 inManager:(id)arg2 withAffectedMoments:(id)arg3;
++ (id)_insertYearMomentListsForMoments:(id)arg1 earliestDate:(id)arg2 latestDate:(id)arg3 inMomentDataManager:(id)arg4;
++ (BOOL)_rebuildAllMomentListsWithDataManager:(id)arg1 error:(id*)arg2;
++ (void)_updateMoment:(id)arg1 fromCluster:(id)arg2 inManager:(id)arg3;
++ (id)generateMergeCustomMomentUUID;
++ (id)generateSplitCustomMomentUUID;
+
+- (void)_appendAssetsToReplayLog:(id)arg1 forBatchUpdate:(BOOL)arg2;
+- (void)_clearReplayLog;
+- (BOOL)_deleteAllMomentDataInManager:(id)arg1 incremental:(BOOL)arg2 error:(id*)arg3;
+- (id)_detailsForAsset:(id)arg1 simpleOnly:(BOOL)arg2;
+- (id)_detailsForMoment:(id)arg1;
+- (id)_insertMegaMomentListsForMoments:(id)arg1 inMomentDataManager:(id)arg2;
+- (id)_insertMomentsForAssets:(id)arg1 inManager:(id)arg2 withAffectedMoments:(id)arg3;
+- (id)_insertYearMomentListsForMoments:(id)arg1 earliestDate:(id)arg2 latestDate:(id)arg3 inMomentDataManager:(id)arg4;
 - (BOOL)_isAsset:(id)arg1 identicalToAssetForMoments:(id)arg2;
+- (id)_logEntryForAssets:(id)arg1 isBatchUpdate:(BOOL)arg2;
+- (id)_nameForMomentGenerationType:(short)arg1;
 - (id)_newPublicGlobalUUIDsToAssetsMappingWithAssets:(id)arg1;
-- (id)affectedMomentsForAssetDateCreated:(id)arg1 inContext:(id)arg2;
+- (id)_rangesForAssetsCount:(unsigned int)arg1 withOptions:(id)arg2;
+- (BOOL)_rebuildAllMomentsInManager:(id)arg1 shouldAnalyze:(BOOL)arg2 error:(id*)arg3;
+- (BOOL)_writeDetails:(id)arg1 toFilepath:(id)arg2 withDefaultFilename:(id)arg3;
+- (id)affectedMomentsForAssetDateCreated:(id)arg1 inManager:(id)arg2;
+- (id)allAssetMetadataWriteToFile:(id)arg1;
+- (id)allMomentsMetadataWriteToFile:(id)arg1;
+- (id)analyzer;
+- (void)clearUserInfluencedMoments;
 - (void)dealloc;
-- (id)fetchMomentsForEarliestDate:(id)arg1 latestDate:(id)arg2 sorted:(BOOL)arg3 inContext:(id)arg4;
-- (void)generateWithAssetInsertsAndUpdates:(id)arg1 andDeletes:(id)arg2 completionHandler:(id)arg3;
-- (void)generateWithIncrementalDataCompletionHandler:(id)arg1;
+- (void)generateWithAssetInsertsAndUpdates:(id)arg1 andDeletes:(id)arg2 completionHandler:(id /* block */)arg3;
+- (void)generateWithIncrementalDataCompletionHandler:(id /* block */)arg1;
 - (id)init;
-- (id)momentPhotoLibrary;
-- (void)rebuildAllMomentLists:(id)arg1;
-- (void)rebuildAllMomentsIncremental:(BOOL)arg1 completionHandler:(id)arg2;
+- (id)momentGenerationDataManager;
+- (void)rebuildAllMomentLists:(id /* block */)arg1;
+- (BOOL)rebuildAllMomentsWithManager:(id)arg1 error:(id*)arg2;
+- (void)rebuildAllMomentsWithOptions:(id)arg1 completionHandler:(id /* block */)arg2;
 - (void)saveChangesForAssetInsertsAndUpdates:(id)arg1 andDeletes:(id)arg2;
+- (void)setAnalyzer:(id)arg1;
+- (void)setMomentGenerationDataManager:(id)arg1;
 
 @end

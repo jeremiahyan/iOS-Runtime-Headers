@@ -2,13 +2,16 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@class MPAVRoutingController, NSArray;
-
 @interface MPAudioRoutingPicker : UIAlertView <MPAVRoutingControllerDelegate, UITableViewDataSource, UITableViewDelegate> {
     BOOL _ignoringInteractionEvents;
     NSArray *_routes;
     MPAVRoutingController *_routingController;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (BOOL)_pickRouteAtIndex:(unsigned int)arg1 withPassword:(id)arg2;

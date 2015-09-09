@@ -2,21 +2,25 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSNumber, NSString;
+@interface SAStartRequest : SABaseCommand <SAServerBoundCommand>
 
-@interface SAStartRequest : SABaseCommand <SAServerBoundCommand> {
-}
-
-@property(copy) NSString * aceId;
-@property BOOL clearContext;
-@property BOOL eyesFree;
-@property BOOL handsFree;
-@property(copy) NSString * motionActivity;
-@property(copy) NSNumber * motionConfidence;
-@property(copy) NSString * origin;
-@property(copy) NSString * refId;
-@property BOOL talkOnly;
-@property(copy) NSString * utterance;
+@property (nonatomic, copy) NSString *aceId;
+@property (nonatomic) BOOL clearContext;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL eyesFree;
+@property (nonatomic) BOOL handsFree;
+@property (nonatomic, copy) NSString *hardwareBuild;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSNumber *isCarryDevice;
+@property (nonatomic, copy) NSString *motionActivity;
+@property (nonatomic, copy) NSNumber *motionConfidence;
+@property (nonatomic, copy) NSString *origin;
+@property (nonatomic, copy) NSString *refId;
+@property (nonatomic, retain) SASStartSpeech *sourceSpeechRequest;
+@property (readonly) Class superclass;
+@property (nonatomic) BOOL talkOnly;
+@property (nonatomic, copy) NSString *utterance;
 
 + (id)startRequest;
 + (id)startRequestWithDictionary:(id)arg1 context:(id)arg2;
@@ -26,17 +30,23 @@
 - (BOOL)eyesFree;
 - (id)groupIdentifier;
 - (BOOL)handsFree;
+- (id)hardwareBuild;
+- (id)isCarryDevice;
 - (id)motionActivity;
 - (id)motionConfidence;
 - (id)origin;
 - (void)setClearContext:(BOOL)arg1;
 - (void)setEyesFree:(BOOL)arg1;
 - (void)setHandsFree:(BOOL)arg1;
+- (void)setHardwareBuild:(id)arg1;
+- (void)setIsCarryDevice:(id)arg1;
 - (void)setMotionActivity:(id)arg1;
 - (void)setMotionConfidence:(id)arg1;
 - (void)setOrigin:(id)arg1;
+- (void)setSourceSpeechRequest:(id)arg1;
 - (void)setTalkOnly:(BOOL)arg1;
 - (void)setUtterance:(id)arg1;
+- (id)sourceSpeechRequest;
 - (BOOL)talkOnly;
 - (id)utterance;
 

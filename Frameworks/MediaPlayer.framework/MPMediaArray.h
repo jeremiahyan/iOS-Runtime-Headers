@@ -2,11 +2,8 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@class MPMediaQuerySectionInfo;
+@interface MPMediaArray : NSArray
 
-@interface MPMediaArray : NSArray {
-}
-
-@property(readonly) MPMediaQuerySectionInfo * sectionInfo;
+@property (nonatomic, readonly, copy) MPMediaQuerySectionInfo *sectionInfo;
 
 @end

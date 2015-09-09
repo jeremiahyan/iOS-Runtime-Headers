@@ -2,15 +2,13 @@
    Image: /System/Library/PrivateFrameworks/UIFoundation.framework/UIFoundation
  */
 
-@class NSArray;
-
 @interface NSLayoutManagerTextBlockRowArrayCache : NSObject {
-    struct _NSRange { 
-        unsigned int location; 
-        unsigned int length; 
     BOOL _collapseBorders;
     float _containerWidth;
     NSArray *_rowArray;
+    struct _NSRange { 
+        unsigned int location; 
+        unsigned int length; 
     } _rowCharRange;
 }
 

@@ -2,14 +2,7 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class <AVPlayerItemOutputPullDelegate>, AVWeakReference, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>;
-
 @interface AVPlayerItemVideoOutputInternal : NSObject {
-    struct { 
-        long long value; 
-        int timescale; 
-        unsigned int flags; 
-        long long epoch; 
     double advanceWakeUpInterval;
     BOOL advanceWakeUpIntervalIsValid;
     double currentRate;
@@ -23,6 +16,11 @@
     BOOL suppressesPlayerRendering;
     struct OpaqueCMTimebase { } *timebase;
     struct OpaqueFigVisualContext { } *vc;
+    struct { 
+        long long value; 
+        int timescale; 
+        unsigned int flags; 
+        long long epoch; 
     } wakeUpImageTime;
 }
 

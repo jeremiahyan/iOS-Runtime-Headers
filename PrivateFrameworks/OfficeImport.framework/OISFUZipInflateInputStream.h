@@ -2,14 +2,15 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class <OISFUBufferedInputStream>;
-
 @interface OISFUZipInflateInputStream : NSObject <SFUInputStream> {
+    unsigned long mCalculatedCrc;
+    unsigned long mCheckCrc;
+    <OISFUBufferedInputStream> *mInput;
+    BOOL mIsFromZip;
+    long long mOffset;
+    char *mOutBuffer;
+    unsigned long long mOutBufferSize;
+    BOOL mReachedEnd;
     struct z_stream_s { 
         char *next_in; 
         unsigned int avail_in; 
@@ -25,16 +26,13 @@
         int data_type; 
         unsigned int adler; 
         unsigned int reserved; 
-    unsigned long mCalculatedCrc;
-    unsigned long mCheckCrc;
-    <OISFUBufferedInputStream> *mInput;
-    BOOL mIsFromZip;
-    long long mOffset;
-    char *mOutBuffer;
-    unsigned long long mOutBufferSize;
-    BOOL mReachedEnd;
     } mStream;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (BOOL)canSeek;
 - (void)close;

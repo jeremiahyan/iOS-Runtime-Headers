@@ -2,15 +2,17 @@
    Image: /System/Library/PrivateFrameworks/XPCKit.framework/XPCKit
  */
 
-@class <XPCNSServiceListenerDelegate>, NSString, XPCServiceListener;
-
 @interface XPCNSServiceListener : NSObject <XPCServiceListenerDelegate> {
     <XPCNSServiceListenerDelegate> *_delegate;
     XPCServiceListener *_serviceListener;
 }
 
-@property(readonly) <XPCNSServiceListenerDelegate> * delegate;
-@property(readonly) NSString * serviceName;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic, readonly) <XPCNSServiceListenerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly, retain) NSString *serviceName;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)XPCServiceListener:(id)arg1 didReceiveNewConnection:(id)arg2;
@@ -18,7 +20,7 @@
 - (id)delegate;
 - (id)initWithServiceName:(id)arg1 queue:(id)arg2 delegate:(id)arg3;
 - (id)serviceName;
-- (void)shutDownCompletionBlock:(id)arg1;
+- (void)shutDownCompletionBlock:(id /* block */)arg1;
 - (void)start;
 
 @end

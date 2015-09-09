@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@class <NSXPCEncoderDelegate>, NSObject<OS_xpc_object>, NSXPCConnection;
-
 @interface NSXPCEncoder : NSXPCCoder {
     BOOL _askForReplacement;
     NSXPCConnection *_connection;
@@ -15,8 +13,10 @@
     struct __CFDictionary { } *_replacedObjects;
 }
 
-@property NSXPCConnection * _connection;
-@property <NSXPCEncoderDelegate> * delegate;
+@property NSXPCConnection *_connection;
+@property <NSXPCEncoderDelegate> *delegate;
+
++ (id)_dataWithXPCObject:(id)arg1;
 
 - (void)_checkObject:(id)arg1;
 - (id)_connection;
@@ -24,6 +24,7 @@
 - (void)_encodeArrayOfObjects:(id)arg1 forKey:(id)arg2;
 - (void)_encodeCString:(const char *)arg1 forKey:(id)arg2;
 - (void)_encodeObject:(id)arg1;
+- (void)_insertIntoXPCObject:(id)arg1;
 - (id)_replaceObject:(id)arg1;
 - (BOOL)allowsKeyedCoding;
 - (void)dealloc;
@@ -40,8 +41,8 @@
 - (void)encodeInt:(int)arg1 forKey:(id)arg2;
 - (void)encodeInteger:(int)arg1 forKey:(id)arg2;
 - (void)encodeInvocation:(id)arg1;
-- (void)encodeObject:(id)arg1 forKey:(id)arg2;
 - (void)encodeObject:(id)arg1;
+- (void)encodeObject:(id)arg1 forKey:(id)arg2;
 - (void)encodeValueOfObjCType:(const char *)arg1 at:(const void*)arg2;
 - (void)encodeXPCObject:(id)arg1 forKey:(id)arg2;
 - (void)finalize;

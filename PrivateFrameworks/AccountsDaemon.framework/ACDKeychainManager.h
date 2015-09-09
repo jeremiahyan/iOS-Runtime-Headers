@@ -2,8 +2,7 @@
    Image: /System/Library/PrivateFrameworks/AccountsDaemon.framework/AccountsDaemon
  */
 
-@interface ACDKeychainManager : NSObject {
-}
+@interface ACDKeychainManager : NSObject
 
 + (id)_credentialForAccountWithID:(id)arg1 accountTypeID:(id)arg2 credentialType:(id)arg3 clientID:(id)arg4 error:(id*)arg5;
 + (id)_itemForServiceName:(id)arg1 username:(id)arg2 accessGroup:(id)arg3 error:(id*)arg4;
@@ -21,19 +20,19 @@
 + (void)_setItem:(id)arg1 forServiceName:(id)arg2 username:(id)arg3 accessGroup:(id)arg4 accessibility:(id)arg5 syncable:(BOOL)arg6 error:(id*)arg7;
 + (void)_setNonPersistentCredentialTimerForAccount:(id)arg1;
 + (BOOL)_shouldSyncCredentialForAccountType:(id)arg1;
-+ (id)credentialForAccount:(id)arg1 clientID:(id)arg2 error:(id*)arg3;
 + (id)credentialForAccount:(id)arg1 clientID:(id)arg2;
-+ (id)credentialForManagedAccountObject:(id)arg1 clientID:(id)arg2;
++ (id)credentialForAccount:(id)arg1 clientID:(id)arg2 error:(id*)arg3;
 + (id)credentialForManagedAccountObject:(id)arg1;
++ (id)credentialForManagedAccountObject:(id)arg1 clientID:(id)arg2;
 + (void)initialize;
-+ (void)removeCredentialForAccount:(id)arg1 clientID:(id)arg2 error:(id*)arg3;
-+ (void)removeCredentialForAccount:(id)arg1 clientID:(id)arg2;
-+ (void)removeCredentialForAccount:(id)arg1 error:(id*)arg2;
 + (void)removeCredentialForAccount:(id)arg1;
-+ (void)setCredentialForAccount:(id)arg1 clientID:(id)arg2 error:(id*)arg3;
-+ (void)setCredentialForAccount:(id)arg1 clientID:(id)arg2;
-+ (void)setCredentialForAccount:(id)arg1 error:(id*)arg2;
++ (void)removeCredentialForAccount:(id)arg1 clientID:(id)arg2;
++ (void)removeCredentialForAccount:(id)arg1 clientID:(id)arg2 error:(id*)arg3;
++ (void)removeCredentialForAccount:(id)arg1 error:(id*)arg2;
 + (void)setCredentialForAccount:(id)arg1;
++ (void)setCredentialForAccount:(id)arg1 clientID:(id)arg2;
++ (void)setCredentialForAccount:(id)arg1 clientID:(id)arg2 error:(id*)arg3;
++ (void)setCredentialForAccount:(id)arg1 error:(id*)arg2;
 + (void)setCredentialForNewAccount:(id)arg1 clientID:(id)arg2 error:(id*)arg3;
 
 @end

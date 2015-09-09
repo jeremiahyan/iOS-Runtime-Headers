@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class <ABMultiCellContentViewUpdateDelegate>, ABAbstractPropertyGroup, UITableViewCell, UIView;
-
 @interface ABMultiCellContentView : ABPersonCellContentView <ABResponderDelegate> {
     int _abCellStyle;
     BOOL _allowsEditing;
@@ -23,17 +21,17 @@
     BOOL _usesCustomPropertyCell;
 }
 
-@property int abCellStyle;
-@property BOOL allowsEditing;
-@property UITableViewCell * cell;
-@property(getter=isEditing) BOOL editing;
-@property(getter=isEmphasized) BOOL emphasized;
-@property(getter=isImportant) BOOL important;
-@property(readonly) ABAbstractPropertyGroup * propertyGroup;
-@property(retain) id propertyGroupInfo;
-@property BOOL shouldIgnoreEndEditing;
-@property <ABMultiCellContentViewUpdateDelegate> * updateDelegate;
-@property BOOL usesCustomPropertyCell;
+@property (nonatomic) int abCellStyle;
+@property (nonatomic) BOOL allowsEditing;
+@property (nonatomic) UITableViewCell *cell;
+@property (getter=isEditing, nonatomic) BOOL editing;
+@property (getter=isEmphasized, nonatomic) BOOL emphasized;
+@property (getter=isImportant, nonatomic) BOOL important;
+@property (nonatomic, readonly) ABAbstractPropertyGroup *propertyGroup;
+@property (nonatomic, retain) id propertyGroupInfo;
+@property (nonatomic) BOOL shouldIgnoreEndEditing;
+@property (nonatomic) <ABMultiCellContentViewUpdateDelegate> *updateDelegate;
+@property (nonatomic) BOOL usesCustomPropertyCell;
 
 + (Class)classForProperty:(int)arg1;
 + (struct CGSize { float x1; float x2; })layoutSubviewsForView:(id)arg1 usingSize:(struct CGSize { float x1; float x2; })arg2 propertyGroup:(id)arg3 info:(id)arg4 styleProvider:(id)arg5 whenEditing:(BOOL)arg6;
@@ -69,8 +67,8 @@
 - (id)hitTestForTouches:(id)arg1 withEvent:(id)arg2;
 - (id)init;
 - (id)initCommonWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 property:(int)arg2;
-- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 property:(int)arg2;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 property:(int)arg2;
 - (BOOL)isEditing;
 - (BOOL)isEmphasized;
 - (BOOL)isHighlighted;
@@ -92,8 +90,8 @@
 - (void)setAbCellStyle:(int)arg1;
 - (void)setAllowsEditing:(BOOL)arg1;
 - (void)setCell:(id)arg1;
-- (void)setEditing:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setEditing:(BOOL)arg1;
+- (void)setEditing:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setEmphasized:(BOOL)arg1;
 - (void)setHighlighted:(BOOL)arg1;
 - (void)setImportant:(BOOL)arg1;
@@ -106,8 +104,8 @@
 - (void)setUsesCustomPropertyCell:(BOOL)arg1;
 - (BOOL)shouldIgnoreEndEditing;
 - (BOOL)shouldSendTouchesToSuperviewForHitView:(id)arg1;
-- (struct CGSize { float x1; float x2; })sizeThatFits:(struct CGSize { float x1; float x2; })arg1 forPropertyGroup:(id)arg2 info:(id)arg3 styleProvider:(id)arg4 whenEditing:(BOOL)arg5;
 - (struct CGSize { float x1; float x2; })sizeThatFits:(struct CGSize { float x1; float x2; })arg1;
+- (struct CGSize { float x1; float x2; })sizeThatFits:(struct CGSize { float x1; float x2; })arg1 forPropertyGroup:(id)arg2 info:(id)arg3 styleProvider:(id)arg4 whenEditing:(BOOL)arg5;
 - (BOOL)tabToNextResponder:(BOOL)arg1 fromView:(id)arg2;
 - (void)touchesBegan:(id)arg1 withEvent:(id)arg2;
 - (void)touchesCancelled:(id)arg1 withEvent:(id)arg2;

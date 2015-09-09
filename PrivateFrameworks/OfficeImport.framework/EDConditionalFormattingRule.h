@@ -2,21 +2,20 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class EDResources, NSMutableArray, NSString;
-
 @interface EDConditionalFormattingRule : NSObject {
-    boolmAboveAverage;
-    boolmBottom;
-    boolmEqualAverage;
-    boolmPercent;
-    boolmStopIfTrue;
+    bool mAboveAverage;
+    bool mAppliesToDateOnly;
+    bool mBottom;
     unsigned int mDifferentialStyleIndex;
+    bool mEqualAverage;
     NSMutableArray *mFormulas;
     int mOperator;
+    bool mPercent;
     long mPriority;
     unsigned long mRank;
     EDResources *mResources;
     long mStdDev;
+    bool mStopIfTrue;
     NSString *mText;
     int mTimePeriod;
     int mType;
@@ -26,6 +25,7 @@
 
 - (bool)aboveAverage;
 - (void)addFormula:(id)arg1 worksheet:(id)arg2;
+- (bool)appliesToDateOnly;
 - (bool)bottom;
 - (int)compareToOtherRuleUsingPriority:(id)arg1;
 - (void)dealloc;
@@ -40,6 +40,7 @@
 - (long)priority;
 - (unsigned long)rank;
 - (void)setAboveAverage:(bool)arg1;
+- (void)setAppliesToDateOnly:(bool)arg1;
 - (void)setBottom:(bool)arg1;
 - (void)setDifferentialStyle:(id)arg1;
 - (void)setDifferentialStyleIndex:(unsigned int)arg1;

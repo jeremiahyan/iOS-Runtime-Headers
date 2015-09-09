@@ -2,23 +2,17 @@
    Image: /System/Library/PrivateFrameworks/AccessibilityUtilities.framework/AccessibilityUtilities
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSString;
-
 @interface AXEventListenerContainer : NSObject {
-    id handler;
+    id /* block */ handler;
     NSString *identifier;
 }
 
-@property(copy) id handler;
-@property(retain) NSString * identifier;
+@property (nonatomic, copy) id /* block */ handler;
+@property (nonatomic, retain) NSString *identifier;
 
-- (id)handler;
+- (id /* block */)handler;
 - (id)identifier;
-- (void)setHandler:(id)arg1;
+- (void)setHandler:(id /* block */)arg1;
 - (void)setIdentifier:(id)arg1;
 
 @end

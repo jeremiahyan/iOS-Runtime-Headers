@@ -2,14 +2,18 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-@class <EKEditItemViewControllerDelegate>, <EKIdentityProtocol>, ABPersonViewController;
-
 @interface EKIdentityViewController : UIViewController <ABPersonViewControllerDelegate, EKEditItemViewControllerProtocol> {
     <EKIdentityProtocol> *_identity;
     ABPersonViewController *_personViewController;
 }
 
-@property <EKEditItemViewControllerDelegate> * editDelegate;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) <EKEditItemViewControllerDelegate> *editDelegate;
+@property (nonatomic) BOOL editItemShouldBeAskedForInjectableViewController;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL presentModally;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (id)initWithIdentity:(id)arg1;

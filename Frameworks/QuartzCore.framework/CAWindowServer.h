@@ -2,15 +2,14 @@
    Image: /System/Library/Frameworks/QuartzCore.framework/QuartzCore
  */
 
-@class NSArray;
-
 @interface CAWindowServer : NSObject {
     struct CAWindowServerImpl { struct __CFArray {} *x1; unsigned int x2; } *_impl;
 }
 
-@property(readonly) NSArray * displays;
-@property(getter=isMirroringEnabled) BOOL mirroringEnabled;
+@property (readonly) NSArray *displays;
+@property (getter=isMirroringEnabled) BOOL mirroringEnabled;
 @property unsigned int rendererFlags;
+@property (getter=isSecure) BOOL secure;
 
 + (id)context;
 + (id)contextWithOptions:(id)arg1;
@@ -20,6 +19,8 @@
 - (void)_detectDisplays;
 - (id)_init;
 - (void)addDisplay:(id)arg1;
+- (unsigned int)clientPortOfContextId:(unsigned int)arg1;
+- (unsigned int)contextIdHostingContextId:(unsigned int)arg1;
 - (void)dealloc;
 - (id)description;
 - (id)displayWithDisplayId:(unsigned int)arg1;
@@ -27,11 +28,15 @@
 - (id)displayWithUniqueId:(id)arg1;
 - (id)displays;
 - (id)init;
+- (id)insecureProcessIds;
 - (BOOL)isMirroringEnabled;
+- (BOOL)isSecure;
 - (void)removeAllDisplays;
 - (void)removeDisplay:(id)arg1;
 - (unsigned int)rendererFlags;
 - (void)setMirroringEnabled:(BOOL)arg1;
 - (void)setRendererFlags:(unsigned int)arg1;
+- (void)setSecure:(BOOL)arg1;
+- (unsigned int)taskPortOfContextId:(unsigned int)arg1;
 
 @end

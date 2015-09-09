@@ -2,11 +2,8 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@class NSString;
-
 @interface MKMapAttributionImage : NSObject {
-    NSString *_hidpiImageName;
-    NSString *_lodpiImageName;
+    NSDictionary *_imageNameForScale;
 }
 
 - (void).cxx_destruct;

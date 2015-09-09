@@ -7,6 +7,10 @@
 }
 
 @property unsigned int character;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (unsigned int)character;
 - (id)initForCharacter:(unsigned int)arg1;

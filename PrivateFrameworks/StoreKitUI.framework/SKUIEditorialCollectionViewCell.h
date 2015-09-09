@@ -2,14 +2,16 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class SKUIEditorialCellLayout;
-
 @interface SKUIEditorialCollectionViewCell : SKUICollectionViewCell <SKUICellLayoutParentView> {
     SKUIEditorialCellLayout *_layout;
     BOOL _layoutNeedsLayout;
 }
 
-@property(readonly) SKUIEditorialCellLayout * layout;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) SKUIEditorialCellLayout *layout;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)applyLayoutAttributes:(id)arg1;

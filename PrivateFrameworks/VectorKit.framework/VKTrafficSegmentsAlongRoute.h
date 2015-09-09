@@ -3,10 +3,10 @@
  */
 
 @interface VKTrafficSegmentsAlongRoute : NSObject {
-    struct vector<TrafficSegment, vk_allocator<TrafficSegment> > { 
+    struct vector<TrafficSegment, std::__1::allocator<TrafficSegment> > { 
         struct TrafficSegment {} *__begin_; 
         struct TrafficSegment {} *__end_; 
-        struct __compressed_pair<TrafficSegment *, vk_allocator<TrafficSegment> > { 
+        struct __compressed_pair<TrafficSegment *, std::__1::allocator<TrafficSegment> > { 
             struct TrafficSegment {} *__first_; 
         } __end_cap_; 
     } _segments;

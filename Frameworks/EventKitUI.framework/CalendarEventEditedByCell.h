@@ -2,18 +2,16 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-@class <EKCellShortener>, UILabel;
-
-@interface CalendarEventEditedByCell : UITableViewCell {
-    unsigned int _valuePlaceholder : 2;
+@interface CalendarEventEditedByCell : EKUIConstrainedFontsTableViewCell {
     <EKCellShortener> *_shortener;
     UILabel *_titleLabel2;
     UILabel *_valueLabel2;
+    unsigned int _valuePlaceholder;
 }
 
-@property(readonly) UILabel * detailTextLabel2;
-@property <EKCellShortener> * shortener;
-@property(readonly) UILabel * textLabel2;
+@property (nonatomic, readonly, retain) UILabel *detailTextLabel2;
+@property (nonatomic) <EKCellShortener> *shortener;
+@property (nonatomic, readonly, retain) UILabel *textLabel2;
 
 - (void).cxx_destruct;
 - (void)_checkValueWidth;

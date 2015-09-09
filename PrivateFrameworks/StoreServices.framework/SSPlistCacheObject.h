@@ -2,11 +2,14 @@
    Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
  */
 
-@class NSDictionary;
-
 @interface SSPlistCacheObject : NSObject <SSCacheObject> {
     NSDictionary *_plist;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)cacheObjectTypeIdentifier;
 

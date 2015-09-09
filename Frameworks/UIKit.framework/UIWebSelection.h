@@ -2,27 +2,25 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class <UIWebSelectionBlock>, UITextSelection, UIWebDocumentView;
-
 @interface UIWebSelection : NSObject {
+    <UIWebSelectionBlock> *_base;
     struct CGSize { 
         float width; 
         float height; 
-    <UIWebSelectionBlock> *_base;
     } _desiredSize;
     UIWebDocumentView *_documentView;
     <UIWebSelectionBlock> *_extent;
     UITextSelection *_textSelection;
 }
 
-@property(retain) <UIWebSelectionBlock> * base;
-@property(readonly) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } boundingRect;
-@property struct CGSize { float x1; float x2; } desiredSize;
-@property(readonly) UIWebDocumentView * documentView;
-@property(retain) <UIWebSelectionBlock> * extent;
-@property(getter=isTextOnly,readonly) BOOL textOnly;
-@property(readonly) UITextSelection * textSelection;
-@property(readonly) BOOL valid;
+@property (nonatomic, retain) <UIWebSelectionBlock> *base;
+@property (nonatomic, readonly) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } boundingRect;
+@property (nonatomic) struct CGSize { float x1; float x2; } desiredSize;
+@property (nonatomic, readonly) UIWebDocumentView *documentView;
+@property (nonatomic, retain) <UIWebSelectionBlock> *extent;
+@property (getter=isTextOnly, nonatomic, readonly) BOOL textOnly;
+@property (nonatomic, readonly) UITextSelection *textSelection;
+@property (nonatomic, readonly) BOOL valid;
 
 - (void)adjustSelectionFromPoint:(struct CGPoint { float x1; float x2; })arg1 towardsPoint:(struct CGPoint { float x1; float x2; })arg2 withNewRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg3;
 - (void)applySelectionToWebDocumentView;
@@ -55,8 +53,8 @@
 - (void)setBase:(id)arg1;
 - (void)setDesiredSize:(struct CGSize { float x1; float x2; })arg1;
 - (void)setExtent:(id)arg1;
-- (void)setSelectionWithPoint:(struct CGPoint { float x1; float x2; })arg1 ignoringLargeBlocks:(BOOL)arg2;
 - (void)setSelectionWithPoint:(struct CGPoint { float x1; float x2; })arg1;
+- (void)setSelectionWithPoint:(struct CGPoint { float x1; float x2; })arg1 ignoringLargeBlocks:(BOOL)arg2;
 - (void)shrinkFromEdge:(int)arg1;
 - (void)shrinkSelectionFromPoint:(struct CGPoint { float x1; float x2; })arg1 towardsPoint:(struct CGPoint { float x1; float x2; })arg2 withNewRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg3;
 - (id)textRepresentation;

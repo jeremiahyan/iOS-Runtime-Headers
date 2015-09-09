@@ -2,18 +2,14 @@
    Image: /System/Library/PrivateFrameworks/Notes.framework/Notes
  */
 
-@class NSData, NSString, NoteObject;
+@interface NoteBodyObject : NSManagedObject
 
-@interface NoteBodyObject : NSManagedObject {
-}
+@property (nonatomic, retain) NSString *content;
+@property (nonatomic, readonly) NSString *contentAsPlainText;
+@property (nonatomic, retain) NSString *externalContentRef;
+@property (nonatomic, retain) NSData *externalRepresentation;
+@property (nonatomic, retain) NoteObject *owner;
 
-@property(retain) NSString * content;
-@property(readonly) NSString * contentAsPlainText;
-@property(retain) NSString * externalContentRef;
-@property(retain) NSData * externalRepresentation;
-@property(retain) NoteObject * owner;
-
-- (BOOL)containsAttachments;
 - (id)contentAsPlainText;
 - (id)contentAsPlainTextPreservingNewlines;
 

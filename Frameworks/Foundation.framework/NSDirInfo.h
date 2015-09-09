@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@class NSMutableDictionary;
-
 @interface NSDirInfo : NSMutableDictionary {
     NSMutableDictionary *dict;
 }
@@ -13,8 +11,8 @@
 - (id)init;
 - (id)initWithCapacity:(unsigned int)arg1;
 - (id)initWithContentsOfFile:(id)arg1;
-- (id)initWithDictionary:(id)arg1 copyItems:(BOOL)arg2;
 - (id)initWithDictionary:(id)arg1;
+- (id)initWithDictionary:(id)arg1 copyItems:(BOOL)arg2;
 - (id)initWithObjects:(const id*)arg1 forKeys:(const id*)arg2 count:(unsigned int)arg3;
 - (id)keyEnumerator;
 - (id)objectForKey:(id)arg1;

@@ -2,24 +2,13 @@
    Image: /System/Library/PrivateFrameworks/AOSKit.framework/AOSKit
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class NSConditionLock;
-
 @interface AOSTransaction : NSObject <NSCoding> {
-    int (*callbackFunction)();
-    int (*contextRelease)();
-    int (*contextRetain)();
-    id callbackBlock;
-    struct dispatch_queue_s { } *callbackQueue;
+    id /* block */ callbackBlock;
+    int (*callbackFunction;
+    NSObject<OS_dispatch_queue> *callbackQueue;
     void *context;
+    int (*contextRelease;
+    int (*contextRetain;
     unsigned char didFinish;
     unsigned char didSucceed;
     struct __CFError { } *error;

@@ -2,39 +2,57 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-@class CalendarEventAlarmTable, EKAlarm;
-
 @interface EKAlarmEditItemViewController : EKEditItemViewController <CalendarEventAlarmTableDelegate> {
-    EKAlarm *_alarm;
-    int _alarmIndex;
+    EKUIAlarm *_alarm;
+    unsigned int _alarmIndex;
     BOOL _allDay;
+    EKCalendar *_calendar;
+    BOOL _eventHasTravelTime;
     BOOL _immediateAlarmCreation;
     BOOL _shouldAllowAlarmsTriggeringAfterStartDate;
+    BOOL _shouldShowLeaveNowOption;
     CalendarEventAlarmTable *_table;
 }
 
-@property(retain) EKAlarm * alarm;
-@property int alarmIndex;
-@property BOOL allDay;
-@property int presetIdentifier;
-@property BOOL shouldAllowAlarmsTriggeringAfterStartDate;
+@property (nonatomic, retain) EKUIAlarm *alarm;
+@property (nonatomic) unsigned int alarmIndex;
+@property (nonatomic) BOOL allDay;
+@property (nonatomic, retain) EKCalendar *calendar;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL eventHasTravelTime;
+@property (readonly) unsigned int hash;
+@property (nonatomic) int presetIdentifier;
+@property (nonatomic) BOOL shouldAllowAlarmsTriggeringAfterStartDate;
+@property (nonatomic) BOOL shouldShowLeaveNowOption;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
+- (void)_storeChanged:(id)arg1;
 - (id)alarm;
-- (int)alarmIndex;
+- (unsigned int)alarmIndex;
 - (void)alarmTableDidChangeAlarm:(id)arg1;
 - (BOOL)allDay;
+- (id)calendar;
 - (BOOL)customSelected;
+- (BOOL)eventHasTravelTime;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 styleProvider:(id)arg2;
 - (void)loadView;
 - (int)presetIdentifier;
 - (void)setAlarm:(id)arg1;
-- (void)setAlarmIndex:(int)arg1;
+- (void)setAlarmIndex:(unsigned int)arg1;
 - (void)setAllDay:(BOOL)arg1;
+- (void)setCalendar:(id)arg1;
 - (void)setCustomString:(id)arg1;
+- (void)setEventHasTravelTime:(BOOL)arg1;
 - (void)setPresetIdentifier:(int)arg1;
 - (void)setShouldAllowAlarmsTriggeringAfterStartDate:(BOOL)arg1;
+- (void)setShouldShowLeaveNowOption:(BOOL)arg1;
 - (BOOL)shouldAllowAlarmsTriggeringAfterStartDate;
+- (BOOL)shouldShowLeaveNowOption;
+- (id)tableHeaderView;
+- (void)viewDidDisappear:(BOOL)arg1;
 - (void)viewDidLoad;
+- (void)viewWillAppear:(BOOL)arg1;
 
 @end

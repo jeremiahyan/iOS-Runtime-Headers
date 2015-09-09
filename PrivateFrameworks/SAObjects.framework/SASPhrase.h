@@ -2,19 +2,21 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSArray;
+@interface SASPhrase : AceObject <SAAceSerializable>
 
-@interface SASPhrase : AceObject <SAAceSerializable> {
-}
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSArray *interpretations;
+@property (nonatomic) BOOL lowConfidence;
+@property (nonatomic) BOOL speechRepairApplied;
+@property (readonly) Class superclass;
 
-@property(copy) NSArray * interpretations;
-@property BOOL lowConfidence;
-@property BOOL speechRepairApplied;
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
 
 + (id)phrase;
 + (id)phraseWithDictionary:(id)arg1 context:(id)arg2;
 
-- (id)af_speechInterpretations;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 - (id)interpretations;
@@ -23,5 +25,9 @@
 - (void)setLowConfidence:(BOOL)arg1;
 - (void)setSpeechRepairApplied:(BOOL)arg1;
 - (BOOL)speechRepairApplied;
+
+// Image: /System/Library/PrivateFrameworks/AssistantServices.framework/AssistantServices
+
+- (id)af_speechInterpretations;
 
 @end

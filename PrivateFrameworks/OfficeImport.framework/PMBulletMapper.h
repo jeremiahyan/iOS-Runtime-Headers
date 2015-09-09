@@ -2,15 +2,13 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class CMStyle, OADParagraphProperties;
-
 @interface PMBulletMapper : CMMapper {
     int mFontSize;
     OADParagraphProperties *mProperties;
     CMStyle *mStyle;
 }
 
-+ (id)stringForIndex:(int)arg1 withFormat:(int)arg2;
++ (id)stringForIndex:(unsigned int)arg1 withFormat:(int)arg2;
 
 - (id)bulletFontName;
 - (int)bulletSize;

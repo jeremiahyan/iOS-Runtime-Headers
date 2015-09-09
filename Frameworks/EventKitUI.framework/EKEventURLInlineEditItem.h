@@ -2,16 +2,18 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-@class UITableViewCell;
-
 @interface EKEventURLInlineEditItem : EKEventEditItem <UITextFieldDelegate> {
     UITableViewCell *_cell;
 }
 
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+
 - (void).cxx_destruct;
 - (BOOL)canBeConfiguredForCalendarConstraints:(id)arg1;
-- (id)cellForSubitemAtIndex:(unsigned int)arg1 inSubsection:(unsigned int)arg2;
-- (float)defaultCellHeightForSubitemAtIndex:(unsigned int)arg1 inSubsection:(unsigned int)arg2 forWidth:(float)arg3;
+- (id)cellForSubitemAtIndex:(unsigned int)arg1;
 - (BOOL)isInline;
 - (void)reset;
 - (BOOL)saveAndDismissWithForce:(BOOL)arg1;

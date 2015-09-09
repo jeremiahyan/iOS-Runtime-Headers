@@ -2,35 +2,36 @@
    Image: /System/Library/PrivateFrameworks/PassKitCore.framework/PassKitCore
  */
 
-@class NSData, PKColor;
-
-@interface PKPassDisplayProfile : NSObject <NSSecureCoding, NSCopying> {
+@interface PKPassDisplayProfile : PKDisplayProfile <NSCopying, NSSecureCoding> {
     PKColor *_backgroundColor;
     NSData *_backgroundHash;
     PKColor *_foregroundColor;
     NSData *_iconHash;
     PKColor *_labelColor;
-    int _layoutMode;
     NSData *_logoHash;
-    unsigned int _passStyle;
+    int _passStyle;
+    NSData *_paymentAssetsHash;
     PKColor *_stripColor;
     NSData *_stripHash;
     BOOL _tallCode;
     NSData *_thumbnailHash;
 }
 
-@property(retain) PKColor * backgroundColor;
-@property(retain) NSData * backgroundHash;
-@property(retain) PKColor * foregroundColor;
-@property(retain) NSData * iconHash;
-@property(retain) PKColor * labelColor;
-@property(readonly) int layoutMode;
-@property(retain) NSData * logoHash;
-@property unsigned int passStyle;
-@property(retain) PKColor * stripColor;
-@property(retain) NSData * stripHash;
-@property BOOL tallCode;
-@property(retain) NSData * thumbnailHash;
+@property (nonatomic, retain) PKColor *backgroundColor;
+@property (nonatomic, retain) NSData *backgroundHash;
+@property (nonatomic, retain) PKColor *foregroundColor;
+@property (nonatomic, retain) NSData *iconHash;
+@property (nonatomic, retain) PKColor *labelColor;
+@property (nonatomic, readonly) int layoutMode;
+@property (nonatomic, retain) NSData *logoHash;
+@property (nonatomic) int passStyle;
+@property (nonatomic, retain) NSData *paymentAssetsHash;
+@property (nonatomic, readonly) BOOL showsBackgroundImage;
+@property (nonatomic, readonly) BOOL showsStripImage;
+@property (nonatomic, retain) PKColor *stripColor;
+@property (nonatomic, retain) NSData *stripHash;
+@property (nonatomic) BOOL tallCode;
+@property (nonatomic, retain) NSData *thumbnailHash;
 
 + (BOOL)supportsSecureCoding;
 
@@ -42,18 +43,20 @@
 - (id)foregroundColor;
 - (id)iconHash;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithPassDictionary:(id)arg1 passURL:(id)arg2;
+- (id)initWithDictionary:(id)arg1 bundle:(id)arg2;
 - (id)labelColor;
 - (int)layoutMode;
 - (id)logoHash;
-- (unsigned int)passStyle;
+- (int)passStyle;
+- (id)paymentAssetsHash;
 - (void)setBackgroundColor:(id)arg1;
 - (void)setBackgroundHash:(id)arg1;
 - (void)setForegroundColor:(id)arg1;
 - (void)setIconHash:(id)arg1;
 - (void)setLabelColor:(id)arg1;
 - (void)setLogoHash:(id)arg1;
-- (void)setPassStyle:(unsigned int)arg1;
+- (void)setPassStyle:(int)arg1;
+- (void)setPaymentAssetsHash:(id)arg1;
 - (void)setStripColor:(id)arg1;
 - (void)setStripHash:(id)arg1;
 - (void)setTallCode:(BOOL)arg1;
@@ -64,5 +67,6 @@
 - (id)stripHash;
 - (BOOL)tallCode;
 - (id)thumbnailHash;
+- (int)type;
 
 @end

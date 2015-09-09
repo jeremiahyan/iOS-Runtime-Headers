@@ -2,8 +2,12 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface GQHKeynote : NSObject <GQKeynoteGenerator> {
-}
+@interface GQHKeynote : NSObject <GQKeynoteGenerator>
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (int)beginPresentation:(id)arg1 state:(id)arg2;
 + (int)beginSlide:(id)arg1 state:(id)arg2;

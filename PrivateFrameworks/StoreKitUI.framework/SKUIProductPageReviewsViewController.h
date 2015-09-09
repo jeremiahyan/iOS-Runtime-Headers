@@ -2,9 +2,8 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class <SKUIProductPageChildViewControllerDelegate>, NSMutableIndexSet, NSOperationQueue, SKComposeReviewViewController, SKUIClientContext, SKUIFacebookLikeStatus, SKUIIPadCustomerReviewsHeaderView, SKUILayoutCache, SKUIProductPage, SKUIProductPageHeaderViewController, SKUIProductPageTableView, SKUIReviewList, SKUIReviewsFacebookViewController, SKUIReviewsHistogramViewController, SKUIStarRatingQueue, SSVLoadURLOperation, UIScrollView;
-
-@interface SKUIProductPageReviewsViewController : UIViewController <SKUILayoutCacheDelegate, SKComposeReviewDelegate, SKUIReviewsFacebookViewControllerDelegate, UITableViewDataSource, UITableViewDelegate, SKUIProductPageChildViewController> {
+@interface SKUIProductPageReviewsViewController : UIViewController <SKComposeReviewDelegate, SKUILayoutCacheDelegate, SKUIProductPageChildViewController, SKUIReviewsFacebookViewControllerDelegate, UITableViewDataSource, UITableViewDelegate> {
+    BOOL _askPermission;
     SKUIClientContext *_clientContext;
     SKComposeReviewViewController *_composeViewController;
     <SKUIProductPageChildViewControllerDelegate> *_delegate;
@@ -26,19 +25,25 @@
     SKUIProductPageTableView *_tableView;
 }
 
-@property(retain) SKUIClientContext * clientContext;
-@property <SKUIProductPageChildViewControllerDelegate> * delegate;
-@property(copy) SKUIFacebookLikeStatus * facebookLikeStatus;
-@property(retain) SKUIProductPageHeaderViewController * headerViewController;
-@property(readonly) NSOperationQueue * operationQueue;
-@property(readonly) SKUIProductPage * productPage;
-@property(readonly) UIScrollView * scrollView;
+@property (nonatomic) BOOL askPermission;
+@property (nonatomic, retain) SKUIClientContext *clientContext;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SKUIProductPageChildViewControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, copy) SKUIFacebookLikeStatus *facebookLikeStatus;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) SKUIProductPageHeaderViewController *headerViewController;
+@property (nonatomic, readonly) NSOperationQueue *operationQueue;
+@property (nonatomic, readonly) SKUIProductPage *productPage;
+@property (nonatomic, readonly) UIScrollView *scrollView;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_addHeaderView;
 - (void)_addReviewsFromResponse:(id)arg1 error:(id)arg2;
 - (void)_appSupportAction:(id)arg1;
 - (id)_bottomBorderColorForScheme:(id)arg1;
+- (float)_defaultPageWidth;
 - (id)_histogramViewController;
 - (id)_loadMoreCellForTableView:(id)arg1 indexPath:(id)arg2;
 - (void)_loadNextPageIfNecessaryForOffset:(struct CGPoint { float x1; float x2; })arg1;
@@ -55,6 +60,7 @@
 - (id)_urlStringWithPageNumber:(int)arg1;
 - (void)_versionSelectionAction:(id)arg1;
 - (void)_writeAReviewAction:(id)arg1;
+- (BOOL)askPermission;
 - (id)clientContext;
 - (void)dealloc;
 - (id)delegate;
@@ -72,6 +78,7 @@
 - (id)scrollView;
 - (void)scrollViewDidScroll:(id)arg1;
 - (void)scrollViewWillEndDragging:(id)arg1 withVelocity:(struct CGPoint { float x1; float x2; })arg2 targetContentOffset:(inout struct CGPoint { float x1; float x2; }*)arg3;
+- (void)setAskPermission:(BOOL)arg1;
 - (void)setClientContext:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setFacebookLikeStatus:(id)arg1;

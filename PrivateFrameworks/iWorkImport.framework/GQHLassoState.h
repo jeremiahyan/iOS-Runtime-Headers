@@ -2,13 +2,7 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class GQHXML;
-
 @interface GQHLassoState : GQHState {
-    struct CGPoint { 
-        float x; 
-        float y; 
-    boolmIsProgressiveMode;
     struct __CFString { } *mCssUri;
     unsigned int mCurrentDrawableZOrder;
     struct __CFString { } *mCurrentSheetFilename;
@@ -16,6 +10,10 @@
     struct __CFDictionary { } *mDrawableUidToCssZOrderClassMap;
     char *mFirstWorkspaceName;
     GQHXML *mIndex;
+    bool mIsProgressiveMode;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } mMaxCanvasPoint;
     GQHXML *mNavigation;
     int mSheetCount;

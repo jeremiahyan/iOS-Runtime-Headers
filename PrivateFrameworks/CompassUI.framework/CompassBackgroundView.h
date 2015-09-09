@@ -2,58 +2,16 @@
    Image: /System/Library/PrivateFrameworks/CompassUI.framework/CompassUI
  */
 
-@class CompassAtlas, CompassShader, EAGLContext, GLKView;
-
 @interface CompassBackgroundView : CompassRotatingView <GLKViewDelegate> {
-    struct CGPoint { 
-        float x; 
-        float y; 
-    union _GLKMatrix4 { 
-        struct { 
-            float m00; 
-            float m01; 
-            float m02; 
-            float m03; 
-            float m10; 
-            float m11; 
-            float m12; 
-            float m13; 
-            float m20; 
-            float m21; 
-            float m22; 
-            float m23; 
-            float m30; 
-            float m31; 
-            float m32; 
-            float m33; 
-        } ; 
-        float m[16]; 
-    union _GLKMatrix4 { 
-        struct { 
-            float m00; 
-            float m01; 
-            float m02; 
-            float m03; 
-            float m10; 
-            float m11; 
-            float m12; 
-            float m13; 
-            float m20; 
-            float m21; 
-            float m22; 
-            float m23; 
-            float m30; 
-            float m31; 
-            float m32; 
-            float m33; 
-        } ; 
-        float m[16]; 
-    struct CGPoint { 
-        float x; 
-        float y; 
     float _bearing;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _compassCenter;
     EAGLContext *_context;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _currentOffset;
     GLKView *_glView;
     CompassAtlas *_imageAtlas;
@@ -64,11 +22,51 @@
     unsigned int _labelsVertexArray;
     unsigned int _labelsVertexBuffer;
     CompassShader *_lineShader;
+    union _GLKMatrix4 { 
+        struct { 
+            float m00; 
+            float m01; 
+            float m02; 
+            float m03; 
+            float m10; 
+            float m11; 
+            float m12; 
+            float m13; 
+            float m20; 
+            float m21; 
+            float m22; 
+            float m23; 
+            float m30; 
+            float m31; 
+            float m32; 
+            float m33; 
+        } ; 
+        float m[16]; 
     } _modelViewMatrix;
     CompassShader *_normalShader;
     unsigned int _otherLinesIndexBuffer;
     unsigned int _otherLinesVertexArray;
     unsigned int _otherLinesVertexBuffer;
+    union _GLKMatrix4 { 
+        struct { 
+            float m00; 
+            float m01; 
+            float m02; 
+            float m03; 
+            float m10; 
+            float m11; 
+            float m12; 
+            float m13; 
+            float m20; 
+            float m21; 
+            float m22; 
+            float m23; 
+            float m30; 
+            float m31; 
+            float m32; 
+            float m33; 
+        } ; 
+        float m[16]; 
     } _projectionMatrix;
     BOOL _shownInCompass;
     CompassShader *_textureShader;
@@ -81,18 +79,23 @@
     unsigned int _ticVertexBuffer;
 }
 
-@property float bearing;
-@property(readonly) float ticLength;
-@property float ticRadius;
+@property (nonatomic) float bearing;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) float ticLength;
+@property (nonatomic) float ticRadius;
 
+- (void).cxx_destruct;
 - (float)bearing;
 - (void)dealloc;
 - (void)generateCompassPoints;
 - (void)generateExtraLines;
 - (void)generateNumberAtlas;
 - (void)glkView:(id)arg1 drawInRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2;
-- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 forCompass:(BOOL)arg2;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 forCompass:(BOOL)arg2;
 - (void)layoutSubviews;
 - (void)positionLabelNamed:(id)arg1 atDegrees:(int)arg2 fromCenter:(struct CGPoint { float x1; float x2; })arg3 withRadius:(float)arg4 vertexOffset:(unsigned int)arg5 color:(struct { float x1; float x2; float x3; float x4; })arg6;
 - (void)positionLabels;

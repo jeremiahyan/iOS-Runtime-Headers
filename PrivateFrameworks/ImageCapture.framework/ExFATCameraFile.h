@@ -2,26 +2,19 @@
    Image: /System/Library/PrivateFrameworks/ImageCapture.framework/ImageCapture
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class NSString;
-
 @interface ExFATCameraFile : ICCameraFile {
     void *_exFATCameraFileProperties;
 }
 
 @property int bitsPerPixel;
-@property(copy) NSString * exifCreationDateTime;
-@property(copy) NSString * exifModificationDateTime;
-@property(readonly) struct timespec { int x1; long x2; } fsCreationTime;
-@property(readonly) struct timespec { int x1; long x2; } fsModificationTime;
-@property(readonly) long long fsSize;
+@property (copy) NSString *exifCreationDateTime;
+@property (copy) NSString *exifModificationDateTime;
+@property (readonly) struct timespec { int x1; long x2; } fsCreationTime;
+@property (readonly) struct timespec { int x1; long x2; } fsModificationTime;
+@property (readonly) long long fsSize;
 @property int imgHeight;
 @property int imgWidth;
-@property(readonly) id object;
+@property (readonly) id object;
 @property int thmHeight;
 @property int thmOffset;
 @property int thmSize;
@@ -29,9 +22,9 @@
 @property unsigned int type;
 @property BOOL updatedBasicMetadata;
 
-- (struct CGDataProviderSequentialCallbacks { unsigned int x1; int (*x2)(); int (*x3)(); int (*x4)(); int (*x5)(); })dpCallbacks;
 - (int)bitsPerPixel;
 - (void)dealloc;
+- (struct CGDataProviderSequentialCallbacks { unsigned int x1; int (*x2)(); int (*x3)(); int (*x4)(); int (*x5)(); })dpCallbacks;
 - (long long)dpOffset;
 - (id)exifCreationDateTime;
 - (id)exifModificationDateTime;
@@ -68,6 +61,7 @@
 - (id)thumbData;
 - (unsigned int)type;
 - (void)updateBasicMetadata;
+- (BOOL)updateBasicMetadataIfNotRAW;
 - (BOOL)updatedBasicMetadata;
 - (long)writeDataToFile:(int)arg1 fromOffset:(long long)arg2 ofLength:(long long*)arg3;
 

@@ -2,9 +2,8 @@
    Image: /System/Library/PrivateFrameworks/CoreThemeDefinition.framework/CoreThemeDefinition
  */
 
-@class NSArray;
-
 @interface CTDPSDPreviewRef : CUIPSDImageRef {
+    int _columnWidth;
     struct _PSDImageInfo { 
         unsigned int width; 
         unsigned int height; 
@@ -12,7 +11,6 @@
         unsigned short bitsPerSample; 
         unsigned short samplesPerPixel; 
         int isDrawable; 
-    int _columnWidth;
     } _imageInfo;
     int _layerCount;
     NSArray *_layerIndexLayout;

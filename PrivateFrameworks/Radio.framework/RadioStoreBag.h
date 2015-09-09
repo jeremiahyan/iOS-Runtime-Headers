@@ -2,9 +2,9 @@
    Image: /System/Library/PrivateFrameworks/Radio.framework/Radio
  */
 
-@class NSDictionary, NSNumber, NSString, NSURL, SSVPlatformContext;
-
 @interface RadioStoreBag : NSObject {
+    NSArray *_amdDomains;
+    NSString *_leaseCertificateURLString;
     NSDictionary *_mescalRequestWhitelist;
     NSDictionary *_mescalResponseWhitelist;
     NSString *_mescalSetupCertURLString;
@@ -12,23 +12,30 @@
     SSVPlatformContext *_platformContext;
     NSNumber *_shouldSendKBSyncDataValue;
     NSString *_srdnldURLString;
+    NSString *_storeFrontSuffix;
     NSDictionary *_tiltDictionary;
 }
 
-@property(readonly) NSURL * baseURL;
-@property(readonly) NSString * mescalCertificateURLString;
-@property(readonly) NSString * mescalSetupURLString;
-@property(readonly) NSString * platformLookupURLString;
-@property(readonly) NSDictionary * radioConfigurationDictionary;
-@property(readonly) BOOL shouldSendKBSyncData;
-@property(readonly) NSString * streamingDownloadURLString;
+@property (nonatomic, readonly, copy) NSDictionary *URLBagDictionary;
+@property (getter=isAdFreeRadioEnabled, nonatomic, readonly) BOOL adFreeRadioEnabled;
+@property (nonatomic, readonly) NSURL *baseURL;
+@property (nonatomic, readonly) NSString *leaseCertificateURLString;
+@property (nonatomic, readonly) NSString *mescalCertificateURLString;
+@property (nonatomic, readonly) NSString *mescalSetupURLString;
+@property (nonatomic, readonly) NSString *platformLookupURLString;
+@property (nonatomic, readonly) NSDictionary *radioConfigurationDictionary;
+@property (nonatomic, readonly) BOOL shouldSendKBSyncData;
+@property (nonatomic, readonly) NSString *streamingDownloadURLString;
 
 - (void).cxx_destruct;
+- (id)URLBagDictionary;
 - (id)_cacheRepresentation;
 - (id)_initWithCacheRepresentation:(id)arg1;
 - (id)_initWithURLBagDictionary:(id)arg1;
 - (id)_platformContext;
 - (id)baseURL;
+- (BOOL)isAdFreeRadioEnabled;
+- (id)leaseCertificateURLString;
 - (id)mescalCertificateURLString;
 - (id)mescalSetupURLString;
 - (id)platformLookupURLString;

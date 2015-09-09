@@ -2,10 +2,8 @@
    Image: /System/Library/PrivateFrameworks/TouchRemote.framework/TouchRemote
  */
 
-@class <TRTransferBrowserDelegate>, NSObject<OS_dispatch_queue>, WPTransfer;
-
 @interface TRTransferBrowser : NSObject <WPTransferDelegate> {
-    struct { struct _CCCryptor {} *x1; unsigned char x2[16]; unsigned char x3[16]; unsigned int x4; unsigned char x5; } *_aesContext;
+    struct { struct _CCCryptor {} *x1; unsigned char x2[16]; unsigned char x3[16]; unsigned int x4; } *_aesContext;
     <TRTransferBrowserDelegate> *_delegate;
     struct AirPlayPairingSessionPrivate { } *_pairingSession;
     int _pairingState;
@@ -16,8 +14,12 @@
     WPTransfer *_transferSession;
 }
 
-@property <TRTransferBrowserDelegate> * delegate;
-@property(readonly) int state;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <TRTransferBrowserDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) int state;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_beginScanningIfPowered;
@@ -26,6 +28,7 @@
 - (long)_runSetupStepWithInput:(const void*)arg1 inputLength:(unsigned long)arg2 outputData:(id*)arg3;
 - (long)_runVerifyStepWithInput:(const void*)arg1 inputLength:(unsigned long)arg2 outputData:(id*)arg3;
 - (void)dealloc;
+- (void)defer;
 - (id)delegate;
 - (id)init;
 - (void)setDelegate:(id)arg1;

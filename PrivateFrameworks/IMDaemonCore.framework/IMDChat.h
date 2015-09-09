@@ -2,17 +2,16 @@
    Image: /System/Library/PrivateFrameworks/IMDaemonCore.framework/IMDaemonCore
  */
 
-@class FZMessage, IMDAccount, IMDService, IMDServiceSession, NSArray, NSDictionary, NSMutableDictionary, NSRecursiveLock, NSString;
-
 @interface IMDChat : NSObject {
     NSString *_accountID;
     NSString *_chatIdentifier;
     NSMutableDictionary *_chatInfo;
     NSString *_displayName;
+    NSString *_groupID;
     NSString *_guid;
     BOOL _isArchived;
     NSString *_lastAddressedLocalHandle;
-    FZMessage *_lastMessage;
+    IMMessageItem *_lastMessage;
     NSRecursiveLock *_lock;
     NSArray *_participants;
     NSDictionary *_properties;
@@ -24,23 +23,24 @@
     unsigned int _unreadCount;
 }
 
-@property(readonly) IMDAccount * account;
-@property(copy) NSString * accountID;
-@property(copy) NSString * chatIdentifier;
-@property(readonly) NSDictionary * chatProperties;
-@property(readonly) NSDictionary * dictionaryRepresentation;
-@property(copy) NSString * displayName;
-@property(copy) NSString * guid;
-@property(readonly) BOOL isArchived;
-@property(copy) NSString * lastAddressedLocalHandle;
-@property(retain) FZMessage * lastMessage;
-@property(copy) NSArray * participants;
-@property(retain) NSDictionary * properties;
-@property(copy) NSString * roomName;
+@property (readonly, retain) IMDAccount *account;
+@property (copy) NSString *accountID;
+@property (copy) NSString *chatIdentifier;
+@property (readonly, retain) NSDictionary *chatProperties;
+@property (readonly, retain) NSDictionary *dictionaryRepresentation;
+@property (copy) NSString *displayName;
+@property (copy) NSString *groupID;
+@property (copy) NSString *guid;
+@property (readonly) BOOL isArchived;
+@property (copy) NSString *lastAddressedLocalHandle;
+@property (retain) IMMessageItem *lastMessage;
+@property (copy) NSArray *participants;
+@property (retain) NSDictionary *properties;
+@property (copy) NSString *roomName;
 @property long long rowID;
-@property(readonly) IMDService * service;
-@property(copy) NSString * serviceName;
-@property(readonly) IMDServiceSession * serviceSession;
+@property (readonly, retain) IMDService *service;
+@property (copy) NSString *serviceName;
+@property (readonly, retain) IMDServiceSession *serviceSession;
 @property int state;
 @property unsigned char style;
 @property unsigned int unreadCount;
@@ -60,8 +60,9 @@
 - (id)description;
 - (id)dictionaryRepresentation;
 - (id)displayName;
+- (id)groupID;
 - (id)guid;
-- (id)initWithAccountID:(id)arg1 service:(id)arg2 guid:(id)arg3 chatIdentifier:(id)arg4 participants:(id)arg5 roomName:(id)arg6 displayName:(id)arg7 lastAddressedLocalHandle:(id)arg8 properties:(id)arg9 state:(int)arg10 style:(unsigned char)arg11;
+- (id)initWithAccountID:(id)arg1 service:(id)arg2 guid:(id)arg3 groupID:(id)arg4 chatIdentifier:(id)arg5 participants:(id)arg6 roomName:(id)arg7 displayName:(id)arg8 lastAddressedLocalHandle:(id)arg9 properties:(id)arg10 state:(int)arg11 style:(unsigned char)arg12;
 - (BOOL)isArchived;
 - (id)lastAddressedLocalHandle;
 - (id)lastMessage;
@@ -77,6 +78,7 @@
 - (void)setAccountID:(id)arg1;
 - (void)setChatIdentifier:(id)arg1;
 - (void)setDisplayName:(id)arg1;
+- (void)setGroupID:(id)arg1;
 - (void)setGuid:(id)arg1;
 - (void)setLastAddressedLocalHandle:(id)arg1;
 - (void)setLastMessage:(id)arg1;
@@ -87,9 +89,12 @@
 - (void)setState:(int)arg1;
 - (void)setStyle:(unsigned char)arg1;
 - (int)state;
+- (void)storeAndBroadcastChatChanges;
 - (unsigned char)style;
 - (unsigned int)unreadCount;
 - (void)updateDisplayName:(id)arg1;
+- (void)updateGroupID:(id)arg1;
+- (void)updateLastAddressedHandle:(id)arg1;
 - (void)updateProperties:(id)arg1;
 
 @end

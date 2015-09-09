@@ -2,22 +2,7 @@
    Image: /System/Library/PrivateFrameworks/MediaPlayerUI.framework/MediaPlayerUI
  */
 
-@class <MPUCoverZoomViewControllerDelegate>, CADisplayLink, CAMediaTimingFunction, MPImageCache, MPUCZCollectionViewController, MPUCoverMaskView, MPUDataSource, NSIndexPath, UIPinchGestureRecognizer, UIView, UIViewController<MPUCoverZoomDetailViewControllerProtocol>;
-
 @interface MPUCoverZoomViewController : UIViewController <MPUCZCollectionViewControllerDelegate, UIGestureRecognizerDelegate> {
-    struct CGSize { 
-        float width; 
-        float height; 
-    struct CGSize { 
-        float width; 
-        float height; 
-    struct CGAffineTransform { 
-        float a; 
-        float b; 
-        float c; 
-        float d; 
-        float tx; 
-        float ty; 
     double _animationDuration;
     float _animationEndProgress;
     float _animationStartProgress;
@@ -27,8 +12,7 @@
     int _coverCountPerColumn;
     MPUDataSource *_dataSource;
     <MPUCoverZoomViewControllerDelegate> *_delegate;
-    UIViewController<MPUCoverZoomDetailViewControllerProtocol> *_detailViewController;
-    MPImageCache *_imageCache;
+    UIViewController *_detailViewController;
     MPUCoverMaskView *_maskView;
     float _pinchContentOffsetDelta;
     NSIndexPath *_pinchContentOffsetIndexPath;
@@ -39,14 +23,31 @@
     UIView *_transformView;
     MPUCZCollectionViewController *_transitionCollectionViewController;
     int _transitionCoverCountPerColumn;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _transitionEndItemSize;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _transitionStartItemSize;
     float _transitionStartScale;
+    struct CGAffineTransform { 
+        float a; 
+        float b; 
+        float c; 
+        float d; 
+        float tx; 
+        float ty; 
     } _unzoomedAlbumViewTransform;
     BOOL _zoomed;
 }
 
-@property <MPUCoverZoomViewControllerDelegate> * delegate;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <MPUCoverZoomViewControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_beginTransitionForScale:(float)arg1;
@@ -67,9 +68,9 @@
 - (void)detailViewControllerRequestsExit:(id)arg1;
 - (BOOL)gestureRecognizer:(id)arg1 shouldRecognizeSimultaneouslyWithGestureRecognizer:(id)arg2;
 - (float)imageAspectRatio;
-- (id)imageRequestForEntity:(id)arg1;
 - (id)initWithDataSource:(id)arg1;
 - (void)loadView;
+- (struct CGSize { float x1; float x2; })maximumImageSize;
 - (int)preferredStatusBarUpdateAnimation;
 - (BOOL)prefersStatusBarHidden;
 - (void)setDelegate:(id)arg1;

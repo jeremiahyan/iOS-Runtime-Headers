@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@class <MPSwipableViewDelegate>, MPActivityGestureRecognizer, MPSwipeGestureRecognizer, MPTapGestureRecognizer, UIPinchGestureRecognizer;
-
 @interface MPSwipableView : UIView <UIGestureRecognizerDelegate> {
     MPActivityGestureRecognizer *_activityGestureRecognizer;
     int _enabledGestureTypes;
@@ -14,9 +12,13 @@
     MPTapGestureRecognizer *_tapGestureRecognizer;
 }
 
-@property int enabledGestureTypes;
-@property int simultaneousGestureTypes;
-@property <MPSwipableViewDelegate> * swipeDelegate;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) int enabledGestureTypes;
+@property (readonly) unsigned int hash;
+@property (nonatomic) int simultaneousGestureTypes;
+@property (readonly) Class superclass;
+@property (nonatomic) <MPSwipableViewDelegate> *swipeDelegate;
 
 - (void).cxx_destruct;
 - (void)_activityGestureRecognized:(id)arg1;

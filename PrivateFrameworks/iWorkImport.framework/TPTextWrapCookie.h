@@ -2,9 +2,11 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSArray, NSMutableArray, TSDLayout<TSWPLayoutTarget>, TSDWrapPolygon, TSUPointerKeyDictionary, TSWPColumn;
-
 @interface TPTextWrapCookie : NSObject {
+    TSWPColumn *_column;
+    NSMutableArray *_floatingWrappables;
+    TSDWrapSegments *_interiorWrapSegments;
+    TSDLayout<TSWPLayoutTarget> *_target;
     struct CGAffineTransform { 
         float a; 
         float b; 
@@ -12,19 +14,15 @@
         float d; 
         float tx; 
         float ty; 
-    TSWPColumn *_column;
-    NSMutableArray *_floatingWrappables;
-    TSDWrapPolygon *_interiorWrapPolygon;
-    TSDLayout<TSWPLayoutTarget> *_target;
     } _targetInverseTransformInRoot;
-    TSUPointerKeyDictionary *_wrapPathInverseTransformInRootDictionary;
+    TSUPointerKeyDictionary *_wrapSegmentsInverseTransformInRootDictionary;
 }
 
-@property(retain) TSWPColumn * column;
-@property(readonly) NSArray * floatingWrappables;
-@property(retain) TSDWrapPolygon * interiorWrapPolygon;
-@property TSDLayout<TSWPLayoutTarget> * target;
-@property(readonly) struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; } targetInverseTransformInRoot;
+@property (nonatomic, retain) TSWPColumn *column;
+@property (nonatomic, readonly, retain) NSArray *floatingWrappables;
+@property (nonatomic, retain) TSDWrapSegments *interiorWrapSegments;
+@property (nonatomic) TSDLayout<TSWPLayoutTarget> *target;
+@property (nonatomic, readonly) struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; } targetInverseTransformInRoot;
 
 + (id)textWrapCookieForColumn:(id)arg1 targetLayout:(id)arg2;
 
@@ -33,12 +31,12 @@
 - (void)dealloc;
 - (id)floatingWrappables;
 - (id)initWithColumn:(id)arg1 targetLayout:(id)arg2;
-- (id)interiorWrapPolygon;
+- (id)interiorWrapSegments;
 - (void)setColumn:(id)arg1;
-- (void)setInteriorWrapPolygon:(id)arg1;
+- (void)setInteriorWrapSegments:(id)arg1;
 - (void)setTarget:(id)arg1;
 - (id)target;
 - (struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })targetInverseTransformInRoot;
-- (id)transformedWrapPolygonForWrappable:(id)arg1 canvasSpaceToWrapSpaceTransform:(struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })arg2;
+- (id)transformedWrapSegmentsForWrappable:(id)arg1 canvasSpaceToWrapSpaceTransform:(struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })arg2;
 
 @end

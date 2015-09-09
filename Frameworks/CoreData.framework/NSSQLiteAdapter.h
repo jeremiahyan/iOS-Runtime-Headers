@@ -2,14 +2,14 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@class NSString;
-
 @interface NSSQLiteAdapter : NSSQLAdapter {
     NSString *_dbpath;
 }
 
 - (id)createConnection;
 - (void)dealloc;
+- (id)generateSQLStatmentForSourcesAndOrderKeysForDestination:(id)arg1 inManyToMany:(id)arg2;
+- (id)generateSQLStatmentForSourcesAndOrderKeysForDestination:(id)arg1 inToMany:(id)arg2;
 - (id)initWithSQLCore:(id)arg1;
 - (id)pathnameForDatabase;
 - (id)sqliteVersion;

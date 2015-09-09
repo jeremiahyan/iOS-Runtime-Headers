@@ -3,18 +3,18 @@
  */
 
 @interface CMDiagramShapeMatrixMapper : CMDiagramShapeMapper {
-    int mColumnCount;
+    unsigned int mColumnCount;
     BOOL mHasArrows;
     BOOL mIsHorizontal;
     BOOL mIsLinear;
     BOOL mIsSnake;
     float mRectHeight;
     float mRectWidth;
-    int mRowCount;
+    unsigned int mRowCount;
 }
 
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })circumscribedBounds;
-- (int)columnCount;
+- (unsigned int)columnCount;
 - (double)gapRatio;
 - (struct CGSize { float x1; float x2; })gapSize;
 - (id)initWithOddDiagram:(id)arg1 drawingContext:(id)arg2 orientedBounds:(id)arg3 identifier:(id)arg4 parent:(id)arg5;

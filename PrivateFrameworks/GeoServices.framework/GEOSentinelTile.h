@@ -2,15 +2,13 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSString;
-
 @interface GEOSentinelTile : PBCodable <NSCopying> {
     NSString *_resourceName;
     int _type;
 }
 
-@property(retain) NSString * resourceName;
-@property int type;
+@property (nonatomic, retain) NSString *resourceName;
+@property (nonatomic) int type;
 
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -19,6 +17,7 @@
 - (id)dictionaryRepresentation;
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
+- (void)mergeFrom:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 - (id)resourceName;
 - (void)setResourceName:(id)arg1;

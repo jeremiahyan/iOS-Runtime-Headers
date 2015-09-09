@@ -2,33 +2,35 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class <ABSwellTextViewDelegate>, NSString, UIColor, UIFont, UITextView;
-
 @interface ABSwellTextView : UIView <UITextViewDelegate> {
+    BOOL _allowsEditing;
+    <ABSwellTextViewDelegate> *_delegate;
     struct { 
         unsigned int delegateImplementsShouldBeginEditing : 1; 
         unsigned int delegateImplementsShouldEndEditing : 1; 
         unsigned int delegateImplementsDidBeginEditing : 1; 
         unsigned int delegateImplementsDidEndEditing : 1; 
         unsigned int delegateImplementsDidChange : 1; 
-    BOOL _allowsEditing;
-    <ABSwellTextViewDelegate> *_delegate;
     } _flags;
     float _maxHeight;
     UITextView *_textView;
 }
 
-@property BOOL allowsEditing;
-@property <ABSwellTextViewDelegate> * delegate;
-@property UIFont * font;
-@property(getter=isHighlighted) BOOL highlighted;
-@property UIColor * highlightedTextColor;
-@property float maxHeight;
-@property(getter=isScrollEnabled) BOOL scrollEnabled;
-@property(retain) UIColor * shadowColor;
-@property struct CGSize { float x1; float x2; } shadowOffset;
-@property NSString * text;
-@property UIColor * textColor;
+@property (nonatomic) BOOL allowsEditing;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <ABSwellTextViewDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) UIFont *font;
+@property (readonly) unsigned int hash;
+@property (getter=isHighlighted, nonatomic) BOOL highlighted;
+@property (nonatomic) UIColor *highlightedTextColor;
+@property (nonatomic) float maxHeight;
+@property (getter=isScrollEnabled, nonatomic) BOOL scrollEnabled;
+@property (nonatomic, retain) UIColor *shadowColor;
+@property (nonatomic) struct CGSize { float x1; float x2; } shadowOffset;
+@property (readonly) Class superclass;
+@property (nonatomic) NSString *text;
+@property (nonatomic) UIColor *textColor;
 
 + (float)lineHeightWithFont:(id)arg1;
 

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/MusicCarDisplayUI.framework/MusicCarDisplayUI
  */
 
-@class <MCDCarDisplayServiceProvider>, MCDBrowserViewController, MPAVController, UIWindow;
-
 @interface MCDRootController : NSObject {
     MCDBrowserViewController *_browserViewController;
     UIWindow *_carDisplayWindow;
@@ -11,18 +9,22 @@
     <MCDCarDisplayServiceProvider> *_serviceProvider;
 }
 
-@property(readonly) UIWindow * carDisplayWindow;
-@property(retain) MPAVController * player;
-@property <MCDCarDisplayServiceProvider> * serviceProvider;
+@property (nonatomic, readonly) UIWindow *carDisplayWindow;
+@property (nonatomic, retain) MPAVController *player;
+@property (nonatomic) RadioRecentStationsController *recentStationsController;
+@property (nonatomic) <MCDCarDisplayServiceProvider> *serviceProvider;
 
 - (void).cxx_destruct;
 - (id)carDisplayWindow;
 - (void)dealloc;
 - (id)initWithScreen:(id)arg1 hostTabBarController:(id)arg2;
 - (id)player;
+- (id)recentStationsController;
+- (void)reloadRadio;
 - (id)serviceProvider;
 - (void)setPlayer:(id)arg1;
+- (void)setRecentStationsController:(id)arg1;
 - (void)setServiceProvider:(id)arg1;
-- (void)showNowPlaying;
+- (void)showNowPlaying:(BOOL)arg1;
 
 @end

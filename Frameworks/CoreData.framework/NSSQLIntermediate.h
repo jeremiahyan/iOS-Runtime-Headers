@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@class NSSQLIntermediate;
-
 @interface NSSQLIntermediate : NSObject {
     NSSQLIntermediate *_scope;
 }
@@ -22,7 +20,7 @@
 - (id)_generateSQLForKeyPathExpression:(id)arg1 allowToMany:(BOOL)arg2 inContext:(id)arg3;
 - (id)_generateSQLForSubqueryExpression:(id)arg1 trailingKeypath:(id)arg2 inContext:(id)arg3;
 - (id)_generateSQLForTernaryExpression:(id)arg1 allowToMany:(BOOL)arg2 inContext:(id)arg3;
-- (id)_generateSQLForVariableExpression:(id)arg1 inContext:(id)arg2;
+- (id)_generateSQLForVariableExpression:(id)arg1 allowToMany:(BOOL)arg2 inContext:(id)arg3;
 - (id)_lastScopedItem;
 - (void)_promoteJoinsForAggregateExpression:(id)arg1;
 - (void)_promoteJoinsForFunctionExpression:(id)arg1;
@@ -41,8 +39,9 @@
 - (BOOL)isFunctionScoped;
 - (BOOL)isHavingScoped;
 - (BOOL)isOrScoped;
-- (BOOL)isSelectTargetScoped;
 - (BOOL)isSimpleKeypath:(id)arg1;
+- (BOOL)isTargetColumnsScoped;
+- (BOOL)isUpdateScoped;
 - (BOOL)isVariableBasedKeypathScopedBySubquery:(id)arg1;
 - (BOOL)keypathExpressionIsSafeLHSForIn:(id)arg1;
 - (void)promoteJoinsInKeypathsForExpression:(id)arg1;

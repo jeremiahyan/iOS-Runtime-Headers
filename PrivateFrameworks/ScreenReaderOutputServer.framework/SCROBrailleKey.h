@@ -2,10 +2,9 @@
    Image: /System/Library/PrivateFrameworks/ScreenReaderOutputServer.framework/ScreenReaderOutputServer
  */
 
-@class NSMutableArray, NSString;
-
 @interface SCROBrailleKey : NSObject <NSCoding> {
     id _appToken;
+    int _displayMode;
     long _displayToken;
     BOOL _hasRouterInfo;
     NSString *_identifier;
@@ -20,6 +19,7 @@
 - (void)addSpacebarKeyMask;
 - (void)dealloc;
 - (id)description;
+- (int)displayMode;
 - (long)displayToken;
 - (void)encodeWithCoder:(id)arg1;
 - (BOOL)getRouterIndex:(int*)arg1 token:(int*)arg2 location:(int*)arg3 appToken:(id*)arg4;
@@ -27,6 +27,7 @@
 - (id)init;
 - (id)initWithCoder:(id)arg1;
 - (id)keyMasks;
+- (void)setDisplayMode:(int)arg1;
 - (void)setDisplayToken:(long)arg1;
 - (void)setRouterIndex:(long)arg1 token:(int)arg2 location:(long)arg3 appToken:(id)arg4;
 

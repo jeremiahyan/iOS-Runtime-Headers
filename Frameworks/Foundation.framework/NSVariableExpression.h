@@ -2,11 +2,11 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@class NSString;
-
 @interface NSVariableExpression : NSExpression {
     NSString *_variable;
 }
+
+// Image: /System/Library/Frameworks/Foundation.framework/Foundation
 
 + (BOOL)supportsSecureCoding;
 
@@ -21,5 +21,9 @@
 - (BOOL)isEqual:(id)arg1;
 - (id)predicateFormat;
 - (id)variable;
+
+// Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
+
+- (id)CKExpressionValue;
 
 @end

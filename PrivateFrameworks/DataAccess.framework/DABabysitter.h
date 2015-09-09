@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/DataAccess.framework/DataAccess
  */
 
-@class NSMutableDictionary, NSString;
-
 @interface DABabysitter : NSObject {
     NSString *_buildVersion;
     NSMutableDictionary *_failedWaiters;
@@ -11,13 +9,14 @@
     NSMutableDictionary *_restrictedWaiters;
 }
 
-@property(retain) NSString * buildVersion;
-@property(retain) NSMutableDictionary * failedWaiters;
-@property(retain) NSMutableDictionary * refreshingWaiters;
-@property(retain) NSMutableDictionary * restrictedWaiters;
+@property (nonatomic, retain) NSString *buildVersion;
+@property (nonatomic, retain) NSMutableDictionary *failedWaiters;
+@property (nonatomic, retain) NSMutableDictionary *refreshingWaiters;
+@property (nonatomic, retain) NSMutableDictionary *restrictedWaiters;
 
 + (id)sharedBabysitter;
 
+- (void).cxx_destruct;
 - (void)_decrementRefreshCountForWaiter:(id)arg1 forOperationWithName:(id)arg2;
 - (void)_decrementRefreshCountForWaiterID:(id)arg1 operationName:(id)arg2;
 - (void)_incrementRefreshCountForWaiterID:(id)arg1 operationName:(id)arg2;

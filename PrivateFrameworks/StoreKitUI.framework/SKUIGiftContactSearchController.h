@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class <SKUIGiftContactSearchDelegate>, MFContactsSearchManager, MFContactsSearchResultsModel, NSArray, NSNumber, UITableView, UIView;
-
 @interface SKUIGiftContactSearchController : NSObject <MFContactsSearchConsumer, UITableViewDataSource, UITableViewDelegate> {
     void *_addressBook;
     <SKUIGiftContactSearchDelegate> *_delegate;
@@ -15,9 +13,13 @@
     UITableView *_tableView;
 }
 
-@property <SKUIGiftContactSearchDelegate> * delegate;
-@property(readonly) int numberOfResults;
-@property(readonly) UIView * searchResultsView;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SKUIGiftContactSearchDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) int numberOfResults;
+@property (nonatomic, readonly) UIView *searchResultsView;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_finishSearchWithResults:(id)arg1;
@@ -25,11 +27,11 @@
 - (id)_tableView;
 - (void)beganNetworkActivity;
 - (BOOL)cancelSearch;
-- (void)consumeSearchResults:(id)arg1 type:(int)arg2 taskID:(id)arg3;
+- (void)consumeSearchResults:(id)arg1 type:(unsigned int)arg2 taskID:(id)arg3;
 - (void)dealloc;
 - (id)delegate;
 - (void)endedNetworkActivity;
-- (void)finishedSearchingForType:(int)arg1;
+- (void)finishedSearchingForType:(unsigned int)arg1;
 - (void)finishedTaskWithID:(id)arg1;
 - (id)initWithAddressBook:(void*)arg1;
 - (int)numberOfResults;

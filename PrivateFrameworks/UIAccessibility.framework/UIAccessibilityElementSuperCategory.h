@@ -2,13 +2,10 @@
    Image: /System/Library/PrivateFrameworks/UIAccessibility.framework/UIAccessibility
  */
 
-@interface UIAccessibilityElementSuperCategory : UIAccessibilityElementSuperCategory_super {
-}
+@interface UIAccessibilityElementSuperCategory : __UIAccessibilityElementSuperCategory_super
 
-+ (id)_accessibilityTargetClassName;
-+ (void)_initializeSafeCategory;
-+ (id)_initializeSafeCategoryFromValidationManager;
-+ (id)_installSafeCategoryValidationMethod;
++ (Class)safeCategoryTargetClass;
++ (id)safeCategoryTargetClassName;
 
 - (float)_accessibilityActivationDelay;
 - (id)_accessibilityAutomaticIdentifier;
@@ -24,6 +21,7 @@
 - (id)accessibilityHint;
 - (id)accessibilityLabel;
 - (id)accessibilityLanguage;
+- (id)accessibilityPath;
 - (unsigned long long)accessibilityTraits;
 - (id)accessibilityValue;
 - (void)accessibilityZoomInAtPoint:(struct CGPoint { float x1; float x2; })arg1;
@@ -32,6 +30,7 @@
 - (id)description;
 - (id)init;
 - (id)initWithAccessibilityContainer:(id)arg1;
+- (BOOL)isAccessibilityElement;
 - (void)setAccessibilityContainer:(id)arg1;
 
 @end

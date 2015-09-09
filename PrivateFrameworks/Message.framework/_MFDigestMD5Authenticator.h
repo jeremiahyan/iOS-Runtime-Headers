@@ -2,13 +2,11 @@
    Image: /System/Library/PrivateFrameworks/Message.framework/Message
  */
 
-@class NSData;
-
 @interface _MFDigestMD5Authenticator : MFSASLAuthenticator {
-    unsigned int _maxbuf : 16;
-    unsigned int _securityLevel : 2;
     void *_cryptInfo;
     NSData *_expectedResponse;
+    unsigned int _maxbuf;
+    unsigned int _securityLevel;
 }
 
 - (void)dealloc;

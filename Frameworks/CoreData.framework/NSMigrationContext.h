@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@class NSEntityMapping, NSMigrationManager, NSMutableDictionary, NSPropertyMapping;
-
 @interface NSMigrationContext : NSObject {
     NSMutableDictionary *_byDestinationAssociationTable;
     NSMutableDictionary *_byMappingByDestinationAssociationTable;
@@ -14,6 +12,10 @@
     unsigned int _currentStep;
     NSMigrationManager *_migrationManager;
 }
+
+@property (retain) NSEntityMapping *currentEntityMapping;
+@property unsigned int currentMigrationStep;
+@property (retain) NSPropertyMapping *currentPropertyMapping;
 
 - (void)_createAssociationsByDestination:(id)arg1 fromSource:(id)arg2 forEntityMapping:(id)arg3;
 - (void)_createAssociationsBySource:(id)arg1 withDestination:(id)arg2 forEntityMapping:(id)arg3;

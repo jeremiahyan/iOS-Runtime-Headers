@@ -2,16 +2,17 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSArray, NSNumber, NSString, NSURL;
+@interface SAFmfSearchCompleted : SABaseCommand <SAServerBoundCommand>
 
-@interface SAFmfSearchCompleted : SABaseCommand <SAServerBoundCommand> {
-}
-
-@property(copy) NSString * aceId;
-@property(copy) NSNumber * atRequestedLocation;
-@property(copy) NSArray * fmfLocations;
-@property(copy) NSString * refId;
-@property(copy) NSURL * searchContext;
+@property (nonatomic, copy) NSString *aceId;
+@property (nonatomic, copy) NSNumber *atRequestedLocation;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, copy) NSArray *fmfLocations;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *refId;
+@property (nonatomic, copy) NSURL *searchContext;
+@property (readonly) Class superclass;
 
 + (id)searchCompleted;
 + (id)searchCompletedWithDictionary:(id)arg1 context:(id)arg2;

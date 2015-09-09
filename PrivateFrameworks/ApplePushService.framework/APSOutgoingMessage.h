@@ -2,23 +2,25 @@
    Image: /System/Library/PrivateFrameworks/ApplePushService.framework/ApplePushService
  */
 
-@interface APSOutgoingMessage : APSMessage {
-}
+@interface APSOutgoingMessage : APSMessage
 
-@property(getter=isCritical) BOOL critical;
-@property unsigned int payloadFormat;
-@property unsigned int payloadLength;
-@property unsigned int timeout;
+@property (getter=isCritical, nonatomic) BOOL critical;
+@property (nonatomic) unsigned int payloadFormat;
+@property (nonatomic) unsigned int payloadLength;
+@property (nonatomic) unsigned int timeout;
 
 - (unsigned int)_effectiveSendTimeout;
+- (id)eagernessTimeoutTime;
 - (BOOL)hasTimedOut;
 - (BOOL)isCritical;
+- (BOOL)isEager;
 - (unsigned int)messageID;
 - (unsigned int)payloadFormat;
 - (unsigned int)payloadLength;
 - (int)priority;
 - (int)sendInterface;
 - (id)sendTimeoutTime;
+- (id)senderTokenName;
 - (void)setCancelled:(BOOL)arg1;
 - (void)setCritical:(BOOL)arg1;
 - (void)setMessageID:(unsigned int)arg1;
@@ -26,6 +28,7 @@
 - (void)setPayloadLength:(unsigned int)arg1;
 - (void)setPriority:(int)arg1;
 - (void)setSendInterface:(int)arg1;
+- (void)setSenderTokenName:(id)arg1;
 - (void)setSent:(BOOL)arg1;
 - (void)setTimedOut:(BOOL)arg1;
 - (void)setTimeout:(unsigned int)arg1;

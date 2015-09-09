@@ -2,54 +2,42 @@
    Image: /System/Library/PrivateFrameworks/WebCore.framework/WebCore
  */
 
-@class DOMFileList, DOMHTMLFormElement, NSString, NSURL;
+@interface DOMHTMLInputElement : DOMHTMLElement
 
-@interface DOMHTMLInputElement : DOMHTMLElement {
-}
-
-@property(readonly) NSURL * absoluteImageURL;
-@property(copy) NSString * accept;
-@property(copy) NSString * accessKey;
-@property(copy) NSString * align;
-@property(copy) NSString * alt;
-@property(readonly) NSString * altDisplayString;
+@property (readonly, copy) NSURL *absoluteImageURL;
+@property (copy) NSString *accept;
+@property (copy) NSString *accessKey;
+@property (copy) NSString *align;
+@property (copy) NSString *alt;
+@property (readonly, copy) NSString *altDisplayString;
 @property BOOL autofocus;
 @property BOOL checked;
 @property BOOL defaultChecked;
-@property(copy) NSString * defaultValue;
+@property (copy) NSString *defaultValue;
 @property BOOL disabled;
-@property(retain) DOMFileList * files;
-@property(readonly) DOMHTMLFormElement * form;
+@property (retain) DOMFileList *files;
+@property (readonly) DOMHTMLFormElement *form;
 @property BOOL indeterminate;
 @property int maxLength;
 @property BOOL multiple;
-@property(copy) NSString * name;
+@property (copy) NSString *name;
 @property BOOL readOnly;
 @property int selectionEnd;
 @property int selectionStart;
-@property(copy) NSString * size;
-@property(copy) NSString * src;
-@property(copy) NSString * type;
-@property(copy) NSString * useMap;
-@property(copy) NSString * value;
-@property(readonly) BOOL willValidate;
+@property (copy) NSString *size;
+@property (copy) NSString *src;
+@property (copy) NSString *type;
+@property (copy) NSString *useMap;
+@property (copy) NSString *value;
+@property (readonly) BOOL willValidate;
 
-- (void)_accessoryClear;
+// Image: /System/Library/PrivateFrameworks/WebCore.framework/WebCore
+
 - (int)_autocapitalizeType;
 - (BOOL)_isAutofilled;
 - (BOOL)_isEdited;
 - (BOOL)_isTextField;
-- (void)_replaceCharactersInRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1 withString:(id)arg2 selectingFromIndex:(int)arg3;
-- (BOOL)_requiresAccessoryView;
-- (BOOL)_requiresInputView;
-- (struct _NSRange { unsigned int x1; unsigned int x2; })_selectedRange;
 - (void)_setAutofilled:(BOOL)arg1;
-- (void)_setAutofilled:(BOOL)arg1;
-- (void)_startAssistingDocumentView:(id)arg1;
-- (void)_stopAssistingDocumentView:(id)arg1;
-- (BOOL)_supportsAccessoryClear;
-- (BOOL)_supportsAutoFill;
-- (id)_textFormElement;
 - (id)absoluteImageURL;
 - (id)accept;
 - (id)accessKey;
@@ -63,12 +51,10 @@
 - (BOOL)checkValidity;
 - (BOOL)checked;
 - (void)click;
-- (id)createPeripheral;
 - (BOOL)defaultChecked;
 - (id)defaultValue;
 - (id)dirName;
 - (BOOL)disabled;
-- (id)endPosition;
 - (id)files;
 - (id)form;
 - (id)formAction;
@@ -79,19 +65,12 @@
 - (unsigned int)height;
 - (BOOL)incremental;
 - (BOOL)indeterminate;
-- (BOOL)isAssistedDateType;
-- (BOOL)isEditing;
-- (BOOL)isLikelyToBeginPageLoad;
-- (BOOL)isSecure;
-- (BOOL)isTextControl;
-- (int)keyboardType;
 - (id)labels;
 - (id)max;
 - (int)maxLength;
 - (id)min;
 - (BOOL)multiple;
 - (id)name;
-- (BOOL)nodeCanBecomeFirstResponder;
 - (id)pattern;
 - (id)placeholder;
 - (BOOL)readOnly;
@@ -130,15 +109,14 @@
 - (void)setName:(id)arg1;
 - (void)setPattern:(id)arg1;
 - (void)setPlaceholder:(id)arg1;
-- (void)setRangeText:(id)arg1 start:(unsigned int)arg2 end:(unsigned int)arg3 selectionMode:(id)arg4;
 - (void)setRangeText:(id)arg1;
+- (void)setRangeText:(id)arg1 start:(unsigned int)arg2 end:(unsigned int)arg3 selectionMode:(id)arg4;
 - (void)setReadOnly:(BOOL)arg1;
 - (void)setRequired:(BOOL)arg1;
 - (void)setSelectionDirection:(id)arg1;
 - (void)setSelectionEnd:(int)arg1;
 - (void)setSelectionRange:(int)arg1 end:(int)arg2;
 - (void)setSelectionStart:(int)arg1;
-- (void)setSelectionWithPoint:(struct CGPoint { float x1; float x2; })arg1;
 - (void)setSize:(id)arg1;
 - (void)setSrc:(id)arg1;
 - (void)setStep:(id)arg1;
@@ -153,13 +131,10 @@
 - (void)setWidth:(unsigned int)arg1;
 - (id)size;
 - (id)src;
-- (id)startPosition;
 - (id)step;
 - (void)stepDown:(int)arg1;
 - (void)stepUp:(int)arg1;
 - (int)structuralComplexityContribution;
-- (id)text;
-- (id)textInputTraits;
 - (id)type;
 - (id)useMap;
 - (id)validationMessage;
@@ -169,5 +144,33 @@
 - (double)valueAsNumber;
 - (unsigned int)width;
 - (BOOL)willValidate;
+
+// Image: /System/Library/Frameworks/UIKit.framework/UIKit
+
+- (void)_accessoryClear;
+- (BOOL)_requiresAccessoryView;
+- (BOOL)_requiresInputView;
+- (void)_startAssistingDocumentView:(id)arg1;
+- (void)_stopAssistingDocumentView:(id)arg1;
+- (BOOL)_supportsAccessoryClear;
+- (BOOL)_supportsAutoFill;
+- (id)_textFormElement;
+- (id)createPeripheral;
+- (BOOL)isAssistedDateType;
+- (BOOL)isEditing;
+- (BOOL)isLikelyToBeginPageLoad;
+- (BOOL)isSecure;
+- (BOOL)isTextControl;
+- (int)keyboardType;
+- (BOOL)nodeCanBecomeFirstResponder;
+- (void)setSelectionWithPoint:(struct CGPoint { float x1; float x2; })arg1;
+- (id)text;
+- (id)textInputTraits;
+
+// Image: /System/Library/PrivateFrameworks/WebKitLegacy.framework/WebKitLegacy
+
+- (void)_setAutofilled:(BOOL)arg1;
+- (id)endPosition;
+- (id)startPosition;
 
 @end

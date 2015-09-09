@@ -2,11 +2,10 @@
    Image: /System/Library/PrivateFrameworks/Search.framework/Search
  */
 
-@class NSArray, NSMutableArray, NSObject<SPSearchAgentDelegate>, NSString, SPDaemonQueryToken, SPSearchResultSection;
-
-@interface SPSearchAgent : NSObject <SPDaemonQueryDelegate, MCProfileConnectionObserver> {
+@interface SPSearchAgent : NSObject <MCProfileConnectionObserver, SPDaemonQueryDelegate> {
     SPDaemonQueryToken *_currentToken;
     NSObject<SPSearchAgentDelegate> *_delegate;
+    BOOL _observersAdded;
     int _options;
     NSString *_prefixWithNoResults;
     BOOL _queryComplete;
@@ -18,23 +17,32 @@
     SPSearchResultSection *_topHitResultSection;
 }
 
-@property NSObject<SPSearchAgentDelegate> * delegate;
-@property int options;
-@property(readonly) BOOL queryComplete;
-@property(readonly) unsigned int resultCount;
-@property(retain) NSArray * searchDomains;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) NSObject<SPSearchAgentDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) int options;
+@property (nonatomic, readonly) BOOL queryComplete;
+@property (nonatomic, readonly) unsigned int resultCount;
+@property (nonatomic, retain) NSArray *searchDomains;
+@property (readonly) Class superclass;
 
-- (int)_indexOfCompatibleSection:(id)arg1;
+- (id)_indexesOfCompatibleSection:(id)arg1;
 - (BOOL)_shouldIgnoreQuery:(id)arg1;
+- (void)activate;
 - (void)addDeserializer:(id)arg1;
+- (void)addSearchThroughSectionWithQuery:(id)arg1;
 - (void)addSections:(id)arg1;
+- (BOOL)cleanupObsoleteResults;
 - (void)clear;
+- (void)deactivate;
 - (void)dealloc;
 - (id)delegate;
 - (void)handleOptionsForNewSections:(id)arg1;
 - (BOOL)hasResults;
 - (id)init;
 - (id)initWithOptions:(int)arg1;
+- (void)internetDomainsChanged;
 - (void)invalidate;
 - (int)options;
 - (void)profileConnectionDidReceiveEffectiveSettingsChangedNotification:(id)arg1 userInfo:(id)arg2;
@@ -42,10 +50,12 @@
 - (id)queryString;
 - (void)removeSectionAtIndex:(unsigned int)arg1;
 - (unsigned int)resultCount;
-- (void)retrieveImageDataForResult:(id)arg1 inSection:(id)arg2 preferredSize:(struct CGSize { float x1; float x2; })arg3 completion:(id)arg4;
+- (void)retrieveImageDataForIdentifier:(id)arg1 inSection:(id)arg2 preferredSize:(struct CGSize { float x1; float x2; })arg3 completion:(id /* block */)arg4;
+- (void)retrieveImageDataForResult:(id)arg1 inSection:(id)arg2 preferredSize:(struct CGSize { float x1; float x2; })arg3 completion:(id /* block */)arg4;
 - (void)searchDaemonQuery:(id)arg1 addedResults:(id)arg2;
 - (void)searchDaemonQuery:(id)arg1 encounteredError:(id)arg2;
 - (void)searchDaemonQueryCompleted:(id)arg1;
+- (void)searchDaemonQueryReset:(id)arg1;
 - (id)searchDomains;
 - (id)sectionAtIndex:(unsigned int)arg1;
 - (unsigned int)sectionCount;

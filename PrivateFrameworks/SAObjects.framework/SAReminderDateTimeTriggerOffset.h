@@ -2,13 +2,14 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSNumber, NSString;
+@interface SAReminderDateTimeTriggerOffset : AceObject <SAAceSerializable>
 
-@interface SAReminderDateTimeTriggerOffset : AceObject <SAAceSerializable> {
-}
-
-@property(copy) NSString * offsetTimeUnit;
-@property(copy) NSNumber * offsetValue;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *offsetTimeUnit;
+@property (nonatomic, copy) NSNumber *offsetValue;
+@property (readonly) Class superclass;
 
 + (id)dateTimeTriggerOffset;
 + (id)dateTimeTriggerOffsetWithDictionary:(id)arg1 context:(id)arg2;

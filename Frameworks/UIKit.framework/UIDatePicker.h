@@ -2,38 +2,37 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSCalendar, NSDate, NSLocale, NSTimeZone, UIColor, _UIDatePickerView;
-
-@interface UIDatePicker : UIControl <UIPickerViewScrollTesting, NSCoding> {
+@interface UIDatePicker : UIControl <NSCoding, UIPickerViewScrollTesting> {
     _UIDatePickerView *_pickerView;
     BOOL _useCurrentDateDuringDecoding;
 }
 
-@property(getter=_usesModernStyle,setter=_setUsesModernStyle:) BOOL _usesModernStyle;
-@property(getter=_allowsZeroCountDownDuration,setter=_setAllowsZeroCountDownDuration:) BOOL allowsZeroCountDownDuration;
-@property(getter=_allowsZeroTimeInterval,setter=_setAllowsZeroTimeInterval:) BOOL allowsZeroTimeInterval;
-@property(copy) NSCalendar * calendar;
-@property(getter=_contentWidth,readonly) float contentWidth;
-@property double countDownDuration;
-@property(retain) NSDate * date;
-@property int datePickerMode;
-@property(getter=_dateUnderSelectionBar,readonly) NSDate * dateUnderSelectionBar;
-@property(getter=_drawsBackground,setter=_setDrawsBackground:) BOOL drawsBackground;
-@property(getter=_highlightColor,setter=_setHighlightColor:,retain) UIColor * highlightColor;
-@property(getter=_isTimeIntervalMode,readonly) BOOL isTimeIntervalMode;
-@property(retain) NSLocale * locale;
-@property(retain) NSDate * maximumDate;
-@property(retain) NSDate * minimumDate;
-@property int minuteInterval;
-@property(getter=_textColor,setter=_setTextColor:,retain) UIColor * textColor;
-@property(getter=_textShadowColor,setter=_setTextShadowColor:,retain) UIColor * textShadowColor;
-@property double timeInterval;
-@property(retain) NSTimeZone * timeZone;
-@property(getter=_useCurrentDateDuringDecoding,setter=_setUseCurrentDateDuringDecoding:) BOOL useCurrentDateDuringDecoding;
-@property(getter=_usesBlackChrome,setter=_setUsesBlackChrome:) BOOL usesBlackChrome;
+@property (getter=_usesModernStyle, setter=_setUsesModernStyle:, nonatomic) BOOL _usesModernStyle;
+@property (getter=_allowsZeroCountDownDuration, setter=_setAllowsZeroCountDownDuration:, nonatomic) BOOL allowsZeroCountDownDuration;
+@property (getter=_allowsZeroTimeInterval, setter=_setAllowsZeroTimeInterval:, nonatomic) BOOL allowsZeroTimeInterval;
+@property (nonatomic, copy) NSCalendar *calendar;
+@property (getter=_contentWidth, nonatomic, readonly) float contentWidth;
+@property (nonatomic) double countDownDuration;
+@property (nonatomic, retain) NSDate *date;
+@property (nonatomic) int datePickerMode;
+@property (getter=_dateUnderSelectionBar, nonatomic, readonly) NSDate *dateUnderSelectionBar;
+@property (getter=_drawsBackground, setter=_setDrawsBackground:, nonatomic) BOOL drawsBackground;
+@property (getter=_highlightColor, setter=_setHighlightColor:, nonatomic, retain) UIColor *highlightColor;
+@property (getter=_isTimeIntervalMode, nonatomic, readonly) BOOL isTimeIntervalMode;
+@property (nonatomic, retain) NSLocale *locale;
+@property (nonatomic, retain) NSDate *maximumDate;
+@property (nonatomic, retain) NSDate *minimumDate;
+@property (nonatomic) int minuteInterval;
+@property (getter=_textColor, setter=_setTextColor:, nonatomic, retain) UIColor *textColor;
+@property (getter=_textShadowColor, setter=_setTextShadowColor:, nonatomic, retain) UIColor *textShadowColor;
+@property (nonatomic) double timeInterval;
+@property (nonatomic, retain) NSTimeZone *timeZone;
+@property (getter=_useCurrentDateDuringDecoding, setter=_setUseCurrentDateDuringDecoding:, nonatomic) BOOL useCurrentDateDuringDecoding;
+@property (getter=_usesBlackChrome, setter=_setUsesBlackChrome:, nonatomic) BOOL usesBlackChrome;
 
 + (Class)_pickerViewClass;
 
+- (void)_UIAppearance_setBackgroundColor:(id)arg1;
 - (BOOL)_allowsZeroCountDownDuration;
 - (BOOL)_allowsZeroTimeInterval;
 - (BOOL)_contentHuggingDefault_isUsuallyFixedHeight;
@@ -89,9 +88,9 @@
 - (void)setBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)setCalendar:(id)arg1;
 - (void)setCountDownDuration:(double)arg1;
+- (void)setDate:(id)arg1;
 - (void)setDate:(id)arg1 animate:(BOOL)arg2;
 - (void)setDate:(id)arg1 animated:(BOOL)arg2;
-- (void)setDate:(id)arg1;
 - (void)setDateComponents:(id)arg1;
 - (void)setDatePickerMode:(int)arg1;
 - (void)setDelegate:(id)arg1;

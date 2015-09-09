@@ -2,19 +2,17 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
  */
 
-@class NSArray, NSPersistentStoreCoordinator, PLManagedAlbum, PLManagedObjectContext, PLPhotoLibrary;
-
 @interface PLReplaceAssetsWithCameraRollCopiesJob : PLDaemonJob {
     PLManagedAlbum *_album;
     NSArray *_assets;
     PLPhotoLibrary *_photoLibrary;
 }
 
-@property(retain) PLManagedAlbum * album;
-@property(copy) NSArray * assets;
-@property(readonly) NSPersistentStoreCoordinator * coordinator;
-@property(readonly) PLManagedObjectContext * managedObjectContext;
-@property(retain) PLPhotoLibrary * photoLibrary;
+@property (nonatomic, retain) PLManagedAlbum *album;
+@property (nonatomic, copy) NSArray *assets;
+@property (nonatomic, readonly, retain) NSPersistentStoreCoordinator *coordinator;
+@property (nonatomic, readonly, retain) PLManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain) PLPhotoLibrary *photoLibrary;
 
 + (void)replaceAssets:(id)arg1 withCameraRollCopiesInAlbum:(id)arg2;
 
@@ -25,7 +23,7 @@
 - (long long)daemonOperation;
 - (void)dealloc;
 - (void)encodeToXPCObject:(id)arg1;
-- (id)initFromXPCObject:(id)arg1;
+- (id)initFromXPCObject:(id)arg1 connection:(id)arg2;
 - (id)managedObjectContext;
 - (id)photoLibrary;
 - (void)run;

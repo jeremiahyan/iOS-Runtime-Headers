@@ -2,8 +2,12 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface TSCHChartSeriesDefaultNonStyle : NSObject <TSCHStyleActAlike> {
-}
+@interface TSCHChartSeriesDefaultNonStyle : NSObject <TSCHStyleActAlike>
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)_singletonAlloc;
 + (id)allocWithZone:(struct _NSZone { }*)arg1;
@@ -24,6 +28,8 @@
 - (BOOL)definesProperty:(int)arg1;
 - (float)floatValueForProperty:(int)arg1;
 - (int)intValueForProperty:(int)arg1;
+- (id)mixedObjectWithFraction:(float)arg1 ofObject:(id)arg2;
+- (int)mixingTypeWithObject:(id)arg1 context:(id)arg2;
 - (BOOL)overridesProperty:(int)arg1;
 - (id)properties;
 - (oneway void)release;

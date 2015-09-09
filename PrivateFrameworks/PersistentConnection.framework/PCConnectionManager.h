@@ -2,16 +2,15 @@
    Image: /System/Library/PrivateFrameworks/PersistentConnection.framework/PersistentConnection
  */
 
-@class <PCConnectionManagerDelegate>, <PCGrowthAlgorithm>, NSRunLoop, NSString, PCDarwinNotificationRunLoopSource, PCPersistentTimer;
-
-@interface PCConnectionManager : NSObject <PCLoggingDelegate, PCInterfaceMonitorDelegate> {
+@interface PCConnectionManager : NSObject <PCInterfaceMonitorDelegate, PCLoggingDelegate> {
     int _connectionClass;
     double _defaultPollingInterval;
     PCPersistentTimer *_delayTimer;
     <PCConnectionManagerDelegate> *_delegate;
-    struct dispatch_queue_s { } *_delegateQueue;
+    NSObject<OS_dispatch_queue> *_delegateQueue;
     NSRunLoop *_delegateRunLoop;
     BOOL _disableEarlyFire;
+    NSString *_duetIdentifier;
     BOOL _enableNonCellularConnections;
     BOOL _forceManualWhenRoaming;
     unsigned int _guidancePriority;
@@ -35,7 +34,7 @@
     double _pollingIntervalOverride;
     BOOL _pollingIntervalOverrideSet;
     unsigned int _powerAssertionID;
-    PCDarwinNotificationRunLoopSource *_prefsChangedSource;
+    int _prefsChangedToken;
     int _prefsStyle;
     int _pushIsConnectedToken;
     unsigned int _reconnectIteration;
@@ -48,16 +47,21 @@
     <PCGrowthAlgorithm> *_wwanGrowthAlgorithm;
 }
 
-@property(readonly) unsigned int countOfGrowthActions;
-@property(readonly) double currentKeepAliveInterval;
-@property <PCConnectionManagerDelegate> * delegate;
-@property BOOL disableEarlyFire;
-@property(readonly) BOOL isRunning;
-@property double keepAliveGracePeriod;
-@property(readonly) NSString * loggingIdentifier;
+@property (nonatomic, readonly) unsigned int countOfGrowthActions;
+@property (nonatomic, readonly) double currentKeepAliveInterval;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <PCConnectionManagerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL disableEarlyFire;
+@property (nonatomic, copy) NSString *duetIdentifier;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) BOOL isRunning;
+@property (nonatomic) double keepAliveGracePeriod;
+@property (nonatomic, readonly) NSString *loggingIdentifier;
 @property double maximumKeepAliveInterval;
-@property double minimumKeepAliveInterval;
-@property(readonly) double pollingInterval;
+@property (nonatomic) double minimumKeepAliveInterval;
+@property (nonatomic, readonly) double pollingInterval;
+@property (readonly) Class superclass;
 
 + (BOOL)_isCachedKeepAliveIntervalStillValid:(double)arg1 date:(id)arg2;
 + (id)_keepAliveCachePath;
@@ -73,7 +77,8 @@
 - (id)_currentGrowthAlgorithm;
 - (void)_delayTimerFired;
 - (id)_getCachedWWANKeepAliveInterval;
-- (id)_initWithConnectionClass:(int)arg1 interfaceIdentifier:(int)arg2 guidancePriority:(unsigned int)arg3 delegate:(id)arg4 delegateQueue:(struct dispatch_queue_s { }*)arg5 serviceIdentifier:(id)arg6;
+- (BOOL)_hasBudgetRemaining;
+- (id)_initWithConnectionClass:(int)arg1 interfaceIdentifier:(int)arg2 guidancePriority:(unsigned int)arg3 delegate:(id)arg4 delegateQueue:(id)arg5 serviceIdentifier:(id)arg6;
 - (void)_intervalTimerFired;
 - (BOOL)_isPushConnected;
 - (void)_loadPreferencesGeneratingEvent:(BOOL)arg1;
@@ -97,7 +102,8 @@
 - (void)dealloc;
 - (id)delegate;
 - (BOOL)disableEarlyFire;
-- (id)initWithConnectionClass:(int)arg1 delegate:(id)arg2 delegateQueue:(struct dispatch_queue_s { }*)arg3 serviceIdentifier:(id)arg4;
+- (id)duetIdentifier;
+- (id)initWithConnectionClass:(int)arg1 delegate:(id)arg2 delegateQueue:(id)arg3 serviceIdentifier:(id)arg4;
 - (id)initWithConnectionClass:(int)arg1 delegate:(id)arg2 serviceIdentifier:(id)arg3;
 - (id)initWithConnectionClass:(int)arg1 interfaceIdentifier:(int)arg2 guidancePriority:(unsigned int)arg3 delegate:(id)arg4 serviceIdentifier:(id)arg5;
 - (void)interfaceLinkQualityChanged:(id)arg1 previousLinkQuality:(int)arg2;
@@ -107,8 +113,8 @@
 - (BOOL)isRunning;
 - (double)keepAliveGracePeriod;
 - (void)log:(id)arg1;
-- (void)logAtLevel:(int)arg1 format:(id)arg2 arguments:(void*)arg3;
 - (void)logAtLevel:(int)arg1 format:(id)arg2;
+- (void)logAtLevel:(int)arg1 format:(id)arg2 arguments:(void*)arg3;
 - (id)loggingIdentifier;
 - (double)maximumKeepAliveInterval;
 - (double)minimumKeepAliveInterval;
@@ -116,6 +122,7 @@
 - (void)resumeManagerWithAction:(int)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setDisableEarlyFire:(BOOL)arg1;
+- (void)setDuetIdentifier:(id)arg1;
 - (void)setEnableNonCellularConnections:(BOOL)arg1;
 - (void)setKeepAliveGracePeriod:(double)arg1;
 - (void)setMaximumKeepAliveInterval:(double)arg1;

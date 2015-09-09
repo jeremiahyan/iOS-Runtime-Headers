@@ -2,16 +2,14 @@
    Image: /System/Library/PrivateFrameworks/ScreenReaderCore.framework/ScreenReaderCore
  */
 
-@class SCRCGestureFinger;
-
 @interface SCRCGestureEvent : NSObject {
     struct CGPoint { 
         float x; 
         float y; 
     } _averageLocation;
     unsigned int _deviceIdentifier;
+    SCRCGestureFinger *_finger;
     unsigned int _fingerCount;
-    SCRCGestureFinger *_finger[5];
     double _time;
 }
 

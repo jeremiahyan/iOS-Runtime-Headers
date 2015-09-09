@@ -2,20 +2,20 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@interface GEOVLaneConnection : PBCodable {
+@interface GEOVLaneConnection : PBCodable <NSCopying> {
     unsigned int _firstLaneIndex;
     unsigned int _firstRoadIndex;
     unsigned int _secondLaneIndex;
     unsigned int _secondRoadIndex;
 }
 
-@property unsigned int firstLaneIndex;
-@property unsigned int firstRoadIndex;
-@property unsigned int secondLaneIndex;
-@property unsigned int secondRoadIndex;
+@property (nonatomic) unsigned int firstLaneIndex;
+@property (nonatomic) unsigned int firstRoadIndex;
+@property (nonatomic) unsigned int secondLaneIndex;
+@property (nonatomic) unsigned int secondRoadIndex;
 
 - (void)copyTo:(id)arg1;
-- (void)dealloc;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (id)dictionaryRepresentation;
 - (unsigned int)firstLaneIndex;

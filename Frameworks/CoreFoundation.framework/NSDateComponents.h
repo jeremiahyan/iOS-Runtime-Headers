@@ -2,48 +2,48 @@
    Image: /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
  */
 
-@interface NSDateComponents : NSObject <NSCopying, NSSecureCoding> {
-}
+@interface NSDateComponents : NSObject <NSCopying, NSSecureCoding>
 
-+ (unsigned int)_ui_largerComponentsRelativeToComponent:(unsigned int)arg1;
-+ (id)_ui_namesForComponents:(unsigned int)arg1;
-+ (unsigned int)_ui_smallerComponentsRelativeToComponent:(unsigned int)arg1;
+@property (copy) NSCalendar *calendar;
+@property (readonly, copy) NSDate *date;
+@property int day;
+@property int era;
+@property int hour;
+@property (getter=isLeapMonth) BOOL leapMonth;
+@property int minute;
+@property int month;
+@property int nanosecond;
+@property int quarter;
+@property int second;
+@property (copy) NSTimeZone *timeZone;
+@property (getter=isValidDate, readonly) BOOL validDate;
+@property int weekOfMonth;
+@property int weekOfYear;
+@property int weekday;
+@property int weekdayOrdinal;
+@property int year;
+@property int yearForWeekOfYear;
+
+// Image: /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
+
 + (id)allocWithZone:(struct _NSZone { }*)arg1;
-+ (id)dateComponentsFromGregorianDate:(struct { int x1; BOOL x2; BOOL x3; BOOL x4; BOOL x5; double x6; })arg1;
-+ (unsigned int)smaller:(BOOL)arg1 componentsRelativeToComponent:(unsigned int)arg2;
 + (BOOL)supportsSecureCoding;
 
-- (id)_ui_conciseDescription;
-- (void)_ui_setComponents:(id)arg1;
-- (void)_ui_setValue:(int)arg1 forComponent:(unsigned int)arg2;
-- (int)_ui_valueForComponent:(unsigned int)arg1;
 - (id)calendar;
-- (void)clearTimeComponents;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)date;
-- (id)dateComponents:(unsigned int)arg1 byAddingComponents:(id)arg2 calendar:(id)arg3;
-- (id)dateComponents:(unsigned int)arg1 byAddingDays:(int)arg2 calendar:(id)arg3;
-- (id)dateComponentsForDateOnly;
-- (id)dateComponentsForEndOfDay;
 - (int)day;
 - (void)dealloc;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
-- (void)encodeWithCoder:(id)arg1;
 - (int)era;
-- (struct { int x1; BOOL x2; BOOL x3; BOOL x4; BOOL x5; double x6; })gregorianDate;
-- (BOOL)hasTimeComponents;
 - (unsigned int)hash;
 - (int)hour;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isLeapMonth;
 - (BOOL)isLeapMonthSet;
-- (BOOL)isSameDayAsComponents:(id)arg1;
-- (BOOL)isSameMonthAsComponents:(id)arg1;
-- (BOOL)isSameYearAsComponents:(id)arg1;
 - (BOOL)isValidDate;
 - (BOOL)isValidDateInCalendar:(id)arg1;
 - (int)minute;
@@ -79,5 +79,65 @@
 - (int)weekdayOrdinal;
 - (int)year;
 - (int)yearForWeekOfYear;
+
+// Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
+
+- (void)clearTimeComponents;
+- (id)dateComponents:(unsigned int)arg1 byAddingComponents:(id)arg2 calendar:(id)arg3;
+- (id)dateComponents:(unsigned int)arg1 byAddingDays:(int)arg2 calendar:(id)arg3;
+- (id)dateComponentsForDateOnly;
+- (id)dateComponentsForEndOfDay;
+- (struct { int x1; BOOL x2; BOOL x3; BOOL x4; BOOL x5; double x6; })gregorianDate;
+- (BOOL)hasTimeComponents;
+
+// Image: /System/Library/Frameworks/Foundation.framework/Foundation
+
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
+
+// Image: /System/Library/Frameworks/HealthKit.framework/HealthKit
+
+- (id)_hk_dateByAddingFilteredInterval:(int)arg1 toDate:(id)arg2;
+- (double)hk_approximateDuration;
+- (id)hk_dateByAddingInterval:(int)arg1 toDate:(id)arg2;
+- (int)hk_maxComponentValue;
+
+// Image: /System/Library/Frameworks/UIKit.framework/UIKit
+
++ (unsigned int)_ui_largerComponentsRelativeToComponent:(unsigned int)arg1;
++ (id)_ui_namesForComponents:(unsigned int)arg1;
++ (unsigned int)_ui_smallerComponentsRelativeToComponent:(unsigned int)arg1;
++ (unsigned int)smaller:(BOOL)arg1 componentsRelativeToComponent:(unsigned int)arg2;
+
+- (id)_ui_conciseDescription;
+- (void)_ui_setComponents:(id)arg1;
+- (void)_ui_setValue:(int)arg1 forComponent:(unsigned int)arg2;
+- (int)_ui_valueForComponent:(unsigned int)arg1;
+
+// Image: /System/Library/PrivateFrameworks/BaseBoard.framework/BaseBoard
+
+- (BOOL)isSameDayAsComponents:(id)arg1;
+- (BOOL)isSameMonthAsComponents:(id)arg1;
+- (BOOL)isSameYearAsComponents:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/CalendarFoundation.framework/CalendarFoundation
+
++ (id)componentForDays:(int)arg1;
++ (id)componentForHours:(int)arg1;
++ (id)componentForMinutes:(int)arg1;
++ (id)componentForMonths:(int)arg1;
++ (id)componentForWeeks:(int)arg1;
++ (id)componentForYears:(int)arg1;
+
+- (BOOL)isSameDayAsComponents:(id)arg1;
+- (BOOL)isSameMonthAsComponents:(id)arg1;
+- (BOOL)isSameYearAsComponents:(id)arg1;
+- (id)representedDate;
+
+// Image: /System/Library/PrivateFrameworks/SpringBoardFoundation.framework/SpringBoardFoundation
+
+- (BOOL)isSameDayAsComponents:(id)arg1;
+- (BOOL)isSameMonthAsComponents:(id)arg1;
+- (BOOL)isSameYearAsComponents:(id)arg1;
 
 @end

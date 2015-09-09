@@ -2,15 +2,16 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSMutableArray;
-
 @interface TSDFPSCounter : NSObject {
     NSMutableArray *_dateArray;
+    double _endTimeInterval;
+    unsigned int _frameCount;
+    double _startTimeInterval;
 }
 
 - (void)addFrame;
-- (void)addFrameAtDrawTime:(double)arg1 duration:(double)arg2;
 - (void)addFrameAtDrawTime:(double)arg1;
+- (void)addFrameAtDrawTime:(double)arg1 duration:(double)arg2;
 - (void)dealloc;
 - (id)fpsGraphString;
 - (id)fpsSummaryString;

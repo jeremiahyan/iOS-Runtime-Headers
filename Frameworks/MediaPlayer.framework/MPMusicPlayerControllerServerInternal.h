@@ -2,16 +2,14 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@class <MPMusicPlayerControllerServerDelegate>, MPMusicPlayerControllerServer, MPVideoViewController, NSMutableArray, NSMutableDictionary;
-
 @interface MPMusicPlayerControllerServerInternal : MPServerObject <MPMusicPlayerController> {
-    unsigned int _queuePrepared : 1;
     int _activeClientPID;
     NSMutableArray *_clientPorts;
     NSMutableDictionary *_clientPortsForPIDs;
     NSMutableDictionary *_clientStateForPIDs;
     <MPMusicPlayerControllerServerDelegate> *_delegate;
     MPMusicPlayerControllerServer *_musicPlayerServer;
+    unsigned int _queuePrepared;
     MPVideoViewController *_videoViewController;
 }
 
@@ -39,6 +37,7 @@
 - (void)_setQueueWithQuery:(id)arg1;
 - (void)_tearDownVideoView;
 - (void)_tvOutCapabilityDidChangeNotification:(id)arg1;
+- (void)_updateVideoView;
 - (id)allowsBackgroundVideo;
 - (void)beginSeekingBackward;
 - (void)beginSeekingForward;
@@ -54,7 +53,6 @@
 - (id)isNowPlayingItemFromGeniusMix;
 - (id)nowPlayingItem;
 - (id)nowPlayingItemAtIndex:(id)arg1;
-- (id)nowPlayingRadioTrack;
 - (id)numberOfItems;
 - (void)pause;
 - (void)pauseWithFadeoutDuration:(id)arg1;
@@ -77,13 +75,14 @@
 - (void)setPlaybackSpeed:(id)arg1;
 - (void)setQueueWithGeniusMixPlaylist:(id)arg1;
 - (void)setQueueWithItemCollection:(id)arg1;
-- (void)setQueueWithQuery:(id)arg1 firstItem:(id)arg2;
 - (void)setQueueWithQuery:(id)arg1;
+- (void)setQueueWithQuery:(id)arg1 firstItem:(id)arg2;
 - (void)setQueueWithRadioStation:(id)arg1;
 - (id)setQueueWithSeedItems:(id)arg1;
 - (void)setRepeatMode:(id)arg1;
 - (void)setShuffleMode:(id)arg1;
 - (void)setUseApplicationSpecificQueue:(id)arg1;
+- (void)setUserQueueModificationsDisabled:(id)arg1;
 - (void)shuffle;
 - (id)shuffleMode;
 - (id)skipInDirection:(id)arg1;
@@ -96,5 +95,6 @@
 - (void)stop;
 - (id)unshuffledIndexOfNowPlayingItem;
 - (BOOL)useApplicationSpecificQueue;
+- (id)userQueueModificationsDisabled;
 
 @end

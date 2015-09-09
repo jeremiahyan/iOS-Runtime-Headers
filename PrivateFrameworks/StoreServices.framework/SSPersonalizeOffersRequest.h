@@ -2,14 +2,16 @@
    Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
  */
 
-@class <SSPersonalizeOffersDelegate>, NSArray;
-
 @interface SSPersonalizeOffersRequest : SSRequest <SSXPCCoding> {
     NSArray *_items;
 }
 
-@property <SSPersonalizeOffersDelegate> * delegate;
-@property(readonly) NSArray * items;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SSPersonalizeOffersDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) NSArray *items;
+@property (readonly) Class superclass;
 
 - (id)copyXPCEncoding;
 - (void)dealloc;
@@ -17,7 +19,7 @@
 - (id)initWithXPCEncoding:(id)arg1;
 - (id)items;
 - (BOOL)start;
-- (void)startWithCompletionBlock:(id)arg1;
-- (void)startWithPersonalizedResponseBlock:(id)arg1;
+- (void)startWithCompletionBlock:(id /* block */)arg1;
+- (void)startWithPersonalizedResponseBlock:(id /* block */)arg1;
 
 @end

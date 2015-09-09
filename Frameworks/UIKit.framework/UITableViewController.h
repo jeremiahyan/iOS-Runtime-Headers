@@ -2,25 +2,27 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIRefreshControl, UITableView, UITableViewDataSource, _UIFilteredDataSource;
-
-@interface UITableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
-    struct { 
-        unsigned int clearsSelectionOnViewWillAppear : 1; 
-        unsigned int insetsApplied : 1; 
-        unsigned int adjustingInsets : 1; 
+@interface UITableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
     _UIFilteredDataSource *_filteredDataSource;
     int _filteredDataType;
     id _keyboardSupport;
     id _staticDataSource;
+    struct { 
+        unsigned int clearsSelectionOnViewWillAppear : 1; 
+        unsigned int insetsApplied : 1; 
+        unsigned int adjustingInsets : 1; 
     } _tableViewControllerFlags;
     int _tableViewStyle;
 }
 
-@property BOOL clearsSelectionOnViewWillAppear;
-@property(retain) UIRefreshControl * refreshControl;
-@property(getter=_staticDataSource,setter=_setStaticDataSource:,retain) UITableViewDataSource * staticDataSource;
-@property(retain) UITableView * tableView;
+@property (nonatomic) BOOL clearsSelectionOnViewWillAppear;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) UIRefreshControl *refreshControl;
+@property (getter=_staticDataSource, setter=_setStaticDataSource:, nonatomic, retain) UITableViewDataSource *staticDataSource;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) UITableView *tableView;
 
 - (void)_adjustTableForKeyboardInfo:(id)arg1;
 - (void)_applyDefaultDataSourceToTable:(id)arg1;
@@ -48,6 +50,7 @@
 - (void)setEditing:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setRefreshControl:(id)arg1;
 - (void)setTableView:(id)arg1;
+- (id)tableView;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
 - (void)tableView:(id)arg1 didEndEditingRowAtIndexPath:(id)arg2;
 - (float)tableView:(id)arg1 heightForFooterInSection:(int)arg2;
@@ -60,7 +63,6 @@
 - (id)tableView:(id)arg1 viewForFooterInSection:(int)arg2;
 - (id)tableView:(id)arg1 viewForHeaderInSection:(int)arg2;
 - (void)tableView:(id)arg1 willBeginEditingRowAtIndexPath:(id)arg2;
-- (id)tableView;
 - (void)viewDidAppear:(BOOL)arg1;
 - (void)viewWillAppear:(BOOL)arg1;
 - (void)viewWillDisappear:(BOOL)arg1;

@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
  */
 
-@class MFComposeRecipient, MFRecipientTableViewCellDetailView, MFRecipientTableViewCellTitleView, UIColor, UIImageView;
-
 @interface MFRecipientTableViewCell : UITableViewCell {
     UIImageView *_cellImageView;
     MFRecipientTableViewCellDetailView *_detailView;
@@ -15,8 +13,8 @@
     MFRecipientTableViewCellTitleView *_titleView;
 }
 
-@property BOOL shouldDimIrrelevantInformation;
-@property BOOL shouldHighlightCompleteMatches;
+@property (nonatomic) BOOL shouldDimIrrelevantInformation;
+@property (nonatomic) BOOL shouldHighlightCompleteMatches;
 
 + (id)_attributedStringRepresentationOfCompleteMatchesForRecipient:(id)arg1 constrainedToWidth:(float)arg2 overflowRecipients:(out id*)arg3 useHighlighting:(BOOL)arg4;
 + (id)_attributedStringRepresentationOfPartialEmailMatchForSingleRecipient:(id)arg1 useHighlighting:(BOOL)arg2;
@@ -24,6 +22,7 @@
 + (float)_constrainedWidthForTitleViewWithAccessoryWidth:(float)arg1 containerWidth:(float)arg2;
 + (id)_copyAttributedStringRepresentationOfGroupRecipient:(id)arg1 withSortedRecipientList:(id)arg2;
 + (id)_defaultTintColor;
++ (float)_deviceSpecificLayoutMargin;
 + (float)_realDetailButtonAccessoryMargin;
 + (id)_tintedAttributedString:(id)arg1 toColor:(id)arg2 shouldDim:(BOOL)arg3;
 + (id)cellForRecipient:(id)arg1;

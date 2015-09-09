@@ -2,15 +2,17 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class AVAssetInspectorLoader, AVAssetResourceLoader, NSArray, NSObject<OS_dispatch_queue>, NSString, NSURL;
-
 @interface AVURLAssetInternal : NSObject {
     NSURL *URL;
-    NSString *anchorChapterType;
-    NSArray *chapterGroupInfo;
+    AVAssetCache *assetCache;
+    NSURL *downloadDestinationURL;
     AVAssetInspectorLoader *loader;
     long makeOneResourceLoaderOnly;
+    unsigned int referenceRestrictions;
     AVAssetResourceLoader *resourceLoader;
+    BOOL shouldMatchDataInCacheByURLPathComponentOnly;
+    BOOL shouldMatchDataInCacheByURLWithoutQueryComponent;
+    BOOL shouldOptimizeAccessForLinearMoviePlayback;
     NSArray *tracks;
     NSObject<OS_dispatch_queue> *tracksAccessQueue;
 }

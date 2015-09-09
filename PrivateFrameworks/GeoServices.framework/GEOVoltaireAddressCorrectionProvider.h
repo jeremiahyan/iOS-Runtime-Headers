@@ -2,33 +2,30 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class GEORequester;
-
 @interface GEOVoltaireAddressCorrectionProvider : NSObject <PBRequesterDelegate> {
-    id _errorHandler;
-    id _initFinishedHandler;
+    id /* block */ _errorHandler;
+    id /* block */ _initFinishedHandler;
     GEORequester *_requester;
-    id _updateFinishedHandler;
+    id /* block */ _updateFinishedHandler;
 }
 
-@property(retain) GEORequester * requester;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) GEORequester *requester;
+@property (readonly) Class superclass;
 
 + (id)acInitUrl;
 + (id)acUpdateURL;
-+ (void)setUsePersistentConnection:(BOOL)arg1;
 
 - (void)cancelRequest;
 - (void)dealloc;
-- (void)requester:(id)arg1 didFailWithError:(id)arg2;
 - (id)requester;
+- (void)requester:(id)arg1 didFailWithError:(id)arg2;
 - (void)requesterDidCancel:(id)arg1;
 - (void)requesterDidFinish:(id)arg1;
 - (void)setRequester:(id)arg1;
-- (void)startInitRequest:(id)arg1 finished:(id)arg2 error:(id)arg3;
-- (void)startUpdateRequest:(id)arg1 finished:(id)arg2 error:(id)arg3;
+- (void)startInitRequest:(id)arg1 finished:(id /* block */)arg2 error:(id /* block */)arg3;
+- (void)startUpdateRequest:(id)arg1 finished:(id /* block */)arg2 error:(id /* block */)arg3;
 
 @end

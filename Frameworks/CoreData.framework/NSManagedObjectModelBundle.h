@@ -2,15 +2,13 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@class NSBundle, NSDictionary;
-
 @interface NSManagedObjectModelBundle : NSObject {
     NSBundle *_bundle;
     NSDictionary *_versionInfoDictionary;
 }
 
-- (id)_modelForVersionHashes:(id)arg1 inStyle:(unsigned int)arg2;
 - (id)_modelForVersionHashes:(id)arg1;
+- (id)_modelForVersionHashes:(id)arg1 inStyle:(unsigned int)arg2;
 - (id)bundle;
 - (id)currentVersion;
 - (id)currentVersionURL;

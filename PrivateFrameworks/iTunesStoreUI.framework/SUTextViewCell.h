@@ -2,16 +2,18 @@
    Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
  */
 
-@class <SUTextViewCellDelegate>, SUTextContentView, UIScrollView;
-
 @interface SUTextViewCell : SUTableCell <UITextContentViewDelegate> {
     <SUTextViewCellDelegate> *_delegate;
     UIScrollView *_scrollView;
     SUTextContentView *_textContentView;
 }
 
-@property <SUTextViewCellDelegate> * delegate;
-@property(readonly) SUTextContentView * textContentView;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SUTextViewCellDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) SUTextContentView *textContentView;
 
 - (void)dealloc;
 - (id)delegate;
@@ -23,10 +25,10 @@
 - (void)setFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)setHighlighted:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setSelected:(BOOL)arg1 animated:(BOOL)arg2;
+- (id)textContentView;
 - (void)textContentView:(id)arg1 didChangeSize:(struct CGSize { float x1; float x2; })arg2;
 - (BOOL)textContentView:(id)arg1 shouldChangeSizeForContentSize:(struct CGSize { float x1; float x2; })arg2;
 - (BOOL)textContentView:(id)arg1 shouldScrollForPendingContentSize:(struct CGSize { float x1; float x2; })arg2;
-- (id)textContentView;
 - (void)textContentViewDidChange:(id)arg1;
 - (BOOL)textContentViewShouldBeginEditing:(id)arg1;
 - (BOOL)textContentViewShouldEndEditing:(id)arg1;

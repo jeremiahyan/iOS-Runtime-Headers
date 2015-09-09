@@ -2,15 +2,17 @@
    Image: /System/Library/PrivateFrameworks/CoreDAV.framework/CoreDAV
  */
 
-@class NSError, NSMutableData;
-
 @interface CoreDAVOctetStreamParser : NSObject <CoreDAVResponseBodyParser> {
     NSMutableData *_octetStreamData;
     NSError *_parserError;
 }
 
-@property(retain) NSMutableData * octetStreamData;
-@property(readonly) NSError * parserError;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) NSMutableData *octetStreamData;
+@property (readonly) NSError *parserError;
+@property (readonly) Class superclass;
 
 + (BOOL)canHandleContentType:(id)arg1;
 

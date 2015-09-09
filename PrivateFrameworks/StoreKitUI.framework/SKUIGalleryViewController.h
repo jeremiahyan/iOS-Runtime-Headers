@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class <SKUIEmbeddedMediaViewDelegate>, NSMapTable, NSObject<OS_dispatch_source>, SKUIGalleryPageComponent, SKUIMediaComponent, SKUIResourceLoader, UIPageControl, UIPageViewController, UITapGestureRecognizer;
-
 @interface SKUIGalleryViewController : UIViewController <SKUIArtworkRequestDelegate, UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIScrollViewDelegate> {
     SKUIResourceLoader *_artworkLoader;
     NSMapTable *_componentArtworkRequests;
@@ -15,9 +13,13 @@
     UITapGestureRecognizer *_tapGestureRecognizer;
 }
 
-@property <SKUIEmbeddedMediaViewDelegate> * embeddedMediaDelegate;
-@property(readonly) SKUIGalleryPageComponent * galleryComponent;
-@property(readonly) SKUIMediaComponent * selectedMediaComponent;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) <SKUIEmbeddedMediaViewDelegate> *embeddedMediaDelegate;
+@property (nonatomic, readonly) SKUIGalleryPageComponent *galleryComponent;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) SKUIMediaComponent *selectedMediaComponent;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_finishPaneAnimation;

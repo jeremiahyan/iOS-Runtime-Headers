@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-@class <EKEventAttachmentCellControllerDelegate>, EKAttachment, EKEventAttachmentCell;
-
 @interface EKEventAttachmentCellController : NSObject <UIDocumentInteractionControllerDelegate> {
     EKAttachment *_attachment;
     EKEventAttachmentCell *_cell;
@@ -12,10 +10,14 @@
     BOOL _sourceIsManaged;
 }
 
-@property(retain) EKAttachment * attachment;
-@property(readonly) EKEventAttachmentCell * cell;
-@property <EKEventAttachmentCellControllerDelegate> * delegate;
-@property BOOL sourceIsManaged;
+@property (nonatomic, retain) EKAttachment *attachment;
+@property (readonly) EKEventAttachmentCell *cell;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <EKEventAttachmentCellControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL sourceIsManaged;
+@property (readonly) Class superclass;
 
 + (BOOL)_attachmentIsViewable:(id)arg1;
 + (id)cellControllersForAttachments:(id)arg1 givenExistingControllers:(id)arg2;

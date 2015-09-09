@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, NSMutableData, NSString, NSURL, NSURLConnection, UIImage;
-
 @interface UIWebClip : NSObject {
     NSMutableData *_customIconData;
     NSMutableData *_customStartupImageData;
@@ -36,25 +34,29 @@
 @property BOOL classicMode;
 @property id delegate;
 @property BOOL fullScreen;
-@property(readonly) UIImage * iconImage;
-@property(readonly) NSString * iconImagePath;
-@property(readonly) BOOL iconIsPrecomposed;
-@property(readonly) BOOL iconIsPrerendered;
-@property(readonly) BOOL iconIsScreenShotBased;
-@property(retain) NSArray * icons;
-@property(copy) NSString * identifier;
-@property(retain) UIImage * initialLaunchImage;
-@property(retain) NSURL * pageURL;
+@property (nonatomic, readonly, retain) UIImage *iconImage;
+@property (readonly) NSString *iconImagePath;
+@property (readonly) BOOL iconIsPrecomposed;
+@property (readonly) BOOL iconIsPrerendered;
+@property (readonly) BOOL iconIsScreenShotBased;
+@property (retain) NSArray *icons;
+@property (copy) NSString *identifier;
+@property (nonatomic, retain) UIImage *initialLaunchImage;
+@property (nonatomic, retain) NSURL *pageURL;
 @property BOOL removalDisallowed;
-@property(retain) UIImage * startupImage;
-@property(retain) NSURL * startupImageURL;
-@property(retain) UIImage * startupLandscapeImage;
-@property(retain) NSURL * startupLandscapeImageURL;
+@property (nonatomic, retain) UIImage *startupImage;
+@property (retain) NSURL *startupImageURL;
+@property (nonatomic, retain) UIImage *startupLandscapeImage;
+@property (retain) NSURL *startupLandscapeImageURL;
 @property int statusBarStyle;
 @property unsigned int supportedOrientations;
-@property(copy) NSString * title;
+@property (nonatomic, copy) NSString *title;
 
 + (id)_contentForMetaName:(id)arg1 inWebDocumentView:(id)arg2;
++ (BOOL)_webClipFullScreenValueForMetaTagContent:(id)arg1;
++ (id)_webClipLinkTagsFromWebDocumentView:(id)arg1;
++ (unsigned int)_webClipOrientationsForMetaTagContent:(id)arg1;
++ (int)_webClipStatusBarStyleForMetaTagContent:(id)arg1;
 + (BOOL)bundleIdentifierContainsWebClipIdentifier:(id)arg1;
 + (id)pathForWebClipCacheWithIdentifier:(id)arg1;
 + (id)pathForWebClipStorageWithIdentifier:(id)arg1;
@@ -62,6 +64,7 @@
 + (id)urlForWebClipWithIdentifier:(id)arg1;
 + (BOOL)webClipClassicModeValueForWebDocumentView:(id)arg1;
 + (BOOL)webClipFullScreenValueForWebDocumentView:(id)arg1;
++ (id)webClipIconsForWebClipLinkTags:(id)arg1 pageURL:(id)arg2;
 + (id)webClipIconsForWebDocumentView:(id)arg1;
 + (id)webClipIdentifierFromBundleIdentifier:(id)arg1;
 + (unsigned int)webClipOrientationsForWebDocumentView:(id)arg1;
@@ -83,6 +86,7 @@
 - (id)bundleIdentifier;
 - (void)cancelMediaUpdate;
 - (BOOL)classicMode;
+- (void)configureWithMetaTags:(id)arg1 linkTags:(id)arg2;
 - (void)connection:(id)arg1 didFailWithError:(id)arg2;
 - (void)connection:(id)arg1 didReceiveData:(id)arg2;
 - (void)connection:(id)arg1 didReceiveResponse:(id)arg2;
@@ -137,6 +141,7 @@
 - (id)title;
 - (BOOL)tryLoadingNextCustomIcon;
 - (void)updateCustomMediaLocationsFromWebDocumentView:(id)arg1;
+- (void)updateCustomMediaLocationsWithWebClipLinkTags:(id)arg1 baseURL:(id)arg2;
 - (BOOL)updateOnDisk;
 
 @end

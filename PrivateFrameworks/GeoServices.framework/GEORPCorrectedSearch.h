@@ -2,31 +2,36 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class GEOPlaceSearchRequest, GEOPlaceSearchResponse, NSString;
-
 @interface GEORPCorrectedSearch : PBCodable <NSCopying> {
+    unsigned int _correctedSearchResultIndex;
     struct { 
         unsigned int correctedSearchResultIndex : 1; 
         unsigned int originalSearchResultIndex : 1; 
-    unsigned int _correctedSearchResultIndex;
     } _has;
     unsigned int _originalSearchResultIndex;
+    GEOPDPlaceRequest *_placeRequest;
+    GEOPDPlaceResponse *_placeResponse;
     GEOPlaceSearchRequest *_placeSearchRequest;
     GEOPlaceSearchResponse *_placeSearchResponse;
     NSString *_preferredSearchDisplayLocation;
 }
 
-@property unsigned int correctedSearchResultIndex;
-@property BOOL hasCorrectedSearchResultIndex;
-@property BOOL hasOriginalSearchResultIndex;
-@property(readonly) BOOL hasPlaceSearchRequest;
-@property(readonly) BOOL hasPlaceSearchResponse;
-@property(readonly) BOOL hasPreferredSearchDisplayLocation;
-@property unsigned int originalSearchResultIndex;
-@property(retain) GEOPlaceSearchRequest * placeSearchRequest;
-@property(retain) GEOPlaceSearchResponse * placeSearchResponse;
-@property(retain) NSString * preferredSearchDisplayLocation;
+@property (nonatomic) unsigned int correctedSearchResultIndex;
+@property (nonatomic) BOOL hasCorrectedSearchResultIndex;
+@property (nonatomic) BOOL hasOriginalSearchResultIndex;
+@property (nonatomic, readonly) BOOL hasPlaceRequest;
+@property (nonatomic, readonly) BOOL hasPlaceResponse;
+@property (nonatomic, readonly) BOOL hasPlaceSearchRequest;
+@property (nonatomic, readonly) BOOL hasPlaceSearchResponse;
+@property (nonatomic, readonly) BOOL hasPreferredSearchDisplayLocation;
+@property (nonatomic) unsigned int originalSearchResultIndex;
+@property (nonatomic, retain) GEOPDPlaceRequest *placeRequest;
+@property (nonatomic, retain) GEOPDPlaceResponse *placeResponse;
+@property (nonatomic, retain) GEOPlaceSearchRequest *placeSearchRequest;
+@property (nonatomic, retain) GEOPlaceSearchResponse *placeSearchResponse;
+@property (nonatomic, retain) NSString *preferredSearchDisplayLocation;
 
+- (BOOL)containsReportableData;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (unsigned int)correctedSearchResultIndex;
@@ -35,12 +40,17 @@
 - (id)dictionaryRepresentation;
 - (BOOL)hasCorrectedSearchResultIndex;
 - (BOOL)hasOriginalSearchResultIndex;
+- (BOOL)hasPlaceRequest;
+- (BOOL)hasPlaceResponse;
 - (BOOL)hasPlaceSearchRequest;
 - (BOOL)hasPlaceSearchResponse;
 - (BOOL)hasPreferredSearchDisplayLocation;
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
+- (void)mergeFrom:(id)arg1;
 - (unsigned int)originalSearchResultIndex;
+- (id)placeRequest;
+- (id)placeResponse;
 - (id)placeSearchRequest;
 - (id)placeSearchResponse;
 - (id)preferredSearchDisplayLocation;
@@ -49,6 +59,8 @@
 - (void)setHasCorrectedSearchResultIndex:(BOOL)arg1;
 - (void)setHasOriginalSearchResultIndex:(BOOL)arg1;
 - (void)setOriginalSearchResultIndex:(unsigned int)arg1;
+- (void)setPlaceRequest:(id)arg1;
+- (void)setPlaceResponse:(id)arg1;
 - (void)setPlaceSearchRequest:(id)arg1;
 - (void)setPlaceSearchResponse:(id)arg1;
 - (void)setPreferredSearchDisplayLocation:(id)arg1;

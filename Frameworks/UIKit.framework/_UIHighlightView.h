@@ -2,9 +2,13 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, NSMutableArray, UIColor;
-
 @interface _UIHighlightView : UIView {
+    UIColor *_color;
+    NSArray *_cornerRadii;
+    float _cornerRadius;
+    NSMutableArray *_innerBounds;
+    NSMutableArray *_innerQuads;
+    BOOL _invertHighlight;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -14,12 +18,6 @@
             float width; 
             float height; 
         } size; 
-    UIColor *_color;
-    NSArray *_cornerRadii;
-    float _cornerRadius;
-    NSMutableArray *_innerBounds;
-    NSMutableArray *_innerQuads;
-    BOOL _invertHighlight;
     } _invertedHighlightClipRect;
 }
 

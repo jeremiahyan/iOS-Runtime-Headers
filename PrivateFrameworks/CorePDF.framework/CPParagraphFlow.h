@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/CorePDF.framework/CorePDF
  */
 
-@class CPParagraph, NSMutableArray;
-
 @interface CPParagraphFlow : NSObject {
     BOOL adjacentToCallout;
     int calloutType;
@@ -24,8 +22,8 @@
 @property float fBottom;
 @property float fLeft;
 @property float fRight;
-@property CPParagraph * nextInColumn;
-@property(retain) CPParagraph * paragraph;
+@property (nonatomic) CPParagraph *nextInColumn;
+@property (nonatomic, retain) CPParagraph *paragraph;
 @property BOOL placed;
 
 - (float)area;
@@ -40,8 +38,8 @@
 - (float)fLeft;
 - (float)fRight;
 - (id)ignoreCallouts:(unsigned int)arg1;
-- (int)inOrder:(BOOL)arg1;
 - (int)inOrder;
+- (int)inOrder:(BOOL)arg1;
 - (id)initWithParagraph:(id)arg1;
 - (BOOL)intervalOverlapLeft:(float)arg1 right:(float)arg2 paragraphs:(id)arg3;
 - (BOOL)intervalOverlapLeft:(float)arg1 right:(float)arg2 rects:(id)arg3;

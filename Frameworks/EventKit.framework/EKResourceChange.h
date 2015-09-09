@@ -2,29 +2,30 @@
    Image: /System/Library/Frameworks/EventKit.framework/EventKit
  */
 
-@class EKCalendar, EKCalendarItem, NSDate, NSNumber, NSString, NSURL;
+@interface EKResourceChange : EKObject <EKIdentityProtocol>
 
-@interface EKResourceChange : EKObject <EKIdentityProtocol> {
-}
-
-@property(readonly) BOOL alerted;
-@property(readonly) EKCalendar * calendar;
-@property(readonly) EKCalendarItem * calendarItem;
-@property(readonly) unsigned int changeType;
-@property(readonly) NSURL * changedByAddress;
-@property(readonly) NSString * changedByDisplayName;
-@property(readonly) NSString * changedByFirstName;
-@property(readonly) NSString * changedByLastName;
-@property(readonly) NSNumber * createCount;
-@property(readonly) BOOL dateChanged;
-@property(readonly) NSNumber * deleteCount;
-@property(readonly) NSString * deletedTitle;
-@property(readonly) BOOL locationChanged;
-@property(readonly) unsigned int publicStatus;
-@property(readonly) BOOL timeChanged;
-@property(readonly) NSDate * timestamp;
-@property(readonly) BOOL titleChanged;
-@property(readonly) NSNumber * updateCount;
+@property (nonatomic, readonly) BOOL alerted;
+@property (nonatomic, readonly, retain) EKCalendar *calendar;
+@property (nonatomic, readonly, retain) EKCalendarItem *calendarItem;
+@property (nonatomic, readonly) unsigned int changeType;
+@property (nonatomic, readonly, copy) NSURL *changedByAddress;
+@property (nonatomic, readonly, copy) NSString *changedByDisplayName;
+@property (nonatomic, readonly, copy) NSString *changedByFirstName;
+@property (nonatomic, readonly, copy) NSString *changedByLastName;
+@property (nonatomic, readonly) NSNumber *createCount;
+@property (nonatomic, readonly) BOOL dateChanged;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic, readonly) NSNumber *deleteCount;
+@property (nonatomic, readonly) NSString *deletedTitle;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) BOOL locationChanged;
+@property (nonatomic, readonly) unsigned int publicStatus;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) BOOL timeChanged;
+@property (nonatomic, readonly, copy) NSDate *timestamp;
+@property (nonatomic, readonly) BOOL titleChanged;
+@property (nonatomic, readonly) NSNumber *updateCount;
 
 - (id)_calendarItemRelation;
 - (id)_persistentResourceChange;
@@ -42,6 +43,8 @@
 - (id)deleteCount;
 - (id)deletedTitle;
 - (id)emailAddress;
+- (id)firstName;
+- (id)lastName;
 - (id)lazyLoadRelationForKey:(id)arg1;
 - (BOOL)locationChanged;
 - (id)name;

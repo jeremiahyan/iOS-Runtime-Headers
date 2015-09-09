@@ -2,30 +2,34 @@
    Image: /System/Library/PrivateFrameworks/PersistentConnection.framework/PersistentConnection
  */
 
-@class <PCInterfaceUsabilityMonitorProtocol>, NSMapTable, NSString;
-
-@interface PCInterfaceMonitor : NSObject <PCInterfaceUsabilityMonitorDelegate, PCInterfaceMonitorProtocol> {
+@interface PCInterfaceMonitor : NSObject <PCInterfaceMonitorProtocol, PCInterfaceUsabilityMonitorDelegate> {
     NSMapTable *_delegateMap;
     <PCInterfaceUsabilityMonitorProtocol> *_internal;
 }
 
-@property(readonly) struct __CFString { }* currentRAT;
-@property(readonly) int interfaceIdentifier;
-@property(readonly) BOOL isInterfaceHistoricallyUsable;
-@property(readonly) BOOL isInterfaceUsable;
-@property(readonly) BOOL isInternetReachable;
-@property(readonly) BOOL isLTEWithCDRX;
-@property(readonly) BOOL isPoorLinkQuality;
-@property(readonly) BOOL isRadioHot;
-@property(readonly) int linkQuality;
-@property(readonly) NSString * linkQualityString;
-@property(readonly) struct __CFString { }* wwanInterfaceName;
+@property (nonatomic, readonly) struct __CFString { }*currentRAT;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) int interfaceIdentifier;
+@property (nonatomic, readonly) BOOL isBadLinkQuality;
+@property (nonatomic, readonly) BOOL isInterfaceHistoricallyUsable;
+@property (nonatomic, readonly) BOOL isInterfaceUsable;
+@property (nonatomic, readonly) BOOL isInternetReachable;
+@property (nonatomic, readonly) BOOL isLTEWithCDRX;
+@property (nonatomic, readonly) BOOL isPoorLinkQuality;
+@property (nonatomic, readonly) BOOL isRadioHot;
+@property (nonatomic, readonly) int linkQuality;
+@property (nonatomic, readonly, retain) NSString *linkQualityString;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) struct __CFString { }*wwanInterfaceName;
 
++ (BOOL)isBadLinkQuality:(int)arg1;
 + (BOOL)isPoorLinkQuality:(int)arg1;
 + (id)sharedInstanceForIdentifier:(int)arg1;
 + (id)stringForLinkQuality:(int)arg1;
 
-- (void)addDelegate:(id)arg1 queue:(struct dispatch_queue_s { }*)arg2;
+- (void)addDelegate:(id)arg1 queue:(id)arg2;
 - (struct __CFString { }*)currentRAT;
 - (void)dealloc;
 - (id)initWithInterfaceIdentifier:(int)arg1;
@@ -33,6 +37,7 @@
 - (void)interfaceLinkQualityChanged:(id)arg1 previousLinkQuality:(int)arg2;
 - (void)interfaceRadioHotnessChanged:(id)arg1;
 - (void)interfaceReachabilityChanged:(id)arg1;
+- (BOOL)isBadLinkQuality;
 - (BOOL)isInterfaceHistoricallyUsable;
 - (BOOL)isInterfaceUsable;
 - (BOOL)isInternetReachable;

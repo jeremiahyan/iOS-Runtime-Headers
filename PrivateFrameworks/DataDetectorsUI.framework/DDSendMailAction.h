@@ -2,8 +2,12 @@
    Image: /System/Library/PrivateFrameworks/DataDetectorsUI.framework/DataDetectorsUI
  */
 
-@interface DDSendMailAction : DDAction <MFMailComposeViewControllerDelegate> {
-}
+@interface DDSendMailAction : DDAction <MFMailComposeViewControllerDelegate>
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (id)initWithURL:(id)arg1 result:(struct __DDResult { }*)arg2 context:(id)arg3;
 - (int)interactionType;

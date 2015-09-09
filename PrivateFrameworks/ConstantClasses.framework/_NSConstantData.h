@@ -2,13 +2,12 @@
    Image: /System/Library/PrivateFrameworks/ConstantClasses.framework/ConstantClasses
  */
 
-@interface _NSConstantData : NSData {
-}
+@interface _NSConstantData : NSData
 
 + (id)alloc;
 + (void)load;
 
-- (const char *)bytes;
+- (const void*)bytes;
 - (void)dealloc;
 - (unsigned int)length;
 - (oneway void)release;

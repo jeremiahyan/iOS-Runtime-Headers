@@ -2,25 +2,27 @@
    Image: /System/Library/PrivateFrameworks/TelephonyUI.framework/TelephonyUI
  */
 
-@class UIColor;
-
 @interface TPStarkInCallButtonRing : UIView {
+    BOOL _dimmed;
     UIColor *_fillColor;
     BOOL _highlighted;
     BOOL _selected;
     BOOL _toggledOn;
 }
 
-@property(retain) UIColor * fillColor;
-@property BOOL highlighted;
-@property BOOL selected;
-@property BOOL toggledOn;
+@property (nonatomic) BOOL dimmed;
+@property (nonatomic, retain) UIColor *fillColor;
+@property (nonatomic) BOOL highlighted;
+@property (nonatomic) BOOL selected;
+@property (nonatomic) BOOL toggledOn;
 
+- (BOOL)dimmed;
 - (void)drawRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (id)fillColor;
 - (BOOL)highlighted;
 - (struct CGSize { float x1; float x2; })intrinsicContentSize;
 - (BOOL)selected;
+- (void)setDimmed:(BOOL)arg1;
 - (void)setFillColor:(id)arg1;
 - (void)setHighlighted:(BOOL)arg1;
 - (void)setSelected:(BOOL)arg1;

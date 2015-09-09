@@ -2,15 +2,15 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class GEOAddress, GEOPlace, GEOPlaceSearchRequest, NSMutableArray, NSString;
-
 @interface GEOPlaceResult : PBCodable <NSCopying> {
+    NSMutableArray *_additionalPlaces;
+    int _cacheControl;
+    unsigned long long _flyoverTourMuid;
     struct { 
-        unsigned int confidence : 1; 
+        unsigned int flyoverTourMuid : 1; 
+        unsigned int cacheControl : 1; 
         unsigned int travelDistance : 1; 
         unsigned int travelTime : 1; 
-    NSMutableArray *_additionalPlaces;
-    double _confidence;
     } _has;
     NSMutableArray *_matchedTokens;
     NSMutableArray *_namedFeatures;
@@ -24,25 +24,27 @@
     NSMutableArray *_unmatchedStrings;
 }
 
-@property(retain) NSMutableArray * additionalPlaces;
-@property double confidence;
-@property BOOL hasConfidence;
-@property(readonly) BOOL hasQuad;
-@property(readonly) BOOL hasRevgeoRequestTemplate;
-@property(readonly) BOOL hasSuggestedQuery;
-@property(readonly) BOOL hasTokenEntity;
-@property BOOL hasTravelDistance;
-@property BOOL hasTravelTime;
-@property(retain) NSMutableArray * matchedTokens;
-@property(retain) NSMutableArray * namedFeatures;
-@property(retain) GEOPlace * place;
-@property(retain) NSString * quad;
-@property(retain) GEOPlaceSearchRequest * revgeoRequestTemplate;
-@property(retain) NSString * suggestedQuery;
-@property(retain) GEOAddress * tokenEntity;
-@property unsigned int travelDistance;
-@property unsigned int travelTime;
-@property(retain) NSMutableArray * unmatchedStrings;
+@property (nonatomic, retain) NSMutableArray *additionalPlaces;
+@property (nonatomic) int cacheControl;
+@property (nonatomic) unsigned long long flyoverTourMuid;
+@property (nonatomic) BOOL hasCacheControl;
+@property (nonatomic) BOOL hasFlyoverTourMuid;
+@property (nonatomic, readonly) BOOL hasQuad;
+@property (nonatomic, readonly) BOOL hasRevgeoRequestTemplate;
+@property (nonatomic, readonly) BOOL hasSuggestedQuery;
+@property (nonatomic, readonly) BOOL hasTokenEntity;
+@property (nonatomic) BOOL hasTravelDistance;
+@property (nonatomic) BOOL hasTravelTime;
+@property (nonatomic, retain) NSMutableArray *matchedTokens;
+@property (nonatomic, retain) NSMutableArray *namedFeatures;
+@property (nonatomic, retain) GEOPlace *place;
+@property (nonatomic, retain) NSString *quad;
+@property (nonatomic, retain) GEOPlaceSearchRequest *revgeoRequestTemplate;
+@property (nonatomic, retain) NSString *suggestedQuery;
+@property (nonatomic, retain) GEOAddress *tokenEntity;
+@property (nonatomic) unsigned int travelDistance;
+@property (nonatomic) unsigned int travelTime;
+@property (nonatomic, retain) NSMutableArray *unmatchedStrings;
 
 - (void)addAdditionalPlace:(id)arg1;
 - (void)addMatchedToken:(id)arg1;
@@ -51,17 +53,20 @@
 - (id)additionalPlaceAtIndex:(unsigned int)arg1;
 - (id)additionalPlaces;
 - (unsigned int)additionalPlacesCount;
+- (int)cacheControl;
 - (void)clearAdditionalPlaces;
 - (void)clearMatchedTokens;
 - (void)clearNamedFeatures;
 - (void)clearUnmatchedStrings;
-- (double)confidence;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)description;
 - (id)dictionaryRepresentation;
-- (BOOL)hasConfidence;
+- (unsigned long long)flyoverTourMuid;
+- (id)geoMapItem;
+- (BOOL)hasCacheControl;
+- (BOOL)hasFlyoverTourMuid;
 - (BOOL)hasQuad;
 - (BOOL)hasRevgeoRequestTemplate;
 - (BOOL)hasSuggestedQuery;
@@ -73,17 +78,19 @@
 - (id)matchedTokenAtIndex:(unsigned int)arg1;
 - (id)matchedTokens;
 - (unsigned int)matchedTokensCount;
+- (void)mergeFrom:(id)arg1;
 - (id)namedFeatureAtIndex:(unsigned int)arg1;
 - (id)namedFeatures;
 - (unsigned int)namedFeaturesCount;
 - (id)place;
 - (id)quad;
 - (BOOL)readFrom:(id)arg1;
-- (id)relativeNameToPlaceResult:(id)arg1 locationWithAccuracy:(id)arg2;
 - (id)revgeoRequestTemplate;
 - (void)setAdditionalPlaces:(id)arg1;
-- (void)setConfidence:(double)arg1;
-- (void)setHasConfidence:(BOOL)arg1;
+- (void)setCacheControl:(int)arg1;
+- (void)setFlyoverTourMuid:(unsigned long long)arg1;
+- (void)setHasCacheControl:(BOOL)arg1;
+- (void)setHasFlyoverTourMuid:(BOOL)arg1;
 - (void)setHasTravelDistance:(BOOL)arg1;
 - (void)setHasTravelTime:(BOOL)arg1;
 - (void)setMatchedTokens:(id)arg1;

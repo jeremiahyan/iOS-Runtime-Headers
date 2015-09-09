@@ -2,15 +2,12 @@
    Image: /System/Library/PrivateFrameworks/CoreDAV.framework/CoreDAV
  */
 
-@class <CoreDAVLocalDBTreeInfoProvider>, NSArray, NSDictionary, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString, NSURL;
-
-@interface CoreDAVRecursiveContainerSyncTaskGroup : CoreDAVTaskGroup <CoreDAVDeleteTaskDelegate, CoreDAVPutTaskDelegate, CoreDAVTaskGroupDelegate, CoreDAVMkcolTaskDelegate, CoreDAVPropPatchTaskDelegate> {
+@interface CoreDAVRecursiveContainerSyncTaskGroup : CoreDAVTaskGroup <CoreDAVDeleteTaskDelegate, CoreDAVMkcolTaskDelegate, CoreDAVPropPatchTaskDelegate, CoreDAVPutTaskDelegate, CoreDAVTaskGroupDelegate> {
     NSArray *_actions;
     NSURL *_addMemberURL;
     Class _appSpecificContainerItemClass;
     Class _appSpecificDataItemClass;
     NSMutableArray *_childCollectionURL;
-    void *_context;
     NSURL *_folderURL;
     NSMutableDictionary *_folderURLToChildrenURLOrder;
     NSMutableDictionary *_leafURLToETag;
@@ -29,15 +26,18 @@
     BOOL _useMultiGet;
 }
 
-@property(readonly) void* context;
-@property <CoreDAVLocalDBTreeInfoProvider> * delegate;
-@property(readonly) NSURL * folderURL;
-@property(readonly) NSDictionary * folderURLToChildrenURLOrder;
-@property unsigned int multiGetBatchSize;
-@property(retain) NSString * nextCTag;
-@property BOOL preflightCTag;
-@property(readonly) NSString * previousCTag;
-@property(retain) NSString * previousSyncToken;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <CoreDAVLocalDBTreeInfoProvider> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) NSURL *folderURL;
+@property (nonatomic, readonly) NSDictionary *folderURLToChildrenURLOrder;
+@property (readonly) unsigned int hash;
+@property (nonatomic) unsigned int multiGetBatchSize;
+@property (nonatomic, retain) NSString *nextCTag;
+@property (nonatomic) BOOL preflightCTag;
+@property (nonatomic, readonly) NSString *previousCTag;
+@property (nonatomic, retain) NSString *previousSyncToken;
+@property (readonly) Class superclass;
 
 - (id)_copyContainerParserMappings;
 - (void)_folderModTask:(id)arg1 parsedPropStats:(id)arg2 error:(id)arg3;
@@ -54,7 +54,6 @@
 - (void)_tearDownAllUnsubmittedTasks;
 - (void)bailWithError:(id)arg1;
 - (void)cancelTaskGroup;
-- (void*)context;
 - (id)copyFolderMultiGetTaskWithURLs:(id)arg1;
 - (id)copyMultiGetTaskWithURLs:(id)arg1;
 - (id)dataContentType;
@@ -63,7 +62,7 @@
 - (id)description;
 - (id)folderURL;
 - (id)folderURLToChildrenURLOrder;
-- (id)initWithFolderURL:(id)arg1 previousCTag:(id)arg2 previousPTag:(id)arg3 previousSyncToken:(id)arg4 actions:(id)arg5 syncItemOrder:(BOOL)arg6 context:(void*)arg7 accountInfoProvider:(id)arg8 taskManager:(id)arg9;
+- (id)initWithFolderURL:(id)arg1 previousCTag:(id)arg2 previousPTag:(id)arg3 previousSyncToken:(id)arg4 actions:(id)arg5 syncItemOrder:(BOOL)arg6 context:(id)arg7 accountInfoProvider:(id)arg8 taskManager:(id)arg9;
 - (BOOL)isWhitelistedError:(id)arg1;
 - (void)mkcolTask:(id)arg1 parsedPropStats:(id)arg2 error:(id)arg3;
 - (unsigned int)multiGetBatchSize;

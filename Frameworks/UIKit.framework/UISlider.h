@@ -2,18 +2,7 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class CAShapeLayer, NSArray, UIColor, UIImage, UIImageView, UIView;
-
 @interface UISlider : UIControl <NSCoding> {
-    struct { 
-        unsigned int continuous : 1; 
-        unsigned int animating : 1; 
-        unsigned int preparingToAnimate : 1; 
-        unsigned int showValue : 1; 
-        unsigned int trackEnabled : 1; 
-        unsigned int creatingSnapshot : 1; 
-        unsigned int thumbDisabled : 1; 
-        unsigned int minTrackHidden : 1; 
     float _alpha;
     BOOL _animatingWithDynamics;
     struct __CFDictionary { } *_contentLookup;
@@ -29,6 +18,15 @@
     UIImageView *_minTrackView;
     float _minValue;
     UIImageView *_minValueImageView;
+    struct { 
+        unsigned int continuous : 1; 
+        unsigned int animating : 1; 
+        unsigned int preparingToAnimate : 1; 
+        unsigned int showValue : 1; 
+        unsigned int trackEnabled : 1; 
+        unsigned int creatingSnapshot : 1; 
+        unsigned int thumbDisabled : 1; 
+        unsigned int minTrackHidden : 1; 
     } _sliderFlags;
     BOOL _thumbIsArtworkBased;
     UIColor *_thumbTintColor;
@@ -41,18 +39,18 @@
     float _value;
 }
 
-@property(getter=isContinuous) BOOL continuous;
-@property(readonly) UIImage * currentMaximumTrackImage;
-@property(readonly) UIImage * currentMinimumTrackImage;
-@property(readonly) UIImage * currentThumbImage;
-@property(retain) UIColor * maximumTrackTintColor;
-@property float maximumValue;
-@property(retain) UIImage * maximumValueImage;
-@property(retain) UIColor * minimumTrackTintColor;
-@property float minimumValue;
-@property(retain) UIImage * minimumValueImage;
-@property(retain) UIColor * thumbTintColor;
-@property float value;
+@property (getter=isContinuous, nonatomic) BOOL continuous;
+@property (nonatomic, readonly) UIImage *currentMaximumTrackImage;
+@property (nonatomic, readonly) UIImage *currentMinimumTrackImage;
+@property (nonatomic, readonly) UIImage *currentThumbImage;
+@property (nonatomic, retain) UIColor *maximumTrackTintColor;
+@property (nonatomic) float maximumValue;
+@property (nonatomic, retain) UIImage *maximumValueImage;
+@property (nonatomic, retain) UIColor *minimumTrackTintColor;
+@property (nonatomic) float minimumValue;
+@property (nonatomic, retain) UIImage *minimumValueImage;
+@property (nonatomic, retain) UIColor *thumbTintColor;
+@property (nonatomic) float value;
 
 - (BOOL)_alwaysHandleScrollerMouseEvent;
 - (void)_buildTrackArtwork;
@@ -94,7 +92,7 @@
 - (id)_thumbImageForState:(unsigned int)arg1;
 - (BOOL)_trackEnabled;
 - (void)_updateAppearanceForEnabled:(BOOL)arg1;
-- (void)_updateMaxTrackColor;
+- (void)_updateMaxTrackColorForInitialization:(BOOL)arg1;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })alignmentRectInsets;
 - (BOOL)beginTrackingWithTouch:(id)arg1 withEvent:(id)arg2;
 - (BOOL)cancelMouseTracking;
@@ -150,8 +148,8 @@
 - (void)setThumbImage:(id)arg1 forState:(unsigned int)arg2;
 - (void)setThumbImage:(id)arg1 forStates:(unsigned int)arg2;
 - (void)setThumbTintColor:(id)arg1;
-- (void)setValue:(float)arg1 animated:(BOOL)arg2;
 - (void)setValue:(float)arg1;
+- (void)setValue:(float)arg1 animated:(BOOL)arg2;
 - (struct CGSize { float x1; float x2; })sizeThatFits:(struct CGSize { float x1; float x2; })arg1;
 - (id)thumbImageForState:(unsigned int)arg1;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })thumbRectForBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 trackRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2 value:(float)arg3;

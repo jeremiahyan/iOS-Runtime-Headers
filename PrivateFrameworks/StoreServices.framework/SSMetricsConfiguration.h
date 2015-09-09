@@ -2,12 +2,12 @@
    Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
  */
 
-@class NSDictionary, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSSet, SSMetricsConfiguration;
-
 @interface SSMetricsConfiguration : NSObject {
     NSSet *_blacklistedEvents;
     SSMetricsConfiguration *_childConfiguration;
     NSDictionary *_config;
+    NSMutableSet *_cookieFieldsUnion;
+    BOOL _disableEventDecoration;
     BOOL _disabled;
     NSObject<OS_dispatch_queue> *_dispatchQueue;
     NSMutableDictionary *_eventFieldsUnion;
@@ -17,20 +17,24 @@
     BOOL _sendDisabled;
 }
 
-@property(retain) SSMetricsConfiguration * childConfiguration;
-@property(readonly) NSDictionary * fieldsMap;
+@property (nonatomic, retain) SSMetricsConfiguration *childConfiguration;
+@property (nonatomic) BOOL disableEventDecoration;
+@property (nonatomic, readonly) NSDictionary *fieldsMap;
 
 + (id)_reportingFrequencyOverride;
-+ (void)getReportingFrequencyOverrideWithCompletionBlock:(id)arg1;
++ (void)getReportingFrequencyOverrideWithCompletionBlock:(id /* block */)arg1;
 + (void)setReportingFrequencyOverride:(id)arg1;
 
 - (BOOL)_configBooleanForKey:(id)arg1 defaultValue:(BOOL)arg2;
+- (BOOL)_decorateITMLEvents;
 - (id)_initSSMetricsEventConfiguration;
 - (void)_setReportingFrequencyOverride:(id)arg1;
 - (id)blacklistedEventFields;
 - (id)childConfiguration;
 - (id)compoundStringWithElements:(id)arg1;
+- (id)cookieFields;
 - (void)dealloc;
+- (BOOL)disableEventDecoration;
 - (id)eventFields;
 - (id)fieldsMap;
 - (id)initWithGlobalConfiguration:(id)arg1;
@@ -42,6 +46,7 @@
 - (double)reportingFrequency;
 - (id)reportingURLString;
 - (void)setChildConfiguration:(id)arg1;
+- (void)setDisableEventDecoration:(BOOL)arg1;
 - (id)tokenStringWithElements:(id)arg1;
 - (id)valueForConfigurationKey:(id)arg1;
 

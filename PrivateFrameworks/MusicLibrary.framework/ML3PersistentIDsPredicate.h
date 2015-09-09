@@ -3,22 +3,23 @@
  */
 
 @interface ML3PersistentIDsPredicate : ML3Predicate {
-    unsigned int _count;
-    long long *_persistentIDs;
+    NSArray *_persistentIDs;
     BOOL _shouldContain;
 }
 
-@property(readonly) BOOL shouldContain;
+@property (nonatomic, readonly) BOOL shouldContain;
 
 + (id)predicateWithPersistentIDs:(const long long*)arg1 count:(unsigned int)arg2 shouldContain:(BOOL)arg3;
++ (id)predicateWithPersistentIDs:(id)arg1 shouldContain:(BOOL)arg2;
 
+- (void).cxx_destruct;
 - (void)appendSQLToMutableString:(id)arg1 entityClass:(Class)arg2;
 - (id)databaseStatementParameters;
 - (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;
 - (unsigned int)hash;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithPersistentIDs:(const long long*)arg1 count:(unsigned int)arg2 shouldContain:(BOOL)arg3;
+- (id)initWithPersistentIDs:(id)arg1 shouldContain:(BOOL)arg2;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)shouldContain;
 

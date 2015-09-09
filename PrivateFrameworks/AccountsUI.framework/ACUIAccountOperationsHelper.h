@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/AccountsUI.framework/AccountsUI
  */
 
-@class <ACUIAccountOperationsDelegate>, ACAccountStore, NSObject<OS_dispatch_queue>;
-
 @interface ACUIAccountOperationsHelper : NSObject {
     NSObject<OS_dispatch_queue> *_accountOperationsQueue;
     ACAccountStore *_accountStore;
@@ -12,7 +10,7 @@
     BOOL _isSavingAccount;
 }
 
-@property <ACUIAccountOperationsDelegate> * delegate;
+@property (nonatomic) <ACUIAccountOperationsDelegate> *delegate;
 @property BOOL isRemovingAccount;
 @property BOOL isSavingAccount;
 
@@ -23,10 +21,10 @@
 - (BOOL)isRemovingAccount;
 - (BOOL)isSavingAccount;
 - (void)removeAccount:(id)arg1;
-- (void)saveAccount:(id)arg1 requireVerification:(BOOL)arg2;
-- (void)saveAccount:(id)arg1 withDataclassActions:(id)arg2 requireVerification:(BOOL)arg3;
-- (void)saveAccount:(id)arg1 withDataclassActions:(id)arg2;
 - (void)saveAccount:(id)arg1;
+- (void)saveAccount:(id)arg1 requireVerification:(BOOL)arg2;
+- (void)saveAccount:(id)arg1 withDataclassActions:(id)arg2;
+- (void)saveAccount:(id)arg1 withDataclassActions:(id)arg2 requireVerification:(BOOL)arg3;
 - (void)setDelegate:(id)arg1;
 - (void)setIsRemovingAccount:(BOOL)arg1;
 - (void)setIsSavingAccount:(BOOL)arg1;

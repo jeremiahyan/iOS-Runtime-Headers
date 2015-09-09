@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIInputViewAnimationStyle;
-
 @interface UIKeyboardRotationState : NSObject {
     UIInputViewAnimationStyle *_animationStyle;
     int _postRotationState;
@@ -12,11 +10,11 @@
     int _targetOrientation;
 }
 
-@property(retain) UIInputViewAnimationStyle * animationStyle;
-@property int postRotationState;
-@property BOOL requiresNewState;
-@property int state;
-@property int targetOrientation;
+@property (nonatomic, retain) UIInputViewAnimationStyle *animationStyle;
+@property (nonatomic) int postRotationState;
+@property (nonatomic) BOOL requiresNewState;
+@property (nonatomic) int state;
+@property (nonatomic) int targetOrientation;
 
 + (id)stateWithState:(int)arg1 targetOrientation:(int)arg2;
 
@@ -25,8 +23,8 @@
 - (int)postRotationState;
 - (BOOL)requiresNewState;
 - (void)setAnimationStyle:(id)arg1;
-- (void)setPostRotationState:(int)arg1 animationStyle:(id)arg2;
 - (void)setPostRotationState:(int)arg1;
+- (void)setPostRotationState:(int)arg1 animationStyle:(id)arg2;
 - (void)setRequiresNewState:(BOOL)arg1;
 - (void)setState:(int)arg1;
 - (void)setTargetOrientation:(int)arg1;

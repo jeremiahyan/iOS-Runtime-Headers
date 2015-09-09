@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@class NSMutableDictionary, NSObject<OS_dispatch_semaphore>;
-
 @interface NSDateFormatter : NSFormatter {
     NSMutableDictionary *_attributes;
     unsigned int _counter;
@@ -11,23 +9,63 @@
     NSObject<OS_dispatch_semaphore> *_lock;
 }
 
+@property (copy) NSString *AMSymbol;
+@property (copy) NSString *PMSymbol;
+@property (copy) NSCalendar *calendar;
+@property (copy) NSString *dateFormat;
+@property unsigned int dateStyle;
+@property (copy) NSDate *defaultDate;
+@property BOOL doesRelativeDateFormatting;
+@property (copy) NSArray *eraSymbols;
+@property unsigned int formatterBehavior;
+@property int formattingContext;
+@property BOOL generatesCalendarDates;
+@property (copy) NSDate *gregorianStartDate;
+@property (getter=isLenient) BOOL lenient;
+@property (copy) NSLocale *locale;
+@property (copy) NSArray *longEraSymbols;
+@property (copy) NSArray *monthSymbols;
+@property (copy) NSArray *quarterSymbols;
+@property (copy) NSArray *shortMonthSymbols;
+@property (copy) NSArray *shortQuarterSymbols;
+@property (copy) NSArray *shortStandaloneMonthSymbols;
+@property (copy) NSArray *shortStandaloneQuarterSymbols;
+@property (copy) NSArray *shortStandaloneWeekdaySymbols;
+@property (copy) NSArray *shortWeekdaySymbols;
+@property (copy) NSArray *standaloneMonthSymbols;
+@property (copy) NSArray *standaloneQuarterSymbols;
+@property (copy) NSArray *standaloneWeekdaySymbols;
+@property unsigned int timeStyle;
+@property (copy) NSTimeZone *timeZone;
+@property (copy) NSDate *twoDigitStartDate;
+@property (copy) NSArray *veryShortMonthSymbols;
+@property (copy) NSArray *veryShortStandaloneMonthSymbols;
+@property (copy) NSArray *veryShortStandaloneWeekdaySymbols;
+@property (copy) NSArray *veryShortWeekdaySymbols;
+@property (copy) NSArray *weekdaySymbols;
+
+// Image: /System/Library/Frameworks/Foundation.framework/Foundation
+
 + (id)dateFormatFromTemplate:(id)arg1 options:(unsigned int)arg2 locale:(id)arg3;
 + (unsigned int)defaultFormatterBehavior;
 + (void)initialize;
 + (id)localizedStringFromDate:(id)arg1 dateStyle:(unsigned int)arg2 timeStyle:(unsigned int)arg3;
-+ (id)mf_formatDate:(id)arg1 shortStyle:(BOOL)arg2;
 + (void)setDefaultFormatterBehavior:(unsigned int)arg1;
 
 - (id)AMSymbol;
 - (id)PMSymbol;
 - (void)_clearFormatter;
 - (id)_dateFormat;
+- (id)_getLocaleAlreadyLocked:(BOOL)arg1;
+- (id)_locale_forOldMethods;
 - (void)_regenerateFormatter;
 - (void)_regenerateFormatterIfAbsent;
 - (void)_reset;
 - (void)_setDateFormat:(id)arg1;
+- (void)_setDateFormat:(id)arg1 alreadyLocked:(BOOL)arg2;
 - (void)_setIsLenient:(BOOL)arg1;
 - (void)_setUsesCharacterDirection:(BOOL)arg1;
+- (id)_timeZone_forOldMethods;
 - (BOOL)_usesCharacterDirection;
 - (id)calendar;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -41,6 +79,7 @@
 - (id)eraSymbols;
 - (void)finalize;
 - (unsigned int)formatterBehavior;
+- (int)formattingContext;
 - (BOOL)generatesCalendarDates;
 - (BOOL)getObjectValue:(out id*)arg1 forString:(id)arg2 errorDescription:(out id*)arg3;
 - (BOOL)getObjectValue:(out id*)arg1 forString:(id)arg2 range:(inout struct _NSRange { unsigned int x1; unsigned int x2; }*)arg3 error:(out id*)arg4;
@@ -60,10 +99,12 @@
 - (void)setDoesRelativeDateFormatting:(BOOL)arg1;
 - (void)setEraSymbols:(id)arg1;
 - (void)setFormatterBehavior:(unsigned int)arg1;
+- (void)setFormattingContext:(int)arg1;
 - (void)setGeneratesCalendarDates:(BOOL)arg1;
 - (void)setGregorianStartDate:(id)arg1;
 - (void)setLenient:(BOOL)arg1;
 - (void)setLocale:(id)arg1;
+- (void)setLocalizedDateFormatFromTemplate:(id)arg1;
 - (void)setLongEraSymbols:(id)arg1;
 - (void)setMonthSymbols:(id)arg1;
 - (void)setPMSymbol:(id)arg1;
@@ -95,7 +136,6 @@
 - (id)standaloneQuarterSymbols;
 - (id)standaloneWeekdaySymbols;
 - (id)stringForObjectValue:(id)arg1;
-- (id)stringFromDate:(id)arg1 withRelativeToTimeZone:(id)arg2;
 - (id)stringFromDate:(id)arg1;
 - (unsigned int)timeStyle;
 - (id)timeZone;
@@ -105,5 +145,28 @@
 - (id)veryShortStandaloneWeekdaySymbols;
 - (id)veryShortWeekdaySymbols;
 - (id)weekdaySymbols;
+
+// Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
+
++ (id)mf_formatDate:(id)arg1 shortStyle:(BOOL)arg2;
+
+// Image: /System/Library/PrivateFrameworks/AppleAccountUI.framework/AppleAccountUI
+
++ (id)monthYearStringFromDate:(id)arg1 calendar:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/CalendarFoundation.framework/CalendarFoundation
+
++ (id)CalSharedDateFormatter;
+
+// Image: /System/Library/PrivateFrameworks/FitnessUI.framework/FitnessUI
+
++ (id)FU_stringWithLongestStyleDate:(id)arg1 font:(id)arg2 maxWidth:(float)arg3;
++ (id)FU_timeStringWithSpaceRemoved:(id)arg1 date:(id)arg2;
++ (BOOL)_dateStringFits:(id)arg1 font:(id)arg2 maxWidth:(float)arg3;
++ (void)_localeDidChange:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/MobileTimer.framework/MobileTimer
+
+- (id)stringFromDate:(id)arg1 withRelativeToTimeZone:(id)arg2;
 
 @end

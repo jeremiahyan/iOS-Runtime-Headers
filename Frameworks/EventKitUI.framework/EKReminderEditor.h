@@ -2,16 +2,14 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-@class <EKReminderEditorDelegate>, <EKStyleProvider>, EKReminder;
-
 @interface EKReminderEditor : EKCalendarItemEditor {
     <EKReminderEditorDelegate> *_reminderEditorDelegate;
     <EKStyleProvider> *_styleProvider;
 }
 
-@property(retain) EKReminder * reminder;
-@property <EKReminderEditorDelegate> * reminderEditorDelegate;
-@property(retain) <EKStyleProvider> * styleProvider;
+@property (nonatomic, retain) EKReminder *reminder;
+@property (nonatomic) <EKReminderEditorDelegate> *reminderEditorDelegate;
+@property (nonatomic, retain) <EKStyleProvider> *styleProvider;
 
 - (void).cxx_destruct;
 - (BOOL)_canDetachSingleOccurrence;
@@ -26,7 +24,7 @@
 - (id)defaultTitleForCalendarItem;
 - (void)editItem:(id)arg1 didCommitFromDetailViewController:(BOOL)arg2;
 - (void)editItem:(id)arg1 didEndDatePickingAnimated:(BOOL)arg2;
-- (void)editItem:(id)arg1 willBeginDatePickingWithDate:(id)arg2 action:(SEL)arg3 animated:(BOOL)arg4 forSubitem:(unsigned int)arg5 inSubsection:(unsigned int)arg6;
+- (void)editItem:(id)arg1 willBeginDatePickingWithDate:(id)arg2 action:(SEL)arg3 animated:(BOOL)arg4 forSubitem:(unsigned int)arg5;
 - (void)editItemTextChanged:(id)arg1;
 - (unsigned int)entityType;
 - (void)loadView;
@@ -37,6 +35,7 @@
 - (id)reminder;
 - (id)reminderEditorDelegate;
 - (BOOL)saveCalendarItemWithSpan:(int)arg1 error:(id*)arg2;
+- (void)scrollViewDidScroll:(id)arg1;
 - (void)setReminder:(id)arg1;
 - (void)setReminderEditorDelegate:(id)arg1;
 - (void)setStyleProvider:(id)arg1;

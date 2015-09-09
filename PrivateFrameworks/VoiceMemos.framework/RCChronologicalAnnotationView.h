@@ -2,31 +2,31 @@
    Image: /System/Library/PrivateFrameworks/VoiceMemos.framework/VoiceMemos
  */
 
-@class RCUIConfiguration, UIColor;
-
 @interface RCChronologicalAnnotationView : UIView {
-    struct { 
-        double beginTime; 
-        double endTime; 
-    struct { 
-        double beginTime; 
-        double endTime; 
     RCUIConfiguration *_UIConfiguration;
     UIColor *_backgroundDebugColor;
+    float _majorTickMinimumSpacing;
     double _majorTickTimeUnit;
+    struct { 
+        double beginTime; 
+        double endTime; 
     } _markerClippingRange;
     unsigned int _maximumMajorUnitsInVisibleDuration;
+    struct { 
+        double beginTime; 
+        double endTime; 
     } _visibleTimeRange;
 }
 
-@property(copy) RCUIConfiguration * UIConfiguration;
-@property(retain) UIColor * backgroundDebugColor;
-@property struct { double x1; double x2; } markerClippingRange;
-@property unsigned int maximumMajorUnitsInVisibleDuration;
-@property struct { double x1; double x2; } visibleTimeRange;
+@property (nonatomic, copy) RCUIConfiguration *UIConfiguration;
+@property (nonatomic, retain) UIColor *backgroundDebugColor;
+@property (nonatomic) struct { double x1; double x2; } markerClippingRange;
+@property (nonatomic) unsigned int maximumMajorUnitsInVisibleDuration;
+@property (nonatomic) struct { double x1; double x2; } visibleTimeRange;
 
 - (void).cxx_destruct;
 - (id)UIConfiguration;
+- (void)_loadMajorTickMinimumSpacing;
 - (id)_timeLabelAttributes;
 - (void)_updateMajorTickTimeUnit;
 - (id)backgroundDebugColor;
@@ -37,6 +37,7 @@
 - (struct { double x1; double x2; })markerClippingRange;
 - (unsigned int)maximumMajorUnitsInVisibleDuration;
 - (void)setBackgroundDebugColor:(id)arg1;
+- (void)setFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)setMarkerClippingRange:(struct { double x1; double x2; })arg1;
 - (void)setMaximumMajorUnitsInVisibleDuration:(unsigned int)arg1;
 - (void)setUIConfiguration:(id)arg1;

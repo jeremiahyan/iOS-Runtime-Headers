@@ -2,9 +2,7 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class <ABPresenterDelegate>, CNContact, NSDictionary, UIImage, UIImageView, UILabel;
-
-@interface ABContactPhotoView : UIControl <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate> {
+@interface ABContactPhotoView : UIControl <QLPreviewControllerDataSource, QLPreviewControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
     UILabel *_addPhotoLabel;
     UIImageView *_attributionImageView;
     CNContact *_contact;
@@ -14,30 +12,40 @@
     <ABPresenterDelegate> *_delegate;
     UILabel *_editPhotoLabel;
     BOOL _editing;
+    BOOL _isAnimatingBounce;
+    BOOL _modified;
     NSDictionary *_photoPickerInfo;
+    <ABContactPhotoViewDelegate> *_photoViewDelegate;
+    UIGestureRecognizer *_tapGesture;
 }
 
-@property(retain) UILabel * addPhotoLabel;
-@property(retain) UIImageView * attributionImageView;
-@property(retain) CNContact * contact;
-@property(retain) UIImageView * contactImageView;
-@property(retain) UIImage * currentImage;
-@property(retain) UIImage * currentThumbnailImage;
-@property <ABPresenterDelegate> * delegate;
-@property(retain) UILabel * editPhotoLabel;
-@property(getter=isEditing) BOOL editing;
-@property(retain) NSDictionary * photoPickerInfo;
+@property (nonatomic, retain) UILabel *addPhotoLabel;
+@property (nonatomic, retain) UIImageView *attributionImageView;
+@property (nonatomic, retain) CNContact *contact;
+@property (nonatomic, retain) UIImageView *contactImageView;
+@property (nonatomic, retain) UIImage *currentImage;
+@property (nonatomic, retain) UIImage *currentThumbnailImage;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <ABPresenterDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) UILabel *editPhotoLabel;
+@property (getter=isEditing, nonatomic) BOOL editing;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL isAnimatingBounce;
+@property (nonatomic) BOOL modified;
+@property (nonatomic, retain) NSDictionary *photoPickerInfo;
+@property (nonatomic) <ABContactPhotoViewDelegate> *photoViewDelegate;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) UIGestureRecognizer *tapGesture;
 
 + (id)supportedPasteboardTypes;
 
 - (void)_bounceSmallPhoto;
 - (id)_createImagePicker;
 - (id)_createImagePickerForEditingImageData:(id)arg1 withCropRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2;
-- (void)_dismissFullScreenPhoto:(id)arg1;
 - (void)_presentFullScreenPhoto:(id)arg1;
 - (void)_presentPhotoEditingSheet;
 - (void)_zoomContactPhoto;
-- (void)actionSheet:(id)arg1 willDismissWithButtonIndex:(int)arg2;
 - (id)addPhotoLabel;
 - (id)attributionImageView;
 - (BOOL)canBecomeFirstResponder;
@@ -51,18 +59,29 @@
 - (id)currentThumbnailImage;
 - (void)dealloc;
 - (id)delegate;
+- (void)disablePhotoTapGesture;
 - (id)editPhotoLabel;
+- (BOOL)hasPhoto;
 - (void)imagePickerController:(id)arg1 didFinishPickingMediaWithInfo:(id)arg2;
 - (void)imagePickerControllerDidCancel:(id)arg1;
 - (id)initWithContact:(id)arg1 frame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2;
 - (struct CGSize { float x1; float x2; })intrinsicContentSize;
+- (BOOL)isAnimatingBounce;
 - (BOOL)isEditing;
 - (void)layoutSubviews;
 - (void)longPressGesture:(id)arg1;
 - (void)menuWillHide:(id)arg1;
+- (BOOL)modified;
+- (int)numberOfPreviewItemsInPreviewController:(id)arg1;
 - (void)paste:(id)arg1;
 - (id)photoPickerInfo;
-- (void)reloadPhoto;
+- (id)photoViewDelegate;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })previewController:(id)arg1 frameForPreviewItem:(id)arg2 inSourceView:(id*)arg3;
+- (id)previewController:(id)arg1 previewItemAtIndex:(int)arg2;
+- (id)previewController:(id)arg1 transitionImageForPreviewItem:(id)arg2 contentRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; }*)arg3;
+- (void)previewControllerDidDismiss:(id)arg1;
+- (id)previewPath;
+- (void)resetPhoto;
 - (void)saveEdits;
 - (void)setAddPhotoLabel:(id)arg1;
 - (void)setAttributionImageView:(id)arg1;
@@ -74,11 +93,17 @@
 - (void)setEditPhotoLabel:(id)arg1;
 - (void)setEditing:(BOOL)arg1;
 - (void)setHighlightedFrame:(BOOL)arg1;
+- (void)setIsAnimatingBounce:(BOOL)arg1;
+- (void)setModified:(BOOL)arg1;
 - (void)setPhotoPickerInfo:(id)arg1;
+- (void)setPhotoViewDelegate:(id)arg1;
+- (void)setTapGesture:(id)arg1;
 - (struct CGSize { float x1; float x2; })sizeThatFits:(struct CGSize { float x1; float x2; })arg1;
+- (id)tapGesture;
 - (void)tapGesture:(id)arg1;
 - (void)tintColorDidChange;
 - (void)updateAttributionBadge;
+- (void)updateFontSizes;
 - (void)updatePhoto;
 - (void)updatePhotoWithImage:(id)arg1;
 

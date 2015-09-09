@@ -2,13 +2,13 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@class NSString, PSSpecifier, UIImageView, UILongPressGestureRecognizer;
-
 @interface PSTableCell : UITableViewCell {
     int _alignment;
     BOOL _cellEnabled;
     BOOL _checked;
     UIImageView *_checkedImageView;
+    PSTableCellHighlightContext *_customHighlightContext;
+    BOOL _forceHideDisclosureIndicator;
     NSString *_hiddenTitle;
     BOOL _isCopyable;
     BOOL _lazyIcon;
@@ -25,23 +25,29 @@
     id _value;
 }
 
-@property BOOL isCopyable;
-@property(retain) UILongPressGestureRecognizer * longTapRecognizer;
-@property BOOL reusedCell;
-@property(retain) PSSpecifier * specifier;
-@property int type;
+@property (nonatomic) BOOL forceHideDisclosureIndicator;
+@property (nonatomic) BOOL isCopyable;
+@property (nonatomic, retain) UILongPressGestureRecognizer *longTapRecognizer;
+@property (nonatomic) BOOL reusedCell;
+@property (nonatomic, retain) PSSpecifier *specifier;
+@property (nonatomic) int type;
 
 + (Class)cellClassForSpecifier:(id)arg1;
 + (int)cellStyle;
 + (int)cellTypeFromString:(id)arg1;
++ (float)defaultCellHeight;
 + (id)reuseIdentifierForBasicCellTypes:(int)arg1;
 + (id)reuseIdentifierForClassAndType:(int)arg1;
 + (id)reuseIdentifierForSpecifier:(id)arg1;
 + (id)stringFromCellType:(int)arg1;
 
 - (id)_automationID;
+- (id)_checkmarkImage:(BOOL)arg1;
 - (id)_contentString;
 - (id)_copyableText;
+- (id)_disclosureChevronImage:(BOOL)arg1;
+- (void)_invalidateHighlightContext;
+- (void)_updateAccessoryTypeForSpecifier:(id)arg1;
 - (SEL)action;
 - (id)blankIcon;
 - (BOOL)canBeChecked;
@@ -54,15 +60,18 @@
 - (id)cellTarget;
 - (void)copy:(id)arg1;
 - (void)dealloc;
+- (BOOL)forceHideDisclosureIndicator;
 - (void)forceSynchronousIconLoadOnNextIconLoad;
 - (id)getIcon;
 - (id)getLazyIcon;
 - (id)getLazyIconID;
+- (void)highlightCellForDuration:(double)arg1 animateUnighlight:(BOOL)arg2;
 - (id)iconImageView;
 - (id)initWithStyle:(int)arg1 reuseIdentifier:(id)arg2 specifier:(id)arg3;
 - (BOOL)isChecked;
 - (BOOL)isCopyable;
 - (void)layoutSubviews;
+- (id)lazyIconQueue:(id)arg1;
 - (void)longPressed:(id)arg1;
 - (id)longTapRecognizer;
 - (void)prepareForReuse;
@@ -76,6 +85,7 @@
 - (void)setCellEnabled:(BOOL)arg1;
 - (void)setCellTarget:(id)arg1;
 - (void)setChecked:(BOOL)arg1;
+- (void)setForceHideDisclosureIndicator:(BOOL)arg1;
 - (void)setHighlighted:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setIcon:(id)arg1;
 - (void)setIsCopyable:(BOOL)arg1;

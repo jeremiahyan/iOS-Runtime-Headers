@@ -2,13 +2,14 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class <SASupportCondition>, NSString;
+@interface SAConstraintSupport : AceObject <SAAceSerializable>
 
-@interface SAConstraintSupport : AceObject <SAAceSerializable> {
-}
-
-@property(retain) <SASupportCondition> * condition;
-@property(copy) NSString * property;
+@property (nonatomic, retain) <SASupportCondition> *condition;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *property;
+@property (readonly) Class superclass;
 
 + (id)constraintSupport;
 + (id)constraintSupportWithDictionary:(id)arg1 context:(id)arg2;

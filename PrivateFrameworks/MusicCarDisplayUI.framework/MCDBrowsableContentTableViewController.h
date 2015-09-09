@@ -2,54 +2,63 @@
    Image: /System/Library/PrivateFrameworks/MusicCarDisplayUI.framework/MusicCarDisplayUI
  */
 
-@class MCDBrowsableContentModel, MCDNowPlayingButton, NSArray, NSIndexPath, NSMutableSet, NSObject<OS_dispatch_queue>, UIActivityIndicatorView, UITableView, UITapGestureRecognizer, _UIFilteredDataSource;
-
-@interface MCDBrowsableContentTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MCDBrowsableContentModelListener, UIGestureRecognizerDelegate> {
+@interface MCDBrowsableContentTableViewController : UIViewController <MCDBrowsableContentModelListener, UIGestureRecognizerDelegate, UITableViewDataSource, UITableViewDelegate> {
     UIActivityIndicatorView *_activityIndicator;
-    NSIndexPath *_awaitingCallbackForIndexPath;
-    UITapGestureRecognizer *_backGestureRecognizer;
     NSIndexPath *_containerIndexPath;
     int _count;
     _UIFilteredDataSource *_dataSource;
+    AVExternalDevice *_externalDevice;
     NSMutableSet *_indexesToUpdate;
     BOOL _isFetchingGuard;
     NSArray *_items;
+    BOOL _limited;
     MCDBrowsableContentModel *_model;
-    MCDNowPlayingButton *_nowPlayingButton;
+    UIView *_nowPlayingButton;
     NSIndexPath *_reselectIndexPath;
     NSIndexPath *_selectedNextIndexPath;
+    _MCDBrowsableContentTableViewPreloader *_selectionPreloader;
     NSObject<OS_dispatch_queue> *_serialQueue;
     BOOL _shouldReloadOnAppear;
     UITableView *_tableView;
+    BOOL _visible;
+    BOOL _wasPreloaded;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+@property (getter=isVisible, nonatomic) BOOL visible;
 
 - (void).cxx_destruct;
 - (void)_actuallyUpdate;
 - (void)_clearLoadingActivity;
-- (void)_clearTableViewSelection;
+- (void)_clearTableViewSelectionAnimated:(BOOL)arg1;
 - (void)_configureCell:(id)arg1 forIndexPath:(id)arg2;
 - (void)_displayLoadingActivity;
-- (void)_makeBestCellFirstResponder;
+- (void)_limitedUIChanged:(id)arg1;
 - (id)_modelIndexPathForRow:(int)arg1;
 - (void)_nowPlayingButtonTapped:(id)arg1;
 - (void)_nowPlayingDidChange:(id)arg1;
-- (void)_performBackGesture:(id)arg1;
 - (void)_pushToIndexPath:(id)arg1;
 - (void)_updateForIndexPaths:(id)arg1;
 - (void)_updateNowPlayingButtonVisibility;
 - (void)dealloc;
-- (BOOL)gestureRecognizerShouldBegin:(id)arg1;
-- (void)getContentItemsWithCompletionBlock:(id)arg1;
+- (void)getContentItemsWithCompletionBlock:(id /* block */)arg1;
 - (id)initWithModel:(id)arg1 indexPath:(id)arg2;
+- (id)initWithModel:(id)arg1 indexPath:(id)arg2 preloaded:(BOOL)arg3;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
+- (BOOL)isVisible;
 - (void)model:(id)arg1 didInitiatePlaybackOfItemAtIndexPath:(id)arg2 error:(id)arg3;
-- (void)model:(id)arg1 didUpdateContentItemsAtIndexPath:(id)arg2;
+- (void)model:(id)arg1 didUpdateContainerAtIndexPath:(id)arg2;
 - (void)model:(id)arg1 didUpdateContentItemsAtIndexPaths:(id)arg2;
+- (id)preferredFocusedItem;
+- (void)setVisible:(BOOL)arg1;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
 - (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
 - (int)tableView:(id)arg1 numberOfRowsInSection:(int)arg2;
-- (void)tableViewDidFinishReload:(id)arg1;
 - (void)viewDidAppear:(BOOL)arg1;
+- (void)viewDidDisappear:(BOOL)arg1;
 - (void)viewDidLoad;
 - (void)viewWillAppear:(BOOL)arg1;
 - (void)viewWillDisappear:(BOOL)arg1;

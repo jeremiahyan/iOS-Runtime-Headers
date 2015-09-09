@@ -2,15 +2,7 @@
    Image: /System/Library/PrivateFrameworks/ScreenReaderOutputServer.framework/ScreenReaderOutputServer
  */
 
-@class <SCROSBrailleDisplayManagerDelegate>, NSAttributedString, NSData, NSLock, NSMutableArray, NSMutableDictionary, NSMutableSet, SCROBrailleDisplay, SCROBrailleDisplayHistory, SCROBrailleDisplayManagedQueue, SCROBrailleEventDispatcher, SCROBrailleFormatter, SCRODBluetoothBrailleDisplay;
-
 @interface SCROBrailleDisplayManager : NSObject <SCROBrailleDisplayDelegate> {
-    struct { 
-        NSData *aggregatedData; 
-        int virtualAlignment; 
-        int masterStatusCellIndex; 
-        BOOL currentAnnouncementUnread; 
-        BOOL anyUnreadAnnouncements; 
     int _alertPriority;
     double _alertTimeout;
     struct __CFRunLoopTimer { } *_alertTimer;
@@ -27,6 +19,8 @@
     SCROBrailleEventDispatcher *_eventDispatcher;
     SCROBrailleDisplayHistory *_history;
     int _inputAccessMode;
+    int _inputContractionMode;
+    BOOL _inputEightDot;
     BOOL _isValid;
     BOOL _lineDescriptorDisplayCallbackEnabled;
     NSAttributedString *_lineString;
@@ -37,10 +31,23 @@
     BOOL _shouldBatchUpdates;
     BOOL _showDotsSevenAndEight;
     BOOL _showEightDot;
+    struct { 
+        NSData *aggregatedData; 
+        int virtualAlignment; 
+        int masterStatusCellIndex; 
+        BOOL currentAnnouncementUnread; 
+        BOOL anyUnreadAnnouncements; 
     } _status;
     NSAttributedString *_statusString;
     SCROBrailleDisplay *_stealthBrailleDisplay;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) int inputContractionMode;
+@property (nonatomic) BOOL inputEightDotBraille;
+@property (readonly) Class superclass;
 
 + (void)initialize;
 
@@ -56,6 +63,7 @@
 - (id)_displayWithIOElement:(id)arg1 driverIdentifier:(id)arg2 delegate:(id)arg3;
 - (void)_enableAutoDetect;
 - (void)_exitCurrentDisplayMode;
+- (void)_inputEightDotHandler:(id)arg1;
 - (void)_loadNextDriverForIOElement:(id)arg1;
 - (void)_loadStealthDisplay;
 - (void)_mainDisplayHandler:(id)arg1;
@@ -94,6 +102,7 @@
 - (void)brailleDisplay:(id)arg1 pressedKeys:(id)arg2;
 - (void)brailleDisplay:(id)arg1 willMemorizeKey:(id)arg2;
 - (void)brailleDriverDisconnected:(id)arg1;
+- (id)brailleInputManager;
 - (void)configurationChangedForBrailleDisplay:(id)arg1;
 - (void)configureTableWithIdentifier:(id)arg1;
 - (int)contractionMode;
@@ -107,6 +116,9 @@
 - (void)handleEvent:(id)arg1;
 - (BOOL)hasActiveDisplays;
 - (id)init;
+- (int)inputContractionMode;
+- (void)inputContractionModeHandler:(id)arg1;
+- (BOOL)inputEightDotBraille;
 - (void)invalidate;
 - (BOOL)isConfigured;
 - (BOOL)isValid;
@@ -114,8 +126,11 @@
 - (void)loadBluetoothDriverWithAddress:(id)arg1;
 - (id)mainAttributedString;
 - (long)masterStatusCellIndex;
+- (id)newBrailleDisplayCommandDispatcher;
 - (void)panDisplayLeft:(long)arg1;
 - (void)panDisplayRight:(long)arg1;
+- (void)playBorderHitSoundForBrailleDisplay:(id)arg1;
+- (void)playCommandNotSupportedSoundForBrailleDisplay:(id)arg1;
 - (void)removeBluetoothDriverWithAddress:(id)arg1;
 - (void)setAggregatedStatus:(id)arg1;
 - (void)setAlwaysUsesNemethCodeForTechnicalText:(BOOL)arg1;
@@ -124,9 +139,11 @@
 - (void)setContractionMode:(int)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setDisplayInputAccessMode:(int)arg1;
+- (void)setInputContractionMode:(int)arg1;
+- (void)setInputEightDotBraille:(BOOL)arg1;
 - (void)setLineDescriptorDisplayCallbackEnabled:(BOOL)arg1;
-- (void)setMainAttributedString:(id)arg1 forceUpdate:(BOOL)arg2;
 - (void)setMainAttributedString:(id)arg1;
+- (void)setMainAttributedString:(id)arg1 forceUpdate:(BOOL)arg2;
 - (void)setMasterStatusCellIndex:(long)arg1;
 - (void)setPrepareToMemorizeNextKey:(BOOL)arg1 immediate:(BOOL)arg2 forDisplayWithToken:(long)arg3;
 - (void)setPrimaryBrailleDisplay:(long)arg1;

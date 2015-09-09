@@ -2,14 +2,15 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSArray, NSString;
+@interface SAMPPodcastSearchCompleted : SABaseCommand <SAServerBoundCommand>
 
-@interface SAMPPodcastSearchCompleted : SABaseCommand <SAServerBoundCommand> {
-}
-
-@property(copy) NSString * aceId;
-@property(copy) NSString * refId;
-@property(copy) NSArray * results;
+@property (nonatomic, copy) NSString *aceId;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *refId;
+@property (nonatomic, copy) NSArray *results;
+@property (readonly) Class superclass;
 
 + (id)podcastSearchCompleted;
 + (id)podcastSearchCompletedWithDictionary:(id)arg1 context:(id)arg2;

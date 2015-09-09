@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/WebUI.framework/WebUI
  */
 
-@class NSDate, NSString;
-
 @interface WBSAddressBookMatch : WBSFormAutoFillItem {
     NSString *_identifier;
     NSString *_key;
@@ -12,20 +10,20 @@
     id _value;
 }
 
-@property(copy) NSDate * dateValue;
-@property(readonly) NSString * identifier;
-@property(readonly) NSString * key;
-@property(readonly) NSString * label;
-@property(copy) NSString * property;
-@property(copy) NSString * stringValue;
+@property (nonatomic, copy) NSDate *dateValue;
+@property (nonatomic, readonly) NSString *identifier;
+@property (nonatomic, readonly) NSString *key;
+@property (nonatomic, readonly) NSString *label;
+@property (nonatomic, copy) NSString *property;
+@property (nonatomic, copy) NSString *stringValue;
 
+- (void).cxx_destruct;
 - (void)_setValue:(id)arg1;
 - (id)completion;
 - (id)dateValue;
-- (void)dealloc;
 - (id)identifier;
-- (id)initWithValue:(id)arg1 property:(id)arg2 key:(id)arg3 identifier:(id)arg4 label:(id)arg5;
 - (id)initWithValue:(id)arg1 property:(id)arg2 key:(id)arg3 identifier:(id)arg4;
+- (id)initWithValue:(id)arg1 property:(id)arg2 key:(id)arg3 identifier:(id)arg4 label:(id)arg5;
 - (id)key;
 - (id)label;
 - (id)property;

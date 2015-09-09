@@ -2,18 +2,18 @@
    Image: /System/Library/PrivateFrameworks/MobileBackup.framework/MobileBackup
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
 @interface MBFileManagerDelegate : NSObject <NSFileManagerDelegate> {
-    id _shouldCopyItemAtPathToPath;
+    id /* block */ _shouldCopyItemAtPathToPath;
 }
 
-@property(copy) id shouldCopyItemAtPathToPath;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) id /* block */ shouldCopyItemAtPathToPath;
+@property (readonly) Class superclass;
 
 - (BOOL)fileManager:(id)arg1 shouldCopyItemAtPath:(id)arg2 toPath:(id)arg3;
-- (void)setShouldCopyItemAtPathToPath:(id)arg1;
-- (id)shouldCopyItemAtPathToPath;
+- (void)setShouldCopyItemAtPathToPath:(id /* block */)arg1;
+- (id /* block */)shouldCopyItemAtPathToPath;
 
 @end

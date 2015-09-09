@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/AddressBook.framework/AddressBook
  */
 
-@class NSMutableDictionary;
-
 @interface ABPersonLinker : NSObject {
     void *_addressBook;
     NSMutableDictionary *_peopleByFirstName;
@@ -11,6 +9,7 @@
     NSMutableDictionary *_peopleByOrganization;
 }
 
++ (BOOL)isAutoLinkingEnabled;
 + (BOOL)isLinkDataValidForAddressBook:(void*)arg1;
 + (void)startAutoLinkingNewPeopleInAddressBook:(void*)arg1 inProcess:(BOOL)arg2;
 

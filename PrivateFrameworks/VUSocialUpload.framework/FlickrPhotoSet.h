@@ -2,35 +2,35 @@
    Image: /System/Library/PrivateFrameworks/VUSocialUpload.framework/VUSocialUpload
  */
 
-@class NSString;
-
 @interface FlickrPhotoSet : NSObject {
-    NSString *_description;
     long long _farmID;
     long long _identifier;
+    NSString *_photoSetDescription;
     long long _primaryPhotoID;
     NSString *_secret;
     long long _serverID;
     NSString *_title;
 }
 
-@property(copy) NSString * description;
-@property long long farmID;
-@property long long identifier;
-@property long long primaryPhotoID;
-@property(copy) NSString * secret;
-@property long long serverID;
-@property(copy) NSString * title;
+@property (nonatomic) long long farmID;
+@property (nonatomic) long long identifier;
+@property (nonatomic, copy) NSString *photoSetDescription;
+@property (nonatomic) long long primaryPhotoID;
+@property (nonatomic, copy) NSString *secret;
+@property (nonatomic) long long serverID;
+@property (nonatomic, copy) NSString *title;
 
+- (void).cxx_destruct;
 - (id)description;
 - (long long)farmID;
 - (long long)identifier;
+- (id)photoSetDescription;
 - (long long)primaryPhotoID;
 - (id)secret;
 - (long long)serverID;
-- (void)setDescription:(id)arg1;
 - (void)setFarmID:(long long)arg1;
 - (void)setIdentifier:(long long)arg1;
+- (void)setPhotoSetDescription:(id)arg1;
 - (void)setPrimaryPhotoID:(long long)arg1;
 - (void)setSecret:(id)arg1;
 - (void)setServerID:(long long)arg1;

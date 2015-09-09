@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class ABPeoplePickerNavigationController, NSArray, NSAttributedString, NSString, SKUIGiftComposeRecipientView, SKUIGiftContactSearchController, UILabel, UIView;
-
 @interface SKUIGiftRecipientTableViewCell : UITableViewCell <ABPeoplePickerNavigationControllerDelegate, MFComposeRecipientViewDelegate, SKUIGiftContactSearchDelegate> {
     void *_addressBook;
     ABPeoplePickerNavigationController *_peoplePickerController;
@@ -13,9 +11,13 @@
     UIView *_topBorderView;
 }
 
-@property(copy) NSAttributedString * attributedPlaceholder;
-@property(copy) NSString * label;
-@property(copy) NSArray * recipientAddresses;
+@property (nonatomic, copy) NSAttributedString *attributedPlaceholder;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *label;
+@property (nonatomic, copy) NSArray *recipientAddresses;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void*)_addressBook;
@@ -37,8 +39,8 @@
 - (id)initWithStyle:(int)arg1 reuseIdentifier:(id)arg2;
 - (id)label;
 - (void)layoutSubviews;
-- (BOOL)peoplePickerNavigationController:(id)arg1 shouldContinueAfterSelectingPerson:(void*)arg2 property:(int)arg3 identifier:(int)arg4;
 - (BOOL)peoplePickerNavigationController:(id)arg1 shouldContinueAfterSelectingPerson:(void*)arg2;
+- (BOOL)peoplePickerNavigationController:(id)arg1 shouldContinueAfterSelectingPerson:(void*)arg2 property:(int)arg3 identifier:(int)arg4;
 - (void)peoplePickerNavigationControllerDidCancel:(id)arg1;
 - (void)presentPeoplePickerPopover:(id)arg1 animated:(BOOL)arg2;
 - (void)presentSearchResultsPopover:(id)arg1 animated:(BOOL)arg2;

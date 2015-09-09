@@ -2,39 +2,32 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString, SLComposeViewController, UIImage;
-
-@interface UISocialActivity : UIActivity {
-    UIImage *_composedImage;
-    NSString *_socialActivityType;
+@interface UISocialActivity : UIApplicationExtensionActivity {
+    NSString *_builtinActivityType;
     SLComposeViewController *_socialComposeViewController;
 }
 
-@property(retain) UIImage * composedImage;
-@property(copy) NSString * socialActivityType;
-@property(retain) SLComposeViewController * socialComposeViewController;
+@property (nonatomic, copy) NSString *builtinActivityType;
+@property (nonatomic, retain) SLComposeViewController *socialComposeViewController;
 
 + (int)activityCategory;
 
-- (id)_activityImage;
-- (int)_activityItemTypes;
-- (int)_blockingActivityItemTypes;
+- (BOOL)_canBeExcludedByActivityViewController:(id)arg1;
 - (void)_cleanup;
-- (int)_maxImageDataSize;
-- (id)_serviceType;
+- (BOOL)_dismissActivityFromViewController:(id)arg1 animated:(BOOL)arg2 completion:(id /* block */)arg3;
+- (BOOL)_presentActivityOnViewController:(id)arg1 animated:(BOOL)arg2 completion:(id /* block */)arg3;
 - (struct CGSize { float x1; float x2; })_thumbnailSize;
-- (id)activityTitle;
 - (id)activityType;
 - (id)activityViewController;
+- (id)builtinActivityType;
 - (BOOL)canPerformWithActivityItems:(id)arg1;
-- (id)composedImage;
 - (void)dealloc;
-- (id)initActivityType:(id)arg1;
+- (id)debugDescription;
+- (id)initWithActivityType:(id)arg1;
+- (id)initWithApplicationExtension:(id)arg1;
 - (void)prepareWithActivityItems:(id)arg1;
-- (void)setComposedImage:(id)arg1;
-- (void)setSocialActivityType:(id)arg1;
+- (void)setBuiltinActivityType:(id)arg1;
 - (void)setSocialComposeViewController:(id)arg1;
-- (id)socialActivityType;
 - (id)socialComposeViewController;
 
 @end

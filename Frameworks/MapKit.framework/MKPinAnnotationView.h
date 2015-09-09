@@ -2,19 +2,16 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@class MKPinAnnotationViewInternal, UIImageView;
-
 @interface MKPinAnnotationView : MKAnnotationView {
     BOOL _animatesDrop;
     id _delegate;
-    MKPinAnnotationViewInternal *_pinInternal;
     int _pinType;
     UIImageView *_shadowView;
     int _state;
 }
 
-@property BOOL animatesDrop;
-@property unsigned int pinColor;
+@property (nonatomic) BOOL animatesDrop;
+@property (nonatomic) unsigned int pinColor;
 
 + (id)_bounceAnimation;
 + (struct CGPoint { float x1; float x2; })_calloutOffset;
@@ -24,11 +21,11 @@
 + (struct CGPoint { float x1; float x2; })_perceivedAnchorPoint;
 + (struct CGSize { float x1; float x2; })_perceivedSize;
 + (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_pinFrameForPosition:(struct CGPoint { float x1; float x2; })arg1;
-+ (id)_pinsWithType:(int)arg1 mapDisplayStyle:(int)arg2;
++ (id)_pinsWithType:(int)arg1 mapDisplayStyle:(unsigned int)arg2;
 + (id)_reuseIdentifier;
 + (struct CGPoint { float x1; float x2; })_rightCalloutOffset;
 + (struct CGPoint { float x1; float x2; })_shadowAnchorPoint;
-+ (struct UIImage { Class x1; void *x2; float x3; struct { unsigned int x_4_1_1 : 1; unsigned int x_4_1_2 : 3; unsigned int x_4_1_3 : 1; unsigned int x_4_1_4 : 1; unsigned int x_4_1_5 : 1; unsigned int x_4_1_6 : 16; unsigned int x_4_1_7 : 2; unsigned int x_4_1_8 : 1; } x4; }*)_shadowImage;
++ (struct UIImage { Class x1; void *x2; float x3; struct { unsigned int x_4_1_1 : 1; unsigned int x_4_1_2 : 3; unsigned int x_4_1_3 : 1; unsigned int x_4_1_4 : 1; unsigned int x_4_1_5 : 1; unsigned int x_4_1_6 : 2; unsigned int x_4_1_7 : 1; unsigned int x_4_1_8 : 1; } x4; }*)_shadowImage;
 + (Class)layerClass;
 
 - (void).cxx_destruct;
@@ -40,10 +37,9 @@
 - (void)_dropAfterDraggingAndRevertPosition:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)_dropAfterDraggingDidEnd:(id)arg1;
 - (void)_dropFromPoint:(struct CGPoint { float x1; float x2; })arg1 shadowStartPoint:(struct CGPoint { float x1; float x2; })arg2 distance:(float)arg3 maxDistance:(float)arg4 withDelay:(double)arg5;
-- (struct UIImage { Class x1; void *x2; float x3; struct { unsigned int x_4_1_1 : 1; unsigned int x_4_1_2 : 3; unsigned int x_4_1_3 : 1; unsigned int x_4_1_4 : 1; unsigned int x_4_1_5 : 1; unsigned int x_4_1_6 : 16; unsigned int x_4_1_7 : 2; unsigned int x_4_1_8 : 1; } x4; }*)_floatingImage;
-- (struct UIImage { Class x1; void *x2; float x3; struct { unsigned int x_4_1_1 : 1; unsigned int x_4_1_2 : 3; unsigned int x_4_1_3 : 1; unsigned int x_4_1_4 : 1; unsigned int x_4_1_5 : 1; unsigned int x_4_1_6 : 16; unsigned int x_4_1_7 : 2; unsigned int x_4_1_8 : 1; } x4; }*)_highlightedImage;
-- (struct UIImage { Class x1; void *x2; float x3; struct { unsigned int x_4_1_1 : 1; unsigned int x_4_1_2 : 3; unsigned int x_4_1_3 : 1; unsigned int x_4_1_4 : 1; unsigned int x_4_1_5 : 1; unsigned int x_4_1_6 : 16; unsigned int x_4_1_7 : 2; unsigned int x_4_1_8 : 1; } x4; }*)_image;
-- (id)_internal;
+- (struct UIImage { Class x1; void *x2; float x3; struct { unsigned int x_4_1_1 : 1; unsigned int x_4_1_2 : 3; unsigned int x_4_1_3 : 1; unsigned int x_4_1_4 : 1; unsigned int x_4_1_5 : 1; unsigned int x_4_1_6 : 2; unsigned int x_4_1_7 : 1; unsigned int x_4_1_8 : 1; } x4; }*)_floatingImage;
+- (struct UIImage { Class x1; void *x2; float x3; struct { unsigned int x_4_1_1 : 1; unsigned int x_4_1_2 : 3; unsigned int x_4_1_3 : 1; unsigned int x_4_1_4 : 1; unsigned int x_4_1_5 : 1; unsigned int x_4_1_6 : 2; unsigned int x_4_1_7 : 1; unsigned int x_4_1_8 : 1; } x4; }*)_highlightedImage;
+- (struct UIImage { Class x1; void *x2; float x3; struct { unsigned int x_4_1_1 : 1; unsigned int x_4_1_2 : 3; unsigned int x_4_1_3 : 1; unsigned int x_4_1_4 : 1; unsigned int x_4_1_5 : 1; unsigned int x_4_1_6 : 2; unsigned int x_4_1_7 : 1; unsigned int x_4_1_8 : 1; } x4; }*)_image;
 - (void)_invalidateImage;
 - (void)_liftBeforeDropDidEnd:(id)arg1;
 - (void)_liftDidEnd:(id)arg1;
@@ -56,7 +52,7 @@
 - (void)_removeAllAnimations;
 - (void)_reset;
 - (void)_setDelegate:(id)arg1;
-- (void)_setMapDisplayStyle:(int)arg1;
+- (void)_setMapDisplayStyle:(unsigned int)arg1;
 - (void)_setMapType:(unsigned int)arg1;
 - (void)_setPinType:(int)arg1;
 - (void)_setRotationRadians:(float)arg1 withAnimation:(id)arg2;
@@ -77,8 +73,8 @@
 - (void)setAnimatesDrop:(BOOL)arg1;
 - (void)setAnnotation:(id)arg1;
 - (void)setCenter:(struct CGPoint { float x1; float x2; })arg1;
-- (void)setDragState:(unsigned int)arg1 animated:(BOOL)arg2;
 - (void)setDragState:(unsigned int)arg1;
+- (void)setDragState:(unsigned int)arg1 animated:(BOOL)arg2;
 - (void)setHighlighted:(BOOL)arg1;
 - (void)setPinColor:(unsigned int)arg1;
 

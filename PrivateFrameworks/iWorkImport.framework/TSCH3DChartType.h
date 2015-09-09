@@ -2,13 +2,11 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface TSCH3DChartType : TSCH2DChartType {
-}
+@interface TSCH3DChartType : TSCH2DChartType
 
 + (struct tvec3<float> { union { float x_1_1_1; float x_1_1_2; float x_1_1_3; } x1; union { float x_2_1_1; float x_2_1_2; float x_2_1_3; } x2; union { float x_3_1_1; float x_3_1_2; float x_3_1_3; } x3; })adjustedScaleForInfoChartScale:(const struct tvec3<float> { union { float x_1_1_1; float x_1_1_2; float x_1_1_3; } x1; union { float x_2_1_1; float x_2_1_2; float x_2_1_3; } x2; union { float x_3_1_1; float x_3_1_2; float x_3_1_3; } x3; }*)arg1 chartType:(id)arg2 barShape:(int)arg3;
 + (id)allAnimationFilters;
 
-- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })adjustChartFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 forPresetImageTarget:(int)arg2;
 - (struct tvec3<float> { union { float x_1_1_1; float x_1_1_2; float x_1_1_3; } x1; union { float x_2_1_1; float x_2_1_2; float x_2_1_3; } x2; union { float x_3_1_1; float x_3_1_2; float x_3_1_3; } x3; })adjustedScaleForInfoChartScale:(const struct tvec3<float> { union { float x_1_1_1; float x_1_1_2; float x_1_1_3; } x1; union { float x_2_1_1; float x_2_1_2; float x_2_1_3; } x2; union { float x_3_1_1; float x_3_1_2; float x_3_1_3; } x3; }*)arg1 barShape:(int)arg2;
 - (id)animationDeliveryStylesForFilter:(id)arg1;
 - (id)animationFilters;
@@ -22,20 +20,14 @@
 - (int)deprecated3DBevelEdgesSpecificProperty;
 - (int)deprecated3DShadowSpecificProperty;
 - (unsigned int)depthRatioDimension;
-- (void)didRenderIconForInfo:(id)arg1;
-- (id)drawableChartInfoForIconWithPreset:(id)arg1 target:(int)arg2 inFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg3 offset:(struct CGPoint { float x1; float x2; })arg4;
 - (BOOL)isHomogeneous;
 - (int)labelOrientation;
 - (Class)layoutClass;
+- (BOOL)layoutFrameShouldEncloseInfoGeometry;
 - (float)maxDepthRatio;
 - (float)minDepthRatio;
 - (struct CGSize { float x1; float x2; })minimumChartBodySize;
 - (BOOL)needsRefinementForInwardLayout;
-- (id)p_activateLayoutCacheForTarget:(int)arg1;
-- (BOOL)p_isIPhone;
-- (id)p_layoutCacheForCacheType:(struct TSCH3DPrecalculatedLayoutCacheType { int x1; int x2; BOOL x3; })arg1;
-- (int)p_layoutCachePlatform;
-- (void)p_layoutInwardForSwatchFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 chart:(id)arg2 offset:(struct CGPoint { float x1; float x2; })arg3;
 - (unsigned int)presentationDimension;
 - (Class)presetImagerClass;
 - (id)renderers;
@@ -43,7 +35,6 @@
 - (Class)sageGeometeryHelperClass;
 - (float)sageMaxDepthRatio;
 - (id)sceneWithChartInfo:(id)arg1 layoutSettings:(struct { BOOL x1; BOOL x2; BOOL x3; BOOL x4; BOOL x5; BOOL x6; unsigned int x7; })arg2;
-- (void)setupPresetImageChart:(id)arg1;
 - (Class)stageClass;
 - (BOOL)supportsAxisLabelsOrientation;
 - (BOOL)supportsAxisLine;
@@ -59,6 +50,7 @@
 - (BOOL)supportsIncrementalResize;
 - (BOOL)supportsInterSetDepthGap;
 - (BOOL)supportsMinorGridlines;
+- (BOOL)supportsReferenceLines;
 - (BOOL)supportsSeriesFill;
 - (BOOL)supportsSeriesShadow;
 - (BOOL)supportsSeriesStroke;

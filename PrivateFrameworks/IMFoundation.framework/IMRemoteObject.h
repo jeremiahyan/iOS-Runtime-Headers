@@ -2,16 +2,14 @@
    Image: /System/Library/PrivateFrameworks/IMFoundation.framework/IMFoundation
  */
 
-@class NSObject<OS_xpc_object>, NSString;
-
 @interface IMRemoteObject : NSObject {
     id _internal;
 }
 
-@property(readonly) NSObject<OS_xpc_object> * connection;
-@property(readonly) BOOL isValid;
-@property int pid;
-@property(readonly) NSString * portName;
+@property (nonatomic, readonly) NSObject<OS_xpc_object> *connection;
+@property (nonatomic, readonly) BOOL isValid;
+@property (nonatomic) int pid;
+@property (nonatomic, readonly) NSString *portName;
 
 + (void)_registerIMRemoteObject:(id)arg1;
 + (id)_remoteObjects;
@@ -29,8 +27,8 @@
 - (void)finalize;
 - (void)forwardInvocation:(id)arg1;
 - (unsigned int)forwardXPCObject:(id)arg1 messageContext:(id)arg2;
-- (id)initWithConnection:(id)arg1 protocol:(id)arg2 alreadyConfigured:(BOOL)arg3;
 - (id)initWithConnection:(id)arg1 protocol:(id)arg2;
+- (id)initWithConnection:(id)arg1 protocol:(id)arg2 alreadyConfigured:(BOOL)arg3;
 - (id)initWithPortName:(id)arg1 protocol:(id)arg2;
 - (void)invalidate;
 - (BOOL)isValid;

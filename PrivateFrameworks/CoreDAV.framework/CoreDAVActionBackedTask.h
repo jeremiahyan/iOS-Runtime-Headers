@@ -2,20 +2,15 @@
    Image: /System/Library/PrivateFrameworks/CoreDAV.framework/CoreDAV
  */
 
-@class CoreDAVAction;
-
 @interface CoreDAVActionBackedTask : CoreDAVTask {
     CoreDAVAction *_backingAction;
 }
 
-@property(retain) CoreDAVAction * action;
-@property(retain) CoreDAVAction * backingAction;
+@property (nonatomic, retain) CoreDAVAction *backingAction;
 
-- (id)action;
 - (id)backingAction;
 - (void)dealloc;
 - (id)description;
-- (void)setAction:(id)arg1;
 - (void)setBackingAction:(id)arg1;
 
 @end

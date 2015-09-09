@@ -2,24 +2,28 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class ABCardActionGroupItem, ABContactAction, NSDictionary;
-
-@interface ABContactActionCell : ABContactCell {
-    NSDictionary *_textAttributes;
+@interface ABContactActionCell : ABLabeledCell {
+    UILabel *_label;
+    ABTransportButton *_transportIcon;
 }
 
-@property(readonly) ABContactAction * action;
-@property(readonly) ABCardActionGroupItem * actionGroupItem;
-@property(copy) NSDictionary * textAttributes;
+@property (nonatomic, readonly) ABContactAction *action;
+@property (nonatomic, readonly) ABCardActionGroupItem *actionGroupItem;
+@property (nonatomic, retain) UILabel *label;
+@property (nonatomic, retain) ABTransportButton *transportIcon;
 
-- (void)_updateTextFont;
 - (id)action;
 - (id)actionGroupItem;
-- (id)initWithStyle:(int)arg1 reuseIdentifier:(id)arg2;
+- (void)dealloc;
+- (id)label;
+- (id)labelView;
+- (float)minCellHeight;
 - (void)setCardGroupItem:(id)arg1;
-- (void)setTextAttributes:(id)arg1;
+- (void)setLabel:(id)arg1;
+- (void)setLabelTextAttributes:(id)arg1;
+- (void)setTransportIcon:(id)arg1;
 - (BOOL)shouldPerformDefaultAction;
-- (id)textAttributes;
-- (void)tintColorDidChange;
+- (id)transportIcon;
+- (id)variableConstraints;
 
 @end

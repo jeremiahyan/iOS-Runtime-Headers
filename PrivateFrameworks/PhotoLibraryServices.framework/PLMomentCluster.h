@@ -2,35 +2,45 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
  */
 
-@class CLLocation, NSArray, NSDate, NSManagedObjectID, NSMutableArray, NSMutableSet, NSString;
-
 @interface PLMomentCluster : NSObject {
     CLLocation *__approximateLocation;
     NSDate *__endingDate;
+    NSCountedSet *__mergeTags;
     NSMutableArray *__mutableNodes;
     NSMutableSet *__nodesWithLocation;
-    NSManagedObjectID *__objectID;
+    NSObject<NSCopying> *__objectID;
+    NSCountedSet *__splitTags;
     NSDate *__startingDate;
     NSString *__title;
     short _generationType;
 }
 
-@property(setter=_setNodes:,copy) NSMutableArray * _mutableNodes;
-@property(readonly) NSMutableSet * _nodesWithLocation;
-@property(readonly) CLLocation * approximateLocation;
-@property(retain) NSDate * endingDate;
-@property short generationType;
-@property(readonly) NSArray * nodes;
-@property(readonly) NSManagedObjectID * objectID;
-@property(retain) NSDate * startingDate;
-@property(retain) NSString * title;
+@property (setter=_setMergeTags:, nonatomic, retain) NSCountedSet *_mergeTags;
+@property (setter=_setNodes:, nonatomic, copy) NSMutableArray *_mutableNodes;
+@property (nonatomic, readonly) NSMutableSet *_nodesWithLocation;
+@property (setter=_setSplitTags:, nonatomic, retain) NSCountedSet *_splitTags;
+@property (nonatomic, readonly) CLLocation *approximateLocation;
+@property (nonatomic, retain) NSDate *endingDate;
+@property (nonatomic) short generationType;
+@property (nonatomic, readonly, copy) NSArray *nodes;
+@property (nonatomic, readonly) NSObject<NSCopying> *objectID;
+@property (nonatomic, retain) NSDate *startingDate;
+@property (nonatomic, retain) NSString *title;
 
++ (double)nameOccurrenceCutoff;
+
+- (void)_correctStartAndEndDates;
+- (id)_mergeTags;
 - (id)_mutableNodes;
 - (id)_nodesWithLocation;
 - (void)_setEndingDate:(id)arg1;
+- (void)_setMergeTags:(id)arg1;
 - (void)_setNodes:(id)arg1;
+- (void)_setSplitTags:(id)arg1;
 - (void)_setStartingDate:(id)arg1;
+- (id)_splitTags;
 - (void)addNode:(id)arg1;
+- (void)addNodes:(id)arg1;
 - (void)addNodesFromCluster:(id)arg1;
 - (id)approximateLocation;
 - (void)commonPLMomentClusterInitialization;
@@ -39,15 +49,22 @@
 - (id)endingDate;
 - (unsigned int)expandFromNode:(id)arg1 withNeighbors:(id)arg2 inClustering:(id)arg3 minimumNumberOfPoints:(unsigned int)arg4;
 - (short)generationType;
+- (BOOL)hasMerges;
+- (BOOL)hasSplits;
 - (id)init;
 - (id)initWithMoment:(id)arg1;
 - (id)initWithObjectID:(id)arg1;
+- (BOOL)isTagged;
+- (id)mergeTagAboveCutoff:(double)arg1;
+- (id)mergeTags;
 - (id)nodes;
 - (id)objectID;
-- (void)removeNode:(id)arg1;
+- (void)removeNode:(id)arg1 nilCluster:(BOOL)arg2;
+- (void)removeNodes:(id)arg1;
 - (void)removeNodesFromCluster:(id)arg1;
 - (void)setGenerationType:(short)arg1;
 - (void)setTitle:(id)arg1;
+- (id)splitTags;
 - (id)startingDate;
 - (id)title;
 

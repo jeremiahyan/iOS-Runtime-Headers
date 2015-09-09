@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iAdDeveloper.framework/iAdDeveloper
  */
 
-@class <ADEmbeddedAdServerDelegate>, HTSHTTPServer, NSArray, NSDictionary, NSMutableDictionary, NSString;
-
 @interface ADEmbeddedAdServer : NSObject <HTSHTTPServerDelegate> {
     NSArray *_adManifests;
     NSString *_adPath;
@@ -17,30 +15,37 @@
     struct __FSEventStream { } *_stream;
 }
 
-@property(retain) NSArray * adManifests;
-@property(copy) NSString * adPath;
-@property BOOL alwaysRegenerateWebArchives;
-@property double bandwidthStddev;
-@property int cacheMaxAge;
-@property(retain) NSDictionary * defaultAdData;
-@property BOOL defaultsToNoQualifiedAds;
-@property <ADEmbeddedAdServerDelegate> * delegate;
-@property BOOL digestAuthenticationEnabled;
-@property double kbps;
-@property double latency;
-@property double latencyStddev;
-@property BOOL pipeliningEnabled;
-@property(readonly) unsigned short port;
-@property(copy) NSString * publicURLRoot;
-@property(readonly) unsigned long long totalBytesWritten;
-@property(readonly) NSString * urlString;
+@property (nonatomic, retain) NSArray *adManifests;
+@property (nonatomic, copy) NSString *adPath;
+@property (nonatomic) BOOL alwaysRegenerateWebArchives;
+@property (nonatomic) double bandwidthStddev;
+@property (nonatomic) int cacheMaxAge;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic, retain) NSDictionary *defaultAdData;
+@property (nonatomic) BOOL defaultsToNoQualifiedAds;
+@property (nonatomic) <ADEmbeddedAdServerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL digestAuthenticationEnabled;
+@property (readonly) unsigned int hash;
+@property (nonatomic) double kbps;
+@property (nonatomic) double latency;
+@property (nonatomic) double latencyStddev;
+@property (nonatomic) BOOL pipeliningEnabled;
+@property (nonatomic, readonly) unsigned short port;
+@property (nonatomic, copy) NSString *publicURLRoot;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) unsigned long long totalBytesWritten;
+@property (nonatomic, readonly) NSString *urlString;
 
 + (BOOL)adBundleAtURL:(id)arg1 matchesRequest:(id)arg2;
 + (id)creativesForAdBundleAtURL:(id)arg1 matchingRequest:(id)arg2;
 + (id)manifestForAdAtURL:(id)arg1;
 
 - (id)_adDataForPath:(id)arg1 creative:(id)arg2 error:(id*)arg3;
+- (id)_defaultResponseForBatchRequest:(id)arg1;
+- (id)_handleAdSlotRequest:(id)arg1 message:(id)arg2;
 - (id)_handleBatchRequest:(id)arg1 message:(id)arg2;
+- (id)_handleGenericAnalyticsRequest:(id)arg1 message:(id)arg2 type:(int)arg3;
 - (id)_handleGenericPostRequest:(id)arg1;
 - (id)_handleHeartbeatTokenRequest:(id)arg1 message:(id)arg2;
 - (id)_handleListeningPresenceEventsRequest:(id)arg1 message:(id)arg2;
@@ -48,6 +53,8 @@
 - (id)_handleLogAdEventRequest:(id)arg1 message:(id)arg2;
 - (id)_handleLogAggregateMetricsRequest:(id)arg1 message:(id)arg2;
 - (id)_handleLogImpressionRequest:(id)arg1 message:(id)arg2;
+- (id)_handleLogPassEventRequest:(id)arg1 message:(id)arg2;
+- (id)_handleLogStationClientEventRequest:(id)arg1 message:(id)arg2;
 - (id)_handleLogSysEventRequest:(id)arg1 message:(id)arg2;
 - (id)_handleLogTileImpressionEventRequest:(id)arg1 message:(id)arg2;
 - (id)_handleManifestRequest:(id)arg1 message:(id)arg2;
@@ -59,6 +66,7 @@
 - (id)_handleRewardsCodeResultRequest:(id)arg1 message:(id)arg2;
 - (id)_handleSegmentUpdateRequest:(id)arg1 message:(id)arg2;
 - (id)_handleServerErrorRequest:(id)arg1 message:(id)arg2;
+- (id)_integerColorFromStringColor:(id)arg1;
 - (id)_mimeTypeForExtension:(id)arg1;
 - (id)_webArchiveFilenameForDirectory:(id)arg1 withBaseURL:(id)arg2;
 - (id)_webResourceForPath:(id)arg1 url:(id)arg2;
@@ -71,18 +79,17 @@
 - (int)cacheMaxAge;
 - (void)dealloc;
 - (id)defaultAdData;
-- (id)defaultDisplayPolicy;
 - (BOOL)defaultsToNoQualifiedAds;
 - (id)delegate;
 - (BOOL)digestAuthenticationEnabled;
-- (void)httpServer:(id)arg1 closedConnection:(id)arg2 withError:(id)arg3;
 - (void)httpServer:(id)arg1 closedConnection:(id)arg2;
+- (void)httpServer:(id)arg1 closedConnection:(id)arg2 withError:(id)arg3;
 - (void)httpServer:(id)arg1 connection:(id)arg2 blockedSandboxViolation:(id)arg3;
 - (void)httpServer:(id)arg1 connection:(id)arg2 droppedResponseToRequestBeforeClosing:(id)arg3;
 - (void)httpServer:(id)arg1 connection:(id)arg2 enqueuedResponseToRequest:(id)arg3 statusCode:(int)arg4 length:(unsigned int)arg5;
 - (void)httpServer:(id)arg1 connection:(id)arg2 wroteBytes:(unsigned int)arg3 andCompletedResponseToRequest:(id)arg4;
 - (void)httpServer:(id)arg1 connection:(id)arg2 wroteBytes:(unsigned int)arg3 forResponseToRequest:(id)arg4 remaining:(unsigned int)arg5;
-- (void)httpServer:(id)arg1 dataForRequest:(id)arg2 resolvedPath:(id)arg3 handler:(id)arg4;
+- (void)httpServer:(id)arg1 dataForRequest:(id)arg2 resolvedPath:(id)arg3 handler:(id /* block */)arg4;
 - (void)httpServer:(id)arg1 logMessage:(id)arg2;
 - (id)httpServer:(id)arg1 proposedResponse:(id)arg2;
 - (void)httpServer:(id)arg1 receivedConnection:(id)arg2;

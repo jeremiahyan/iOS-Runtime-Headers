@@ -2,48 +2,32 @@
    Image: /System/Library/PrivateFrameworks/VoiceMemos.framework/VoiceMemos
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class AVAssetExportSession, NSError, NSURL;
-
-@interface RCTrimAudioFileOperation : NSOperation {
-    struct { 
-        double beginTime; 
-        double endTime; 
+@interface RCTrimAudioFileOperation : RCTrimTimeRangeOperation {
+    RCCompositionComposedAssetWriter *_assetWriter;
     BOOL _createWaveform;
     NSURL *_destinationURL;
     NSError *_error;
-    AVAssetExportSession *_exportSession;
-    id _progressUpdateBlock;
+    double _exportedDuration;
     NSURL *_sourceURL;
     BOOL _success;
-    } _timeRangeToKeep;
 }
 
-@property(readonly) BOOL createWaveform;
-@property(readonly) NSURL * destinationURL;
-@property(readonly) NSError * error;
-@property(copy) id progressUpdateBlock;
-@property(readonly) NSURL * sourceURL;
-@property(readonly) BOOL success;
-@property(readonly) struct { double x1; double x2; } timeRangeToKeep;
+@property (nonatomic, readonly) BOOL createWaveform;
+@property (nonatomic, readonly, copy) NSURL *destinationURL;
+@property (nonatomic, readonly, copy) NSURL *sourceURL;
 
-+ (BOOL)_trimWaveformAtPath:(id)arg1 clipToTimeRange:(struct { double x1; double x2; })arg2 outputPath:(id)arg3;
 + (id)exportableAudioFormatPathExtensionWithSourceURL:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_updateExportSessionProgressWithInterval:(double)arg1;
+- (void)cancel;
 - (BOOL)createWaveform;
 - (id)destinationURL;
 - (id)error;
-- (id)initWithSourceURL:(id)arg1 destinationURL:(id)arg2 createWaveform:(BOOL)arg3 timeRangeToKeep:(struct { double x1; double x2; })arg4;
+- (double)exportedDuration;
+- (id)initWithSourceURL:(id)arg1 destinationURL:(id)arg2 createWaveform:(BOOL)arg3 timeRange:(struct { double x1; double x2; })arg4 trimMode:(int)arg5;
 - (void)main;
-- (id)progressUpdateBlock;
-- (void)setProgressUpdateBlock:(id)arg1;
+- (double)progress;
 - (id)sourceURL;
 - (BOOL)success;
-- (struct { double x1; double x2; })timeRangeToKeep;
 
 @end

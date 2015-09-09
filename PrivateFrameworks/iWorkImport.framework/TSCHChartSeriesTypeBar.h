@@ -2,10 +2,9 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface TSCHChartSeriesTypeBar : TSCHChartSeriesType {
-}
+@interface TSCHChartSeriesTypeBar : TSCHChartSeriesType
 
-- (unsigned int)adjustLabelPosition:(unsigned int)arg1 forValue:(double)arg2;
+- (unsigned int)adjustLabelPosition:(unsigned int)arg1 forAxisValue:(double)arg2 intercept:(double)arg3;
 - (id)axisTypesForValueLabels;
 - (BOOL)chunkedBuildsIncludeInterceptValues;
 - (id)elementBuilder;

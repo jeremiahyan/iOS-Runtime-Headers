@@ -2,16 +2,12 @@
    Image: /System/Library/PrivateFrameworks/SpringBoardFoundation.framework/SpringBoardFoundation
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
 @interface _SBFBlockObservable : SBFObservable {
-    id _block;
+    id /* block */ _block;
 }
 
 - (void)dealloc;
-- (id)initWithBlock:(id)arg1;
+- (id)initWithBlock:(id /* block */)arg1;
 - (id)subscribe:(id)arg1;
 
 @end

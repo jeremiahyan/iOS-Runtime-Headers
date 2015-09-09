@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
  */
 
-@class NSDateFormatter, NSLocale;
-
 @interface PLDateRangeFormatter : NSObject {
     NSLocale *__currentLocale;
     NSDateFormatter *__dayOfTheWeekDateFormatter;
@@ -21,6 +19,7 @@
     BOOL _autoUpdateOnChanges;
     BOOL _includeDayNumbers;
     BOOL _includeDayNumbersWhenMonthsDiffer;
+    BOOL _timeOnly;
     BOOL _useRelativeDayFormatting;
     BOOL _useShortDaysInRanges;
     BOOL _useShortMonths;
@@ -28,33 +27,34 @@
     BOOL _yearOnly;
 }
 
-@property(setter=_setCurrentLocale:,retain) NSLocale * _currentLocale;
-@property(readonly) NSDateFormatter * _dayOfTheWeekDateFormatter;
-@property(readonly) struct UDateIntervalFormat { }* _dayOfTheWeekIntervalFormat;
-@property(readonly) struct UDateIntervalFormat { }* _differentMonthDayIntervalFormat;
-@property(readonly) struct UDateIntervalFormat { }* _differentMonthDayNoYearIntervalFormat;
-@property(readonly) struct UDateIntervalFormat { }* _monthDayIntervalFormat;
-@property(readonly) struct UDateIntervalFormat { }* _monthDayNoYearIntervalFormat;
-@property(readonly) NSDateFormatter * _relativeDateFormatterDay;
-@property(readonly) NSDateFormatter * _sameDayDateFormatter;
-@property(readonly) NSDateFormatter * _sameDayNoYearDateFormatter;
-@property(readonly) struct UDateIntervalFormat { }* _timeIntervalFormat;
-@property(readonly) NSDateFormatter * _yearDateFormatter;
-@property(readonly) struct UDateIntervalFormat { }* _yearIntervalFormat;
-@property BOOL autoUpdateOnChanges;
-@property BOOL includeDayNumbers;
-@property BOOL includeDayNumbersWhenMonthsDiffer;
-@property BOOL useRelativeDayFormatting;
-@property BOOL useShortDaysInRanges;
-@property BOOL useShortMonths;
-@property BOOL useTime;
-@property BOOL yearOnly;
+@property (setter=_setCurrentLocale:, nonatomic, retain) NSLocale *_currentLocale;
+@property (nonatomic, readonly, retain) NSDateFormatter *_dayOfTheWeekDateFormatter;
+@property (nonatomic, readonly) struct UDateIntervalFormat { }*_dayOfTheWeekIntervalFormat;
+@property (nonatomic, readonly) struct UDateIntervalFormat { }*_differentMonthDayIntervalFormat;
+@property (nonatomic, readonly) struct UDateIntervalFormat { }*_differentMonthDayNoYearIntervalFormat;
+@property (nonatomic, readonly) struct UDateIntervalFormat { }*_monthDayIntervalFormat;
+@property (nonatomic, readonly) struct UDateIntervalFormat { }*_monthDayNoYearIntervalFormat;
+@property (nonatomic, readonly, retain) NSDateFormatter *_relativeDateFormatterDay;
+@property (nonatomic, readonly, retain) NSDateFormatter *_sameDayDateFormatter;
+@property (nonatomic, readonly, retain) NSDateFormatter *_sameDayNoYearDateFormatter;
+@property (nonatomic, readonly) struct UDateIntervalFormat { }*_timeIntervalFormat;
+@property (nonatomic, readonly, retain) NSDateFormatter *_yearDateFormatter;
+@property (nonatomic, readonly) struct UDateIntervalFormat { }*_yearIntervalFormat;
+@property (nonatomic) BOOL autoUpdateOnChanges;
+@property (nonatomic) BOOL includeDayNumbers;
+@property (nonatomic) BOOL includeDayNumbersWhenMonthsDiffer;
+@property (nonatomic) BOOL timeOnly;
+@property (nonatomic) BOOL useRelativeDayFormatting;
+@property (nonatomic) BOOL useShortDaysInRanges;
+@property (nonatomic) BOOL useShortMonths;
+@property (nonatomic) BOOL useTime;
+@property (nonatomic) BOOL yearOnly;
 
 + (void)_dumpAllDateCombinationsWithFormatters;
 
 - (id)_currentLocale;
-- (BOOL)_date:(id)arg1 isWithinDaysInThePast:(int)arg2 fromCurrentDate:(id)arg3;
 - (BOOL)_date:(id)arg1 isWithinDaysInThePast:(int)arg2;
+- (BOOL)_date:(id)arg1 isWithinDaysInThePast:(int)arg2 fromCurrentDate:(id)arg3;
 - (id)_dateCombinationAfterUpdatingCurrentDateWithStartDate:(id)arg1 endDate:(id)arg2 currentDate:(id)arg3 dateFormatter:(id)arg4 calendarUnit:(unsigned int)arg5 value:(int)arg6;
 - (id)_dateCombinationAfterUpdatingStartAndEndDatesWithStartDate:(id)arg1 endDate:(id)arg2 currentDate:(id)arg3 dateFormatter:(id)arg4 calendarUnit:(unsigned int)arg5 value:(int)arg6;
 - (id)_dateCombinationWithStartDate:(id)arg1 endDate:(id)arg2 currentDate:(id)arg3 dateFormatter:(id)arg4;
@@ -91,19 +91,21 @@
 - (void)configureForFormatPreset:(unsigned int)arg1;
 - (void)dealloc;
 - (id)formattedDate:(id)arg1;
-- (id)formattedDateRangeWithStartDate:(id)arg1 endDate:(id)arg2 currentDate:(id)arg3;
 - (id)formattedDateRangeWithStartDate:(id)arg1 endDate:(id)arg2;
+- (id)formattedDateRangeWithStartDate:(id)arg1 endDate:(id)arg2 currentDate:(id)arg3;
 - (BOOL)includeDayNumbers;
 - (BOOL)includeDayNumbersWhenMonthsDiffer;
 - (id)init;
 - (void)setAutoUpdateOnChanges:(BOOL)arg1;
 - (void)setIncludeDayNumbers:(BOOL)arg1;
 - (void)setIncludeDayNumbersWhenMonthsDiffer:(BOOL)arg1;
+- (void)setTimeOnly:(BOOL)arg1;
 - (void)setUseRelativeDayFormatting:(BOOL)arg1;
 - (void)setUseShortDaysInRanges:(BOOL)arg1;
 - (void)setUseShortMonths:(BOOL)arg1;
 - (void)setUseTime:(BOOL)arg1;
 - (void)setYearOnly:(BOOL)arg1;
+- (BOOL)timeOnly;
 - (BOOL)useRelativeDayFormatting;
 - (BOOL)useShortDaysInRanges;
 - (BOOL)useShortMonths;

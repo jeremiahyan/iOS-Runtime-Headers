@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class NSOperationQueue, SKUIGiftItemView, SKUIItemStateCenter, SKUIRedeem, SKUIRedeemITunesPassLockup, SKUIRedeemResultMessageView, SKUITextBoxView, SKUITextLayout, UIButton, UIImage, UIImageView;
-
 @interface SKUIRedeemResultsViewController : SKUIRedeemStepViewController <SKUIItemStateCenterObserver, SKUIRedeemResultsViewDelegate> {
     UIButton *_anotherButton;
     BOOL _extendedMessageIsExpanded;
@@ -20,8 +18,12 @@
     int _redeemCategory;
 }
 
-@property(readonly) SKUIRedeem * redeem;
-@property int redeemCategory;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) SKUIRedeem *redeem;
+@property (nonatomic) int redeemCategory;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (id)_anotherButtonSection;
@@ -44,6 +46,7 @@
 - (id)_resultImageViewSection;
 - (void)_setHeaderImage:(id)arg1;
 - (void)_setItemImage:(id)arg1;
+- (float)_tableWidth;
 - (void)dealloc;
 - (id)initWithRedeem:(id)arg1;
 - (void)itemStateCenter:(id)arg1 itemStatesChanged:(id)arg2;

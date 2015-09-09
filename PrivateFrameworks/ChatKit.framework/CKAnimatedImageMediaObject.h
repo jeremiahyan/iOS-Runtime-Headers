@@ -2,16 +2,15 @@
    Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
  */
 
-@interface CKAnimatedImageMediaObject : CKImageMediaObject {
-}
+@interface CKAnimatedImageMediaObject : CKImageMediaObject
 
 + (id)UTITypes;
 
-- (id)generateAnimatedPreviewFromThumbnails:(id)arg1 forOrientation:(BOOL)arg2;
-- (id)generateThumbnails;
+- (id)animatedImageForWidth:(float)arg1;
+- (id)generateAnimatedPreviewFromThumbnails:(id)arg1 width:(float)arg2 orientation:(BOOL)arg3;
+- (id)generateThumbnailsForWidth:(float)arg1 orientation:(BOOL)arg2;
 - (id)notificationCenter;
-- (BOOL)previewDispatchCache:(id)arg1 shouldReplaceCachedPreview:(id)arg2 withPreview:(id)arg3;
-- (id)previewForOrientation:(BOOL)arg1;
+- (id)previewForWidth:(float)arg1 orientation:(BOOL)arg2;
 - (void)saveAnimatedPreview:(id)arg1 toURL:(id)arg2 forOrientation:(BOOL)arg3;
 - (id)savedAnimatedPreviewFromURL:(id)arg1 forOrientation:(BOOL)arg2;
 

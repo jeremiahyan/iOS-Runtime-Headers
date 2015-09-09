@@ -2,29 +2,21 @@
    Image: /System/Library/Frameworks/ExternalAccessory.framework/ExternalAccessory
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class <EAAccessoryDelegate>, EAAccessoryInternal, NSArray, NSString;
-
 @interface EAAccessory : NSObject {
     EAAccessoryInternal *_internal;
 }
 
-@property(getter=isConnected,readonly) BOOL connected;
-@property(readonly) unsigned int connectionID;
-@property <EAAccessoryDelegate> * delegate;
-@property(readonly) NSString * firmwareRevision;
-@property(readonly) NSString * hardwareRevision;
-@property(readonly) NSString * manufacturer;
-@property(readonly) NSString * modelNumber;
-@property(readonly) NSString * name;
-@property(readonly) NSArray * protocolStrings;
-@property(readonly) NSString * serialNumber;
+@property (getter=isConnected, nonatomic, readonly) BOOL connected;
+@property (nonatomic, readonly) unsigned int connectionID;
+@property (nonatomic) <EAAccessoryDelegate> *delegate;
+@property (nonatomic, readonly) NSString *firmwareRevision;
+@property (nonatomic, readonly) NSString *hardwareRevision;
+@property (nonatomic, readonly) NSString *manufacturer;
+@property (nonatomic, readonly) NSString *modelNumber;
+@property (nonatomic, readonly) NSString *name;
+@property (nonatomic, readonly) NSArray *protocolStrings;
+@property (nonatomic, readonly) NSString *serialNumber;
 
-- (int (*)())cfAccessoryPortPropertyCallback;
 - (void)_addSession:(id)arg1;
 - (id)_createWakeToken;
 - (void)_endSession:(unsigned int)arg1;
@@ -38,12 +30,11 @@
 - (void)_setNotPresentInIAPAccessoriesArray:(BOOL)arg1;
 - (id)_shortDescription;
 - (void)_updateAccessoryInfo:(id)arg1;
+- (unsigned int)accessoryCapabilities;
 - (BOOL)accessoryHasNMEASentencesAvailable;
 - (id)allPublicProtocolStrings;
 - (id)audioPorts;
 - (id)bonjourName;
-- (struct __CFAccessory { }*)cfAccessory;
-- (void*)cfAccessoryPortPropertyContext;
 - (int)classType;
 - (unsigned int)connectionID;
 - (void)dealloc;
@@ -55,12 +46,11 @@
 - (BOOL)getEphemerisExpirationInterval:(double*)arg1;
 - (BOOL)getEphemerisRecommendRefreshInterval:(double*)arg1;
 - (BOOL)getEphemerisURL:(id*)arg1;
-- (void)getIAPTimeSyncInfo:(id)arg1 completionHandler:(id)arg2;
+- (void)getIAPTimeSyncInfo:(id)arg1 completionHandler:(id /* block */)arg2;
 - (BOOL)getNMEASentence:(id*)arg1;
 - (id)getVehicleInfoData;
 - (id)hardwareRevision;
 - (BOOL)hasIPConnection;
-- (int)iPodOutOptionsMask;
 - (id)init;
 - (BOOL)isAvailableOverBonjour;
 - (BOOL)isConnected;
@@ -69,30 +59,27 @@
 - (id)manufacturer;
 - (id)modelNumber;
 - (id)name;
+- (unsigned int)pointOfInterestDataFormatMaximumSupportedVersion;
+- (BOOL)pointOfInterestHandoffEnabled;
 - (id)preferredApp;
 - (id)protocolStrings;
 - (void)resetIAPTimeSyncKalmanFilter;
 - (BOOL)sendEphemeris:(id)arg1;
 - (BOOL)sendEphemerisPointDataGpsWeek:(unsigned int)arg1 gpsTOW:(double)arg2 latitude:(double)arg3 longitude:(double)arg4 accuracy:(unsigned short)arg5;
 - (BOOL)sendGpsWeek:(unsigned int)arg1 gpsTOW:(double)arg2;
+- (BOOL)sendPointOfInterestInformation:(id)arg1 identifier:(unsigned short)arg2;
 - (id)serialNumber;
-- (void)setBonjourName:(id)arg1;
-- (void)setCfAccessory:(struct __CFAccessory { }*)arg1;
-- (void)setCfAccessoryPortPropertyCallback:(int (*)())arg1;
-- (void)setCfAccessoryPortPropertyContext:(void*)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setEqIndex:(unsigned int)arg1;
 - (void)setEqNames:(id)arg1;
-- (void)setHasIPConnection:(BOOL)arg1;
 - (void)setIAPTimeSyncParams:(id)arg1;
-- (void)setIPodOutOptionsMask:(int)arg1;
-- (void)setIsAvailableOverBonjour:(BOOL)arg1;
 - (void)setLocationSentenceTypesMask:(int)arg1;
 - (BOOL)setNMEASentencesToFilter:(id)arg1;
 - (void)setVehicleInfoSupportedTypes:(id)arg1;
 - (void)setVehicleInfovehicleInfoInitialData:(id)arg1;
 - (BOOL)shouldBeHiddenFromUI;
 - (BOOL)supportsAccessibility;
+- (BOOL)supportsCarPlay;
 - (BOOL)supportsLocation;
 - (BOOL)supportsPointOfInterest;
 - (BOOL)supportsPublicIap;

@@ -2,9 +2,10 @@
    Image: /System/Library/Frameworks/QuickLook.framework/QuickLook
  */
 
-@class <QLPreviewItem>, <QLPreviewItemInteractionDelegate>, NSString, NSTimer, QLDisplayBundle, QLGenericView, QLProgressView, UIDocumentPasswordView, UIView;
-
-@interface QLPreviewViewController : UIViewController <QLPreviewItemInteractionDelegate, UIDocumentPasswordViewDelegate, QLSwippableItemProtocol> {
+@interface QLPreviewViewController : UIViewController <QLPreviewItemInteractionDelegate, QLSwippableItemProtocol, UIDocumentPasswordViewDelegate> {
+    UIView *_accessoryContainerView;
+    QLGenericView *_airPlayPasswordView;
+    float _aspectRatio;
     struct { 
         int pid; 
         struct { 
@@ -20,6 +21,13 @@
                 float height; 
             } size; 
         } contentFrame; 
+    } _clientContext;
+    UIView *_contentContainerView;
+    QLDisplayBundle *_displayBundle;
+    <QLPreviewItemInteractionDelegate> *_displayBundleDelegate;
+    UIDocumentPasswordView *_documentPasswordView;
+    NSLayoutConstraint *_documentPasswordViewKeyboardConstraint;
+    int _index;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -29,15 +37,6 @@
             float width; 
             float height; 
         } size; 
-    UIView *_accessoryContainerView;
-    QLGenericView *_airPlayPasswordView;
-    float _aspectRatio;
-    } _clientContext;
-    UIView *_contentContainerView;
-    QLDisplayBundle *_displayBundle;
-    <QLPreviewItemInteractionDelegate> *_displayBundleDelegate;
-    UIDocumentPasswordView *_documentPasswordView;
-    int _index;
     } _initialFrame;
     BOOL _loadedWithPassword;
     NSString *_loadingTextForMissingFiles;
@@ -56,23 +55,26 @@
     BOOL _visible;
 }
 
-@property(readonly) int airPlayMode;
-@property(readonly) UIView * airPlayView;
+@property (readonly) int airPlayMode;
+@property (readonly) UIView *airPlayView;
 @property struct { int x1; struct { unsigned int x_2_1_1[8]; } x2; struct CGRect { struct CGPoint { float x_1_2_1; float x_1_2_2; } x_3_1_1; struct CGSize { float x_2_2_1; float x_2_2_2; } x_3_1_2; } x3; } clientContext;
-@property(readonly) QLDisplayBundle * displayBundle;
-@property <QLPreviewItemInteractionDelegate> * displayBundleDelegate;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) QLDisplayBundle *displayBundle;
+@property <QLPreviewItemInteractionDelegate> *displayBundleDelegate;
+@property (readonly) unsigned int hash;
 @property int index;
-@property struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } initialFrame;
-@property(retain) <QLPreviewItem> * previewItem;
+@property (nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } initialFrame;
+@property (retain) <QLPreviewItem> *previewItem;
 @property int previewMode;
-@property(readonly) UIView * snapshotView;
-@property BOOL visible;
+@property (readonly) UIView *snapshotView;
+@property (readonly) Class superclass;
+@property (nonatomic) BOOL visible;
 
-- (void)_adjustContentOffsetForKeyboardIfNeeded;
 - (void)_cancelScheduledShowProgressiveUI;
 - (void)_hidePasswordView;
 - (void)_hideProgressiveUI;
-- (void)_keyboardDidShow:(id)arg1;
+- (void)_keyboardVisibilityChanged:(id)arg1;
 - (void)_layoutViews;
 - (void)_prepareDisplayBundle:(id)arg1 preload:(BOOL)arg2 withHints:(id)arg3;
 - (void)_refreshPreviewItem:(BOOL)arg1 withPassword:(id)arg2;
@@ -104,6 +106,7 @@
 - (void)loadView;
 - (void)overlayWasInteractedWithOnPreviewItem:(id)arg1;
 - (void)preloadIfNeeded;
+- (id)previewItem;
 - (void)previewItem:(id)arg1 receivedTapOnURL:(id)arg2;
 - (void)previewItem:(id)arg1 requiresDisplayBundle:(id)arg2 withHints:(id)arg3;
 - (void)previewItem:(id)arg1 setAVState:(id)arg2;
@@ -111,7 +114,6 @@
 - (void)previewItem:(id)arg1 willHideOverlayWithDuration:(double)arg2;
 - (id)previewItem:(id)arg1 willSendRequest:(id)arg2;
 - (void)previewItem:(id)arg1 willShowOverlayWithDuration:(double)arg2;
-- (id)previewItem;
 - (void)previewItemDidExitFullScreen:(id)arg1;
 - (void)previewItemDidLoad:(id)arg1 atIndex:(int)arg2 withError:(id)arg3;
 - (void)previewItemWillLoad:(id)arg1;
@@ -132,6 +134,7 @@
 - (void)showContentsWasTappedForPreviewItem:(id)arg1;
 - (id)snapshotView;
 - (void)userDidEnterPassword:(id)arg1 forPasswordView:(id)arg2;
+- (void)viewDidAppear:(BOOL)arg1;
 - (void)viewDidUpdateForPreviewItem:(id)arg1;
 - (void)viewWasTappedOnPreviewItem:(id)arg1;
 - (BOOL)visible;

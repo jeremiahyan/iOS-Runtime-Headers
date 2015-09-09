@@ -2,38 +2,45 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@class <MPAVRoutingControllerDelegate>, MPAVRoute, NSArray, NSMutableArray, NSString;
-
 @interface MPAVRoutingController : NSObject {
     NSMutableArray *_asyncFetchingCompletionHandlers;
     BOOL _asyncFetchingRoutes;
+    MPAVRoute *_cachedPickedRoute;
     NSArray *_cachedRoutes;
     NSString *_category;
     <MPAVRoutingControllerDelegate> *_delegate;
+    int _deviceAvailabilityNotifyToken;
+    BOOL _deviceAvailabilityOverrideState;
     int _discoveryMode;
+    int _externalScreenType;
+    BOOL _hasExternalScreenType;
     BOOL _hasVolumeControlInfoForPickedRoute;
     NSString *_name;
     BOOL _pickedRouteHasVolumeControl;
     BOOL _scheduledSendDelegateRoutesChanged;
 }
 
-@property(readonly) NSArray * availableRoutes;
-@property(copy) NSString * category;
-@property <MPAVRoutingControllerDelegate> * delegate;
-@property int discoveryMode;
-@property(copy) NSString * name;
-@property(readonly) MPAVRoute * pickedRoute;
-@property(readonly) BOOL volumeControlIsAvailable;
+@property (nonatomic, readonly, copy) NSArray *availableRoutes;
+@property (nonatomic, copy) NSString *category;
+@property (nonatomic) <MPAVRoutingControllerDelegate> *delegate;
+@property (nonatomic) int discoveryMode;
+@property (nonatomic, readonly) int externalScreenType;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, readonly) MPAVRoute *pickedRoute;
+@property (nonatomic, readonly) BOOL volumeControlIsAvailable;
 
 - (void).cxx_destruct;
 - (void)_activeAudioRouteDidChangeNotification:(id)arg1;
+- (void)_externalScreenTypeDidChangeNotification:(id)arg1;
 - (void)_mediaServerDiedNotification:(id)arg1;
 - (id)_parseAVRouteDescriptions:(id)arg1;
 - (void)_pickableRoutesDidChangeNotification:(id)arg1;
 - (void)_registerNotifications;
 - (void)_routeStatusDidChangeNotification:(id)arg1;
 - (void)_scheduleSendDelegateRoutesChanged;
+- (void)_setExternalScreenType:(int)arg1;
 - (void)_unregisterNotifications;
+- (void)_updateCachedRoutes;
 - (BOOL)airtunesRouteIsPicked;
 - (id)availableRoutes;
 - (id)category;
@@ -42,7 +49,8 @@
 - (id)delegate;
 - (id)description;
 - (int)discoveryMode;
-- (void)fetchAvailableRoutesWithCompletionHandler:(id)arg1;
+- (int)externalScreenType;
+- (void)fetchAvailableRoutesWithCompletionHandler:(id /* block */)arg1;
 - (BOOL)handsetRouteIsPicked;
 - (id)init;
 - (id)initWithName:(id)arg1;
@@ -50,8 +58,8 @@
 - (id)name;
 - (BOOL)pickBestDeviceRoute;
 - (BOOL)pickHandsetRoute;
-- (BOOL)pickRoute:(id)arg1 withPassword:(id)arg2;
 - (BOOL)pickRoute:(id)arg1;
+- (BOOL)pickRoute:(id)arg1 withPassword:(id)arg2;
 - (BOOL)pickSpeakerRoute;
 - (id)pickedRoute;
 - (BOOL)receiverRouteIsPicked;

@@ -2,32 +2,37 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class EDPhoneticInfo, EDRunsCollection, NSString;
-
-@interface EDString : NSObject <NSCopying, EDImmutableObject> {
-    boolmDoNotModify;
+@interface EDString : NSObject <EDImmutableObject, NSCopying> {
+    bool mDoNotModify;
     EDPhoneticInfo *mPhoneticInfo;
     EDRunsCollection *mRuns;
     NSString *mString;
 }
 
-+ (id)edStringWithString:(id)arg1 runs:(id)arg2;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+
 + (id)edStringWithString:(id)arg1;
++ (id)edStringWithString:(id)arg1 runs:(id)arg2;
 + (id)string;
 
+- (void)appendString:(id)arg1;
 - (bool)areThereRuns;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)firstRunFont;
 - (unsigned int)hash;
 - (id)init;
-- (id)initWithString:(id)arg1 runs:(id)arg2;
 - (id)initWithString:(id)arg1;
+- (id)initWithString:(id)arg1 runs:(id)arg2;
 - (bool)isEmpty;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isEqualToEDString:(id)arg1;
 - (BOOL)isEqualToString:(id)arg1;
 - (id)phoneticInfo;
+- (void)prependString:(id)arg1;
 - (id)runs;
 - (void)setDoNotModify:(bool)arg1;
 - (void)setPhoneticInfo:(id)arg1;

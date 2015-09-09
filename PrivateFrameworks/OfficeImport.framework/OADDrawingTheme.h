@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class <OADColorPalette>, OADColorMap, OADColorScheme, OADDefaultProperties, OADFontScheme, OADStyleMatrix;
-
 @interface OADDrawingTheme : NSObject {
     OADColorMap *mColorMap;
     <OADColorPalette> *mColorPalette;
@@ -15,14 +13,14 @@
     OADDefaultProperties *mTextDefaults;
 }
 
-@property(readonly) OADColorMap * colorMap;
-@property(retain) <OADColorPalette> * colorPalette;
-@property(retain) OADColorScheme * colorScheme;
-@property(readonly) OADFontScheme * fontScheme;
-@property(readonly) OADDefaultProperties * lineDefaults;
-@property(readonly) OADDefaultProperties * shapeDefaults;
-@property(readonly) OADStyleMatrix * styleMatrix;
-@property(readonly) OADDefaultProperties * textDefaults;
+@property (nonatomic, readonly) OADColorMap *colorMap;
+@property (nonatomic, retain) <OADColorPalette> *colorPalette;
+@property (nonatomic, retain) OADColorScheme *colorScheme;
+@property (nonatomic, readonly) OADFontScheme *fontScheme;
+@property (nonatomic, readonly) OADDefaultProperties *lineDefaults;
+@property (nonatomic, readonly) OADDefaultProperties *shapeDefaults;
+@property (nonatomic, readonly) OADStyleMatrix *styleMatrix;
+@property (nonatomic, readonly) OADDefaultProperties *textDefaults;
 
 - (void)applyThemeOverrides:(id)arg1 colorMapOverride:(id)arg2;
 - (id)colorMap;
@@ -30,6 +28,7 @@
 - (id)colorScheme;
 - (void)dealloc;
 - (id)fontScheme;
+- (id)initWithStyleMatrix:(id)arg1 fontScheme:(id)arg2 colorScheme:(id)arg3 colorMap:(id)arg4 colorPalette:(id)arg5;
 - (id)initWithTheme:(id)arg1 colorMap:(id)arg2 colorPalette:(id)arg3;
 - (BOOL)isEqual:(id)arg1;
 - (id)lineDefaults;

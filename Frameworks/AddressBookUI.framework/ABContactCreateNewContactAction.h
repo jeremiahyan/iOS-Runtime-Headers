@@ -2,15 +2,17 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class CNContact, UIViewController;
-
 @interface ABContactCreateNewContactAction : ABContactAction <ABNewPersonViewControllerDelegate> {
     CNContact *_createdContact;
     UIViewController *_presentingViewController;
 }
 
-@property(retain) CNContact * createdContact;
-@property UIViewController * presentingViewController;
+@property (nonatomic, retain) CNContact *createdContact;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) UIViewController *presentingViewController;
+@property (readonly) Class superclass;
 
 - (id)createdContact;
 - (void)dealloc;

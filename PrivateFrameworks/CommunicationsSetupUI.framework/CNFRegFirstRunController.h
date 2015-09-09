@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/CommunicationsSetupUI.framework/CommunicationsSetupUI
  */
 
-@class <CNFRegFirstRunDelegate>, IMAccount, NSTimer, UIBarButtonItem;
-
 @interface CNFRegFirstRunController : CNFRegListController <CNFRegFirstRunExperience> {
     IMAccount *_account;
     BOOL _cancelled;
@@ -19,19 +17,23 @@
     NSTimer *_timeoutTimer;
 }
 
-@property(retain) IMAccount * account;
-@property Class completionControllerClass;
-@property(readonly) int currentAppearanceStyle;
-@property(retain) UIBarButtonItem * customLeftButton;
-@property(retain) UIBarButtonItem * customRightButton;
-@property <CNFRegFirstRunDelegate> * delegate;
-@property BOOL previousHidesBackButton;
-@property(retain) UIBarButtonItem * previousLeftButton;
-@property(retain) UIBarButtonItem * previousRightButton;
-@property BOOL timedOut;
+@property (nonatomic, retain) IMAccount *account;
+@property (nonatomic) Class completionControllerClass;
+@property (nonatomic, readonly) int currentAppearanceStyle;
+@property (nonatomic, retain) UIBarButtonItem *customLeftButton;
+@property (nonatomic, retain) UIBarButtonItem *customRightButton;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <CNFRegFirstRunDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL previousHidesBackButton;
+@property (nonatomic, retain) UIBarButtonItem *previousLeftButton;
+@property (nonatomic, retain) UIBarButtonItem *previousRightButton;
+@property (readonly) Class superclass;
+@property (nonatomic) BOOL timedOut;
 
 - (void)_cancelValidationMode;
-- (void)_executeDismissBlock:(id)arg1;
+- (void)_executeDismissBlock:(id /* block */)arg1;
 - (void)_handleReturnKeyTapped:(id)arg1;
 - (void)_handleTimeout;
 - (void)_handleValidationModeCancelled;
@@ -44,12 +46,12 @@
 - (id)_rightButtonItem;
 - (void)_rightButtonTapped;
 - (void)_setupEventHandlers;
-- (void)_startActivityIndicatorWithTitle:(id)arg1 animated:(BOOL)arg2 allowCancel:(BOOL)arg3;
 - (void)_startActivityIndicatorWithTitle:(id)arg1 animated:(BOOL)arg2;
+- (void)_startActivityIndicatorWithTitle:(id)arg1 animated:(BOOL)arg2 allowCancel:(BOOL)arg3;
 - (void)_startListeningForReturnKey;
 - (void)_startTimeoutWithDuration:(double)arg1;
-- (void)_startValidationModeAnimated:(BOOL)arg1 allowCancel:(BOOL)arg2;
 - (void)_startValidationModeAnimated:(BOOL)arg1;
+- (void)_startValidationModeAnimated:(BOOL)arg1 allowCancel:(BOOL)arg2;
 - (void)_stopActivityIndicatorAnimated:(BOOL)arg1;
 - (void)_stopActivityIndicatorWithTitle:(id)arg1 animated:(BOOL)arg2;
 - (void)_stopListeningForReturnKey;
@@ -69,8 +71,8 @@
 - (id)delegate;
 - (BOOL)dismissWithState:(unsigned int)arg1;
 - (id)initWithParentController:(id)arg1 account:(id)arg2;
-- (id)initWithRegController:(id)arg1 account:(id)arg2;
 - (id)initWithRegController:(id)arg1;
+- (id)initWithRegController:(id)arg1 account:(id)arg2;
 - (BOOL)previousHidesBackButton;
 - (id)previousLeftButton;
 - (id)previousRightButton;

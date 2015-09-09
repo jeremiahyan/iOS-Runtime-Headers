@@ -2,45 +2,38 @@
    Image: /System/Library/Frameworks/QuartzCore.framework/QuartzCore
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class NSString;
-
-@interface CALight : NSObject <NSCopying, NSCoding> {
+@interface CALight : NSObject <NSCoding, NSCopying> {
     void *_attr;
     void *_priv;
 }
 
 @property float ambientIntensity;
-@property struct CGColor { }* color;
+@property struct CGColor { }*color;
 @property float coneAngle;
 @property float coneEdgeSoftness;
 @property float diffuseIntensity;
 @property struct CAPoint3D { float x1; float x2; float x3; } direction;
-@property(getter=isEnabled) BOOL enabled;
+@property (getter=isEnabled) BOOL enabled;
 @property float falloff;
 @property float falloffDistance;
-@property(retain) id image;
-@property(copy) NSString * imageBlendMode;
+@property (retain) id image;
+@property (copy) NSString *imageBlendMode;
 @property float imageNormalAngle;
 @property float imageRotation;
 @property float intensity;
-@property(copy) NSString * name;
+@property (copy) NSString *name;
 @property struct CAPoint3D { float x1; float x2; float x3; } position;
 @property float specularIntensity;
-@property(copy) NSString * type;
+@property (copy) NSString *type;
 
 + (void)CAMLParserStartElement:(id)arg1;
 + (id)CA_CAMLPropertyForKey:(id)arg1;
 + (id)defaultValueForKey:(id)arg1;
 + (id)lightWithType:(id)arg1;
 
-- (struct Object { int (**x1)(); struct Atomic { struct { int x_1_2_1; } x_2_1_1; } x2; }*)CA_copyRenderValue;
 - (void)CAMLParser:(id)arg1 setValue:(id)arg2 forKey:(id)arg3;
 - (id)CAMLTypeForKey:(id)arg1;
+- (struct Object { int (**x1)(); struct Atomic { struct { int x_1_2_1; } x_2_1_1; } x2; }*)CA_copyRenderValue;
 - (float)ambientIntensity;
 - (struct CGColor { }*)color;
 - (float)coneAngle;

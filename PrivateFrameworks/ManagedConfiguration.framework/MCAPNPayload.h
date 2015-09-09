@@ -2,14 +2,12 @@
    Image: /System/Library/PrivateFrameworks/ManagedConfiguration.framework/ManagedConfiguration
  */
 
-@class NSArray;
-
 @interface MCAPNPayload : MCPayload {
     NSArray *_apnInfos;
     BOOL _wasInstalled;
 }
 
-@property BOOL wasInstalled;
+@property (nonatomic) BOOL wasInstalled;
 
 + (id)apnDomainName;
 + (id)localizedPluralForm;
@@ -24,6 +22,7 @@
 - (id)apnDefaults;
 - (id)description;
 - (id)initWithDictionary:(id)arg1 profile:(id)arg2 outError:(id*)arg3;
+- (id)payloadDescriptionKeyValueSections;
 - (void)setWasInstalled:(BOOL)arg1;
 - (id)stubDictionary;
 - (id)subtitle1Description;

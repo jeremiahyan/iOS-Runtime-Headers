@@ -2,13 +2,12 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@class <DevicePINControllerDelegate>, NSString, UIBarButtonItem;
-
 @interface DevicePINController : PSDetailController {
     UIBarButtonItem *_cancelButton;
     UIBarButtonItem *_doneButton;
     NSString *_error1;
     NSString *_error2;
+    BOOL _hasBeenDismissed;
     BOOL _hidesNavigationButtons;
     NSString *_lastEntry;
     int _mode;
@@ -19,8 +18,8 @@
     BOOL _success;
 }
 
-@property BOOL hidesNavigationButtons;
-@property <DevicePINControllerDelegate> * pinDelegate;
+@property (nonatomic) BOOL hidesNavigationButtons;
+@property (nonatomic) <DevicePINControllerDelegate> *pinDelegate;
 
 + (BOOL)settingEnabled;
 
@@ -28,7 +27,7 @@
 - (void)_clearBlockedState;
 - (void)_dismiss;
 - (int)_getScreenType;
-- (void)_setNumberOfFailedAttempts:(int)arg1;
+- (void)_setNumberOfFailedAttempts:(long)arg1;
 - (void)_setUnblockTime:(double)arg1;
 - (void)_showFailedAttempts;
 - (void)_showPINConfirmationError;
@@ -49,15 +48,14 @@
 - (BOOL)hidesNavigationButtons;
 - (id)init;
 - (BOOL)isBlocked;
+- (BOOL)isNumericPIN;
 - (void)loadView;
 - (int)mode;
-- (int)numberOfFailedAttempts;
+- (long)numberOfFailedAttempts;
 - (struct CGSize { float x1; float x2; })overallContentSizeForViewInPopover;
-- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })paneFrame;
 - (void)performActionAfterPINEntry;
 - (void)performActionAfterPINRemove;
 - (void)performActionAfterPINSet;
-- (struct CGSize { float x1; float x2; })pinContentSizeForViewInPopover;
 - (id)pinDelegate;
 - (void)pinEntered:(id)arg1;
 - (id)pinInstructionsPrompt;
@@ -69,17 +67,19 @@
 - (void)setLastEntry:(id)arg1;
 - (void)setMode:(int)arg1;
 - (void)setOldPassword:(id)arg1;
-- (void)setPIN:(id)arg1 completion:(id)arg2;
 - (void)setPIN:(id)arg1;
+- (void)setPIN:(id)arg1 completion:(id /* block */)arg2;
 - (void)setPane:(id)arg1;
 - (void)setPinDelegate:(id)arg1;
 - (void)setSpecifier:(id)arg1;
 - (void)setSuccess:(BOOL)arg1;
+- (BOOL)showSimplePINCancelButtonOnLeft;
 - (BOOL)simplePIN;
 - (id)stringsBundle;
 - (id)stringsTable;
 - (BOOL)success;
 - (void)suspend;
+- (id)title;
 - (double)unblockTime;
 - (BOOL)useProgressiveDelays;
 - (BOOL)validatePIN:(id)arg1;

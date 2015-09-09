@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSMutableArray, NSTimer, UIImageView, UILabel, UIView;
-
 @interface UICalloutView : UIControl {
     struct { 
         struct CGPoint { 
@@ -29,6 +27,18 @@
                 float height; 
             } size; 
         } desiredBounds; 
+    } _anchor;
+    UIImageView *_bottomAnchor;
+    id _delegate;
+    NSMutableArray *_fadeInViews;
+    NSMutableArray *_fadeOutViews;
+    struct { 
+        unsigned int animated : 1; 
+        unsigned int didMoveCalled : 1; 
+        unsigned int hasPendingAnimatedLayout : 1; 
+        unsigned int canAnchorFromBottom : 1; 
+        unsigned int reserved : 28; 
+    } _flags;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -38,18 +48,6 @@
             float width; 
             float height; 
         } size; 
-    struct { 
-        unsigned int animated : 1; 
-        unsigned int didMoveCalled : 1; 
-        unsigned int hasPendingAnimatedLayout : 1; 
-        unsigned int canAnchorFromBottom : 1; 
-        unsigned int reserved : 28; 
-    } _anchor;
-    UIImageView *_bottomAnchor;
-    id _delegate;
-    NSMutableArray *_fadeInViews;
-    NSMutableArray *_fadeOutViews;
-    } _flags;
     } _frame;
     NSTimer *_layoutAnimationTimer;
     UIImageView *_leftBackground;
@@ -65,22 +63,24 @@
     UIImageView *_topAnchor;
 }
 
-@property(readonly) float UICalloutViewButtonPadding;
-@property(readonly) float UICalloutViewCapHeight;
-@property(readonly) float UICalloutViewCapPaddingTop;
-@property(readonly) float UICalloutViewHorizontalMargin;
-@property(readonly) float UICalloutViewHorizontalPadding;
-@property(readonly) double UICalloutViewLayoutDuration;
-@property(readonly) float UICalloutViewMinimumWidth;
-@property(readonly) float UICalloutViewVerticalMargin;
-@property BOOL canAnchorFromBottom;
-@property(retain) UIView * leftView;
-@property float maximumWidth;
-@property(retain) UIView * rightView;
-@property int subtitleLineBreakMode;
-@property int subtitleTextAlignment;
-@property int titleLineBreakMode;
-@property int titleTextAlignment;
+@property (nonatomic, readonly) float UICalloutViewButtonPadding;
+@property (nonatomic, readonly) float UICalloutViewCapHeight;
+@property (nonatomic, readonly) float UICalloutViewCapPaddingTop;
+@property (nonatomic, readonly) float UICalloutViewHorizontalMargin;
+@property (nonatomic, readonly) float UICalloutViewHorizontalPadding;
+@property (nonatomic, readonly) double UICalloutViewLayoutDuration;
+@property (nonatomic, readonly) float UICalloutViewMinimumWidth;
+@property (nonatomic, readonly) float UICalloutViewVerticalMargin;
+@property (nonatomic) BOOL canAnchorFromBottom;
+@property (nonatomic, retain) UIView *leftView;
+@property (nonatomic) float maximumWidth;
+@property (nonatomic, retain) UIView *rightView;
+@property (nonatomic) int subtitleLineBreakMode;
+@property (nonatomic) int subtitleTextAlignment;
+@property (nonatomic) int titleLineBreakMode;
+@property (nonatomic) int titleTextAlignment;
+
+// Image: /System/Library/Frameworks/UIKit.framework/UIKit
 
 + (id)_backgroundImage;
 + (id)_bottomAnchorImage;
@@ -121,7 +121,6 @@
 - (id)hitTest:(struct CGPoint { float x1; float x2; })arg1 forEvent:(struct __GSEvent { }*)arg2;
 - (id)hitTest:(struct CGPoint { float x1; float x2; })arg1 withEvent:(id)arg2;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
-- (BOOL)isExpanded;
 - (id)leftView;
 - (float)maximumWidth;
 - (struct CGPoint { float x1; float x2; })offset;
@@ -130,14 +129,14 @@
 - (void)setAnchorPoint:(struct CGPoint { float x1; float x2; })arg1 boundaryRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2 animate:(BOOL)arg3;
 - (void)setCanAnchorFromBottom:(BOOL)arg1;
 - (void)setDelegate:(id)arg1;
-- (void)setLeftView:(id)arg1 animated:(BOOL)arg2;
 - (void)setLeftView:(id)arg1;
+- (void)setLeftView:(id)arg1 animated:(BOOL)arg2;
 - (void)setMaximumWidth:(float)arg1;
 - (void)setOffset:(struct CGPoint { float x1; float x2; })arg1;
-- (void)setRightView:(id)arg1 animated:(BOOL)arg2;
 - (void)setRightView:(id)arg1;
-- (void)setSubtitle:(id)arg1 animated:(BOOL)arg2;
+- (void)setRightView:(id)arg1 animated:(BOOL)arg2;
 - (void)setSubtitle:(id)arg1;
+- (void)setSubtitle:(id)arg1 animated:(BOOL)arg2;
 - (void)setSubtitleLineBreakMode:(int)arg1;
 - (void)setSubtitleTextAlignment:(int)arg1;
 - (void)setTemporaryTitle:(id)arg1;
@@ -151,5 +150,9 @@
 - (id)title;
 - (int)titleLineBreakMode;
 - (int)titleTextAlignment;
+
+// Image: /System/Library/Frameworks/MapKit.framework/MapKit
+
+- (BOOL)isExpanded;
 
 @end

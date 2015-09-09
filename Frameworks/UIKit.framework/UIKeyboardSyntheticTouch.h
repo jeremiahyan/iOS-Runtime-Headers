@@ -2,15 +2,13 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIWindow;
-
 @interface UIKeyboardSyntheticTouch : NSObject {
-    struct CGPoint { 
-        float x; 
-        float y; 
     unsigned char _pathIdentity;
     unsigned char _pathIndex;
     float _pathMajorRadius;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } locationInWindow;
     int phase;
     unsigned int tapCount;
@@ -18,20 +16,21 @@
     UIWindow *window;
 }
 
-@property(readonly) unsigned char _pathIdentity;
-@property(readonly) unsigned char _pathIndex;
-@property float _pathMajorRadius;
-@property struct CGPoint { float x1; float x2; } locationInWindow;
-@property int phase;
-@property unsigned int tapCount;
-@property double timestamp;
-@property(retain) UIWindow * window;
+@property (nonatomic, readonly) unsigned char _pathIdentity;
+@property (nonatomic, readonly) unsigned char _pathIndex;
+@property (nonatomic) float _pathMajorRadius;
+@property (nonatomic) struct CGPoint { float x1; float x2; } locationInWindow;
+@property (nonatomic) int phase;
+@property (nonatomic) unsigned int tapCount;
+@property (nonatomic) double timestamp;
+@property (nonatomic, retain) UIWindow *window;
 
 + (id)syntheticTouchWithPoint:(struct CGPoint { float x1; float x2; })arg1 timestamp:(double)arg2 window:(id)arg3;
 
 - (unsigned char)_pathIdentity;
 - (unsigned char)_pathIndex;
 - (float)_pathMajorRadius;
+- (void)_setLocationInWindow:(struct CGPoint { float x1; float x2; })arg1 resetPrevious:(BOOL)arg2;
 - (struct CGPoint { float x1; float x2; })getLocationInWindow;
 - (id)initWithPoint:(struct CGPoint { float x1; float x2; })arg1 timestamp:(double)arg2 window:(id)arg3;
 - (struct CGPoint { float x1; float x2; })locationInView:(id)arg1;

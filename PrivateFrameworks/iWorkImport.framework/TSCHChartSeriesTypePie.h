@@ -2,13 +2,12 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface TSCHChartSeriesTypePie : TSCHChartSeriesType {
-}
+@interface TSCHChartSeriesTypePie : TSCHChartSeriesType
 
 - (id)axisTypesForValueLabels;
 - (id)elementBuilder;
-- (unsigned int)filterChartLabelPosition:(unsigned int)arg1 forSeries:(id)arg2;
 - (unsigned int)filterChartLabelPosition:(unsigned int)arg1;
+- (unsigned int)filterChartLabelPosition:(unsigned int)arg1 forSeries:(id)arg2;
 - (BOOL)floatValueForLabelExplosion:(float*)arg1 series:(id)arg2;
 - (id)g_genericToSpecificPropertyMapPie;
 - (id)genericToSpecificPropertyMap;

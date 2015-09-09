@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSDictionary, NSObject<OS_dispatch_queue>, NSURL, TSPDocumentResourceCache, TSUDownloadManager;
-
 @interface TSPDocumentResourceManager : NSObject {
     NSURL *_appDocumentResourcesMetadataURL;
     NSURL *_appDocumentResourcesURL;
@@ -12,15 +10,18 @@
     NSObject<OS_dispatch_queue> *_documentResourcesConfigurationQueue;
     long _documentResourcesConfigurationToken;
     TSUDownloadManager *_downloadManager;
+    NSMutableDictionary *_sageDocumentResourcesConfiguration;
+    long _sageDocumentResourcesConfigurationToken;
 }
 
-@property(readonly) TSPDocumentResourceCache * cache;
-@property(readonly) TSUDownloadManager * downloadManager;
+@property (nonatomic, readonly) TSPDocumentResourceCache *cache;
+@property (nonatomic, readonly) TSUDownloadManager *downloadManager;
 
 + (id)appDocumentResourcesMetadataURL;
 + (id)appDocumentResourcesURL;
 + (void)setAppDocumentResourcesMetadataURL:(id)arg1;
 + (void)setAppDocumentResourcesURL:(id)arg1;
++ (void)setSageAppDocumentResourcesURL:(id)arg1;
 + (id)sharedManager;
 
 - (void).cxx_destruct;
@@ -37,5 +38,7 @@
 - (id)init;
 - (id)initWithAppDocumentResourcesURL:(id)arg1 appDocumentResourcesMetadataURL:(id)arg2 cache:(id)arg3 downloadManager:(id)arg4;
 - (id)newDataProviderForContext:(id)arg1;
+- (id)sageAssetURLForLocator:(id)arg1;
+- (id)sageDocumentResourcesConfiguration;
 
 @end

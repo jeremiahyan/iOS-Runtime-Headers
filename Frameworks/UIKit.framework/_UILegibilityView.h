@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class CAFilter, UIImage, UIImageView, _UILegibilitySettings;
-
 @interface _UILegibilityView : UIView {
     BOOL _hidesImage;
     UIImage *_image;
@@ -17,18 +15,18 @@
     float _strength;
 }
 
-@property BOOL hidesImage;
-@property(retain) UIImage * image;
-@property(retain) CAFilter * imageColorFilter;
-@property(retain) UIImageView * imageView;
-@property int options;
-@property(retain) _UILegibilitySettings * settings;
-@property(retain) UIImage * shadowImage;
-@property(retain) CAFilter * shadowImageColorFilter;
-@property(retain) UIImageView * shadowImageView;
-@property float strength;
-@property(readonly) int style;
-@property(readonly) BOOL usesColorFilters;
+@property (nonatomic) BOOL hidesImage;
+@property (nonatomic, retain) UIImage *image;
+@property (nonatomic, retain) CAFilter *imageColorFilter;
+@property (nonatomic, retain) UIImageView *imageView;
+@property (nonatomic) int options;
+@property (nonatomic, retain) _UILegibilitySettings *settings;
+@property (nonatomic, retain) UIImage *shadowImage;
+@property (nonatomic, retain) CAFilter *shadowImageColorFilter;
+@property (nonatomic, retain) UIImageView *shadowImageView;
+@property (nonatomic) float strength;
+@property (nonatomic, readonly) int style;
+@property (nonatomic, readonly) BOOL usesColorFilters;
 
 - (void)dealloc;
 - (id)drawingColor;
@@ -36,21 +34,21 @@
 - (id)image;
 - (id)imageColorFilter;
 - (id)imageView;
-- (id)initWithSettings:(id)arg1 strength:(float)arg2 image:(id)arg3 shadowImage:(id)arg4 options:(int)arg5;
-- (id)initWithSettings:(id)arg1 strength:(float)arg2 image:(id)arg3 shadowImage:(id)arg4;
 - (id)initWithSettings:(id)arg1 strength:(float)arg2 image:(id)arg3;
-- (id)initWithStyle:(int)arg1 image:(id)arg2 shadowImage:(id)arg3;
+- (id)initWithSettings:(id)arg1 strength:(float)arg2 image:(id)arg3 shadowImage:(id)arg4;
+- (id)initWithSettings:(id)arg1 strength:(float)arg2 image:(id)arg3 shadowImage:(id)arg4 options:(int)arg5;
 - (id)initWithStyle:(int)arg1 image:(id)arg2;
+- (id)initWithStyle:(int)arg1 image:(id)arg2 shadowImage:(id)arg3;
 - (void)layoutSubviews;
 - (int)options;
 - (void)setHidesImage:(BOOL)arg1;
-- (void)setImage:(id)arg1 shadowImage:(id)arg2;
 - (void)setImage:(id)arg1;
+- (void)setImage:(id)arg1 shadowImage:(id)arg2;
 - (void)setImageColorFilter:(id)arg1;
 - (void)setImageView:(id)arg1;
 - (void)setOptions:(int)arg1;
-- (void)setSettings:(id)arg1 image:(id)arg2 shadowImage:(id)arg3;
 - (void)setSettings:(id)arg1;
+- (void)setSettings:(id)arg1 image:(id)arg2 shadowImage:(id)arg3;
 - (void)setShadowImage:(id)arg1;
 - (void)setShadowImageColorFilter:(id)arg1;
 - (void)setShadowImageView:(id)arg1;

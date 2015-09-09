@@ -2,8 +2,7 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface TSCHChartSeriesStyle : TSCHBaseStyle {
-}
+@interface TSCHChartSeriesStyle : TSCHBaseStyle
 
 + (id)bootstrappedSeriesStyleWithContext:(id)arg1 seriesIndex:(unsigned int)arg2;
 + (float)defaultFloatValueForProperty:(int)arg1;
@@ -20,6 +19,8 @@
 - (id)initFromPreUFFArchiveWithUnarchiver:(id)arg1;
 - (id)initFromUnarchiver:(id)arg1;
 - (id)initWithContext:(id)arg1 name:(id)arg2 overridePropertyMap:(id)arg3 isVariation:(BOOL)arg4;
+- (id)mixedObjectWithFraction:(float)arg1 ofObject:(id)arg2;
+- (int)mixingTypeWithObject:(id)arg1 context:(id)arg2;
 - (void)p_upgrade3DChartProperties:(id)arg1;
 - (void)p_upgrade3DFillSubclassTSDFill:(id)arg1;
 - (void)p_upgradeBubbleChartProperties:(id)arg1;

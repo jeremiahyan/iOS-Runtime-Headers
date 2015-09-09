@@ -2,9 +2,11 @@
    Image: /System/Library/PrivateFrameworks/CorePDF.framework/CorePDF
  */
 
-@class CPListItem;
-
 @interface CPList : NSObject <CPDisposable> {
+    struct __CFArray { } *items;
+    unsigned int ordinalPrefixLength;
+    unsigned int ordinalSuffixLength;
+    CPListItem *parentItem;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -14,19 +16,15 @@
             float width; 
             float height; 
         } size; 
-    struct __CFArray { } *items;
-    unsigned int ordinalPrefixLength;
-    unsigned int ordinalSuffixLength;
-    CPListItem *parentItem;
     } spacer;
     int type;
 }
 
-@property unsigned int ordinalPrefixLength;
-@property unsigned int ordinalSuffixLength;
-@property(retain) CPListItem * parentItem;
-@property struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } spacer;
-@property int type;
+@property (nonatomic) unsigned int ordinalPrefixLength;
+@property (nonatomic) unsigned int ordinalSuffixLength;
+@property (nonatomic, retain) CPListItem *parentItem;
+@property (nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } spacer;
+@property (nonatomic) int type;
 
 - (void)addItem:(id)arg1;
 - (BOOL)containsParagraph:(id)arg1;

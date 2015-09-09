@@ -2,30 +2,39 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSMutableArray, UIColor, UIImageView, UIView;
-
 @interface UISnapshotView : UIView <UIStatusBarTinting> {
-    struct CGSize { 
-        float width; 
-        float height; 
     struct UIEdgeInsets { 
         float top; 
         float left; 
         float bottom; 
         float right; 
-    struct UIEdgeInsets { 
-        float top; 
-        float left; 
-        float bottom; 
-        float right; 
-    struct UIEdgeInsets { 
-        float top; 
-        float left; 
-        float bottom; 
-        float right; 
+    } _contentBeyondBounds;
     struct CGPoint { 
         float x; 
         float y; 
+    } _contentOffset;
+    struct CGSize { 
+        float width; 
+        float height; 
+    } _contentSize;
+    unsigned int _disableEdgeAntialiasing;
+    unsigned int _disableVerticalStretch;
+    struct UIEdgeInsets { 
+        float top; 
+        float left; 
+        float bottom; 
+        float right; 
+    } _edgeInsets;
+    struct UIEdgeInsets { 
+        float top; 
+        float left; 
+        float bottom; 
+        float right; 
+    } _edgePadding;
+    UIColor *_edgePaddingColor;
+    NSMutableArray *_edgePaddingViews;
+    UIView *_imageView;
+    UIImageView *_shadowView;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -35,32 +44,25 @@
             float width; 
             float height; 
         } size; 
-    unsigned int _disableEdgeAntialiasing : 1;
-    unsigned int _disableVerticalStretch : 1;
-    } _contentBeyondBounds;
-    } _contentOffset;
-    } _contentSize;
-    } _edgeInsets;
-    } _edgePadding;
-    UIColor *_edgePaddingColor;
-    NSMutableArray *_edgePaddingViews;
-    UIView *_imageView;
-    UIImageView *_shadowView;
     } _snapshotRect;
     UIColor *_statusBarTintColor;
 }
 
-@property(setter=_setStatusBarTintColor:,retain) UIColor * _statusBarTintColor;
-@property(getter=_contentOffset,setter=_setContentOffset:) struct CGPoint { float x1; float x2; } contentOffset;
-@property(getter=_contentSize,readonly) struct CGSize { float x1; float x2; } contentSize;
-@property(getter=isEdgeAntialiasingEnabled) BOOL edgeAntialiasingEnabled;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } edgeInsets;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } edgePadding;
-@property(retain) UIColor * edgePaddingColor;
-@property(retain) UIView * shadowView;
-@property(getter=_snapshotRect,setter=_setSnapshotRect:) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } snapshotRect;
-@property(getter=_snapshotView,readonly) UIView * snapshotView;
-@property(getter=isVerticalStretchEnabled) BOOL verticalStretchEnabled;
+@property (setter=_setStatusBarTintColor:, nonatomic, retain) UIColor *_statusBarTintColor;
+@property (getter=_contentOffset, setter=_setContentOffset:, nonatomic) struct CGPoint { float x1; float x2; } contentOffset;
+@property (getter=_contentSize, nonatomic, readonly) struct CGSize { float x1; float x2; } contentSize;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (getter=isEdgeAntialiasingEnabled, nonatomic) BOOL edgeAntialiasingEnabled;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } edgeInsets;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } edgePadding;
+@property (nonatomic, retain) UIColor *edgePaddingColor;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) UIView *shadowView;
+@property (getter=_snapshotRect, setter=_setSnapshotRect:, nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } snapshotRect;
+@property (getter=_snapshotView, nonatomic, readonly) UIView *snapshotView;
+@property (readonly) Class superclass;
+@property (getter=isVerticalStretchEnabled, nonatomic) BOOL verticalStretchEnabled;
 
 - (void)_addEdgePaddingViewInRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (struct CGPoint { float x1; float x2; })_contentOffset;

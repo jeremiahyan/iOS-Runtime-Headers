@@ -2,38 +2,41 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class <TSKModel>, NSDate, NSString, TSDCommentStorage, TSDDrawableInfo, TSKAnnotationAuthor;
-
 @interface TSDDrawableComment : NSObject <TSDAnnotationHosting> {
     TSDDrawableInfo *mParent;
     TSDCommentStorage *mStorage;
 }
 
-@property(readonly) int annotationDisplayStringType;
-@property(readonly) int annotationType;
-@property(retain) TSKAnnotationAuthor * author;
-@property(readonly) NSString * changeTrackingString;
-@property(readonly) NSDate * date;
-@property <TSKModel> * model;
-@property TSDDrawableInfo * parent;
-@property(copy) TSDCommentStorage * storage;
+@property (nonatomic, readonly) int annotationDisplayStringType;
+@property (nonatomic, readonly) int annotationType;
+@property (nonatomic, readonly) TSKAnnotationAuthor *author;
+@property (nonatomic, readonly) NSString *changeTrackingContentFormatString;
+@property (nonatomic, readonly) NSString *changeTrackingContentString;
+@property (nonatomic, readonly) NSString *changeTrackingTitleString;
+@property (nonatomic, readonly) NSDate *date;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) <TSKModel> *hostingModel;
+@property (nonatomic) TSDDrawableInfo *parent;
+@property (nonatomic, copy) TSDCommentStorage *storage;
+@property (readonly) Class superclass;
 
 - (int)annotationDisplayStringType;
 - (int)annotationType;
 - (id)author;
-- (id)commandForDeletingComment;
+- (void)commentWillBeAddedToDocumentRoot;
 - (void)commitText:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)date;
 - (void)dealloc;
 - (id)description;
-- (Class)editorClass;
+- (id)hostingModel;
 - (id)initWithParent:(id)arg1 storage:(id)arg2;
 - (BOOL)isEqual:(id)arg1;
-- (id)model;
 - (id)parent;
 - (void)setAuthor:(id)arg1;
-- (void)setModel:(id)arg1;
+- (void)setHostingModel:(id)arg1;
 - (void)setParent:(id)arg1;
 - (void)setStorage:(id)arg1;
 - (id)storage;

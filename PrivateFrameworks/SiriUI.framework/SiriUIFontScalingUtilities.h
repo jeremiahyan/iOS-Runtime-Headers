@@ -2,10 +2,12 @@
    Image: /System/Library/PrivateFrameworks/SiriUI.framework/SiriUI
  */
 
-@interface SiriUIFontScalingUtilities : NSObject {
-}
+@interface SiriUIFontScalingUtilities : NSObject
 
++ (id)_paragraphStyleWithLeading:(float)arg1 textAlignemtn:(int)arg2;
 + (float)labelLeadingForCurrentScale;
 + (float)labelWidthForCurrentScale;
++ (id)paragraphStyleForCurrentScaleWithTextAlignment:(int)arg1;
++ (id)tallParagraphStyleForCurrentScaleWithTextAlignment:(int)arg1;
 
 @end

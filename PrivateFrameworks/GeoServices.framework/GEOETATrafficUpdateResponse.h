@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSMutableArray;
-
 @interface GEOETATrafficUpdateResponse : PBCodable <NSCopying> {
     struct { 
         unsigned int status : 1; 
@@ -12,9 +10,9 @@
     int _status;
 }
 
-@property BOOL hasStatus;
-@property(retain) NSMutableArray * routes;
-@property int status;
+@property (nonatomic) BOOL hasStatus;
+@property (nonatomic, retain) NSMutableArray *routes;
+@property (nonatomic) int status;
 
 - (void)addRoute:(id)arg1;
 - (void)clearRoutes;
@@ -26,6 +24,7 @@
 - (BOOL)hasStatus;
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
+- (void)mergeFrom:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 - (id)routeAtIndex:(unsigned int)arg1;
 - (id)routes;

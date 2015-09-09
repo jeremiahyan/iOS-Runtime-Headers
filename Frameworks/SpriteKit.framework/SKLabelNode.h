@@ -2,14 +2,21 @@
    Image: /System/Library/Frameworks/SpriteKit.framework/SpriteKit
  */
 
-@class NSMutableArray, NSString, SKBitmapFont, SKSpriteNode, UIColor;
-
 @interface SKLabelNode : SKNode {
+    SKBitmapFont *_bmf;
     struct { 
         float r; 
         float g; 
         float b; 
         float a; 
+    } _fontColor;
+    NSString *_fontName;
+    float _fontSize;
+    int _horizontalAlignmentMode;
+    int _labelBlendMode;
+    UIColor *_labelColor;
+    float _labelColorBlend;
+    NSString *_text;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -19,38 +26,31 @@
             float width; 
             float height; 
         } size; 
-    SKBitmapFont *_bmf;
-    } _fontColor;
-    NSString *_fontName;
-    float _fontSize;
-    int _horizontalAlignmentMode;
-    int _labelBlendMode;
-    UIColor *_labelColor;
-    float _labelColorBlend;
-    NSString *_text;
     } _textRect;
     SKSpriteNode *_textSprite;
     NSMutableArray *_textSprites;
     int _verticalAlignmentMode;
 }
 
-@property int blendMode;
-@property(retain) UIColor * color;
-@property float colorBlendFactor;
-@property(retain) UIColor * fontColor;
-@property(copy) NSString * fontName;
-@property float fontSize;
-@property int horizontalAlignmentMode;
-@property(copy) NSString * text;
-@property int verticalAlignmentMode;
+@property (nonatomic) int blendMode;
+@property (nonatomic, retain) UIColor *color;
+@property (nonatomic) float colorBlendFactor;
+@property (nonatomic, retain) UIColor *fontColor;
+@property (nonatomic, copy) NSString *fontName;
+@property (nonatomic) float fontSize;
+@property (nonatomic) int horizontalAlignmentMode;
+@property (nonatomic, copy) NSString *text;
+@property (nonatomic) int verticalAlignmentMode;
 
 + (id)_labelNodeWithFontNamed:(id)arg1;
 + (id)_labelNodeWithFontTexture:(id)arg1 fontDataString:(id)arg2;
 + (id)labelNodeWithFontNamed:(id)arg1;
++ (id)labelNodeWithText:(id)arg1;
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)_flippedChangedFrom:(BOOL)arg1 to:(BOOL)arg2;
+- (id)_getTextSprites;
 - (void)_initialize;
 - (void)_scaleFactorChangedFrom:(float)arg1 to:(float)arg2;
 - (int)blendMode;
@@ -71,8 +71,9 @@
 - (id)init;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFontNamed:(id)arg1;
+- (BOOL)isEqualToNode:(id)arg1;
 - (id)nodeAtPoint:(struct CGPoint { float x1; float x2; })arg1 recursive:(BOOL)arg2;
-- (id)nodeAtPoint:(struct CGPoint { float x1; float x2; })arg1;
+- (id)nodesAtPoint:(struct CGPoint { float x1; float x2; })arg1;
 - (void)setBlendMode:(int)arg1;
 - (void)setColor:(id)arg1;
 - (void)setColorBlendFactor:(float)arg1;

@@ -2,10 +2,7 @@
    Image: /System/Library/Frameworks/EventKit.framework/EventKit
  */
 
-@class EKCalendarDate, EKEventStore, EKParticipant, NSArray, NSDate, NSNumber, NSString, NSURL;
-
 @interface EKEvent : EKCalendarItem {
-    int _attendeeCount;
     EKCalendarDate *_occurrenceEndDate;
     BOOL _occurrenceIsAllDay;
     EKCalendarDate *_occurrenceStartDate;
@@ -15,57 +12,71 @@
     BOOL _requiresDetachDueToSnoozedAlarm;
 }
 
-@property(readonly) NSString * UUID;
-@property(getter=isAllDay) BOOL allDay;
-@property(readonly) NSArray * attachments;
-@property(readonly) int attendeeCount;
-@property int availability;
-@property(readonly) int birthdayPersonID;
-@property(readonly) BOOL canBeRespondedTo;
-@property(readonly) BOOL canDetachSingleOccurrence;
-@property(readonly) BOOL canSetAvailability;
-@property(readonly) BOOL dateChanged;
-@property(readonly) double duration;
-@property(readonly) EKCalendarDate * endCalendarDate;
-@property(copy) NSDate * endDate;
-@property(readonly) struct { int x1; BOOL x2; BOOL x3; BOOL x4; BOOL x5; double x6; } endDateGr;
-@property(readonly) NSString * eventIdentifier;
-@property(readonly) EKEventStore * eventStore;
-@property(readonly) NSURL * externalURL;
-@property(readonly) NSDate * initialEndDate;
-@property(readonly) NSDate * initialStartDate;
-@property unsigned int invitationStatus;
-@property(readonly) BOOL isAllDayDirty;
-@property(readonly) BOOL isDetached;
-@property(readonly) BOOL isEditable;
-@property(readonly) BOOL isEndDateDirty;
-@property(readonly) BOOL isStartDateDirty;
-@property(readonly) BOOL isStatusDirty;
-@property(readonly) BOOL locationChanged;
-@property(readonly) unsigned int modifiedProperties;
-@property(readonly) NSDate * occurrenceDate;
-@property(copy) EKCalendarDate * occurrenceEndDate;
-@property BOOL occurrenceIsAllDay;
-@property(copy) EKCalendarDate * occurrenceStartDate;
-@property(readonly) EKParticipant * organizer;
-@property(copy) EKCalendarDate * originalOccurrenceEndDate;
-@property(copy) NSNumber * originalOccurrenceIsAllDay;
-@property(copy) EKCalendarDate * originalOccurrenceStartDate;
-@property int participationStatus;
-@property(readonly) NSDate * participationStatusModifiedDate;
-@property(readonly) int pendingParticipationStatus;
-@property BOOL requiresDetachDueToSnoozedAlarm;
-@property(copy) NSString * responseComment;
-@property(readonly) BOOL responseMustApplyToAll;
-@property(readonly) EKCalendarDate * startCalendarDate;
-@property(copy) NSDate * startDate;
-@property(readonly) struct { int x1; BOOL x2; BOOL x3; BOOL x4; BOOL x5; double x6; } startDateGr;
-@property(readonly) int status;
-@property(readonly) BOOL timeChanged;
-@property(readonly) BOOL titleChanged;
-@property(readonly) NSString * uniqueId;
+@property (nonatomic, readonly) NSString *UUID;
+@property (getter=isAllDay, nonatomic) BOOL allDay;
+@property (nonatomic, readonly) BOOL allowsPrivacyLevelModifications;
+@property (nonatomic, readonly) NSArray *attachments;
+@property (nonatomic, readonly) BOOL attendeeReplyChanged;
+@property (nonatomic) int availability;
+@property (nonatomic, readonly) int birthdayPersonID;
+@property (nonatomic, readonly) BOOL canBeRespondedTo;
+@property (readonly) BOOL canDetachSingleOccurrence;
+@property (nonatomic, readonly) BOOL canSetAvailability;
+@property (nonatomic, readonly) BOOL dateChanged;
+@property (readonly) double duration;
+@property (readonly) double durationIncludingTravel;
+@property (nonatomic, readonly) BOOL eligibleForTravelAdvisories;
+@property (nonatomic, readonly) EKCalendarDate *endCalendarDate;
+@property (nonatomic, copy) NSDate *endDate;
+@property (nonatomic, readonly) struct { int x1; BOOL x2; BOOL x3; BOOL x4; BOOL x5; double x6; } endDateGr;
+@property (nonatomic, readonly) NSString *eventIdentifier;
+@property (nonatomic, readonly) EKEventStore *eventStore;
+@property (nonatomic, readonly) NSURL *externalURL;
+@property (readonly, copy) NSDate *initialEndDate;
+@property (readonly, copy) NSDate *initialStartDate;
+@property (nonatomic) unsigned int invitationStatus;
+@property (readonly) BOOL isAllDayDirty;
+@property (nonatomic, readonly) BOOL isDetached;
+@property (readonly) BOOL isEditable;
+@property (readonly) BOOL isEndDateDirty;
+@property (readonly) BOOL isStartDateDirty;
+@property (readonly) BOOL isStatusDirty;
+@property (readonly) BOOL isTravelTimeEditable;
+@property (nonatomic, readonly) BOOL locationChanged;
+@property (nonatomic, readonly) unsigned int modifiedProperties;
+@property (nonatomic, readonly) NSDate *occurrenceDate;
+@property (nonatomic, copy) EKCalendarDate *occurrenceEndDate;
+@property (nonatomic) BOOL occurrenceIsAllDay;
+@property (nonatomic, copy) EKCalendarDate *occurrenceStartDate;
+@property (nonatomic, readonly) EKParticipant *organizer;
+@property (nonatomic, copy) EKCalendarDate *originalOccurrenceEndDate;
+@property (nonatomic, copy) NSNumber *originalOccurrenceIsAllDay;
+@property (nonatomic, copy) EKCalendarDate *originalOccurrenceStartDate;
+@property (nonatomic) int participationStatus;
+@property (nonatomic, readonly) NSDate *participationStatusModifiedDate;
+@property (nonatomic, readonly) int pendingParticipationStatus;
+@property (nonatomic) int privacyLevel;
+@property (nonatomic) BOOL requiresDetachDueToSnoozedAlarm;
+@property (copy) NSString *responseComment;
+@property (nonatomic, readonly) BOOL responseMustApplyToAll;
+@property (nonatomic, readonly) EKCalendarDate *startCalendarDate;
+@property (readonly) EKCalendarDate *startCalendarDateIncludingTravelTime;
+@property (nonatomic, copy) NSDate *startDate;
+@property (nonatomic, readonly) struct { int x1; BOOL x2; BOOL x3; BOOL x4; BOOL x5; double x6; } startDateGr;
+@property (readonly) NSDate *startDateIncludingTravel;
+@property (nonatomic, readonly) int status;
+@property (nonatomic, readonly) BOOL timeChanged;
+@property (nonatomic, readonly) BOOL titleChanged;
+@property (nonatomic) int travelAdvisoryBehavior;
+@property (nonatomic, readonly) BOOL travelAdvisoryBehaviorIsEffectivelyEnabled;
+@property (readonly) int travelRoutingMode;
+@property (nonatomic) double travelTime;
+@property (nonatomic, readonly, copy) NSString *uniqueId;
+
+// Image: /System/Library/Frameworks/EventKit.framework/EventKit
 
 + (id)eventWithEventStore:(id)arg1;
++ (id)privacyLevelAsString:(int)arg1;
 
 - (BOOL)_cancelWithSpan:(int)arg1 error:(id*)arg2;
 - (BOOL)_checkStartDateConstraintAgainstDate:(struct { int x1; BOOL x2; BOOL x3; BOOL x4; BOOL x5; double x6; })arg1 timeZone:(id)arg2 error:(id*)arg3;
@@ -83,16 +94,15 @@
 - (void)_sendModifiedNote;
 - (BOOL)_shouldCancelInsteadOfDeleteWithSpan:(int)arg1;
 - (BOOL)_shouldDeclineInsteadOfDelete;
-- (id)_sortedEKParticipantsForSortingIgnoringNonHumans:(id)arg1;
+- (id)_travelTimeInternalDescription;
 - (BOOL)_validateAlarmIntervalConstrainedToRecurrenceInterval:(int)arg1;
 - (BOOL)_validateDatesAndRecurrencesGivenSpan:(int)arg1 error:(id*)arg2;
 - (BOOL)_validateDurationConstrainedToRecurrenceInterval;
 - (BOOL)allowsAlarmModifications;
 - (BOOL)allowsCalendarModifications;
+- (BOOL)allowsPrivacyLevelModifications;
 - (BOOL)allowsRecurrenceModifications;
-- (id)attachments;
-- (int)attendeeCount;
-- (id)attendees;
+- (BOOL)attendeeReplyChanged;
 - (int)availability;
 - (int)birthdayPersonID;
 - (BOOL)canBeRespondedTo;
@@ -105,12 +115,13 @@
 - (id)committedValueForKey:(id)arg1;
 - (int)compareStartDateWithEvent:(id)arg1;
 - (BOOL)dateChanged;
-- (int)daySpan;
 - (void)dealloc;
 - (id)description;
 - (void)didCommit;
 - (id)dirtyPropertiesToSkip;
 - (double)duration;
+- (double)durationIncludingTravel;
+- (BOOL)eligibleForTravelAdvisories;
 - (id)endCalendarDate;
 - (id)endDate;
 - (struct { int x1; BOOL x2; BOOL x3; BOOL x4; BOOL x5; double x6; })endDateGr;
@@ -120,25 +131,25 @@
 - (id)exportToICS;
 - (id)externalURI;
 - (id)externalURL;
-- (BOOL)hasHumanInviteesToDisplay;
 - (BOOL)hasSelfAttendee;
 - (unsigned int)hash;
 - (id)init;
 - (id)initWithEventStore:(id)arg1;
-- (id)initWithPersistentObject:(id)arg1 occurrenceDate:(id)arg2;
 - (id)initWithPersistentObject:(id)arg1;
+- (id)initWithPersistentObject:(id)arg1 occurrenceDate:(id)arg2;
 - (id)initialEndDate;
 - (id)initialStartDate;
 - (unsigned int)invitationStatus;
 - (BOOL)isAllDay;
 - (BOOL)isAllDayDirty;
 - (BOOL)isDetached;
-- (BOOL)isDirtyIgnoringCalendar;
+- (BOOL)isEditable;
 - (BOOL)isEndDateDirty;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isStartDateDirty;
 - (BOOL)isStatusDirty;
 - (BOOL)isTentative;
+- (BOOL)isTravelTimeEditable;
 - (BOOL)locationChanged;
 - (unsigned int)modifiedProperties;
 - (BOOL)needsOccurrenceCacheUpdate;
@@ -146,13 +157,13 @@
 - (id)occurrenceEndDate;
 - (BOOL)occurrenceIsAllDay;
 - (id)occurrenceStartDate;
-- (id)organizer;
 - (id)originalOccurrenceEndDate;
 - (id)originalOccurrenceIsAllDay;
 - (id)originalOccurrenceStartDate;
 - (int)participationStatus;
 - (id)participationStatusModifiedDate;
 - (int)pendingParticipationStatus;
+- (int)privacyLevel;
 - (id)recurrenceRule;
 - (BOOL)refresh;
 - (BOOL)removeWithSpan:(int)arg1 error:(id*)arg2;
@@ -175,24 +186,46 @@
 - (void)setOriginalOccurrenceIsAllDay:(id)arg1;
 - (void)setOriginalOccurrenceStartDate:(id)arg1;
 - (void)setParticipationStatus:(int)arg1;
+- (void)setPrivacyLevel:(int)arg1;
 - (void)setRecurrenceRule:(id)arg1;
 - (void)setRequiresDetachDueToSnoozedAlarm:(BOOL)arg1;
 - (void)setResponseComment:(id)arg1;
 - (void)setStartDate:(id)arg1;
 - (void)setTimeZone:(id)arg1;
+- (void)setTravelAdvisoryBehavior:(int)arg1;
+- (void)setTravelTime:(double)arg1;
 - (void)snoozeAlarm:(id)arg1 withTimeIntervalFromNow:(double)arg2;
-- (id)sortEKParticipantsIgnoringNonHumans:(id)arg1;
-- (id)sortedEKAttachmentsDisplayStrings;
-- (id)sortedEKParticipantsDisplayStringsIgnoringNonHumans:(id)arg1;
 - (id)startCalendarDate;
+- (id)startCalendarDateIncludingTravelTime;
 - (id)startDate;
+- (id)startDateForRecurrence;
 - (struct { int x1; BOOL x2; BOOL x3; BOOL x4; BOOL x5; double x6; })startDateGr;
+- (id)startDateIncludingTravel;
 - (struct { int x1; BOOL x2; BOOL x3; BOOL x4; BOOL x5; double x6; })startDatePinnedForAllDay;
 - (int)status;
 - (BOOL)timeChanged;
 - (id)title;
 - (BOOL)titleChanged;
+- (int)travelAdvisoryBehavior;
+- (BOOL)travelAdvisoryBehaviorIsEffectivelyEnabled;
+- (int)travelRoutingMode;
+- (double)travelTime;
 - (id)uniqueId;
+- (BOOL)validateRecurrenceRule:(id)arg1 error:(id*)arg2;
 - (BOOL)validateWithSpan:(int)arg1 error:(id*)arg2;
+
+// Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
+
+- (id)_commentIconString;
+- (id)_sortedEKParticipantsForSortingIgnoringNonHumans:(id)arg1;
+- (int)daySpan;
+- (BOOL)hasHumanInviteesToDisplay;
+- (id)sortEKParticipantsIgnoringNonHumans:(id)arg1;
+- (id)sortedEKAttachmentsDisplayStrings;
+- (id)sortedEKParticipantsDisplayStringsIgnoringNonHumans:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/CoreSuggestionsInternals.framework/CoreSuggestionsInternals
+
+- (BOOL)sg_isCuratedEventFromSuggestionNewerThan:(double)arg1;
 
 @end

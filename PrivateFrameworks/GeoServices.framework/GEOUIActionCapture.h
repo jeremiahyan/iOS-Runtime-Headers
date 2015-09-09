@@ -3,22 +3,22 @@
  */
 
 @interface GEOUIActionCapture : PBCodable <NSCopying> {
+    int _actionType;
+    double _duration;
     struct { 
         unsigned int duration : 1; 
         unsigned int actionType : 1; 
         unsigned int sequenceNumber : 1; 
-    int _actionType;
-    double _duration;
     } _has;
     int _sequenceNumber;
 }
 
-@property int actionType;
-@property double duration;
-@property BOOL hasActionType;
-@property BOOL hasDuration;
-@property BOOL hasSequenceNumber;
-@property int sequenceNumber;
+@property (nonatomic) int actionType;
+@property (nonatomic) double duration;
+@property (nonatomic) BOOL hasActionType;
+@property (nonatomic) BOOL hasDuration;
+@property (nonatomic) BOOL hasSequenceNumber;
+@property (nonatomic) int sequenceNumber;
 
 - (int)actionType;
 - (void)copyTo:(id)arg1;
@@ -31,6 +31,7 @@
 - (BOOL)hasSequenceNumber;
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
+- (void)mergeFrom:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 - (int)sequenceNumber;
 - (void)setActionType:(int)arg1;

@@ -2,16 +2,10 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSArray, NSString, UINavigationController, UITableViewController, UIViewController, UIWindow;
-
-@interface UIReferenceLibraryViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate> {
+@interface UIReferenceLibraryViewController : UIViewController <UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate> {
     UINavigationController *_baseNavController;
     NSArray *_definitionValues;
-    id _dismissCompletionHandler;
+    id /* block */ _dismissCompletionHandler;
     UIViewController *_longDefViewController;
     UITableViewController *_multiDefViewController;
     int _oldPopoverStyle;
@@ -19,8 +13,12 @@
     NSString *_term;
 }
 
-@property(setter=_setRotationDecider:,retain) UIWindow * _rotationDecider;
-@property(copy) id dismissCompletionHandler;
+@property (setter=_setRotationDecider:, nonatomic, retain) UIWindow *_rotationDecider;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, copy) id /* block */ dismissCompletionHandler;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)_backgroundColor;
 + (id)_colorAttributes;
@@ -52,13 +50,13 @@
 - (void)_setRotationDecider:(id)arg1;
 - (void)_willBecomeContentViewControllerOfPopover:(id)arg1;
 - (void)dealloc;
-- (id)dismissCompletionHandler;
+- (id /* block */)dismissCompletionHandler;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (id)initWithTerm:(id)arg1;
 - (void)navigationController:(id)arg1 willShowViewController:(id)arg2 animated:(BOOL)arg3;
 - (int)numberOfSectionsInTableView:(id)arg1;
 - (void)pushDownloadManager:(id)arg1;
-- (void)setDismissCompletionHandler:(id)arg1;
+- (void)setDismissCompletionHandler:(id /* block */)arg1;
 - (BOOL)shouldAutorotateToInterfaceOrientation:(int)arg1;
 - (unsigned int)supportedInterfaceOrientations;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;

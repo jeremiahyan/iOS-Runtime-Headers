@@ -2,9 +2,16 @@
    Image: /System/Library/PrivateFrameworks/TextInput.framework/TextInput
  */
 
-@class NSString, TICharacterSetDescription, TIKeyEventMap, TIKeyboardBehaviors, TIKeyboardCandidate;
-
 @interface TIKeyboardInputManagerState : NSObject <NSCopying, NSSecureCoding> {
+    TIKeyboardCandidate *_autocorrectionRecordForInputString;
+    unsigned int _initialCandidateBatchCount;
+    unsigned int _inputCount;
+    unsigned int _inputIndex;
+    NSString *_inputString;
+    TICharacterSetDescription *_inputsPreventingAcceptSelectedCandidate;
+    TICharacterSetDescription *_inputsToReject;
+    TIKeyEventMap *_keyEventMap;
+    TIKeyboardBehaviors *_keyboardBehaviors;
     union { 
         int integerValue; 
         struct { 
@@ -22,58 +29,53 @@
             unsigned int nextInputWouldStartSentence : 1; 
             unsigned int inputStringIsExemptFromChecker : 1; 
             unsigned int suppressPlaceholderCandidate : 1; 
+            unsigned int usesAutocorrectionLists : 1; 
         } fields; 
-    TIKeyboardCandidate *_autocorrectionRecordForInputString;
-    unsigned int _initialCandidateBatchCount;
-    unsigned int _inputCount;
-    unsigned int _inputIndex;
-    NSString *_inputString;
-    TICharacterSetDescription *_inputsPreventingAcceptSelectedCandidate;
-    TICharacterSetDescription *_inputsToReject;
-    TIKeyEventMap *_keyEventMap;
-    TIKeyboardBehaviors *_keyboardBehaviors;
     } _mask;
     NSString *_replacementForDoubleSpace;
     NSString *_searchStringForMarkedText;
     NSString *_shadowTyping;
     TICharacterSetDescription *_shortcutCompletions;
     BOOL _shouldAddModifierSymbolsToWordCharacters;
+    TICharacterSetDescription *_terminatorsDeletingAutospace;
     TICharacterSetDescription *_terminatorsPreventingAutocorrection;
     TICharacterSetDescription *_wordCharacters;
     NSString *_wordSeparator;
 }
 
-@property(copy) TIKeyboardCandidate * autocorrectionRecordForInputString;
-@property BOOL canHandleKeyHitTest;
-@property BOOL commitsAcceptedCandidate;
-@property BOOL ignoresDeadKeys;
-@property unsigned int initialCandidateBatchCount;
-@property unsigned int inputCount;
-@property unsigned int inputIndex;
-@property(copy) NSString * inputString;
-@property BOOL inputStringIsExemptFromChecker;
-@property(copy) TICharacterSetDescription * inputsPreventingAcceptSelectedCandidate;
-@property(copy) TICharacterSetDescription * inputsToReject;
-@property(retain) TIKeyEventMap * keyEventMap;
-@property(retain) TIKeyboardBehaviors * keyboardBehaviors;
-@property BOOL needsKeyHitTestResults;
-@property BOOL nextInputWouldStartSentence;
-@property(copy) NSString * replacementForDoubleSpace;
-@property(copy) NSString * searchStringForMarkedText;
-@property(copy) NSString * shadowTyping;
-@property(copy) TICharacterSetDescription * shortcutCompletions;
-@property BOOL shouldAddModifierSymbolsToWordCharacters;
-@property BOOL shouldExtendPriorWord;
-@property BOOL suppliesCompletions;
-@property BOOL supportsNumberKeySelection;
-@property BOOL supportsSetPhraseBoundary;
-@property BOOL suppressCompletionsForFieldEditor;
-@property BOOL suppressPlaceholderCandidate;
-@property(copy) TICharacterSetDescription * terminatorsPreventingAutocorrection;
-@property BOOL usesAutoDeleteWord;
-@property BOOL usesCandidateSelection;
-@property(copy) TICharacterSetDescription * wordCharacters;
-@property(copy) NSString * wordSeparator;
+@property (nonatomic, retain) TIKeyboardCandidate *autocorrectionRecordForInputString;
+@property (nonatomic) BOOL canHandleKeyHitTest;
+@property (nonatomic) BOOL commitsAcceptedCandidate;
+@property (nonatomic) BOOL ignoresDeadKeys;
+@property (nonatomic) unsigned int initialCandidateBatchCount;
+@property (nonatomic) unsigned int inputCount;
+@property (nonatomic) unsigned int inputIndex;
+@property (nonatomic, copy) NSString *inputString;
+@property (nonatomic) BOOL inputStringIsExemptFromChecker;
+@property (nonatomic, copy) TICharacterSetDescription *inputsPreventingAcceptSelectedCandidate;
+@property (nonatomic, copy) TICharacterSetDescription *inputsToReject;
+@property (nonatomic, retain) TIKeyEventMap *keyEventMap;
+@property (nonatomic, retain) TIKeyboardBehaviors *keyboardBehaviors;
+@property (nonatomic) BOOL needsKeyHitTestResults;
+@property (nonatomic) BOOL nextInputWouldStartSentence;
+@property (nonatomic, copy) NSString *replacementForDoubleSpace;
+@property (nonatomic, copy) NSString *searchStringForMarkedText;
+@property (nonatomic, copy) NSString *shadowTyping;
+@property (nonatomic, copy) TICharacterSetDescription *shortcutCompletions;
+@property (nonatomic) BOOL shouldAddModifierSymbolsToWordCharacters;
+@property (nonatomic) BOOL shouldExtendPriorWord;
+@property (nonatomic) BOOL suppliesCompletions;
+@property (nonatomic) BOOL supportsNumberKeySelection;
+@property (nonatomic) BOOL supportsSetPhraseBoundary;
+@property (nonatomic) BOOL suppressCompletionsForFieldEditor;
+@property (nonatomic) BOOL suppressPlaceholderCandidate;
+@property (nonatomic, copy) TICharacterSetDescription *terminatorsDeletingAutospace;
+@property (nonatomic, copy) TICharacterSetDescription *terminatorsPreventingAutocorrection;
+@property (nonatomic) BOOL usesAutoDeleteWord;
+@property (nonatomic) BOOL usesAutocorrectionLists;
+@property (nonatomic) BOOL usesCandidateSelection;
+@property (nonatomic, copy) TICharacterSetDescription *wordCharacters;
+@property (nonatomic, copy) NSString *wordSeparator;
 
 + (BOOL)supportsSecureCoding;
 
@@ -126,14 +128,17 @@
 - (void)setSupportsSetPhraseBoundary:(BOOL)arg1;
 - (void)setSuppressCompletionsForFieldEditor:(BOOL)arg1;
 - (void)setSuppressPlaceholderCandidate:(BOOL)arg1;
+- (void)setTerminatorsDeletingAutospace:(id)arg1;
 - (void)setTerminatorsPreventingAutocorrection:(id)arg1;
 - (void)setUsesAutoDeleteWord:(BOOL)arg1;
+- (void)setUsesAutocorrectionLists:(BOOL)arg1;
 - (void)setUsesCandidateSelection:(BOOL)arg1;
 - (void)setWordCharacters:(id)arg1;
 - (void)setWordSeparator:(id)arg1;
 - (id)shadowTyping;
 - (id)shortcutCompletions;
 - (BOOL)shouldAddModifierSymbolsToWordCharacters;
+- (BOOL)shouldDeleteAutospaceBeforeTerminator:(id)arg1;
 - (BOOL)shouldExtendPriorWord;
 - (BOOL)shouldSuppressAutocorrectionWithTerminator:(id)arg1;
 - (BOOL)stringEndsWord:(id)arg1;
@@ -142,8 +147,10 @@
 - (BOOL)supportsSetPhraseBoundary;
 - (BOOL)suppressCompletionsForFieldEditor;
 - (BOOL)suppressPlaceholderCandidate;
+- (id)terminatorsDeletingAutospace;
 - (id)terminatorsPreventingAutocorrection;
 - (BOOL)usesAutoDeleteWord;
+- (BOOL)usesAutocorrectionLists;
 - (BOOL)usesCandidateSelection;
 - (id)wordCharacters;
 - (id)wordSeparator;

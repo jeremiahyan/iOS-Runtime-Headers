@@ -2,22 +2,26 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@class MCProfileConnection, NSMutableDictionary, NSObject<OS_dispatch_queue>;
-
 @interface MPRestrictionsMonitor : NSObject <MCProfileConnectionObserver> {
     NSObject<OS_dispatch_queue> *_accessQueue;
-    BOOL _allowsCollectionCompletionPurchases;
+    BOOL _allowsAccountModification;
     BOOL _allowsDeletion;
     BOOL _allowsExplicitContent;
     BOOL _allowsRadioPurchases;
+    BOOL _allowsStorePurchases;
     NSMutableDictionary *_cachedSettings;
     MCProfileConnection *_connection;
 }
 
-@property(readonly) BOOL allowsCollectionCompletionPurchases;
-@property(readonly) BOOL allowsDeletion;
-@property(readonly) BOOL allowsExplicitContent;
-@property(readonly) BOOL allowsRadioPurchases;
+@property (nonatomic, readonly) BOOL allowsAccountModification;
+@property (nonatomic, readonly) BOOL allowsDeletion;
+@property (nonatomic, readonly) BOOL allowsExplicitContent;
+@property (nonatomic, readonly) BOOL allowsRadioPurchases;
+@property (nonatomic, readonly) BOOL allowsStorePurchases;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)sharedRestrictionsMonitor;
 
@@ -25,10 +29,11 @@
 - (void)_cacheValue:(id)arg1 forSetting:(id)arg2;
 - (BOOL)_isRunningInStoreDemoMode;
 - (void)_updateWithCanPostNotifications:(BOOL)arg1;
-- (BOOL)allowsCollectionCompletionPurchases;
+- (BOOL)allowsAccountModification;
 - (BOOL)allowsDeletion;
 - (BOOL)allowsExplicitContent;
 - (BOOL)allowsRadioPurchases;
+- (BOOL)allowsStorePurchases;
 - (void)dealloc;
 - (id)effectiveValueForSetting:(id)arg1;
 - (id)init;

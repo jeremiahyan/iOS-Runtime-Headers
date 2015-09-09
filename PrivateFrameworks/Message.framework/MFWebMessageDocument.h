@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Message.framework/Message
  */
 
-@class MFAttachmentManager, MFLock, MFMimeBody, MFMimePart, NSData, NSMutableDictionary, NSURL;
-
 @interface MFWebMessageDocument : MFWebAttachmentSource {
     MFAttachmentManager *_attachmentManager;
     NSURL *_baseURL;
@@ -17,11 +15,11 @@
     unsigned int _uniqueId;
 }
 
-@property(retain) MFAttachmentManager * attachmentManager;
-@property(readonly) NSURL * baseURL;
-@property(readonly) NSData * htmlData;
-@property(readonly) MFMimeBody * mimeBody;
-@property(readonly) MFMimePart * mimePart;
+@property (nonatomic, retain) MFAttachmentManager *attachmentManager;
+@property (readonly) NSURL *baseURL;
+@property (readonly) NSData *htmlData;
+@property (readonly) MFMimeBody *mimeBody;
+@property (readonly) MFMimePart *mimePart;
 @property unsigned long preferredEncoding;
 
 + (id)sourceForURL:(id)arg1;
@@ -37,8 +35,8 @@
 - (id)htmlData;
 - (id)init;
 - (id)initWithMimeBody:(id)arg1;
-- (id)initWithMimePart:(id)arg1 htmlData:(id)arg2 encoding:(unsigned long)arg3;
 - (id)initWithMimePart:(id)arg1;
+- (id)initWithMimePart:(id)arg1 htmlData:(id)arg2 encoding:(unsigned long)arg3;
 - (id)mimeBody;
 - (id)mimePart;
 - (id)mimePartForURL:(id)arg1;

@@ -2,20 +2,21 @@
    Image: /System/Library/PrivateFrameworks/AXHearingAidSupport.framework/AXHearingAidSupport
  */
 
-@class AXHearingAidMode, AXTimer, CBPeripheral, NSArray, NSDate, NSMutableDictionary, NSString;
-
-@interface AXHearingAidDevice : NSObject <CBPeripheralDelegate, CBPeripheralPairingDelegate> {
+@interface AXHearingAidDevice : NSObject <AXHADeviceProtocol, CBPeripheralDelegate> {
+    int _availableEars;
     BOOL _finishedLoading;
     BOOL _isListeningForStreamingChanges;
     BOOL _keepInSync;
     NSDate *_leftBatteryLowDate;
     float _leftMicrophoneVolume;
+    unsigned long _leftPresetBitmask;
     float _leftStreamVolume;
     float _leftVolume;
     int _leftWriteResponseProperties;
-    AXTimer *_propertyWriteTimer;
+    AXHATimer *_propertyWriteTimer;
     NSDate *_rightBatteryLowDate;
     float _rightMicrophoneVolume;
+    unsigned long _rightPresetBitmask;
     float _rightStreamVolume;
     float _rightVolume;
     int _rightWriteResponseProperties;
@@ -52,52 +53,64 @@
     int rightWriteRequestProperties;
 }
 
-@property(retain) AXHearingAidMode * currentLeftProgram;
-@property(retain) AXHearingAidMode * currentRightProgram;
-@property BOOL isConnecting;
-@property BOOL isPaired;
-@property BOOL isPersistent;
-@property BOOL keepInSync;
-@property float leftBatteryLevel;
-@property(retain) NSDate * leftBatteryLowDate;
-@property(retain) NSString * leftFirmwareVersion;
-@property(retain) NSString * leftHardwareVersion;
-@property int leftLoadedProperties;
-@property float leftMicrophoneVolume;
-@property(retain) CBPeripheral * leftPeripheral;
-@property(retain) NSString * leftPeripheralUUID;
-@property int leftProgramVersion;
-@property(copy) NSArray * leftPrograms;
-@property(retain) NSMutableDictionary * leftPropertiesLoadCount;
-@property float leftStreamVolume;
-@property(retain) NSString * leftUUID;
-@property int leftWriteRequestProperties;
-@property int leftWriteResponseProperties;
-@property(retain) NSString * manufacturer;
-@property(retain) NSString * model;
-@property(retain) NSString * name;
-@property float rightBatteryLevel;
-@property(retain) NSDate * rightBatteryLowDate;
-@property(retain) NSString * rightFirmwareVersion;
-@property(retain) NSString * rightHardwareVersion;
-@property int rightLoadedProperties;
-@property float rightMicrophoneVolume;
-@property(retain) CBPeripheral * rightPeripheral;
-@property(retain) NSString * rightPeripheralUUID;
-@property int rightProgramVersion;
-@property(copy) NSArray * rightPrograms;
-@property(retain) NSMutableDictionary * rightPropertiesLoadCount;
-@property float rightStreamVolume;
-@property(retain) NSString * rightUUID;
-@property int rightWriteRequestProperties;
-@property int rightWriteResponseProperties;
+@property (nonatomic) int availableEars;
+@property (nonatomic, retain) AXHearingAidMode *currentLeftProgram;
+@property (nonatomic, retain) AXHearingAidMode *currentRightProgram;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly, retain) NSString *deviceUUID;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL isConnecting;
+@property (nonatomic) BOOL isPaired;
+@property (nonatomic) BOOL isPersistent;
+@property (nonatomic) BOOL keepInSync;
+@property (nonatomic) float leftBatteryLevel;
+@property (nonatomic, retain) NSDate *leftBatteryLowDate;
+@property (nonatomic, retain) NSString *leftFirmwareVersion;
+@property (nonatomic, retain) NSString *leftHardwareVersion;
+@property (nonatomic) int leftLoadedProperties;
+@property (nonatomic) float leftMicrophoneVolume;
+@property (nonatomic, retain) CBPeripheral *leftPeripheral;
+@property (nonatomic, retain) NSString *leftPeripheralUUID;
+@property (nonatomic) unsigned long leftPresetBitmask;
+@property (nonatomic) int leftProgramVersion;
+@property (nonatomic, copy) NSArray *leftPrograms;
+@property (nonatomic, retain) NSMutableDictionary *leftPropertiesLoadCount;
+@property (nonatomic, readonly, retain) AXHearingAidMode *leftSelectedProgram;
+@property (nonatomic) float leftStreamVolume;
+@property (nonatomic, retain) NSString *leftUUID;
+@property (nonatomic) int leftWriteRequestProperties;
+@property (nonatomic) int leftWriteResponseProperties;
+@property (nonatomic, retain) NSString *manufacturer;
+@property (nonatomic, retain) NSString *model;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic) float rightBatteryLevel;
+@property (nonatomic, retain) NSDate *rightBatteryLowDate;
+@property (nonatomic, retain) NSString *rightFirmwareVersion;
+@property (nonatomic, retain) NSString *rightHardwareVersion;
+@property (nonatomic) int rightLoadedProperties;
+@property (nonatomic) float rightMicrophoneVolume;
+@property (nonatomic, retain) CBPeripheral *rightPeripheral;
+@property (nonatomic, retain) NSString *rightPeripheralUUID;
+@property (nonatomic) unsigned long rightPresetBitmask;
+@property (nonatomic) int rightProgramVersion;
+@property (nonatomic, copy) NSArray *rightPrograms;
+@property (nonatomic, retain) NSMutableDictionary *rightPropertiesLoadCount;
+@property (nonatomic, readonly, retain) AXHearingAidMode *rightSelectedProgram;
+@property (nonatomic) float rightStreamVolume;
+@property (nonatomic, retain) NSString *rightUUID;
+@property (nonatomic) int rightWriteRequestProperties;
+@property (nonatomic) int rightWriteResponseProperties;
+@property (readonly) Class superclass;
 
 + (id)characteristicsUUIDs;
 
 - (void)_init;
 - (void)_sendDelayedWrites;
 - (BOOL)addPeripheral:(id)arg1;
+- (int)availableEars;
 - (void)connect;
+- (int)connectedEars;
 - (void)connectionDidChange;
 - (BOOL)containsPeripheralWithUUID:(id)arg1;
 - (id)currentLeftProgram;
@@ -110,8 +123,11 @@
 - (BOOL)didLoadBasicProperties;
 - (BOOL)didLoadRequiredProperties;
 - (void)disconnect;
+- (BOOL)hasConnection;
+- (id)initWithLeftDevice:(id)arg1 andRightDevice:(id)arg2;
 - (id)initWithPeripheral:(id)arg1;
 - (id)initWithPersistentRepresentation:(id)arg1;
+- (BOOL)isBluetoothPaired;
 - (BOOL)isConnected;
 - (BOOL)isConnecting;
 - (BOOL)isPaired;
@@ -126,6 +142,7 @@
 - (float)leftMicrophoneVolume;
 - (id)leftPeripheral;
 - (id)leftPeripheralUUID;
+- (unsigned long)leftPresetBitmask;
 - (int)leftProgramVersion;
 - (id)leftPrograms;
 - (id)leftPropertiesLoadCount;
@@ -142,6 +159,7 @@
 - (void)mateWithDevice:(id)arg1;
 - (id)model;
 - (id)name;
+- (void)pairingDidCompleteForPeripheral:(id)arg1;
 - (id)peripheral:(id)arg1 characteristicForProperty:(int)arg2;
 - (id)peripheral:(id)arg1 characteristicForUUID:(id)arg2;
 - (void)peripheral:(id)arg1 didDiscoverCharacteristicsForService:(id)arg2 error:(id)arg3;
@@ -168,6 +186,7 @@
 - (float)rightMicrophoneVolume;
 - (id)rightPeripheral;
 - (id)rightPeripheralUUID;
+- (unsigned long)rightPresetBitmask;
 - (int)rightProgramVersion;
 - (id)rightPrograms;
 - (id)rightPropertiesLoadCount;
@@ -176,10 +195,10 @@
 - (id)rightUUID;
 - (int)rightWriteRequestProperties;
 - (int)rightWriteResponseProperties;
-- (id)rssi;
 - (void)selectProgram:(id)arg1;
 - (id)selectedProgramIndexes;
 - (id)selectedPrograms;
+- (void)setAvailableEars:(int)arg1;
 - (void)setCurrentLeftProgram:(id)arg1;
 - (void)setCurrentRightProgram:(id)arg1;
 - (void)setIsConnecting:(BOOL)arg1;
@@ -194,6 +213,7 @@
 - (void)setLeftMicrophoneVolume:(float)arg1;
 - (void)setLeftPeripheral:(id)arg1;
 - (void)setLeftPeripheralUUID:(id)arg1;
+- (void)setLeftPresetBitmask:(unsigned long)arg1;
 - (void)setLeftProgramVersion:(int)arg1;
 - (void)setLeftPrograms:(id)arg1;
 - (void)setLeftPropertiesLoadCount:(id)arg1;
@@ -214,6 +234,7 @@
 - (void)setRightMicrophoneVolume:(float)arg1;
 - (void)setRightPeripheral:(id)arg1;
 - (void)setRightPeripheralUUID:(id)arg1;
+- (void)setRightPresetBitmask:(unsigned long)arg1;
 - (void)setRightProgramVersion:(int)arg1;
 - (void)setRightPrograms:(id)arg1;
 - (void)setRightPropertiesLoadCount:(id)arg1;

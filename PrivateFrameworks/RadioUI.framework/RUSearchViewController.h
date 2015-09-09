@@ -2,9 +2,13 @@
    Image: /System/Library/PrivateFrameworks/RadioUI.framework/RadioUI
  */
 
-@class <RUSearchViewControllerDelegate>, MPImageCache, NSError, NSMutableArray, NSString, RUMetricsController, RUSearchDataSource, RadioSearchStationResult, SKUICircleProgressIndicator, SSMetricsPageEvent, UILabel, UITableView, UIView;
-
 @interface RUSearchViewController : UIViewController <RUSearchDataSourceDelegate, UISearchBarDelegate, UISearchDisplayDelegate, UITableViewDataSource, UITableViewDelegate> {
+    SKUICircleProgressIndicator *_activityIndicatorView;
+    RadioSearchStationResult *_addingStationResult;
+    RUSearchDataSource *_dataSource;
+    <RUSearchViewControllerDelegate> *_delegate;
+    BOOL _displaysCoreSeedName;
+    BOOL _excludeFeaturedStations;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -14,13 +18,6 @@
             float width; 
             float height; 
         } size; 
-    SKUICircleProgressIndicator *_activityIndicatorView;
-    RadioSearchStationResult *_addingStationResult;
-    RUSearchDataSource *_dataSource;
-    <RUSearchViewControllerDelegate> *_delegate;
-    BOOL _displaysCoreSeedName;
-    BOOL _excludeFeaturedStations;
-    MPImageCache *_imageCache;
     } _keyboardFrame;
     SSMetricsPageEvent *_lastPageEvent;
     NSError *_lastSearchError;
@@ -36,20 +33,24 @@
     UIView *_tableViewBackgroundView;
 }
 
-@property <RUSearchViewControllerDelegate> * delegate;
-@property BOOL displaysCoreSeedName;
-@property BOOL excludeFeaturedStations;
-@property BOOL showsAddingIndicator;
-@property(readonly) UITableView * tableView;
-@property(retain) UIView * tableViewBackgroundView;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <RUSearchViewControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL displaysCoreSeedName;
+@property (nonatomic) BOOL excludeFeaturedStations;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL showsAddingIndicator;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) UITableView *tableView;
+@property (nonatomic, retain) UIView *tableViewBackgroundView;
 
 - (void).cxx_destruct;
-- (void)_addMetricsControllerOperationBlock:(id)arg1;
+- (void)_addMetricsControllerOperationBlock:(id /* block */)arg1;
 - (void)_applicationWillEnterForegroundNotification:(id)arg1;
-- (void)_applyHighlightRanges:(id)arg1 toAttributedString:(id)arg2 withEmphasizedTextAttributes:(id)arg3;
 - (void)_clearButtonAction:(id)arg1;
 - (void)_configureSectionHeader:(id)arg1 forResultCategory:(id)arg2;
 - (void)_configureSeeMoreCell:(id)arg1 forResultCategory:(id)arg2;
+- (void)_contentSizeCategoryDidChangeNotification:(id)arg1;
 - (id)_createPageEventForCurrentState;
 - (id)_currentVisibleStationDictionaries;
 - (id)_firstValueForKeyInImpressionsMap:(id)arg1 withStationDictionary:(id)arg2;
@@ -59,12 +60,14 @@
 - (id)_parentPageDescription;
 - (id)_parentPageType;
 - (void)_reloadForSearchTerm:(id)arg1 canUpdateDataSourceResults:(BOOL)arg2;
+- (id)_sectionHeaderTitleFontWithEmphasis:(BOOL)arg1;
 - (void)_setShowingLoading:(BOOL)arg1;
+- (id)_statusLabelFont;
+- (void)_updateViewForHorizontalSizeClassChange;
 - (void)_updateVisibleHeadersState;
 - (id)contentScrollView;
 - (void)dealloc;
 - (id)delegate;
-- (void)didRotateFromInterfaceOrientation:(int)arg1;
 - (BOOL)displaysCoreSeedName;
 - (BOOL)excludeFeaturedStations;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
@@ -89,18 +92,20 @@
 - (void)setShowsAddingIndicator:(BOOL)arg1;
 - (void)setTableViewBackgroundView:(id)arg1;
 - (BOOL)showsAddingIndicator;
+- (id)tableView;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
 - (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
 - (float)tableView:(id)arg1 heightForFooterInSection:(int)arg2;
 - (float)tableView:(id)arg1 heightForHeaderInSection:(int)arg2;
+- (float)tableView:(id)arg1 heightForRowAtIndexPath:(id)arg2;
 - (int)tableView:(id)arg1 numberOfRowsInSection:(int)arg2;
 - (id)tableView:(id)arg1 viewForFooterInSection:(int)arg2;
 - (id)tableView:(id)arg1 viewForHeaderInSection:(int)arg2;
 - (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forRowAtIndexPath:(id)arg3;
 - (void)tableView:(id)arg1 willDisplayHeaderView:(id)arg2 forSection:(int)arg3;
-- (id)tableView;
 - (id)tableViewBackgroundView;
 - (void)tableViewDidFinishReload:(id)arg1;
+- (void)traitCollectionDidChange:(id)arg1;
 - (void)updateResultsForSearchTerm:(id)arg1;
 - (void)viewDidLoad;
 

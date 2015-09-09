@@ -2,24 +2,24 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class NSString;
-
 @interface CNLabeledValue : NSObject <NSCopying> {
     NSString *_label;
     int _multiValueIdentifier;
     id _value;
 }
 
-@property(readonly) NSString * identifier;
-@property(readonly) NSString * label;
-@property(readonly) NSString * localizedLabel;
-@property(readonly) int multiValueIdentifier;
-@property(readonly) id value;
+@property (readonly, copy) NSString *identifier;
+@property (readonly, copy) NSString *label;
+@property (readonly, copy) NSString *localizedLabel;
+@property (readonly) int multiValueIdentifier;
+@property (readonly, copy) id value;
 
++ (void*)addressBook;
 + (id)allCustomLabels;
 + (id)allLabels;
 + (id)builtinLabelsForProperty:(id)arg1;
 + (id)defaultLabels;
++ (void)deleteCustomLabel:(id)arg1;
 + (id)labeledValueWithLabel:(id)arg1 value:(id)arg2;
 + (id)labeledValueWithMultiValueIdentifier:(int)arg1 label:(id)arg2 value:(id)arg3;
 
@@ -30,8 +30,8 @@
 - (id)initWithLabel:(id)arg1 value:(id)arg2;
 - (id)initWithMultiValueIdentifier:(int)arg1 label:(id)arg2 value:(id)arg3;
 - (BOOL)isEqual:(id)arg1;
-- (BOOL)isEqualToLabelledValue:(id)arg1 includeIdentifiers:(BOOL)arg2;
 - (BOOL)isEqualToLabelledValue:(id)arg1;
+- (BOOL)isEqualToLabelledValue:(id)arg1 includeIdentifiers:(BOOL)arg2;
 - (id)label;
 - (id)labeledValueBySettingLabel:(id)arg1 value:(id)arg2;
 - (id)labeledValueBySettingValue:(id)arg1;

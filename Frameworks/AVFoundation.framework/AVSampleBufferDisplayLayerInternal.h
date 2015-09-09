@@ -2,22 +2,38 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class AVMediaDataRequester, CALayer, NSObject<OS_dispatch_queue>, NSString;
-
 @interface AVSampleBufferDisplayLayerInternal : NSObject {
+    BOOL aboveHighWaterLevel;
+    BOOL addedToSynchronizer;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
+    } bounds;
+    CALayer *contentLayer;
+    struct OpaqueCMTimebase { } *controlTimebaseSetByUser;
+    BOOL controlTimebaseSetByUserIsInUse;
+    NSError *error;
+    BOOL isRequestingMediaData;
+    AVMediaDataRequester *mediaDataRequester;
+    BOOL outputObscured;
     struct CGSize { 
         float width; 
         float height; 
-    BOOL aboveHighWaterLevel;
-    CALayer *contentLayer;
-    BOOL controlTimebaseSetByUser;
-    BOOL hasEnqueuedSamples;
-    BOOL isRequestingMediaData;
-    AVMediaDataRequester *mediaDataRequester;
     } presentationSize;
+    struct OpaqueCMTimebase { } *readOnlyRenderingTimebase;
+    struct OpaqueCMTimebase { } *readOnlyVideoQueueTimebase;
     NSObject<OS_dispatch_queue> *serialQueue;
+    int status;
     NSString *videoGravity;
     struct OpaqueFigVideoQueue { } *videoQueue;
+    AVWeakReference *weakReferenceToSelf;
+    AVWeakReference *weakReferenceToSynchronizer;
 }
 
 @end

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSMutableDictionary;
-
 @interface OADFontScheme : NSObject {
     NSMutableDictionary *mMajorFont;
     NSMutableDictionary *mMinorFont;
@@ -12,6 +10,7 @@
 + (void)addFontEntry:(id)arg1 script:(id)arg2 typeface:(id)arg3;
 
 - (void)dealloc;
+- (id)description;
 - (id)fontForFontSchemeRef:(id)arg1;
 - (id)init;
 - (BOOL)isEqual:(id)arg1;

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
  */
 
-@class NSArray, NSMutableArray, NSObject<OS_dispatch_queue>, SSAccount, SSKeyValueStore;
-
 @interface SSAccountStore : NSObject {
     NSObject<OS_dispatch_queue> *_dispatchQueue;
     SSKeyValueStore *_keyValueStore;
@@ -11,11 +9,11 @@
     NSMutableArray *_notifyTokens;
 }
 
-@property(readonly) NSArray * accounts;
-@property(readonly) SSAccount * activeAccount;
-@property(readonly) SSAccount * activeLockerAccount;
-@property(getter=isAuthenticationActive,readonly) BOOL authenticationActive;
-@property(getter=isExpired,readonly) BOOL expired;
+@property (readonly, copy) NSArray *accounts;
+@property (readonly) SSAccount *activeAccount;
+@property (readonly) SSAccount *activeLockerAccount;
+@property (getter=isAuthenticationActive, readonly) BOOL authenticationActive;
+@property (getter=isExpired, readonly) BOOL expired;
 
 + (id)defaultStore;
 + (id)existingDefaultStore;
@@ -26,18 +24,19 @@
 + (void)setDefaultStore:(id)arg1;
 + (double)tokenExpirationInterval;
 
-- (void)_dispatchAsync:(id)arg1;
-- (void)_dispatchSync:(id)arg1;
+- (void)_dispatchAsync:(id /* block */)arg1;
+- (void)_dispatchSync:(id /* block */)arg1;
 - (id)_keyValueStore;
 - (void)_postAccountStoreChangeNotification;
-- (id)accountWithUniqueIdentifier:(id)arg1 reloadIfNecessary:(BOOL)arg2;
 - (id)accountWithUniqueIdentifier:(id)arg1;
+- (id)accountWithUniqueIdentifier:(id)arg1 reloadIfNecessary:(BOOL)arg2;
+- (id)accountWithUniqueIdentifier:(id)arg1 scope:(int)arg2;
 - (id)accounts;
 - (id)activeAccount;
 - (id)activeLockerAccount;
 - (id)addAccount:(id)arg1;
 - (void)dealloc;
-- (void)getDefaultAccountNameUsingBlock:(id)arg1;
+- (void)getDefaultAccountNameUsingBlock:(id /* block */)arg1;
 - (id)init;
 - (BOOL)isAuthenticationActive;
 - (BOOL)isExpired;
@@ -48,7 +47,7 @@
 - (void)setAccountCredits:(id)arg1 forAccountWithUniqueIdentifier:(id)arg2;
 - (id)setActiveAccount:(id)arg1;
 - (id)setActiveLockerAccount:(id)arg1;
-- (void)setDefaultAccountName:(id)arg1 completionBlock:(id)arg2;
+- (void)setDefaultAccountName:(id)arg1 completionBlock:(id /* block */)arg2;
 - (void)signOutAccount:(id)arg1;
 - (void)signOutAllAccounts;
 

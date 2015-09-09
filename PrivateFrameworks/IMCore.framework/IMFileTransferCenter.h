@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/IMCore.framework/IMCore
  */
 
-@class NSArray, NSDictionary, NSMutableArray, NSMutableDictionary, NSMutableSet;
-
 @interface IMFileTransferCenter : NSObject {
     NSMutableDictionary *_accountIDToTransferGUIDsMap;
     NSMutableSet *_activeTransfers;
@@ -14,13 +12,13 @@
     NSMutableArray *_preauthorizedInfos;
 }
 
-@property(readonly) NSArray * activeTransferGUIDs;
-@property(readonly) NSArray * activeTransfers;
-@property(readonly) BOOL hasActiveFileTransfers;
-@property(readonly) BOOL hasPendingFileTransfers;
-@property(readonly) NSArray * orderedTransfers;
-@property(readonly) NSArray * orderedTransfersGUIDs;
-@property(readonly) NSDictionary * transfers;
+@property (nonatomic, readonly) NSArray *activeTransferGUIDs;
+@property (nonatomic, readonly) NSArray *activeTransfers;
+@property (nonatomic, readonly) BOOL hasActiveFileTransfers;
+@property (nonatomic, readonly) BOOL hasPendingFileTransfers;
+@property (nonatomic, readonly) NSArray *orderedTransfers;
+@property (nonatomic, readonly) NSArray *orderedTransfersGUIDs;
+@property (nonatomic, readonly) NSDictionary *transfers;
 
 + (Class)fileTransferClass;
 + (void)setTransferCenterClass:(Class)arg1;
@@ -29,8 +27,8 @@
 
 - (void)_addActiveTransfer:(id)arg1;
 - (void)_addPendingTransfer:(id)arg1;
-- (void)_addTransfer:(id)arg1 toAccount:(id)arg2;
 - (void)_addTransfer:(id)arg1;
+- (void)_addTransfer:(id)arg1 toAccount:(id)arg2;
 - (void)_clearTransfers;
 - (void)_handleAllFileTransfers:(id)arg1;
 - (void)_handleFileTransfer:(id)arg1 createdWithProperties:(id)arg2;
@@ -41,8 +39,8 @@
 - (void)_removeAllActiveTransfers;
 - (void)_removePendingTransfer:(id)arg1;
 - (void)acceptFileTransferIfPreauthorzed:(id)arg1;
-- (void)acceptTransfer:(id)arg1 withPath:(id)arg2 autoRename:(BOOL)arg3 overwrite:(BOOL)arg4;
 - (void)acceptTransfer:(id)arg1;
+- (void)acceptTransfer:(id)arg1 withPath:(id)arg2 autoRename:(BOOL)arg3 overwrite:(BOOL)arg4;
 - (void)acknowledgeAllPendingTransfers;
 - (void)acknowledgePendingTransfer:(id)arg1;
 - (id)activeTransferGUIDs;
@@ -66,8 +64,8 @@
 - (void)retargetTransfer:(id)arg1 toPath:(id)arg2;
 - (void)sendTransfer:(id)arg1;
 - (void)stopTransfer:(id)arg1;
-- (id)transferForGUID:(id)arg1 includeRemoved:(BOOL)arg2;
 - (id)transferForGUID:(id)arg1;
+- (id)transferForGUID:(id)arg1 includeRemoved:(BOOL)arg2;
 - (id)transfers;
 - (id)transfersForAccount:(id)arg1;
 - (BOOL)wasFileTransferPreauthorized:(id)arg1;

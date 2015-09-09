@@ -2,8 +2,12 @@
    Image: /System/Library/Frameworks/Accounts.framework/Accounts
  */
 
-@interface ACAccountStoreClientSideListener : NSObject <ACAccountStoreProtocol> {
-}
+@interface ACAccountStoreClientSideListener : NSObject <ACAccountStoreProtocol>
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)sharedClientSideListener;
 

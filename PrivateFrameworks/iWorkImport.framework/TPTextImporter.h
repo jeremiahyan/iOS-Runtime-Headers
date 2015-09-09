@@ -2,14 +2,16 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSURL, TSUProgressContext;
-
 @interface TPTextImporter : NSObject <TSKImporter> {
     TSUProgressContext *mProgressContext;
     NSURL *mURL;
 }
 
-@property(retain) TSUProgressContext * progressContext;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (retain) TSUProgressContext *progressContext;
+@property (readonly) Class superclass;
 
 - (void)cancel;
 - (void)dealloc;

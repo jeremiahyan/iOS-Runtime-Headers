@@ -2,22 +2,19 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@class <MKReverseGeocoderDelegate>, MKPlacemark, MKReverseGeocoderInternal;
-
 @interface MKReverseGeocoder : NSObject {
     MKReverseGeocoderInternal *_internal;
 }
 
-@property(readonly) struct { double x1; double x2; } coordinate;
-@property <MKReverseGeocoderDelegate> * delegate;
-@property(readonly) MKPlacemark * placemark;
-@property(getter=isQuerying,readonly) BOOL querying;
+@property (nonatomic, readonly) struct { double x1; double x2; } coordinate;
+@property (nonatomic) <MKReverseGeocoderDelegate> *delegate;
+@property (nonatomic, readonly) MKPlacemark *placemark;
+@property (getter=isQuerying, nonatomic, readonly) BOOL querying;
 
 - (void).cxx_destruct;
 - (void)_notifyError:(id)arg1;
 - (void)_notifyNoResults;
 - (void)_notifyResult:(id)arg1;
-- (id)_placemarkFromResponse:(id)arg1;
 - (void)cancel;
 - (struct { double x1; double x2; })coordinate;
 - (id)delegate;

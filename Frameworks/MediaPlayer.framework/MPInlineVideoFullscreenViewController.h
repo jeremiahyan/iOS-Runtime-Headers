@@ -2,9 +2,7 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@class MPAVItem, MPInlineVideoController, MPSwipableView, MPVideoPlaybackOverlayView, MPVolumeController, MPWeakTimer, UIActivityIndicatorView, UIPinchGestureRecognizer, UITapGestureRecognizer;
-
-@interface MPInlineVideoFullscreenViewController : UIViewController <MPSwipableViewDelegate, MPVolumeControllerDelegate, MPVideoOverlayDelegate, MPTransportControlsTarget> {
+@interface MPInlineVideoFullscreenViewController : UIViewController <MPSwipableViewDelegate, MPTransportControlsTarget, MPVideoOverlayDelegate, MPVolumeControllerDelegate> {
     int _activeOverlayUserEvents;
     BOOL _disableTaps;
     UITapGestureRecognizer *_doubleTapGestureRecognizer;
@@ -22,8 +20,12 @@
     MPVolumeController *_volumeController;
 }
 
-@property(retain) MPAVItem * item;
-@property MPInlineVideoController * masterController;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) MPAVItem *item;
+@property (nonatomic) MPInlineVideoController *masterController;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_hideOverlayAnimated:(BOOL)arg1;
@@ -44,6 +46,7 @@
 - (void)overlay:(id)arg1 didCancelUserEvent:(int)arg2;
 - (void)overlay:(id)arg1 didEndUserEvent:(int)arg2;
 - (void)overlayTappedBackButton:(id)arg1;
+- (void)overlayTappedFullscreenButton:(id)arg1;
 - (BOOL)prefersStatusBarHidden;
 - (void)prepareForTransitionFromFullscreen;
 - (void)resetOverlayIdleTimer;
@@ -59,6 +62,7 @@
 - (void)updateOverlayView;
 - (void)viewWillAppear:(BOOL)arg1;
 - (void)viewWillDisappear:(BOOL)arg1;
+- (void)viewWillTransitionToSize:(struct CGSize { float x1; float x2; })arg1 withTransitionCoordinator:(id)arg2;
 - (void)volumeController:(id)arg1 volumeValueDidChange:(float)arg2;
 - (void)willAnimateRotationToInterfaceOrientation:(int)arg1 duration:(double)arg2;
 - (void)willRotateToInterfaceOrientation:(int)arg1 duration:(double)arg2;

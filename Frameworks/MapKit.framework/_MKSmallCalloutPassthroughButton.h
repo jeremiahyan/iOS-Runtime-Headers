@@ -2,16 +2,14 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@class UIButton, UIView;
-
 @interface _MKSmallCalloutPassthroughButton : UIControl {
     UIView *_highlightView;
     float _leftHighlightInset;
-    UIButton *_targetButton;
+    UIControl *_targetControl;
 }
 
-@property float leftHighlightInset;
-@property(retain) UIButton * targetButton;
+@property (nonatomic) float leftHighlightInset;
+@property (nonatomic, retain) UIControl *targetControl;
 
 - (void).cxx_destruct;
 - (void)handleTap:(id)arg1;
@@ -19,7 +17,7 @@
 - (float)leftHighlightInset;
 - (void)setHighlighted:(BOOL)arg1;
 - (void)setLeftHighlightInset:(float)arg1;
-- (void)setTargetButton:(id)arg1;
-- (id)targetButton;
+- (void)setTargetControl:(id)arg1;
+- (id)targetControl;
 
 @end

@@ -2,8 +2,12 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-@interface SpringFactory : NSObject <_UIBasicAnimationFactory> {
-}
+@interface SpringFactory : NSObject <_UIBasicAnimationFactory>
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)sharedFactory;
 

@@ -2,16 +2,13 @@
    Image: /System/Library/PrivateFrameworks/CoreDAV.framework/CoreDAV
  */
 
-@class <CoreDAVLocalDBInfoProvider>, NSArray, NSDictionary, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString, NSURL;
-
-@interface CoreDAVContainerSyncTaskGroup : CoreDAVTaskGroup <CoreDAVDeleteTaskDelegate, CoreDAVPutTaskDelegate, CoreDAVGetTaskDelegate> {
+@interface CoreDAVContainerSyncTaskGroup : CoreDAVTaskGroup <CoreDAVDeleteTaskDelegate, CoreDAVGetTaskDelegate, CoreDAVPutTaskDelegate> {
     NSMutableArray *_actions;
     BOOL _actionsOnly;
     NSURL *_addMemberURL;
     Class _appSpecificDataItemClass;
     NSString *_bulkChangeCheckCTag;
     NSDictionary *_bulkRequests;
-    void *_context;
     BOOL _ensureUpdatedCTag;
     NSURL *_folderURL;
     NSMutableArray *_localItemURLOrder;
@@ -32,22 +29,25 @@
     BOOL _useSyncCollection;
 }
 
-@property BOOL actionsOnly;
-@property(retain) NSURL * addMemberURL;
-@property(retain) NSString * bulkChangeCheckCTag;
-@property(retain) NSDictionary * bulkRequests;
-@property(readonly) void* context;
-@property <CoreDAVLocalDBInfoProvider> * delegate;
-@property BOOL ensureUpdatedCTag;
-@property(readonly) NSURL * folderURL;
-@property(readonly) NSArray * localItemURLOrder;
-@property unsigned int maxIndependentTasks;
-@property unsigned int multiGetBatchSize;
-@property(retain) NSString * nextCTag;
-@property(retain) NSString * previousCTag;
-@property(retain) NSString * previousSyncToken;
-@property BOOL useMultiGet;
-@property BOOL useSyncCollection;
+@property (nonatomic) BOOL actionsOnly;
+@property (nonatomic, retain) NSURL *addMemberURL;
+@property (nonatomic, retain) NSString *bulkChangeCheckCTag;
+@property (nonatomic, retain) NSDictionary *bulkRequests;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <CoreDAVLocalDBInfoProvider> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL ensureUpdatedCTag;
+@property (nonatomic, readonly) NSURL *folderURL;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) NSArray *localItemURLOrder;
+@property (nonatomic) unsigned int maxIndependentTasks;
+@property (nonatomic) unsigned int multiGetBatchSize;
+@property (nonatomic, retain) NSString *nextCTag;
+@property (nonatomic, retain) NSString *previousCTag;
+@property (nonatomic, retain) NSString *previousSyncToken;
+@property (readonly) Class superclass;
+@property (nonatomic) BOOL useMultiGet;
+@property (nonatomic) BOOL useSyncCollection;
 
 - (void)_bulkChange;
 - (void)_bulkChangeTask:(id)arg1 didFinishWithError:(id)arg2;
@@ -72,7 +72,6 @@
 - (Class)bulkChangeTaskClass;
 - (id)bulkRequests;
 - (void)cancelTaskGroup;
-- (void*)context;
 - (id)copyAdditionalResourcePropertiesToFetch;
 - (id)copyGetEtagTaskWithPropertiesToFind:(id)arg1;
 - (id)copyGetTaskWithURL:(id)arg1;
@@ -87,7 +86,7 @@
 - (BOOL)ensureUpdatedCTag;
 - (id)folderURL;
 - (void)getTask:(id)arg1 data:(id)arg2 error:(id)arg3;
-- (id)initWithFolderURL:(id)arg1 previousCTag:(id)arg2 previousSyncToken:(id)arg3 actions:(id)arg4 syncItemOrder:(BOOL)arg5 context:(void*)arg6 accountInfoProvider:(id)arg7 taskManager:(id)arg8;
+- (id)initWithFolderURL:(id)arg1 previousCTag:(id)arg2 previousSyncToken:(id)arg3 actions:(id)arg4 syncItemOrder:(BOOL)arg5 context:(id)arg6 accountInfoProvider:(id)arg7 taskManager:(id)arg8;
 - (BOOL)isWhitelistedError:(id)arg1;
 - (id)localItemURLOrder;
 - (unsigned int)maxIndependentTasks;

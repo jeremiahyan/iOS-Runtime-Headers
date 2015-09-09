@@ -2,11 +2,7 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class CMArchiveManager, EDWorkbook, NSMutableArray, NSString, OIXMLDocument, OIXMLElement;
-
 @interface EMWorkbookMapper : CMMapper <CMMapperRoot> {
-    boolmIsFirstMappedSheet;
-    boolmIsFrameset;
     EDWorkbook *edWorkbook;
     CMArchiveManager *mArchiver;
     OIXMLElement *mBodyElement;
@@ -14,6 +10,8 @@
     BOOL mHasPushedFirstSheet;
     BOOL mHasPushedHeader;
     int mHeight;
+    bool mIsFirstMappedSheet;
+    bool mIsFrameset;
     BOOL mLoadingMessageVisible;
     unsigned int mNumberOfMappedSheets;
     unsigned int mRealSheetCount;
@@ -32,11 +30,9 @@
     OIXMLDocument *mXhtmlDoc;
 }
 
-+ (id)baseDate;
 + (id)borderStyleCache;
 + (id)borderWidthCache;
 + (id)cssStyleCache;
-+ (void)setBaseDate1904:(BOOL)arg1;
 
 - (id)_copyStringForSheet:(id)arg1 atIndex:(unsigned int)arg2 withState:(id)arg3 andMapper:(id)arg4;
 - (id)_frontPageByCopyingMainPage;

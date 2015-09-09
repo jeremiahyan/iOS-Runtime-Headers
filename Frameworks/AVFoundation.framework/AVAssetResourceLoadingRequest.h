@@ -2,23 +2,30 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class AVAssetResourceLoadingContentInformationRequest, AVAssetResourceLoadingDataRequest, AVAssetResourceLoadingRequestInternal, NSURLRequest, NSURLResponse;
-
-@interface AVAssetResourceLoadingRequest : NSObject {
+@interface AVAssetResourceLoadingRequest : NSObject <AVAssetResourceLoaderRequest> {
     AVAssetResourceLoadingRequestInternal *_loadingRequest;
 }
 
-@property(getter=isCancelled,readonly) BOOL cancelled;
-@property(readonly) AVAssetResourceLoadingContentInformationRequest * contentInformationRequest;
-@property(readonly) AVAssetResourceLoadingDataRequest * dataRequest;
-@property(getter=isFinished,readonly) BOOL finished;
-@property(copy) NSURLRequest * redirect;
-@property(readonly) NSURLRequest * request;
-@property(copy) NSURLResponse * response;
+@property (getter=isCancelled, nonatomic, readonly) BOOL cancelled;
+@property (nonatomic, readonly) AVAssetResourceLoadingContentInformationRequest *contentInformationRequest;
+@property (nonatomic, readonly) AVAssetResourceLoadingDataRequest *dataRequest;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (getter=isFinished, nonatomic, readonly) BOOL finished;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSURLRequest *redirect;
+@property (nonatomic, readonly) NSURLRequest *request;
+@property (nonatomic, copy) NSURLResponse *response;
+@property (readonly) Class superclass;
 
++ (SEL)_selectorForInformingDelegateOfCancellationByFig;
+
+- (void)_addFigAssetImageGeneratorListeners;
 - (void)_addFigPlaybackItemListeners;
 - (void)_appendToCachedData:(id)arg1;
 - (id)_getAndClearCachedData;
+- (void)_performCancellationByClient;
+- (void)_removeFigAssetImageGeneratorListeners;
 - (void)_removeFigPlaybackItemListeners;
 - (id)_requestDictionary;
 - (id)_resourceLoader;
@@ -26,6 +33,7 @@
 - (void)_sendDictionaryForURLRequest:(id)arg1 context:(id)arg2;
 - (void)_setContentInformationRequest:(id)arg1;
 - (void)_setDataRequest:(id)arg1;
+- (BOOL)_shouldInformDelegateOfFigCancellation;
 - (BOOL)_tryToMarkAsCancelled;
 - (id)_weakReference;
 - (id)contentInformationRequest;
@@ -37,7 +45,8 @@
 - (void)finishLoadingWithError:(id)arg1;
 - (void)finishLoadingWithResponse:(id)arg1 data:(id)arg2 redirect:(id)arg3;
 - (BOOL)finished;
-- (void)generateStreamingContentKeyRequestDataAsynchronouslyForApp:(id)arg1 contentIdentifier:(id)arg2 options:(id)arg3 completionHandler:(id)arg4;
+- (void)generateStreamingContentKeyRequestDataAsynchronouslyForApp:(id)arg1 contentIdentifier:(id)arg2 options:(id)arg3 completionHandler:(id /* block */)arg4;
+- (id)init;
 - (id)initWithResourceLoader:(id)arg1 requestDictionary:(id)arg2;
 - (BOOL)isCancelled;
 - (BOOL)isFinished;

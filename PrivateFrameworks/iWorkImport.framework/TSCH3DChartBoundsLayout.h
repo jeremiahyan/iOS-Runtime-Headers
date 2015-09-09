@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class TSCH3DChartBoundsLayoutSceneDelegate, TSCH3DChartGetProjectedBoundsPipeline, TSCH3DScene;
-
 @interface TSCH3DChartBoundsLayout : NSObject {
     struct box<glm::detail::tvec2<float> > { 
         struct tvec2<float> { 
@@ -30,6 +28,10 @@
                 float t; 
             } ; 
         } mMax; 
+    } mBodyLayoutInPage;
+    TSCH3DScene *mBounds;
+    TSCH3DChartGetProjectedBoundsPipeline *mGetBounds;
+    Class mGetBoundsClass;
     struct box<glm::detail::tvec2<float> > { 
         struct tvec2<float> { 
             union { 
@@ -55,6 +57,17 @@
                 float t; 
             } ; 
         } mMax; 
+    } mLayoutInPage;
+    struct { 
+        BOOL forceOmitLegend; 
+        BOOL forceOmitTitle; 
+        BOOL forceOmitAxisTitle; 
+        BOOL enable3DTightBounds; 
+        BOOL enable3DScaledDepthBounds; 
+        BOOL enable3DSageMaxDepthRatio; 
+        unsigned int max3DLimitingSeries; 
+    } mLayoutSettings;
+    int mMode;
     struct tvec2<int> { 
         union { 
             int x; 
@@ -66,34 +79,19 @@
             int g; 
             int t; 
         } ; 
-    struct { 
-        BOOL forceOmitLegend; 
-        BOOL forceOmitTitle; 
-        BOOL forceOmitAxisTitle; 
-        BOOL enable3DTightBounds; 
-        BOOL enable3DScaledDepthBounds; 
-        BOOL enable3DSageMaxDepthRatio; 
-        unsigned int max3DLimitingSeries; 
-    } mBodyLayoutInPage;
-    TSCH3DScene *mBounds;
-    TSCH3DChartGetProjectedBoundsPipeline *mGetBounds;
-    Class mGetBoundsClass;
-    } mLayoutInPage;
-    } mLayoutSettings;
-    int mMode;
     } mOriginalContainingViewport;
     TSCH3DScene *mScene;
     TSCH3DChartBoundsLayoutSceneDelegate *mSceneDelegate;
 }
 
-@property struct box<glm::detail::tvec2<float> > { struct tvec2<float> { union { float x_1_2_1; float x_1_2_2; float x_1_2_3; } x_1_1_1; union { float x_2_2_1; float x_2_2_2; float x_2_2_3; } x_1_1_2; } x1; struct tvec2<float> { union { float x_1_2_1; float x_1_2_2; float x_1_2_3; } x_2_1_1; union { float x_2_2_1; float x_2_2_2; float x_2_2_3; } x_2_1_2; } x2; } bodyLayoutInPage;
-@property struct tvec2<int> { union { int x_1_1_1; int x_1_1_2; int x_1_1_3; } x1; union { int x_2_1_1; int x_2_1_2; int x_2_1_3; } x2; } containingViewport;
-@property(retain) Class getBoundsClass;
-@property struct box<glm::detail::tvec2<float> > { struct tvec2<float> { union { float x_1_2_1; float x_1_2_2; float x_1_2_3; } x_1_1_1; union { float x_2_2_1; float x_2_2_2; float x_2_2_3; } x_1_1_2; } x1; struct tvec2<float> { union { float x_1_2_1; float x_1_2_2; float x_1_2_3; } x_2_1_1; union { float x_2_2_1; float x_2_2_2; float x_2_2_3; } x_2_1_2; } x2; } layoutInPage;
-@property(readonly) struct { BOOL x1; BOOL x2; BOOL x3; BOOL x4; BOOL x5; BOOL x6; unsigned int x7; } layoutSettings;
-@property int mode;
-@property struct tvec2<int> { union { int x_1_1_1; int x_1_1_2; int x_1_1_3; } x1; union { int x_2_1_1; int x_2_1_2; int x_2_1_3; } x2; } originalContainingViewport;
-@property(readonly) TSCH3DScene * scene;
+@property (nonatomic) struct box<glm::detail::tvec2<float> > { struct tvec2<float> { union { float x_1_2_1; float x_1_2_2; float x_1_2_3; } x_1_1_1; union { float x_2_2_1; float x_2_2_2; float x_2_2_3; } x_1_1_2; } x1; struct tvec2<float> { union { float x_1_2_1; float x_1_2_2; float x_1_2_3; } x_2_1_1; union { float x_2_2_1; float x_2_2_2; float x_2_2_3; } x_2_1_2; } x2; } bodyLayoutInPage;
+@property (nonatomic) struct tvec2<int> { union { int x_1_1_1; int x_1_1_2; int x_1_1_3; } x1; union { int x_2_1_1; int x_2_1_2; int x_2_1_3; } x2; } containingViewport;
+@property (nonatomic, retain) Class getBoundsClass;
+@property (nonatomic) struct box<glm::detail::tvec2<float> > { struct tvec2<float> { union { float x_1_2_1; float x_1_2_2; float x_1_2_3; } x_1_1_1; union { float x_2_2_1; float x_2_2_2; float x_2_2_3; } x_1_1_2; } x1; struct tvec2<float> { union { float x_1_2_1; float x_1_2_2; float x_1_2_3; } x_2_1_1; union { float x_2_2_1; float x_2_2_2; float x_2_2_3; } x_2_1_2; } x2; } layoutInPage;
+@property (nonatomic, readonly) struct { BOOL x1; BOOL x2; BOOL x3; BOOL x4; BOOL x5; BOOL x6; unsigned int x7; } layoutSettings;
+@property (nonatomic) int mode;
+@property (nonatomic) struct tvec2<int> { union { int x_1_1_1; int x_1_1_2; int x_1_1_3; } x1; union { int x_2_1_1; int x_2_1_2; int x_2_1_3; } x2; } originalContainingViewport;
+@property (nonatomic, readonly) TSCH3DScene *scene;
 
 - (id).cxx_construct;
 - (struct box<glm::detail::tvec2<float> > { struct tvec2<float> { union { float x_1_2_1; float x_1_2_2; float x_1_2_3; } x_1_1_1; union { float x_2_2_1; float x_2_2_2; float x_2_2_3; } x_1_1_2; } x1; struct tvec2<float> { union { float x_1_2_1; float x_1_2_2; float x_1_2_3; } x_2_1_1; union { float x_2_2_1; float x_2_2_2; float x_2_2_3; } x_2_1_2; } x2; })bodyLayoutInPage;
@@ -107,7 +105,7 @@
 - (id)initWithScene:(id)arg1 containingViewport:(const struct tvec2<int> { union { int x_1_1_1; int x_1_1_2; int x_1_1_3; } x1; union { int x_2_1_1; int x_2_1_2; int x_2_1_3; } x2; }*)arg2 originalContainingViewport:(const struct tvec2<int> { union { int x_1_1_1; int x_1_1_2; int x_1_1_3; } x1; union { int x_2_1_1; int x_2_1_2; int x_2_1_3; } x2; }*)arg3 layoutSettings:(const struct { BOOL x1; BOOL x2; BOOL x3; BOOL x4; BOOL x5; BOOL x6; unsigned int x7; }*)arg4;
 - (void)invalidateBounds;
 - (void)invalidateLabelsBoundsForSceneObjectClass:(Class)arg1 boundsIndex:(int)arg2;
-- (BOOL)isForward;
+- (BOOL)isInward;
 - (BOOL)isSage;
 - (struct box<glm::detail::tvec2<float> > { struct tvec2<float> { union { float x_1_2_1; float x_1_2_2; float x_1_2_3; } x_1_1_1; union { float x_2_2_1; float x_2_2_2; float x_2_2_3; } x_1_1_2; } x1; struct tvec2<float> { union { float x_1_2_1; float x_1_2_2; float x_1_2_3; } x_2_1_1; union { float x_2_2_1; float x_2_2_2; float x_2_2_3; } x_2_1_2; } x2; })layoutInPage;
 - (struct { BOOL x1; BOOL x2; BOOL x3; BOOL x4; BOOL x5; BOOL x6; unsigned int x7; })layoutSettings;

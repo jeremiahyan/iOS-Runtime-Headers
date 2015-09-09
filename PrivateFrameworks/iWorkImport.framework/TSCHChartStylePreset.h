@@ -2,28 +2,33 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class <TSCHStyleActAlike>, NSArray, NSString, TSCHChartStyleState;
-
-@interface TSCHChartStylePreset : TSPObject <TSPCopying, TSSPreset, TSCHStyleSwapSupporting> {
+@interface TSCHChartStylePreset : TSPObject <TSCHStyleSwapSupporting, TSPCopying, TSSPreset> {
     NSArray *mCategoryAxisStyles;
     <TSCHStyleActAlike> *mChartStyle;
     <TSCHStyleActAlike> *mLegendStyle;
     NSArray *mParagraphStyles;
+    <TSCHStyleActAlike> *mRefLineStyle;
+    NSArray *mRefLineStyles;
     NSArray *mSeriesStyles;
     struct __CFUUID { } *mUUID;
     NSArray *mValueAxisStyles;
 }
 
-@property(readonly) NSArray * categoryAxisStyles;
-@property(readonly) <TSCHStyleActAlike> * chartStyle;
-@property(readonly) TSCHChartStyleState * chartStyleState;
-@property(readonly) <TSCHStyleActAlike> * legendStyle;
-@property(readonly) NSArray * paragraphStyles;
-@property(readonly) NSString * presetKind;
-@property(readonly) NSArray * seriesStyles;
-@property(readonly) struct __CFUUID { }* uuid;
-@property(readonly) NSArray * valueAxisStyles;
+@property (nonatomic, readonly) NSArray *categoryAxisStyles;
+@property (nonatomic, readonly) <TSCHStyleActAlike> *chartStyle;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) <TSCHStyleActAlike> *legendStyle;
+@property (nonatomic, readonly) NSArray *paragraphStyles;
+@property (nonatomic, readonly) NSString *presetKind;
+@property (nonatomic, readonly) <TSCHStyleActAlike> *refLineStyle;
+@property (nonatomic, readonly) NSArray *seriesStyles;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) struct __CFUUID { }*uuid;
+@property (nonatomic, readonly) NSArray *valueAxisStyles;
 
++ (BOOL)needsObjectUUID;
 + (id)p_getDefaultErrorBarColor:(id)arg1 valueAxisStyles:(id)arg2;
 + (id)p_getDefaultTrendLineShadowColor:(id)arg1;
 + (id)p_getDefaultTrendLineStrokeColor:(id)arg1;
@@ -47,17 +52,18 @@
 - (id)description;
 - (void)drawSwatchInRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 inContext:(struct CGContext { }*)arg2;
 - (id)initFromUnarchiver:(id)arg1;
-- (id)initWithContext:(id)arg1 chartStyle:(id)arg2 legendStyle:(id)arg3 valueAxisStyles:(id)arg4 categoryAxisStyles:(id)arg5 seriesStyles:(id)arg6 paragraphStyles:(id)arg7 uuid:(struct __CFUUID { }*)arg8;
-- (id)initWithContext:(id)arg1 chartStyle:(id)arg2 legendStyle:(id)arg3 valueAxisStyles:(id)arg4 categoryAxisStyles:(id)arg5 seriesStyles:(id)arg6 paragraphStyles:(id)arg7;
-- (id)initWithContext:(id)arg1 chartStyle:(id)arg2 legendStyle:(id)arg3 valueAxisStyles:(id)arg4 categoryAxisStyles:(id)arg5 seriesStyles:(id)arg6;
 - (id)initWithContext:(id)arg1;
-- (BOOL)isEquivalentToPreset:(id)arg1 outReasons:(id*)arg2;
+- (id)initWithContext:(id)arg1 chartStyle:(id)arg2 legendStyle:(id)arg3 valueAxisStyles:(id)arg4 categoryAxisStyles:(id)arg5 seriesStyles:(id)arg6;
+- (id)initWithContext:(id)arg1 chartStyle:(id)arg2 legendStyle:(id)arg3 valueAxisStyles:(id)arg4 categoryAxisStyles:(id)arg5 seriesStyles:(id)arg6 paragraphStyles:(id)arg7 refLineStyle:(id)arg8;
+- (id)initWithContext:(id)arg1 chartStyle:(id)arg2 legendStyle:(id)arg3 valueAxisStyles:(id)arg4 categoryAxisStyles:(id)arg5 seriesStyles:(id)arg6 paragraphStyles:(id)arg7 refLineStyle:(id)arg8 uuid:(struct __CFUUID { }*)arg9;
 - (BOOL)isEquivalentToPreset:(id)arg1;
-- (BOOL)isThemeEquivalent:(id)arg1;
+- (BOOL)isEquivalentToPreset:(id)arg1 outReasons:(id*)arg2;
 - (id)legendStyle;
+- (id)nsuuid;
 - (id)p_initWithContext:(id)arg1;
 - (id)paragraphStyles;
 - (id)presetKind;
+- (id)refLineStyle;
 - (void)saveToArchiver:(id)arg1;
 - (id)seriesStyles;
 - (id)styleOwnerFromSwapType:(int)arg1 andIndex:(unsigned int)arg2;

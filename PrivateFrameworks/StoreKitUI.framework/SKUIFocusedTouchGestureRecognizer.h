@@ -2,22 +2,20 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class NSMutableSet, UIView;
-
 @interface SKUIFocusedTouchGestureRecognizer : UIGestureRecognizer {
+    NSMutableSet *_activeTouches;
+    BOOL _didTouchOutside;
+    UIView *_focusedView;
     struct UIEdgeInsets { 
         float top; 
         float left; 
         float bottom; 
         float right; 
-    NSMutableSet *_activeTouches;
-    BOOL _didTouchOutside;
-    UIView *_focusedView;
     } _touchAllowance;
 }
 
-@property(readonly) UIView * focusedView;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } touchAllowance;
+@property (nonatomic, readonly) UIView *focusedView;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } touchAllowance;
 
 - (void).cxx_destruct;
 - (id)focusedView;

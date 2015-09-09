@@ -2,10 +2,9 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
  */
 
-@interface PLPhotoLibraryShouldReloadNotification : PLChangeNotification {
-}
+@interface PLPhotoLibraryShouldReloadNotification : PLChangeNotification
 
-- (id)init;
+- (id)initNotification;
 - (id)name;
 - (id)object;
 - (id)userInfo;

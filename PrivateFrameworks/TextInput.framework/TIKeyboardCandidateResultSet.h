@@ -2,9 +2,8 @@
    Image: /System/Library/PrivateFrameworks/TextInput.framework/TextInput
  */
 
-@class NSArray, NSDictionary, TIKeyboardCandidate;
-
 @interface TIKeyboardCandidateResultSet : NSObject <NSCopying, NSSecureCoding> {
+    TIKeyboardCandidate *_acceptedCandidate;
     unsigned int _batchCandidateLocation;
     NSArray *_candidates;
     TIKeyboardCandidate *_defaultCandidate;
@@ -17,34 +16,38 @@
     NSDictionary *_showExtensionCandidates;
     NSDictionary *_sortMethodGroups;
     NSArray *_sortMethods;
+    TIKeyboardIntermediateText *_uncommittedText;
 }
 
-@property unsigned int batchCandidateLocation;
-@property(retain) NSArray * candidates;
-@property(copy) TIKeyboardCandidate * defaultCandidate;
-@property BOOL excludedExtensionCandidates;
-@property(readonly) TIKeyboardCandidate * firstCandidate;
-@property unsigned int generatedCandidateCount;
-@property(readonly) BOOL hasCandidates;
-@property(readonly) BOOL hasMetadata;
-@property(retain) NSDictionary * indexTitles;
-@property unsigned int initialSelectedIndex;
-@property(retain) NSArray * initiallyHiddenCandidates;
-@property(readonly) BOOL isDummySet;
-@property unsigned int selectedHiddenCandidateIndex;
-@property(retain) NSDictionary * showExtensionCandidates;
-@property(retain) NSDictionary * sortMethodGroups;
-@property(retain) NSArray * sortMethods;
+@property (nonatomic, retain) TIKeyboardCandidate *acceptedCandidate;
+@property (nonatomic) unsigned int batchCandidateLocation;
+@property (nonatomic, retain) NSArray *candidates;
+@property (nonatomic, copy) TIKeyboardCandidate *defaultCandidate;
+@property (nonatomic) BOOL excludedExtensionCandidates;
+@property (nonatomic, readonly) TIKeyboardCandidate *firstCandidate;
+@property (nonatomic) unsigned int generatedCandidateCount;
+@property (nonatomic, readonly) BOOL hasCandidates;
+@property (nonatomic, readonly) BOOL hasMetadata;
+@property (nonatomic, retain) NSDictionary *indexTitles;
+@property (nonatomic) unsigned int initialSelectedIndex;
+@property (nonatomic, retain) NSArray *initiallyHiddenCandidates;
+@property (nonatomic, readonly) BOOL isDummySet;
+@property (nonatomic) unsigned int selectedHiddenCandidateIndex;
+@property (nonatomic, retain) NSDictionary *showExtensionCandidates;
+@property (nonatomic, retain) NSDictionary *sortMethodGroups;
+@property (nonatomic, retain) NSArray *sortMethods;
+@property (nonatomic, retain) TIKeyboardIntermediateText *uncommittedText;
+
+// Image: /System/Library/PrivateFrameworks/TextInput.framework/TextInput
 
 + (id)dummySet;
-+ (id)setWithCandidates:(id)arg1 initialSelectedIndex:(unsigned int)arg2 defaultCandidate:(id)arg3 sortMethods:(id)arg4 sortMethodGroups:(id)arg5 indexTitles:(id)arg6 showExtensionCandidates:(id)arg7 initiallyHiddenCandidates:(id)arg8 selectedHiddenCandidateIndex:(unsigned int)arg9 excludedExtensionCandidates:(BOOL)arg10;
 + (id)setWithCandidates:(id)arg1;
++ (id)setWithCandidates:(id)arg1 initialSelectedIndex:(unsigned int)arg2 defaultCandidate:(id)arg3 sortMethods:(id)arg4 sortMethodGroups:(id)arg5 indexTitles:(id)arg6 showExtensionCandidates:(id)arg7 initiallyHiddenCandidates:(id)arg8 selectedHiddenCandidateIndex:(unsigned int)arg9 excludedExtensionCandidates:(BOOL)arg10;
 + (BOOL)supportsSecureCoding;
 
+- (id)acceptedCandidate;
 - (unsigned int)batchCandidateLocation;
-- (id)candidateGroupsForSortIndex:(int)arg1;
 - (id)candidates;
-- (BOOL)candidatesForSortIndexShowAlternativeText:(int)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)defaultCandidate;
@@ -64,6 +67,7 @@
 - (BOOL)isSubsetOf:(id)arg1;
 - (unsigned int)positionInCandidateList:(id)arg1;
 - (unsigned int)selectedHiddenCandidateIndex;
+- (void)setAcceptedCandidate:(id)arg1;
 - (void)setBatchCandidateLocation:(unsigned int)arg1;
 - (id)setByAppendingSet:(id)arg1;
 - (void)setCandidates:(id)arg1;
@@ -77,8 +81,15 @@
 - (void)setShowExtensionCandidates:(id)arg1;
 - (void)setSortMethodGroups:(id)arg1;
 - (void)setSortMethods:(id)arg1;
+- (void)setUncommittedText:(id)arg1;
 - (id)showExtensionCandidates;
 - (id)sortMethodGroups;
 - (id)sortMethods;
+- (id)uncommittedText;
+
+// Image: /System/Library/Frameworks/UIKit.framework/UIKit
+
+- (id)candidateGroupsForSortIndex:(int)arg1;
+- (BOOL)candidatesForSortIndexShowAlternativeText:(int)arg1;
 
 @end

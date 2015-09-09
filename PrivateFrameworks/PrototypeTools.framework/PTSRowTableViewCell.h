@@ -2,15 +2,17 @@
    Image: /System/Library/PrivateFrameworks/PrototypeTools.framework/PrototypeTools
  */
 
-@class <PTSRowTableViewCellDelegate>, PTSRow;
-
 @interface PTSRowTableViewCell : UITableViewCell <PTSRowObserver> {
     <PTSRowTableViewCellDelegate> *_delegate;
     PTSRow *_row;
 }
 
-@property <PTSRowTableViewCellDelegate> * delegate;
-@property(retain) PTSRow * row;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <PTSRowTableViewCellDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) PTSRow *row;
+@property (readonly) Class superclass;
 
 + (float)cellHeightForRow:(id)arg1;
 + (int)cellStyleForRow:(id)arg1;

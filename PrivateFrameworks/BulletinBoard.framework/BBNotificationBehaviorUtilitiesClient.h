@@ -2,27 +2,26 @@
    Image: /System/Library/PrivateFrameworks/BulletinBoard.framework/BulletinBoard
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class BBServerConnection;
-
-@interface BBNotificationBehaviorUtilitiesClient : NSObject <BBNotificationBehaviorUtilitiesClientProtocol, XPCProxyTarget, BBXPCConnectionDelegate> {
-    id _activeBehaviorOverridesChangeHandler;
-    BBServerConnection *_connection;
-    id _filteringStateChangeHandler;
+@interface BBNotificationBehaviorUtilitiesClient : NSObject <BBNotificationBehaviorUtilitiesClientProtocol> {
+    id /* block */ _activeBehaviorOverridesChangeHandler;
+    NSXPCConnection *_connection;
+    id /* block */ _filteringStateChangeHandler;
 }
 
-- (void)activeBehaviorOverrideTypesChanged:(unsigned int)arg1;
-- (void)connection:(id)arg1 connectionStateDidChange:(BOOL)arg2;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+
++ (id)clientInterface;
+
+- (void)activeBehaviorOverrideTypesChanged:(unsigned int)arg1 source:(unsigned int)arg2;
 - (void)dealloc;
 - (id)init;
 - (void)invalidate;
 - (void)notificationPresentationFilteringChangedToEnabled:(BOOL)arg1;
-- (id)proxy:(id)arg1 detailedSignatureForSelector:(SEL)arg2;
-- (void)setActiveBehaviorOverridesChangeHandler:(id)arg1;
-- (void)setFilteringStateChangeHandler:(id)arg1;
-- (void)shouldPresentNotificationOfType:(int)arg1 fromSender:(id)arg2 withHandler:(id)arg3;
+- (void)setActiveBehaviorOverridesChangeHandler:(id /* block */)arg1;
+- (void)setFilteringStateChangeHandler:(id /* block */)arg1;
+- (void)shouldPresentNotificationOfType:(int)arg1 fromSender:(id)arg2 withHandler:(id /* block */)arg3;
 
 @end

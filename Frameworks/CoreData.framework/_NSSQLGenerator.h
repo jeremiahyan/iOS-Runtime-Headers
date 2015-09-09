@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@class NSMutableArray, NSMutableDictionary, NSMutableString, NSSQLAdapter, NSSQLStatement, NSSQLStoreMappingGenerator;
-
 @interface _NSSQLGenerator : NSObject {
     NSSQLAdapter *_adapter;
     NSMutableDictionary *_aliasMap;
@@ -73,16 +71,18 @@
 - (void)prepareBetween:(id)arg1;
 - (void)prepareComparisonPredicate:(id)arg1;
 - (void)prepareCountStatementWithFetchRequest:(id)arg1;
-- (void)prepareDeleteStatementWithCorrelation:(id)arg1;
+- (void)prepareDeleteStatementForRelationship:(id)arg1;
 - (void)prepareDeleteStatementWithRow:(id)arg1;
 - (void)prepareEndsWith:(id)arg1;
 - (void)prepareIn:(id)arg1 swap:(BOOL)arg2;
-- (void)prepareInsertStatementWithCorrelation:(id)arg1;
+- (void)prepareInsertStatementForRelationship:(id)arg1;
 - (void)prepareInsertStatementWithRow:(id)arg1;
 - (void)prepareLike:(id)arg1;
+- (void)prepareMasterReorderStatementForRelationship:(id)arg1;
+- (void)prepareMasterReorderStatementPart2ForRelationship:(id)arg1;
 - (void)prepareMatches:(id)arg1;
+- (void)prepareReorderStatementForRelationship:(id)arg1;
 - (void)prepareSelectStatementWithFetchRequest:(id)arg1 ignoreInheritance:(BOOL)arg2;
-- (void)prepareUpdateStatementWithCorrelation:(id)arg1;
 - (void)prepareUpdateStatementWithRow:(id)arg1 originalRow:(id)arg2;
 - (void)setAutoDistinct:(BOOL)arg1;
 - (id)sqlString;

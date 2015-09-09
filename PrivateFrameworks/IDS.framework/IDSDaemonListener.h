@@ -2,13 +2,8 @@
    Image: /System/Library/PrivateFrameworks/IDS.framework/IDS
  */
 
-@class NSHashTable, NSMutableDictionary, NSObject<OS_dispatch_group>, NSObject<OS_dispatch_queue>, NSProtocolChecker;
-
 @interface IDSDaemonListener : NSObject <IDSDaemonListenerProtocol> {
     NSMutableDictionary *_accountToDevices;
-    NSObject<OS_dispatch_group> *_accountsLoadedGroup;
-    NSObject<OS_dispatch_group> *_dependentDevicesLoadedGroup;
-    NSObject<OS_dispatch_group> *_enabledAccountsLoadedGroup;
     NSHashTable *_handlers;
     BOOL _hidingDisconnect;
     NSObject<OS_dispatch_queue> *_ivarQueue;
@@ -19,12 +14,18 @@
     NSMutableDictionary *_topicToEnabledAccounts;
 }
 
-@property(setter=_setHidingDisconnect:) BOOL _hidingDisconnect;
-@property(readonly) BOOL hasPostedSetupComplete;
-@property(readonly) BOOL isSetupComplete;
+@property (setter=_setHidingDisconnect:, nonatomic) BOOL _hidingDisconnect;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) BOOL hasPostedSetupComplete;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) BOOL isSetupComplete;
+@property (readonly) Class superclass;
 
-- (void)_callHandlersWithBlock:(id)arg1;
-- (void)_callHandlersWithBlockOnIvarQueue:(id)arg1;
+- (void)_callHandlersAsyncWithBlock:(id /* block */)arg1;
+- (void)_callHandlersWithBlock:(id /* block */)arg1;
+- (void)_callHandlersWithBlockOnIvarQueue:(id /* block */)arg1;
+- (void)_callHandlersWithBlockOnIvarQueue:(id /* block */)arg1 cleanup:(id /* block */)arg2;
 - (void)_deferredSetupOnIvarQueue:(id)arg1;
 - (BOOL)_hidingDisconnect;
 - (void)_noteDisconnected;
@@ -34,20 +35,34 @@
 - (void)account:(id)arg1 aliasesChanged:(id)arg2;
 - (void)account:(id)arg1 dependentDevicesUpdated:(id)arg2;
 - (void)account:(id)arg1 displayNameChanged:(id)arg2;
+- (void)account:(id)arg1 localDeviceAdded:(id)arg2;
+- (void)account:(id)arg1 localDeviceRemoved:(id)arg2;
 - (void)account:(id)arg1 loginChanged:(id)arg2;
 - (void)account:(id)arg1 profileChanged:(id)arg2;
 - (void)account:(id)arg1 registrationStatusInfoChanged:(id)arg2;
 - (void)account:(id)arg1 vettedAliasesChanged:(id)arg2;
 - (void)accountAdded:(id)arg1;
-- (id)accountDictionariesForService:(id)arg1 blocking:(BOOL)arg2;
+- (id)accountDictionariesForService:(id)arg1;
 - (void)accountDisabled:(id)arg1 onService:(id)arg2;
 - (void)accountEnabled:(id)arg1 onService:(id)arg2;
 - (void)accountRemoved:(id)arg1;
-- (void)activeDevicesUpdatedForAccount:(id)arg1;
 - (void)addHandler:(id)arg1;
+- (void)continuityDidConnectToPeer:(id)arg1 withError:(id)arg2;
+- (void)continuityDidDisconnectFromPeer:(id)arg1 withError:(id)arg2;
+- (void)continuityDidDiscoverPeerWithData:(id)arg1 fromPeer:(id)arg2;
+- (void)continuityDidDiscoverType:(int)arg1 withData:(id)arg2 fromPeer:(id)arg3;
+- (void)continuityDidFailToStartAdvertisingOfType:(int)arg1 withError:(id)arg2;
+- (void)continuityDidFailToStartScanningForType:(int)arg1 withError:(id)arg2;
+- (void)continuityDidLosePeer:(id)arg1;
+- (void)continuityDidStartAdvertisingOfType:(int)arg1;
+- (void)continuityDidStartScanningForType:(int)arg1;
+- (void)continuityDidStopAdvertisingOfType:(int)arg1;
+- (void)continuityDidStopScanningForType:(int)arg1;
+- (void)continuityDidUpdateState:(int)arg1;
 - (void)dealloc;
-- (id)dependentDevicesForAccount:(id)arg1 blocking:(BOOL)arg2;
-- (id)enabledAccountsForService:(id)arg1 blocking:(BOOL)arg2;
+- (id)dependentDevicesForAccount:(id)arg1;
+- (void)device:(id)arg1 nsuuidChanged:(id)arg2;
+- (id)enabledAccountsForService:(id)arg1;
 - (void)forwardInvocation:(id)arg1;
 - (BOOL)hasPostedSetupComplete;
 - (id)init;
@@ -57,5 +72,6 @@
 - (void)registrationFailedForAccount:(id)arg1 needsDeletion:(id)arg2;
 - (void)removeHandler:(id)arg1;
 - (void)setupComplete:(BOOL)arg1 info:(id)arg2;
+- (void)xpcObject:(id)arg1 objectContext:(id)arg2;
 
 @end

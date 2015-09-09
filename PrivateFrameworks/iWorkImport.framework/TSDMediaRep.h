@@ -2,9 +2,10 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class CALayer, CAShapeLayer, TSDFrameRep, TSDMediaInfo, TSDMediaLayout;
-
 @interface TSDMediaRep : TSDStyledRep {
+    CALayer *mFrameMaskLayer;
+    TSDFrameRep *mFrameRep;
+    BOOL mIsZooming;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -14,50 +15,20 @@
             float width; 
             float height; 
         } size; 
-    CALayer *mFrameMaskLayer;
-    TSDFrameRep *mFrameRep;
-    BOOL mIsZooming;
     } mLastPictureFrameLayerRect;
     CAShapeLayer *mMaskLayer;
     CAShapeLayer *mStrokeLayer;
     CALayer *mTapToReplaceLayer;
 }
 
-@property(readonly) TSDMediaInfo * mediaInfo;
-@property(readonly) TSDMediaLayout * mediaLayout;
-@property(readonly) BOOL shouldShowMediaReplaceUI;
+@property (nonatomic, readonly) TSDMediaInfo *mediaInfo;
+@property (nonatomic, readonly) TSDMediaLayout *mediaLayout;
 
-- (void)addKnobsToArray:(id)arg1;
-- (id)additionalLayersOverLayer;
-- (BOOL)canResetMediaSize;
-- (id)commandToResetMediaToInsertedSize;
-- (id)commandToResetMediaToRawPixelSize;
-- (id)commandToResetToSize:(struct CGSize { float x1; float x2; })arg1;
-- (id)currentReplaceButtonHighlightedImage;
-- (id)currentReplaceButtonImage;
 - (void)dealloc;
-- (void)didEndZooming;
 - (BOOL)i_shouldRenderStroke:(id)arg1;
 - (void)i_updateFrameRep;
 - (BOOL)isPlaceholder;
 - (id)mediaInfo;
 - (id)mediaLayout;
-- (id)newTrackerForKnob:(id)arg1;
-- (id)overlayLayers;
-- (void)p_addLayerForReplaceButtonToArray:(id)arg1;
-- (struct CGSize { float x1; float x2; })p_replaceButtonSize;
-- (struct CGPoint { float x1; float x2; })p_scaledPositionOfImageReplaceKnob;
-- (id)p_tapToReplaceLayer;
-- (void)p_updateTapToReplaceLayerPosition;
-- (struct CGPoint { float x1; float x2; })positionOfHyperlinkKnob;
-- (void)processChangedProperty:(int)arg1;
-- (BOOL)replaceButtonContainsPoint:(struct CGPoint { float x1; float x2; })arg1;
-- (BOOL)shouldAllowReplacementFromDrop;
-- (BOOL)shouldAllowReplacementFromPaste;
-- (BOOL)shouldCreateKnobs;
-- (BOOL)shouldShowMediaReplaceUI;
-- (void)updatePositionsOfKnobs:(id)arg1;
-- (id)visibleMediaReplaceButtonLayer;
-- (void)willBeginZooming;
 
 @end

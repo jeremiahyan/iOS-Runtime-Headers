@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Stocks.framework/Stocks
  */
 
-@class NSMutableArray, NSUbiquitousKeyValueStore;
-
 @interface StockManager : NSObject {
     NSMutableArray *_chartDataLRUCache;
     NSMutableArray *_defaultListStockSymbols;
@@ -23,16 +21,16 @@
 - (void)DeleteChartData:(id)arg1;
 - (void)RemoveChartDataFromLRU:(id)arg1;
 - (void)UpdateChartDataInLRU:(id)arg1;
+- (void)_addStock:(id)arg1 withRemoteNotification:(BOOL)arg2;
 - (void)_checkForAddedStocks;
 - (void)_checkForDeletedStocks;
 - (void)_checkForMovedStocks;
 - (id)_defaultStockDictionaries;
 - (id)_localeStocks;
-- (void)_saveDataChangesWithDictionaries:(id)arg1;
+- (void)_removeStock:(id)arg1 withRemoteNotification:(BOOL)arg2;
+- (void)_saveDataChangesWithStockDictionaries:(id)arg1;
 - (void)addStock:(id)arg1;
 - (BOOL)anyMarketOpen;
-- (BOOL)anyMarketOpenWithRealtimePrice;
-- (BOOL)anyPriceIsRealtime;
 - (void)clearCachedChartData;
 - (void)clearCachedChartDataImageSets;
 - (void)dealloc;

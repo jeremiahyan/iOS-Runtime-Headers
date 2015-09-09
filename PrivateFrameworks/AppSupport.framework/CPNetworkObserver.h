@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/AppSupport.framework/AppSupport
  */
 
-@class NSLock, NSMutableDictionary;
-
 @interface CPNetworkObserver : NSObject {
     NSLock *_lock;
     BOOL _networkNotified;
@@ -34,8 +32,8 @@
 - (BOOL)isNetworkReachable;
 - (BOOL)isWiFiEnabled;
 - (void)removeNetworkReachableObserver:(id)arg1;
-- (void)removeObserver:(id)arg1 forHostname:(id)arg2;
 - (void)removeObserver:(id)arg1;
+- (void)removeObserver:(id)arg1 forHostname:(id)arg2;
 - (void)removeWiFiObserver:(id)arg1;
 
 @end

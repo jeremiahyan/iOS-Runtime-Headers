@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
  */
 
-@class ISStoreURLOperation, NSString, NSTimer;
-
 @interface SUNetworkObserver : NSObject <ISSingleton, ISStoreURLOperationDelegate> {
     ISStoreURLOperation *_partnerDetectOperation;
     NSString *_partnerIdentifier;
@@ -12,7 +10,11 @@
     int _storeServicesNetworkUsageCount;
 }
 
-@property(retain) NSString * partnerIdentifier;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) NSString *partnerIdentifier;
+@property (readonly) Class superclass;
 
 + (void)setSharedInstance:(id)arg1;
 + (id)sharedInstance;

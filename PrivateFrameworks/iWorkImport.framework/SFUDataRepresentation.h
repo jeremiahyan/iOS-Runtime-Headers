@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSData;
-
 @interface SFUDataRepresentation : NSObject {
     BOOL mHasHash;
     BOOL mHasSha1Hash;
@@ -30,5 +28,6 @@
 - (struct _xmlTextReader { }*)xmlReader;
 - (struct _xmlTextReader { }*)xmlReaderForGzippedData;
 - (struct _xmlTextReader { }*)xmlReaderForGzippedDataWithInputStream:(id*)arg1;
+- (struct _xmlTextReader { }*)xmlReaderWithReadCallback:(int (*)arg1;
 
 @end

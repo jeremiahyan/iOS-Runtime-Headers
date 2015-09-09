@@ -9,6 +9,11 @@
     long long _offset;
 }
 
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+
 - (BOOL)canSeek;
 - (void)close;
 - (id)closeLocalStream;

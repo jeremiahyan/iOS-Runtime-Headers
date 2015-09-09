@@ -2,19 +2,18 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class <SKUIItemListTableDelegate>, NSMutableIndexSet, NSOperationQueue, NSString, SKUIClientContext, SKUIIconDataConsumer, SKUIItemArtworkContext, SKUIItemCollectionController, SKUIItemList, SKUIResourceLoader, SKUIUber, SSVLoadURLOperation;
-
 @interface SKUIItemListTableViewController : UITableViewController <SKUIItemCollectionDelegate> {
-    struct CGSize { 
-        float width; 
-        float height; 
     SKUIItemArtworkContext *_artworkContext;
     SKUIClientContext *_clientContext;
     <SKUIItemListTableDelegate> *_delegate;
+    BOOL _delegateWantsCanRemove;
     BOOL _delegateWantsDidRemove;
     BOOL _delegateWantsWillDisplay;
     BOOL _didLoadMore;
     NSMutableIndexSet *_hiddenIconIndexSet;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _imageBoundingSize;
     SKUIItemCollectionController *_itemCollectionController;
     SKUIItemList *_itemList;
@@ -29,21 +28,25 @@
     SKUIUber *_uber;
 }
 
-@property(retain) SKUIItemArtworkContext * artworkContext;
-@property(retain) SKUIResourceLoader * artworkLoader;
-@property(retain) SKUIClientContext * clientContext;
-@property <SKUIItemListTableDelegate> * delegate;
-@property(retain) SKUIIconDataConsumer * iconDataConsumer;
-@property struct CGSize { float x1; float x2; } imageBoundingSize;
-@property(retain) SKUIItemList * itemList;
-@property BOOL loadsMoreItems;
-@property(retain) NSOperationQueue * operationQueue;
-@property float rowHeight;
-@property int selectionStyle;
-@property int separatorStyle;
-@property(getter=isSuspended) BOOL suspended;
-@property(retain) SKUIUber * uber;
-@property(readonly) NSString * visibleMetricsImpressions;
+@property (nonatomic, retain) SKUIItemArtworkContext *artworkContext;
+@property (nonatomic, retain) SKUIResourceLoader *artworkLoader;
+@property (nonatomic, retain) SKUIClientContext *clientContext;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SKUIItemListTableDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) SKUIStyledImageDataConsumer *iconDataConsumer;
+@property (nonatomic) struct CGSize { float x1; float x2; } imageBoundingSize;
+@property (nonatomic, retain) SKUIItemList *itemList;
+@property (nonatomic) BOOL loadsMoreItems;
+@property (nonatomic, retain) NSOperationQueue *operationQueue;
+@property (nonatomic) float rowHeight;
+@property (nonatomic) int selectionStyle;
+@property (nonatomic) int separatorStyle;
+@property (readonly) Class superclass;
+@property (getter=isSuspended, nonatomic) BOOL suspended;
+@property (nonatomic, retain) SKUIUber *uber;
+@property (nonatomic, readonly) NSString *visibleMetricsImpressions;
 
 - (void).cxx_destruct;
 - (void)_finishLoadMoreOperationWithItems:(id)arg1 error:(id)arg2;
@@ -104,6 +107,7 @@
 - (void)tableView:(id)arg1 didEndDisplayingCell:(id)arg2 forRowAtIndexPath:(id)arg3;
 - (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
 - (int)tableView:(id)arg1 numberOfRowsInSection:(int)arg2;
+- (id)tableView:(id)arg1 titleForDeleteConfirmationButtonForRowAtIndexPath:(id)arg2;
 - (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forRowAtIndexPath:(id)arg3;
 - (id)uber;
 - (void)unhideIcons;

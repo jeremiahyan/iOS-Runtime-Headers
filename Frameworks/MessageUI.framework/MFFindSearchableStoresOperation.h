@@ -2,10 +2,9 @@
    Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
  */
 
-@interface MFFindSearchableStoresOperation : MFContactsSearchOperation {
-}
+@interface MFFindSearchableStoresOperation : MFContactsSearchOperation
 
 - (void)main;
-- (int)type;
+- (unsigned int)type;
 
 @end

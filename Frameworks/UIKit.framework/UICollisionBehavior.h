@@ -2,36 +2,34 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class <UICollisionBehaviorDelegate>, NSArray, NSMutableDictionary, PKExtendedPhysicsBody;
-
 @interface UICollisionBehavior : UIDynamicBehavior {
-    struct UIEdgeInsets { 
-        float top; 
-        float left; 
-        float bottom; 
-        float right; 
+    NSMutableDictionary *_boundaryBodies;
+    NSMutableDictionary *_boundaryPaths;
     struct { 
         unsigned int delegateBeganWithItem : 1; 
         unsigned int delegateEndedWithItem : 1; 
         unsigned int delegateBeganWithBoundary : 1; 
         unsigned int delegateEndedWithBoundary : 1; 
-    NSMutableDictionary *_boundaryBodies;
-    NSMutableDictionary *_boundaryPaths;
     } _collisionBehaviorFlags;
     <UICollisionBehaviorDelegate> *_collisionDelegate;
     unsigned int _collisionMode;
     unsigned int _groupBID;
     unsigned int _groupVID;
     PKExtendedPhysicsBody *_implicitBoundsBody;
+    struct UIEdgeInsets { 
+        float top; 
+        float left; 
+        float bottom; 
+        float right; 
     } _implicitBoundsInsets;
     BOOL _usesImplicitBounds;
 }
 
-@property(readonly) NSArray * boundaryIdentifiers;
-@property <UICollisionBehaviorDelegate> * collisionDelegate;
-@property unsigned int collisionMode;
-@property(readonly) NSArray * items;
-@property BOOL translatesReferenceBoundsIntoBoundary;
+@property (nonatomic, readonly, copy) NSArray *boundaryIdentifiers;
+@property (nonatomic) <UICollisionBehaviorDelegate> *collisionDelegate;
+@property (nonatomic) unsigned int collisionMode;
+@property (nonatomic, readonly, copy) NSArray *items;
+@property (nonatomic) BOOL translatesReferenceBoundsIntoBoundary;
 
 - (void)_addItem:(id)arg1;
 - (void)_applySettings;

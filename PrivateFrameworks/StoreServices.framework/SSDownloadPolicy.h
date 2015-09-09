@@ -2,17 +2,19 @@
    Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
  */
 
-@class NSArray, NSMutableArray, NSString;
-
-@interface SSDownloadPolicy : NSObject <NSCoding, SSXPCCoding, NSCopying> {
+@interface SSDownloadPolicy : NSObject <NSCoding, NSCopying, SSXPCCoding> {
     int _bagType;
     NSString *_downloadKind;
     NSMutableArray *_policyRules;
 }
 
-@property(readonly) int URLBagType;
-@property(readonly) NSString * downloadKind;
-@property(copy) NSArray * policyRules;
+@property (nonatomic, readonly) int URLBagType;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) NSString *downloadKind;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSArray *policyRules;
+@property (readonly) Class superclass;
 
 - (int)URLBagType;
 - (id)_policyRuleForSizeLimit:(long long)arg1;

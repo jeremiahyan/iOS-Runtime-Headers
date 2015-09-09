@@ -2,13 +2,10 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface TSCHMultiDataChartType : TSCH2DChartType {
-}
+@interface TSCHMultiDataChartType : TSCH2DChartType
 
 + (id)g_genericToSpecificPropertyMapCategoryAxis;
 
-- (id)animationDeliveryStylesForFilter:(id)arg1;
-- (id)animationFiltersWithDefaultFilters:(id)arg1;
 - (id)genericToSpecificPropertyMap;
 - (BOOL)isMultiData;
 - (id)p_genericToSpecificPropertyMap;

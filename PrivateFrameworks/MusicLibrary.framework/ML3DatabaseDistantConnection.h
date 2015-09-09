@@ -2,13 +2,6 @@
    Image: /System/Library/PrivateFrameworks/MusicLibrary.framework/MusicLibrary
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class <ML3DatabaseDistantConnectionDelegate>, MLMediaLibraryService, NSUUID;
-
 @interface ML3DatabaseDistantConnection : ML3DatabaseConnection {
     BOOL _connectionOpen;
     NSUUID *_currentTransactionID;
@@ -16,16 +9,15 @@
     MLMediaLibraryService *_mediaLibraryService;
 }
 
-@property(readonly) NSUUID * currentTransactionID;
-@property <ML3DatabaseDistantConnectionDelegate> * distantDelegate;
+@property (nonatomic) <ML3DatabaseDistantConnectionDelegate> *distantDelegate;
 
 - (void).cxx_destruct;
-- (BOOL)_internalBeginTransactionWithBehaviorType:(unsigned int)arg1 isRetry:(BOOL)arg2;
 - (BOOL)_internalBeginTransactionWithBehaviorType:(unsigned int)arg1;
+- (BOOL)_internalBeginTransactionWithBehaviorType:(unsigned int)arg1 isRetry:(BOOL)arg2;
 - (BOOL)_internalEndTransactionAndCommit:(BOOL)arg1;
 - (id)_internalExecuteQuery:(id)arg1 withParameters:(id)arg2 limitProperty:(id)arg3 limitValue:(long long)arg4;
 - (BOOL)_internalExecuteUpdate:(id)arg1 withParameters:(id)arg2 error:(id*)arg3;
-- (BOOL)_openWithFlags:(int)arg1 isRetry:(BOOL)arg2;
+- (BOOL)_openWithFlags:(int)arg1;
 - (void)_serviceTerminatedTransactionNotification:(id)arg1;
 - (struct sqlite3 { }*)_sqliteHandle;
 - (int)checkpointDatabase;
@@ -37,8 +29,8 @@
 - (BOOL)isOpen;
 - (BOOL)isReadOnly;
 - (id)openBlobInTable:(id)arg1 column:(id)arg2 row:(long long)arg3 readOnly:(BOOL)arg4;
-- (BOOL)registerFunctionName:(id)arg1 argumentCount:(int)arg2 block:(id)arg3;
-- (BOOL)registerFunctionName:(id)arg1 argumentCount:(int)arg2 functionPointer:(int (*)())arg3 userData:(void*)arg4;
+- (BOOL)registerFunctionName:(id)arg1 argumentCount:(int)arg2 block:(id /* block */)arg3;
+- (BOOL)registerFunctionName:(id)arg1 argumentCount:(int)arg2 functionPointer:(int (*)arg3 userData:(void*)arg4;
 - (BOOL)registerModule:(id)arg1;
 - (void)setDistantDelegate:(id)arg1;
 - (void)setProfilingLevel:(int)arg1;

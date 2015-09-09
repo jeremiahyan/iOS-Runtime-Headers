@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class TSUColor;
-
 @interface MFPLinearGradientBrush : MFPGradientBrush {
     struct CGRect { 
         struct CGPoint { 
@@ -15,8 +13,8 @@
             float height; 
         } size; 
     } mBounds;
-    TSUColor *mEndColor;
-    TSUColor *mStartColor;
+    OITSUColor *mEndColor;
+    OITSUColor *mStartColor;
 }
 
 - (id).cxx_construct;

@@ -2,19 +2,17 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIScreen, _UIReplicantContentView, _UISlotIdWrapper;
-
 @interface _UIReplicantView : UIView {
-    struct CGSize { 
-        float width; 
-        float height; 
     _UIReplicantContentView *_contentView;
     UIScreen *_screen;
     _UISlotIdWrapper *_slotIdWrapper;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _snapshotSize;
 }
 
-+ (id)_pendingSnapshotOfTarget:(id)arg1 snapshotBlock:(id)arg2;
++ (id)_pendingSnapshotOfTarget:(id)arg1 snapshotBlock:(id /* block */)arg2;
 + (Class)layerClass;
 + (id)snapshotContext;
 + (id)snapshotWindows:(id)arg1 withRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2;

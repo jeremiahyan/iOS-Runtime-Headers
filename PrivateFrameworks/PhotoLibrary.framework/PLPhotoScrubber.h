@@ -2,18 +2,7 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibrary.framework/PhotoLibrary
  */
 
-@class <PLPhotoScrubberDataSource>, <PLPhotoScrubberSpeedDelegate>, NSMutableArray, NSTimer, UIImageView, UIView;
-
 @interface PLPhotoScrubber : UIControl {
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
     int __lastSpeedRegime;
     double __lastTime;
     float __scrubbingSpeed;
@@ -30,18 +19,27 @@
     int _prospectiveImageIndex;
     BOOL _scrubbing;
     <PLPhotoScrubberSpeedDelegate> *_speedDelegate;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } _thumbnailBounds;
     UIView *_thumbnailTrackView;
     NSMutableArray *_thumbnailViews;
     double _timeOfLastTouch;
 }
 
-@property(setter=_setLastSpeedRegime:) int _lastSpeedRegime;
-@property(setter=_setLastTime:) double _lastTime;
-@property(setter=_setScrubbingSpeed:) float _scrubbingSpeed;
-@property(setter=_setTimeoutTimer:,retain) NSTimer * _timeoutTimer;
-@property <PLPhotoScrubberDataSource> * dataSource;
-@property <PLPhotoScrubberSpeedDelegate> * speedDelegate;
+@property (setter=_setLastSpeedRegime:, nonatomic) int _lastSpeedRegime;
+@property (setter=_setLastTime:, nonatomic) double _lastTime;
+@property (setter=_setScrubbingSpeed:, nonatomic) float _scrubbingSpeed;
+@property (setter=_setTimeoutTimer:, nonatomic, retain) NSTimer *_timeoutTimer;
+@property (nonatomic) <PLPhotoScrubberDataSource> *dataSource;
+@property (nonatomic) <PLPhotoScrubberSpeedDelegate> *speedDelegate;
 
 - (struct CGPoint { float x1; float x2; })_centerForImageAtIndex:(int)arg1;
 - (void)_handleTimeoutTimer:(id)arg1;
@@ -66,7 +64,7 @@
 - (BOOL)beginTrackingWithTouch:(id)arg1 withEvent:(id)arg2;
 - (BOOL)continueTrackingWithTouch:(id)arg1 withEvent:(id)arg2;
 - (void)dealloc;
-- (void)didRotateFromInterfaceOrientation:(int)arg1;
+- (void)didRotate;
 - (int)displayedImageIndex;
 - (void)endTrackingWithTouch:(id)arg1 withEvent:(id)arg2;
 - (id)init;
@@ -79,8 +77,8 @@
 - (void)reloadDataWithNewDisplayedIndex:(unsigned int)arg1;
 - (void)reloadImageAtIndex:(int)arg1;
 - (void)setBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
-- (void)setDataSource:(id)arg1 reloadData:(BOOL)arg2;
 - (void)setDataSource:(id)arg1;
+- (void)setDataSource:(id)arg1 reloadData:(BOOL)arg2;
 - (void)setDeferImageLoading:(BOOL)arg1;
 - (void)setDisplayedImageIndex:(int)arg1;
 - (void)setFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
@@ -89,6 +87,6 @@
 - (void)setSpeedDelegate:(id)arg1;
 - (struct CGSize { float x1; float x2; })sizeThatFits:(struct CGSize { float x1; float x2; })arg1;
 - (id)speedDelegate;
-- (void)willAnimateRotationToInterfaceOrientation:(int)arg1 duration:(double)arg2;
+- (void)willRotate;
 
 @end

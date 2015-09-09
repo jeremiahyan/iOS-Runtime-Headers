@@ -2,9 +2,24 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class <UIToolbarDelegate>, NSArray, NSString, UIColor, UIImageView, UIView, _UIBackdropView;
-
-@interface UIToolbar : UIView <_UIShadowedView, _UIBackdropViewGraphicsQualityChangeDelegate, _UIBarPositioningInternal, UIBarPositioning> {
+@interface UIToolbar : UIView <UIBarPositioning, _UIBackdropViewGraphicsQualityChangeDelegate, _UIBarPositioningInternal, _UIShadowedView> {
+    _UIBackdropView *_adaptiveBackdrop;
+    id _appearanceStorage;
+    NSString *_backdropViewLayerGroupName;
+    UIImageView *_backgroundView;
+    int _barPosition;
+    UIColor *_barTintColor;
+    NSArray *_buttonItems;
+    BOOL _centerTextButtons;
+    BOOL _collapsed;
+    int _currentButtonGroup;
+    id _delegate;
+    float _extraEdgeInsets;
+    struct __CFDictionary { } *_groups;
+    BOOL _isAdaptiveToolbarDisabled;
+    NSArray *_items;
+    int _pressedTag;
+    UIView *_shadowView;
     struct { 
         unsigned int barStyle : 3; 
         unsigned int mode : 2; 
@@ -14,37 +29,30 @@
         unsigned int isLocked : 1; 
         unsigned int backgroundLayoutNeedsUpdate : 1; 
         unsigned int hasCustomBackgroundView : 1; 
-    _UIBackdropView *_adaptiveBackdrop;
-    id _appearanceStorage;
-    NSString *_backdropViewLayerGroupName;
-    UIImageView *_backgroundView;
-    int _barPosition;
-    UIColor *_barTintColor;
-    NSArray *_buttonItems;
-    int _currentButtonGroup;
-    id _delegate;
-    float _extraEdgeInsets;
-    struct __CFDictionary { } *_groups;
-    BOOL _isAdaptiveToolbarDisabled;
-    NSArray *_items;
-    int _pressedTag;
-    UIView *_shadowView;
     } _toolbarFlags;
     BOOL _wantsLetterpressContent;
 }
 
-@property(getter=_isAdaptiveToolbarDisabled,setter=_setAdaptiveToolbarDisabled:) BOOL _adaptiveToolbarDisabled;
-@property(getter=_isLocked,setter=_setLocked:) BOOL _locked;
-@property(setter=_setShadowView:,retain) UIView * _shadowView;
-@property(setter=_setWantsLetterpressContent:) BOOL _wantsLetterpressContent;
-@property(getter=_backdropViewLayerGroupName,setter=_setBackdropViewLayerGroupName:,retain) NSString * backdropViewLayerGroupName;
-@property(readonly) int barPosition;
-@property int barStyle;
-@property(retain) UIColor * barTintColor;
-@property <UIToolbarDelegate> * delegate;
-@property(copy) NSArray * items;
-@property(retain) UIColor * tintColor;
-@property(getter=isTranslucent) BOOL translucent;
+@property (getter=_isAdaptiveToolbarDisabled, setter=_setAdaptiveToolbarDisabled:, nonatomic) BOOL _adaptiveToolbarDisabled;
+@property (getter=_isLocked, setter=_setLocked:, nonatomic) BOOL _locked;
+@property (setter=_setShadowView:, nonatomic, retain) UIView *_shadowView;
+@property (setter=_setWantsLetterpressContent:, nonatomic) BOOL _wantsLetterpressContent;
+@property (getter=_backdropViewLayerGroupName, setter=_setBackdropViewLayerGroupName:, nonatomic, retain) NSString *backdropViewLayerGroupName;
+@property (nonatomic, readonly) int barPosition;
+@property (nonatomic) int barStyle;
+@property (nonatomic, retain) UIColor *barTintColor;
+@property (nonatomic) BOOL centerTextButtons;
+@property (getter=isCollapsed, nonatomic) BOOL collapsed;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <UIToolbarDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSArray *items;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) UIColor *tintColor;
+@property (getter=isTranslucent, nonatomic) BOOL translucent;
+
+// Image: /System/Library/Frameworks/UIKit.framework/UIKit
 
 + (float)_buttonGap;
 + (Class)defaultButtonClass;
@@ -76,13 +84,11 @@
 - (id)_customToolbarAppearance;
 - (void)_customViewChangedForButtonItem:(id)arg1;
 - (id)_descriptionForTag:(int)arg1;
-- (void)_didFinishHidingRetainedOldItems:(id)arg1;
 - (void)_didMoveFromWindow:(id)arg1 toWindow:(id)arg2;
 - (float)_edgeMarginForBorderedItem:(BOOL)arg1 isText:(BOOL)arg2;
 - (id)_effectiveBarTintColor;
 - (void)_effectiveBarTintColorDidChangeWithPreviousColor:(id)arg1;
 - (void)_finishButtonAnimation:(int)arg1 forButton:(int)arg2;
-- (void)_finishSetItems:(id)arg1 finished:(id)arg2 context:(id)arg3;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_frameOfBarButtonItem:(id)arg1;
 - (void)_frameOrBoundsChangedWithVisibleSizeChange:(BOOL)arg1 wasMinibar:(BOOL)arg2;
 - (void)_frameOrCenterChanged;
@@ -94,8 +100,8 @@
 - (BOOL)_isTopBar_legacy;
 - (void)_layoutBackgroundViewConsideringStatusBar;
 - (void)_populateArchivedSubviews:(id)arg1;
-- (id)_positionToolbarButtons:(id)arg1 ignoringItem:(id)arg2 resetFontScaleAdjustment:(BOOL)arg3 actuallyRepositionButtons:(BOOL)arg4;
 - (void)_positionToolbarButtons:(id)arg1 ignoringItem:(id)arg2 resetFontScaleAdjustment:(BOOL)arg3;
+- (id)_positionToolbarButtons:(id)arg1 ignoringItem:(id)arg2 resetFontScaleAdjustment:(BOOL)arg3 actuallyRepositionButtons:(BOOL)arg4;
 - (id)_repositionedItemsFromItems:(id)arg1 withBarButtonFrames:(id*)arg2 withHitRects:(id*)arg3 buttonIndexes:(id*)arg4 textButtonIndexes:(id*)arg5;
 - (void)_sendAction:(id)arg1 withEvent:(id)arg2;
 - (void)_setAdaptiveToolbarDisabled:(BOOL)arg1;
@@ -133,6 +139,7 @@
 - (int)barStyle;
 - (id)barTintColor;
 - (id)buttonItems;
+- (BOOL)centerTextButtons;
 - (id)createButtonWithDescription:(id)arg1;
 - (int)currentButtonGroup;
 - (void)dealloc;
@@ -148,10 +155,10 @@
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (struct CGSize { float x1; float x2; })intrinsicContentSize;
 - (void)invalidateIntrinsicContentSize;
+- (BOOL)isCollapsed;
 - (BOOL)isElementAccessibilityExposedToInterfaceBuilder;
 - (BOOL)isMinibar;
 - (BOOL)isTranslucent;
-- (id)itemWithTag:(int)arg1;
 - (id)items;
 - (void)layoutSubviews;
 - (int)mode;
@@ -165,18 +172,20 @@
 - (void)setBadgeAnimated:(BOOL)arg1 forButton:(int)arg2;
 - (void)setBadgeGlyph:(id)arg1 forButton:(int)arg2;
 - (void)setBadgeValue:(id)arg1 forButton:(int)arg2;
-- (void)setBarStyle:(int)arg1 force:(BOOL)arg2;
 - (void)setBarStyle:(int)arg1;
+- (void)setBarStyle:(int)arg1 force:(BOOL)arg2;
 - (void)setBarTintColor:(id)arg1;
 - (void)setBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)setButtonBarTrackingMode:(int)arg1;
 - (void)setButtonItems:(id)arg1;
 - (void)setCenter:(struct CGPoint { float x1; float x2; })arg1;
+- (void)setCenterTextButtons:(BOOL)arg1;
+- (void)setCollapsed:(BOOL)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setExtraEdgeInsets:(float)arg1;
 - (void)setFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
-- (void)setItems:(id)arg1 animated:(BOOL)arg2;
 - (void)setItems:(id)arg1;
+- (void)setItems:(id)arg1 animated:(BOOL)arg2;
 - (void)setMode:(int)arg1;
 - (void)setOnStateForButton:(BOOL)arg1 forButton:(int)arg2;
 - (void)setShadowImage:(id)arg1 forToolbarPosition:(int)arg2;
@@ -184,9 +193,12 @@
 - (void)setTranslatesAutoresizingMaskIntoConstraints:(BOOL)arg1;
 - (void)setTranslucent:(BOOL)arg1;
 - (id)shadowImageForToolbarPosition:(int)arg1;
-- (void)showActionSheet:(id)arg1 animated:(BOOL)arg2;
 - (void)showButtonGroup:(int)arg1 withDuration:(double)arg2;
 - (void)showButtons:(int*)arg1 withCount:(int)arg2 withDuration:(double)arg3;
 - (struct CGSize { float x1; float x2; })sizeThatFits:(struct CGSize { float x1; float x2; })arg1;
+
+// Image: /System/Library/PrivateFrameworks/PhotoLibrary.framework/PhotoLibrary
+
+- (id)itemWithTag:(int)arg1;
 
 @end

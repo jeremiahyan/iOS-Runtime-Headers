@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/MIME.framework/MIME
  */
 
-@class NSData, NSString;
-
 @interface MFDataMessageStore : MFMessageStore {
     NSData *_data;
     Class _messageClass;
@@ -15,6 +13,7 @@
 - (id)_cachedHeadersForMessage:(id)arg1 valueIfNotPresent:(id)arg2;
 - (id)account;
 - (id)bodyDataForMessage:(id)arg1 isComplete:(BOOL*)arg2 isPartial:(BOOL*)arg3 downloadIfNecessary:(BOOL)arg4;
+- (BOOL)bodyFetchRequiresNetworkActivity;
 - (void)dealloc;
 - (id)headerDataForMessage:(id)arg1 downloadIfNecessary:(BOOL)arg2;
 - (id)initWithData:(id)arg1;

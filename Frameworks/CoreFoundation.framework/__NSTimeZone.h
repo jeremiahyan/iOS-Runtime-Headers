@@ -4,7 +4,10 @@
 
 @interface __NSTimeZone : NSTimeZone {
     struct __CFData { } *_data;
-    int _lock;
+    struct _opaque_pthread_mutex_t { 
+        long __sig; 
+        BOOL __opaque[40]; 
+    } _lock;
     struct __CFString { } *_name;
     void **_ucal;
 }

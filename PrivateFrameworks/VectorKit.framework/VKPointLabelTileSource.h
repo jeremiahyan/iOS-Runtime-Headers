@@ -2,9 +2,8 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-@interface VKPointLabelTileSource : VKLabelTileSource {
-}
+@interface VKPointLabelTileSource : VKLabelTileSource
 
-- (int)_labelTileType;
+- (unsigned char)_labelTileType;
 
 @end

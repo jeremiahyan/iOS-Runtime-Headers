@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/IMCore.framework/IMCore
  */
 
-@class NSArray, NSData, NSDate, NSDictionary, NSMutableArray, NSMutableDictionary, NSProtocolChecker, NSString;
-
 @interface IMDaemonListener : NSObject {
     NSMutableDictionary *_contexts;
     NSMutableArray *_deferredChatMessages;
@@ -25,20 +23,20 @@
     unsigned long long _vcCapabilities;
 }
 
-@property(readonly) NSMutableDictionary * _contexts;
-@property(setter=_setHidingDisconnect:) BOOL _hidingDisconnect;
-@property(readonly) NSArray * allServices;
-@property(readonly) NSArray * handlers;
-@property(readonly) BOOL hasPostedSetupComplete;
-@property(readonly) BOOL isHoldingChatMessages;
-@property(readonly) BOOL isSetupComplete;
-@property(readonly) unsigned long myIdleTime;
-@property(readonly) unsigned int myStatus;
-@property(readonly) NSString * myStatusMessage;
-@property(readonly) NSDictionary * persistentProperties;
-@property(readonly) NSDictionary * properties;
-@property(readonly) BOOL shouldHoldChatMessages;
-@property(readonly) unsigned long long vcCapabilities;
+@property (nonatomic, readonly, retain) NSMutableDictionary *_contexts;
+@property (setter=_setHidingDisconnect:, nonatomic) BOOL _hidingDisconnect;
+@property (nonatomic, readonly) NSArray *allServices;
+@property (nonatomic, readonly) NSArray *handlers;
+@property (nonatomic, readonly) BOOL hasPostedSetupComplete;
+@property (nonatomic, readonly) BOOL isHoldingChatMessages;
+@property (nonatomic, readonly) BOOL isSetupComplete;
+@property (nonatomic, readonly) unsigned long myIdleTime;
+@property (nonatomic, readonly) unsigned int myStatus;
+@property (nonatomic, readonly) NSString *myStatusMessage;
+@property (nonatomic, readonly) NSDictionary *persistentProperties;
+@property (nonatomic, readonly) NSDictionary *properties;
+@property (nonatomic, readonly) BOOL shouldHoldChatMessages;
+@property (nonatomic, readonly) unsigned long long vcCapabilities;
 
 - (void)_cacheValue:(id)arg1 forPersistentProperty:(id)arg2;
 - (void)_cacheValue:(id)arg1 forProperty:(id)arg2;
@@ -83,6 +81,7 @@
 - (void)databaseUpdated:(id)arg1;
 - (void)dealloc;
 - (void)defaultsChanged:(id)arg1 forService:(id)arg2;
+- (void)displayPinCodeForAccount:(id)arg1 pinCode:(id)arg2 deviceName:(id)arg3 deviceType:(id)arg4 phoneNumber:(id)arg5;
 - (void)fileTransfer:(id)arg1 createdWithProperties:(id)arg2;
 - (void)fileTransfer:(id)arg1 updatedWithCurrentBytes:(unsigned long long)arg2 totalBytes:(unsigned long long)arg3 averageTransferRate:(unsigned long long)arg4;
 - (void)fileTransfer:(id)arg1 updatedWithProperties:(id)arg2;
@@ -99,6 +98,7 @@
 - (id)myStatusMessage;
 - (id)persistentProperties;
 - (void)persistentProperty:(id)arg1 changedTo:(id)arg2 from:(id)arg3;
+- (void)pinCodeAlertCompleted:(id)arg1 deviceName:(id)arg2 deviceType:(id)arg3 phoneNumber:(id)arg4 responseFromDevice:(BOOL)arg5 wasCancelled:(BOOL)arg6;
 - (id)properties;
 - (void)property:(id)arg1 changedTo:(id)arg2 from:(id)arg3;
 - (void)releaseHeldChatMessages;

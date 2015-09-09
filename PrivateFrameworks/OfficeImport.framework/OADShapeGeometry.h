@@ -2,16 +2,16 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSMutableDictionary;
-
 @interface OADShapeGeometry : NSObject {
     NSMutableDictionary *mAdjustValues;
     BOOL mIsEscher;
 }
 
 - (long)adjustValueAtIndex:(unsigned int)arg1;
+- (unsigned int)adjustValueCount;
 - (id)adjustValues;
 - (void)dealloc;
+- (id)description;
 - (BOOL)hasAdjustValueAtIndex:(unsigned int)arg1;
 - (id)init;
 - (BOOL)isEscher;

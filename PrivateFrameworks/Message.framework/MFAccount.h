@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Message.framework/Message
  */
 
-@class ACAccount, NSDictionary, NSMutableDictionary, NSString;
-
 @interface MFAccount : NSObject {
     ACAccount *_persistentAccount;
     int _persistentAccountLock;
@@ -11,20 +9,20 @@
     NSMutableDictionary *_unsavedAccountProperties;
 }
 
-@property(readonly) ACAccount * accountForRenewingCredentials;
-@property(retain) NSString * displayName;
-@property(retain) NSString * hostname;
-@property(readonly) NSString * identifier;
-@property(readonly) NSString * managedTag;
-@property(readonly) ACAccount * parentAccount;
-@property(readonly) NSString * parentAccountIdentifier;
-@property(readonly) ACAccount * persistentAccount;
-@property(readonly) NSDictionary * properties;
-@property(copy) NSString * sourceApplicationBundleIdentifier;
-@property(readonly) NSString * syncStoreIdentifier;
-@property(readonly) NSString * type;
-@property(readonly) NSString * uniqueId;
-@property(retain) NSString * username;
+@property (readonly) ACAccount *accountForRenewingCredentials;
+@property (nonatomic, retain) NSString *displayName;
+@property (nonatomic, retain) NSString *hostname;
+@property (readonly) NSString *identifier;
+@property (readonly) NSString *managedTag;
+@property (readonly) ACAccount *parentAccount;
+@property (readonly) NSString *parentAccountIdentifier;
+@property (readonly) ACAccount *persistentAccount;
+@property (readonly) NSDictionary *properties;
+@property (nonatomic, copy) NSString *sourceApplicationBundleIdentifier;
+@property (readonly) NSString *syncStoreIdentifier;
+@property (readonly) NSString *type;
+@property (readonly) NSString *uniqueId;
+@property (nonatomic, retain) NSString *username;
 
 + (id)_accountClass;
 + (id)_basicPropertyForKey:(id)arg1 persistentAccount:(id)arg2;
@@ -40,6 +38,7 @@
 + (unsigned int)defaultSecurePortNumber;
 + (id)displayedAccountTypeString;
 + (id)displayedShortAccountTypeString;
++ (id)excludedAccountPropertyKeys;
 + (id)existingAccountForUniqueID:(id)arg1;
 + (id)hostname;
 + (BOOL)isCommonPortNumber:(unsigned int)arg1;
@@ -51,19 +50,22 @@
 + (id)predefinedValueForKey:(id)arg1;
 + (id)propertiesWhichRequireValidation;
 + (id)saslProfileName;
++ (void)setShouldHealAccounts:(BOOL)arg1;
++ (BOOL)shouldHealAccounts;
 + (id)supportedDataclasses;
 + (BOOL)usesSSL;
 
 - (BOOL)_boolForAccountInfoKey:(id)arg1 defaultValue:(BOOL)arg2;
 - (BOOL)_connectAndAuthenticate:(id)arg1;
 - (id)_credential;
-- (id)_credentialCreateIfNecessary:(BOOL)arg1 error:(id*)arg2;
 - (id)_credentialCreateIfNecessary:(BOOL)arg1;
+- (id)_credentialCreateIfNecessary:(BOOL)arg1 error:(id*)arg2;
 - (id)_newConnection;
 - (id)_objectForAccountInfoKey:(id)arg1;
 - (id)_password;
 - (id)_passwordWithError:(id*)arg1;
 - (void)_queueAccountInfoDidChange;
+- (BOOL)_renewCredentialsWithOptions:(id)arg1 completion:(id /* block */)arg2;
 - (void)_setAccountProperties:(id)arg1;
 - (BOOL)_shouldTryDirectSSLConnectionOnPort:(unsigned int)arg1;
 - (id)accountClass;
@@ -82,11 +84,9 @@
 - (id)copyDiagnosticInformation;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (unsigned int)credentialAccessibility;
-- (id)credentialItemForKey:(id)arg1 error:(id*)arg2;
 - (id)credentialItemForKey:(id)arg1;
+- (id)credentialItemForKey:(id)arg1 error:(id*)arg2;
 - (id)customDescriptionForError:(id)arg1 authScheme:(id)arg2 defaultDescription:(id)arg3;
-- (id)customTitleForAuthenticationError:(id)arg1 authScheme:(id)arg2 defaultTitle:(id)arg3;
-- (id)customTitleForError:(id)arg1 authScheme:(id)arg2 defaultTitle:(id)arg3;
 - (void)dealloc;
 - (id)defaultConnectionSettings;
 - (unsigned int)defaultPortNumber;
@@ -105,9 +105,11 @@
 - (id)insecureConnectionSettings;
 - (BOOL)isActive;
 - (BOOL)isEnabledForDataclass:(id)arg1;
+- (id)loginDisabledErrorWithTitle:(id)arg1;
 - (id)managedTag;
 - (id)missingPasswordErrorWithTitle:(id)arg1;
 - (id)nameForMailboxUid:(id)arg1;
+- (id)oauth2Token;
 - (id)parentAccount;
 - (id)parentAccountIdentifier;
 - (id)password;
@@ -115,14 +117,15 @@
 - (void)persistentAccountDidChange:(id)arg1 previousAccount:(id)arg2;
 - (unsigned int)portNumber;
 - (id)preferredAuthScheme;
-- (BOOL)promptUserForPasswordWithTitle:(id)arg1 message:(id)arg2 completionHandler:(id)arg3;
-- (BOOL)promptUserForWebLoginWithURL:(id)arg1 shouldConfirm:(BOOL)arg2 completionHandler:(id)arg3;
+- (BOOL)promptUserForPasswordWithTitle:(id)arg1 message:(id)arg2 completionHandler:(id /* block */)arg3;
+- (BOOL)promptUserForWebLoginWithURL:(id)arg1 shouldConfirm:(BOOL)arg2 completionHandler:(id /* block */)arg3;
 - (id)properties;
 - (void)releaseAllConnections;
 - (void)releaseAllForcedConnections;
 - (void)removeAccountPropertyForKey:(id)arg1;
 - (void)removePersistentAccount;
 - (void)removeValueInAccountPropertiesForKey:(id)arg1;
+- (BOOL)renewCredentialsWithCompletion:(id /* block */)arg1;
 - (void)reportAuthenticationError:(id)arg1 authScheme:(id)arg2;
 - (BOOL)requiresAuthentication;
 - (void)savePersistentAccount;
@@ -132,11 +135,12 @@
 - (void)setAccountProperty:(id)arg1 forKey:(id)arg2;
 - (void)setActive:(BOOL)arg1;
 - (void)setClientCertificates:(id)arg1;
-- (BOOL)setCredentialItem:(id)arg1 forKey:(id)arg2 error:(id*)arg3;
 - (void)setCredentialItem:(id)arg1 forKey:(id)arg2;
+- (BOOL)setCredentialItem:(id)arg1 forKey:(id)arg2 error:(id*)arg3;
 - (void)setDisplayName:(id)arg1;
 - (void)setDomain:(id)arg1;
 - (void)setHostname:(id)arg1;
+- (BOOL)setOAuth2Token:(id)arg1 refreshToken:(id)arg2 error:(id*)arg3;
 - (void)setPassword:(id)arg1;
 - (void)setPersistentAccount:(id)arg1;
 - (void)setPortNumber:(unsigned int)arg1;
@@ -148,6 +152,7 @@
 - (void)setValueInAccountProperties:(id)arg1 forKey:(id)arg2;
 - (BOOL)shouldDisplayHostnameInErrorMessages;
 - (BOOL)shouldEnableAfterError:(id)arg1;
+- (BOOL)shouldFetchACEDBInfoForError:(id)arg1;
 - (id)sourceApplicationBundleIdentifier;
 - (id)syncStoreIdentifier;
 - (id)type;

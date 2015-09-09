@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/HomeSharing.framework/HomeSharing
  */
 
-@class <NSObject>, HSConnection, NSObject<OS_dispatch_queue>, NSString, NSURL;
-
 @interface HSHomeSharingLibrary : NSObject {
     BOOL __hasPendingUpdateRequest;
     BOOL _available;
@@ -19,34 +17,34 @@
     unsigned int _version;
 }
 
-@property BOOL _hasPendingUpdateRequest;
-@property(getter=isAvailable,readonly) BOOL available;
-@property(readonly) unsigned int basePlaylistContainerID;
-@property(readonly) NSURL * baseURL;
-@property(retain) HSConnection * connection;
-@property(readonly) int connectionState;
-@property(readonly) int connectionType;
-@property(retain) <NSObject> * context;
-@property(readonly) unsigned int databaseID;
-@property(readonly) NSString * deviceGUID;
-@property(readonly) NSString * homeSharingGroupID;
-@property(readonly) NSString * name;
-@property(readonly) BOOL requiresPassword;
-@property(readonly) NSString * uniqueIdentifier;
-@property(readonly) unsigned int version;
+@property (nonatomic) BOOL _hasPendingUpdateRequest;
+@property (getter=isAvailable, nonatomic, readonly) BOOL available;
+@property (nonatomic, readonly) unsigned int basePlaylistContainerID;
+@property (nonatomic, readonly, retain) NSURL *baseURL;
+@property (nonatomic, retain) HSConnection *connection;
+@property (nonatomic, readonly) int connectionState;
+@property (nonatomic, readonly) int connectionType;
+@property (nonatomic, retain) <NSObject> *context;
+@property (nonatomic, readonly) unsigned int databaseID;
+@property (nonatomic, readonly) NSString *deviceGUID;
+@property (nonatomic, readonly, copy) NSString *homeSharingGroupID;
+@property (nonatomic, readonly, copy) NSString *name;
+@property (nonatomic, readonly) BOOL requiresPassword;
+@property (nonatomic, readonly, copy) NSString *uniqueIdentifier;
+@property (nonatomic, readonly) unsigned int version;
 
+- (void).cxx_destruct;
 - (BOOL)_hasPendingUpdateRequest;
 - (void)_onQueue_ensureConnection;
 - (void)_sendUpdateRequest;
 - (unsigned int)basePlaylistContainerID;
 - (id)baseURL;
-- (void)connectWithCompletionHandler:(id)arg1;
+- (void)connectWithCompletionHandler:(id /* block */)arg1;
 - (id)connection;
 - (int)connectionState;
 - (int)connectionType;
 - (id)context;
 - (unsigned int)databaseID;
-- (void)dealloc;
 - (id)deviceGUID;
 - (void)disconnect;
 - (id)homeSharingGroupID;
@@ -55,10 +53,11 @@
 - (id)name;
 - (BOOL)requiresPassword;
 - (id)securityInfoForURL:(id)arg1;
-- (void)sendRequest:(id)arg1 withResponseHandler:(id)arg2;
+- (void)sendRequest:(id)arg1 withResponseHandler:(id /* block */)arg2;
 - (void)setConnection:(id)arg1;
 - (void)setContext:(id)arg1;
 - (void)set_hasPendingUpdateRequest:(BOOL)arg1;
+- (id)signedRequestFromURLRequest:(id)arg1;
 - (id)uniqueIdentifier;
 - (id)urlForRequest:(id)arg1;
 - (unsigned int)version;

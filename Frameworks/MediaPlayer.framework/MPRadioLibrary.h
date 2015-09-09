@@ -2,21 +2,24 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@class NSArray;
-
 @interface MPRadioLibrary : NSObject {
+    MPRadioController *_radioController;
 }
 
-@property(readonly) BOOL isEnabled;
-@property(readonly) unsigned int stationCount;
-@property(readonly) NSArray * stations;
+@property (nonatomic, readonly) BOOL isEnabled;
+@property (nonatomic, readonly) unsigned int stationCount;
+@property (nonatomic, readonly) NSArray *stations;
 
 + (id)defaultRadioLibrary;
 
+- (void).cxx_destruct;
+- (void)_radioAvailabilityDidChangeNotification:(id)arg1;
 - (id)_radioModel;
-- (void)_radioModelDidChange:(id)arg1;
-- (void)addStationBasedOnTrackIDs:(id)arg1 completion:(id)arg2;
+- (void)_radioModelDidChangeNotification:(id)arg1;
+- (void)_radioRecentStationsDidChangeNotification:(id)arg1;
+- (void)addStationBasedOnTrackIDs:(id)arg1 completion:(id /* block */)arg2;
 - (void)dealloc;
+- (void)getRecentStationGroupsWithCompletionHandler:(id /* block */)arg1;
 - (id)init;
 - (BOOL)isEnabled;
 - (unsigned int)stationCount;

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Search.framework/Search
  */
 
-@class NSMutableArray, NSString, SPIndex;
-
 @interface SPContentIndexer : NSObject {
     NSString *_category;
     NSMutableArray *_dirtyContent;
@@ -11,14 +9,18 @@
     NSMutableArray *_dirtyRemoves;
     NSString *_displayIdentifier;
     struct __CXIndex { } *_index;
+    NSObject<OS_dispatch_queue> *_indexQueue;
     struct __CXQuery { } *_query;
     SPIndex *_store;
     unsigned int _version;
 }
 
++ (void)cooldown;
 + (id)indexerForDisplayIdentifier:(id)arg1 category:(id)arg2;
 + (void)preheat;
++ (void)shutdown;
 
+- (void)_cancelSearch;
 - (id)_indexPath;
 - (id)_legacyIndexPath;
 - (id)_legacyStorePath;
@@ -26,7 +28,9 @@
 - (id)_storePath;
 - (void)beginSearch:(id)arg1;
 - (void)cancelSearch;
+- (void)closeIndex;
 - (BOOL)commitUpdates;
+- (void)coolDown;
 - (void)dealloc;
 - (id)existingRecordsForExtIDs:(id)arg1;
 - (id)initWithDisplayIdentifier:(id)arg1 category:(id)arg2 version:(unsigned int)arg3;

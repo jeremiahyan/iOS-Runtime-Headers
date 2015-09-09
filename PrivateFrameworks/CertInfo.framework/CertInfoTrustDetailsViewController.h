@@ -2,16 +2,14 @@
    Image: /System/Library/PrivateFrameworks/CertInfo.framework/CertInfo
  */
 
-@class NSArray;
-
 @interface CertInfoTrustDetailsViewController : UIViewController {
     NSArray *_trustProperties;
 }
 
-@property(retain) NSArray * trustProperties;
+@property (nonatomic, retain) NSArray *trustProperties;
 
+- (void).cxx_destruct;
 - (void)_setupNavItem;
-- (void)dealloc;
 - (void)loadView;
 - (void)setTrustProperties:(id)arg1;
 - (BOOL)shouldAutorotateToInterfaceOrientation:(int)arg1;

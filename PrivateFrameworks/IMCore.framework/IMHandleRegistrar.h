@@ -6,7 +6,7 @@
     id _internal;
 }
 
-@property int nameStyle;
+@property (nonatomic) int nameStyle;
 
 + (id)sharedInstance;
 
@@ -24,18 +24,11 @@
 - (void)_emptySiblingCacheForIMHandleGUID:(id)arg1;
 - (id)_existingAccountSiblingsForHandle:(id)arg1;
 - (id)_existingChatSiblingsForHandle:(id)arg1;
-- (void)_rebuildUniqueNameMapWithStyleChange:(BOOL)arg1;
 - (id)allIMHandles;
-- (id)candidateUniqueNamesForIMHandle:(id)arg1;
-- (void)clearNameReservationsForObject:(id)arg1;
 - (void)clearSiblingCacheForIMHandle:(id)arg1;
 - (void)dealloc;
-- (void)imHandleInfoChanged:(id)arg1;
 - (id)init;
 - (int)nameStyle;
-- (void)reassessIMHandleForUniqueName:(id)arg1 rebuild:(BOOL)arg2;
-- (void)reassessIMHandleForUniqueName:(id)arg1;
-- (void)rebuildUniqueNameMap;
 - (void)registerIMHandle:(id)arg1;
 - (void)setNameStyle:(int)arg1;
 - (id)siblingsForIMHandle:(id)arg1;

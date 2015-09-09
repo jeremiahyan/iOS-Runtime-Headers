@@ -2,12 +2,14 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@interface UIKBRenderFactory_Candidates : UIKBRenderFactory {
-}
+@interface UIKBRenderFactory_Candidates : UIKBRenderFactory
 
 - (id)controlKeyBackgroundColorName;
-- (id)defaultKeyBackgroundColorName;
+- (id)controlKeyDividerColorName;
+- (id)controlKeyForegroundColorName;
+- (id)defaultKeyDividerColorName;
 - (id)initWithRenderConfig:(id)arg1;
+- (int)lightHighQualityEnabledBlendForm;
 - (id)traitsForCellSize:(struct CGSize { float x1; float x2; })arg1 highlighted:(BOOL)arg2 edges:(BOOL)arg3;
 - (id)traitsForEdgeGradientWithSize:(struct CGSize { float x1; float x2; })arg1;
 - (id)traitsForEmptyExtendedPane:(struct CGSize { float x1; float x2; })arg1 rowHeight:(float)arg2 idiomPad:(BOOL)arg3 clipCorners:(BOOL)arg4;

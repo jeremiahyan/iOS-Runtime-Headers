@@ -2,11 +2,9 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class OADProperties;
-
 @interface OADProperties : NSObject {
-    unsigned int mIsMerged : 1;
-    unsigned int mIsMergedWithParent : 1;
+    unsigned int mIsMerged;
+    unsigned int mIsMergedWithParent;
     OADProperties *mParent;
 }
 
@@ -27,7 +25,7 @@
 - (void)removeUnnecessaryOverrides;
 - (void)setMerged:(BOOL)arg1;
 - (void)setMergedWithParent:(BOOL)arg1;
-- (void)setParent:(id)arg1 myRestrictedClass:(Class)arg2;
 - (void)setParent:(id)arg1;
+- (void)setParent:(id)arg1 myRestrictedClass:(Class)arg2;
 
 @end

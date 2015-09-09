@@ -3,28 +3,33 @@
  */
 
 @interface DAPriorityManager : NSObject {
-    struct __CFDictionary { } *_clientsToPriorityRequests;
+    NSMapTable *_clientsToPriorityRequests;
     int _currentPriority;
     int _foregroundDataclasses;
 }
 
-@property(readonly) struct __CFDictionary { }* clientsToPriorityRequests;
-@property(readonly) int currentPriority;
+@property (nonatomic, retain) NSMapTable *clientsToPriorityRequests;
+@property (nonatomic, readonly) int currentPriority;
+@property (nonatomic) int foregroundDataclasses;
 
 + (id)sharedManager;
 + (void)vendPriorityManagers;
 
+- (void).cxx_destruct;
 - (void)_SBApplicationStateChanged:(id)arg1;
-- (id)_appIDsToDataclasses;
 - (int)_recalculatePriority;
 - (void)_setForegroundDataclasses:(int)arg1;
 - (void)_setNewPriority;
+- (id)appIDsToDataclasses;
 - (void)bumpDataclassesToUIPriority:(int)arg1;
-- (struct __CFDictionary { }*)clientsToPriorityRequests;
+- (id)clientsToPriorityRequests;
 - (int)currentPriority;
 - (void)dealloc;
+- (int)foregroundDataclasses;
 - (id)init;
 - (void)requestPriority:(int)arg1 forClient:(id)arg2 dataclasses:(int)arg3;
+- (void)setClientsToPriorityRequests:(id)arg1;
+- (void)setForegroundDataclasses:(int)arg1;
 - (id)stateString;
 
 @end

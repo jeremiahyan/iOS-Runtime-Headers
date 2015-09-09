@@ -2,10 +2,9 @@
    Image: /System/Library/PrivateFrameworks/AppleAccount.framework/AppleAccount
  */
 
-@class ACAccountStore, NSMutableArray;
-
 @interface AAAccountManager : NSObject {
     ACAccountStore *_accountStore;
+    id _accountStoreDidChangeObserver;
     NSMutableArray *_accounts;
     NSMutableArray *_originalAccounts;
 }

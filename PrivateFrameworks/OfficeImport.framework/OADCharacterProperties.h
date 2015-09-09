@@ -2,26 +2,7 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSArray, NSString, OADColor, OADFill, OADHyperlink, OADStroke, OADUnderline;
-
 @interface OADCharacterProperties : OADProperties <OADEffectsParent> {
-    unsigned int mHasOpacity : 1;
-    unsigned int mHasIsBold : 1;
-    unsigned int mIsBold : 1;
-    unsigned int mHasIsItalic : 1;
-    unsigned int mIsItalic : 1;
-    unsigned int mHasFormatType : 1;
-    unsigned int mHasFormatKerningType : 1;
-    unsigned int mHasStrikeThroughType : 1;
-    unsigned int mHasSize : 1;
-    unsigned int mHasSpacing : 1;
-    unsigned int mHasKerning : 1;
-    unsigned int mHasIsVerticalText : 1;
-    unsigned int mIsVerticalText : 1;
-    unsigned int mHasBaseline : 1;
-    unsigned int mHasIsHorizontalNormalized : 1;
-    unsigned int mIsHorizontalNormalized : 1;
-    unsigned int mHasCaps : 1;
     double mBaseline;
     NSString *mBidiFont;
     unsigned char mCaps;
@@ -32,8 +13,27 @@
     unsigned char mFormatKerningType;
     unsigned char mFormatType;
     NSString *mHAnsiFont;
+    unsigned int mHasBaseline;
+    unsigned int mHasCaps;
+    unsigned int mHasFormatKerningType;
+    unsigned int mHasFormatType;
+    unsigned int mHasIsBold;
+    unsigned int mHasIsHorizontalNormalized;
+    unsigned int mHasIsItalic;
+    unsigned int mHasIsRightToLeft;
+    unsigned int mHasIsVerticalText;
+    unsigned int mHasKerning;
+    unsigned int mHasOpacity;
+    unsigned int mHasSize;
+    unsigned int mHasSpacing;
+    unsigned int mHasStrikeThroughType;
     OADColor *mHighlight;
     OADHyperlink *mHoverHyperlink;
+    unsigned int mIsBold;
+    unsigned int mIsHorizontalNormalized;
+    unsigned int mIsItalic;
+    unsigned int mIsRightToLeft;
+    unsigned int mIsVerticalText;
     NSString *mLatinFont;
     double mOpacity;
     double mSize;
@@ -43,6 +43,11 @@
     NSString *mSymbolFont;
     OADUnderline *mUnderline;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (void)initialize;
 
@@ -70,6 +75,7 @@
 - (BOOL)hasIsBold;
 - (BOOL)hasIsHorizontalNormalized;
 - (BOOL)hasIsItalic;
+- (BOOL)hasIsRightToLeft;
 - (BOOL)hasIsVerticalText;
 - (BOOL)hasLatinFont;
 - (BOOL)hasOpacity;
@@ -87,6 +93,7 @@
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isHorizontalNormalized;
 - (BOOL)isItalic;
+- (BOOL)isRightToLeft;
 - (BOOL)isVerticalText;
 - (id)latinFont;
 - (double)opacity;
@@ -107,6 +114,7 @@
 - (void)setIsBold:(BOOL)arg1;
 - (void)setIsHorizontalNormalized:(BOOL)arg1;
 - (void)setIsItalic:(BOOL)arg1;
+- (void)setIsRightToLeft:(BOOL)arg1;
 - (void)setIsVerticalText:(BOOL)arg1;
 - (void)setLatinFont:(id)arg1;
 - (void)setOpacity:(double)arg1;

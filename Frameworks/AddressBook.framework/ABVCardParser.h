@@ -2,10 +2,9 @@
    Image: /System/Library/Frameworks/AddressBook.framework/AddressBook
  */
 
-@class ABVCardLexer, ABVCardValueSetter, NSData, NSMutableArray, NSMutableDictionary, NSMutableString, NSString;
-
 @interface ABVCardParser : NSObject {
     BOOL _30vCard;
+    NSMutableDictionary *_activityAlerts;
     NSMutableArray *_addresses;
     NSMutableArray *_aims;
     BOOL _base64;
@@ -48,7 +47,7 @@
     NSMutableArray *_yahoos;
 }
 
-@property void* source;
+@property (nonatomic) void*source;
 
 + (struct __CFArray { }*)supportedProperties;
 
@@ -58,7 +57,8 @@
 - (BOOL)_handleUnknownTag:(id)arg1 withValue:(id)arg2;
 - (BOOL)_setDataValueOrNoteIfNull:(id)arg1 forProperty:(unsigned int)arg2;
 - (BOOL)_setIntValueOrNoteIfNull:(int)arg1 forProperty:(int)arg2;
-- (BOOL)_setMultiValuesOrNoteIfNull:(id)arg1 forProperty:(unsigned int)arg2 valueComparator:(id)arg3;
+- (BOOL)_setMultiValuesOrNoteIfNull:(id)arg1 forProperty:(unsigned int)arg2 valueComparator:(id /* block */)arg3;
+- (BOOL)_setPersonSounds:(void*)arg1 identifier:(int)arg2 fromActivity:(id)arg3 alert:(id)arg4 otherValue:(id)arg5;
 - (BOOL)_setStringValueOrNoteIfNull:(id)arg1 forProperty:(unsigned int)arg2;
 - (id)_socialProfileDisplayName;
 - (id)_socialProfileService;
@@ -67,10 +67,11 @@
 - (BOOL)_usesArrayForExternalPropKey:(id)arg1;
 - (BOOL)_usesRemainingLineForExternalPropKey:(id)arg1;
 - (id)_valueSetter;
+- (void)addActivityAlertMultiValues;
 - (void)addAddressMultiValues;
 - (BOOL)addIMValueTo:(id)arg1;
 - (void)addInstantMessageMultiValues;
-- (void)addMultiValues:(id)arg1 toProperty:(unsigned int)arg2 valueComparator:(id)arg3;
+- (void)addMultiValues:(id)arg1 toProperty:(unsigned int)arg2 valueComparator:(id /* block */)arg3;
 - (void)addSocialProfileMultiValues;
 - (void)cleanUpCardState;
 - (void*)copyNextPersonWithLength:(int*)arg1 foundProperties:(const struct __CFArray {}**)arg2;
@@ -97,6 +98,8 @@
 - (BOOL)parseABUID;
 - (BOOL)parseADD;
 - (BOOL)parseADR;
+- (BOOL)parseActivityAlerts;
+- (BOOL)parseAlternateBirthday;
 - (BOOL)parseBDAY;
 - (BOOL)parseEMAIL;
 - (BOOL)parseIMPP;

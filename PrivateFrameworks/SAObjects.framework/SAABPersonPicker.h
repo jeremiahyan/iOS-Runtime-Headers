@@ -2,12 +2,10 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSArray;
+@interface SAABPersonPicker : SAUIDomainObjectPicker
 
-@interface SAABPersonPicker : SAUIDomainObjectPicker {
-}
-
-@property(copy) NSArray * persons;
+@property (nonatomic, copy) NSArray *persons;
+@property (nonatomic) BOOL showImmediately;
 
 + (id)personPicker;
 + (id)personPickerWithDictionary:(id)arg1 context:(id)arg2;
@@ -15,7 +13,8 @@
 - (id)encodedClassName;
 - (id)groupIdentifier;
 - (id)persons;
-- (Class)pickerViewControllerClass;
 - (void)setPersons:(id)arg1;
+- (void)setShowImmediately:(BOOL)arg1;
+- (BOOL)showImmediately;
 
 @end

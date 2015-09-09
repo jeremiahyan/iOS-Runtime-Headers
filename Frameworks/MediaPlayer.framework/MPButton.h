@@ -8,20 +8,20 @@
         float left; 
         float bottom; 
         float right; 
+    } _alignmentRectInsets;
     struct UIEdgeInsets { 
         float top; 
         float left; 
         float bottom; 
         float right; 
-    unsigned int _holding : 1;
-    } _alignmentRectInsets;
     } _hitRectInsets;
     double _holdDelayInterval;
+    unsigned int _holding;
 }
 
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } alignmentRectInsets;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } hitRectInsets;
-@property double holdDelayInterval;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } alignmentRectInsets;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } hitRectInsets;
+@property (nonatomic) double holdDelayInterval;
 
 + (id)easyTouchButtonWithType:(int)arg1;
 + (float)easyTouchDefaultCharge;

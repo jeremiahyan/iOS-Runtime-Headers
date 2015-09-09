@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSMutableArray, NSMutableString, UIButton;
-
 @interface UIPasscodeField : UIView <UITextFieldDelegate> {
     BOOL _centerHorizontally;
     id _delegate;
@@ -16,6 +14,11 @@
     BOOL _opaqueBackground;
     NSMutableString *_value;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (float)defaultHeight;
 + (Class)textFieldClass;
@@ -33,11 +36,11 @@
 - (int)numberOfEntryFields;
 - (void)okButtonClicked:(id)arg1;
 - (void)setDelegate:(id)arg1;
-- (void)setKeyboardType:(int)arg1 appearance:(int)arg2 emptyContentReturnKeyType:(int)arg3;
-- (void)setKeyboardType:(int)arg1 appearance:(int)arg2;
 - (void)setKeyboardType:(int)arg1;
-- (void)setNumberOfEntryFields:(int)arg1 opaqueBackground:(BOOL)arg2;
+- (void)setKeyboardType:(int)arg1 appearance:(int)arg2;
+- (void)setKeyboardType:(int)arg1 appearance:(int)arg2 emptyContentReturnKeyType:(int)arg3;
 - (void)setNumberOfEntryFields:(int)arg1;
+- (void)setNumberOfEntryFields:(int)arg1 opaqueBackground:(BOOL)arg2;
 - (void)setShowsOKButton:(BOOL)arg1;
 - (void)setStringValue:(id)arg1;
 - (void)setTextCentersHorizontally:(BOOL)arg1;

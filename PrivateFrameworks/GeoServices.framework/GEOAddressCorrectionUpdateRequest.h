@@ -2,22 +2,20 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSMutableArray, NSString;
-
 @interface GEOAddressCorrectionUpdateRequest : PBRequest <NSCopying> {
-    struct { 
-        unsigned int correctionStatus : 1; 
     NSString *_addressID;
     int _correctionStatus;
+    struct { 
+        unsigned int correctionStatus : 1; 
     } _has;
     NSMutableArray *_significantLocations;
 }
 
-@property(retain) NSString * addressID;
-@property int correctionStatus;
-@property(readonly) BOOL hasAddressID;
-@property BOOL hasCorrectionStatus;
-@property(retain) NSMutableArray * significantLocations;
+@property (nonatomic, retain) NSString *addressID;
+@property (nonatomic) int correctionStatus;
+@property (nonatomic, readonly) BOOL hasAddressID;
+@property (nonatomic) BOOL hasCorrectionStatus;
+@property (nonatomic, retain) NSMutableArray *significantLocations;
 
 - (void)addSignificantLocation:(id)arg1;
 - (id)addressID;
@@ -32,6 +30,7 @@
 - (BOOL)hasCorrectionStatus;
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
+- (void)mergeFrom:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 - (unsigned int)requestTypeCode;
 - (Class)responseClass;

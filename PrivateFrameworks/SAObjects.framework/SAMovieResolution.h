@@ -2,11 +2,14 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@interface SAMovieResolution : AceObject <SAAceSerializable> {
-}
+@interface SAMovieResolution : AceObject <SAAceSerializable>
 
-@property int height;
-@property int width;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) int height;
+@property (readonly) Class superclass;
+@property (nonatomic) int width;
 
 + (id)resolution;
 + (id)resolutionWithDictionary:(id)arg1 context:(id)arg2;

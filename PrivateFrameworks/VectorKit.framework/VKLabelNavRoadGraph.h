@@ -2,88 +2,78 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class NSMutableArray, NSMutableDictionary, NSMutableSet;
-
 @interface VKLabelNavRoadGraph : NSObject {
-    struct Vec2Imp<float> { 
-        float x; 
-        float y; 
-    struct BRectImp<double> { 
-        struct Vec2Imp<double> { 
-            double x; 
-            double y; 
-        } p0; 
-        struct Vec2Imp<double> { 
-            double x; 
-            double y; 
-        } p1; 
-    struct PolylineCoordinate { 
-        unsigned int index; 
-        float offset; 
-    struct unordered_map<std::__1::basic_string<char>, std::__1::shared_ptr<NavRoadFeature>, std::__1::hash<std::__1::basic_string<char> >, std::__1::equal_to<std::__1::basic_string<char> >, vk_allocator<std::__1::pair<const std::__1::basic_string<char>, std::__1::shared_ptr<NavRoadFeature> > > > { 
-        struct __hash_table<std::__1::pair<std::__1::basic_string<char>, std::__1::shared_ptr<NavRoadFeature> >, std::__1::__unordered_map_hasher<std::__1::basic_string<char>, std::__1::shared_ptr<NavRoadFeature>, std::__1::hash<std::__1::basic_string<char> >, true>, std::__1::__unordered_map_equal<std::__1::basic_string<char>, std::__1::shared_ptr<NavRoadFeature>, std::__1::equal_to<std::__1::basic_string<char> >, true>, vk_allocator<std::__1::pair<std::__1::basic_string<char>, std::__1::shared_ptr<NavRoadFeature> > > > { 
-            struct unique_ptr<std::__1::__hash_node<std::__1::pair<std::__1::basic_string<char>, std::__1::shared_ptr<NavRoadFeature> >, void *> *[], std::__1::__bucket_list_deallocator<vk_allocator<std::__1::__hash_node<std::__1::pair<std::__1::basic_string<char>, std::__1::shared_ptr<NavRoadFeature> >, void *> *> > > { 
-                struct __compressed_pair<std::__1::__hash_node<std::__1::pair<std::__1::basic_string<char>, std::__1::shared_ptr<NavRoadFeature> >, void *> **, std::__1::__bucket_list_deallocator<vk_allocator<std::__1::__hash_node<std::__1::pair<std::__1::basic_string<char>, std::__1::shared_ptr<NavRoadFeature> >, void *> *> > > { 
-                    struct __hash_node<std::__1::pair<std::__1::basic_string<char>, std::__1::shared_ptr<NavRoadFeature> >, void *> {} **__first_; 
-                    struct __bucket_list_deallocator<vk_allocator<std::__1::__hash_node<std::__1::pair<std::__1::basic_string<char>, std::__1::shared_ptr<NavRoadFeature> >, void *> *> > { 
-                        struct __compressed_pair<unsigned long, vk_allocator<std::__1::__hash_node<std::__1::pair<std::__1::basic_string<char>, std::__1::shared_ptr<NavRoadFeature> >, void *> *> > { 
-                            unsigned long __first_; 
-                        } __data_; 
-                    } __second_; 
-                } __ptr_; 
-            } __bucket_list_; 
-            struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::pair<std::__1::basic_string<char>, std::__1::shared_ptr<NavRoadFeature> >, void *> *>, vk_allocator<std::__1::__hash_node<std::__1::pair<std::__1::basic_string<char>, std::__1::shared_ptr<NavRoadFeature> >, void *> > > { 
-                struct __hash_node_base<std::__1::__hash_node<std::__1::pair<std::__1::basic_string<char>, std::__1::shared_ptr<NavRoadFeature> >, void *> *> { 
-                    struct __hash_node<std::__1::pair<std::__1::basic_string<char>, std::__1::shared_ptr<NavRoadFeature> >, void *> {} *__next_; 
-                } __first_; 
-            } __p1_; 
-            struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<std::__1::basic_string<char>, std::__1::shared_ptr<NavRoadFeature>, std::__1::hash<std::__1::basic_string<char> >, true> > { 
-                unsigned long __first_; 
-            } __p2_; 
-            struct __compressed_pair<float, std::__1::__unordered_map_equal<std::__1::basic_string<char>, std::__1::shared_ptr<NavRoadFeature>, std::__1::equal_to<std::__1::basic_string<char> >, true> > { 
-                float __first_; 
-            } __p3_; 
-        } __table_; 
-    struct vector<geo::Vec2Imp<double>, vk_allocator<geo::Vec2Imp<double> > > { 
-        struct Vec2Imp<double> {} *__begin_; 
-        struct Vec2Imp<double> {} *__end_; 
-        struct __compressed_pair<geo::Vec2Imp<double> *, vk_allocator<geo::Vec2Imp<double> > > { 
-            struct Vec2Imp<double> {} *__first_; 
-        } __end_cap_; 
-    struct vector<RouteSegment, vk_allocator<RouteSegment> > { 
-        struct RouteSegment {} *__begin_; 
-        struct RouteSegment {} *__end_; 
-        struct __compressed_pair<RouteSegment *, vk_allocator<RouteSegment> > { 
-            struct RouteSegment {} *__first_; 
-        } __end_cap_; 
     unsigned int _currentRoadStartSimplifiedPointIndex;
     NSMutableSet *_duplicateTiles;
     unsigned int _firstPOIAligningRouteSegment;
     NSMutableArray *_intersections;
     NSMutableArray *_junctions;
+    struct Box<double, 2> { 
+        struct Matrix<double, 2, 1> { 
+            double _e[2]; 
+        } _minimum; 
+        struct Matrix<double, 2, 1> { 
+            double _e[2]; 
+        } _maximum; 
     } _offRouteJunctionSelectRect;
     NSMutableArray *_offRouteJunctions;
     BOOL _offRouteJunctionsValid;
     NSMutableArray *_oppositeCarriagewayJunctions;
     BOOL _oppositeCarriagewayJunctionsValid;
+    struct unordered_map<std::__1::basic_string<char>, std::__1::shared_ptr<NavRoadFeature>, std::__1::hash<std::__1::basic_string<char> >, std::__1::equal_to<std::__1::basic_string<char> >, std::__1::allocator<std::__1::pair<const std::__1::basic_string<char>, std::__1::shared_ptr<NavRoadFeature> > > > { 
+        struct __hash_table<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::shared_ptr<NavRoadFeature> >, std::__1::__unordered_map_hasher<std::__1::basic_string<char>, std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::shared_ptr<NavRoadFeature> >, std::__1::hash<std::__1::basic_string<char> >, true>, std::__1::__unordered_map_equal<std::__1::basic_string<char>, std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::shared_ptr<NavRoadFeature> >, std::__1::equal_to<std::__1::basic_string<char> >, true>, std::__1::allocator<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::shared_ptr<NavRoadFeature> > > > { 
+            struct unique_ptr<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::shared_ptr<NavRoadFeature> >, void *> *[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::shared_ptr<NavRoadFeature> >, void *> *> > > { 
+                struct __compressed_pair<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::shared_ptr<NavRoadFeature> >, void *> **, std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::shared_ptr<NavRoadFeature> >, void *> *> > > { 
+                    struct __hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::shared_ptr<NavRoadFeature> >, void *> {} **__first_; 
+                    struct __bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::shared_ptr<NavRoadFeature> >, void *> *> > { 
+                        struct __compressed_pair<unsigned long, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::shared_ptr<NavRoadFeature> >, void *> *> > { 
+                            unsigned long __first_; 
+                        } __data_; 
+                    } __second_; 
+                } __ptr_; 
+            } __bucket_list_; 
+            struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::shared_ptr<NavRoadFeature> >, void *> *>, std::__1::allocator<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::shared_ptr<NavRoadFeature> >, void *> > > { 
+                struct __hash_node_base<std::__1::__hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::shared_ptr<NavRoadFeature> >, void *> *> { 
+                    struct __hash_node<std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::shared_ptr<NavRoadFeature> >, void *> {} *__next_; 
+                } __first_; 
+            } __p1_; 
+            struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<std::__1::basic_string<char>, std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::shared_ptr<NavRoadFeature> >, std::__1::hash<std::__1::basic_string<char> >, true> > { 
+                unsigned long __first_; 
+            } __p2_; 
+            struct __compressed_pair<float, std::__1::__unordered_map_equal<std::__1::basic_string<char>, std::__1::__hash_value_type<std::__1::basic_string<char>, std::__1::shared_ptr<NavRoadFeature> >, std::__1::equal_to<std::__1::basic_string<char> >, true> > { 
+                float __first_; 
+            } __p3_; 
+        } __table_; 
     } _routeFeatureMap;
     BOOL _routeFeatureMapValid;
+    struct PolylineCoordinate { 
+        unsigned int index; 
+        float offset; 
     } _routeUserOffset;
+    struct vector<RouteSegment, std::__1::allocator<RouteSegment> > { 
+        struct RouteSegment {} *__begin_; 
+        struct RouteSegment {} *__end_; 
+        struct __compressed_pair<RouteSegment *, std::__1::allocator<RouteSegment> > { 
+            struct RouteSegment {} *__first_; 
+        } __end_cap_; 
     } _screenRouteSegments;
     BOOL _screenRouteValid;
+    struct vector<gm::Matrix<double, 2, 1>, std::__1::allocator<gm::Matrix<double, 2, 1> > > { 
+        struct Matrix<double, 2, 1> {} *__begin_; 
+        struct Matrix<double, 2, 1> {} *__end_; 
+        struct __compressed_pair<gm::Matrix<double, 2, 1> *, std::__1::allocator<gm::Matrix<double, 2, 1> > > { 
+            struct Matrix<double, 2, 1> {} *__first_; 
+        } __end_cap_; 
     } _simplifiedRoutePoints;
     BOOL _simplifiedRouteValid;
     NSMutableDictionary *_tileDatasByIndex;
     NSMutableSet *_tiles;
+    struct Matrix<float, 2, 1> { 
+        float _e[2]; 
     } _unitHeading;
 }
 
-@property(retain) NSMutableArray * junctions;
+@property (nonatomic, retain) NSMutableArray *junctions;
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
@@ -97,7 +87,7 @@
 - (void)_updateSimplifiedRoute;
 - (void)addRouteRoadEdge:(const struct VKLabelNavRouteRoadEdge { struct PolylineCoordinate { unsigned int x_1_1_1; float x_1_1_2; } x1; struct PolylineCoordinate { unsigned int x_2_1_1; float x_2_1_2; } x2; struct { /* ? */ } *x3; }*)arg1 atA:(BOOL)arg2 isRouteRefineJunction:(BOOL)arg3 tile:(id)arg4 junctionList:(id)arg5;
 - (BOOL)collideRouteWithLabel:(id)arg1 routeCrossProduct:(float*)arg2 context:(struct NavContext { int (**x1)(); struct LabelManager {} *x2; }*)arg3;
-- (unsigned char)computeRoutePositionMaskForPOIAtPixel:(const struct Vec2Imp<float> { float x1; float x2; }*)arg1 currentPositionMask:(unsigned char)arg2 context:(struct NavContext { int (**x1)(); struct LabelManager {} *x2; }*)arg3;
+- (unsigned char)computeRoutePositionForPOIAtPixel:(const struct Matrix<float, 2, 1> { float x1[2]; }*)arg1 currentPosition:(unsigned char)arg2 context:(struct NavContext { int (**x1)(); struct LabelManager {} *x2; }*)arg3;
 - (unsigned int)countReadyJunctionLists;
 - (void)dealloc;
 - (void)evaluateDualCarriagewayForJunction:(id)arg1 outputJunctionList:(id)arg2;

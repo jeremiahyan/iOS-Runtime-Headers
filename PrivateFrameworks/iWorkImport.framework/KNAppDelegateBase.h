@@ -2,17 +2,17 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSArray;
-
 @interface KNAppDelegateBase : TSABaseApplicationDelegate {
+    BOOL _cachedBidiIsSupported;
 }
 
-@property(readonly) NSArray * powerPointDocumentTypes;
+@property (nonatomic, readonly) NSArray *powerPointDocumentTypes;
 
 - (BOOL)URLIsValidForImportedHyperlink:(id)arg1;
 - (id)appChartPropertyOverrides;
+- (void)applicationDidFinishLaunching;
 - (id)applicationName;
-- (id)applicationTemplateVariants;
+- (id)applicationTemplateVariantsForLocale:(struct __CFLocale { }*)arg1;
 - (id)createCompatibilityDelegate;
 - (id)defaultHyperlinkURL;
 - (Class)documentRootClass;
@@ -24,16 +24,29 @@
 - (float)mimimumAspectRatioForPreviewImage;
 - (id)nativeDocumentType;
 - (id)nativeSFFDocumentType;
+- (void)p_inputMethodsChanged:(id)arg1;
 - (id)powerPointDocumentTypes;
 - (id)previewImageNameForDocumentType:(id)arg1;
 - (id)previewImageNameForEncryptedNativeDocument;
 - (id)previewImageNameForNativeDocument;
 - (void)registerAllowedElementKinds;
 - (void)registerClassTypeMappings;
+- (id)stringForCloseDocument;
+- (id)stringForCollaboratorConflict;
+- (id)stringForCollaboratorConflictDetails;
+- (id)stringForCollaboratorConflictWithKeepDetails;
+- (id)stringForCollaboratorsBlockedWhileOffline;
+- (id)stringForDocumentUpdated;
+- (id)stringForDocumentUpdatedByOwner;
+- (id)stringForDocumentUpdatedTitle;
+- (id)stringForRemoteVersionRestorationAlertMessage;
+- (id)stringForRemoteVersionRestorationWithUnsavedChangesAlertMessage;
+- (id)stringForUpdatingDocument;
+- (BOOL)supportsRTL;
+- (BOOL)supportsShrinkTextToFit;
 - (id)tangierEditingFormatDocumentType;
 - (id)templateDocumentType;
 - (id)templateSFFDocumentType;
 - (id)templateTypeDisplayName;
-- (void)wakeUpDownloadManager;
 
 @end

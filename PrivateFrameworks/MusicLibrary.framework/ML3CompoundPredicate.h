@@ -2,20 +2,19 @@
    Image: /System/Library/PrivateFrameworks/MusicLibrary.framework/MusicLibrary
  */
 
-@class NSArray, NSString;
-
 @interface ML3CompoundPredicate : ML3Predicate {
     NSArray *_predicates;
 }
 
-@property(readonly) NSString * compoundOperatorJoiner;
-@property(retain) NSArray * predicates;
+@property (nonatomic, readonly, copy) NSString *compoundOperatorJoiner;
+@property (nonatomic, retain) NSArray *predicates;
 
 + (id)predicateMatchingPredicates:(id)arg1;
 
 - (void).cxx_destruct;
 - (id)SQLJoinClausesForClass:(Class)arg1;
 - (void)appendSQLToMutableString:(id)arg1 entityClass:(Class)arg2;
+- (BOOL)containsPropertyPredicate:(id)arg1 matchingValue:(id)arg2 usingComparison:(int)arg3;
 - (id)databaseStatementParameters;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
@@ -24,7 +23,6 @@
 - (id)initWithPredicates:(id)arg1;
 - (BOOL)isDynamicForEntityClass:(Class)arg1;
 - (BOOL)isEqual:(id)arg1;
-- (id)predicateOptimizedForEntityClass:(Class)arg1;
 - (id)predicates;
 - (void)setPredicates:(id)arg1;
 - (id)spotlightPredicate;

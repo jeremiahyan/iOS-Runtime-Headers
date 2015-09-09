@@ -2,15 +2,13 @@
    Image: /System/Library/PrivateFrameworks/VisualVoicemail.framework/VisualVoicemail
  */
 
-@class NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString;
-
 @interface VMAccount : NSObject {
     NSMutableDictionary *_cache;
     NSObject<OS_dispatch_queue> *_cacheQueue;
-    NSMutableArray *_voicemailSummaries[256];
+    NSMutableArray *_voicemailSummaries;
 }
 
-@property(readonly) NSString * identifier;
+@property (readonly) NSString *identifier;
 
 - (id)_bucketSummary;
 - (void)_forceUpdateCache;
@@ -19,8 +17,8 @@
 - (void)_updateCacheDoWork;
 - (void)_updateVoicemailFlagsIndexFromCache;
 - (id)_voicemailSummariesBucketsWithFlags:(unsigned int)arg1 withoutFlags:(unsigned int)arg2;
-- (id)allVoicemailsWithFlags:(unsigned int)arg1 withoutFlags:(unsigned int)arg2 sinceIdentifier:(long long)arg3;
 - (id)allVoicemailsWithFlags:(unsigned int)arg1 withoutFlags:(unsigned int)arg2;
+- (id)allVoicemailsWithFlags:(unsigned int)arg1 withoutFlags:(unsigned int)arg2 sinceIdentifier:(long long)arg3;
 - (unsigned int)capabilities;
 - (void)changePassword:(id)arg1 fromPassword:(id)arg2;
 - (void)clearActivationError;
@@ -65,8 +63,8 @@
 - (unsigned int)trashedCount;
 - (unsigned int)unreadCount;
 - (void)updateLoggingSettings;
-- (id)voicemailWithIdentifier:(long long)arg1 creating:(BOOL)arg2;
 - (id)voicemailWithIdentifier:(long long)arg1;
+- (id)voicemailWithIdentifier:(long long)arg1 creating:(BOOL)arg2;
 - (BOOL)willBroadcastNotificationName:(id)arg1 userInfo:(id)arg2;
 
 @end

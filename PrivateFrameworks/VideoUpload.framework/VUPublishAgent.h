@@ -2,17 +2,15 @@
    Image: /System/Library/PrivateFrameworks/VideoUpload.framework/VideoUpload
  */
 
-@class UINavigationController, VUPublishPost, VUPublishViewController;
-
-@interface VUPublishAgent : PLPublishingAgent <VUPublishViewControllerDelegate, VUPublishPostDelegate> {
+@interface VUPublishAgent : PLPublishingAgent <VUPublishPostDelegate, VUPublishViewControllerDelegate> {
     UINavigationController *_navigationController;
     VUPublishPost *_publishPost;
     VUPublishViewController *_publishViewController;
 }
 
+- (void).cxx_destruct;
 - (BOOL)allowsTellingFriend;
 - (BOOL)allowsViewingOnHost;
-- (void)dealloc;
 - (id)mediaTitle;
 - (id)navigationController;
 - (void)publishPost:(id)arg1 didFailWithError:(id)arg2;

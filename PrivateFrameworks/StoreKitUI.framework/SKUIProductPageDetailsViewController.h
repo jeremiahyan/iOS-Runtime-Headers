@@ -2,9 +2,8 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class <SKUIProductPageChildViewControllerDelegate>, NSMutableArray, NSOperationQueue, SKUIClientContext, SKUILayoutCache, SKUIProductPage, SKUIProductPageHeaderViewController, SKUIProductPageTableHeaderOnlySection, SKUIProductPageTableTextBoxSection, SKUIProductPageTableViewController, SKUIResourceLoader, UIScrollView;
-
-@interface SKUIProductPageDetailsViewController : UIViewController <SKUIScreenshotsDelegate, SKUIItemStateCenterObserver, SKUITableViewSectionDelegate, SKUIProductPageChildViewController> {
+@interface SKUIProductPageDetailsViewController : UIViewController <SKUIItemStateCenterObserver, SKUIProductPageChildViewController, SKUIScreenshotsDelegate, SKUITableViewSectionDelegate> {
+    BOOL _askPermission;
     SKUIClientContext *_clientContext;
     SKUIProductPageTableHeaderOnlySection *_copyrightSection;
     <SKUIProductPageChildViewControllerDelegate> *_delegate;
@@ -20,12 +19,17 @@
     SKUIProductPageTableTextBoxSection *_whatsNewSection;
 }
 
-@property(retain) SKUIClientContext * clientContext;
-@property <SKUIProductPageChildViewControllerDelegate> * delegate;
-@property(retain) SKUIProductPageHeaderViewController * headerViewController;
-@property(retain) NSOperationQueue * operationQueue;
-@property(readonly) SKUIProductPage * productPage;
-@property(readonly) UIScrollView * scrollView;
+@property (nonatomic) BOOL askPermission;
+@property (nonatomic, retain) SKUIClientContext *clientContext;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SKUIProductPageChildViewControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) SKUIProductPageHeaderViewController *headerViewController;
+@property (nonatomic, retain) NSOperationQueue *operationQueue;
+@property (nonatomic, readonly) SKUIProductPage *productPage;
+@property (nonatomic, readonly) UIScrollView *scrollView;
+@property (readonly) Class superclass;
 
 + (float)defaultPageWidthForUserInterfaceIdiom:(int)arg1;
 
@@ -45,6 +49,7 @@
 - (id)_tableViewController;
 - (id)_textLayoutRequestWithText:(id)arg1 widthOffset:(float)arg2;
 - (id)_whatsNewSection;
+- (BOOL)askPermission;
 - (id)clientContext;
 - (void)dealloc;
 - (id)delegate;
@@ -56,6 +61,7 @@
 - (id)productPage;
 - (void)screenshotsWillBeginDragging:(id)arg1;
 - (id)scrollView;
+- (void)setAskPermission:(BOOL)arg1;
 - (void)setClientContext:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setHeaderViewController:(id)arg1;

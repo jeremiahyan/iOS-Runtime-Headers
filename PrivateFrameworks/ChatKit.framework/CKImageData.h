@@ -2,28 +2,32 @@
    Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
  */
 
-@class NSData, NSString, UIImage;
-
 @interface CKImageData : NSObject {
     unsigned int _count;
     NSData *_data;
     struct CGImageSource { } *_imageSource;
+    BOOL _initializedProperties;
     int _orientation;
+    struct CGSize { 
+        float width; 
+        float height; 
+    } _pxSize;
 }
 
-@property(readonly) NSString * MIMEType;
-@property(readonly) NSString * UTIType;
-@property(readonly) unsigned int count;
-@property(retain) NSData * data;
-@property(readonly) UIImage * image;
-@property(readonly) int orientation;
-@property(readonly) struct CGSize { float x1; float x2; } ptSize;
-@property(readonly) struct CGSize { float x1; float x2; } pxSize;
+@property (nonatomic, readonly, copy) NSString *MIMEType;
+@property (nonatomic, readonly, copy) NSString *UTIType;
+@property (nonatomic, readonly) unsigned int count;
+@property (nonatomic, retain) NSData *data;
+@property (nonatomic, readonly, retain) UIImage *image;
+@property (nonatomic, readonly) int orientation;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } ptSize;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } pxSize;
 
 + (id)UTITypeForData:(id)arg1;
 
 - (id)MIMEType;
 - (id)UTIType;
+- (void)_initializeProperties;
 - (id)_thumbnailFillToSize:(struct CGSize { float x1; float x2; })arg1 atIndex:(unsigned int)arg2;
 - (id)_thumbnailFitToSize:(struct CGSize { float x1; float x2; })arg1 atIndex:(unsigned int)arg2;
 - (unsigned int)count;
@@ -37,6 +41,7 @@
 - (struct CGSize { float x1; float x2; })pxSize;
 - (void)setData:(id)arg1;
 - (id)thumbnailFillToSize:(struct CGSize { float x1; float x2; })arg1;
+- (id)thumbnailFillToSizeCropping:(struct CGSize { float x1; float x2; })arg1;
 - (id)thumbnailFitToSize:(struct CGSize { float x1; float x2; })arg1;
 - (id)thumbnailsFillToSize:(struct CGSize { float x1; float x2; })arg1 maxCount:(unsigned int)arg2;
 - (id)thumbnailsFitToSize:(struct CGSize { float x1; float x2; })arg1 maxCount:(unsigned int)arg2;

@@ -2,24 +2,11 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSDate, NSMutableArray, NSMutableSet, NSString, OADBackground, OADTheme, WDCitationTable, WDFontTable, WDListDefinitionTable, WDListTable, WDRevisionAuthorTable, WDStyleSheet, WDText;
-
 @interface WDDocument : OCDDocument {
-    unsigned int mMirrorMargins : 1;
-    unsigned int mBorderSurroundHeader : 1;
-    unsigned int mBorderSurroundFooter : 1;
-    unsigned int mKinsokuStrict : 1;
-    unsigned int mAutoHyphenate : 1;
-    unsigned int mEvenAndOddHeaders : 1;
-    unsigned int mGraphicsInHeaderFooter : 1;
-    unsigned int mBookFold : 1;
-    unsigned int mShowMarkup : 1;
-    unsigned int mShowComments : 1;
-    unsigned int mTrackChanges : 1;
-    unsigned int mShowRevisionMarksOnScreen : 1;
-    unsigned int mShowInsertionsAndDeletions : 1;
-    unsigned int mShowFormatting : 1;
-    unsigned int mShowOutline : 1;
+    unsigned int mAutoHyphenate;
+    unsigned int mBookFold;
+    unsigned int mBorderSurroundFooter;
+    unsigned int mBorderSurroundHeader;
     NSMutableArray *mChangeTrackingEditAuthors;
     NSMutableArray *mChangeTrackingEditDates;
     WDCitationTable *mCitationTable;
@@ -33,6 +20,7 @@
     int mEndnotePosition;
     int mEndnoteRestart;
     WDText *mEndnoteSeparator;
+    unsigned int mEvenAndOddHeaders;
     WDFontTable *mFontTable;
     WDText *mFootnoteContinuationNotice;
     WDText *mFootnoteContinuationSeparator;
@@ -46,27 +34,35 @@
     NSMutableArray *mImageBullets;
     NSString *mKinsokuAltBreakAfter;
     NSString *mKinsokuAltBreakBefore;
+    unsigned int mKinsokuStrict;
     WDListDefinitionTable *mListDefinitionTable;
     WDListTable *mListTable;
+    unsigned int mMirrorMargins;
     NSDate *mModificationDate;
+    unsigned int mNoTabForHangingIndents;
     NSMutableSet *mObjPointers;
     NSString *mOleFilename;
     WDRevisionAuthorTable *mRevisionAuthorTable;
     NSMutableArray *mSections;
+    unsigned int mShowComments;
+    unsigned int mShowFormatting;
+    unsigned int mShowInsertionsAndDeletions;
+    unsigned int mShowMarkup;
+    unsigned int mShowOutline;
+    unsigned int mShowRevisionMarksOnScreen;
     WDStyleSheet *mStyleSheet;
     OADTheme *mTheme;
+    unsigned int mTrackChanges;
     NSString *mVersion;
-    int mZIndexTotalForHeaderFooterText;
-    int mZIndexTotalForMainText;
     short mZoomPercentage;
 }
+
++ (id)impliedColorMap;
 
 - (void)addChangeTrackingEditAtDate:(id)arg1 authorIndex:(int)arg2;
 - (void)addCitation:(id)arg1 forID:(id)arg2;
 - (id)addImageBulletText;
 - (void)addImageBullets;
-- (id)addList:(id)arg1;
-- (id)addListDefinition;
 - (void)addObjPointer:(id)arg1;
 - (void)addRevisionAuthor:(id)arg1;
 - (id)addSection;
@@ -81,9 +77,11 @@
 - (id)changeTrackingEditDates;
 - (unsigned int)citationCount;
 - (id)citationFor:(id)arg1;
+- (id)citationTable;
 - (id)creationDate;
 - (void)dealloc;
 - (unsigned short)defaultTabWidth;
+- (id)description;
 - (id)documentBackground;
 - (id)endnoteBlockIterator;
 - (id)endnoteContinuationNotice;
@@ -104,7 +102,6 @@
 - (int)footnotePosition;
 - (int)footnoteRestart;
 - (id)footnoteSeparator;
-- (BOOL)graphicsInHeaderFooter;
 - (int)gutterPosition;
 - (id)imageBulletParagraph;
 - (id)imageBulletText;
@@ -117,13 +114,11 @@
 - (BOOL)kinsokuStrict;
 - (id)lastModDate;
 - (id)lastSection;
-- (id)listAt:(unsigned int)arg1;
-- (unsigned int)listCount;
-- (id)listDefinitionAt:(int)arg1;
-- (unsigned int)listDefinitionCount;
 - (id)listDefinitionTable;
-- (id)listDefinitionWithId:(long)arg1;
+- (id)listDefinitionWithListDefinitionId:(long)arg1;
+- (id)listDefinitionWithListId:(long)arg1;
 - (id)listTable;
+- (id)listWithListId:(long)arg1;
 - (id)mainBlocksIterator;
 - (id)mainRunsIterator;
 - (BOOL)mirrorMargins;
@@ -136,6 +131,7 @@
 - (id)newMainBlocksIterator;
 - (id)newMainRunsIterator;
 - (id)newSectionIterator;
+- (BOOL)noTabForHangingIndents;
 - (id)oleFilename;
 - (void)removeEmptySections;
 - (void)removeObjPointer:(id)arg1;
@@ -162,13 +158,13 @@
 - (void)setFootnoteNumberingStart:(unsigned short)arg1;
 - (void)setFootnotePosition:(int)arg1;
 - (void)setFootnoteRestart:(int)arg1;
-- (void)setGraphicsInHeaderFooter:(BOOL)arg1;
 - (void)setGutterPosition:(int)arg1;
 - (void)setKinsokuAltBreakAfter:(id)arg1;
 - (void)setKinsokuAltBreakBefore:(id)arg1;
 - (void)setKinsokuStrict:(BOOL)arg1;
 - (void)setLastModDate:(id)arg1;
 - (void)setMirrorMargins:(BOOL)arg1;
+- (void)setNoTabForHangingIndents:(BOOL)arg1;
 - (void)setOleFilename:(id)arg1;
 - (void)setShowComments:(BOOL)arg1;
 - (void)setShowFormatting:(BOOL)arg1;
@@ -178,8 +174,6 @@
 - (void)setShowRevisionMarksOnScreen:(BOOL)arg1;
 - (void)setTrackChanges:(BOOL)arg1;
 - (void)setVersion:(id)arg1;
-- (void)setZIndexTotalForHeaderFooterText:(int)arg1;
-- (void)setZIndexTotalForMainText:(int)arg1;
 - (void)setZoomPercentage:(short)arg1;
 - (BOOL)showComments;
 - (BOOL)showFormatting;
@@ -191,8 +185,6 @@
 - (id)theme;
 - (BOOL)trackChanges;
 - (id)version;
-- (int)zIndexTotalForHeaderFooterText;
-- (int)zIndexTotalForMainText;
 - (short)zoomPercentage;
 
 @end

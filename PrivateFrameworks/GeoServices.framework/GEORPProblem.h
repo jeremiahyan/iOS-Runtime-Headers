@@ -2,13 +2,7 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class GEORPProblemContext, GEORPProblemCorrections;
-
 @interface GEORPProblem : PBCodable <NSCopying> {
-    struct { 
-        int *list; 
-        unsigned int count; 
-        unsigned int size; 
     struct { 
         unsigned int problemType : 1; 
         unsigned int protocolVersion : 1; 
@@ -17,19 +11,23 @@
     GEORPProblemCorrections *_problemCorrections;
     int _problemType;
     unsigned int _protocolVersion;
+    struct { 
+        int *list; 
+        unsigned int count; 
+        unsigned int size; 
     } _userPaths;
 }
 
-@property(readonly) BOOL hasProblemContext;
-@property(readonly) BOOL hasProblemCorrections;
-@property BOOL hasProblemType;
-@property BOOL hasProtocolVersion;
-@property(retain) GEORPProblemContext * problemContext;
-@property(retain) GEORPProblemCorrections * problemCorrections;
-@property int problemType;
-@property unsigned int protocolVersion;
-@property(readonly) int* userPaths;
-@property(readonly) unsigned int userPathsCount;
+@property (nonatomic, readonly) BOOL hasProblemContext;
+@property (nonatomic, readonly) BOOL hasProblemCorrections;
+@property (nonatomic) BOOL hasProblemType;
+@property (nonatomic) BOOL hasProtocolVersion;
+@property (nonatomic, retain) GEORPProblemContext *problemContext;
+@property (nonatomic, retain) GEORPProblemCorrections *problemCorrections;
+@property (nonatomic) int problemType;
+@property (nonatomic) unsigned int protocolVersion;
+@property (nonatomic, readonly) int*userPaths;
+@property (nonatomic, readonly) unsigned int userPathsCount;
 
 - (void)addUserPath:(int)arg1;
 - (void)clearUserPaths;
@@ -44,6 +42,7 @@
 - (BOOL)hasProtocolVersion;
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
+- (void)mergeFrom:(id)arg1;
 - (id)problemContext;
 - (id)problemCorrections;
 - (int)problemType;

@@ -2,18 +2,15 @@
    Image: /System/Library/PrivateFrameworks/iCalendar.framework/iCalendar
  */
 
-@class NSString;
+@interface ICSAttachment : ICSProperty
 
-@interface ICSAttachment : ICSProperty {
-}
-
-@property(retain) NSString * fmtype;
-@property(retain) NSString * managed_filename;
-@property(retain) NSString * managed_id;
-@property int size;
-@property BOOL x_apple_autoarchived;
-@property(retain) NSString * x_apple_ews_attachmentid;
-@property(retain) NSString * x_apple_filename;
+@property (nonatomic, retain) NSString *fmtype;
+@property (nonatomic, retain) NSString *managed_filename;
+@property (nonatomic, retain) NSString *managed_id;
+@property (nonatomic) int size;
+@property (nonatomic) BOOL x_apple_autoarchived;
+@property (nonatomic, retain) NSString *x_apple_ews_attachmentid;
+@property (nonatomic, retain) NSString *x_apple_filename;
 
 - (void)_ICSStringWithOptions:(unsigned int)arg1 appendingToString:(id)arg2;
 - (id)filename;
@@ -32,6 +29,7 @@
 - (void)setX_apple_autoarchived:(BOOL)arg1;
 - (void)setX_apple_ews_attachmentid:(id)arg1;
 - (void)setX_apple_filename:(id)arg1;
+- (BOOL)shouldObscureValue;
 - (int)size;
 - (BOOL)x_apple_autoarchived;
 - (id)x_apple_ews_attachmentid;

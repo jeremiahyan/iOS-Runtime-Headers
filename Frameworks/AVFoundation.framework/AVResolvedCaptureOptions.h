@@ -2,29 +2,7 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class AVCaptureDeviceFormat, NSMutableDictionary, NSString;
-
 @interface AVResolvedCaptureOptions : NSObject {
-    struct { 
-        long long value; 
-        int timescale; 
-        unsigned int flags; 
-        long long epoch; 
-    struct { 
-        long long value; 
-        int timescale; 
-        unsigned int flags; 
-        long long epoch; 
-    struct { 
-        long long value; 
-        int timescale; 
-        unsigned int flags; 
-        long long epoch; 
-    struct { 
-        long long value; 
-        int timescale; 
-        unsigned int flags; 
-        long long epoch; 
     NSMutableDictionary *baseCaptureOptions;
     BOOL captureSessionPresetChanging;
     NSString *faceDetectionMode;
@@ -35,21 +13,41 @@
     BOOL resetsVideoZoomFactorToDefaultValue;
     NSMutableDictionary *resolvedCaptureOptions;
     NSMutableDictionary *resolvedVideoCompressionProperties;
-    AVCaptureDeviceFormat *resolvedVideoDeviceFormat;
+    AVCaptureDeviceFormat_FigRecorder *resolvedVideoDeviceFormat;
+    struct { 
+        long long value; 
+        int timescale; 
+        unsigned int flags; 
+        long long epoch; 
     } resolvedVideoMaxFrameDuration;
+    struct { 
+        long long value; 
+        int timescale; 
+        unsigned int flags; 
+        long long epoch; 
     } resolvedVideoMinFrameDuration;
     BOOL resolvesFrameRatesUsingDefaultValues;
     NSString *sessionPreset;
     BOOL usePreviewSizedCaptureBuffers;
     BOOL useStabilizationIfAvailable;
+    struct { 
+        long long value; 
+        int timescale; 
+        unsigned int flags; 
+        long long epoch; 
     } videoConnectionMaxFrameDuration;
+    struct { 
+        long long value; 
+        int timescale; 
+        unsigned int flags; 
+        long long epoch; 
     } videoConnectionMinFrameDuration;
 }
 
-@property BOOL hasStillImageOutput;
+@property (nonatomic) BOOL hasStillImageOutput;
 @property BOOL resetsVideoZoomFactorToDefaultValue;
 @property BOOL resolvesFrameRatesUsingDefaultValues;
-@property(readonly) NSString * sessionPreset;
+@property (readonly) NSString *sessionPreset;
 
 + (void)initialize;
 + (id)resolvedCaptureOptionsWithSessionPreset:(id)arg1 captureOptionsDictionary:(id)arg2;

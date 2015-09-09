@@ -2,16 +2,16 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class NSString;
-
 @interface CNPhoneNumber : NSObject <NSCopying> {
+    NSString *_cachedFormattedNormalizedStringValue;
+    NSString *_cachedNormalizedStringValue;
     NSString *_stringValue;
 }
 
-@property(readonly) NSString * countryCode;
-@property(readonly) NSString * formattedStringValue;
-@property(readonly) NSString * normalizedStringValue;
-@property(readonly) NSString * stringValue;
+@property (readonly, copy) NSString *countryCode;
+@property (readonly, copy) NSString *formattedStringValue;
+@property (readonly, copy) NSString *normalizedStringValue;
+@property (readonly, copy) NSString *stringValue;
 
 + (id)phoneNumberWithStringValue:(id)arg1;
 

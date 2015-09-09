@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/TelephonyUI.framework/TelephonyUI
  */
 
-@class CALayer, TPRevealingRingView, UIColor;
-
 @interface TPNumberPadButton : UIControl <TPNumberPadButtonProtocol> {
     UIColor *_color;
     CALayer *_glyphLayer;
@@ -12,12 +10,16 @@
     unsigned int character;
 }
 
-@property float alphaOutsideAndInsideRing;
+@property (nonatomic) float alphaOutsideAndInsideRing;
 @property unsigned int character;
-@property(retain) UIColor * color;
-@property(retain) CALayer * glyphLayer;
-@property(retain) CALayer * highlightedGlyphLayer;
-@property(readonly) TPRevealingRingView * revealingRingView;
+@property (nonatomic, retain) UIColor *color;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (retain) CALayer *glyphLayer;
+@property (readonly) unsigned int hash;
+@property (retain) CALayer *highlightedGlyphLayer;
+@property (nonatomic, readonly) TPRevealingRingView *revealingRingView;
+@property (readonly) Class superclass;
 
 + (struct CGSize { float x1; float x2; })defaultSize;
 + (float)highlightCrossfadeHighlightBeginTime;
@@ -25,9 +27,10 @@
 + (float)highlightCrossfadeNormalBeginTime;
 + (float)highlightCrossfadeNormalFadeDuration;
 + (float)horizontalPadding;
-+ (id)imageForCharacter:(unsigned int)arg1 highlighted:(BOOL)arg2 whiteVersion:(BOOL)arg3;
-+ (id)imageForCharacter:(unsigned int)arg1 highlighted:(BOOL)arg2;
 + (id)imageForCharacter:(unsigned int)arg1;
++ (id)imageForCharacter:(unsigned int)arg1 highlighted:(BOOL)arg2;
++ (id)imageForCharacter:(unsigned int)arg1 highlighted:(BOOL)arg2 whiteVersion:(BOOL)arg3;
++ (float)outerCircleDiameter;
 + (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })paddingOutsideRing;
 + (float)unhighlightCrossfadeHighlightBeginTime;
 + (float)unhighlightCrossfadeHighlightFadeDuration;

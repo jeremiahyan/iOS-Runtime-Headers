@@ -2,19 +2,21 @@
    Image: /System/Library/PrivateFrameworks/CommunicationsSetupUI.framework/CommunicationsSetupUI
  */
 
-@class <CNFRegFirstRunDelegate>, CNFRegController, UIBarButtonItem, UIButton;
-
 @interface CNFRegSplashScreenController : PSViewController <CNFRegFirstRunExperience> {
     <CNFRegFirstRunDelegate> *_delegate;
     UIButton *_learnMoreButton;
     CNFRegController *_regController;
 }
 
-@property(readonly) int currentAppearanceStyle;
-@property(retain) UIBarButtonItem * customLeftButton;
-@property(retain) UIBarButtonItem * customRightButton;
-@property <CNFRegFirstRunDelegate> * delegate;
-@property(retain) CNFRegController * regController;
+@property (nonatomic, readonly) int currentAppearanceStyle;
+@property (nonatomic, retain) UIBarButtonItem *customLeftButton;
+@property (nonatomic, retain) UIBarButtonItem *customRightButton;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <CNFRegFirstRunDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) CNFRegController *regController;
+@property (readonly) Class superclass;
 
 - (void)_getStartedPressed:(id)arg1;
 - (void)_learnMorePressed:(id)arg1;

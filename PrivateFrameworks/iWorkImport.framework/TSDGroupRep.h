@@ -2,32 +2,18 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface TSDGroupRep : TSDContainerRep <TSDMagicMoveMatching> {
-}
-
-+ (float)magicMoveAttributeMatchPercentBetweenOutgoingObject:(id)arg1 incomingObject:(id)arg2;
+@interface TSDGroupRep : TSDContainerRep <TSDMagicMoveMatching>
 
 - (id)allRepsContainedInGroup;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })clipRect;
-- (BOOL)containsPoint:(struct CGPoint { float x1; float x2; })arg1 withSlop:(struct CGSize { float x1; float x2; })arg2;
 - (BOOL)containsPoint:(struct CGPoint { float x1; float x2; })arg1;
+- (BOOL)containsPoint:(struct CGPoint { float x1; float x2; })arg1 withSlop:(struct CGSize { float x1; float x2; })arg2;
 - (struct CGPoint { float x1; float x2; })convertNaturalPointFromUnscaledCanvas:(struct CGPoint { float x1; float x2; })arg1;
 - (BOOL)directlyManagesLayerContent;
 - (void)drawInContext:(struct CGContext { }*)arg1;
-- (void)dynamicOperationDidBegin;
-- (id)dynamicResizeDidBegin;
-- (void)dynamicResizeDidEndWithTracker:(id)arg1;
-- (void)dynamicallyResizingWithTracker:(id)arg1;
-- (BOOL)handleDoubleTapAtPoint:(struct CGPoint { float x1; float x2; })arg1;
-- (BOOL)handleSingleTapAtPoint:(struct CGPoint { float x1; float x2; })arg1;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })frameInUnscaledCanvas;
 - (BOOL)intersectsUnscaledRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
-- (BOOL)isDraggable;
 - (Class)layerClass;
-- (void)processChangedProperty:(int)arg1;
 - (void)recursivelyDrawInContext:(struct CGContext { }*)arg1;
-- (struct CGColor { }*)selectionHighlightColor;
-- (void)setNeedsDisplay;
-- (BOOL)shouldShowSelectionHighlight;
-- (BOOL)wantsToHandleTapsWhenLocked;
 
 @end

@@ -2,14 +2,16 @@
    Image: /System/Library/Frameworks/ExternalAccessory.framework/ExternalAccessory
  */
 
-@class <EABluetoothAccessoryPickerDelegate>, BTDevicePicker;
-
 @interface EABluetoothAccessoryPicker : NSObject <BTDevicePickerDelegate> {
     <EABluetoothAccessoryPickerDelegate> *_delegate;
     BTDevicePicker *_picker;
 }
 
-@property <EABluetoothAccessoryPickerDelegate> * delegate;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <EABluetoothAccessoryPickerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (void)wakeSelectedBluetoothAccessories:(id)arg1;
 

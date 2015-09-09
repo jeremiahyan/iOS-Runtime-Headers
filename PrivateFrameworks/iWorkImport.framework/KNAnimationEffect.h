@@ -2,11 +2,14 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class KNAnimationContext;
-
 @interface KNAnimationEffect : NSObject <KNAnimationPlugin> {
     KNAnimationContext *mAnimationContext;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (int)animationCategory;
 + (id)animationFilter;
@@ -17,6 +20,7 @@
 + (id)localizedMenuString:(int)arg1;
 + (id)supportedTypes;
 + (id)thumbnailImageNameForType:(int)arg1;
++ (id)updateDirectionAttributeValue:(int)arg1 andCustomTextDirectionValue:(unsigned int)arg2 turnOffBounce:(BOOL)arg3 turnOffMotionBlur:(BOOL)arg4 forAttributes:(id)arg5;
 
 - (id)initWithAnimationContext:(id)arg1;
 

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/ImageCapture.framework/ImageCapture
  */
 
-@class NSString;
-
 @interface PTPObjectInfoDataset : NSObject {
     unsigned long _associationDesc;
     unsigned short _associationType;
@@ -32,8 +30,8 @@
 - (unsigned long)associationDesc;
 - (unsigned short)associationType;
 - (id)captureDate;
-- (id)content64;
 - (id)content;
+- (id)content64;
 - (void)dealloc;
 - (id)description;
 - (id)filename;
@@ -45,8 +43,8 @@
 - (id)initWithData:(id)arg1;
 - (id)keywords;
 - (id)modificationDate;
-- (unsigned long long)objectCompressedSize64;
 - (unsigned long)objectCompressedSize;
+- (unsigned long long)objectCompressedSize64;
 - (unsigned short)objectFormat;
 - (unsigned long)objectHandle;
 - (unsigned long)parentObject;

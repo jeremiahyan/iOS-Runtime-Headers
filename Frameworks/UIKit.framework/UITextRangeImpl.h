@@ -2,18 +2,16 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class DOMRange;
-
 @interface UITextRangeImpl : UITextRange {
     int _affinityIfCollapsed;
     DOMRange *_domRange;
 }
 
-@property int affinity;
-@property(retain) DOMRange * domRange;
+@property (nonatomic) int affinity;
+@property (nonatomic, retain) DOMRange *domRange;
 
-+ (id)wrapDOMRange:(id)arg1 withAffinity:(int)arg2;
 + (id)wrapDOMRange:(id)arg1;
++ (id)wrapDOMRange:(id)arg1 withAffinity:(int)arg2;
 
 - (void)adjustAffinityOfPosition:(id)arg1 isStart:(BOOL)arg2;
 - (int)affinity;

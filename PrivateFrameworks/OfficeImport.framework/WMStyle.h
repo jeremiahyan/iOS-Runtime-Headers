@@ -2,16 +2,15 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@interface WMStyle : CMStyle {
-}
+@interface WMStyle : CMStyle
 
 - (void)ResoveInterPropertyDependencies;
 - (void)addCharacterProperties:(id)arg1;
 - (void)cascadeWithStyle:(id)arg1;
 - (id)cssStyleString;
 - (id)initWithWDCharacterProperties:(id)arg1;
-- (id)initWithWDStyle:(id)arg1 isInTextFrame:(BOOL)arg2;
 - (id)initWithWDStyle:(id)arg1;
+- (id)initWithWDStyle:(id)arg1 isInTextFrame:(BOOL)arg2;
 - (id)initWithWMStyle:(id)arg1;
 
 @end

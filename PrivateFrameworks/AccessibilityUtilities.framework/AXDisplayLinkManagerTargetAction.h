@@ -9,10 +9,10 @@
     id _target;
 }
 
-@property SEL actionSelector;
-@property unsigned int displayDidRefreshCount;
-@property unsigned int frameInterval;
-@property(retain) id target;
+@property (nonatomic) SEL actionSelector;
+@property (nonatomic) unsigned int displayDidRefreshCount;
+@property (nonatomic) unsigned int frameInterval;
+@property (nonatomic, retain) id target;
 
 - (SEL)actionSelector;
 - (void)dealloc;
@@ -20,8 +20,8 @@
 - (unsigned int)displayDidRefreshCount;
 - (unsigned int)frameInterval;
 - (unsigned int)hash;
-- (id)initWithTarget:(id)arg1 actionSelector:(SEL)arg2 frameInterval:(unsigned int)arg3;
 - (id)initWithTarget:(id)arg1 actionSelector:(SEL)arg2;
+- (id)initWithTarget:(id)arg1 actionSelector:(SEL)arg2 frameInterval:(unsigned int)arg3;
 - (BOOL)isEqual:(id)arg1;
 - (void)setActionSelector:(SEL)arg1;
 - (void)setDisplayDidRefreshCount:(unsigned int)arg1;

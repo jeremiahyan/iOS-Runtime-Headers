@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class CMOutlineState, NSMutableDictionary, WDText;
-
 @interface WMState : CMState {
     CMOutlineState *currentListState;
     NSMutableDictionary *listStates;
@@ -29,7 +27,7 @@
 - (unsigned int)currentPage;
 - (void)dealloc;
 - (id)init;
-- (BOOL)isCurrentListId:(int)arg1;
+- (BOOL)isCurrentListId:(unsigned int)arg1;
 - (BOOL)isCurrentListStateOverridden;
 - (BOOL)isFrame;
 - (BOOL)isFrameEnd;
@@ -38,7 +36,8 @@
 - (id)lastFooter;
 - (id)lastHeader;
 - (float)leftMargin;
-- (id)listStateForListId:(int)arg1;
+- (id)listStateForListId:(unsigned int)arg1;
+- (id)listStateForListWithId:(long)arg1 settingUpStateIfNeededWithDocument:(id)arg2;
 - (id)outlineState;
 - (float)pageHeight;
 - (float)pageOffset;
@@ -53,7 +52,7 @@
 - (void)setLastFooter:(id)arg1;
 - (void)setLastHeader:(id)arg1;
 - (void)setLeftMargin:(float)arg1;
-- (void)setListState:(id)arg1 forListId:(int)arg2;
+- (void)setListState:(id)arg1 forListId:(unsigned int)arg2;
 - (void)setPageHeight:(float)arg1;
 - (void)setRunIndex:(unsigned int)arg1;
 - (void)setTopMargin:(float)arg1;

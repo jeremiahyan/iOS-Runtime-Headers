@@ -2,9 +2,9 @@
    Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
  */
 
-@class NSString;
-
 @interface SUDeferredUISearchField : UISearchField <SUDeferredUIView> {
+    int _deferredClearButtonMode;
+    id _deferredFont;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -14,8 +14,6 @@
             float width; 
             float height; 
         } size; 
-    int _deferredClearButtonMode;
-    id _deferredFont;
     } _deferredFrame;
     float _deferredPaddingLeft;
     float _deferredPaddingTop;
@@ -24,7 +22,11 @@
     BOOL _isDeferringInterfaceUpdates;
 }
 
-@property(getter=isDeferringInterfaceUpdates) BOOL deferringInterfaceUpdates;
+@property (readonly, copy) NSString *debugDescription;
+@property (getter=isDeferringInterfaceUpdates, nonatomic) BOOL deferringInterfaceUpdates;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)_commitDeferredInterfaceUpdates;
 - (void)_saveCurrentStateAsDeferred;

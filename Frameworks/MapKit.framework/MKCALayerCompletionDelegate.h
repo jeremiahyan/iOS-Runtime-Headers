@@ -2,21 +2,17 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
 @interface MKCALayerCompletionDelegate : NSObject {
-    id _completion;
+    id /* block */ _completion;
 }
 
-@property(copy) id completion;
+@property (nonatomic, copy) id /* block */ completion;
 
-+ (id)delegateWithCompletion:(id)arg1;
++ (id)delegateWithCompletion:(id /* block */)arg1;
 
 - (void).cxx_destruct;
 - (void)animationDidStop:(id)arg1 finished:(BOOL)arg2;
-- (id)completion;
-- (void)setCompletion:(id)arg1;
+- (id /* block */)completion;
+- (void)setCompletion:(id /* block */)arg1;
 
 @end

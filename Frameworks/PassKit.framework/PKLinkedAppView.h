@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/PassKit.framework/PassKit
  */
 
-@class NSArray, NSDictionary, NSURL, PKLinkedAppUserRatingView, SKStoreProductViewController, SSSoftwareLibraryItem, UIActivityIndicatorView, UIButton, UIImageView, UILabel;
-
 @interface PKLinkedAppView : UITableViewCell <SKStoreProductViewControllerDelegate> {
     UIActivityIndicatorView *_activityIndicator;
     BOOL _appInstalled;
@@ -16,31 +14,39 @@
     UIImageView *_iconView;
     UILabel *_loadingLabel;
     BOOL _lookupInitiated;
+    UIColor *_mainLabelColor;
     UILabel *_price;
     SKStoreProductViewController *_productViewController;
     NSArray *_storeIDs;
+    UIColor *_subTextLabelColor;
     UILabel *_tapToOpen;
     PKLinkedAppUserRatingView *_userRatingView;
     UIButton *_viewButton;
 }
 
-@property(retain) UIActivityIndicatorView * activityIndicator;
-@property BOOL appInstalled;
-@property(retain) NSURL * appLaunchURL;
-@property(retain) UILabel * appName;
-@property BOOL appNotAvailable;
-@property(retain) UILabel * appPublisher;
-@property(retain) SSSoftwareLibraryItem * foundLibraryItem;
-@property(retain) NSDictionary * foundStoreItem;
-@property(retain) UIImageView * iconView;
-@property(retain) UILabel * loadingLabel;
-@property BOOL lookupInitiated;
-@property(retain) UILabel * price;
-@property(retain) SKStoreProductViewController * productViewController;
-@property(retain) NSArray * storeIDs;
-@property(retain) UILabel * tapToOpen;
-@property(retain) PKLinkedAppUserRatingView * userRatingView;
-@property(retain) UIButton * viewButton;
+@property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
+@property (nonatomic) BOOL appInstalled;
+@property (nonatomic, retain) NSURL *appLaunchURL;
+@property (nonatomic, retain) UILabel *appName;
+@property (nonatomic) BOOL appNotAvailable;
+@property (nonatomic, retain) UILabel *appPublisher;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) SSSoftwareLibraryItem *foundLibraryItem;
+@property (nonatomic, retain) NSDictionary *foundStoreItem;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) UIImageView *iconView;
+@property (nonatomic, retain) UILabel *loadingLabel;
+@property (nonatomic) BOOL lookupInitiated;
+@property (nonatomic) UIColor *mainLabelColor;
+@property (nonatomic, retain) UILabel *price;
+@property (nonatomic, retain) SKStoreProductViewController *productViewController;
+@property (nonatomic, retain) NSArray *storeIDs;
+@property (nonatomic) UIColor *subTextLabelColor;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) UILabel *tapToOpen;
+@property (nonatomic, retain) PKLinkedAppUserRatingView *userRatingView;
+@property (nonatomic, retain) UIButton *viewButton;
 
 - (BOOL)_anyAppIsInstalled:(id)arg1;
 - (int)_bindingTypeForNewsstandItem:(id)arg1;
@@ -49,8 +55,9 @@
 - (struct CGSize { float x1; float x2; })_desiredSizeForNewsstandItem:(id)arg1;
 - (int)_iconOptionsForItem:(id)arg1;
 - (id)_iconURLFromArtwork:(id)arg1 withDesiredSize:(struct CGSize { float x1; float x2; })arg2;
-- (int)_iconVariantForImage:(id)arg1 item:(id)arg2;
-- (id)_imageForSize:(struct CGSize { float x1; float x2; })arg1 fromArtwork:(id)arg2;
+- (id)_iconURLFromArtwork:(id)arg1 withDesiredSize:(struct CGSize { float x1; float x2; })arg2 requireStrictMatch:(BOOL)arg3;
+- (int)_iconVariantForScale:(float)arg1 item:(id)arg2;
+- (id)_imageForSize:(struct CGSize { float x1; float x2; })arg1 fromArtwork:(id)arg2 requireStrictMatch:(BOOL)arg3;
 - (BOOL)_itemArtNeedsShine:(id)arg1;
 - (BOOL)_itemIsNewsstandApp:(id)arg1;
 - (void)_layoutLoadingView;
@@ -69,10 +76,12 @@
 - (id)foundLibraryItem;
 - (id)foundStoreItem;
 - (id)iconView;
-- (id)initWithStoreIDs:(id)arg1 appLaunchURL:(id)arg2;
+- (id)initWithStoreIDs:(id)arg1 appLaunchURL:(id)arg2 reuseIdentifier:(id)arg3;
+- (id)initWithStyle:(int)arg1 reuseIdentifier:(id)arg2;
 - (void)layoutSubviews;
 - (id)loadingLabel;
 - (BOOL)lookupInitiated;
+- (id)mainLabelColor;
 - (void)performStoreLookup;
 - (id)price;
 - (id)productViewController;
@@ -90,13 +99,16 @@
 - (void)setIconView:(id)arg1;
 - (void)setLoadingLabel:(id)arg1;
 - (void)setLookupInitiated:(BOOL)arg1;
+- (void)setMainLabelColor:(id)arg1;
 - (void)setPrice:(id)arg1;
 - (void)setProductViewController:(id)arg1;
 - (void)setStoreIDs:(id)arg1;
+- (void)setSubTextLabelColor:(id)arg1;
 - (void)setTapToOpen:(id)arg1;
 - (void)setUserRatingView:(id)arg1;
 - (void)setViewButton:(id)arg1;
 - (id)storeIDs;
+- (id)subTextLabelColor;
 - (id)tapToOpen;
 - (id)userRatingView;
 - (id)viewButton;

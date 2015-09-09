@@ -6,13 +6,17 @@
     struct CGPoint { 
         float x; 
         float y; 
-    } _p[4];
+    } _p;
     BOOL _parserError;
     struct CGPath { } *_path;
 }
 
-@property(readonly) BOOL parserError;
-@property(readonly) struct CGPath { }* path;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) BOOL parserError;
+@property (readonly) struct CGPath { }*path;
+@property (readonly) Class superclass;
 
 - (void)dealloc;
 - (id)init;

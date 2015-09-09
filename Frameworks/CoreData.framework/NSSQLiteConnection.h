@@ -2,9 +2,22 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@class NSMutableArray, NSMutableDictionary, NSMutableSet, NSSQLEntity, NSSQLiteStatement, NSString;
-
 @interface NSSQLiteConnection : NSSQLConnection {
+    NSSQLiteStatement *_beginStatement;
+    struct __CFDictionary { } *_cachedEntityUpdateStatements;
+    NSMutableDictionary *_cachedFetchStatements;
+    NSSQLiteStatement *_commitStatement;
+    struct sqlite3 { } *_db;
+    NSString *_dbPathRegisteredWithBackupd;
+    unsigned long long _debugInode;
+    void *_extraBuffersForRegisteredFunctions;
+    struct sqlite3_stmt { } *_fetchPKStatement;
+    NSSQLEntity *_finalEntity;
+    NSSQLEntity *_lastEntity;
+    unsigned int _lastEntityKey;
+    NSMutableDictionary *_pragmaSettings;
+    NSSQLiteStatement *_rollbackStatement;
+    int _rowsProcessedCount;
     struct __sqliteConnectionFlags { 
         unsigned int _readyToBind : 1; 
         unsigned int _fetchInProgress : 1; 
@@ -14,20 +27,6 @@
         unsigned int _usingWAL : 1; 
         unsigned int _disallowReconnect : 1; 
         unsigned int _reserved : 24; 
-    NSSQLiteStatement *_beginStatement;
-    struct __CFDictionary { } *_cachedEntityUpdateStatements;
-    NSSQLiteStatement *_commitStatement;
-    struct sqlite3 { } *_db;
-    NSString *_dbPathRegisteredWithBackupd;
-    unsigned long long _debugInode;
-    void *_extraBuffersForRegisteredFunctions[5];
-    struct sqlite3_stmt { } *_fetchPKStatement;
-    NSSQLEntity *_finalEntity;
-    NSSQLEntity *_lastEntity;
-    unsigned int _lastEntityKey;
-    NSMutableDictionary *_pragmaSettings;
-    NSSQLiteStatement *_rollbackStatement;
-    int _rowsProcessedCount;
     } _sqliteConnectionFlags;
     NSMutableArray *_temporaryTables;
     double _timeOutIncrement;
@@ -87,9 +86,12 @@
 - (void)beginTransaction;
 - (void)bindTempTableForBindIntarray:(id)arg1;
 - (void)cacheCurrentDBStatementOn:(id)arg1;
+- (void)cacheStatement:(id)arg1 forRequestWithIdentifier:(id)arg2;
 - (void)cacheUpdateStatement:(id)arg1 forEntity:(id)arg2 andDeltasMask:(struct __CFBitVector { }*)arg3;
+- (id)cachedStatementForRequestWithIdentifier:(id)arg1;
 - (id)cachedUpdateStatementForEntity:(id)arg1 andDeltasMask:(struct __CFBitVector { }*)arg2;
 - (BOOL)canConnect;
+- (void)clearCachedStatementForRequestWithIdentifier:(id)arg1;
 - (void)commitTransaction;
 - (void)connect;
 - (id)createMapOfEntityNameToPKMaxForEntities:(id)arg1;
@@ -99,6 +101,7 @@
 - (void)dealloc;
 - (void)deleteCorrelation:(id)arg1;
 - (void)deleteRow:(id)arg1;
+- (id)deleteTransactionEntriesAfterPeerState:(id)arg1 forStoreName:(id)arg2;
 - (id)describeResults;
 - (void)didCreateSchema;
 - (void)disconnect;
@@ -106,6 +109,7 @@
 - (void)endFetch;
 - (void)endPrimaryKeyGeneration;
 - (void)execute;
+- (void)executeCorrelationChangesForValue1:(unsigned long long)arg1 value2:(unsigned long long)arg2 value3:(unsigned long long)arg3 value4:(unsigned long long)arg4;
 - (long long)fetchMaxPrimaryKeyForEntity:(id)arg1;
 - (int)fetchResultSet:(void*)arg1 usingFetchPlan:(id)arg2;
 - (id)fetchTableCreationSQL;
@@ -140,5 +144,10 @@
 - (void)updateUbiquityKnowledgeForPeerWithID:(id)arg1 andTransactionNumber:(id)arg2;
 - (void)updateUbiquityKnowledgeVector:(id)arg1;
 - (void)willCreateSchema;
+- (void)writeCorrelationChangesFromTracker:(id)arg1;
+- (void)writeCorrelationDeletesFromTracker:(id)arg1;
+- (void)writeCorrelationInsertsFromTracker:(id)arg1;
+- (void)writeCorrelationMasterReordersFromTracker:(id)arg1;
+- (void)writeCorrelationReordersFromTracker:(id)arg1;
 
 @end

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSMutableArray, NSMutableDictionary, NSString;
-
 @interface GQNumberFormatter : NSObject {
     struct __CFString { } *mAdditionalCurrencyCode;
     struct __CFArray { } *mAdditionalCurrencyCodeFormatters;
@@ -30,8 +28,8 @@
 + (id)currencySymbolForCurrencyCode:(id)arg1;
 + (id)currentLocaleCurrencyCode;
 + (unsigned short)defaultDecimalPlacesForCurrencyCode:(id)arg1;
-+ (id)defaultFormatStringForValueType:(int)arg1 negativeStyle:(int)arg2;
 + (id)defaultFormatStringForValueType:(int)arg1;
++ (id)defaultFormatStringForValueType:(int)arg1 negativeStyle:(int)arg2;
 + (id)displayNameForCurrencyCode:(id)arg1;
 + (void)formatString:(id)arg1 replaceOccurencesOfUnescapedString:(id)arg2 withString:(id)arg3;
 + (id)formatString:(id)arg1 transformedForNegativeStyle:(int)arg2;
@@ -48,8 +46,8 @@
 - (id)currentLocaleCurrencyCode;
 - (void)dealloc;
 - (BOOL)decimalFromString:(struct __CFString { }*)arg1 value:(double*)arg2 formatString:(const struct __CFString {}**)arg3;
-- (id)defaultFormatStringForValueType:(int)arg1 negativeStyle:(int)arg2;
 - (id)defaultFormatStringForValueType:(int)arg1;
+- (id)defaultFormatStringForValueType:(int)arg1 negativeStyle:(int)arg2;
 - (id)displayNameForCurrencyCode:(id)arg1;
 - (BOOL)findCurrencySymbolInString:(struct __CFString { }*)arg1 additionalCurrencyCode:(struct __CFString { }*)arg2 successfulString:(const struct __CFString {}**)arg3;
 - (BOOL)fractionFromString:(struct __CFString { }*)arg1 value:(double*)arg2;

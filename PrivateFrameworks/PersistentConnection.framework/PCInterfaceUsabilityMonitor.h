@@ -2,16 +2,14 @@
    Image: /System/Library/PrivateFrameworks/PersistentConnection.framework/PersistentConnection
  */
 
-@class <PCInterfaceUsabilityMonitorDelegate>, CUTWeakReference, NSMutableArray, NSString;
-
 @interface PCInterfaceUsabilityMonitor : NSObject <PCInterfaceUsabilityMonitorProtocol> {
-    struct dispatch_queue_s { } *_delegateQueue;
+    NSObject<OS_dispatch_queue> *_delegateQueue;
     CUTWeakReference *_delegateReference;
     void *_dynamicStore;
     int _interfaceIdentifier;
     NSString *_interfaceName;
     BOOL _isInternetReachable;
-    struct dispatch_queue_s { } *_ivarQueue;
+    NSObject<OS_dispatch_queue> *_ivarQueue;
     int _linkQuality;
     struct __CFRunLoopSource { } *_linkQualitySource;
     struct __CFString { } *_lqKey;
@@ -22,23 +20,29 @@
     double _trackedTimeInterval;
 }
 
-@property(readonly) struct __CFString { }* currentRAT;
-@property <PCInterfaceUsabilityMonitorDelegate> * delegate;
-@property(readonly) int interfaceIdentifier;
-@property(readonly) BOOL isInterfaceHistoricallyUsable;
-@property(readonly) BOOL isInterfaceUsable;
-@property(readonly) BOOL isInternetReachable;
-@property(readonly) BOOL isLTEWithCDRX;
-@property(readonly) BOOL isPoorLinkQuality;
-@property(readonly) BOOL isRadioHot;
-@property(readonly) int linkQuality;
-@property(readonly) NSString * linkQualityString;
-@property(readonly) struct __CFString { }* wwanInterfaceName;
+@property (nonatomic, readonly) struct __CFString { }*currentRAT;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <PCInterfaceUsabilityMonitorDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) int interfaceIdentifier;
+@property (nonatomic, readonly) BOOL isBadLinkQuality;
+@property (nonatomic, readonly) BOOL isInterfaceHistoricallyUsable;
+@property (nonatomic, readonly) BOOL isInterfaceUsable;
+@property (nonatomic, readonly) BOOL isInternetReachable;
+@property (nonatomic, readonly) BOOL isLTEWithCDRX;
+@property (nonatomic, readonly) BOOL isPoorLinkQuality;
+@property (nonatomic, readonly) BOOL isRadioHot;
+@property (nonatomic, readonly) int linkQuality;
+@property (nonatomic, readonly, retain) NSString *linkQualityString;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) struct __CFString { }*wwanInterfaceName;
 
++ (BOOL)isBadLinkQuality:(int)arg1;
 + (BOOL)isPoorLinkQuality:(int)arg1;
 + (id)stringForLinkQuality:(int)arg1;
 
-- (void)_callDelegateOnIvarQueueWithBlock:(id)arg1;
+- (void)_callDelegateOnIvarQueueWithBlock:(id /* block */)arg1;
 - (void)_createLinkQualityMonitor;
 - (void)_createLinkQualityMonitorOnIvarQueue;
 - (void)_createReachabilityMonitor;
@@ -57,8 +61,9 @@
 - (void)dealloc;
 - (id)delegate;
 - (id)init;
-- (id)initWithInterfaceName:(id)arg1 interfaceIdentifier:(int)arg2 delegateQueue:(struct dispatch_queue_s { }*)arg3;
+- (id)initWithInterfaceName:(id)arg1 interfaceIdentifier:(int)arg2 delegateQueue:(id)arg3;
 - (int)interfaceIdentifier;
+- (BOOL)isBadLinkQuality;
 - (BOOL)isInterfaceHistoricallyUsable;
 - (BOOL)isInterfaceUsable;
 - (BOOL)isInternetReachable;

@@ -2,12 +2,7 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIDelayedAction, UITouch;
-
 @interface UIDragRecognizer : UIGestureRecognizer {
-    struct CGPoint { 
-        float x; 
-        float y; 
     double _angle;
     BOOL _canBeginDrag;
     SEL _checkCanBeginDrag;
@@ -16,23 +11,26 @@
     double _quietPeriod;
     BOOL _restrictsToAngle;
     double _startAngle;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _startPosition;
     UIDelayedAction *_tooSlow;
     UITouch *_touch;
     UIDelayedAction *ignoreTouch;
 }
 
-@property double angle;
-@property BOOL canBeginDrag;
-@property SEL checkCanBeginDrag;
-@property(retain) UIDelayedAction * ignoreTouch;
-@property double maximumDeviation;
-@property double minimumDistance;
-@property double quietPeriod;
-@property BOOL restrictsToAngle;
-@property double startAngle;
-@property struct CGPoint { float x1; float x2; } startPosition;
-@property(retain) UITouch * touch;
+@property (nonatomic) double angle;
+@property (nonatomic) BOOL canBeginDrag;
+@property (nonatomic) SEL checkCanBeginDrag;
+@property (nonatomic, retain) UIDelayedAction *ignoreTouch;
+@property (nonatomic) double maximumDeviation;
+@property (nonatomic) double minimumDistance;
+@property (nonatomic) double quietPeriod;
+@property (nonatomic) BOOL restrictsToAngle;
+@property (nonatomic) double startAngle;
+@property (nonatomic) struct CGPoint { float x1; float x2; } startPosition;
+@property (nonatomic, retain) UITouch *touch;
 
 - (void)_resetGestureRecognizer;
 - (double)angle;

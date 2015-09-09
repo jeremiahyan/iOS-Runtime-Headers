@@ -2,24 +2,17 @@
    Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class ISURLRequestPerformance, NSURL, SSAuthenticationContext, SSMutableAuthenticationContext, SUDelayedNavigationItem, SUMescalSession, SUObjectPool, SUShowcaseViewController, SUStorePageProtocol, SUWebView, SUWebViewManager;
-
-@interface SUWebViewController : SUViewController <SUWebViewManagerDelegate, SUWebViewDelegate> {
+@interface SUWebViewController : SUViewController <SUWebViewDelegate, SUWebViewManagerDelegate> {
     SSMutableAuthenticationContext *_authenticationContext;
     SUDelayedNavigationItem *_delayedNavigationItem;
     NSURL *_displayedURL;
     BOOL _hasEverAppeared;
     int _lastKnownOrientation;
-    id _loadBlock;
+    id /* block */ _loadBlock;
     SUMescalSession *_mescalSession;
     SUObjectPool *_objectPool;
     ISURLRequestPerformance *_performanceMetrics;
     int _scheduledOrientation;
-    SUShowcaseViewController *_showcaseViewController;
     SUStorePageProtocol *_storePageProtocol;
     int _style;
     NSURL *_url;
@@ -28,23 +21,26 @@
     SUWebViewManager *_webViewManager;
 }
 
-@property(getter=_mescalSession,setter=_setMescalSession:,retain) SUMescalSession * _mescalSession;
-@property(getter=_performanceMetrics,setter=_setPerformanceMetrics:,retain) ISURLRequestPerformance * _performanceMetrics;
-@property(copy) SSAuthenticationContext * authenticationContext;
-@property int style;
-@property BOOL viewIsReady;
-@property(readonly) SUWebView * webView;
+@property (getter=_mescalSession, setter=_setMescalSession:, nonatomic, retain) SUMescalSession *_mescalSession;
+@property (getter=_performanceMetrics, setter=_setPerformanceMetrics:, nonatomic, retain) ISURLRequestPerformance *_performanceMetrics;
+@property (nonatomic, copy) SSAuthenticationContext *authenticationContext;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) int style;
+@property (readonly) Class superclass;
+@property (nonatomic) BOOL viewIsReady;
+@property (nonatomic, readonly) SUWebView *webView;
 
 - (void)_addPlaceholderBackgroundView;
 - (void)_applySavedScrollOffsetIfPossible;
 - (void)_applyScriptProperties:(id)arg1;
 - (id)_defaultBackgroundColor;
 - (void)_finishLoadWithResult:(BOOL)arg1 error:(id)arg2;
-- (void)_getURLRequestForOperation:(id)arg1 block:(id)arg2;
+- (void)_getURLRequestForOperation:(id)arg1 block:(id /* block */)arg2;
 - (void)_loadURLRequest:(id)arg1;
-- (void)_loadWithURLOperation:(id)arg1 completionBlock:(id)arg2;
+- (void)_loadWithURLOperation:(id)arg1 completionBlock:(id /* block */)arg2;
 - (id)_mescalSession;
-- (id)_newURLRequestWithOperation:(id)arg1 bagContext:(id)arg2;
 - (id)_performanceMetrics;
 - (id)_placeholderBackgroundView;
 - (void)_prepareToLoadURL:(id)arg1;
@@ -58,7 +54,6 @@
 - (void)_setLastKnownOrientation:(int)arg1;
 - (void)_setMescalSession:(id)arg1;
 - (void)_setPerformanceMetrics:(id)arg1;
-- (void)_showNativeShowcaseWithDictionary:(id)arg1;
 - (void)applicationDidEnterBackground;
 - (void)applicationWillEnterForeground;
 - (id)authenticationContext;

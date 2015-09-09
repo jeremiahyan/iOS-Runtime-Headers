@@ -2,20 +2,22 @@
    Image: /System/Library/PrivateFrameworks/RadioUI.framework/RadioUI
  */
 
-@class UIView;
-
 @interface RUFocusedTouchGestureRecognizer : UIGestureRecognizer <UIGestureRecognizerDelegatePrivate> {
+    UIView *_focusedView;
     struct UIEdgeInsets { 
         float top; 
         float left; 
         float bottom; 
         float right; 
-    UIView *_focusedView;
     } _touchAllowance;
 }
 
-@property(readonly) UIView * focusedView;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } touchAllowance;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) UIView *focusedView;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } touchAllowance;
 
 - (void).cxx_destruct;
 - (BOOL)_gestureRecognizer:(id)arg1 shouldRecognizeSimultaneouslyWithGestureRecognizer:(id)arg2;

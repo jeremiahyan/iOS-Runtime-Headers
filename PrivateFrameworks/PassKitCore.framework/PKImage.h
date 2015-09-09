@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/PassKitCore.framework/PassKitCore
  */
 
-@class NSData, NSObject<OS_dispatch_queue>;
-
 @interface PKImage : NSObject <NSSecureCoding> {
     struct PKEdgeInsets { 
         float top; 
@@ -20,18 +18,22 @@
     BOOL _shouldTile;
 }
 
-@property(readonly) struct PKEdgeInsets { float x1; float x2; float x3; float x4; } capInsets;
-@property(readonly) NSData * imageData;
-@property(readonly) struct CGImage { }* imageRef;
-@property(readonly) int orientation;
-@property(readonly) float scale;
-@property(readonly) struct CGSize { float x1; float x2; } size;
-@property(readonly) BOOL stretches;
-@property(readonly) BOOL tiles;
+@property (nonatomic, readonly) struct PKEdgeInsets { float x1; float x2; float x3; float x4; } capInsets;
+@property (nonatomic, readonly) NSData *imageData;
+@property (nonatomic, readonly) struct CGImage { }*imageRef;
+@property (nonatomic, readonly) int orientation;
+@property (nonatomic, readonly) float scale;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } size;
+@property (nonatomic, readonly) BOOL stretches;
+@property (nonatomic, readonly) BOOL tiles;
+
+// Image: /System/Library/PrivateFrameworks/PassKitCore.framework/PassKitCore
 
 + (id)URLForImageNamed:(id)arg1 inBundle:(id)arg2 scale:(float*)arg3;
++ (id)URLForImageNamed:(id)arg1 inBundle:(id)arg2 scale:(float*)arg3 preferredScreenScale:(float)arg4 suffix:(id)arg5;
 + (id)hashOfImageNamed:(id)arg1 inBundle:(id)arg2;
 + (id)imageNamed:(id)arg1 inBundle:(id)arg2;
++ (id)imageNamed:(id)arg1 inBundle:(id)arg2 screenScale:(float)arg3 suffix:(id)arg4;
 + (id)passesImageNamed:(id)arg1;
 + (BOOL)supportsSecureCoding;
 
@@ -40,10 +42,12 @@
 - (id)blurredImageWithRadius:(unsigned int)arg1 constraints:(id)arg2;
 - (struct PKEdgeInsets { float x1; float x2; float x3; float x4; })capInsets;
 - (void)dealloc;
-- (void)drawInRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 inContext:(struct CGContext { }*)arg2 withBlendMode:(int)arg3 alpha:(float)arg4;
+- (struct CGSize { float x1; float x2; })downscaleSizeMatchingScale:(float)arg1;
 - (void)drawInRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 inContext:(struct CGContext { }*)arg2;
+- (void)drawInRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 inContext:(struct CGContext { }*)arg2 withBlendMode:(int)arg3 alpha:(float)arg4;
 - (void)encodeWithCoder:(id)arg1;
 - (id)imageData;
+- (id)imageHash;
 - (struct CGImage { }*)imageRef;
 - (id)init;
 - (id)initWithCGImage:(struct CGImage { }*)arg1 scale:(float)arg2 orientation:(int)arg3;
@@ -59,5 +63,9 @@
 - (struct CGSize { float x1; float x2; })size;
 - (BOOL)stretches;
 - (BOOL)tiles;
+
+// Image: /System/Library/PrivateFrameworks/NanoPassKit.framework/NanoPassKit
+
+- (id)resizedImageToCover:(struct CGSize { float x1; float x2; })arg1;
 
 @end

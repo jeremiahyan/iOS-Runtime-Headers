@@ -2,12 +2,13 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class SADomainObject;
+@interface SADomainObjectCreate : SADomainCommand <SADomainObjectCommand>
 
-@interface SADomainObjectCreate : SADomainCommand <SADomainObjectCommand> {
-}
-
-@property(retain) SADomainObject * object;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) SADomainObject *object;
+@property (readonly) Class superclass;
 
 + (id)domainObjectCreate;
 + (id)domainObjectCreateWithDictionary:(id)arg1 context:(id)arg2;

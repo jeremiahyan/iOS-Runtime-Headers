@@ -2,8 +2,12 @@
    Image: /System/Library/PrivateFrameworks/AssistantServices.framework/AssistantServices
  */
 
-@interface _AFSpeakableUtterancePassThroughProvider : NSObject <AFSpeakableNamespaceProvider> {
-}
+@interface _AFSpeakableUtterancePassThroughProvider : NSObject <AFSpeakableNamespaceProvider>
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (id)stringForExpression:(id)arg1;
 

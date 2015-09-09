@@ -2,14 +2,13 @@
    Image: /System/Library/PrivateFrameworks/CoreUI.framework/CoreUI
  */
 
-@class CUIRenditionMetrics, CUIRenditionSliceInformation, _CSIRenditionBlockData;
-
 @interface _CUIThemePixelRendition : CUIThemeRendition {
     _CSIRenditionBlockData *_cachedBlockDataBGRX;
     _CSIRenditionBlockData *_cachedBlockDataRGBX;
     CUIRenditionMetrics *_renditionMetrics;
     CUIRenditionSliceInformation *_sliceInformation;
-    struct CGImage {} *image[16];
+    unsigned long _sourceRowbytes;
+    struct CGImage {} *image;
     unsigned int nimages;
     struct CGImage { } *unslicedImage;
 }
@@ -23,9 +22,10 @@
 - (BOOL)isTiled;
 - (id)maskForSliceIndex:(int)arg1;
 - (id)metrics;
-- (struct CGImage { }*)newImageFromCSIDataSlice:(struct _slice { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; })arg1 ofBitmap:(struct _csibitmap { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; unsigned char x5[0]; }*)arg2 usingColorspace:(struct CGColorSpace { }*)arg3;
+- (struct CGImage { }*)newImageFromCSIDataSlice:(struct _slice { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; })arg1 ofBitmap:(struct _csibitmap { unsigned int x1; union { unsigned int x_2_1_1; struct _csibitmapflags { unsigned int x_2_2_1 : 1; unsigned int x_2_2_2 : 1; unsigned int x_2_2_3 : 30; } x_2_1_2; } x2; unsigned int x3; unsigned int x4; unsigned char x5[0]; }*)arg2 usingColorspace:(struct CGColorSpace { }*)arg3;
 - (void)setSharedBlockData:(id)arg1;
 - (id)sliceInformation;
+- (unsigned long)sourceRowbytes;
 - (struct CGImage { }*)unslicedImage;
 
 @end

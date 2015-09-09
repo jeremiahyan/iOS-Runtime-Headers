@@ -2,11 +2,14 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@interface SAMPNowPlayingQueuePosition : AceObject <SAAceSerializable> {
-}
+@interface SAMPNowPlayingQueuePosition : AceObject <SAAceSerializable>
 
-@property int index;
-@property int queueSize;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) int index;
+@property (nonatomic) int queueSize;
+@property (readonly) Class superclass;
 
 + (id)nowPlayingQueuePosition;
 + (id)nowPlayingQueuePositionWithDictionary:(id)arg1 context:(id)arg2;

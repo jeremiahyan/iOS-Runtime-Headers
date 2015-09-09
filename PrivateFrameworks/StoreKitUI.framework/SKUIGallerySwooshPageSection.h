@@ -2,14 +2,16 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class NSMapTable, SKUIGallerySwooshViewController, SKUISwooshPageComponent;
-
 @interface SKUIGallerySwooshPageSection : SKUIStorePageSection <SKUIArtworkRequestDelegate, SKUIGallerySwooshViewControllerDelegate> {
     NSMapTable *_componentArtworkRequests;
     SKUIGallerySwooshViewController *_swooshViewController;
 }
 
-@property(readonly) SKUISwooshPageComponent * pageComponent;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) SKUISwooshPageComponent *pageComponent;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_addImpressionForIndex:(int)arg1 toSession:(id)arg2;

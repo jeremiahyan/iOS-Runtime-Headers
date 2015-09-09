@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/SpringBoardUI.framework/SpringBoardUI
  */
 
-@class NSArray, UIAlertView;
-
 @interface SBAlertItem : NSObject <UIAlertViewDelegate> {
     UIAlertView *_alertSheet;
     BOOL _allowInCar;
@@ -19,19 +17,25 @@
     BOOL _preventLockOver;
 }
 
-@property BOOL allowInCar;
-@property BOOL allowInSetup;
-@property BOOL allowMessageInCar;
-@property(retain) NSArray * allowedBundleIDs;
-@property BOOL ignoreIfAlreadyDisplaying;
-@property BOOL pendInSetupIfNotAllowed;
-@property BOOL pendWhileKeyBagLocked;
+@property (nonatomic) BOOL allowInCar;
+@property (nonatomic) BOOL allowInSetup;
+@property (nonatomic) BOOL allowMessageInCar;
+@property (nonatomic, retain) NSArray *allowedBundleIDs;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL ignoreIfAlreadyDisplaying;
+@property (nonatomic) BOOL pendInSetupIfNotAllowed;
+@property (nonatomic) BOOL pendWhileKeyBagLocked;
+@property (readonly) Class superclass;
 
 + (id)_alertItemsController;
 + (void)activateAlertItem:(id)arg1;
 
 - (BOOL)_didEverActivate;
+- (BOOL)_dismissesOverlaysOnLockScreen;
 - (void)_playPresentationSound;
+- (id)alertController;
 - (id)alertItemNotificationDate;
 - (id)alertItemNotificationSender;
 - (int)alertItemNotificationType;
@@ -42,6 +46,7 @@
 - (BOOL)allowAutoUnlock;
 - (BOOL)allowInCar;
 - (BOOL)allowInSetup;
+- (BOOL)allowLockScreenDismissal;
 - (BOOL)allowMenuButtonDismissal;
 - (BOOL)allowMessageInCar;
 - (id)allowedBundleIDs;
@@ -55,10 +60,11 @@
 - (void)didDeactivateForReason:(int)arg1;
 - (void)didFailToActivate;
 - (BOOL)didPlayPresentationSound;
-- (void)dismiss:(int)arg1;
 - (void)dismiss;
+- (void)dismiss:(int)arg1;
 - (BOOL)dismissOnLock;
 - (BOOL)dismissOnModalDisplayActivation;
+- (BOOL)dismissesAutomatically;
 - (BOOL)displayActionButtonOnLockScreen;
 - (BOOL)forcesModalAlertAppearance;
 - (BOOL)hasActiveKeyboardOnScreen;

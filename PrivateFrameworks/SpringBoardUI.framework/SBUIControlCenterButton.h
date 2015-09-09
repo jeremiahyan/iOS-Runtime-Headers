@@ -2,9 +2,9 @@
    Image: /System/Library/PrivateFrameworks/SpringBoardUI.framework/SpringBoardUI
  */
 
-@class <SBUIControlCenterButtonDelegate>, UIImage;
-
-@interface SBUIControlCenterButton : SBFButton <SBUIControlCenterControl> {
+@interface SBUIControlCenterButton : SBFButton <SBUIControlCenterControl, _UISettingsKeyObserver> {
+    UIVisualEffectView *_backgroundEffectView;
+    UIImageView *_backgroundImageView;
     struct UIEdgeInsets { 
         float top; 
         float left; 
@@ -12,80 +12,79 @@
         float right; 
     } _bgCapInsets;
     <SBUIControlCenterButtonDelegate> *_delegate;
-    BOOL _inverted;
+    UIVisualEffect *_disabledStateEffect;
+    UIImageView *_glyphImageView;
+    UIVisualEffect *_highlightedStateEffect;
     BOOL _isCircleButton;
+    BOOL _isRectButton;
     float _naturalHeight;
     UIImage *_normalBGImage;
-    UIImage *_normalGlyphImage;
-    UIImage *_selectedBGImage;
-    UIImage *_selectedGlyphImage;
+    UIVisualEffect *_normalStateEffect;
     UIImage *_sourceGlyphImage;
     UIImage *_sourceSelectedGlyphImage;
+    BOOL _useSmallButton;
 }
 
-@property <SBUIControlCenterButtonDelegate> * delegate;
-@property(getter=isInverted) BOOL inverted;
-@property BOOL isCircleButton;
-@property float naturalHeight;
-@property(retain) UIImage * normalBGImage;
-@property(retain) UIImage * normalGlyphImage;
-@property(retain) UIImage * selectedBGImage;
-@property(retain) UIImage * selectedGlyphImage;
-@property(retain) UIImage * sourceGlyphImage;
-@property(retain) UIImage * sourceSelectedGlyphImage;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SBUIControlCenterButtonDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL isCircleButton;
+@property (nonatomic) BOOL isRectButton;
+@property (nonatomic) float naturalHeight;
+@property (nonatomic, retain) UIImage *normalBGImage;
+@property (nonatomic, retain) UIImage *sourceGlyphImage;
+@property (nonatomic, retain) UIImage *sourceSelectedGlyphImage;
+@property (readonly) Class superclass;
+@property (nonatomic) BOOL useSmallButton;
 
-+ (id)_buttonWithBGImage:(id)arg1 selectedBGImage:(id)arg2 glyphImage:(id)arg3 naturalHeight:(float)arg4;
-+ (id)_circleBackgroundImageForState:(int)arg1 inverted:(BOOL)arg2;
-+ (id)_roundRectBackgroundImageForState:(int)arg1;
++ (id)_buttonWithBGImage:(id)arg1 glyphImage:(id)arg2 naturalHeight:(float)arg3;
++ (id)_circleBackgroundImage;
++ (id)_circleBackgroundImageForSize:(struct CGSize { float x1; float x2; })arg1;
++ (id)_roundRectBackgroundImage;
++ (id)_smallCircleBackgroundImage;
 + (id)circularButton;
-+ (id)circularButtonWithGlyphImage:(id)arg1;
 + (void)controlAppearanceDidChangeForState:(int)arg1;
-+ (void)initialize;
 + (id)roundRectButton;
-+ (id)roundRectButtonWithGlyphImage:(id)arg1;
-+ (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })visibleContentInsets;
 
+- (id)_backgroundImageWithGlyphImage:(id)arg1 state:(int)arg2;
 - (int)_currentState;
+- (BOOL)_drawingAsSelected;
+- (id)_glyphImageForState:(int)arg1;
 - (void)_pressAction;
-- (void)_rebuildBackgroundImages;
-- (void)_rebuildGlyphImages;
-- (void)_rebuildNormalGlyph;
-- (void)_rebuildSelectedGlyph;
-- (void)_setBackgroundImage:(id)arg1 selectedBackgroundImage:(id)arg2 naturalHeight:(float)arg3;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_rectForGlyph:(id)arg1 centeredInRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2;
+- (void)_setBackgroundImage:(id)arg1 naturalHeight:(float)arg2;
 - (BOOL)_shouldAnimatePropertyWithKey:(id)arg1;
+- (void)_updateBackgroundForStateChange;
+- (void)_updateEffects;
 - (void)_updateForStateChange;
-- (void)controlAppearanceDidChangeForState:(int)arg1;
-- (void)controlConfigurationDidChangeForState:(int)arg1;
+- (void)_updateGlyphForStateChange;
 - (void)dealloc;
 - (id)delegate;
-- (void)drawRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
-- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 backgroundImage:(id)arg2 selectedBackgroundImage:(id)arg3 glyphImage:(id)arg4 naturalHeight:(float)arg5;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 backgroundImage:(id)arg2 glyphImage:(id)arg3 naturalHeight:(float)arg4;
 - (BOOL)isCircleButton;
-- (BOOL)isInverted;
+- (BOOL)isRectButton;
 - (float)naturalHeight;
 - (id)normalBGImage;
-- (id)normalGlyphImage;
-- (id)selectedBGImage;
-- (id)selectedGlyphImage;
-- (void)setBackgroundImage:(id)arg1 forState:(unsigned int)arg2;
 - (void)setBackgroundImage:(id)arg1;
+- (void)setBackgroundImage:(id)arg1 forState:(unsigned int)arg2;
 - (void)setDelegate:(id)arg1;
 - (void)setEnabled:(BOOL)arg1;
+- (void)setFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)setGlyphImage:(id)arg1 selectedGlyphImage:(id)arg2;
 - (void)setImage:(id)arg1 forState:(unsigned int)arg2;
-- (void)setInverted:(BOOL)arg1;
 - (void)setIsCircleButton:(BOOL)arg1;
+- (void)setIsRectButton:(BOOL)arg1;
 - (void)setNaturalHeight:(float)arg1;
 - (void)setNormalBGImage:(id)arg1;
-- (void)setNormalGlyphImage:(id)arg1;
-- (void)setSelectedBGImage:(id)arg1;
-- (void)setSelectedGlyphImage:(id)arg1;
 - (void)setSourceGlyphImage:(id)arg1;
 - (void)setSourceSelectedGlyphImage:(id)arg1;
+- (void)setUseSmallButton:(BOOL)arg1;
+- (void)settings:(id)arg1 changedValueForKey:(id)arg2;
 - (struct CGSize { float x1; float x2; })sizeThatFits:(struct CGSize { float x1; float x2; })arg1;
 - (id)sourceGlyphImage;
 - (id)sourceSelectedGlyphImage;
-- (struct CGSize { float x1; float x2; })visibleContentSize;
+- (BOOL)useSmallButton;
 
 @end

@@ -2,16 +2,18 @@
    Image: /System/Library/PrivateFrameworks/CorePDF.framework/CorePDF
  */
 
-@class NSMutableString, UIPDFAnnotation;
-
 @interface UIPDFAnnotationParserDelegate : NSObject <NSXMLParserDelegate> {
     UIPDFAnnotation *_annotation;
     NSMutableString *_characters;
     BOOL _parseError;
 }
 
-@property(retain) UIPDFAnnotation * annotation;
-@property(readonly) BOOL parseError;
+@property (nonatomic, retain) UIPDFAnnotation *annotation;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) BOOL parseError;
+@property (readonly) Class superclass;
 
 - (id)annotation;
 - (void)dealloc;

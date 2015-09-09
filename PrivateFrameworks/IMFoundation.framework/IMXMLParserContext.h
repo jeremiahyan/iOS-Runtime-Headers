@@ -2,15 +2,13 @@
    Image: /System/Library/PrivateFrameworks/IMFoundation.framework/IMFoundation
  */
 
-@class NSArray, NSData, NSString;
-
 @interface IMXMLParserContext : NSObject {
     NSData *_inContentAsData;
 }
 
-@property(readonly) NSData * inContentAsData;
-@property(readonly) NSString * name;
-@property(readonly) NSArray * resultsForLogging;
+@property (readonly, retain) NSData *inContentAsData;
+@property (readonly, retain) NSString *name;
+@property (readonly, retain) NSArray *resultsForLogging;
 
 - (void)dealloc;
 - (id)inContent;

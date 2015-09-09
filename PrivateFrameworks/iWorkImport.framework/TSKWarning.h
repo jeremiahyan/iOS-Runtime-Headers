@@ -2,34 +2,33 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSArray, NSString;
-
 @interface TSKWarning : NSObject {
-    NSArray *mInfos;
-    unsigned int mKind;
-    NSString *mMessage;
-    int mSeverity;
+    NSSet *_affectedObjects;
+    NSString *_localizedLocation;
+    NSString *_message;
+    NSDictionary *_userInfo;
 }
 
-@property(copy) NSArray * infos;
-@property(readonly) unsigned int kind;
-@property(copy) NSString * message;
-@property(readonly) int severity;
+@property (nonatomic, copy) NSSet *affectedObjects;
+@property (nonatomic, copy) NSString *localizedLocation;
+@property (nonatomic, copy) NSString *message;
+@property (nonatomic, copy) NSDictionary *userInfo;
 
-+ (id)warningWithMessage:(id)arg1 kind:(unsigned int)arg2 infos:(id)arg3;
-+ (id)warningWithMessage:(id)arg1 kind:(unsigned int)arg2 severity:(int)arg3 infos:(id)arg4;
-+ (id)warningWithMessage:(id)arg1 severity:(int)arg2;
 + (id)warningWithMessage:(id)arg1;
++ (id)warningWithMessage:(id)arg1 affectedObject:(id)arg2;
++ (id)warningWithMessage:(id)arg1 affectedObjects:(id)arg2;
 
+- (id)affectedObjects;
 - (void)dealloc;
 - (unsigned int)hash;
-- (id)infos;
-- (id)initWithMessage:(id)arg1 kind:(unsigned int)arg2 severity:(int)arg3 infos:(id)arg4;
+- (id)initWithMessage:(id)arg1 affectedObjects:(id)arg2;
 - (BOOL)isEqual:(id)arg1;
-- (unsigned int)kind;
+- (id)localizedLocation;
 - (id)message;
-- (void)setInfos:(id)arg1;
+- (void)setAffectedObjects:(id)arg1;
+- (void)setLocalizedLocation:(id)arg1;
 - (void)setMessage:(id)arg1;
-- (int)severity;
+- (void)setUserInfo:(id)arg1;
+- (id)userInfo;
 
 @end

@@ -2,16 +2,14 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class AVAssetCacheInternal, NSURL;
-
 @interface AVAssetCache : NSObject {
     AVAssetCacheInternal *_priv;
 }
 
-@property(readonly) NSURL * URL;
-@property(readonly) long long currentSize;
-@property long long maxEntrySize;
-@property long long maxSize;
+@property (nonatomic, readonly, copy) NSURL *URL;
+@property (nonatomic, readonly) long long currentSize;
+@property (nonatomic) long long maxEntrySize;
+@property (nonatomic) long long maxSize;
 
 + (id)assetCacheWithURL:(id)arg1;
 
@@ -21,6 +19,7 @@
 - (void)dealloc;
 - (void)finalize;
 - (id)initWithURL:(id)arg1;
+- (id)lastModifiedDateOfEntryForKey:(id)arg1;
 - (long long)maxEntrySize;
 - (long long)maxSize;
 - (void)removeEntryForKey:(id)arg1;

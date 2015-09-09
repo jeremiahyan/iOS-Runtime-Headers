@@ -2,8 +2,12 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@interface PSVoiceOverSettingsDetail : NSObject <PSSettingsBoolDetail> {
-}
+@interface PSVoiceOverSettingsDetail : NSObject <PSSettingsBoolDetail>
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)iconImage;
 + (BOOL)isEnabled;

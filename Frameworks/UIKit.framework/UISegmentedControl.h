@@ -2,9 +2,14 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSMutableArray, UIColor, UIView;
-
-@interface UISegmentedControl : UIControl <_UIBasicAnimationFactory, NSCoding> {
+@interface UISegmentedControl : UIControl <NSCoding, _UIBasicAnimationFactory> {
+    BOOL __hasTranslucentOptionsBackground;
+    id _appearanceStorage;
+    UIView *_backgroundBarView;
+    int _barStyle;
+    float _enabledAlpha;
+    int _highlightedSegment;
+    UIView *_removedSegment;
     struct { 
         unsigned int style : 3; 
         unsigned int size : 2; 
@@ -18,35 +23,33 @@
         unsigned int useProportionalWidthSegments : 1; 
         unsigned int translucentBackground : 1; 
         unsigned int appearanceNeedsUpdate : 1; 
-        unsigned int contentTextPaddingEnabled : 1; 
-    BOOL __hasTranslucentOptionsBackground;
-    id _appearanceStorage;
-    UIView *_backgroundBarView;
-    int _barStyle;
-    float _enabledAlpha;
-    int _highlightedSegment;
-    UIView *_removedSegment;
     } _segmentedControlFlags;
     NSMutableArray *_segments;
     int _selectedSegment;
 }
 
-@property(setter=_setTranslucentOptionsBackground:) BOOL _hasTranslucentOptionsBackground;
-@property BOOL apportionsSegmentWidthsByContent;
-@property(getter=isMomentary) BOOL momentary;
-@property(readonly) unsigned int numberOfSegments;
-@property int segmentedControlStyle;
-@property int selectedSegmentIndex;
-@property(retain) UIColor * tintColor;
+@property (setter=_setTranslucentOptionsBackground:, nonatomic) BOOL _hasTranslucentOptionsBackground;
+@property (nonatomic) BOOL apportionsSegmentWidthsByContent;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (getter=isMomentary, nonatomic) BOOL momentary;
+@property (nonatomic, readonly) unsigned int numberOfSegments;
+@property (nonatomic) int segmentedControlStyle;
+@property (nonatomic) int selectedSegmentIndex;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) UIColor *tintColor;
+
+// Image: /System/Library/Frameworks/UIKit.framework/UIKit
 
 + (id)_modernBackgroundSelected:(BOOL)arg1 highlighted:(BOOL)arg2;
 + (id)_modernDividerImage;
 + (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
 + (float)defaultHeight;
-+ (float)defaultHeightForStyle:(int)arg1 size:(int)arg2;
 + (float)defaultHeightForStyle:(int)arg1;
++ (float)defaultHeightForStyle:(int)arg1 size:(int)arg2;
 
-- (void)_animateContentChangeWithAnimations:(id)arg1 completion:(id)arg2;
+- (void)_animateContentChangeWithAnimations:(id /* block */)arg1 completion:(id /* block */)arg2;
 - (id)_attributedTitleForSegmentAtIndex:(unsigned int)arg1;
 - (float)_backgroundVerticalPositionAdjustmentForBarMetrics:(int)arg1;
 - (id)_badgeValueForSegmentAtIndex:(unsigned int)arg1;
@@ -75,7 +78,6 @@
 - (void)_setBackgroundImage:(id)arg1 forState:(unsigned int)arg2 barMetrics:(int)arg3;
 - (void)_setBackgroundVerticalPositionAdjustment:(float)arg1 forBarMetrics:(int)arg2;
 - (void)_setBadgeValue:(id)arg1 forSegmentAtIndex:(unsigned int)arg2;
-- (void)_setContentTextPaddingEnabled:(BOOL)arg1;
 - (void)_setControlSize:(int)arg1 andInvalidate:(BOOL)arg2;
 - (void)_setCurrentBackgroundImage:(id)arg1;
 - (void)_setDividerImage:(id)arg1 forLeftSegmentState:(unsigned int)arg2 rightSegmentState:(unsigned int)arg3 barMetrics:(int)arg4;
@@ -84,10 +86,10 @@
 - (void)_setNeedsAppearanceUpdate;
 - (void)_setOptionsBackgroundImage:(id)arg1;
 - (void)_setOptionsShadowHidden:(BOOL)arg1;
-- (void)_setSegmentedControlAppearance:(struct { id x1; float x2; float x3; struct { id x_4_1_1; id x_4_1_2; id x_4_1_3; id x_4_1_4; id x_4_1_5; struct CGSize { float x_6_2_1; float x_6_2_2; } x_4_1_6; } x4; struct { id x_5_1_1; id x_5_1_2; id x_5_1_3; id x_5_1_4; id x_5_1_5; struct CGSize { float x_6_2_1; float x_6_2_2; } x_5_1_6; } x5; struct { id x_6_1_1; id x_6_1_2; id x_6_1_3; id x_6_1_4; id x_6_1_5; struct CGSize { float x_6_2_1; float x_6_2_2; } x_6_1_6; } x6; struct { id x_7_1_1; id x_7_1_2; id x_7_1_3; id x_7_1_4; id x_7_1_5; struct CGSize { float x_6_2_1; float x_6_2_2; } x_7_1_6; } x7; BOOL x8; }*)arg1;
+- (void)_setSegmentedControlAppearance:(struct { id x1; float x2; struct { id x_3_1_1; id x_3_1_2; id x_3_1_3; unsigned char x_3_1_4; /* Warning: Unrecognized filer type: 'G' using 'void*' */ void*x_3_1_5; unsigned short x_3_1_6; int x_3_1_7; void*x_3_1_8; void*x_3_1_9; void*x_3_1_10; float x_3_1_11; float x_3_1_12; } x3; }*)arg1;
 - (void)_setSelected:(BOOL)arg1 forSegmentAtIndex:(int)arg2 forceInfoDisplay:(BOOL)arg3;
-- (void)_setSelectedSegmentIndex:(int)arg1 notify:(BOOL)arg2 animate:(BOOL)arg3;
 - (void)_setSelectedSegmentIndex:(int)arg1 notify:(BOOL)arg2;
+- (void)_setSelectedSegmentIndex:(int)arg1 notify:(BOOL)arg2 animate:(BOOL)arg3;
 - (void)_setTitleTextAttributes:(id)arg1 forState:(unsigned int)arg2;
 - (void)_setTranslucentOptionsBackground:(BOOL)arg1;
 - (void)_setUsesNewAnimations:(BOOL)arg1;
@@ -117,8 +119,8 @@
 - (id)imageForSegmentAtIndex:(unsigned int)arg1;
 - (id)infoViewForSegment:(int)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 withStyle:(int)arg2 withItems:(id)arg3;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 withStyle:(int)arg2 withItems:(id)arg3;
 - (id)initWithItems:(id)arg1;
 - (void)insertSegment:(unsigned int)arg1 withImage:(id)arg2 animated:(BOOL)arg3;
 - (void)insertSegment:(unsigned int)arg1 withTitle:(id)arg2 animated:(BOOL)arg3;
@@ -152,9 +154,9 @@
 - (void)setControlSize:(int)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setDividerImage:(id)arg1 forLeftSegmentState:(unsigned int)arg2 rightSegmentState:(unsigned int)arg3 barMetrics:(int)arg4;
+- (void)setEnabled:(BOOL)arg1;
 - (void)setEnabled:(BOOL)arg1 forSegment:(unsigned int)arg2;
 - (void)setEnabled:(BOOL)arg1 forSegmentAtIndex:(unsigned int)arg2;
-- (void)setEnabled:(BOOL)arg1;
 - (void)setFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)setImage:(id)arg1 forSegment:(unsigned int)arg2;
 - (void)setImage:(id)arg1 forSegmentAtIndex:(unsigned int)arg2;
@@ -175,7 +177,6 @@
 - (BOOL)shouldTrack;
 - (struct CGSize { float x1; float x2; })sizeThatFits:(struct CGSize { float x1; float x2; })arg1;
 - (void)sizeToFit;
-- (void)sizeToFitWithMinimumSegmentWidth:(float)arg1 maximumTotalWidth:(float)arg2;
 - (id)titleForSegment:(unsigned int)arg1;
 - (id)titleForSegmentAtIndex:(unsigned int)arg1;
 - (id)titleTextAttributesForState:(unsigned int)arg1;
@@ -189,5 +190,13 @@
 - (id)viewForBaselineLayout;
 - (float)widthForSegment:(unsigned int)arg1;
 - (float)widthForSegmentAtIndex:(unsigned int)arg1;
+
+// Image: /System/Library/Frameworks/MapKit.framework/MapKit
+
+- (void)_mk_setItems:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
+
+- (void)sizeToFitWithMinimumSegmentWidth:(float)arg1 maximumTotalWidth:(float)arg2;
 
 @end

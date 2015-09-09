@@ -2,19 +2,17 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString;
-
 @interface _UITableViewCellBadge : UIView {
+    BOOL _isSelected;
+    NSString *_text;
     struct CGSize { 
         float width; 
         float height; 
-    BOOL _isSelected;
-    NSString *_text;
     } _textSize;
 }
 
-@property(getter=isSelected) BOOL selected;
-@property(copy) NSString * text;
+@property (getter=isSelected, nonatomic) BOOL selected;
+@property (nonatomic, copy) NSString *text;
 
 - (void)_sizeToFit;
 - (void)drawRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;

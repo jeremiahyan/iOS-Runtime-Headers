@@ -2,16 +2,14 @@
    Image: /System/Library/Frameworks/CoreImage.framework/CoreImage
  */
 
-@class CIContext, FCRFaceDetector, NSMutableDictionary;
-
 @interface CIFaceCoreDetector : CIDetector {
     CIContext *context;
     FCRFaceDetector *faceCoreDetector;
     NSMutableDictionary *featureOptions;
 }
 
-@property(retain) CIContext * context;
-@property FCRFaceDetector * faceCoreDetector;
+@property (nonatomic, retain) CIContext *context;
+@property FCRFaceDetector *faceCoreDetector;
 
 - (id)adjustedImageFromImage:(id)arg1 orientation:(int)arg2 inverseCTM:(struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; }*)arg3;
 - (id)context;
@@ -19,8 +17,8 @@
 - (struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })ctmForImageWithBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 orientation:(int)arg2;
 - (void)dealloc;
 - (id)faceCoreDetector;
-- (id)featuresInImage:(id)arg1 options:(id)arg2;
 - (id)featuresInImage:(id)arg1;
+- (id)featuresInImage:(id)arg1 options:(id)arg2;
 - (void)finalize;
 - (id)initWithContext:(id)arg1 options:(id)arg2;
 - (void)setContext:(id)arg1;

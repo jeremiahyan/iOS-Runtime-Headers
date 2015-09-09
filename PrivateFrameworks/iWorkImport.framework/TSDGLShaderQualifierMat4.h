@@ -20,6 +20,7 @@
         float m42; 
         float m43; 
         float m44; 
+    } _proposedTransform3D;
     struct CATransform3D { 
         float m11; 
         float m12; 
@@ -37,12 +38,11 @@
         float m42; 
         float m43; 
         float m44; 
-    } _proposedTransform3D;
     } _transform3D;
 }
 
-@property struct CATransform3D { float x1; float x2; float x3; float x4; float x5; float x6; float x7; float x8; float x9; float x10; float x11; float x12; float x13; float x14; float x15; float x16; } proposedTransform3D;
-@property(readonly) struct CATransform3D { float x1; float x2; float x3; float x4; float x5; float x6; float x7; float x8; float x9; float x10; float x11; float x12; float x13; float x14; float x15; float x16; } transform3D;
+@property (nonatomic) struct CATransform3D { float x1; float x2; float x3; float x4; float x5; float x6; float x7; float x8; float x9; float x10; float x11; float x12; float x13; float x14; float x15; float x16; } proposedTransform3D;
+@property (nonatomic, readonly) struct CATransform3D { float x1; float x2; float x3; float x4; float x5; float x6; float x7; float x8; float x9; float x10; float x11; float x12; float x13; float x14; float x15; float x16; } transform3D;
 
 - (id)description;
 - (id)initWithTransform3D:(struct CATransform3D { float x1; float x2; float x3; float x4; float x5; float x6; float x7; float x8; float x9; float x10; float x11; float x12; float x13; float x14; float x15; float x16; })arg1;

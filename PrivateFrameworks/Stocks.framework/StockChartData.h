@@ -2,42 +2,43 @@
    Image: /System/Library/PrivateFrameworks/Stocks.framework/Stocks
  */
 
-@class NSArray, NSDate, NSTimeZone, Stock, StockGraphImageSet;
-
 @interface StockChartData : NSObject {
     int _chartInterval;
     double _expirationTime;
-    StockGraphImageSet *_graphImageSets[2];
     BOOL _hasVolume;
+    NSMutableDictionary *_imageSetCache;
     NSArray *_interestingIndexes;
     BOOL _isUnavailable;
-    int _labelAlignments[2];
-    NSArray *_labelInfoArrays[4];
+    NSMutableDictionary *_labelPlacementCache;
     NSDate *_marketCloseDate;
     NSDate *_marketOpenDate;
     NSTimeZone *_marketTimeZone;
     struct { double x1; double x2; unsigned long long x3; } *_maxValue;
     struct { double x1; double x2; unsigned long long x3; } *_minValue;
+    float _previousClosePrice;
     Stock *_stock;
     unsigned int _stockValueCount;
     struct { double x1; double x2; unsigned long long x3; } *_stockValues;
+    NSMutableDictionary *_xAxisLabelInfoCache;
     int _yAxisFractionDigits;
+    NSMutableDictionary *_yAxisLabelInfoCache;
 }
 
-@property int chartInterval;
-@property double expirationTime;
-@property BOOL hasVolume;
-@property(retain) NSArray * interestingIndexes;
-@property BOOL isUnavailable;
-@property(retain) NSDate * marketCloseDate;
-@property(retain) NSDate * marketOpenDate;
-@property(retain) NSTimeZone * marketTimeZone;
-@property struct { double x1; double x2; unsigned long long x3; }* maxValue;
-@property struct { double x1; double x2; unsigned long long x3; }* minValue;
-@property Stock * stock;
-@property(readonly) unsigned int stockValueCount;
-@property(readonly) struct { double x1; double x2; unsigned long long x3; }* stockValues;
-@property int yAxisFractionDigits;
+@property (nonatomic) int chartInterval;
+@property (nonatomic) double expirationTime;
+@property (nonatomic) BOOL hasVolume;
+@property (nonatomic, retain) NSArray *interestingIndexes;
+@property (nonatomic) BOOL isUnavailable;
+@property (nonatomic, retain) NSDate *marketCloseDate;
+@property (nonatomic, retain) NSDate *marketOpenDate;
+@property (nonatomic, retain) NSTimeZone *marketTimeZone;
+@property (nonatomic) struct { double x1; double x2; unsigned long long x3; }*maxValue;
+@property (nonatomic) struct { double x1; double x2; unsigned long long x3; }*minValue;
+@property (nonatomic) float previousClosePrice;
+@property (nonatomic) Stock *stock;
+@property (readonly) unsigned int stockValueCount;
+@property (readonly) struct { double x1; double x2; unsigned long long x3; }*stockValues;
+@property (nonatomic) int yAxisFractionDigits;
 
 - (void).cxx_destruct;
 - (struct { double x1; double x2; unsigned long long x3; }*)allocateStockValuesWithCount:(unsigned int)arg1;
@@ -47,35 +48,39 @@
 - (id)description;
 - (double)expirationTime;
 - (BOOL)hasVolume;
-- (id)imageSetForStockGraphSize:(int)arg1;
+- (id)imageSetForDisplayMode:(id)arg1;
 - (id)initWithStock:(id)arg1 interval:(int)arg2;
 - (id)interestingIndexes;
 - (BOOL)isUnavailable;
-- (int)labelAlignmentForDetailedMode:(BOOL)arg1;
-- (id)labelInfoArrayForYAxis:(BOOL)arg1 detailedMode:(BOOL)arg2;
+- (int)labelPlacementForDisplayMode:(id)arg1;
 - (id)marketCloseDate;
 - (id)marketOpenDate;
 - (id)marketTimeZone;
 - (struct { double x1; double x2; unsigned long long x3; }*)maxValue;
 - (struct { double x1; double x2; unsigned long long x3; }*)minValue;
+- (float)previousClosePrice;
 - (void)setChartInterval:(int)arg1;
 - (void)setExpirationTime:(double)arg1;
 - (void)setHasVolume:(BOOL)arg1;
-- (void)setImageSet:(id)arg1 forStockGraphSize:(int)arg2;
+- (void)setImageSet:(id)arg1 forDisplayMode:(id)arg2;
 - (void)setInterestingIndexes:(id)arg1;
 - (void)setIsUnavailable:(BOOL)arg1;
-- (void)setLabelAlignment:(int)arg1 forDetailedMode:(BOOL)arg2;
-- (void)setLabelInfoArray:(id)arg1 forYAxis:(BOOL)arg2 detailedMode:(BOOL)arg3;
+- (void)setLabelPlacement:(int)arg1 forDisplayMode:(id)arg2;
 - (void)setMarketCloseDate:(id)arg1;
 - (void)setMarketOpenDate:(id)arg1;
 - (void)setMarketTimeZone:(id)arg1;
 - (void)setMaxValue:(struct { double x1; double x2; unsigned long long x3; }*)arg1;
 - (void)setMinValue:(struct { double x1; double x2; unsigned long long x3; }*)arg1;
+- (void)setPreviousClosePrice:(float)arg1;
 - (void)setStock:(id)arg1;
+- (void)setXAxisLabelInfoArray:(id)arg1 forDisplayMode:(id)arg2;
 - (void)setYAxisFractionDigits:(int)arg1;
+- (void)setYAxisLabelInfoArray:(id)arg1 forDisplayMode:(id)arg2;
 - (id)stock;
 - (unsigned int)stockValueCount;
 - (struct { double x1; double x2; unsigned long long x3; }*)stockValues;
+- (id)xAxisLabelInfoArrayForMode:(id)arg1;
 - (int)yAxisFractionDigits;
+- (id)yAxisLabelInfoArrayForMode:(id)arg1;
 
 @end

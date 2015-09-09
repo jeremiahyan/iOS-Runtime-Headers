@@ -2,24 +2,22 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class GEORequester;
-
 @interface GEOVoltaireDirectionsProvider : GEODirectionsProvider <PBRequesterDelegate> {
     BOOL _cancelled;
     GEORequester *_requester;
 }
 
-@property(retain) GEORequester * requester;
-
-+ (unsigned short)providerID;
-+ (id)providerURL;
-+ (void)setUsePersistentConnection:(BOOL)arg1;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) GEORequester *requester;
+@property (readonly) Class superclass;
 
 - (void)cancelProviderRequest;
 - (void)cleanupRequester;
 - (void)dealloc;
-- (void)requester:(id)arg1 didFailWithError:(id)arg2;
 - (id)requester;
+- (void)requester:(id)arg1 didFailWithError:(id)arg2;
 - (void)requesterDidCancel:(id)arg1;
 - (void)requesterDidFinish:(id)arg1;
 - (void)setRequester:(id)arg1;

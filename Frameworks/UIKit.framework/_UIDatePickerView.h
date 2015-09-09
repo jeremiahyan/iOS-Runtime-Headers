@@ -2,17 +2,16 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSCalendar, NSDate, NSDateComponents, NSLocale, NSTimeZone, UIDatePicker, UIFont, UILabel, _UIDatePickerMode;
-
-@interface _UIDatePickerView : UIPickerView <UIPickerViewDelegate, UIPickerViewDataSource> {
+@interface _UIDatePickerView : UIPickerView <UIPickerViewDataSource, UIPickerViewDelegate> {
+    BOOL _allowsZeroTimeInterval;
+    _UIDatePickerChineseCalendar *_chineseWrapperCalendar;
+    NSLocale *_compositeLocale;
+    UIDatePicker *_datePickerDelegate;
     struct { 
         unsigned int staggerTimeIntervals : 1; 
         unsigned int loadingDateOrTime : 1; 
         unsigned int highlightsToday : 1; 
         unsigned int usesBlackChrome : 1; 
-    BOOL _allowsZeroTimeInterval;
-    NSLocale *_compositeLocale;
-    UIDatePicker *_datePickerDelegate;
     } _datePickerFlags;
     id _delegateOfDatePicker;
     int _expectedAMPM;
@@ -32,31 +31,35 @@
     NSDate *_userSuppliedMinimumDate;
 }
 
-@property(getter=_allowsZeroCountDownDuration,setter=_setAllowsZeroCountDownDuration:) BOOL allowsZeroCountDownDuration;
-@property(getter=_allowsZeroTimeInterval,setter=_setAllowsZeroTimeInterval:) BOOL allowsZeroTimeInterval;
-@property(getter=_amPmValue,readonly) int amPmValue;
-@property(readonly) NSCalendar * calendar;
-@property(readonly) float contentWidth;
-@property(copy) NSDate * date;
-@property(copy) NSDateComponents * dateComponents;
-@property int datePickerMode;
-@property id delegateOfDatePicker;
-@property(getter=_hasCustomCalendar,readonly) BOOL hasCustomCalendar;
-@property(getter=_hasCustomLocale,readonly) BOOL hasCustomLocale;
-@property BOOL highlightsToday;
-@property(getter=_hrMinFont,readonly) UIFont * hrMinFont;
-@property(getter=_isTimeIntervalMode,readonly) BOOL isTimeIntervalMode;
-@property(getter=_lastSelectedDateComponents,readonly) NSDateComponents * lastSelectedDateComponents;
-@property(readonly) NSLocale * locale;
-@property(copy) NSDate * maximumDate;
-@property(copy) NSDate * minimumDate;
-@property int minuteInterval;
-@property BOOL staggerTimeIntervals;
-@property double timeInterval;
-@property(retain) NSTimeZone * timeZone;
-@property(copy) NSCalendar * userProvidedCalendar;
-@property(retain) NSLocale * userProvidedLocale;
-@property(getter=_usesBlackChrome,setter=_setUsesBlackChrome:) BOOL usesBlackChrome;
+@property (getter=_allowsZeroCountDownDuration, setter=_setAllowsZeroCountDownDuration:, nonatomic) BOOL allowsZeroCountDownDuration;
+@property (getter=_allowsZeroTimeInterval, setter=_setAllowsZeroTimeInterval:, nonatomic) BOOL allowsZeroTimeInterval;
+@property (getter=_amPmValue, nonatomic, readonly) int amPmValue;
+@property (nonatomic, readonly) NSCalendar *calendar;
+@property (nonatomic, readonly) float contentWidth;
+@property (nonatomic, copy) NSDate *date;
+@property (nonatomic, copy) NSDateComponents *dateComponents;
+@property (nonatomic) int datePickerMode;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) id delegateOfDatePicker;
+@property (readonly, copy) NSString *description;
+@property (getter=_hasCustomCalendar, nonatomic, readonly) BOOL hasCustomCalendar;
+@property (getter=_hasCustomLocale, nonatomic, readonly) BOOL hasCustomLocale;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL highlightsToday;
+@property (getter=_hrMinFont, nonatomic, readonly) UIFont *hrMinFont;
+@property (getter=_isTimeIntervalMode, nonatomic, readonly) BOOL isTimeIntervalMode;
+@property (getter=_lastSelectedDateComponents, nonatomic, readonly) NSDateComponents *lastSelectedDateComponents;
+@property (nonatomic, readonly) NSLocale *locale;
+@property (nonatomic, copy) NSDate *maximumDate;
+@property (nonatomic, copy) NSDate *minimumDate;
+@property (nonatomic) int minuteInterval;
+@property (nonatomic) BOOL staggerTimeIntervals;
+@property (readonly) Class superclass;
+@property (nonatomic) double timeInterval;
+@property (nonatomic, retain) NSTimeZone *timeZone;
+@property (nonatomic, copy) NSCalendar *userProvidedCalendar;
+@property (nonatomic, retain) NSLocale *userProvidedLocale;
+@property (getter=_usesBlackChrome, setter=_setUsesBlackChrome:, nonatomic) BOOL usesBlackChrome;
 
 - (BOOL)_allowsZeroCountDownDuration;
 - (BOOL)_allowsZeroTimeInterval;
@@ -129,8 +132,8 @@
 - (float)pickerView:(id)arg1 widthForComponent:(int)arg2;
 - (void)scrollViewWillBeginDragging:(id)arg1;
 - (int)second;
-- (void)setDate:(id)arg1 animated:(BOOL)arg2;
 - (void)setDate:(id)arg1;
+- (void)setDate:(id)arg1 animated:(BOOL)arg2;
 - (void)setDateComponents:(id)arg1;
 - (void)setDatePickerMode:(int)arg1;
 - (void)setDelegate:(id)arg1;

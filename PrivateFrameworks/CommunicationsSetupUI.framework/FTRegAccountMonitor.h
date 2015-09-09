@@ -2,21 +2,19 @@
    Image: /System/Library/PrivateFrameworks/CommunicationsSetupUI.framework/CommunicationsSetupUI
  */
 
-@class FTRegConnectionHandler, IMServiceImpl, NSArray;
-
 @interface FTRegAccountMonitor : NSObject {
-    struct { 
-        unsigned int listeningForNotifications : 1; 
     NSArray *_accounts;
     FTRegConnectionHandler *_connectionHandler;
+    struct { 
+        unsigned int listeningForNotifications : 1; 
     } _monitorFlags;
     IMServiceImpl *_service;
     int _serviceType;
 }
 
-@property(readonly) NSArray * activeAccounts;
-@property(retain) IMServiceImpl * service;
-@property int serviceType;
+@property (nonatomic, readonly, retain) NSArray *activeAccounts;
+@property (nonatomic, retain) IMServiceImpl *service;
+@property (nonatomic) int serviceType;
 
 - (id)_activeAccounts;
 - (void)_handleAccountNotification:(id)arg1;

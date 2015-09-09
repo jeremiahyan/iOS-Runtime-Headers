@@ -2,27 +2,7 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@class UIKeyboard, UITransitionView, UIView<PINEntryView>;
-
-@interface DevicePINPane : PSEditingPane <UIKeyInput> {
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
+@interface DevicePINPane : PSEditingPane <PSPINEntryViewDelegate, UIKeyInput, UITextInputTraits> {
     int _autocapitalizationType;
     int _autocorrectionType;
     BOOL _isBlocked;
@@ -30,28 +10,30 @@
     int _keyboardType;
     UIKeyboard *_keypad;
     BOOL _keypadActive;
-    } _keypadFrame;
     UIView<PINEntryView> *_pinView;
-    } _pinViewFrame;
     BOOL _playSound;
     BOOL _simplePIN;
     UITransitionView *_transitionView;
     BOOL _transitioning;
 }
 
-@property int autocapitalizationType;
-@property int autocorrectionType;
-@property BOOL enablesReturnKeyAutomatically;
-@property int keyboardAppearance;
-@property int keyboardType;
-@property int returnKeyType;
-@property(getter=isSecureTextEntry) BOOL secureTextEntry;
-@property int spellCheckingType;
+@property (nonatomic) int autocapitalizationType;
+@property (nonatomic) int autocorrectionType;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL enablesReturnKeyAutomatically;
+@property (readonly) unsigned int hash;
+@property (nonatomic) int keyboardAppearance;
+@property (nonatomic) int keyboardType;
+@property (nonatomic, retain) UIView<PINEntryView> *pinView;
+@property (nonatomic) int returnKeyType;
+@property (getter=isSecureTextEntry, nonatomic) BOOL secureTextEntry;
+@property (nonatomic) int spellCheckingType;
+@property (readonly) Class superclass;
 
 - (void)_setKeypadState:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)_setPlaysKeyboardClicks:(BOOL)arg1;
 - (void)activateKeypadView;
-- (void)adjustButtonsNow;
 - (int)autocapitalizationType;
 - (int)autocorrectionType;
 - (BOOL)becomeFirstResponder;
@@ -59,6 +41,7 @@
 - (void)clearPassword;
 - (void)deactivateKeypadView;
 - (void)dealloc;
+- (void)delayForTextEntryAnimationsWithCompletion:(id /* block */)arg1;
 - (void)deleteBackward;
 - (void)dismissKeypad;
 - (BOOL)hasText;
@@ -72,20 +55,27 @@
 - (void)layoutSubviews;
 - (void)okButtonPressed;
 - (id)password;
+- (id)pinView;
 - (void)pinView:(id)arg1 pinEntered:(id)arg2;
+- (void)pinView:(id)arg1 pinValueChanged:(id)arg2;
 - (BOOL)requiresKeyboard;
 - (BOOL)resignFirstResponder;
 - (void)setAutocapitalizationType:(int)arg1;
 - (void)setAutocorrectionType:(int)arg1;
 - (void)setKeyboardAppearance:(int)arg1;
+- (void)setKeyboardIsNumeric:(BOOL)arg1;
 - (void)setKeyboardType:(int)arg1;
+- (void)setKeyboardUserInteractionEnabled:(BOOL)arg1;
 - (void)setPINPolicyString:(id)arg1 visible:(BOOL)arg2;
+- (void)setPinView:(id)arg1;
 - (void)setSimplePIN:(BOOL)arg1 requiresKeyboard:(BOOL)arg2;
+- (void)setSimplePIN:(BOOL)arg1 requiresKeyboard:(BOOL)arg2 numericOnly:(BOOL)arg3;
 - (void)setText:(id)arg1;
 - (void)setTitle:(id)arg1;
 - (void)showError:(id)arg1 error:(id)arg2 isBlocked:(BOOL)arg3 animate:(BOOL)arg4;
-- (void)showFailedAttempts:(int)arg1;
+- (void)showFailedAttempts:(long)arg1;
 - (BOOL)simplePIN;
+- (void)slideToNewPasscodeField:(BOOL)arg1 requiresKeyboard:(BOOL)arg2 numericOnly:(BOOL)arg3;
 - (void)slideToNewPasscodeField:(BOOL)arg1 withKeyboard:(BOOL)arg2;
 - (id)specifierLabel;
 - (id)text;

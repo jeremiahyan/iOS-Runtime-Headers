@@ -2,8 +2,12 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface TSWPURLDataDetector : NSObject <TSWPDataDetectorProtocol> {
-}
+@interface TSWPURLDataDetector : NSObject <TSWPDataDetectorProtocol>
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (struct _NSRange { unsigned int x1; unsigned int x2; })calculateScanRangeForString:(id)arg1 changedRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2;
 + (id)detectorIdentifier;

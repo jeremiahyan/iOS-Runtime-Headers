@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class PDSlideBase;
-
 @interface PMSlideMapper : CMMapper {
     struct CGRect { 
         struct CGPoint { 
@@ -15,7 +13,7 @@
             float height; 
         } size; 
     } mRect;
-    PDSlideBase *mSlide;
+    PDSlide *mSlide;
 }
 
 - (id).cxx_construct;
@@ -24,7 +22,6 @@
 - (void)mapAt:(id)arg1 withState:(id)arg2;
 - (void)mapBackgroundAt:(id)arg1 recursive:(BOOL)arg2 withState:(id)arg3;
 - (void)mapDrawablesAt:(id)arg1 withState:(id)arg2;
-- (void)mapMasterGraphicsAt:(id)arg1 withState:(id)arg2;
 - (void)mapMasterSlideAt:(id)arg1 withState:(id)arg2;
 - (id)slideName;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })slideRect;

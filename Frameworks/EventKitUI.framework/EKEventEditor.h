@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-@class EKEvent, EKEventDateEditItem, UIColor;
-
 @interface EKEventEditor : EKCalendarItemEditor {
     UIColor *_backgroundColor;
     EKEventDateEditItem *_dateItem;
@@ -11,15 +9,17 @@
     BOOL _showAttachments;
 }
 
-@property(retain) UIColor * backgroundColor;
-@property(retain) EKEvent * event;
-@property BOOL showAttachments;
+@property (nonatomic, retain) UIColor *backgroundColor;
+@property (nonatomic, retain) EKEvent *event;
+@property (nonatomic) BOOL showAttachments;
 
 - (void).cxx_destruct;
+- (id)_calendarItemIndexSet;
 - (BOOL)_canDetachSingleOccurrence;
 - (void)_copyEventForPossibleRevert;
 - (id)_editItems;
 - (id)_nameForDeleteButton;
+- (id)_orderedEditItems;
 - (void)_revertEvent;
 - (id)_viewForSheet;
 - (id)backgroundColor;
@@ -29,13 +29,15 @@
 - (id)event;
 - (void)loadView;
 - (id)notificationNamesForLocaleChange;
+- (struct CGSize { float x1; float x2; })preferredContentSize;
 - (id)preferredTitle;
+- (void)refreshInvitees;
+- (void)refreshLocation;
 - (void)refreshStartAndEndDates;
 - (BOOL)saveCalendarItemWithSpan:(int)arg1 error:(id*)arg2;
 - (void)setBackgroundColor:(id)arg1;
 - (void)setEvent:(id)arg1;
 - (void)setShowAttachments:(BOOL)arg1;
-- (void)setShowsTimeZone:(BOOL)arg1;
 - (void)setupDeleteButton;
 - (BOOL)shouldAutorotate;
 - (BOOL)showAttachments;

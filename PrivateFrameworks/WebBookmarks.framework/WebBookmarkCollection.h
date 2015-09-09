@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/WebBookmarks.framework/WebBookmarks
  */
 
-@class SafariFetcherServerProxy, WebBookmark, WebBookmarkTitleWordTokenizer;
-
 @interface WebBookmarkCollection : NSObject {
     struct sqlite3 { } *_db;
     BOOL _dirty;
@@ -15,12 +13,12 @@
     WebBookmarkTitleWordTokenizer *_wordTokenizer;
 }
 
-@property(getter=isMerging) BOOL merging;
-@property(getter=isWebFilterEnabled,readonly) BOOL webFilterEnabled;
-@property(getter=isWebFilterWhiteListOnlyModeEnabled,readonly) BOOL webFilterWhiteListOnlyModeEnabled;
+@property (getter=isMerging, nonatomic) BOOL merging;
 
 + (id)_currentProcessContainerPath;
 + (void)_postBookmarksChangedSyncNotification;
++ (id)_safariContainerPath;
++ (id)_safariPreferencesDomain;
 + (id)_uniqueExternalUUID;
 + (BOOL)isLockedSync;
 + (BOOL)lockSync;
@@ -41,6 +39,7 @@
 - (id)_bookmarksFromStatementSelectingIDs:(const char *)arg1 withQuery:(id)arg2;
 - (id)_bookmarksInListWhere:(id)arg1 fromIndex:(unsigned int)arg2 toIndex:(unsigned int)arg3;
 - (id)_changeList;
+- (BOOL)_childrenOfParentBookmarkAreUnsyncable:(id)arg1;
 - (BOOL)_clearAllDAVSyncData;
 - (BOOL)_clearAllSyncKeys;
 - (BOOL)_clearAllTombstones;
@@ -59,7 +58,7 @@
 - (BOOL)_deleteBookmark:(id)arg1 leaveTombstone:(BOOL)arg2;
 - (BOOL)_deleteRecursively:(unsigned int)arg1;
 - (BOOL)_deleteSyncPropertyForKey:(id)arg1;
-- (void)_enumerateBookmarksForMatchStatement:(id)arg1 normalizedQuery:(id)arg2 usingBlock:(id)arg3;
+- (void)_enumerateBookmarksForMatchStatement:(id)arg1 normalizedQuery:(id)arg2 usingBlock:(id /* block */)arg3;
 - (id)_errorForMostRecentSQLiteError;
 - (id)_errorForMostRecentSQLiteErrorWithErrorCode:(int)arg1;
 - (int)_executeSQL:(id)arg1;
@@ -77,6 +76,7 @@
 - (BOOL)_insertAncestorTableEntriesForBookmarkID:(unsigned int)arg1 withParentID:(unsigned int)arg2;
 - (BOOL)_insertTombstoneWithServerID:(id)arg1;
 - (int)_intFromExecutingSQL:(id)arg1;
+- (id)_lazyCreateFrequentlyVisitedSitesBookmark;
 - (BOOL)_markBookmarkID:(unsigned int)arg1 added:(BOOL)arg2;
 - (BOOL)_markBookmarkID:(unsigned int)arg1 withSpecialID:(unsigned int)arg2;
 - (BOOL)_markSpecialBookmarks;
@@ -125,7 +125,7 @@
 - (BOOL)_orderChildrenWithServerIDs:(id)arg1 inFolderWithServerID:(id)arg2;
 - (unsigned int)_orderIndexForBookmarkInsertedIntoParent:(unsigned int)arg1 insertAtBeginning:(BOOL)arg2;
 - (id)_orderedWhereClauseForArchiveMode:(int)arg1;
-- (unsigned int)_parentIdentifierForBookmarksNeedingIcons;
+- (id)_parentIdentifiersOfBookmarksNeedingIcons;
 - (void)_postBookmarksDidReloadNotification;
 - (void)_postBookmarksDidReloadNotificationAndStartReadingListFetcherIfChangesWereMade;
 - (void)_postBookmarksFolderContentsDidChangeNotification:(unsigned int)arg1;
@@ -134,18 +134,16 @@
 - (id)_readingListItemsWhere:(id)arg1;
 - (BOOL)_rebuildAncestorTable;
 - (void)_registerForSyncBookmarksFileChangedNotification;
-- (void)_registerForWebFilterConfigurationChangedNotification;
 - (BOOL)_reindexBookmarkID:(unsigned int)arg1 title:(id)arg2;
 - (void)_rerunMigrationsIfNecessary;
 - (BOOL)_restoreBookmarkBarIfMissing;
 - (BOOL)_restoreMissingSpecialBookmarks;
 - (void)_restoreOrMergeReadingListFolderWithChangeNotification:(BOOL)arg1;
-- (void)_restoreOrMergeWhiteListFolderAndContentsWithChangeNotification:(BOOL)arg1;
 - (id)_rootFolderHiddenChildrenClause;
 - (id)_safariFetcherServerProxy;
 - (BOOL)_saveBookmark:(id)arg1 withSpecialID:(unsigned int)arg2 updateGenerationIfNeeded:(BOOL)arg3;
-- (struct sqlite3_stmt { }*)_selectBookmarksWhere:(id)arg1 countOnly:(BOOL)arg2;
 - (struct sqlite3_stmt { }*)_selectBookmarksWhere:(id)arg1;
+- (struct sqlite3_stmt { }*)_selectBookmarksWhere:(id)arg1 countOnly:(BOOL)arg2;
 - (id)_serverIDAtOrderIndex:(unsigned int)arg1 inFolderWithServerID:(id)arg2;
 - (id)_serverIDForBookmarkID:(unsigned int)arg1;
 - (id)_serverIDsInFolderWithServerID:(id)arg1;
@@ -164,7 +162,6 @@
 - (BOOL)_updateCachedChildCountForParentID:(unsigned int)arg1 inDirection:(int)arg2;
 - (BOOL)_updateHiddenAncestorCountForBookmarksUnderFolderID:(unsigned int)arg1 addingOffset:(int)arg2;
 - (int)_userVersion;
-- (void)_webFilterConfigurationChanged;
 - (BOOL)beginSyncTransaction;
 - (id)bookmarkAtPath:(id)arg1;
 - (BOOL)bookmarkIsFavoritesFolder:(id)arg1;
@@ -184,27 +181,30 @@
 - (unsigned int)countReadingListBookmarksNeedingArchiveInMode:(int)arg1;
 - (void)dealloc;
 - (BOOL)deleteAllFavoriteIcons;
-- (BOOL)deleteBookmark:(id)arg1 postChangeNotification:(BOOL)arg2;
 - (BOOL)deleteBookmark:(id)arg1;
-- (void)enumerateBookmarks:(BOOL)arg1 andReadingListItems:(BOOL)arg2 matchingString:(id)arg3 usingBlock:(id)arg4;
+- (BOOL)deleteBookmark:(id)arg1 postChangeNotification:(BOOL)arg2;
+- (void)enumerateBookmarks:(BOOL)arg1 andReadingListItems:(BOOL)arg2 matchingString:(id)arg3 usingBlock:(id /* block */)arg4;
+- (id)fastFetchBookmarksInBookmarkList:(id)arg1;
 - (id)favoritesFolder;
 - (id)favoritesFolderList;
 - (id)firstReadingListBookmarkNeedingArchiveInMode:(int)arg1;
 - (id)firstReadingListBookmarkWithURLMatchingString:(id)arg1 prefixMatch:(BOOL)arg2;
+- (id)frequentlyVisitedSitesFolder;
+- (unsigned int)frequentlyVisitedSitesFolderBookmarkID;
+- (id)frequentlyVisitedSitesList;
 - (unsigned int)generation;
+- (id)iconDataForBookmark:(id)arg1;
 - (unsigned int)indexOfReadingListBookmark:(id)arg1 countingOnlyUnread:(BOOL)arg2;
 - (id)initSafariBookmarkCollectionCheckingIntegrity:(BOOL)arg1;
-- (id)initWithPath:(id)arg1 checkIntegrity:(BOOL)arg2;
-- (id)initWithPath:(id)arg1 migratingBookmarksPlist:(id)arg2 syncAnchorPlist:(id)arg3 checkIntegrity:(BOOL)arg4;
-- (id)initWithPath:(id)arg1 migratingBookmarksPlist:(id)arg2 syncAnchorPlist:(id)arg3;
 - (id)initWithPath:(id)arg1;
+- (id)initWithPath:(id)arg1 checkIntegrity:(BOOL)arg2;
+- (id)initWithPath:(id)arg1 migratingBookmarksPlist:(id)arg2 syncAnchorPlist:(id)arg3;
+- (id)initWithPath:(id)arg1 migratingBookmarksPlist:(id)arg2 syncAnchorPlist:(id)arg3 checkIntegrity:(BOOL)arg4;
 - (BOOL)isEmpty;
 - (BOOL)isMerging;
-- (BOOL)isWebFilterEnabled;
-- (BOOL)isWebFilterWhiteListOnlyModeEnabled;
-- (id)listWithID:(unsigned int)arg1 skipOffset:(unsigned int)arg2 includeHidden:(BOOL)arg3;
-- (id)listWithID:(unsigned int)arg1 skipOffset:(unsigned int)arg2;
 - (id)listWithID:(unsigned int)arg1;
+- (id)listWithID:(unsigned int)arg1 skipOffset:(unsigned int)arg2;
+- (id)listWithID:(unsigned int)arg1 skipOffset:(unsigned int)arg2 includeHidden:(BOOL)arg3;
 - (id)listWithSpecialID:(unsigned int)arg1;
 - (void)localeSettingsChanged;
 - (BOOL)markAllFavoritesAsNeedingIcons;
@@ -223,6 +223,7 @@
 - (id)readingListWithUnreadOnly:(BOOL)arg1;
 - (BOOL)reorderBookmark:(id)arg1 toIndex:(unsigned int)arg2;
 - (BOOL)reorderList:(id)arg1 moveBookmarkAtIndex:(unsigned int)arg2 toIndex:(unsigned int)arg3;
+- (void)restoreOrMergeWhiteListFolderAndContentsWithChangeNotification:(BOOL)arg1;
 - (BOOL)rollOutLastReadingListItem;
 - (void)rollOutReadingListItemIfNeededToMakeRoomForOneNewItem;
 - (void)rollbackSyncTransaction;
@@ -230,8 +231,9 @@
 - (unsigned int)rollingReadingListMaximumCount;
 - (id)rootBookmark;
 - (id)rootList;
-- (BOOL)saveBookmark:(id)arg1 startReadingListFetcher:(BOOL)arg2;
 - (BOOL)saveBookmark:(id)arg1;
+- (BOOL)saveBookmark:(id)arg1 startReadingListFetcher:(BOOL)arg2;
+- (BOOL)saveBookmarks:(id)arg1 postNotification:(BOOL)arg2;
 - (void)setFavoritesFolderIdentifier:(unsigned int)arg1;
 - (void)setMerging:(BOOL)arg1;
 - (BOOL)setSyncData:(id)arg1 forKey:(id)arg2;
@@ -242,7 +244,6 @@
 - (id)syncStringForKey:(id)arg1;
 - (BOOL)updateReadingListWebFilterStatusForUnsetItemsOnly:(BOOL)arg1;
 - (BOOL)vacuum;
-- (id)webFilterUserSettings;
 - (id)webFilterWhiteList;
 - (id)webFilterWhiteListFolder;
 - (unsigned int)webFilterWhiteListFolderBookmarkID;

@@ -2,11 +2,14 @@
    Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
  */
 
-@class NSMutableDictionary;
-
-@interface SSPurchaseHistoryItem : NSObject <SSXPCCoding, NSCopying> {
+@interface SSPurchaseHistoryItem : NSObject <NSCopying, SSXPCCoding> {
     NSMutableDictionary *_properties;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)copyXPCEncoding;

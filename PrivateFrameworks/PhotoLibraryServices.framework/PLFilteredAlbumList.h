@@ -2,10 +2,8 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
  */
 
-@class <NSObject><NSCopying>, NSIndexSet, NSMutableIndexSet, NSMutableOrderedSet, NSObject<PLIndexMappingCache>, NSPredicate, NSString, PLIndexMapper, PLManagedAlbumList, PLPhotoLibrary;
-
-@interface PLFilteredAlbumList : NSObject <PLAlbumContainer, PLIndexMapperDataSource, PLIndexMappingCache, PLDerivedAlbumListOrigin> {
-    NSObject<PLIndexMappingCache> *_derivedAlbumLists[5];
+@interface PLFilteredAlbumList : NSObject <PLAlbumContainer, PLDerivedAlbumListOrigin, PLIndexMapperDataSource, PLIndexMappingCache> {
+    NSObject<PLIndexMappingCache> *_derivedAlbumLists;
     NSMutableIndexSet *_filteredIndexes;
     PLIndexMapper *_indexMapper;
     NSMutableOrderedSet *_weak_albums;
@@ -14,23 +12,28 @@
     NSPredicate *predicate;
 }
 
-@property(retain) NSMutableOrderedSet * _albums;
-@property(readonly) NSString * _prettyDescription;
-@property(readonly) NSString * _typeDescription;
-@property(readonly) int albumListType;
-@property(readonly) NSMutableOrderedSet * albums;
-@property(readonly) unsigned int albumsCount;
-@property(readonly) id albumsSortingComparator;
-@property(retain) PLManagedAlbumList * backingAlbumList;
-@property(readonly) <NSObject><NSCopying> * cachedIndexMapState;
-@property(readonly) BOOL canEditAlbums;
-@property(readonly) unsigned int containersCount;
-@property int filter;
-@property(readonly) NSIndexSet * filteredIndexes;
-@property(readonly) PLIndexMapper * indexMapper;
-@property(readonly) PLPhotoLibrary * photoLibrary;
-@property(retain) NSPredicate * predicate;
-@property(readonly) unsigned int unreadAlbumsCount;
+@property (nonatomic, retain) NSMutableOrderedSet *_albums;
+@property (nonatomic, readonly, retain) NSString *_prettyDescription;
+@property (nonatomic, readonly, retain) NSString *_typeDescription;
+@property (nonatomic, readonly) short albumListType;
+@property (nonatomic, readonly, retain) NSMutableOrderedSet *albums;
+@property (nonatomic, readonly) unsigned int albumsCount;
+@property (nonatomic, readonly, copy) id /* block */ albumsSortingComparator;
+@property (nonatomic, retain) PLManagedAlbumList *backingAlbumList;
+@property (nonatomic, readonly, copy) <NSObject><NSCopying> *cachedIndexMapState;
+@property (nonatomic, readonly) BOOL canEditAlbums;
+@property (nonatomic, readonly) unsigned int containersCount;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) int filter;
+@property (nonatomic, readonly, copy) NSIndexSet *filteredIndexes;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly, retain) PLIndexMapper *indexMapper;
+@property (nonatomic, readonly) BOOL isFolder;
+@property (nonatomic, readonly, retain) PLPhotoLibrary *photoLibrary;
+@property (nonatomic, retain) NSPredicate *predicate;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) unsigned int unreadAlbumsCount;
 
 + (id)filteredAlbumList:(id)arg1 filter:(int)arg2;
 
@@ -40,10 +43,10 @@
 - (id)_prettyDescription;
 - (id)_typeDescription;
 - (BOOL)albumHasFixedOrder:(struct NSObject { Class x1; }*)arg1;
-- (int)albumListType;
+- (short)albumListType;
 - (id)albums;
 - (unsigned int)albumsCount;
-- (id)albumsSortingComparator;
+- (id /* block */)albumsSortingComparator;
 - (id)backingAlbumList;
 - (id)cachedIndexMapState;
 - (BOOL)canEditAlbums;
@@ -55,7 +58,7 @@
 - (void)dealloc;
 - (Class)derivedChangeNotificationClass;
 - (id)description;
-- (void)enumerateDerivedAlbumLists:(id)arg1;
+- (void)enumerateDerivedAlbumLists:(id /* block */)arg1;
 - (int)filter;
 - (id)filteredAlbumsAtIndexes:(id)arg1;
 - (id)filteredIndexes;
@@ -68,6 +71,7 @@
 - (void)insertFilteredAlbums:(id)arg1 atIndexes:(id)arg2;
 - (void)insertObject:(id)arg1 inFilteredAlbumsAtIndex:(unsigned int)arg2;
 - (BOOL)isEmpty;
+- (BOOL)isFolder;
 - (id)managedObjectContext;
 - (BOOL)mappedDataSourceChanged:(id)arg1 remoteNotificationData:(id)arg2;
 - (BOOL)needsReordering;

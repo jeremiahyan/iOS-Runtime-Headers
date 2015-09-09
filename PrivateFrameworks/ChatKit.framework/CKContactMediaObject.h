@@ -2,23 +2,22 @@
    Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
  */
 
-@class ABVCardRecord, UIImage;
-
 @interface CKContactMediaObject : CKCardMediaObject {
     ABVCardRecord *_vCard;
     UIImage *_vCardImage;
 }
 
-@property(retain) ABVCardRecord * vCard;
-@property(retain) UIImage * vCardImage;
+@property (nonatomic, retain) ABVCardRecord *vCard;
+@property (nonatomic, retain) UIImage *vCardImage;
 
 + (id)UTITypes;
++ (id)attachmentSummary:(unsigned int)arg1;
 + (id)fallbackFilenamePrefix;
 
-- (Class)balloonViewClass;
 - (struct CGSize { float x1; float x2; })bbSize;
+- (Class)coloredBalloonViewClass;
 - (void)dealloc;
-- (id)generateThumbnailFillToSize:(struct CGSize { float x1; float x2; })arg1;
+- (id)generateThumbnailFillToSize:(struct CGSize { float x1; float x2; })arg1 contentAlignmentInsets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg2;
 - (id)icon;
 - (int)mediaType;
 - (void)setVCard:(id)arg1;

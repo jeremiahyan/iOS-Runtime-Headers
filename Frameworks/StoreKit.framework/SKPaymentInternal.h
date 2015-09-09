@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/StoreKit.framework/StoreKit
  */
 
-@class NSData, NSDictionary, NSString;
-
 @interface SKPaymentInternal : NSObject <NSCopying> {
     NSString *_applicationUsername;
     NSString *_partnerIdentifier;
@@ -12,6 +10,7 @@
     int _quantity;
     NSData *_requestData;
     NSDictionary *_requestParameters;
+    BOOL _simulatesAskToBuyInSandbox;
 }
 
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

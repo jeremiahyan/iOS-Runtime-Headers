@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/StoreBookkeeper.framework/StoreBookkeeper
  */
 
-@class ISDataProvider, NSData, NSDictionary, NSString, NSURL;
-
 @interface SBKRequest : NSObject {
     NSString *_action;
     NSDictionary *_arguments;
@@ -16,15 +14,17 @@
     NSURL *_requestURL;
     ISDataProvider *_responseDataProvider;
     BOOL _shouldAuthenticate;
+    SBKTransaction *_transaction;
 }
 
-@property(retain) NSData * bodyData;
-@property(getter=isConcurrent,readonly) BOOL concurrent;
-@property BOOL includeDeviceGUID;
-@property int method;
-@property(retain) ISDataProvider * responseDataProvider;
-@property BOOL shouldAuthenticate;
-@property(readonly) double timeoutInterval;
+@property (nonatomic, retain) NSData *bodyData;
+@property (getter=isConcurrent, nonatomic, readonly) BOOL concurrent;
+@property (nonatomic) BOOL includeDeviceGUID;
+@property (nonatomic) int method;
+@property (nonatomic, retain) ISDataProvider *responseDataProvider;
+@property (nonatomic) BOOL shouldAuthenticate;
+@property (nonatomic, readonly) double timeoutInterval;
+@property (nonatomic, retain) SBKTransaction *transaction;
 
 + (id)_contentEncodingTypeStringForBodyContentEncodingType:(int)arg1;
 + (id)_contentTypeStringForBodyContentType:(int)arg1;
@@ -53,9 +53,11 @@
 - (void)setMethod:(int)arg1;
 - (void)setResponseDataProvider:(id)arg1;
 - (void)setShouldAuthenticate:(BOOL)arg1;
+- (void)setTransaction:(id)arg1;
 - (void)setValue:(id)arg1 forArgument:(id)arg2;
 - (void)setValue:(id)arg1 forHeaderField:(id)arg2;
 - (BOOL)shouldAuthenticate;
 - (double)timeoutInterval;
+- (id)transaction;
 
 @end

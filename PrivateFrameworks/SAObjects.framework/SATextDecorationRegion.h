@@ -2,14 +2,17 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSNumber, NSString;
+@interface SATextDecorationRegion : AceObject <SAAceSerializable>
 
-@interface SATextDecorationRegion : AceObject <SAAceSerializable> {
-}
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSNumber *length;
+@property (nonatomic, copy) NSString *property;
+@property (nonatomic, copy) NSNumber *start;
+@property (readonly) Class superclass;
 
-@property(copy) NSNumber * length;
-@property(copy) NSString * property;
-@property(copy) NSNumber * start;
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
 
 + (id)textDecorationRegion;
 + (id)textDecorationRegionWithDictionary:(id)arg1 context:(id)arg2;
@@ -21,7 +24,10 @@
 - (void)setLength:(id)arg1;
 - (void)setProperty:(id)arg1;
 - (void)setStart:(id)arg1;
-- (struct _NSRange { unsigned int x1; unsigned int x2; })siriui_range;
 - (id)start;
+
+// Image: /System/Library/PrivateFrameworks/SiriUI.framework/SiriUI
+
+- (struct _NSRange { unsigned int x1; unsigned int x2; })siriui_range;
 
 @end

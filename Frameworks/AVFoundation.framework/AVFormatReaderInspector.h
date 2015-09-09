@@ -8,7 +8,7 @@
     BOOL hasSaveRestriction;
 }
 
-@property(getter=_formatReader,setter=_setFormatReader:,retain) struct OpaqueFigFormatReader { }* formatReader;
+@property (getter=_formatReader, setter=_setFormatReader:, nonatomic, retain) struct OpaqueFigFormatReader { }*formatReader;
 
 - (struct OpaqueFigFormatReader { }*)_formatReader;
 - (BOOL)_hasQTSaveRestriction;
@@ -16,7 +16,9 @@
 - (void*)_valueAsCFTypeForProperty:(struct __CFString { }*)arg1;
 - (id)alternateTrackGroups;
 - (id)availableMetadataFormats;
+- (BOOL)canContainMovieFragments;
 - (id)commonMetadata;
+- (BOOL)containsMovieFragments;
 - (void)dealloc;
 - (struct { long long x1; int x2; unsigned int x3; long long x4; })duration;
 - (void)finalize;

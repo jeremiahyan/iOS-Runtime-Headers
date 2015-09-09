@@ -2,29 +2,27 @@
    Image: /System/Library/PrivateFrameworks/GameKitServices.framework/GameKitServices
  */
 
-@class <GKSessionDOOBReceiveHandler>, <GKSessionDataReceiveHandler>, <GKSessionDelegate>, <GKSessionPrivateDelegate>, GKAutoPeerIDTable, GKConnection, GKList, GKSession, GKTable, GKVoiceChatSessionListener, NSString;
-
 @interface GKSessionInternal : NSObject {
-    struct _opaque_pthread_mutex_t { 
-        long __sig; 
-        BOOL __opaque[40]; 
-    struct _opaque_pthread_mutex_t { 
-        long __sig; 
-        BOOL __opaque[40]; 
     GKConnection *_connection;
     <GKSessionDataReceiveHandler> *_dataReceiveHandler;
     void *_dataReceiveHandlerContext;
     <GKSessionDelegate> *_delegate;
+    struct _opaque_pthread_mutex_t { 
+        long __sig; 
+        BOOL __opaque[40]; 
     } _delegateLock;
     NSString *_displayName;
     struct _DNSServiceRef_t { } *_dnsServiceConnection;
     struct _DNSServiceRef_t { } *_dnsServiceResolveConnection;
-    void *_doobReceiveHandlerContext[2];
-    <GKSessionDOOBReceiveHandler> *_doobReceiveHandler[2];
+    <GKSessionDOOBReceiveHandler> *_doobReceiveHandler;
+    void *_doobReceiveHandlerContext;
     BOOL _handleEventsRunning;
     BOOL _isBusy;
     BOOL _isPublishing;
     BOOL _isSearching;
+    struct _opaque_pthread_mutex_t { 
+        long __sig; 
+        BOOL __opaque[40]; 
     } _lock;
     int _mode;
     struct _DNSServiceRef_t { } *_oldService;
@@ -58,23 +56,23 @@
     struct OpaqueGCKSession { } *sessionRef;
 }
 
-@property struct OpaqueAGPSession { }* agpSessionRef;
-@property(getter=isAvailable) BOOL available;
-@property(getter=isBusy) BOOL busy;
-@property(readonly) GKConnection * connection;
-@property(readonly) id dataReceiveHandler;
-@property <GKSessionDelegate> * delegate;
+@property (nonatomic) struct OpaqueAGPSession { }*agpSessionRef;
+@property (getter=isAvailable) BOOL available;
+@property (getter=isBusy) BOOL busy;
+@property (readonly, retain) GKConnection *connection;
+@property (nonatomic, readonly) id dataReceiveHandler;
+@property <GKSessionDelegate> *delegate;
 @property double disconnectTimeout;
-@property(readonly) NSString * displayName;
-@property(copy) NSString * domain;
-@property unsigned int maxPeers;
-@property(readonly) NSString * peerID;
-@property unsigned int port;
-@property <GKSessionPrivateDelegate> * privateDelegate;
-@property(copy) NSString * serviceType;
-@property(readonly) NSString * sessionID;
-@property(readonly) int sessionMode;
-@property struct OpaqueGCKSession { }* sessionRef;
+@property (readonly) NSString *displayName;
+@property (nonatomic, copy) NSString *domain;
+@property (nonatomic) unsigned int maxPeers;
+@property (readonly) NSString *peerID;
+@property (nonatomic) unsigned int port;
+@property <GKSessionPrivateDelegate> *privateDelegate;
+@property (nonatomic, copy) NSString *serviceType;
+@property (readonly) NSString *sessionID;
+@property (readonly) int sessionMode;
+@property (nonatomic) struct OpaqueGCKSession { }*sessionRef;
 @property BOOL wifiEnabled;
 
 - (BOOL)acceptConnectionFromPeer:(id)arg1 error:(id*)arg2;
@@ -127,8 +125,8 @@
 - (void)reset;
 - (BOOL)sendAudioData:(id)arg1 toPeers:(id)arg2 withDataMode:(int)arg3 error:(id*)arg4;
 - (void)sendCallbacksToDelegate:(struct { int x1; char *x2; int x3; unsigned int x4; }*)arg1 remotePeer:(unsigned int)arg2;
+- (BOOL)sendData:(id)arg1 toPeers:(id)arg2 withDataMode:(int)arg3 enableOOB:(BOOL)arg4 error:(id*)arg5;
 - (BOOL)sendData:(id)arg1 toPeers:(id)arg2 withDataMode:(int)arg3 error:(id*)arg4;
-- (BOOL)sendData:(id)arg1 toPeers:(id)arg2 withDataMode:(int)arg3 isAudio:(BOOL)arg4 error:(id*)arg5;
 - (BOOL)sendDataToAllPeers:(id)arg1 withDataMode:(int)arg2 error:(id*)arg3;
 - (id)serviceName;
 - (id)serviceType;

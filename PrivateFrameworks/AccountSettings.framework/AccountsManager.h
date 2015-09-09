@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/AccountSettings.framework/AccountSettings
  */
 
-@class NSArray, NSMutableArray, NSMutableDictionary;
-
 @interface AccountsManager : NSObject {
     NSMutableDictionary *_childAccountIDToParentAccountID;
     NSMutableDictionary *_childAccountsByID;
@@ -40,8 +38,8 @@
 - (void)_sendNotificationsForChangedAccounts;
 - (void)_setOriginalAccountDictionaries;
 - (id)accountWithIdentifier:(id)arg1;
-- (id)accountsWithTypes:(id)arg1 withLoader:(id)arg2;
 - (id)accountsWithTypes:(id)arg1;
+- (id)accountsWithTypes:(id)arg1 withLoader:(id)arg2;
 - (void)addChild:(id)arg1 toAccount:(id)arg2;
 - (id)allBasicAccounts;
 - (id)allBasicSyncableAccounts;

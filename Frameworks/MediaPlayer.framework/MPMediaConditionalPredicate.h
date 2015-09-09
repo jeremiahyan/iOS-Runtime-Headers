@@ -2,17 +2,19 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@class MPMediaPredicate;
-
-@interface MPMediaConditionalPredicate : MPMediaPredicate {
+@interface MPMediaConditionalPredicate : MPMediaPredicate <MPPProtobufferCoding> {
     MPMediaPredicate *_conditionPredicate;
     MPMediaPredicate *_elsePredicate;
     MPMediaPredicate *_thenPredicate;
 }
 
-@property(readonly) MPMediaPredicate * conditionPredicate;
-@property(readonly) MPMediaPredicate * elsePredicate;
-@property(readonly) MPMediaPredicate * thenPredicate;
+@property (nonatomic, readonly, copy) MPMediaPredicate *conditionPredicate;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly, copy) MPMediaPredicate *elsePredicate;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly, copy) MPMediaPredicate *thenPredicate;
 
 + (id)predicateWithConditionPredicate:(id)arg1 thenPredicate:(id)arg2 elsePredicate:(id)arg3;
 
@@ -23,6 +25,8 @@
 - (id)conditionPredicate;
 - (id)elsePredicate;
 - (id)initWithConditionPredicate:(id)arg1 thenPredicate:(id)arg2 elsePredicate:(id)arg3;
+- (id)initWithProtobufferDecodableObject:(id)arg1;
+- (id)protobufferEncodableObject;
 - (id)thenPredicate;
 
 @end

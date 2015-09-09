@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSMutableDictionary, NSValue, _UISearchBarSearchFieldBackgroundView;
-
 @interface UISearchBarTextField : UITextField {
     BOOL __preventSelectionViewActivation;
     BOOL _animatePlaceholderOnResignFirstResponder;
@@ -15,8 +13,8 @@
     NSValue *_searchTextOffsetValue;
 }
 
-@property(setter=_setPreventSelectionViewActivation:) BOOL _preventSelectionViewActivation;
-@property(setter=_setSearchTextOffetValue:,retain) NSValue * _searchTextOffsetValue;
+@property (setter=_setPreventSelectionViewActivation:, nonatomic) BOOL _preventSelectionViewActivation;
+@property (setter=_setSearchTextOffetValue:, nonatomic, retain) NSValue *_searchTextOffsetValue;
 
 - (void)_activateSelectionView;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_adjustedTextOrEditingRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 forBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2;
@@ -48,6 +46,8 @@
 - (Class)_systemBackgroundViewClass;
 - (void)_updateBackgroundView:(id)arg1 withStyle:(unsigned int)arg2 filter:(id)arg3;
 - (void)_updateBackgroundViewsAnimated:(BOOL)arg1;
+- (BOOL)canBecomeFirstResponder;
+- (BOOL)canResignFirstResponder;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })clearButtonRectForBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)dealloc;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })editingRectForBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;

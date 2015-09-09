@@ -2,15 +2,9 @@
    Image: /System/Library/PrivateFrameworks/SpringBoardUIServices.framework/SpringBoardUIServices
  */
 
-@interface _SBUISwitcherPageServiceViewController : UIViewController <_SBUISwitcherPageProviderInterface> {
-}
+@interface _SBUISwitcherPageServiceViewController : UIViewController <_SBUISwitcherPageProviderInterface>
 
 + (id)_exportedInterface;
 + (id)_remoteViewControllerInterface;
-
-- (void)dealloc;
-- (void)didReceiveMemoryWarning;
-- (id)initWithNibName:(id)arg1 bundle:(id)arg2;
-- (void)viewDidLoad;
 
 @end

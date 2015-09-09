@@ -2,12 +2,12 @@
    Image: /System/Library/PrivateFrameworks/ManagedConfiguration.framework/ManagedConfiguration
  */
 
-@class NSNumber, NSString;
-
 @interface MCGlobalHTTPProxyPayload : MCPayload {
     NSString *_credentialUUID;
     BOOL _proxyCaptiveLoginAllowed;
+    NSNumber *_proxyCaptiveLoginAllowedNum;
     BOOL _proxyPACFallbackAllowed;
+    NSNumber *_proxyPACFallbackAllowedNum;
     NSString *_proxyPACURLString;
     NSString *_proxyPassword;
     NSString *_proxyServer;
@@ -16,15 +16,17 @@
     NSString *_proxyUsername;
 }
 
-@property(retain) NSString * credentialUUID;
-@property BOOL proxyCaptiveLoginAllowed;
-@property BOOL proxyPACFallbackAllowed;
-@property(retain) NSString * proxyPACURLString;
-@property(retain) NSString * proxyPassword;
-@property(retain) NSString * proxyServer;
-@property(retain) NSNumber * proxyServerPort;
-@property int proxyType;
-@property(retain) NSString * proxyUsername;
+@property (nonatomic, retain) NSString *credentialUUID;
+@property (nonatomic) BOOL proxyCaptiveLoginAllowed;
+@property (nonatomic, retain) NSNumber *proxyCaptiveLoginAllowedNum;
+@property (nonatomic) BOOL proxyPACFallbackAllowed;
+@property (nonatomic, retain) NSNumber *proxyPACFallbackAllowedNum;
+@property (nonatomic, retain) NSString *proxyPACURLString;
+@property (nonatomic, retain) NSString *proxyPassword;
+@property (nonatomic, retain) NSString *proxyServer;
+@property (nonatomic, retain) NSNumber *proxyServerPort;
+@property (nonatomic) int proxyType;
+@property (nonatomic, retain) NSString *proxyUsername;
 
 + (id)localizedPluralForm;
 + (id)localizedSingularForm;
@@ -34,8 +36,12 @@
 - (id)credentialUUID;
 - (id)description;
 - (id)initWithDictionary:(id)arg1 profile:(id)arg2 outError:(id*)arg3;
+- (id)installationWarnings;
+- (id)payloadDescriptionKeyValueSections;
 - (BOOL)proxyCaptiveLoginAllowed;
+- (id)proxyCaptiveLoginAllowedNum;
 - (BOOL)proxyPACFallbackAllowed;
+- (id)proxyPACFallbackAllowedNum;
 - (id)proxyPACURLString;
 - (id)proxyPassword;
 - (id)proxyServer;
@@ -44,7 +50,9 @@
 - (id)proxyUsername;
 - (void)setCredentialUUID:(id)arg1;
 - (void)setProxyCaptiveLoginAllowed:(BOOL)arg1;
+- (void)setProxyCaptiveLoginAllowedNum:(id)arg1;
 - (void)setProxyPACFallbackAllowed:(BOOL)arg1;
+- (void)setProxyPACFallbackAllowedNum:(id)arg1;
 - (void)setProxyPACURLString:(id)arg1;
 - (void)setProxyPassword:(id)arg1;
 - (void)setProxyServer:(id)arg1;

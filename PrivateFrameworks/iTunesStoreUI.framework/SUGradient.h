@@ -2,35 +2,33 @@
    Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
  */
 
-@class NSArray, NSLock, NSMutableArray;
-
 @interface SUGradient : NSObject <NSCoding, NSCopying> {
-    struct SUGradientPoint { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } point; 
-        float radius; 
-    struct SUGradientPoint { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } point; 
-        float radius; 
     NSMutableArray *_colorStops;
     NSLock *_lock;
+    struct SUGradientPoint { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } point; 
+        float radius; 
     } _p0;
+    struct SUGradientPoint { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } point; 
+        float radius; 
     } _p1;
     BOOL _sorted;
     int _type;
 }
 
-@property(readonly) NSArray * colorStopColors;
-@property(readonly) NSArray * colorStopOffsets;
-@property(readonly) int gradientType;
-@property(readonly) int numberOfColorStops;
-@property(readonly) struct SUGradientPoint { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; float x2; } p0;
-@property(readonly) struct SUGradientPoint { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; float x2; } p1;
+@property (readonly) NSArray *colorStopColors;
+@property (readonly) NSArray *colorStopOffsets;
+@property (readonly) int gradientType;
+@property (readonly) int numberOfColorStops;
+@property (readonly) struct SUGradientPoint { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; float x2; } p0;
+@property (readonly) struct SUGradientPoint { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; float x2; } p1;
 
 + (id)gradientWithColor:(id)arg1;
 

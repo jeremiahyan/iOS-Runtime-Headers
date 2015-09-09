@@ -2,10 +2,8 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class TSUColor;
-
 @interface MFPGradientStop : NSObject {
-    TSUColor *mColor;
+    OITSUColor *mColor;
     float mPosition;
 }
 

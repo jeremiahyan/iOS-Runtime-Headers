@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class <UIWebFindOnPageHighlighterDelegate>, NSArray, NSMutableArray, NSString, UIView, UIWebBrowserView, UIWebPDFViewHandler;
-
 @interface UIWebBrowserFindOnPageHighlighter : NSObject <UIWebFindOnPageHighlighter> {
     UIWebBrowserView *_browserView;
     <UIWebFindOnPageHighlighterDelegate> *_delegate;
@@ -17,10 +15,14 @@
     BOOL _zoomToHighlightSelection;
 }
 
-@property <UIWebFindOnPageHighlighterDelegate> * delegate;
-@property(readonly) unsigned int highlightedMatchIndex;
-@property(readonly) unsigned int numberOfMatches;
-@property(readonly) NSString * searchText;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <UIWebFindOnPageHighlighterDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) unsigned int highlightedMatchIndex;
+@property (nonatomic, readonly) unsigned int numberOfMatches;
+@property (nonatomic, readonly, copy) NSString *searchText;
+@property (readonly) Class superclass;
 
 + (BOOL)expandedRectsWouldIntersect:(id)arg1;
 

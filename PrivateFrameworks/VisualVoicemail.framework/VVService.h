@@ -2,18 +2,8 @@
    Image: /System/Library/PrivateFrameworks/VisualVoicemail.framework/VisualVoicemail
  */
 
-@class NSError, NSRecursiveLock, NSString, PCPersistentTimer;
-
 @interface VVService : NSObject {
-    struct { 
-        unsigned int offline : 1; 
-        unsigned int subscribed : 1; 
-        unsigned int initialSetupRequired : 1; 
-        unsigned int fakeInitialSetup : 1; 
-        unsigned int launchedWithFakeInitialSetup : 1; 
-        unsigned int mwiState : 1; 
-        unsigned int notificationFallbackEnabled : 1; 
-        unsigned int capabilitiesLoaded : 1; 
+    BOOL _VVMDataConnectionAvailable;
     NSError *_activationError;
     unsigned int _capabilities;
     id _carrierParameters;
@@ -34,12 +24,23 @@
     int _retryIntervalIndex;
     struct __CFArray { } *_retryIntervals;
     PCPersistentTimer *_retryTimer;
+    struct { 
+        unsigned int offline : 1; 
+        unsigned int subscribed : 1; 
+        unsigned int initialSetupRequired : 1; 
+        unsigned int fakeInitialSetup : 1; 
+        unsigned int launchedWithFakeInitialSetup : 1; 
+        unsigned int mwiState : 1; 
+        unsigned int notificationFallbackEnabled : 1; 
+        unsigned int capabilitiesLoaded : 1; 
     } _serviceFlags;
     double _trashCompactionAge;
     PCPersistentTimer *_trashCompactionTimer;
     unsigned int _trashedCount;
     unsigned int _unreadCount;
 }
+
+@property BOOL VVMDataConnectionAvailable;
 
 + (void)_handleSIMChange;
 + (BOOL)_lockedSharedServiceIsSubscribed;
@@ -52,8 +53,9 @@
 + (id)sharedService;
 + (BOOL)sharedServiceIsSubscribed;
 
-- (void)_attemptDelayedSynchronize:(id)arg1;
+- (BOOL)VVMDataConnectionAvailable;
 - (void)_attemptDelayedSynchronize;
+- (void)_attemptDelayedSynchronize:(id)arg1;
 - (void)_attemptScheduledTrashCompaction;
 - (void)_cancelAutomatedTrashCompaction;
 - (void)_cancelIndicatorAction;
@@ -103,6 +105,7 @@
 - (BOOL)isOnline;
 - (BOOL)isPasswordReady;
 - (BOOL)isSubscribed;
+- (BOOL)isVVMAvailableOverWiFi;
 - (void)kill;
 - (int)mailboxGreetingType;
 - (id)mailboxName;
@@ -140,6 +143,7 @@
 - (void)setSubscribed:(BOOL)arg1;
 - (void)setTrashedCount:(unsigned int)arg1;
 - (void)setUnreadCount:(unsigned int)arg1;
+- (void)setVVMDataConnectionAvailable:(BOOL)arg1;
 - (BOOL)sharedSubscriptionRequiresSetup;
 - (BOOL)shouldScheduleAutoTrashOnMailboxUsageChange;
 - (BOOL)shouldTrashCompactRecord:(void*)arg1;

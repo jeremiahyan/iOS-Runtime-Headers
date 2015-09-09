@@ -2,13 +2,16 @@
    Image: /System/Library/PrivateFrameworks/AssistantServices.framework/AssistantServices
  */
 
-@class NSDateFormatter;
-
 @interface AFSUPFunctionProvider : AFSpeakableUtteranceParser <AFSpeakableNamespaceProvider> {
     NSDateFormatter *_dateFormatter;
     NSDateFormatter *_timeFormatter;
     BOOL _useSpeechMode;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (BOOL)_shouldAutomaticallyProvideFunctions;
 

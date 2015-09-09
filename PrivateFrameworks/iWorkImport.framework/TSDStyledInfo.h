@@ -2,27 +2,32 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class TSDReflection, TSDShadow, TSDStroke, TSSStyle;
+@interface TSDStyledInfo : TSDDrawableInfo <TSSStyleClient>
 
-@interface TSDStyledInfo : TSDDrawableInfo <TSSStyleClient> {
-}
-
-@property float opacity;
-@property(copy) TSDReflection * reflection;
-@property(copy) TSDShadow * shadow;
-@property(copy) TSDStroke * stroke;
-@property(retain) TSSStyle * style;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) float opacity;
+@property (nonatomic, readonly) BOOL pathIsOpen;
+@property (nonatomic, copy) TSDReflection *reflection;
+@property (nonatomic, copy) TSDShadow *shadow;
+@property (nonatomic, copy) TSDStroke *stroke;
+@property (nonatomic, retain) TSSStyle *style;
+@property (readonly) Class superclass;
 
 - (void)adoptStylesheet:(id)arg1 withMapper:(id)arg2;
 - (id)boxedValueForProperty:(int)arg1;
 - (id)commandForPasteStyleWithContext:(id)arg1 pasteboardStyles:(id)arg2;
+- (id)commandForPasteStyleWithContext:(id)arg1 pasteboardStyles:(id)arg2 tailLineEndInfo:(int)arg3;
 - (void)i_setValue:(id)arg1 forProperty:(int)arg2;
+- (BOOL)isEquivalentForCrossDocumentPasteMasterComparison:(id)arg1;
 - (id)objectForProperty:(int)arg1;
 - (float)opacity;
+- (BOOL)pathIsOpen;
 - (id)propertyMapForNewPreset;
 - (id)referencedStyles;
 - (id)reflection;
-- (void)replaceReferencedStylesUsingBlock:(id)arg1;
+- (void)replaceReferencedStylesUsingBlock:(id /* block */)arg1;
 - (void)setBoxedValue:(id)arg1 forProperty:(int)arg2;
 - (void)setOpacity:(float)arg1;
 - (void)setReflection:(id)arg1;
@@ -35,6 +40,7 @@
 - (id)style;
 - (Class)styleClass;
 - (id)styleIdentifierTemplateForNewPreset;
+- (id)stylePropertyName;
 - (id)stylesForCopyStyle;
 
 @end

@@ -2,13 +2,11 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIImage;
-
 @interface _UIImageViewPretiledImageCacheKey : NSObject {
+    UIImage *_originalImage;
     struct CGSize { 
         float width; 
         float height; 
-    UIImage *_originalImage;
     } _pretiledSize;
 }
 

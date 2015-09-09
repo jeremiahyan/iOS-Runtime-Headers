@@ -2,26 +2,29 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class EDProtection, EDResources;
-
-@interface EDStyle : NSObject <NSCopying, EDImmutableObject> {
-    boolmAlignmentInfoOverridden;
-    boolmBordersOverridden;
-    boolmContentFormatOverridden;
-    boolmDoNotModify;
-    boolmFillOverridden;
-    boolmFontOverridden;
-    boolmProtectionOverridden;
+@interface EDStyle : NSObject <EDImmutableObject, NSCopying> {
     unsigned int mAlignmentInfoIndex;
+    bool mAlignmentInfoOverridden;
     unsigned int mBordersIndex;
+    bool mBordersOverridden;
     unsigned int mContentFormatId;
+    bool mContentFormatOverridden;
+    bool mDoNotModify;
     unsigned int mFillIndex;
+    bool mFillOverridden;
     unsigned int mFontIndex;
+    bool mFontOverridden;
     unsigned int mIndex;
     unsigned int mParentIndex;
     EDProtection *mProtection;
+    bool mProtectionOverridden;
     EDResources *mResources;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)styleWithResources:(id)arg1;
 

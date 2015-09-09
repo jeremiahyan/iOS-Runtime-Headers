@@ -2,12 +2,13 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class SAAlarmObject;
+@interface SAAlarmCreate : SADomainCommand <SAAlarmAlarmAction>
 
-@interface SAAlarmCreate : SADomainCommand {
-}
-
-@property(retain) SAAlarmObject * alarmToCreate;
+@property (nonatomic, retain) SAAlarmObject *alarmToCreate;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)create;
 + (id)createWithDictionary:(id)arg1 context:(id)arg2;

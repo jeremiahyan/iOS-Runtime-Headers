@@ -2,11 +2,14 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIDimmingView;
-
 @interface UIDictationFloatingStarkView : UIDictationView <UIGestureRecognizerDelegate> {
     UIDimmingView *_dimmingView;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)dealloc;
 - (void)dimmingViewWasTapped:(id)arg1;

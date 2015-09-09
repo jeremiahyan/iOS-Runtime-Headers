@@ -2,17 +2,18 @@
    Image: /System/Library/Frameworks/EventKit.framework/EventKit
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
 @interface EKSocialURLSearchDelegate : NSObject <ABSearchOperationDelegate> {
-    id _searchCompleteHandler;
+    id /* block */ _searchCompleteHandler;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)_completeWithRecord:(void*)arg1;
 - (void)dealloc;
 - (void)searchOperation:(id)arg1 didFindMatches:(id)arg2 moreComing:(BOOL)arg3;
-- (void)setCompletionHandler:(id)arg1;
+- (void)setCompletionHandler:(id /* block */)arg1;
 
 @end

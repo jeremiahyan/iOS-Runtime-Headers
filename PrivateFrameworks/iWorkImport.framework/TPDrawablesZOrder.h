@@ -2,24 +2,22 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSMutableArray;
-
 @interface TPDrawablesZOrder : TSPObject {
     NSMutableArray *_drawables;
 }
 
-@property(readonly) unsigned int drawableCount;
+@property (nonatomic, readonly) unsigned int drawableCount;
 
 - (unsigned int)addDrawable:(id)arg1;
 - (void)dealloc;
 - (id)drawableAtZOrder:(unsigned int)arg1;
 - (unsigned int)drawableCount;
-- (id)drawableEnumerator;
 - (id)initFromUnarchiver:(id)arg1;
 - (id)initWithContext:(id)arg1;
 - (unsigned int)insertDrawable:(id)arg1 atZOrder:(unsigned int)arg2;
 - (void)moveDrawable:(id)arg1 toZOrder:(unsigned int)arg2;
 - (void)moveDrawableAtZOrder:(unsigned int)arg1 toZOrder:(unsigned int)arg2;
+- (void)moveDrawables:(id)arg1 toIndexes:(id)arg2;
 - (void)moveDrawables:(id)arg1 toZOrder:(unsigned int)arg2;
 - (id)orderedDrawables:(id)arg1;
 - (void)removeDrawable:(id)arg1;

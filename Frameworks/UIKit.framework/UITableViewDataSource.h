@@ -2,13 +2,15 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray;
-
-@interface UITableViewDataSource : NSObject <UITableViewDataSource, UITableViewDelegate, NSCoding> {
+@interface UITableViewDataSource : NSObject <NSCoding, UITableViewDataSource, UITableViewDelegate> {
     NSArray *_sections;
 }
 
-@property(copy) NSArray * sections;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSArray *sections;
+@property (readonly) Class superclass;
 
 + (id)staticDataSourceWithSections:(id)arg1;
 

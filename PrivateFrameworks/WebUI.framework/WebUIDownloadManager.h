@@ -2,17 +2,15 @@
    Image: /System/Library/PrivateFrameworks/WebUI.framework/WebUI
  */
 
-@class NSString, NSURLDownload;
-
 @interface WebUIDownloadManager : NSObject {
     id _delegate;
     NSURLDownload *_download;
     NSString *_downloadPath;
 }
 
+- (void).cxx_destruct;
 - (void)_cleanUp;
 - (void)_downloadDidFail:(id)arg1;
-- (void)dealloc;
 - (void)download:(id)arg1 decideDestinationWithSuggestedFilename:(id)arg2;
 - (void)download:(id)arg1 didFailWithError:(id)arg2;
 - (void)downloadDidBegin:(id)arg1;

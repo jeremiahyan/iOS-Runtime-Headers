@@ -2,22 +2,20 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-@class <VGLCanvas>, <VKCameraControllerDelegate>, VKCamera;
-
 @interface VKCameraController : NSObject {
     VKCamera *_camera;
-    <VGLCanvas> *_canvas;
+    <MDRenderTarget> *_canvas;
     <VKCameraControllerDelegate> *_delegate;
     BOOL _gesturing;
     BOOL _inProgressRegionChangeIsAnimated;
     unsigned int _regionChangeCount;
 }
 
-@property(getter=isAnimating,readonly) BOOL animating;
-@property(retain) VKCamera * camera;
-@property <VGLCanvas> * canvas;
-@property <VKCameraControllerDelegate> * delegate;
-@property(getter=isGesturing) BOOL gesturing;
+@property (getter=isAnimating, nonatomic, readonly) BOOL animating;
+@property (nonatomic, retain) VKCamera *camera;
+@property (nonatomic) <MDRenderTarget> *canvas;
+@property (nonatomic) <VKCameraControllerDelegate> *delegate;
+@property (getter=isGesturing, nonatomic) BOOL gesturing;
 
 - (void)beginRegionChange:(BOOL)arg1;
 - (id)camera;

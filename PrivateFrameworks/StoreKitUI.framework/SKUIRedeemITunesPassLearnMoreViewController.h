@@ -2,14 +2,17 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class NSURL, SKUIPassbookLoader, SKUIRedeemITunesPassLearnMoreView;
-
 @interface SKUIRedeemITunesPassLearnMoreViewController : SKUIRedeemStepViewController <SKUIPassbookLoaderDelegate> {
     BOOL _didTapAddPassbookButton;
     SKUIRedeemITunesPassLearnMoreView *_learnMoreView;
     SKUIPassbookLoader *_passbookLoader;
     NSURL *_passbookURL;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_didLoadPassbookURLString:(id)arg1;

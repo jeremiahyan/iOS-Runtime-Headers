@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/DuetPLLConfigLogger.framework/DuetPLLConfigLogger
  */
 
-@class NSBundle, NSMutableArray, NSMutableDictionary, NSUserDefaults;
-
 @interface DuetConfigurator : NSObject <DuetLoggerProtocol> {
     NSMutableDictionary *appBlackMap;
     NSMutableArray *appWhiteListArray;
@@ -13,8 +11,8 @@
     NSUserDefaults *sbDomain;
 }
 
-@property(readonly) NSMutableDictionary * appBlackMap;
-@property(readonly) NSMutableArray * appWhiteListArray;
+@property (nonatomic, readonly, retain) NSMutableDictionary *appBlackMap;
+@property (nonatomic, readonly, retain) NSMutableArray *appWhiteListArray;
 
 + (id)sharedInstance;
 
@@ -25,8 +23,8 @@
 - (id)init;
 - (void)loadBundleConfigurations;
 - (void)loadConfigurations:(id)arg1;
-- (void)logAll:(struct __aslclient { }*)arg1 withMsg:(struct __aslmsg { }*)arg2 withLevel:(int)arg3;
-- (void)logLight:(struct __aslclient { }*)arg1 withMsg:(struct __aslmsg { }*)arg2 withLevel:(int)arg3;
+- (void)logAll:(struct __asl_object_s { }*)arg1 withMsg:(struct __asl_object_s { }*)arg2 withLevel:(int)arg3;
+- (void)logLight:(struct __asl_object_s { }*)arg1 withMsg:(struct __asl_object_s { }*)arg2 withLevel:(int)arg3;
 - (void)reloadBundleFromDisk;
 - (void)updateSpringBoardConfiguration:(id)arg1;
 

@@ -2,9 +2,7 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-@class <EKReminderLocationPickerDelegate>, <EKStyleProvider>, EKReminderLocationPickerCell, EKReminderLocationPickerModel, UIAlertView;
-
-@interface EKReminderLocationPicker : UITableViewController <ABPeoplePickerNavigationControllerDelegate, EKReminderLocationPickerModelDelegate, UIAlertViewDelegate, UITextFieldDelegate, EKReminderLocationPickerCellButtonHandler> {
+@interface EKReminderLocationPicker : UITableViewController <ABPeoplePickerNavigationControllerDelegate, EKReminderLocationPickerCellButtonHandler, EKReminderLocationPickerModelDelegate, UIAlertViewDelegate, UITextFieldDelegate> {
     BOOL _allowsShowInMap;
     EKReminderLocationPickerCell *_currentLocationCell;
     BOOL _hasEditedText;
@@ -19,7 +17,11 @@
     EKReminderLocationPickerCell *_typedLocationCell;
 }
 
-@property <EKReminderLocationPickerDelegate> * locationPickerDelegate;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) <EKReminderLocationPickerDelegate> *locationPickerDelegate;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (int)_accessoryTypeForLocationItem:(id)arg1 isSelected:(BOOL)arg2;
@@ -53,9 +55,7 @@
 - (void)locationPickerModelDidUpdateCustomLocation:(id)arg1;
 - (float)marginForTableView:(id)arg1;
 - (int)numberOfSectionsInTableView:(id)arg1;
-- (BOOL)peoplePickerNavigationController:(id)arg1 shouldContinueAfterSelectingPerson:(void*)arg2 property:(int)arg3 identifier:(int)arg4;
 - (BOOL)peoplePickerNavigationController:(id)arg1 shouldContinueAfterSelectingPerson:(void*)arg2 withLinkedPeople:(struct __CFArray { }*)arg3;
-- (BOOL)peoplePickerNavigationController:(id)arg1 shouldContinueAfterSelectingPerson:(void*)arg2;
 - (void)peoplePickerNavigationControllerDidCancel:(id)arg1;
 - (struct CGSize { float x1; float x2; })preferredContentSize;
 - (void)setLocationPickerDelegate:(id)arg1;

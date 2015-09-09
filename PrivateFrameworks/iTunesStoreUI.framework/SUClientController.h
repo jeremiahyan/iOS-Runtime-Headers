@@ -2,14 +2,11 @@
    Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
  */
 
-@class ISURLOperationPool, MFMailComposeViewController, NSArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString, SUClientInterface, SUImageCache, SUScriptExecutionContext, UIViewController;
-
-@interface SUClientController : NSObject <SUClientInterfaceDelegate, MFMailComposeViewControllerDelegate, SUPurchaseManagerDelegate> {
+@interface SUClientController : NSObject <MFMailComposeViewControllerDelegate, SUClientInterfaceDelegate, SUPurchaseManagerDelegate> {
     BOOL _active;
     SUClientInterface *_clientInterface;
     NSObject<OS_dispatch_queue> *_dispatchQueue;
     SUImageCache *_imageCache;
-    ISURLOperationPool *_imageOperationPool;
     ISURLOperationPool *_imagePool;
     NSString *_localStoreFrontAtLastSuspend;
     MFMailComposeViewController *_mailComposeViewController;
@@ -21,15 +18,19 @@
     NSMutableDictionary *_urlBagKeys;
 }
 
-@property(getter=isActive,readonly) BOOL active;
-@property(copy) SUClientInterface * clientInterface;
-@property(retain) SUImageCache * imageCache;
-@property(retain) ISURLOperationPool * imageOperationPool;
-@property(retain) UIViewController * rootViewController;
-@property(readonly) SUScriptExecutionContext * scriptExecutionContext;
-@property(readonly) NSString * storeContentLanguage;
-@property(getter=isStoreEnabled,readonly) BOOL storeEnabled;
-@property(readonly) BOOL storeFrontDidChangeSinceLastSuspend;
+@property (getter=isActive, nonatomic, readonly) BOOL active;
+@property (copy) SUClientInterface *clientInterface;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) SUImageCache *imageCache;
+@property (nonatomic, retain) ISURLOperationPool *imageOperationPool;
+@property (nonatomic, retain) UIViewController *rootViewController;
+@property (nonatomic, readonly) SUScriptExecutionContext *scriptExecutionContext;
+@property (nonatomic, readonly) NSString *storeContentLanguage;
+@property (getter=isStoreEnabled, nonatomic, readonly) BOOL storeEnabled;
+@property (nonatomic, readonly) BOOL storeFrontDidChangeSinceLastSuspend;
+@property (readonly) Class superclass;
 
 + (void)setSharedController:(id)arg1;
 + (id)sharedController;
@@ -45,26 +46,26 @@
 - (void)_reloadOverlayConfigurationsFromURLBag;
 - (void)_reloadScriptExecutionContextFromURLBag;
 - (void)_reloadUserDefaultsFromURLBag;
-- (void)autosaveMessageWithCompletionBlock:(id)arg1;
+- (void)autosaveMessageWithCompletionBlock:(id /* block */)arg1;
 - (void)bagDidLoadNotification:(id)arg1;
 - (void)becomeActive;
 - (void)cancelAllOperations;
 - (id)clientIdentifier;
+- (id)clientInterface;
 - (void)clientInterface:(id)arg1 exitStoreWithReason:(int)arg2;
 - (void)clientInterface:(id)arg1 presentDialog:(id)arg2;
 - (void)clientInterface:(id)arg1 setStatusBarHidden:(BOOL)arg2 withAnimation:(int)arg3;
 - (void)clientInterface:(id)arg1 setStatusBarStyle:(int)arg2 animated:(BOOL)arg3;
-- (id)clientInterface;
 - (void)composeEmailByRestoringAutosavedMessage;
-- (void)composeEmailWithSubject:(id)arg1 body:(id)arg2 animated:(BOOL)arg3;
 - (void)composeEmailWithSubject:(id)arg1 body:(id)arg2;
+- (void)composeEmailWithSubject:(id)arg1 body:(id)arg2 animated:(BOOL)arg3;
 - (BOOL)composeReviewWithViewController:(id)arg1 animated:(BOOL)arg2;
 - (void)dealloc;
 - (void)dismissMailComposeViewControllerAnimated:(BOOL)arg1;
 - (void)dismissOverlayBackgroundViewController;
 - (BOOL)dismissTopViewControllerAnimated:(BOOL)arg1;
-- (BOOL)displayClientURL:(id)arg1 withSourceApplication:(id)arg2 sourceURLString:(id)arg3;
 - (BOOL)displayClientURL:(id)arg1;
+- (BOOL)displayClientURL:(id)arg1 withSourceApplication:(id)arg2 sourceURLString:(id)arg3;
 - (void)exitStoreWithReason:(int)arg1;
 - (BOOL)ignoresExpectedClientsProtocol;
 - (id)imageCache;
@@ -79,10 +80,10 @@
 - (void)mailComposeController:(id)arg1 didFinishWithResult:(int)arg2 error:(id)arg3;
 - (id)newScriptInterface;
 - (struct __CFArray { }*)offeredAssetTypes;
-- (BOOL)openClientURL:(id)arg1 withSourceApplication:(id)arg2 sourceURLString:(id)arg3;
 - (BOOL)openClientURL:(id)arg1;
-- (BOOL)openURL:(id)arg1 inClientWithIdentifier:(id)arg2;
+- (BOOL)openClientURL:(id)arg1 withSourceApplication:(id)arg2 sourceURLString:(id)arg3;
 - (BOOL)openURL:(id)arg1;
+- (BOOL)openURL:(id)arg1 inClientWithIdentifier:(id)arg2;
 - (id)overlayBackgroundViewController;
 - (id)overlayConfigurationForStorePage:(id)arg1;
 - (BOOL)performActionForDialog:(id)arg1 button:(id)arg2;

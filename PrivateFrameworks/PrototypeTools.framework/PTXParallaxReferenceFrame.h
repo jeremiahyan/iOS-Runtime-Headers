@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/PrototypeTools.framework/PrototypeTools
  */
 
-@class CAMediaTimingFunction, PTXParallaxEngineSettings, UILabel, UIView, UIWindow;
-
 @interface PTXParallaxReferenceFrame : NSObject <_UISettingsKeyObserver> {
     union _GLKQuaternion { 
         struct { 
@@ -34,6 +32,27 @@
             float w; 
         } ; 
         float q[4]; 
+    } _absoluteQuaternion;
+    CAMediaTimingFunction *_curveFunction;
+    UIWindow *_diagnosticsWindow;
+    float _distanceMultiplier;
+    UIView *_horizontalLockIndicator;
+    UILabel *_idleIndicator;
+    float _idleLeeway;
+    struct CGPoint { 
+        float x; 
+        float y; 
+    } _idleStartOffset;
+    double _idleStartTime;
+    unsigned long _jumpSound;
+    float _jumpThreshold;
+    struct CGPoint { 
+        float x; 
+        float y; 
+    } _lastOffset;
+    double _lastUpdate;
+    float _lockStrength;
+    float _lockValue;
     union _GLKQuaternion { 
         struct { 
             union _GLKVector3 { 
@@ -63,27 +82,6 @@
             float w; 
         } ; 
         float q[4]; 
-    struct CGPoint { 
-        float x; 
-        float y; 
-    struct CGPoint { 
-        float x; 
-        float y; 
-    } _absoluteQuaternion;
-    CAMediaTimingFunction *_curveFunction;
-    UIWindow *_diagnosticsWindow;
-    float _distanceMultiplier;
-    UIView *_horizontalLockIndicator;
-    UILabel *_idleIndicator;
-    float _idleLeeway;
-    } _idleStartOffset;
-    double _idleStartTime;
-    unsigned long _jumpSound;
-    float _jumpThreshold;
-    } _lastOffset;
-    double _lastUpdate;
-    float _lockStrength;
-    float _lockValue;
     } _referenceQuaternion;
     float _referenceShiftSpeed;
     float _secondsBeforeIdle;
@@ -91,6 +89,11 @@
     float _smoothingDegree;
     UIView *_verticalLockIndicator;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_createDiagnosticsWindow;

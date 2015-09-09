@@ -2,9 +2,8 @@
    Image: /System/Library/PrivateFrameworks/WebCore.framework/WebCore
  */
 
-@interface WebLanguageChangeObserver : NSObject {
-}
+@interface WebLanguageChangeObserver : NSObject
 
-+ (void)_webkit_languagePreferencesDidChange;
++ (void)languagePreferencesDidChange:(id)arg1;
 
 @end

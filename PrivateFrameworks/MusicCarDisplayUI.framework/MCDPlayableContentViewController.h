@@ -2,22 +2,24 @@
    Image: /System/Library/PrivateFrameworks/MusicCarDisplayUI.framework/MusicCarDisplayUI
  */
 
-@class MCDBrowsableContentModel, NSString, UINavigationController;
-
 @interface MCDPlayableContentViewController : UIViewController {
     NSString *_bundleID;
+    BOOL _hasBrowsableContent;
     MCDBrowsableContentModel *_model;
     UINavigationController *_navigationController;
 }
 
-@property(readonly) NSString * bundleID;
+@property (nonatomic, readonly, copy) NSString *bundleID;
 
 - (void).cxx_destruct;
 - (void)_embedAppropriateViewController;
+- (void)_updateStackForPlaying:(BOOL)arg1 launching:(BOOL)arg2;
 - (id)bundleID;
 - (id)initWithBundleID:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
-- (void)refreshNavigationStack;
+- (id)preferredFocusedItem;
+- (void)refreshNavigationStackForLaunch:(BOOL)arg1;
 - (void)viewDidLoad;
+- (void)viewWillDisappear:(BOOL)arg1;
 
 @end

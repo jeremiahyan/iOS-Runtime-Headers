@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSMutableArray;
-
 @interface _UIGestureRecognizerFailureMap : NSObject {
     char *_failureMap;
     NSMutableArray *_gestureRecognizers;
@@ -11,13 +9,14 @@
     int _unmetFailureRequirementCount;
 }
 
-@property(readonly) BOOL hasUnmetFailureRequirementsOrDependents;
+@property (readonly) BOOL hasUnmetFailureRequirementsOrDependents;
 
 + (void)buildFailureMapForGestureRecognizer:(id)arg1;
 + (void)buildFailureMapForGestureRecognizers:(id)arg1;
 
 - (void)_gestureRecognizerFinished:(id)arg1 withEvent:(id)arg2;
 - (void)_queueRecognizersForResetIfFinished;
+- (void)_rebuildFailureMapDefferingRelease;
 - (void)dealloc;
 - (id)description;
 - (void)gestureRecognizerBecameDirty:(id)arg1;

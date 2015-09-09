@@ -2,15 +2,15 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@class NSArray, NSDictionary;
-
 @interface PSUsageBundleManager : NSObject {
     NSDictionary *_bundleMap;
+    NSMutableArray *_storageReporters;
     NSArray *_usageBundleApps;
 }
 
-- (void)_loadUsageBundles;
+- (void)_loadUsageBundlesWithHandler:(id /* block */)arg1;
 - (id)allUsageBundleApps;
 - (void)dealloc;
+- (void)vendUsageBundleAppsWithHandler:(id /* block */)arg1;
 
 @end

@@ -2,22 +2,20 @@
    Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class UIPopoverController, UIViewController;
-
 @interface CKPopoverManager : NSObject <UIPopoverControllerDelegate> {
-    id _handler;
+    id /* block */ _handler;
     UIPopoverController *_popoverController;
-    id _presenter;
+    id /* block */ _presenter;
 }
 
-@property(readonly) UIViewController * currentContentController;
-@property(copy) id handler;
-@property(retain) UIPopoverController * popoverController;
-@property(copy) id presenter;
+@property (nonatomic, readonly, retain) UIViewController *currentContentController;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, copy) id /* block */ handler;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) UIPopoverController *popoverController;
+@property (nonatomic, copy) id /* block */ presenter;
+@property (readonly) Class superclass;
 
 + (id)sharedInstance;
 
@@ -25,16 +23,17 @@
 - (void)dealloc;
 - (void)didFinishRotating;
 - (void)dismissCurrentPopoverAnimated:(BOOL)arg1;
-- (id)handler;
+- (void)dismissCurrentPopoverAnimated:(BOOL)arg1 withCompletionBlock:(id /* block */)arg2;
+- (id /* block */)handler;
 - (BOOL)isShowingPopover;
 - (id)popoverController;
 - (void)popoverControllerDidDismissPopover:(id)arg1;
-- (id)presenter;
+- (id /* block */)presenter;
 - (void)replaceCurrentControllerWithController:(id)arg1;
 - (void)representCurrentPopover;
-- (void)setHandler:(id)arg1;
+- (void)setHandler:(id /* block */)arg1;
 - (void)setPopoverController:(id)arg1;
-- (void)setPresenter:(id)arg1;
-- (void)showPopoverWithContentViewController:(id)arg1 withPresenter:(id)arg2 withHandler:(id)arg3;
+- (void)setPresenter:(id /* block */)arg1;
+- (void)showPopoverWithContentViewController:(id)arg1 withPresenter:(id /* block */)arg2 withHandler:(id /* block */)arg3;
 
 @end

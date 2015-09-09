@@ -2,48 +2,26 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-@interface VKPuckDrawStyle : VKDrawStyle {
-    struct _VGLColor { 
-        float r; 
-        float g; 
-        float b; 
-        float a; 
-    struct _VGLColor { 
-        float r; 
-        float g; 
-        float b; 
-        float a; 
-    float arrowBrightness;
-    } arrowColor;
-    } arrowColorStale;
-    float circleBrightness;
-    BOOL hasArrowBrightness;
-    BOOL hasArrowColor;
-    BOOL hasArrowColorStale;
-    BOOL hasCircleBrightness;
-    BOOL hasOffset;
-    BOOL hasSize;
-    float offset;
-    float size;
-}
+@interface VKPuckDrawStyle : VKRenderStyle
 
-@property(readonly) float arrowBrightness;
-@property(readonly) struct _VGLColor { float x1; float x2; float x3; float x4; } arrowColor;
-@property(readonly) struct _VGLColor { float x1; float x2; float x3; float x4; } arrowColorStale;
-@property(readonly) float circleBrightness;
-@property(readonly) BOOL hasArrowBrightness;
-@property(readonly) BOOL hasArrowColor;
-@property(readonly) BOOL hasArrowColorStale;
-@property(readonly) BOOL hasCircleBrightness;
-@property(readonly) BOOL hasOffset;
-@property(readonly) BOOL hasSize;
-@property(readonly) float offset;
-@property(readonly) float size;
+@property (nonatomic, readonly) float arrowBrightness;
+@property (nonatomic, readonly) /* Warning: unhandled struct encoding: '{Matrix<float' */ struct  arrowColor; /* unknown property attribute:  1>=[4f]} */
+@property (nonatomic, readonly) /* Warning: unhandled struct encoding: '{Matrix<float' */ struct  arrowColorStale; /* unknown property attribute:  1>=[4f]} */
+@property (nonatomic, readonly) float circleBrightness;
+@property (nonatomic, readonly) BOOL hasArrowBrightness;
+@property (nonatomic, readonly) BOOL hasArrowColor;
+@property (nonatomic, readonly) BOOL hasArrowColorStale;
+@property (nonatomic, readonly) BOOL hasCircleBrightness;
+@property (nonatomic, readonly) BOOL hasOffset;
+@property (nonatomic, readonly) BOOL hasSize;
+@property (nonatomic, readonly) float offset;
+@property (nonatomic, readonly) float size;
 
-- (id).cxx_construct;
++ (int)renderStyleID;
+
 - (float)arrowBrightness;
-- (struct _VGLColor { float x1; float x2; float x3; float x4; })arrowColor;
-- (struct _VGLColor { float x1; float x2; float x3; float x4; })arrowColorStale;
+- (struct Matrix<float, 4, 1> { float x1[4]; })arrowColor;
+- (struct Matrix<float, 4, 1> { float x1[4]; })arrowColorStale;
 - (float)circleBrightness;
 - (BOOL)hasArrowBrightness;
 - (BOOL)hasArrowColor;
@@ -53,7 +31,5 @@
 - (BOOL)hasSize;
 - (float)offset;
 - (float)size;
-- (void)takeFromZoomInvariantProperties:(id)arg1;
-- (id)variant;
 
 @end

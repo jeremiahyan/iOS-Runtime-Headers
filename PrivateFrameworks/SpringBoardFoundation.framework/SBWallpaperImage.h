@@ -2,16 +2,15 @@
    Image: /System/Library/PrivateFrameworks/SpringBoardFoundation.framework/SpringBoardFoundation
  */
 
-@class NSData;
-
 @interface SBWallpaperImage : UIImage {
     NSData *_data;
     int _variant;
 }
 
-@property(readonly) NSData * data;
-@property(readonly) int variant;
+@property (nonatomic, readonly) NSData *data;
+@property (nonatomic, readonly) int variant;
 
++ (struct CGImage { }*)_newBlackWallpaperImage;
 + (id)cachedWallpaperDataForVariant:(int)arg1;
 + (void)preheatWallpaperDataForVariant:(int)arg1;
 

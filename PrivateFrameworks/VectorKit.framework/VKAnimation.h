@@ -2,68 +2,62 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class <VKAnimationRunner>, NSString;
-
 @interface VKAnimation : NSObject {
+    id /* block */ _completionHandler;
+    double _duration;
     struct { 
         unsigned int resuming : 1; 
         unsigned int runsForever : 1; 
         unsigned int startTimestampSet : 1; 
         unsigned int state : 3; 
-    id _completionHandler;
-    double _duration;
     } _flags;
     double _lastTimestamp;
     NSString *_name;
     int _priority;
     <VKAnimationRunner> *_runner;
     double _startTimestamp;
-    id _stepHandler;
-    id _timingFunction;
+    id /* block */ _stepHandler;
+    id /* block */ _timingFunction;
 }
 
-@property(copy) id completionHandler;
-@property double duration;
-@property(readonly) int priority;
-@property(readonly) BOOL running;
-@property BOOL runsForever;
-@property(copy) id stepHandler;
-@property(copy) id timingFunction;
+@property (nonatomic, copy) id /* block */ completionHandler;
+@property (nonatomic) double duration;
+@property (nonatomic, readonly) int priority;
+@property (nonatomic, readonly) BOOL running;
+@property (nonatomic) BOOL runsForever;
+@property (nonatomic, copy) id /* block */ stepHandler;
+@property (nonatomic, copy) id /* block */ timingFunction;
 
-+ (void)setDragCoefficientGetter:(id)arg1;
++ (void)setDragCoefficientGetter:(id /* block */)arg1;
 
 - (id).cxx_construct;
 - (void)_stopAnimation:(BOOL)arg1;
-- (id)completionHandler;
+- (id /* block */)completionHandler;
 - (void)dealloc;
 - (id)description;
 - (double)duration;
 - (id)init;
+- (id)initWithDuration:(double)arg1;
 - (id)initWithDuration:(double)arg1 name:(id)arg2;
 - (id)initWithDuration:(double)arg1 priority:(int)arg2 name:(id)arg3;
-- (id)initWithDuration:(double)arg1;
 - (id)initWithName:(id)arg1;
-- (id)initWithPriority:(int)arg1 name:(id)arg2;
 - (id)initWithPriority:(int)arg1;
+- (id)initWithPriority:(int)arg1 name:(id)arg2;
 - (void)onTimerFired:(double)arg1;
 - (void)pause;
 - (int)priority;
 - (void)resume;
 - (BOOL)running;
 - (BOOL)runsForever;
-- (void)setCompletionHandler:(id)arg1;
+- (void)setCompletionHandler:(id /* block */)arg1;
 - (void)setDuration:(double)arg1;
 - (void)setRunsForever:(BOOL)arg1;
-- (void)setStepHandler:(id)arg1;
-- (void)setTimingFunction:(id)arg1;
+- (void)setStepHandler:(id /* block */)arg1;
+- (void)setTimingFunction:(id /* block */)arg1;
 - (void)startWithRunner:(id)arg1;
-- (id)stepHandler;
+- (id /* block */)stepHandler;
 - (void)stop;
-- (id)timingFunction;
+- (id /* block */)timingFunction;
 - (void)transferToRunner:(id)arg1;
 
 @end

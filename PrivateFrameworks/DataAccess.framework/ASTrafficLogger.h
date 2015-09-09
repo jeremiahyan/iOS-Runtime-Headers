@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/DataAccess.framework/DataAccess
  */
 
-@class NSFileHandle, NSString;
-
 @interface ASTrafficLogger : NSObject {
     BOOL _didFlushLogs;
     BOOL _isOutgoingTraffic;
@@ -11,10 +9,11 @@
     NSString *_lookasideFilePath;
 }
 
-@property BOOL isOutgoingTraffic;
+@property (nonatomic) BOOL isOutgoingTraffic;
 
 + (id)_logQueue;
 
+- (void).cxx_destruct;
 - (void)_moveLogFileContentsAtPath:(id)arg1;
 - (void)_openLookasideFile;
 - (void)dealloc;

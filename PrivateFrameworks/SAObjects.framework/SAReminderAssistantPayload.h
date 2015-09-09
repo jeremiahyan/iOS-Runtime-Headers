@@ -2,12 +2,13 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSString;
+@interface SAReminderAssistantPayload : AceObject <SAReminderPayload>
 
-@interface SAReminderAssistantPayload : AceObject <SAReminderPayload> {
-}
-
-@property(copy) NSString * utterance;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+@property (nonatomic, copy) NSString *utterance;
 
 + (id)assistantPayload;
 + (id)assistantPayloadWithDictionary:(id)arg1 context:(id)arg2;

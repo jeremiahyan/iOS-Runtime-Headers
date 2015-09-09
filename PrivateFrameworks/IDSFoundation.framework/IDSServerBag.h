@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/IDSFoundation.framework/IDSFoundation
  */
 
-@class IMConnectionMonitor, IMRemoteURLConnection, NSData, NSDate, NSDictionary, NSMutableURLRequest, NSNumber, NSObject<OS_dispatch_queue>, NSString, NSURL;
-
 @interface IDSServerBag : NSObject {
     BOOL _allowSelfSignedCertificates;
     BOOL _allowUnsignedBags;
@@ -17,32 +15,36 @@
     NSString *_cachedURLString;
     NSData *_certData;
     IMConnectionMonitor *_connectionMonitor;
+    unsigned long long _hasPairedDeviceState;
     NSDate *_loadDate;
-    IMRemoteURLConnection *_remoteURLConnection;
+    IDSRemoteURLConnection *_remoteURLConnection;
+    int _token;
     int _trustStatus;
     NSMutableURLRequest *_urlRequest;
 }
 
-@property(setter=_setBag:,retain) NSDictionary * _bag;
-@property NSObject<OS_dispatch_queue> * _bagQueue;
-@property(retain) NSNumber * _cacheTime;
-@property(setter=_setCachedBag:,retain) NSDictionary * _cachedBag;
-@property(setter=_setCachedHash:,retain) NSString * _cachedHash;
-@property(setter=_setCachedURLString:,retain) NSString * _cachedURLString;
-@property(retain) NSData * _certData;
-@property(retain) IMConnectionMonitor * _connectionMonitor;
-@property(retain) NSDate * _loadDate;
-@property IMRemoteURLConnection * _remoteURLConnection;
-@property(setter=_setTrustStatus:) int _trustStatus;
-@property(retain) NSMutableURLRequest * _urlRequest;
+@property (setter=_setBag:, retain) NSDictionary *_bag;
+@property NSObject<OS_dispatch_queue> *_bagQueue;
+@property (retain) NSNumber *_cacheTime;
+@property (setter=_setCachedBag:, retain) NSDictionary *_cachedBag;
+@property (setter=_setCachedHash:, retain) NSString *_cachedHash;
+@property (setter=_setCachedURLString:, retain) NSString *_cachedURLString;
+@property (retain) NSData *_certData;
+@property (retain) IMConnectionMonitor *_connectionMonitor;
+@property (retain) NSDate *_loadDate;
+@property IDSRemoteURLConnection *_remoteURLConnection;
+@property (setter=_setTrustStatus:) int _trustStatus;
+@property (retain) NSMutableURLRequest *_urlRequest;
 @property BOOL allowSelfSignedCertificates;
 @property BOOL allowUnsignedBags;
-@property(retain) NSString * apsEnvironmentName;
-@property(retain) NSURL * bagURL;
-@property(readonly) BOOL isInDebilitatedMode;
-@property(readonly) BOOL isLoaded;
-@property(readonly) BOOL isLoading;
-@property(readonly) BOOL isServerAvailable;
+@property (retain) NSString *apsEnvironmentName;
+@property (retain) NSURL *bagURL;
+@property unsigned long long hasPairedDeviceState;
+@property (readonly) BOOL isInDebilitatedMode;
+@property (readonly) BOOL isLoaded;
+@property (readonly) BOOL isLoading;
+@property (readonly) BOOL isServerAvailable;
+@property int token;
 
 + (id)_bagCreationLock;
 + (id)_sharedInstance;
@@ -90,6 +92,7 @@
 - (void)connectionMonitorDidUpdate:(id)arg1;
 - (void)dealloc;
 - (void)forceBagLoad;
+- (unsigned long long)hasPairedDeviceState;
 - (BOOL)isInDebilitatedMode;
 - (BOOL)isLoaded;
 - (BOOL)isLoading;
@@ -99,6 +102,8 @@
 - (void)setAllowUnsignedBags:(BOOL)arg1;
 - (void)setApsEnvironmentName:(id)arg1;
 - (void)setBagURL:(id)arg1;
+- (void)setHasPairedDeviceState:(unsigned long long)arg1;
+- (void)setToken:(int)arg1;
 - (void)set_bagQueue:(id)arg1;
 - (void)set_cacheTime:(id)arg1;
 - (void)set_certData:(id)arg1;
@@ -107,6 +112,7 @@
 - (void)set_remoteURLConnection:(id)arg1;
 - (void)set_urlRequest:(id)arg1;
 - (void)startBagLoad;
+- (int)token;
 - (id)urlWithKey:(id)arg1;
 
 @end

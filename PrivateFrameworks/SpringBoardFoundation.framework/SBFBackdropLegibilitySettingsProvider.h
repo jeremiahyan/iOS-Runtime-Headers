@@ -2,16 +2,18 @@
    Image: /System/Library/PrivateFrameworks/SpringBoardFoundation.framework/SpringBoardFoundation
  */
 
-@class <SBFLegibilitySettingsProviderDelegate>, _UIBackdropView, _UILegibilitySettings;
-
-@interface SBFBackdropLegibilitySettingsProvider : NSObject <_UIBackdropViewObserver, SBFLegibilitySettingsProvider> {
+@interface SBFBackdropLegibilitySettingsProvider : NSObject <SBFLegibilitySettingsProvider, _UIBackdropViewObserver> {
     _UIBackdropView *_backdropView;
     <SBFLegibilitySettingsProviderDelegate> *_delegate;
     _UILegibilitySettings *_legibilitySettings;
 }
 
-@property <SBFLegibilitySettingsProviderDelegate> * delegate;
-@property(readonly) _UILegibilitySettings * legibilitySettings;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SBFLegibilitySettingsProviderDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly, retain) _UILegibilitySettings *legibilitySettings;
+@property (readonly) Class superclass;
 
 - (void)backdropViewDidChange:(id)arg1;
 - (void)dealloc;

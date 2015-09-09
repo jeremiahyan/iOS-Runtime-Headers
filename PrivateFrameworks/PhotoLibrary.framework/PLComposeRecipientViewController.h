@@ -2,9 +2,15 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibrary.framework/PhotoLibrary
  */
 
-@class <PLComposeRecipientViewControllerDelegate>, MFContactsSearchManager, MFContactsSearchResultsModel, MFSearchShadowView, NSArray, NSNumber, PLComposeRecipientView, UIPopoverController, UIScrollView, UITableView;
-
-@interface PLComposeRecipientViewController : UIViewController <ABPeoplePickerNavigationControllerDelegate, MFContactsSearchConsumer, UITableViewDelegate, UITableViewDataSource, UIPopoverControllerDelegate> {
+@interface PLComposeRecipientViewController : UIViewController <ABPeoplePickerNavigationControllerDelegate, MFContactsSearchConsumer, UIPopoverControllerDelegate, UITableViewDataSource, UITableViewDelegate> {
+    NSNumber *_currentSearchTaskID;
+    <PLComposeRecipientViewControllerDelegate> *_delegate;
+    struct { 
+        unsigned int showingPeoplePicker : 1; 
+        unsigned int showingSearchResultsTable : 1; 
+        unsigned int offsettingForResultsTable : 1; 
+        unsigned int wasFirstResponder : 1; 
+    } _flags;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -14,14 +20,6 @@
             float width; 
             float height; 
         } size; 
-    struct { 
-        unsigned int showingPeoplePicker : 1; 
-        unsigned int showingSearchResultsTable : 1; 
-        unsigned int offsettingForResultsTable : 1; 
-        unsigned int wasFirstResponder : 1; 
-    NSNumber *_currentSearchTaskID;
-    <PLComposeRecipientViewControllerDelegate> *_delegate;
-    } _flags;
     } _keyboardFrame;
     unsigned int _maxExpandRows;
     UIPopoverController *_peoplePickerPopoverController;
@@ -36,9 +34,13 @@
     MFSearchShadowView *_shadowView;
 }
 
-@property <PLComposeRecipientViewControllerDelegate> * delegate;
-@property unsigned int maxExpandRows;
-@property(readonly) PLComposeRecipientView * recipientView;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <PLComposeRecipientViewControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) unsigned int maxExpandRows;
+@property (nonatomic, readonly) PLComposeRecipientView *recipientView;
+@property (readonly) Class superclass;
 
 + (void)recordRecentInvitationRecipient:(id)arg1 displayName:(id)arg2 date:(id)arg3;
 
@@ -54,7 +56,7 @@
 - (BOOL)_searchResultsShowInPopover;
 - (void)_setSearchResults:(id)arg1;
 - (void)_updateSearchResultsTableVisibility;
-- (void)_updateViewsLayoutAnimated:(BOOL)arg1 completion:(id)arg2;
+- (void)_updateViewsLayoutAnimated:(BOOL)arg1 completion:(id /* block */)arg2;
 - (void)beganNetworkActivity;
 - (id)composeRecipientView:(id)arg1 composeRecipientForAddress:(id)arg2;
 - (id)composeRecipientView:(id)arg1 composeRecipientForRecord:(void*)arg2 identifier:(int)arg3;
@@ -68,13 +70,13 @@
 - (BOOL)composeRecipientViewIsShowingPeoplePicker:(id)arg1;
 - (void)composeRecipientViewRequestAddRecipient:(id)arg1;
 - (void)composeRecipientViewReturnPressed:(id)arg1;
-- (void)consumeSearchResults:(id)arg1 type:(int)arg2 taskID:(id)arg3;
+- (void)consumeSearchResults:(id)arg1 type:(unsigned int)arg2 taskID:(id)arg3;
 - (void)dealloc;
 - (id)delegate;
 - (void)didReceiveMemoryWarning;
 - (void)didRotateFromInterfaceOrientation:(int)arg1;
 - (void)endedNetworkActivity;
-- (void)finishedSearchingForType:(int)arg1;
+- (void)finishedSearchingForType:(unsigned int)arg1;
 - (void)finishedTaskWithID:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (BOOL)isRecipientViewFirstResponder;
@@ -82,8 +84,8 @@
 - (void)makeRecipientViewFirstResponder;
 - (void)makeRecipientViewResignFirstResponder;
 - (unsigned int)maxExpandRows;
-- (BOOL)peoplePickerNavigationController:(id)arg1 shouldContinueAfterSelectingPerson:(void*)arg2 property:(int)arg3 identifier:(int)arg4;
 - (BOOL)peoplePickerNavigationController:(id)arg1 shouldContinueAfterSelectingPerson:(void*)arg2;
+- (BOOL)peoplePickerNavigationController:(id)arg1 shouldContinueAfterSelectingPerson:(void*)arg2 property:(int)arg3 identifier:(int)arg4;
 - (void)peoplePickerNavigationControllerDidCancel:(id)arg1;
 - (void)popoverControllerDidDismissPopover:(id)arg1;
 - (id)recipientView;

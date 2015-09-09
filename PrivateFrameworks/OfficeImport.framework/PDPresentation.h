@@ -2,30 +2,29 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSMutableArray, NSMutableDictionary;
-
 @interface PDPresentation : OCDDocument {
-    struct CGSize { 
-        float width; 
-        float height; 
-    struct CGSize { 
-        float width; 
-        float height; 
     NSMutableArray *mBulletBlips;
-    NSMutableDictionary *mCommentAuthors;
+    NSMutableArray *mCommentAuthors;
     BOOL mIsAutoPlay;
     BOOL mIsCommentsVisible;
     BOOL mIsKiosk;
     BOOL mIsLooping;
     NSMutableArray *mNotesMasters;
+    struct CGSize { 
+        float width; 
+        float height; 
     } mNotesSize;
     NSMutableArray *mSlideMasters;
+    struct CGSize { 
+        float width; 
+        float height; 
     } mSlideSize;
     NSMutableArray *mSlides;
 }
 
 - (id).cxx_construct;
 - (unsigned long)addBulletBlip:(id)arg1;
+- (void)addCommentAuthor:(id)arg1;
 - (void)addNotesMaster:(id)arg1;
 - (void)addSlide:(id)arg1;
 - (void)addSlideMaster:(id)arg1;
@@ -34,7 +33,8 @@
 - (id)bulletBlips;
 - (void)cacheGraphicStyleForDrawable:(id)arg1 colorContext:(id)arg2;
 - (void)cacheGraphicStylesForSlideBase:(id)arg1;
-- (id)commentAuthorForId:(unsigned int)arg1;
+- (id)commentAuthorAtIndex:(unsigned int)arg1;
+- (unsigned int)commentAuthorCount;
 - (void)dealloc;
 - (void)ensureDefaultLayoutsForMasters;
 - (void)flushUnusedMastersAndLayouts;
@@ -47,7 +47,6 @@
 - (id)notesMasterAtIndex:(unsigned int)arg1;
 - (unsigned int)notesMasterCount;
 - (struct CGSize { float x1; float x2; })notesSize;
-- (void)setCommentAuthor:(id)arg1 forId:(unsigned int)arg2;
 - (void)setIsAutoPlay:(BOOL)arg1;
 - (void)setIsCommentsVisible:(BOOL)arg1;
 - (void)setIsKiosk:(BOOL)arg1;

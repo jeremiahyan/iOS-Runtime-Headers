@@ -2,13 +2,11 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSMutableArray;
-
 @interface GEOMapQueryCollectionRequest : PBRequest <NSCopying> {
     NSMutableArray *_requestElements;
 }
 
-@property(retain) NSMutableArray * requestElements;
+@property (nonatomic, retain) NSMutableArray *requestElements;
 
 - (void)addRequestElements:(id)arg1;
 - (void)clearRequestElements;
@@ -19,6 +17,7 @@
 - (id)dictionaryRepresentation;
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
+- (void)mergeFrom:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 - (id)requestElements;
 - (id)requestElementsAtIndex:(unsigned int)arg1;

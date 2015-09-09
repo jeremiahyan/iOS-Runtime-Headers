@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSMutableArray, OADCharacterProperties, OADParagraphProperties;
-
 @interface OADParagraph : NSObject {
     OADCharacterProperties *mParagraphEndCharacterProperties;
     OADParagraphProperties *mProperties;
@@ -18,6 +16,7 @@
 - (id)addTextLineBreak;
 - (void)applyProperties:(id)arg1;
 - (id)bulletCharacterProperties;
+- (unsigned int)characterCount;
 - (void)dealloc;
 - (id)findFirstTextRunOfClass:(Class)arg1;
 - (BOOL)hasBulletCharacterProperties;
@@ -30,7 +29,6 @@
 - (void)removeUnnecessaryOverrides;
 - (void)setParagraphEndCharacterProperties:(id)arg1;
 - (void)setParentTextListStyle:(id)arg1;
-- (void)setProperties:(id)arg1;
 - (id)textRunAtIndex:(unsigned int)arg1;
 - (unsigned int)textRunCount;
 

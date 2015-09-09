@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSMutableDictionary, NSMutableSet, NSString;
-
-@interface CMArchiveManager : NSObject <OCCancelDelegate> {
+@interface CMArchiveManager : NSObject <TCCancelDelegate> {
     BOOL mAutoCommit;
     float mCommitInterval;
     NSMutableDictionary *mDrawableCache;
@@ -15,21 +13,27 @@
     NSString *mPassphrase;
     NSMutableSet *mPausedPaths;
     NSString *mResourcePathPrefix;
+    NSCache *mStyleObjectCache;
     int mWidth;
 }
 
-@property(copy) NSString * passphrase;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (copy) NSString *passphrase;
+@property (readonly) Class superclass;
 
 + (int)blipTypeToResourceType:(int)arg1;
 + (id)resourceTypeToExtension:(int)arg1;
 + (id)resourceTypeToMIME:(int)arg1;
 
 - (id)_validateData:(id)arg1 withType:(int*)arg2;
-- (void)addCssStyle:(id)arg1 withName:(id)arg2;
 - (id)addCssStyle:(id)arg1;
+- (void)addCssStyle:(id)arg1 withName:(id)arg2;
 - (id)addResource:(id)arg1 withName:(id)arg2;
 - (id)addResource:(id)arg1 withType:(int)arg2;
 - (id)addResourceForDrawable:(id)arg1 withType:(int)arg2 drawable:(id)arg3;
+- (id)addStyle:(id)arg1;
 - (id)appendResourcePathToName:(id)arg1;
 - (id)cachedPathForDrawable:(id)arg1;
 - (void)closeResourceAtPath:(id)arg1;
@@ -50,7 +54,7 @@
 - (void)pushCssToPath:(id)arg1;
 - (void)pushData:(id)arg1 toPath:(id)arg2;
 - (void)pushText:(id)arg1 toPath:(id)arg2;
-- (int)resourceCount;
+- (unsigned int)resourceCount;
 - (id)resourcePathPrefix;
 - (void)restartProgressiveMappingOnPath:(id)arg1;
 - (void)setAutoCommit:(BOOL)arg1;

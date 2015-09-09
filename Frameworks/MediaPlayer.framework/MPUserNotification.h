@@ -2,18 +2,19 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@class NSMutableArray, NSObject<OS_dispatch_queue>;
-
 @interface MPUserNotification : NSObject {
     NSObject<OS_dispatch_queue> *_accessQueue;
+    NSObject<OS_dispatch_queue> *_callbackInvocationQueue;
     struct __CFUserNotification { } *_cfUserNotification;
     BOOL _isShowing;
     struct __CFRunLoopSource { } *_runLoopSource;
     NSMutableArray *_showingCompletionHandlers;
+    id /* block */ _willShowNotificationHandler;
     id strongSelf;
 }
 
-@property(readonly) struct __CFUserNotification { }* cfUserNotification;
+@property (nonatomic, readonly) struct __CFUserNotification { }*cfUserNotification;
+@property (nonatomic, copy) id /* block */ willShowNotificationHandler;
 
 + (void)_setUserNotification:(id)arg1 forCFUserNotification:(struct __CFUserNotification { }*)arg2;
 + (id)_userNotificationConversionAccessQueue;
@@ -27,6 +28,8 @@
 - (void)dealloc;
 - (id)init;
 - (id)initWithCFUserNotification:(struct __CFUserNotification { }*)arg1;
-- (void)showWithCompletionHandler:(id)arg1;
+- (void)setWillShowNotificationHandler:(id /* block */)arg1;
+- (void)showWithCompletionHandler:(id /* block */)arg1;
+- (id /* block */)willShowNotificationHandler;
 
 @end

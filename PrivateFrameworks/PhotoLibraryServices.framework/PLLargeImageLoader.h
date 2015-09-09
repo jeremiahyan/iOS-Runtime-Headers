@@ -6,11 +6,16 @@
     int _format;
 }
 
-@property int format;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) int format;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (int)format;
 - (id)initWithFormat:(int)arg1;
-- (id)preheatItemForAsset:(id)arg1 options:(unsigned int)arg2;
+- (id)originalPreheatItemForAsset:(id)arg1 optimalSourcePixelSize:(struct CGSize { float x1; float x2; })arg2 options:(unsigned int)arg3;
+- (id)preheatItemForAsset:(id)arg1 format:(int)arg2 optimalSourcePixelSize:(struct CGSize { float x1; float x2; })arg3 options:(unsigned int)arg4;
 - (void)setFormat:(int)arg1;
 
 @end

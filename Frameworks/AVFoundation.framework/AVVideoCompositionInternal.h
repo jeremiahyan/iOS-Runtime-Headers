@@ -2,24 +2,23 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class AVVideoCompositionCoreAnimationTool, NSArray, NSString;
-
 @interface AVVideoCompositionInternal : NSObject {
+    AVVideoCompositionCoreAnimationTool *animationTool;
+    BOOL auxiliaryTrackLayerSetLast;
+    NSString *builtInCompositorName;
+    unsigned int changeSeed;
+    Class customCompositorClass;
     struct { 
         long long value; 
         int timescale; 
         unsigned int flags; 
         long long epoch; 
-    struct CGSize { 
-        float width; 
-        float height; 
-    AVVideoCompositionCoreAnimationTool *animationTool;
-    BOOL auxiliaryTrackLayerSetLast;
-    NSString *builtInCompositorName;
-    Class customCompositorClass;
     } frameDuration;
     NSArray *instructions;
     float renderScale;
+    struct CGSize { 
+        float width; 
+        float height; 
     } renderSize;
 }
 

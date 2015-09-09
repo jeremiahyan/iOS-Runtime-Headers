@@ -2,24 +2,23 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSDictionary;
-
 @interface TSCH3DChartPlatformSettings : NSObject {
     NSDictionary *mSettings;
 }
 
 + (id)p_defaultSettingsDictionary;
 + (id)p_platformSettingsDictionary;
-+ (int)p_platformSettingsType;
 + (id)sharedInstance;
 
 - (float)backgroundLayoutContentsScaleFactor;
 - (BOOL)backgroundLayoutUsesTiledRendering;
+- (unsigned int)buildFramebufferMemoryLimitInBytes;
 - (BOOL)buildImageDefaultAntialias;
 - (unsigned int)buildImageTileSize;
 - (unsigned int)buildMultisamples;
 - (BOOL)buildShouldDiscardBuffers;
 - (double)buildTargetFPS;
+- (BOOL)buildTextureRendersAsSingleImage;
 - (BOOL)buildsCanUseDynamicShadows;
 - (BOOL)buildsUseLowDetailedGeometries;
 - (void)dealloc;

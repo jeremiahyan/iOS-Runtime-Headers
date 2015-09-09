@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/HomeSharing.framework/HomeSharing
  */
 
-@class NSObject<OS_dispatch_queue>, RadiosPreferences;
-
-@interface HSCloudAvailabilityController : NSObject <RadiosPreferencesDelegate, HSCloudAvailability> {
+@interface HSCloudAvailabilityController : NSObject <HSCloudAvailability, RadiosPreferencesDelegate> {
     NSObject<OS_dispatch_queue> *_accessQueue;
     BOOL _canShowCloudDownloadButtons;
     BOOL _canShowCloudMusic;
@@ -17,21 +15,30 @@
     BOOL _isShowingAllVideo;
     BOOL _isUpdateInProgress;
     BOOL _isWiFiEnabled;
+    unsigned int _networkReachabilityObservationCount;
     int _networkType;
     int _preferencesChangedNotifyToken;
     BOOL _preferencesChangedNotifyTokenIsValid;
     RadiosPreferences *_radiosPreferences;
-    struct __SCNetworkReachability { } *reachabilityRef;
+    struct __SCNetworkReachability { } *_reachabilityRef;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)sharedController;
 
+- (void).cxx_destruct;
 - (void)_cellularNetworkAllowedDidChangeNotification:(id)arg1;
 - (void)_handleTelephonyNotificationWithName:(id)arg1 userInfo:(id)arg2;
 - (BOOL)_hasCellularCapability;
 - (BOOL)_hasWiFiCapability;
 - (BOOL)_isAutoDownloadOnCellularAllowed;
 - (void)_networkTypeDidChangeNotification:(id)arg1;
+- (void)_onQueue_beginObservingReachabilityChanges;
+- (void)_onQueue_endObservingReachabilityChanges;
 - (void)_onQueue_updateCanShowCloudDownloadButtonsWithNotification:(BOOL)arg1;
 - (void)_onQueue_updateCanShowCloudTracksWithNotification:(BOOL)arg1;
 - (void)_setNewIsNetworkReachable:(BOOL)arg1;
@@ -40,10 +47,12 @@
 - (BOOL)_uncachedIsShowingAllVideo;
 - (void)_wifiEnabledDidChangeNotification:(id)arg1;
 - (void)airplaneModeChanged;
+- (void)beginObservingNetworkReachability;
 - (BOOL)canShowCloudDownloadButtons;
 - (BOOL)canShowCloudMusic;
 - (BOOL)canShowCloudVideo;
 - (void)dealloc;
+- (void)endObservingNetworkReachability;
 - (BOOL)hasProperNetworkConditionsToPlayMedia;
 - (id)init;
 - (BOOL)isCellularDataRestricted;

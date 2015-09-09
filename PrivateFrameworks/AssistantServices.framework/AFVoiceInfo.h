@@ -2,17 +2,17 @@
    Image: /System/Library/PrivateFrameworks/AssistantServices.framework/AssistantServices
  */
 
-@class NSString;
-
-@interface AFVoiceInfo : NSObject <NSSecureCoding, NSCopying> {
+@interface AFVoiceInfo : NSObject <NSCopying, NSSecureCoding> {
     int _gender;
     BOOL _isCustom;
     NSString *_languageCode;
+    BOOL _wasInitalizedFromDictionaryRepresentation;
 }
 
-@property int gender;
-@property BOOL isCustom;
-@property(readonly) NSString * languageCode;
+@property (nonatomic) int gender;
+@property (nonatomic) BOOL isCustom;
+@property (nonatomic, readonly) NSString *languageCode;
+@property (nonatomic, readonly) BOOL wasInitalizedFromDictionaryRepresentation;
 
 + (BOOL)supportsSecureCoding;
 
@@ -25,11 +25,13 @@
 - (unsigned int)hash;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithDictionaryRepresentation:(id)arg1;
+- (id)initWithLanguageCode:(id)arg1;
 - (id)initWithLanguageCode:(id)arg1 gender:(int)arg2 isCustom:(BOOL)arg3;
 - (BOOL)isCustom;
 - (BOOL)isEqual:(id)arg1;
 - (id)languageCode;
 - (void)setGender:(int)arg1;
 - (void)setIsCustom:(BOOL)arg1;
+- (BOOL)wasInitalizedFromDictionaryRepresentation;
 
 @end

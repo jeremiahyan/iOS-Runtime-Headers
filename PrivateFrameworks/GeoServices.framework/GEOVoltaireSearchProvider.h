@@ -2,32 +2,25 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class GEORequester;
-
 @interface GEOVoltaireSearchProvider : GEOSearchProvider <PBRequesterDelegate> {
     BOOL _cancelled;
-    id _finished;
-    id _refinement;
+    id /* block */ _finished;
+    id /* block */ _refinement;
     GEORequester *_requester;
-    id _spellingSuggestion;
 }
 
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+
 + (id)_searchURLForRequest:(id)arg1;
-+ (int)defaultLocalSearchProviderID;
-+ (int)localSearchProviderID;
-+ (unsigned short)provider;
-+ (id)searchProviderURL;
-+ (void)setUsePersistentConnection:(BOOL)arg1;
 
 - (void)cancel;
 - (void)dealloc;
 - (void)requester:(id)arg1 didFailWithError:(id)arg2;
 - (void)requesterDidCancel:(id)arg1;
 - (void)requesterDidFinish:(id)arg1;
-- (void)search:(id)arg1 timeout:(int)arg2 useBackgroundConnection:(BOOL)arg3 finished:(id)arg4 spellingSuggestion:(id)arg5 refinement:(id)arg6 error:(id)arg7 isCompletions:(BOOL)arg8;
+- (void)search:(id)arg1 timeout:(int)arg2 useBackgroundConnection:(BOOL)arg3 finished:(id /* block */)arg4 refinement:(id /* block */)arg5 error:(id /* block */)arg6 isCompletions:(BOOL)arg7;
 
 @end

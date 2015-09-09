@@ -2,9 +2,9 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class NSArray;
-
 @interface AVTimedMetadataGroupInternal : NSObject {
+    struct opaqueCMSampleBuffer { } *backingSBuf;
+    NSArray *items;
     struct { 
         struct { 
             long long value; 
@@ -18,7 +18,6 @@
             unsigned int flags; 
             long long epoch; 
         } duration; 
-    NSArray *items;
     } timeRange;
 }
 

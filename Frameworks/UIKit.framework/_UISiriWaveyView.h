@@ -2,9 +2,18 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class <_UISiriWaveyViewDelegate>, CADisplayLink, EAGLContext;
-
 @interface _UISiriWaveyView : UIView {
+    int _attribPosition;
+    <_UISiriWaveyViewDelegate> *_delegate;
+    CADisplayLink *_displayLink;
+    EAGLContext *_eaglContext;
+    unsigned int _framebufferHandle;
+    BOOL _isInitialized;
+    BOOL _justStarted;
+    const float *_lineWidth;
+    int _mode;
+    unsigned int _powerPointer;
+    unsigned int _programHandle;
     struct { 
         struct { 
             float m_x; 
@@ -30,20 +39,11 @@
             float m_z; 
             float m_w; 
         } m_trans; 
-    int _attribPosition;
-    <_UISiriWaveyViewDelegate> *_delegate;
-    CADisplayLink *_displayLink;
-    EAGLContext *_eaglContext;
-    unsigned int _framebufferHandle;
-    BOOL _isInitialized;
-    BOOL _justStarted;
-    int _mode;
-    unsigned int _powerPointer;
-    unsigned int _programHandle;
-    float _projection11;
     } _projection;
+    float _projection11;
     unsigned int _renderbufferHandle;
-    float _runningPowerLevels[5];
+    float _runningPowerLevels;
+    UIScreen *_screen;
     double _startTime;
     int _state;
     unsigned int _textureHandle;
@@ -59,8 +59,8 @@
     int _viewWidth;
 }
 
-@property <_UISiriWaveyViewDelegate> * delegate;
-@property int mode;
+@property (nonatomic) <_UISiriWaveyViewDelegate> *delegate;
+@property (nonatomic) int mode;
 
 + (Class)layerClass;
 
@@ -84,6 +84,7 @@
 - (BOOL)inDictationMode;
 - (BOOL)inSiriMode;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 screen:(id)arg2;
 - (void)layoutSubviews;
 - (int)mode;
 - (void)setDelegate:(id)arg1;

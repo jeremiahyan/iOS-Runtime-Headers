@@ -2,30 +2,28 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
  */
 
-@class GEOBatchReverseGeocodeRequest, NSArray, NSManagedObjectID, NSString, PLRevGeoLocationInfo;
-
 @interface PLMomentAnalyzerGeoRequestInfo : NSObject {
     NSArray *_assetIds;
     NSArray *_extraAssetIds;
     NSArray *_extraLocations;
     unsigned int _failureCount;
-    NSManagedObjectID *_momentId;
+    NSObject<NSCopying> *_momentId;
     NSString *_momentUuid;
     unsigned int _requestType;
     PLRevGeoLocationInfo *_revGeoLocationInfo;
-    GEOBatchReverseGeocodeRequest *_reverseGeocodeRequest;
+    <GEOMapServiceTicket> *_reverseGeocodeRequest;
 }
 
-@property(copy) NSArray * assetIds;
-@property(copy) NSArray * extraAssetIds;
-@property(getter=hasExtraData,readonly) BOOL extraData;
-@property(copy) NSArray * extraLocations;
-@property unsigned int failureCount;
-@property(retain) NSManagedObjectID * momentId;
-@property(copy) NSString * momentUuid;
-@property unsigned int requestType;
-@property(retain) PLRevGeoLocationInfo * revGeoLocationInfo;
-@property(retain) GEOBatchReverseGeocodeRequest * reverseGeocodeRequest;
+@property (nonatomic, copy) NSArray *assetIds;
+@property (nonatomic, copy) NSArray *extraAssetIds;
+@property (getter=hasExtraData, nonatomic, readonly) BOOL extraData;
+@property (nonatomic, copy) NSArray *extraLocations;
+@property (nonatomic) unsigned int failureCount;
+@property (nonatomic, retain) NSObject<NSCopying> *momentId;
+@property (nonatomic, copy) NSString *momentUuid;
+@property (nonatomic) unsigned int requestType;
+@property (nonatomic, retain) PLRevGeoLocationInfo *revGeoLocationInfo;
+@property (nonatomic, retain) <GEOMapServiceTicket> *reverseGeocodeRequest;
 
 - (id)assetIds;
 - (void)dealloc;

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class NSDictionary, NSMutableDictionary, NSString, NSURL;
-
 @interface SKUIURL : NSObject <NSCopying> {
     NSMutableDictionary *_queryDictionary;
     NSString *_referrerApplicationName;
@@ -11,19 +9,30 @@
     NSURL *_url;
 }
 
-@property(readonly) NSString * actionString;
-@property(readonly) NSDictionary * queryStringDictionary;
-@property(readonly) NSString * redeemCode;
-@property(copy) NSString * referrerApplicationName;
-@property(copy) NSString * referrerURLString;
-@property(readonly) NSString * searchTerm;
-@property(readonly) NSURL * underlyingURL;
+@property (nonatomic, readonly) NSString *URLBagKey;
+@property (nonatomic, readonly) NSString *actionString;
+@property (nonatomic, readonly, copy) NSDictionary *queryStringDictionary;
+@property (nonatomic, readonly) NSString *redeemCode;
+@property (nonatomic, copy) NSString *referrerApplicationName;
+@property (nonatomic, copy) NSString *referrerURLString;
+@property (nonatomic, readonly) NSString *searchTerm;
+@property (nonatomic, readonly) NSURL *underlyingURL;
 
 - (void).cxx_destruct;
+- (id)URLBagKey;
 - (id)_queryDictionary;
+- (id)_searchGroupForSearchKind:(id)arg1;
+- (id)_searchURLBagKey;
 - (id)actionString;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (id)description;
+- (unsigned int)hash;
 - (id)initWithURL:(id)arg1;
+- (id)initWithURL:(id)arg1 sourceApplication:(id)arg2 annotation:(id)arg3;
+- (id)initWithURLBagKey:(id)arg1;
+- (BOOL)isEqual:(id)arg1;
+- (id)newURLRequest;
+- (id)newURLRequestWithBaseURL:(id)arg1;
 - (id)queryStringDictionary;
 - (id)redeemCode;
 - (id)referrerApplicationName;

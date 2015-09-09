@@ -2,56 +2,56 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class <ABContactViewDataSource>, <ABContactViewDelegate>, ABContactHeaderView, CNContact, NSDictionary, UIColor, UIView;
-
-@interface ABContactView : ABCachingTableView {
+@interface ABContactView : UITableView {
+    NSDictionary *_actionTextAttributes;
+    BOOL _cellsLayoutCachingEnabled;
+    CNContact *_contact;
     struct UIEdgeInsets { 
         float top; 
         float left; 
         float bottom; 
         float right; 
-    NSDictionary *_actionTextAttributes;
-    UIColor *_backgroundColor;
-    CNContact *_contact;
     } _contentMargins;
     UIView *_customHeaderView;
     NSDictionary *_labelTextAttributes;
+    UIColor *_sectionBackgroundColor;
     UIColor *_selectedCellBackgroundColor;
     NSDictionary *_valueTextAttributes;
 }
 
-@property(copy) NSDictionary * actionTextAttributes;
-@property(retain) UIColor * backgroundColor;
-@property(retain) CNContact * contact;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } contentMargins;
-@property(retain) UIView * customHeaderView;
-@property <ABContactViewDataSource> * dataSource;
-@property(readonly) ABContactHeaderView * defaultHeaderView;
-@property <ABContactViewDelegate> * delegate;
-@property(copy) NSDictionary * labelTextAttributes;
-@property(retain) UIColor * selectedCellBackgroundColor;
-@property(retain) UIColor * separatorColor;
-@property(copy) NSDictionary * valueTextAttributes;
+@property (nonatomic, copy) NSDictionary *actionTextAttributes;
+@property (nonatomic, retain) UIColor *backgroundColor;
+@property (getter=isCellsLayoutCachingEnabled, nonatomic) BOOL cellsLayoutCachingEnabled;
+@property (nonatomic, retain) CNContact *contact;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } contentMargins;
+@property (nonatomic, retain) UIView *customHeaderView;
+@property (nonatomic) <ABContactViewDataSource> *dataSource;
+@property (nonatomic, readonly) ABContactHeaderView *defaultHeaderView;
+@property (nonatomic) <ABContactViewDelegate> *delegate;
+@property (nonatomic, copy) NSDictionary *labelTextAttributes;
+@property (nonatomic, retain) UIColor *sectionBackgroundColor;
+@property (nonatomic, retain) UIColor *selectedCellBackgroundColor;
+@property (nonatomic, retain) UIColor *separatorColor;
+@property (nonatomic, copy) NSDictionary *valueTextAttributes;
 
 + (id)allCardProperties;
 + (id)cellIdentifierForActions;
 + (id)cellIdentifierForClass:(Class)arg1;
++ (id)cellIdentifierForEditingProperty:(id)arg1;
 + (id)cellIdentifierForFaceTimeGroup;
-+ (id)cellIdentifierForGroupSpacer;
++ (id)cellIdentifierForLinkedCardsEditingGroup;
 + (id)cellIdentifierForLinkedCardsGroup;
 + (id)cellIdentifierForLinkedCardsPlaceholderGroup;
 + (id)cellIdentifierForProperty:(id)arg1;
 + (id)cellIdentifierForPropertyPlaceholder;
 + (id)cellIdentifierForSplitActions;
++ (Class)classForCellIdentifier:(id)arg1;
 + (id)defaultCardProperties;
-+ (id)headerFooterIdentifierForGroupHeaderFooter;
 + (BOOL)isFixedValueProperty:(id)arg1;
 + (BOOL)isMultiValueProperty:(id)arg1;
 + (id)nameProperties;
++ (id)namePropertiesForContact:(id)arg1;
 + (id)optionalCardProperties;
-+ (void)preCacheContent;
-+ (void)preCacheDisplayCells;
-+ (void)preCacheEditCells;
 + (id)requiredNameProperties;
 
 - (id)actionTextAttributes;
@@ -64,21 +64,28 @@
 - (id)defaultHeaderView;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 contact:(id)arg2;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 style:(int)arg2 contact:(id)arg3;
+- (BOOL)isCellsLayoutCachingEnabled;
 - (id)labelTextAttributes;
-- (void)registerPropertyCellClass:(Class)arg1;
+- (void)layoutMarginsDidChange;
+- (void)registerContactCellClass:(Class)arg1;
+- (id)sectionBackgroundColor;
 - (id)selectedCellBackgroundColor;
 - (void)setActionTextAttributes:(id)arg1;
 - (void)setAttributesFromContactView:(id)arg1;
 - (void)setBackgroundColor:(id)arg1;
+- (void)setCellsLayoutCachingEnabled:(BOOL)arg1;
 - (void)setContact:(id)arg1;
 - (void)setContentMargins:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
 - (void)setCustomHeaderView:(id)arg1;
 - (void)setLabelTextAttributes:(id)arg1;
+- (void)setSectionBackgroundColor:(id)arg1;
 - (void)setSelectedCellBackgroundColor:(id)arg1;
 - (void)setTableHeaderView:(id)arg1;
 - (void)setValueTextAttributes:(id)arg1;
 - (void)tintColorDidChange;
+- (void)updateFontColors;
 - (void)updateFontSizes;
+- (void)updateVisibleCells;
 - (id)valueTextAttributes;
 
 @end

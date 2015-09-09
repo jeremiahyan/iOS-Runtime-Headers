@@ -2,14 +2,10 @@
    Image: /System/Library/PrivateFrameworks/ApplePushService.framework/ApplePushService
  */
 
-@class <APSConnectionDelegate>, CUTWeakReference, NSArray, NSData, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSObject<OS_xpc_object>, NSString;
-
 @interface APSConnection : NSObject {
     NSObject<OS_xpc_object> *_connection;
     unsigned int _connectionPort;
     NSString *_connectionPortName;
-    unsigned int _connectionServerPort;
-    struct __CFMachPort { } *_connectionSeverCFMachPort;
     NSObject<OS_dispatch_queue> *_delegateQueue;
     CUTWeakReference *_delegateReference;
     BOOL _enableCriticalReliability;
@@ -21,6 +17,7 @@
     NSArray *_ignoredTopics;
     BOOL _isConnected;
     NSObject<OS_dispatch_queue> *_ivarQueue;
+    unsigned int _largeMessageSize;
     NSObject<OS_dispatch_queue> *_machQueue;
     NSObject<OS_dispatch_source> *_mach_source;
     unsigned int _messageSize;
@@ -31,14 +28,17 @@
     BOOL _usesAppLaunchStats;
 }
 
-@property <APSConnectionDelegate> * delegate;
-@property(readonly) NSObject<OS_dispatch_queue> * delegateQueue;
-@property(readonly) NSObject<OS_dispatch_queue> * ivarQueue;
-@property unsigned int messageSize;
-@property(readonly) NSData * publicToken;
-@property BOOL usesAppLaunchStats;
+@property (nonatomic) <APSConnectionDelegate> *delegate;
+@property (nonatomic, readonly) NSObject<OS_dispatch_queue> *delegateQueue;
+@property (nonatomic, readonly) NSObject<OS_dispatch_queue> *ivarQueue;
+@property (nonatomic) unsigned int largeMessageSize;
+@property (nonatomic) unsigned int messageSize;
+@property (nonatomic, readonly, retain) NSData *publicToken;
+@property (nonatomic) BOOL usesAppLaunchStats;
 
-+ (void)_blockingXPCCallWithArgumentBlock:(id)arg1 resultHandler:(id)arg2;
++ (void)_blockingXPCCallWithArgumentBlock:(id /* block */)arg1 resultHandler:(id /* block */)arg2;
++ (void)_safelyCancelAndReleaseAfterBarrierConnection:(id)arg1;
++ (void)_safelyCancelAndReleaseConnection:(id)arg1;
 + (void)_setTokenState;
 + (id)connectionsDebuggingState;
 + (struct __SecIdentity { }*)copyIdentity;
@@ -51,12 +51,14 @@
 - (void)_addEnableCriticalReliabilityToXPCMessage:(id)arg1;
 - (void)_addEnableStatusNotificationsToXPCMessage:(id)arg1;
 - (void)_addUsesAppLaunchStatsToXPCMessage:(id)arg1;
-- (void)_callDelegateOnIvarQueueWithBlock:(id)arg1;
+- (void)_callDelegateOnIvarQueueWithBlock:(id /* block */)arg1;
 - (void)_cancelConnection;
 - (void)_cancelConnectionOnIvarQueue;
 - (void)_connectIfNecessary;
 - (void)_connectIfNecessaryOnIvarQueue;
 - (void)_deliverConnectionStatusChange:(BOOL)arg1;
+- (void)_deliverConnectionStatusFromDealloc:(BOOL)arg1;
+- (void)_deliverDidReconnectOnIvarQueue;
 - (void)_deliverMessage:(id)arg1;
 - (void)_deliverOutgoingMessageResultWithID:(unsigned int)arg1 error:(id)arg2;
 - (void)_deliverPublicToken:(id)arg1;
@@ -65,7 +67,7 @@
 - (void)_disconnect;
 - (void)_disconnectFromDealloc;
 - (void)_disconnectOnIvarQueue;
-- (void)_handleEvent:(id)arg1 withHandler:(id)arg2;
+- (void)_handleEvent:(id)arg1 withHandler:(id /* block */)arg2;
 - (id)_listForIdentifierOnIvarQueue:(unsigned int)arg1;
 - (void)_noteDisconnectedFromDaemonOnIvarQueue;
 - (void)_onIvarQueue_setEnabledTopics:(id)arg1 ignoredTopics:(id)arg2 opportunisticTopics:(id)arg3 sendToDaemon:(BOOL)arg4;
@@ -80,16 +82,20 @@
 - (void)dealloc;
 - (id)delegate;
 - (id)delegateQueue;
+- (id)enabledTopics;
 - (BOOL)hasIdentity;
-- (id)initWithEnvironmentName:(id)arg1 namedDelegatePort:(id)arg2 queue:(id)arg3;
-- (id)initWithEnvironmentName:(id)arg1 namedDelegatePort:(id)arg2;
-- (id)initWithEnvironmentName:(id)arg1 queue:(id)arg2;
+- (id)ignoredTopics;
 - (id)initWithEnvironmentName:(id)arg1;
+- (id)initWithEnvironmentName:(id)arg1 namedDelegatePort:(id)arg2;
+- (id)initWithEnvironmentName:(id)arg1 namedDelegatePort:(id)arg2 queue:(id)arg3;
+- (id)initWithEnvironmentName:(id)arg1 queue:(id)arg2;
 - (void)invalidateTokenForTopic:(id)arg1 identifier:(id)arg2;
 - (BOOL)isConnected;
 - (id)ivarQueue;
+- (unsigned int)largeMessageSize;
 - (unsigned int)messageSize;
 - (void)moveTopic:(id)arg1 fromList:(unsigned int)arg2 toList:(unsigned int)arg3;
+- (id)opportunisticTopics;
 - (id)publicToken;
 - (void)removeFromRunLoop;
 - (void)requestTokenForTopic:(id)arg1 identifier:(id)arg2;
@@ -99,9 +105,10 @@
 - (void)setDelegate:(id)arg1;
 - (void)setEnableCriticalReliability:(BOOL)arg1;
 - (void)setEnableStatusNotifications:(BOOL)arg1;
-- (void)setEnabledTopics:(id)arg1 ignoredTopics:(id)arg2 opportunisticTopics:(id)arg3;
-- (void)setEnabledTopics:(id)arg1 ignoredTopics:(id)arg2;
 - (void)setEnabledTopics:(id)arg1;
+- (void)setEnabledTopics:(id)arg1 ignoredTopics:(id)arg2;
+- (void)setEnabledTopics:(id)arg1 ignoredTopics:(id)arg2 opportunisticTopics:(id)arg3;
+- (void)setLargeMessageSize:(unsigned int)arg1;
 - (void)setMessageSize:(unsigned int)arg1;
 - (void)setUsesAppLaunchStats:(BOOL)arg1;
 - (void)shutdown;

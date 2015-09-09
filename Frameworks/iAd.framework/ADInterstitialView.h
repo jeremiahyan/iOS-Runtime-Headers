@@ -2,44 +2,43 @@
    Image: /System/Library/Frameworks/iAd.framework/iAd
  */
 
-@class ADInterstitialAd, ADRemoteView, ADTapGestureRecognizer, UIView;
-
-@interface ADInterstitialView : UIView {
-    BOOL _dimmed;
-    UIView *_dimmerView;
-    ADTapGestureRecognizer *_gestureRecognizer;
+@interface ADInterstitialView : UIView <ADDimmerViewDelegate> {
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
+    } _dismissButtonRect;
     ADInterstitialAd *_interstitialAd;
-    ADRemoteView *_remoteView;
-    ADTapGestureRecognizer *_tapGestureRecognizer;
 }
 
-@property BOOL dimmed;
-@property(retain) UIView * dimmerView;
-@property(retain) ADTapGestureRecognizer * gestureRecognizer;
-@property(retain) ADRemoteView * remoteView;
-@property(readonly) ADTapGestureRecognizer * tapGestureRecognizer;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } dismissButtonRect;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) ADInterstitialAd *interstitialAd;
+@property (readonly) Class superclass;
 
-- (void)_gestureHandler:(id)arg1;
++ (BOOL)requiresConstraintBasedLayout;
+
 - (void)dealloc;
 - (void)didMoveToWindow;
-- (BOOL)dimmed;
-- (id)dimmerView;
-- (id)gestureRecognizer;
+- (void)dimmerView:(id)arg1 didReceiveTouchUpAtPoint:(struct CGPoint { float x1; float x2; })arg2;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })dismissButtonRect;
+- (BOOL)enableDimmerView:(id)arg1;
 - (id)initForInterstitialAd:(id)arg1;
 - (id)interstitialAd;
-- (id)remoteView;
+- (struct CGSize { float x1; float x2; })intrinsicContentSize;
 - (void)removeFromSuperview;
 - (void)setAlpha:(float)arg1;
 - (void)setBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
-- (void)setCenter:(struct CGPoint { float x1; float x2; })arg1;
-- (void)setDimmed:(BOOL)arg1;
-- (void)setDimmerView:(id)arg1;
+- (void)setDismissButtonRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)setFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
-- (void)setGestureRecognizer:(id)arg1;
 - (void)setHidden:(BOOL)arg1;
-- (void)setRemoteView:(id)arg1;
-- (void)setRemoteWindowContextId:(unsigned int)arg1;
 - (void)setTransform:(struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })arg1;
-- (id)tapGestureRecognizer;
 
 @end

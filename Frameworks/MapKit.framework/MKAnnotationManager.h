@@ -2,21 +2,7 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@class <MKAnnotation>, <MKAnnotationManagerDelegate>, <MKAnnotationMarkerContainer>, <MKAnnotationRepresentation>, MKQuadTrie, NSArray, NSMapTable, NSMutableSet, NSTimer;
-
 @interface MKAnnotationManager : NSObject {
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
-    NSMutableSet *_addingAnnotationRepresentations;
-    BOOL _animateDelayedShowCallout;
-    <MKAnnotationRepresentation> *_annotationRepresentationToShowCallout;
     NSMutableSet *_annotationRepresentations;
     BOOL _annotationRepresentationsAreAddedImmediately;
     MKQuadTrie *_annotations;
@@ -25,24 +11,24 @@
     <MKAnnotationManagerDelegate> *_delegate;
     NSMutableSet *_disallowAnimationAnnotations;
     <MKAnnotation> *_draggedAnnotation;
+    NSMutableSet *_invalidCoordinateAnnotations;
     BOOL _isChangingCoordinate;
     NSMutableSet *_managedAnnotations;
     NSMutableSet *_managedAnnotationsObservingCoordinate;
     NSMutableSet *_pendingAnnotations;
-    } _rectToAvoidForDelayedShowCallout;
     NSMapTable *_reusableAnnotationRepresentations;
     <MKAnnotation> *_selectedAnnotation;
     NSTimer *_updateVisibleTimer;
     NSMutableSet *_visibleAnnotations;
 }
 
-@property(readonly) NSArray * annotationRepresentations;
-@property BOOL annotationRepresentationsAreAddedImmediately;
-@property(readonly) NSArray * annotations;
-@property <MKAnnotationMarkerContainer> * container;
-@property <MKAnnotationManagerDelegate> * delegate;
-@property <MKAnnotation> * draggedAnnotation;
-@property(readonly) <MKAnnotationRepresentation> * selectedAnnotationRepresentation;
+@property (nonatomic, readonly) NSArray *annotationRepresentations;
+@property (nonatomic) BOOL annotationRepresentationsAreAddedImmediately;
+@property (nonatomic, readonly) NSArray *annotations;
+@property (nonatomic) <MKAnnotationMarkerContainer> *container;
+@property (nonatomic) <MKAnnotationManagerDelegate> *delegate;
+@property (nonatomic) <MKAnnotation> *draggedAnnotation;
+@property (nonatomic, readonly) <MKAnnotationRepresentation> *selectedAnnotationRepresentation;
 
 - (void).cxx_destruct;
 - (void)_addAnnotation:(id)arg1 updateVisible:(BOOL)arg2;
@@ -50,11 +36,11 @@
 - (void)_removeAnnotation:(id)arg1 updateVisible:(BOOL)arg2 removeFromContainer:(BOOL)arg3;
 - (void)_removeRepresentationForAnnotation:(id)arg1 fromCull:(BOOL)arg2;
 - (void)_setupUpdateVisibleAnnotationsTimer;
-- (void)addAnnotation:(id)arg1 allowAnimation:(BOOL)arg2;
 - (void)addAnnotation:(id)arg1;
+- (void)addAnnotation:(id)arg1 allowAnimation:(BOOL)arg2;
 - (void)addAnnotations:(id)arg1;
-- (void)addManagedAnnotation:(id)arg1 observeCoordinateChanges:(BOOL)arg2;
 - (void)addManagedAnnotation:(id)arg1;
+- (void)addManagedAnnotation:(id)arg1 observeCoordinateChanges:(BOOL)arg2;
 - (id)addRepresentationForManagedAnnotation:(id)arg1 notifyDelegate:(BOOL)arg2;
 - (void)addRepresentationsForAnnotations:(id)arg1;
 - (BOOL)annotationIsInternal:(id)arg1;
@@ -72,7 +58,6 @@
 - (id)dequeueReusableAnnotationRepresentationWithIdentifier:(id)arg1;
 - (void)deselectAnnotation:(id)arg1 animated:(BOOL)arg2;
 - (id)draggedAnnotation;
-- (void)finishAddingAnnotationRepresentations:(id)arg1;
 - (id)init;
 - (BOOL)internalAnnotationAllowsCustomRepresentation:(id)arg1;
 - (id)newDefaultAnnotationRepresentationForAnnotation:(id)arg1 reuseIdentifier:(id)arg2;
@@ -83,8 +68,8 @@
 - (void)removeRepresentationForManagedAnnotation:(id)arg1;
 - (void)replaceAnnotation:(id)arg1 withAnnotation:(id)arg2;
 - (id)representationForAnnotation:(id)arg1;
-- (void)selectAnnotation:(id)arg1 animated:(BOOL)arg2 avoid:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg3;
 - (void)selectAnnotation:(id)arg1 animated:(BOOL)arg2;
+- (void)selectAnnotation:(id)arg1 animated:(BOOL)arg2 avoid:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg3;
 - (id)selectedAnnotationRepresentation;
 - (void)setAnnotationRepresentationsAreAddedImmediately:(BOOL)arg1;
 - (void)setContainer:(id)arg1;

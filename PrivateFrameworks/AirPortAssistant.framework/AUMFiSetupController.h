@@ -2,9 +2,25 @@
    Image: /System/Library/PrivateFrameworks/AirPortAssistant.framework/AirPortAssistant
  */
 
-@class EasyConfigDevice, NSDictionary, NSMutableSet, NSObject<OS_dispatch_semaphore>, NSString, NSTimer;
-
 @interface AUMFiSetupController : AUSetupController {
+    NSDictionary *_accessoryResponseDict;
+    NSObject<OS_dispatch_semaphore> *_askUserForPasswordSemaphore;
+    NSDictionary *_autoGuessRecommendationDict;
+    NSString *_destinationNetworkPassword;
+    BOOL _destinationNetworkPasswordAccepted;
+    NSString *_destinationNetworkSSID;
+    NSDictionary *_destinationNetworkScanRecord;
+    NSObject<OS_dispatch_semaphore> *_easyConfigConfigurationCompleteSemaphore;
+    EasyConfigDevice *_easyConfigDevice;
+    struct { 
+        double secondsToGetLinkUpOnDestination; 
+        int wifiJoinDestinationAPError; 
+        unsigned char destinationNetworkPSKInKeychain; 
+        unsigned char hitJoiningDestinationAPTimeout; 
+        int rssiOfDestinationAP; 
+        unsigned int snrOfDestinationAP; 
+        unsigned int channelOfDestinationAP; 
+    } _easyConfigPostConfigMetrics;
     struct { 
         double startTime; 
         unsigned char userChangedFriendlyName; 
@@ -17,24 +33,6 @@
         int rssiOfSWAP; 
         unsigned int snrOfSWAP; 
         unsigned int channelOfSWAP; 
-    struct { 
-        double secondsToGetLinkUpOnDestination; 
-        int wifiJoinDestinationAPError; 
-        unsigned char destinationNetworkPSKInKeychain; 
-        unsigned char hitJoiningDestinationAPTimeout; 
-        int rssiOfDestinationAP; 
-        unsigned int snrOfDestinationAP; 
-        unsigned int channelOfDestinationAP; 
-    NSDictionary *_accessoryResponseDict;
-    NSObject<OS_dispatch_semaphore> *_askUserForPasswordSemaphore;
-    NSDictionary *_autoGuessRecommendationDict;
-    NSString *_destinationNetworkPassword;
-    BOOL _destinationNetworkPasswordAccepted;
-    NSString *_destinationNetworkSSID;
-    NSDictionary *_destinationNetworkScanRecord;
-    NSObject<OS_dispatch_semaphore> *_easyConfigConfigurationCompleteSemaphore;
-    EasyConfigDevice *_easyConfigDevice;
-    } _easyConfigPostConfigMetrics;
     } _easyConfigPreConfigMetrics;
     int _lastHeardEasyConfigProgressNotification;
     NSTimer *_linkUpOnDestinationNetworkTimer;
@@ -53,15 +51,20 @@
     int _waitingForLinkState;
 }
 
-@property(copy) NSString * destinationNetworkPassword;
-@property(retain) NSTimer * linkUpOnDestinationNetworkTimer;
-@property(readonly) NSMutableSet * setupDelegates;
+@property (copy) NSString *destinationNetworkPassword;
+@property (retain) NSTimer *linkUpOnDestinationNetworkTimer;
+@property (nonatomic, readonly) NSMutableSet *setupDelegates;
 
 + (id)setupController;
 
+- (void)_startEasyConfigWhenReady;
 - (void)acquireDestinationNetworkPassword;
 - (void)askUserForNetworkPassword:(id)arg1;
+- (void)askUserForSetupCodeWithRetryStatus:(BOOL)arg1;
+- (void)askUserForUncertified;
 - (void)callbackAskUserForPasswordResult:(long)arg1 password:(id)arg2 remember:(int)arg3;
+- (void)callbackAskUserForSetupCodeResult:(long)arg1 password:(id)arg2;
+- (void)callbackAskUserForUncertifiedResult:(long)arg1;
 - (void)createEasyConfigDeviceConfiguration;
 - (void)dealloc;
 - (id)destinationNetworkPassword;

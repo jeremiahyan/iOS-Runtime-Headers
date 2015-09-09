@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/AirPortAssistant.framework/AirPortAssistant
  */
 
-@class NSString, RecommendationActionController;
-
 @interface StepByStepUIViewController_Create_Config : StepByStepUIViewController <TableViewManagerDelegate, UIPopoverControllerDelegate> {
     NSString *_basePassword;
     NSString *_basePasswordVerify;
@@ -19,18 +17,22 @@
     BOOL useSinglePassword;
 }
 
-@property(retain) RecommendationActionController * actionController;
-@property(copy) NSString * basePassword;
-@property(copy) NSString * basePasswordVerify;
-@property(copy) NSString * diskPassword;
-@property(copy) NSString * diskPasswordVerify;
-@property BOOL hasDisk;
-@property(copy) NSString * personalizedBaseName;
-@property BOOL useDifferentDiskPassword;
-@property BOOL useSinglePassword;
-@property(copy) NSString * wifiName;
-@property(copy) NSString * wifiPassword;
-@property(copy) NSString * wifiPasswordVerify;
+@property (nonatomic, retain) RecommendationActionController *actionController;
+@property (nonatomic, copy) NSString *basePassword;
+@property (nonatomic, copy) NSString *basePasswordVerify;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, copy) NSString *diskPassword;
+@property (nonatomic, copy) NSString *diskPasswordVerify;
+@property (nonatomic) BOOL hasDisk;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *personalizedBaseName;
+@property (readonly) Class superclass;
+@property (nonatomic) BOOL useDifferentDiskPassword;
+@property (nonatomic) BOOL useSinglePassword;
+@property (nonatomic, copy) NSString *wifiName;
+@property (nonatomic, copy) NSString *wifiPassword;
+@property (nonatomic, copy) NSString *wifiPasswordVerify;
 
 - (id)actionController;
 - (void)addDiskPasswordSection;
@@ -66,7 +68,6 @@
 - (BOOL)useSinglePassword;
 - (BOOL)validateAndSetValues;
 - (void)validateAndUpdateNextButton;
-- (void)viewDidLoad;
 - (void)viewWillAppear:(BOOL)arg1;
 - (id)wifiName;
 - (id)wifiPassword;

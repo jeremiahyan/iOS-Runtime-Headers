@@ -2,15 +2,18 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-@class EKPickerTableView, NSDate;
-
-@interface EKReminderDueDateEditViewController : EKEditItemViewController <UITableViewDelegate, UITableViewDataSource, EKPickerTableViewDelegate> {
+@interface EKReminderDueDateEditViewController : EKEditItemViewController <EKPickerTableViewDelegate, UITableViewDataSource, UITableViewDelegate> {
     EKPickerTableView *_container;
     NSDate *_dueDate;
     BOOL _hasDueDate;
     BOOL _isAllDay;
     BOOL _shouldShowAllDay;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_datePickerChanged:(id)arg1;

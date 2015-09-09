@@ -2,19 +2,21 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class ABGroupWrapper, ABStyleProvider;
-
 @interface ABGroupTableCell : UITableViewCell <ABGroupWrapperDelegate> {
     ABGroupWrapper *_groupWrapper;
     ABStyleProvider *_styleProvider;
 }
 
-@property(retain) ABGroupWrapper * groupWrapper;
-@property(retain) ABStyleProvider * styleProvider;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) ABGroupWrapper *groupWrapper;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) ABStyleProvider *styleProvider;
+@property (readonly) Class superclass;
 
 - (void)dealloc;
-- (void)groupWrapper:(id)arg1 didBecomeSelected:(BOOL)arg2;
 - (id)groupWrapper;
+- (void)groupWrapper:(id)arg1 didBecomeSelected:(BOOL)arg2;
 - (void)setGroupWrapper:(id)arg1;
 - (void)setStyleProvider:(id)arg1;
 - (id)styleProvider;

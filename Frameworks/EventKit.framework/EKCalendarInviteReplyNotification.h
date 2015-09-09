@@ -3,14 +3,17 @@
  */
 
 @interface EKCalendarInviteReplyNotification : EKCalendarNotification {
+    unsigned int _allowedEntityTypes;
     int _status;
 }
 
-@property int status;
+@property (nonatomic) unsigned int allowedEntityTypes;
+@property (nonatomic) int status;
 
+- (unsigned int)allowedEntityTypes;
 - (id)initWithType:(int)arg1;
 - (id)inviteReplyNotificationFromEventStore:(id)arg1;
-- (BOOL)needsAlert;
+- (void)setAllowedEntityTypes:(unsigned int)arg1;
 - (void)setStatus:(int)arg1;
 - (int)status;
 

@@ -22,6 +22,7 @@
 - (int)alignment;
 - (float)blurRadius;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (id)description;
 - (float)direction;
 - (float)distance;
 - (float)endOpacity;

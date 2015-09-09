@@ -2,18 +2,16 @@
    Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
  */
 
-@class NSMutableArray, SUMaskProvider, SUMaskedView, SUOverlayTransition, SUScriptFunction, SUScriptWindowContext, SUTouchCaptureView, UIViewController;
-
 @interface SUOverlayViewController : SUViewController {
-    struct CGSize { 
-        float width; 
-        float height; 
     NSMutableArray *_actionQueue;
     UIViewController *_activeViewController;
     UIViewController *_backViewController;
     BOOL _canSwipeToDismiss;
     UIViewController *_frontViewController;
     SUOverlayTransition *_lastFlipTransition;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _overlaySize;
     SUOverlayTransition *_presentationTransition;
     SUScriptWindowContext *_scriptWindowContext;
@@ -25,18 +23,18 @@
     SUTouchCaptureView *_touchCaptureView;
 }
 
-@property(getter=isActiveOverlay,readonly) BOOL activeOverlay;
-@property(readonly) UIViewController * activeViewController;
-@property(retain) UIViewController * backViewController;
-@property BOOL canSwipeToDismiss;
-@property(retain) UIViewController * frontViewController;
-@property(retain) SUMaskProvider * maskProvider;
-@property(getter=isOnFront,readonly) BOOL onFront;
-@property struct CGSize { float x1; float x2; } overlaySize;
-@property(retain) SUOverlayTransition * presentationTransition;
-@property float shadowOpacity;
-@property float shadowRadius;
-@property(retain) SUScriptFunction * shouldDismissFunction;
+@property (getter=isActiveOverlay, nonatomic, readonly) BOOL activeOverlay;
+@property (nonatomic, readonly) UIViewController *activeViewController;
+@property (nonatomic, retain) UIViewController *backViewController;
+@property (nonatomic) BOOL canSwipeToDismiss;
+@property (nonatomic, retain) UIViewController *frontViewController;
+@property (nonatomic, retain) SUMaskProvider *maskProvider;
+@property (getter=isOnFront, nonatomic, readonly) BOOL onFront;
+@property (nonatomic) struct CGSize { float x1; float x2; } overlaySize;
+@property (nonatomic, retain) SUOverlayTransition *presentationTransition;
+@property (nonatomic) float shadowOpacity;
+@property (nonatomic) float shadowRadius;
+@property (nonatomic, retain) SUScriptFunction *shouldDismissFunction;
 
 + (struct CGSize { float x1; float x2; })defaultOverlaySize;
 

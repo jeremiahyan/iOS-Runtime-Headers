@@ -2,18 +2,15 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@class <MKAnnotationCalloutControllerDelegate>, MKAnnotationView;
-
 @interface MKAnnotationCalloutController : NSObject {
     MKAnnotationView *_annotationView;
     <MKAnnotationCalloutControllerDelegate> *_delegate;
-    int _mapDisplayStyle;
+    unsigned int _mapDisplayStyle;
 }
 
-@property(retain) MKAnnotationView * annotationView;
-@property Class calloutViewClass;
-@property <MKAnnotationCalloutControllerDelegate> * delegate;
-@property int mapDisplayStyle;
+@property (nonatomic, retain) MKAnnotationView *annotationView;
+@property (nonatomic) <MKAnnotationCalloutControllerDelegate> *delegate;
+@property (nonatomic) unsigned int mapDisplayStyle;
 
 - (void).cxx_destruct;
 - (void)_addAccessoryTargetForView:(id)arg1;
@@ -32,18 +29,16 @@
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_visibleCenteringRectInView:(id)arg1;
 - (id)annotationView;
 - (BOOL)calloutContainsPoint:(struct CGPoint { float x1; float x2; })arg1;
-- (Class)calloutViewClass;
 - (void)dealloc;
 - (float)defaultCalloutHeight;
 - (id)delegate;
 - (void)hideCalloutAnimated:(BOOL)arg1;
 - (BOOL)isCalloutExpanded;
-- (int)mapDisplayStyle;
+- (unsigned int)mapDisplayStyle;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void*)arg4;
 - (void)setAnnotationView:(id)arg1;
-- (void)setCalloutViewClass:(Class)arg1;
 - (void)setDelegate:(id)arg1;
-- (void)setMapDisplayStyle:(int)arg1;
+- (void)setMapDisplayStyle:(unsigned int)arg1;
 - (void)showCalloutForAnnotationView:(id)arg1 animated:(BOOL)arg2 scrollToFit:(BOOL)arg3 avoid:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg4;
 
 @end

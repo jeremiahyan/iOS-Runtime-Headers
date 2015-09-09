@@ -2,8 +2,7 @@
    Image: /System/Library/Frameworks/CoreMotion.framework/CoreMotion
  */
 
-@interface CLServiceVendor : NSObject {
-}
+@interface CLServiceVendor : NSObject
 
 + (BOOL)ensureServiceIsRunning:(id)arg1;
 + (BOOL)getKeyClass:(Class*)arg1 andSilo:(id*)arg2 forServiceWithName:(id)arg3;
@@ -13,6 +12,7 @@
 + (BOOL)isServiceEnabled:(id)arg1;
 + (BOOL)isServiceRunning:(id)arg1;
 + (id)proxyForService:(id)arg1;
++ (id)proxyForService:(id)arg1 forClient:(id)arg2;
 + (void)rereadConfiguration;
 + (void)retireServiceWithName:(id)arg1;
 

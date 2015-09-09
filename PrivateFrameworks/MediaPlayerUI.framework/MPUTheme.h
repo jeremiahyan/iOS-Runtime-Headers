@@ -2,13 +2,14 @@
    Image: /System/Library/PrivateFrameworks/MediaPlayerUI.framework/MediaPlayerUI
  */
 
-@interface MPUTheme : NSObject {
-}
+@interface MPUTheme : NSObject
 
-+ (id)cachedObjectWithKey:(id)arg1 block:(id)arg2;
-+ (id)explicitGlyphLargeImage;
-+ (id)explicitGlyphMediumImage;
-+ (id)explicitGlyphSmallImage;
-+ (id)themeAssetCache;
++ (id)_themeAssetCache;
++ (id)cachedObjectWithKey:(id)arg1 block:(id /* block */)arg2;
++ (id)cloudGlyph;
++ (id)disabledPlaybackControlColor;
++ (float)explicitGlyphImageBaselineOffsetFromBottomForSizeCategory:(unsigned int)arg1;
++ (id)explicitGlyphImageForSizeCategory:(unsigned int)arg1;
++ (float)tableViewContentLeftInset;
 
 @end

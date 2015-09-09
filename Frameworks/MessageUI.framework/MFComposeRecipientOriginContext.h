@@ -2,20 +2,18 @@
    Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
  */
 
-@class NSString;
-
 @interface MFComposeRecipientOriginContext : NSObject {
-    int _resultType;
+    unsigned int _resultType;
     NSString *_searchTerm;
 }
 
-@property(readonly) int resultType;
-@property(readonly) NSString * searchTerm;
+@property (nonatomic, readonly) unsigned int resultType;
+@property (nonatomic, readonly) NSString *searchTerm;
 
 - (void)dealloc;
-- (int)resultType;
+- (unsigned int)resultType;
 - (id)searchTerm;
-- (void)setResultType:(int)arg1;
+- (void)setResultType:(unsigned int)arg1;
 - (void)setSearchTerm:(id)arg1;
 
 @end

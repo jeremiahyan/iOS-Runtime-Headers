@@ -19,4 +19,6 @@
 
 + (id)threadSpecificStringDrawingTextStorageSettings:(BOOL)arg1;
 
+- (id)init;
+
 @end

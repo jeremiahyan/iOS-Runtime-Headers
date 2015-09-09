@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/ScreenReaderOutput.framework/ScreenReaderOutput
  */
 
-@class NSData, NSLock, NSMutableAttributedString, SCRCTargetSelectorTimer, SCROConnection;
-
-@interface SCROBrailleClient : SCRCThreadedWeakLinkedObject {
+@interface SCROBrailleClient : NSObject {
     NSData *_aggregatedStatusCache;
     NSData *_aggregatedStatusPending;
     SCROConnection *_connection;
@@ -22,6 +20,11 @@
     BOOL _wantsDisplayConfigurationChanged;
     BOOL _wantsReconnectMessage;
 }
+
+@property (nonatomic) int inputContractionMode;
+@property (nonatomic) BOOL inputEightDotBraille;
+
++ (id)statusAttributeDotText;
 
 - (void)_deathTimerHandler;
 - (void)_deviceConnected:(id)arg1;
@@ -45,7 +48,8 @@
 - (void)handleCallback:(id)arg1;
 - (id)init;
 - (id)initWithDelegate:(id)arg1;
-- (void)invalidateThreadsWithWeakLinks;
+- (int)inputContractionMode;
+- (BOOL)inputEightDotBraille;
 - (BOOL)isConfigured;
 - (BOOL)isConnected;
 - (BOOL)keepConnectionAlive;
@@ -70,6 +74,8 @@
 - (void)setDisplayDescriptorCallbackEnabled:(BOOL)arg1;
 - (void)setExpandedStatusDisplayModeWithStatus:(id)arg1;
 - (void)setFocused:(BOOL)arg1 forToken:(int)arg2;
+- (void)setInputContractionMode:(int)arg1;
+- (void)setInputEightDotBraille:(BOOL)arg1;
 - (void)setKeepConnectionAlive:(BOOL)arg1;
 - (void)setMainAttributedString:(id)arg1;
 - (void)setMasterStatusCellIndex:(long)arg1;

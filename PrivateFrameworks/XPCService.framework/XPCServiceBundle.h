@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/XPCService.framework/XPCService
  */
 
-@class NSBundle, NSDictionary, NSObject<OS_xpc_object>, NSString;
-
 @interface XPCServiceBundle : NSObject <XPCServiceArchiver> {
     NSBundle *_bundle;
     NSString *_executablePath;
@@ -21,6 +19,11 @@
     NSObject<OS_xpc_object> *_xpcJobData;
     long _xpcJobDataPredicate;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)XPCServiceBundleAtPath:(id)arg1;
 + (id)XPCServiceBundleForMainExecutable;

@@ -2,41 +2,50 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class KNAnimationInfo, KNAnimationPluginMenu, KNTransitionAttributes, NSArray, NSSet, NSString, TSUColor;
-
 @interface KNTransition : TSPContainedObject <KNInspectableAnimation> {
     KNTransitionAttributes *mAttributes;
 }
 
-@property(readonly) KNAnimationInfo * animationInfo;
-@property(copy) KNTransitionAttributes * attributes;
-@property(readonly) BOOL canEditAnimations;
-@property(readonly) TSUColor * color;
-@property(readonly) BOOL customBounce;
-@property(readonly) BOOL customMagicMoveFadeUnmatchedObjects;
-@property(readonly) int customMosaicSize;
-@property(readonly) int customMosaicType;
-@property(readonly) int customTextDelivery;
-@property(readonly) int customTimingCurve;
-@property(readonly) float customTwist;
-@property(readonly) double delay;
-@property(readonly) unsigned int direction;
-@property(readonly) KNAnimationPluginMenu * directionMenu;
-@property(readonly) unsigned int directionType;
-@property(readonly) double duration;
-@property(readonly) NSString * effect;
-@property(readonly) BOOL hasAutomaticTrigger;
-@property(readonly) NSSet * inspectableAttributes;
-@property(readonly) BOOL isMagicMove;
-@property(readonly) NSArray * localizedEventTriggerNames;
-@property(readonly) BOOL supportsDirection;
-@property(readonly) BOOL supportsDuration;
+@property (nonatomic, readonly) KNAnimationInfo *animationInfo;
+@property (nonatomic, copy) KNTransitionAttributes *attributes;
+@property (nonatomic, readonly) BOOL canEditAnimations;
+@property (nonatomic, readonly) TSUColor *color;
+@property (nonatomic, readonly) BOOL customBounce;
+@property (nonatomic, readonly) TSDBezierPathSource *customEffectTimingCurve1;
+@property (nonatomic, readonly) TSDBezierPathSource *customEffectTimingCurve2;
+@property (nonatomic, readonly) TSDBezierPathSource *customEffectTimingCurve3;
+@property (nonatomic, readonly) NSString *customEffectTimingCurveThemeName1;
+@property (nonatomic, readonly) NSString *customEffectTimingCurveThemeName2;
+@property (nonatomic, readonly) NSString *customEffectTimingCurveThemeName3;
+@property (nonatomic, readonly) BOOL customMagicMoveFadeUnmatchedObjects;
+@property (nonatomic, readonly) int customMosaicSize;
+@property (nonatomic, readonly) int customMosaicType;
+@property (nonatomic, readonly) BOOL customMotionBlur;
+@property (nonatomic, readonly) int customTextDelivery;
+@property (nonatomic, readonly) int customTimingCurve;
+@property (nonatomic, readonly) float customTwist;
+@property (nonatomic, readonly) double delay;
+@property (nonatomic, readonly) unsigned int direction;
+@property (nonatomic, readonly) KNAnimationPluginMenu *directionMenu;
+@property (nonatomic, readonly) unsigned int directionType;
+@property (nonatomic, readonly) BOOL documentIsRTL;
+@property (nonatomic, readonly) double duration;
+@property (nonatomic, readonly) NSString *effect;
+@property (nonatomic, readonly) BOOL hasAutomaticTrigger;
+@property (nonatomic, readonly) NSSet *inspectableAttributes;
+@property (nonatomic, readonly) BOOL isMagicMove;
+@property (nonatomic, readonly) NSArray *localizedEventTriggerNames;
+@property (nonatomic, readonly) int randomNumberSeed;
+@property (nonatomic, readonly) BOOL supportsBounce;
+@property (nonatomic, readonly) BOOL supportsCustomEffectTimingCurve1;
+@property (nonatomic, readonly) BOOL supportsCustomEffectTimingCurve2;
+@property (nonatomic, readonly) BOOL supportsCustomEffectTimingCurve3;
+@property (nonatomic, readonly) BOOL supportsDirection;
+@property (nonatomic, readonly) BOOL supportsDuration;
 
++ (id)attributeKeyForBindingKeyPath:(id)arg1;
++ (id)bindingKeyPathForAttributeKey:(id)arg1;
++ (id)bindingMap;
 + (unsigned int)directionTypeForEffect:(id)arg1;
 + (BOOL)hasDirectionOptionForEffect:(id)arg1;
 
@@ -46,9 +55,16 @@
 - (id)color;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (BOOL)customBounce;
+- (id)customEffectTimingCurve1;
+- (id)customEffectTimingCurve2;
+- (id)customEffectTimingCurve3;
+- (id)customEffectTimingCurveThemeName1;
+- (id)customEffectTimingCurveThemeName2;
+- (id)customEffectTimingCurveThemeName3;
 - (BOOL)customMagicMoveFadeUnmatchedObjects;
 - (int)customMosaicSize;
 - (int)customMosaicType;
+- (BOOL)customMotionBlur;
 - (int)customTextDelivery;
 - (int)customTimingCurve;
 - (float)customTwist;
@@ -58,18 +74,28 @@
 - (unsigned int)direction;
 - (id)directionMenu;
 - (unsigned int)directionType;
+- (BOOL)documentIsRTL;
 - (double)duration;
 - (id)effect;
 - (BOOL)hasAutomaticTrigger;
-- (id)initWithArchive:(const struct TransitionArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; struct TransitionAttributesArchive {} *x3; int x4; unsigned int x5[1]; }*)arg1 unarchiver:(id)arg2 owner:(id)arg3;
-- (id)initWithOwner:(id)arg1 attributes:(id)arg2;
+- (id)initWithArchive:(const struct TransitionArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; struct TransitionAttributesArchive {} *x5; }*)arg1 unarchiver:(id)arg2 owner:(id)arg3;
 - (id)initWithOwner:(id)arg1;
+- (id)initWithOwner:(id)arg1 attributes:(id)arg2;
 - (id)inspectableAttributes;
 - (BOOL)isMagicMove;
 - (id)localizedEventTriggerNames;
-- (void)saveToArchive:(struct TransitionArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; struct TransitionAttributesArchive {} *x3; int x4; unsigned int x5[1]; }*)arg1 archiver:(id)arg2;
+- (unsigned long long)p_keynoteVersionFromUnarchiver:(id)arg1;
+- (BOOL)p_supportsCustomEffectTimingCurveForLayoutStyles:(id)arg1;
+- (int)randomNumberSeed;
+- (void)saveToArchive:(struct TransitionArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; struct TransitionAttributesArchive {} *x5; }*)arg1 archiver:(id)arg2;
 - (void)setAttributes:(id)arg1;
+- (BOOL)supportsBounce;
+- (BOOL)supportsCustomEffectTimingCurve1;
+- (BOOL)supportsCustomEffectTimingCurve2;
+- (BOOL)supportsCustomEffectTimingCurve3;
 - (BOOL)supportsDirection;
 - (BOOL)supportsDuration;
+- (BOOL)supportsRandomNumberSeed;
+- (BOOL)supportsTimingCurves;
 
 @end

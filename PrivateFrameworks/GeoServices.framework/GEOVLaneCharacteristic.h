@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSMutableArray;
-
-@interface GEOVLaneCharacteristic : PBCodable {
+@interface GEOVLaneCharacteristic : PBCodable <NSCopying> {
     struct { 
         unsigned int roadLaneCount : 1; 
     } _has;
@@ -14,11 +12,11 @@
     unsigned int _roadLaneCount;
 }
 
-@property BOOL hasRoadLaneCount;
-@property(retain) NSMutableArray * laneDirections;
-@property(retain) NSMutableArray * laneDividers;
-@property(retain) NSMutableArray * laneTypes;
-@property unsigned int roadLaneCount;
+@property (nonatomic) BOOL hasRoadLaneCount;
+@property (nonatomic, retain) NSMutableArray *laneDirections;
+@property (nonatomic, retain) NSMutableArray *laneDividers;
+@property (nonatomic, retain) NSMutableArray *laneTypes;
+@property (nonatomic) unsigned int roadLaneCount;
 
 - (void)addLaneDirection:(id)arg1;
 - (void)addLaneDivider:(id)arg1;
@@ -27,6 +25,7 @@
 - (void)clearLaneDividers;
 - (void)clearLaneTypes;
 - (void)copyTo:(id)arg1;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)description;
 - (id)dictionaryRepresentation;

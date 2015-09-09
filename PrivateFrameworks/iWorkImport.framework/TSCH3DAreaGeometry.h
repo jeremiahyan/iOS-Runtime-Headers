@@ -9,26 +9,26 @@
         struct __compressed_pair<glm::detail::tvec3<float> *, std::__1::allocator<glm::detail::tvec3<float> > > { 
             struct tvec3<float> {} *__first_; 
         } __end_cap_; 
-    struct vector<glm::detail::tvec3<float>, std::__1::allocator<glm::detail::tvec3<float> > > { 
-        struct tvec3<float> {} *__begin_; 
-        struct tvec3<float> {} *__end_; 
-        struct __compressed_pair<glm::detail::tvec3<float> *, std::__1::allocator<glm::detail::tvec3<float> > > { 
-            struct tvec3<float> {} *__first_; 
-        } __end_cap_; 
     } mBottomLine;
     int mCapCount;
     unsigned int mCapOffset;
     float mMaxZ;
     float mMinZ;
     BOOL mStacked;
+    struct vector<glm::detail::tvec3<float>, std::__1::allocator<glm::detail::tvec3<float> > > { 
+        struct tvec3<float> {} *__begin_; 
+        struct tvec3<float> {} *__end_; 
+        struct __compressed_pair<glm::detail::tvec3<float> *, std::__1::allocator<glm::detail::tvec3<float> > > { 
+            struct tvec3<float> {} *__first_; 
+        } __end_cap_; 
     } mTopLine;
     float mZeroValue;
 }
 
-@property float maxZ;
-@property float minZ;
-@property BOOL stacked;
-@property float zeroValue;
+@property (nonatomic) float maxZ;
+@property (nonatomic) float minZ;
+@property (nonatomic) BOOL stacked;
+@property (nonatomic) float zeroValue;
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
@@ -36,6 +36,7 @@
 - (struct tvec2<float> { union { float x_1_1_1; float x_1_1_2; float x_1_1_3; } x1; union { float x_2_1_1; float x_2_1_2; float x_2_1_3; } x2; })bottomTopAtPosition:(float)arg1;
 - (int)capCount;
 - (unsigned int)capOffset;
+- (id)elementsBoundsPositions;
 - (void)generateArrays;
 - (int)geometryCount;
 - (id)init;

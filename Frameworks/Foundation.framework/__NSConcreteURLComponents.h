@@ -2,9 +2,12 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@class NSNumber, NSString;
-
 @interface __NSConcreteURLComponents : NSURLComponents <NSCopying> {
+    NSString *_fragmentComponent;
+    unsigned int _fragmentComponentValid;
+    NSString *_hostComponent;
+    unsigned int _hostComponentValid;
+    int _lock;
     struct _URIParseInfo { 
         int userinfoNameOffset; 
         int userinfoPasswordOffset; 
@@ -24,25 +27,20 @@
         unsigned int paramExists : 1; 
         unsigned int queryExists : 1; 
         unsigned int fragmentExists : 1; 
-    unsigned int _schemeComponentValid : 1;
-    unsigned int _userComponentValid : 1;
-    unsigned int _passwordComponentValid : 1;
-    unsigned int _hostComponentValid : 1;
-    unsigned int _portComponentValid : 1;
-    unsigned int _pathComponentValid : 1;
-    unsigned int _queryComponentValid : 1;
-    unsigned int _fragmentComponentValid : 1;
-    NSString *_fragmentComponent;
-    NSString *_hostComponent;
-    int _lock;
     } _parseInfo;
     NSString *_passwordComponent;
+    unsigned int _passwordComponentValid;
     NSString *_pathComponent;
+    unsigned int _pathComponentValid;
     NSNumber *_portComponent;
+    unsigned int _portComponentValid;
     NSString *_queryComponent;
+    unsigned int _queryComponentValid;
     NSString *_schemeComponent;
+    unsigned int _schemeComponentValid;
     NSString *_urlString;
     NSString *_userComponent;
+    unsigned int _userComponentValid;
 }
 
 + (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
@@ -71,6 +69,7 @@
 - (id)percentEncodedUser;
 - (id)port;
 - (id)query;
+- (id)queryItems;
 - (id)scheme;
 - (void)setFragment:(id)arg1;
 - (void)setHost:(id)arg1;
@@ -84,8 +83,10 @@
 - (void)setPercentEncodedUser:(id)arg1;
 - (void)setPort:(id)arg1;
 - (void)setQuery:(id)arg1;
+- (void)setQueryItems:(id)arg1;
 - (void)setScheme:(id)arg1;
 - (void)setUser:(id)arg1;
+- (id)string;
 - (id)user;
 
 @end

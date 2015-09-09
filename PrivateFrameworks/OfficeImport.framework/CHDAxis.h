@@ -2,42 +2,45 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class CHDTitle, EDResources, OADGraphicProperties;
-
 @interface CHDAxis : NSObject <EDKeyedObject> {
-    boolmAutoCrossValue;
-    boolmAutoMaximumValue;
-    boolmAutoMinimumValue;
-    boolmContentFormatDerived;
-    boolmDateTimeFormattingFlag;
-    boolmDeleted;
-    boolmIsAutoRotation;
-    boolmLineVisible;
-    boolmReverseOrder;
-    boolmSecondary;
+    bool mAutoCrossValue;
+    bool mAutoMaximumValue;
+    bool mAutoMinimumValue;
     OADGraphicProperties *mAxisGraphicProperties;
     int mAxisId;
     int mAxisPosition;
     int mAxisType;
+    bool mContentFormatDerived;
     unsigned int mContentFormatId;
     double mCrossAxisId;
     int mCrossBetween;
     int mCrosses;
     double mCrossesAt;
+    bool mDateTimeFormattingFlag;
+    bool mDeleted;
     unsigned int mFontIndex;
+    bool mIsAutoRotation;
+    bool mLineVisible;
     OADGraphicProperties *mMajorGridLinesGraphicProperties;
     int mMajorTickMark;
     OADGraphicProperties *mMinorGridLinesGraphicProperties;
     int mMinorTickMark;
     int mOrientation;
     EDResources *mResources;
+    bool mReverseOrder;
     double mScalingMaximum;
     double mScalingMinimum;
+    bool mSecondary;
     unsigned int mTickLabelColorIndex;
     int mTickLabelPosition;
     double mTickLabelRotation;
     CHDTitle *mTitle;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)adjustAxisPositionForHorizontalChart;
 - (id)axisGraphicProperties;
@@ -52,6 +55,7 @@
 - (double)crossesAt;
 - (void)dealloc;
 - (id)defaultDateTimeContentFormat;
+- (id)description;
 - (id)font;
 - (unsigned int)fontIndex;
 - (id)initWithResources:(id)arg1;

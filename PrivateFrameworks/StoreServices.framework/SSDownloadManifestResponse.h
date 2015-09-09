@@ -2,13 +2,15 @@
    Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
  */
 
-@class NSArray;
-
-@interface SSDownloadManifestResponse : NSObject <SSXPCCoding, NSCoding> {
+@interface SSDownloadManifestResponse : NSObject <NSCoding, SSXPCCoding> {
     NSArray *_validDownloads;
 }
 
-@property(copy) NSArray * validDownloads;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+@property (copy) NSArray *validDownloads;
 
 - (id)copyXPCEncoding;
 - (void)dealloc;

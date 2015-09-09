@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-@class NSObject<OS_dispatch_source>;
-
 @interface VKMemoryObserver : NSObject {
     NSObject<OS_dispatch_source> *_memoryNotificationEventSource;
     SEL _selector;
@@ -13,5 +11,6 @@
 - (void)_receivedMemoryNotification;
 - (void)dealloc;
 - (id)initWithTarget:(id)arg1 selector:(SEL)arg2;
+- (void)triggerMemoryNotification:(BOOL)arg1;
 
 @end

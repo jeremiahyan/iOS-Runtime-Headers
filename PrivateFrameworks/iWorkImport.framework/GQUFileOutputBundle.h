@@ -6,6 +6,11 @@
     struct __CFURL { } *mOutputUrl;
 }
 
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+
 - (struct __CFString { }*)createUriForResource:(struct __CFString { }*)arg1;
 - (void)dealloc;
 - (id)initWithOutputPath:(struct __CFString { }*)arg1;

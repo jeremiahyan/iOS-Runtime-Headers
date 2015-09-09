@@ -2,14 +2,26 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSString, TSCHSelectionPath;
-
 @interface TSCHChartAxisRenderer : TSCHRenderer <TSCHCompositeRendering> {
     TSCHSelectionPath *mAxisTitleSelectionPath;
     NSString *mEditingString;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
+    } mStartingEditingFrame;
 }
 
-@property(retain) NSString * editingString;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) NSString *editingString;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)addSelection:(id)arg1 toCGPath:(struct CGPath { }*)arg2;
 - (id)axisLayoutItem;

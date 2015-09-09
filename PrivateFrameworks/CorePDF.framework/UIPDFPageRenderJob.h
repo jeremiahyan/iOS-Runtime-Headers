@@ -2,12 +2,7 @@
    Image: /System/Library/PrivateFrameworks/CorePDF.framework/CorePDF
  */
 
-@class UIImage, UIPDFPage, UIPDFPageRenderOperation;
-
 @interface UIPDFPageRenderJob : NSObject {
-    struct CGSize { 
-        float width; 
-        float height; 
     SEL _callback;
     UIImage *_image;
     int _lock;
@@ -17,17 +12,20 @@
     int _priority;
     BOOL _releaseWhenDone;
     BOOL _sendPending;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _size;
     id _target;
     id _userData;
 }
 
-@property(readonly) UIImage * image;
-@property UIPDFPageRenderOperation * operation;
-@property(readonly) unsigned int pageIndex;
-@property(readonly) int priority;
+@property (readonly, retain) UIImage *image;
+@property UIPDFPageRenderOperation *operation;
+@property (readonly) unsigned int pageIndex;
+@property (readonly) int priority;
 @property BOOL releaseWhenDone;
-@property(readonly) struct CGSize { float x1; float x2; } size;
+@property (readonly) struct CGSize { float x1; float x2; } size;
 
 - (void)cancel;
 - (void)cancelOperation;

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/ToneLibrary.framework/ToneLibrary
  */
 
-@class NSDictionary, NSNumber, NSString;
-
 @interface TLITunesTone : NSObject {
     NSString *_artworkFile;
     unsigned int _duration;
@@ -18,41 +16,41 @@
     BOOL _ringtone;
 }
 
-@property(retain) NSString * artworkFile;
-@property unsigned int duration;
-@property(retain) NSString * filePath;
-@property(retain) NSString * identifier;
-@property(retain) NSString * name;
-@property(retain) NSNumber * pid;
-@property(retain) NSDictionary * playbackProperties;
-@property BOOL private;
-@property BOOL protected;
-@property(getter=isPurchased) BOOL purchased;
-@property(getter=isRingtone) BOOL ringtone;
+@property (nonatomic, copy) NSString *artworkFile;
+@property (nonatomic) unsigned int duration;
+@property (nonatomic, copy) NSString *filePath;
+@property (nonatomic, copy) NSString *identifier;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSNumber *pid;
+@property (nonatomic, copy) NSDictionary *playbackProperties;
+@property (getter=isPrivate, nonatomic) BOOL private;
+@property (getter=isProtected, nonatomic) BOOL protected;
+@property (getter=isPurchased, nonatomic) BOOL purchased;
+@property (getter=isRingtone, nonatomic) BOOL ringtone;
 
+- (void)_setArtworkFile:(id)arg1;
+- (void)_setDuration:(unsigned int)arg1;
+- (void)_setFilePath:(id)arg1;
+- (void)_setIdentifier:(id)arg1;
+- (void)_setName:(id)arg1;
+- (void)_setPid:(id)arg1;
+- (void)_setPlaybackProperties:(id)arg1;
+- (void)_setPrivate:(BOOL)arg1;
+- (void)_setProtected:(BOOL)arg1;
+- (void)_setPurchased:(BOOL)arg1;
+- (void)_setRingtone:(BOOL)arg1;
 - (id)artworkFile;
 - (void)dealloc;
 - (unsigned int)duration;
 - (id)filePath;
 - (id)identifier;
+- (id)initWithPropertyListRepresentation:(id)arg1 filePath:(id)arg2;
+- (BOOL)isPrivate;
+- (BOOL)isProtected;
 - (BOOL)isPurchased;
 - (BOOL)isRingtone;
-- (BOOL)loadFromPropertyList:(id)arg1;
 - (id)name;
 - (id)pid;
 - (id)playbackProperties;
-- (BOOL)private;
-- (BOOL)protected;
-- (void)setArtworkFile:(id)arg1;
-- (void)setDuration:(unsigned int)arg1;
-- (void)setFilePath:(id)arg1;
-- (void)setIdentifier:(id)arg1;
-- (void)setName:(id)arg1;
-- (void)setPid:(id)arg1;
-- (void)setPlaybackProperties:(id)arg1;
-- (void)setPrivate:(BOOL)arg1;
-- (void)setProtected:(BOOL)arg1;
-- (void)setPurchased:(BOOL)arg1;
-- (void)setRingtone:(BOOL)arg1;
 
 @end

@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIStatusBar, UIStatusBarCorners;
-
 @interface UIStatusBarWindow : UIWindow {
     UIStatusBarCorners *_bottomCorners;
     BOOL _cornersHidden;
@@ -13,6 +11,10 @@
     float _topCornersOffset;
 }
 
++ (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_defaultStatusBarSceneBounds;
++ (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_defaultStatusBarSceneBoundsForOrientation:(int)arg1;
++ (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_defaultStatusBarSceneReferenceBounds;
++ (BOOL)_isSystemWindow;
 + (BOOL)isIncludedInClassicJail;
 + (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })statusBarWindowFrame;
 
@@ -21,6 +23,8 @@
 - (BOOL)_disableViewScaling;
 - (BOOL)_isStatusBarWindow;
 - (void)_rotate;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_sceneBounds;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_sceneReferenceBounds;
 - (BOOL)_shouldZoom;
 - (void)_updateTransformLayerForClassicPresentation;
 - (void)dealloc;
@@ -31,5 +35,6 @@
 - (void)setOrientation:(int)arg1 animationParameters:(id)arg2;
 - (void)setStatusBar:(id)arg1;
 - (void)setTopCornerStyle:(int)arg1 topCornersOffset:(float)arg2 bottomCornerStyle:(int)arg3 animationParameters:(id)arg4;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })statusBarWindowFrame;
 
 @end

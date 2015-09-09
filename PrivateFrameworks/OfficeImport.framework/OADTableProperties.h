@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSArray, OADTableStyle;
-
 @interface OADTableProperties : OADDrawableProperties <OADEffectsParent> {
     BOOL mBandColumn;
     BOOL mBandRow;
@@ -15,6 +13,11 @@
     BOOL mRightToLeft;
     OADTableStyle *mStyle;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)defaultProperties;
 

@@ -2,9 +2,26 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class <_UIScreenEdgePanRecognizerDelegate>, UIDelayedAction, _UIScreenEdgePanRecognizerSettings;
-
 @interface _UIScreenEdgePanRecognizer : NSObject <_UISettingsKeyObserver> {
+    <_UIScreenEdgePanRecognizerDelegate> *_delegate;
+    float _gestureRestrictionFactor;
+    BOOL _hasDoneInitialBackProjectionTest;
+    BOOL _hasRecordedData;
+    int _initialInterfaceOrientation;
+    struct CGPoint { 
+        float x; 
+        float y; 
+    } _initialTouchLocation;
+    double _initialTouchTimestamp;
+    struct CGPoint { 
+        float x; 
+        float y; 
+    } _lastTouchLocation;
+    double _lastTouchTimestamp;
+    UIDelayedAction *_recognitionTimer;
+    unsigned int _recognizedRegion;
+    BOOL _requiresFlatThumb;
+    BOOL _requiresLongPress;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -14,25 +31,6 @@
             float width; 
             float height; 
         } size; 
-    struct CGPoint { 
-        float x; 
-        float y; 
-    struct CGPoint { 
-        float x; 
-        float y; 
-    <_UIScreenEdgePanRecognizerDelegate> *_delegate;
-    float _gestureRestrictionFactor;
-    BOOL _hasDoneInitialBackProjectionTest;
-    BOOL _hasRecordedData;
-    int _initialInterfaceOrientation;
-    } _initialTouchLocation;
-    double _initialTouchTimestamp;
-    } _lastTouchLocation;
-    double _lastTouchTimestamp;
-    UIDelayedAction *_recognitionTimer;
-    unsigned int _recognizedRegion;
-    BOOL _requiresFlatThumb;
-    BOOL _requiresLongPress;
     } _screenBounds;
     _UIScreenEdgePanRecognizerSettings *_settings;
     int _state;
@@ -42,14 +40,20 @@
     BOOL _useGrapeFlags;
 }
 
-@property <_UIScreenEdgePanRecognizerDelegate> * delegate;
-@property(readonly) unsigned int recognizedRegion;
-@property BOOL requiresFlatThumb;
-@property(getter=isRequiringLongPress,readonly) BOOL requiringLongPress;
-@property struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } screenBounds;
-@property(retain) _UIScreenEdgePanRecognizerSettings * settings;
-@property(readonly) int state;
-@property unsigned int targetEdges;
+@property (nonatomic, readonly) struct CGPoint { float x1; float x2; } _lastTouchLocation;
+@property (readonly, copy) NSString *debugDescription;
+@property <_UIScreenEdgePanRecognizerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) unsigned int recognizedRegion;
+@property (nonatomic) BOOL requiresFlatThumb;
+@property (getter=isRequiringLongPress, nonatomic, readonly) BOOL requiringLongPress;
+@property (nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } screenBounds;
+@property (nonatomic, retain) _UIScreenEdgePanRecognizerSettings *settings;
+@property (nonatomic) BOOL shouldUseGrapeFlags;
+@property (nonatomic, readonly) int state;
+@property (readonly) Class superclass;
+@property (nonatomic) unsigned int targetEdges;
 
 + (BOOL)_edgeSwipeNavigationGestureEnabled;
 
@@ -57,6 +61,7 @@
 - (void)_idleTimerElapsed:(id)arg1;
 - (void)_incorporateIncrementalSampleAtLocation:(struct CGPoint { float x1; float x2; })arg1 timestamp:(double)arg2 modifier:(int)arg3 interfaceOrientation:(int)arg4;
 - (void)_incorporateInitialTouchAtLocation:(struct CGPoint { float x1; float x2; })arg1 timestamp:(double)arg2 modifier:(int)arg3 interfaceOrientation:(int)arg4;
+- (struct CGPoint { float x1; float x2; })_lastTouchLocation;
 - (void)_longPressTimerElapsed:(id)arg1;
 - (void)_setState:(int)arg1;
 - (unsigned int)_targetEdges;
@@ -74,9 +79,11 @@
 - (void)setRequiresFlatThumb:(BOOL)arg1;
 - (void)setScreenBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)setSettings:(id)arg1;
+- (void)setShouldUseGrapeFlags:(BOOL)arg1;
 - (void)setTargetEdges:(unsigned int)arg1;
-- (void)settings:(id)arg1 changedValueForKey:(id)arg2;
 - (id)settings;
+- (void)settings:(id)arg1 changedValueForKey:(id)arg2;
+- (BOOL)shouldUseGrapeFlags;
 - (int)state;
 - (unsigned int)targetEdges;
 

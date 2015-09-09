@@ -2,15 +2,13 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSMutableArray;
-
-@interface GEOVJunction : PBCodable {
+@interface GEOVJunction : PBCodable <NSCopying> {
     NSMutableArray *_connectingRoads;
     NSMutableArray *_laneConnections;
 }
 
-@property(retain) NSMutableArray * connectingRoads;
-@property(retain) NSMutableArray * laneConnections;
+@property (nonatomic, retain) NSMutableArray *connectingRoads;
+@property (nonatomic, retain) NSMutableArray *laneConnections;
 
 - (void)addConnectingRoad:(id)arg1;
 - (void)addLaneConnections:(id)arg1;
@@ -20,6 +18,7 @@
 - (id)connectingRoads;
 - (unsigned int)connectingRoadsCount;
 - (void)copyTo:(id)arg1;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)description;
 - (id)dictionaryRepresentation;

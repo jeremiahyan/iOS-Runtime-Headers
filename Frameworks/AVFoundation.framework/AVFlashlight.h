@@ -2,30 +2,27 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class AVFlashlightInternal;
-
 @interface AVFlashlight : NSObject {
     AVFlashlightInternal *_internal;
 }
 
-@property(getter=isAvailable,readonly) BOOL available;
-@property(readonly) float flashlightLevel;
-@property(getter=isOverheated,readonly) BOOL overheated;
+@property (getter=isAvailable, nonatomic, readonly) BOOL available;
+@property (nonatomic, readonly) float flashlightLevel;
+@property (getter=isOverheated, nonatomic, readonly) BOOL overheated;
 
++ (id)alloc;
 + (BOOL)hasFlashlight;
 + (void)initialize;
 
-- (void)_refreshIsAvailable;
-- (BOOL)bringupFigRecorderWithError:(id*)arg1;
+- (void)_handleNotification:(id)arg1 payload:(id)arg2;
+- (void)_setupFlashlight;
+- (void)_teardownFlashlight;
 - (void)dealloc;
-- (BOOL)ensureFigRecorderWithError:(id*)arg1;
 - (float)flashlightLevel;
-- (void)handleNotification:(id)arg1 payload:(id)arg2;
 - (id)init;
 - (BOOL)isAvailable;
 - (BOOL)isOverheated;
 - (BOOL)setFlashlightLevel:(float)arg1 withError:(id*)arg2;
-- (void)teardownFigRecorder;
 - (void)turnPowerOff;
 - (BOOL)turnPowerOnWithError:(id*)arg1;
 

@@ -2,13 +2,11 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSMutableArray, NSString;
-
 @interface TSTTemporaryCollectionNode : NSObject {
+    NSMutableArray *mChildren;
     struct TSCEVectorIndexPair { 
         unsigned short column; 
         unsigned short row; 
-    NSMutableArray *mChildren;
     } mDimensions;
     unsigned int mFirstIndex;
     unsigned int mLastIndex;
@@ -16,12 +14,12 @@
     NSString *mWhitespaceBeforeFirstChild;
 }
 
-@property(retain) NSMutableArray * children;
-@property struct TSCEVectorIndexPair { unsigned short x1; unsigned short x2; } dimensions;
-@property unsigned int firstIndex;
-@property unsigned int lastIndex;
-@property(retain) NSMutableArray * whitespaceAfterDelimiters;
-@property(retain) NSString * whitespaceBeforeFirstChild;
+@property (nonatomic, retain) NSMutableArray *children;
+@property (nonatomic) struct TSCEVectorIndexPair { unsigned short x1; unsigned short x2; } dimensions;
+@property (nonatomic) unsigned int firstIndex;
+@property (nonatomic) unsigned int lastIndex;
+@property (nonatomic, retain) NSMutableArray *whitespaceAfterDelimiters;
+@property (nonatomic, retain) NSString *whitespaceBeforeFirstChild;
 
 - (id).cxx_construct;
 - (id)children;

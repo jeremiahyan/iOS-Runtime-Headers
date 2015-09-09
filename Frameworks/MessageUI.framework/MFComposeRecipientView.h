@@ -2,9 +2,7 @@
    Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
  */
 
-@class <MFComposeRecipientViewDelegate>, MFComposeRecipient, MFComposeTextField, MFCorecipientsIndicatorAtom, MFModernComposeRecipientAtom, NSArray, NSCountedSet, NSMutableArray, NSMutableDictionary, NSString, NSTimer, UIButton, UIFont, UITapGestureRecognizer, UITextField, UIView;
-
-@interface MFComposeRecipientView : MFComposeHeaderView <UITextFieldDelegate, UIGestureRecognizerDelegate, MFComposeRecipientAtomDelegate, MFDragSource, MFDragDestination, MFCorecipientsIndicatorAtomDelegate> {
+@interface MFComposeRecipientView : MFComposeHeaderView <MFComposeRecipientAtomDelegate, MFCorecipientsIndicatorAtomDelegate, MFDragDestination, MFDragSource, UIGestureRecognizerDelegate, UITextFieldDelegate> {
     UIButton *_addButton;
     BOOL _allowsDragAndDrop;
     struct __CFDictionary { } *_atomPresentationOptionsByRecipient;
@@ -19,7 +17,7 @@
     BOOL _didIgnoreFirstResponderResign;
     int _dragSourceOriginalIndex;
     BOOL _editable;
-    BOOL _focused;
+    BOOL _expanded;
     int _hideLastAtomComma;
     double _inputDelay;
     int _maxRecipients;
@@ -33,31 +31,35 @@
     MFModernComposeRecipientAtom *_selectedAtom;
     BOOL _separatorHidden;
     UITapGestureRecognizer *_tapGestureRecognizer;
-    MFComposeTextField *_textField;
+    _MFMailRecipientTextField *_textField;
     NSArray *_textFieldConstraints;
     NSCountedSet *_uncommentedAddresses;
 }
 
-@property(readonly) UIView * addButton;
-@property(copy) NSArray * addresses;
-@property BOOL allowsDragAndDrop;
-@property(retain) UIFont * baseFont;
-@property(readonly) MFCorecipientsIndicatorAtom * corecipientsIndicator;
-@property unsigned int defaultAtomPresentationOptions;
-@property <MFComposeRecipientViewDelegate> * delegate;
-@property BOOL didIgnoreFirstResponderResign;
-@property BOOL editable;
-@property BOOL focused;
-@property int hideLastAtomComma;
-@property double inputDelay;
-@property int maxRecipients;
-@property(readonly) int numberOfRowsOfTextInField;
-@property(readonly) float offsetForRowWithTextField;
-@property(retain) MFComposeRecipient * placeholderRecipient;
-@property(readonly) NSArray * recipients;
-@property(getter=isSeparatorHidden) BOOL separatorHidden;
-@property(readonly) NSString * text;
-@property(readonly) UITextField * textField;
+@property (nonatomic, readonly) UIView *addButton;
+@property (nonatomic, copy) NSArray *addresses;
+@property (nonatomic) BOOL allowsDragAndDrop;
+@property (nonatomic, retain) UIFont *baseFont;
+@property (nonatomic, readonly) MFCorecipientsIndicatorAtom *corecipientsIndicator;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) unsigned int defaultAtomPresentationOptions;
+@property (nonatomic) <MFComposeRecipientViewDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL didIgnoreFirstResponderResign;
+@property (nonatomic) BOOL editable;
+@property (nonatomic) BOOL expanded;
+@property (readonly) unsigned int hash;
+@property (nonatomic) int hideLastAtomComma;
+@property (nonatomic) double inputDelay;
+@property (nonatomic) int maxRecipients;
+@property (nonatomic, readonly) int numberOfRowsOfTextInField;
+@property (nonatomic, readonly) float offsetForRowWithTextField;
+@property (nonatomic, retain) MFComposeRecipient *placeholderRecipient;
+@property (nonatomic, readonly) NSArray *recipients;
+@property (getter=isSeparatorHidden, nonatomic) BOOL separatorHidden;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) NSString *text;
+@property (nonatomic, readonly) UITextField *textField;
 
 - (void)_addRecord:(void*)arg1 identifier:(int)arg2;
 - (void)_addUncommentedAddress:(id)arg1;
@@ -81,8 +83,8 @@
 - (void)addAddress:(id)arg1;
 - (id)addButton;
 - (void)addButtonClicked:(id)arg1;
-- (void)addRecipient:(id)arg1 index:(unsigned int)arg2 animate:(BOOL)arg3;
 - (void)addRecipient:(id)arg1;
+- (void)addRecipient:(id)arg1 index:(unsigned int)arg2 animate:(BOOL)arg3;
 - (void)addRecord:(void*)arg1 property:(int)arg2 identifier:(int)arg3;
 - (id)addresses;
 - (BOOL)allowsDrag;
@@ -113,8 +115,8 @@
 - (void)dropItem:(id)arg1;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })dropRect;
 - (BOOL)editable;
+- (BOOL)expanded;
 - (BOOL)finishEnteringRecipient;
-- (BOOL)focused;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })frameForDraggedItem:(id)arg1;
 - (BOOL)gestureRecognizerShouldBegin:(id)arg1;
 - (BOOL)hasContent;
@@ -151,7 +153,7 @@
 - (void)setDelegate:(id)arg1;
 - (void)setDidIgnoreFirstResponderResign:(BOOL)arg1;
 - (void)setEditable:(BOOL)arg1;
-- (void)setFocused:(BOOL)arg1;
+- (void)setExpanded:(BOOL)arg1;
 - (void)setHideLastAtomComma:(int)arg1;
 - (void)setInputDelay:(double)arg1;
 - (void)setLabel:(id)arg1;

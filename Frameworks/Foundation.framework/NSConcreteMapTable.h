@@ -2,72 +2,65 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class NSWeakCallback;
-
 @interface NSConcreteMapTable : NSMapTable {
-    struct NSSlice { 
-        void **items; 
-        BOOL wantsStrong; 
-        BOOL wantsWeak; 
-        BOOL wantsARC; 
-        BOOL shouldCopyIn; 
-        BOOL usesStrong; 
-        BOOL usesWeak; 
-        BOOL usesARC; 
-        BOOL usesSentinel; 
-        BOOL pointerPersonality; 
-        BOOL integerPersonality; 
-        BOOL simpleReadClear; 
-        NSWeakCallback *callback; 
-        int (*sizeFunction)(); 
-        int (*hashFunction)(); 
-        int (*isEqualFunction)(); 
-        int (*describeFunction)(); 
-        int (*acquireFunction)(); 
-        int (*relinquishFunction)(); 
-        int (*allocateFunction)(); 
-        int (*freeFunction)(); 
-        int (*readAt)(); 
-        int (*clearAt)(); 
-        int (*storeAt)(); 
-    struct NSSlice { 
-        void **items; 
-        BOOL wantsStrong; 
-        BOOL wantsWeak; 
-        BOOL wantsARC; 
-        BOOL shouldCopyIn; 
-        BOOL usesStrong; 
-        BOOL usesWeak; 
-        BOOL usesARC; 
-        BOOL usesSentinel; 
-        BOOL pointerPersonality; 
-        BOOL integerPersonality; 
-        BOOL simpleReadClear; 
-        NSWeakCallback *callback; 
-        int (*sizeFunction)(); 
-        int (*hashFunction)(); 
-        int (*isEqualFunction)(); 
-        int (*describeFunction)(); 
-        int (*acquireFunction)(); 
-        int (*relinquishFunction)(); 
-        int (*allocateFunction)(); 
-        int (*freeFunction)(); 
-        int (*readAt)(); 
-        int (*clearAt)(); 
-        int (*storeAt)(); 
-    boolshouldRehash;
     unsigned int capacity;
     unsigned int count;
     int growLock;
     unsigned int keyOptions;
+    struct NSSlice { 
+        void **items; 
+        BOOL wantsStrong; 
+        BOOL wantsWeak; 
+        BOOL wantsARC; 
+        BOOL shouldCopyIn; 
+        BOOL usesStrong; 
+        BOOL usesWeak; 
+        BOOL usesARC; 
+        BOOL usesSentinel; 
+        BOOL pointerPersonality; 
+        BOOL integerPersonality; 
+        BOOL simpleReadClear; 
+        NSWeakCallback *callback; 
+        int (*sizeFunction)(); 
+        int (*hashFunction)(); 
+        int (*isEqualFunction)(); 
+        int (*describeFunction)(); 
+        int (*acquireFunction)(); 
+        int (*relinquishFunction)(); 
+        int (*allocateFunction)(); 
+        int (*freeFunction)(); 
+        int (*readAt)(); 
+        int (*clearAt)(); 
+        int (*storeAt)(); 
     } keys;
     unsigned int mutations;
+    bool shouldRehash;
     unsigned int valueOptions;
+    struct NSSlice { 
+        void **items; 
+        BOOL wantsStrong; 
+        BOOL wantsWeak; 
+        BOOL wantsARC; 
+        BOOL shouldCopyIn; 
+        BOOL usesStrong; 
+        BOOL usesWeak; 
+        BOOL usesARC; 
+        BOOL usesSentinel; 
+        BOOL pointerPersonality; 
+        BOOL integerPersonality; 
+        BOOL simpleReadClear; 
+        NSWeakCallback *callback; 
+        int (*sizeFunction)(); 
+        int (*hashFunction)(); 
+        int (*isEqualFunction)(); 
+        int (*describeFunction)(); 
+        int (*acquireFunction)(); 
+        int (*relinquishFunction)(); 
+        int (*allocateFunction)(); 
+        int (*freeFunction)(); 
+        int (*readAt)(); 
+        int (*clearAt)(); 
+        int (*storeAt)(); 
     } values;
 }
 
@@ -81,7 +74,7 @@
 - (BOOL)containsKeys:(const void**)arg1 values:(const void**)arg2 count:(unsigned int)arg3;
 - (id)copy;
 - (unsigned int)count;
-- (unsigned int)countByEnumeratingWithState:(struct { unsigned long x1; id *x2; unsigned long *x3; unsigned long x4[5]; }*)arg1 objects:(id*)arg2 count:(unsigned int)arg3;
+- (unsigned int)countByEnumeratingWithState:(struct { unsigned long x1; id *x2; unsigned long x3; unsigned long x4[5]; }*)arg1 objects:(id*)arg2 count:(unsigned int)arg3;
 - (void)dealloc;
 - (id)description;
 - (id)dump;

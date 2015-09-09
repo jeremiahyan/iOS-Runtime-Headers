@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
  */
 
-@class NSDate, NSDictionary, NSNumber, NSString;
-
 @interface AssetCollectionInfo : NSObject <NSSecureCoding> {
     NSString *_GUID;
     BOOL _hasVideoAsset;
@@ -16,15 +14,15 @@
     NSNumber *_width;
 }
 
-@property(readonly) NSString * GUID;
-@property(readonly) BOOL hasVideoAsset;
-@property(readonly) NSNumber * height;
-@property(readonly) BOOL isDeletable;
-@property(readonly) BOOL isMine;
-@property(readonly) NSDictionary * metaData;
-@property(readonly) NSString * personID;
-@property(readonly) NSDate * timestamp;
-@property(readonly) NSNumber * width;
+@property (nonatomic, readonly, retain) NSString *GUID;
+@property (nonatomic, readonly) BOOL hasVideoAsset;
+@property (nonatomic, readonly, retain) NSNumber *height;
+@property (nonatomic, readonly) BOOL isDeletable;
+@property (nonatomic, readonly) BOOL isMine;
+@property (nonatomic, readonly, retain) NSDictionary *metaData;
+@property (nonatomic, readonly, retain) NSString *personID;
+@property (nonatomic, readonly, retain) NSDate *timestamp;
+@property (nonatomic, readonly, retain) NSNumber *width;
 
 + (BOOL)supportsSecureCoding;
 

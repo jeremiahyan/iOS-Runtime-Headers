@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
  */
 
-@class NSArray, NSDictionary, NSString;
-
 @interface PLPublishCloudSharedAssetsJob : PLCloudSharingJob {
     NSString *_batchCommentText;
     BOOL _isNewAlbum;
@@ -12,11 +10,11 @@
     NSDictionary *_trimmedVideoPathInfo;
 }
 
-@property(retain) NSString * batchCommentText;
-@property BOOL isNewAlbum;
-@property(retain) NSArray * originalAssetUUIDs;
-@property(retain) NSString * publishAlbumCloudGUID;
-@property(retain) NSDictionary * trimmedVideoPathInfo;
+@property (nonatomic, retain) NSString *batchCommentText;
+@property (nonatomic) BOOL isNewAlbum;
+@property (nonatomic, retain) NSArray *originalAssetUUIDs;
+@property (nonatomic, retain) NSString *publishAlbumCloudGUID;
+@property (nonatomic, retain) NSDictionary *trimmedVideoPathInfo;
 
 + (void)publishBatchOfOriginalAssets:(id)arg1 toSharedAlbum:(id)arg2 withTrimmedVideoPathInfo:(id)arg3 isNewAlbum:(BOOL)arg4 batchCommentText:(id)arg5;
 
@@ -26,7 +24,7 @@
 - (id)description;
 - (void)encodeToXPCObject:(id)arg1;
 - (void)executeDaemonOperation;
-- (id)initFromXPCObject:(id)arg1;
+- (id)initFromXPCObject:(id)arg1 connection:(id)arg2;
 - (BOOL)isNewAlbum;
 - (id)originalAssetUUIDs;
 - (id)publishAlbumCloudGUID;

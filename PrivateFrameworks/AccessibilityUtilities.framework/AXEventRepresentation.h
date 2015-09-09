@@ -2,17 +2,8 @@
    Image: /System/Library/PrivateFrameworks/AccessibilityUtilities.framework/AccessibilityUtilities
  */
 
-@class AXEventHandInfoRepresentation, AXEventKeyInfoRepresentation, NSData, NSString;
-
-@interface AXEventRepresentation : NSObject <NSSecureCoding, NSCopying> {
-    struct CGPoint { 
-        float x; 
-        float y; 
-    struct CGPoint { 
-        float x; 
-        float y; 
+@interface AXEventRepresentation : NSObject <NSCopying, NSSecureCoding> {
     NSData *_HIDAttributeData;
-    unsigned long long _HIDSenderId;
     unsigned long long _HIDTime;
     unsigned long long _additionalFlags;
     NSString *_clientId;
@@ -23,36 +14,43 @@
     BOOL _isBuiltIn;
     BOOL _isGeneratedEvent;
     AXEventKeyInfoRepresentation *_keyInfo;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _location;
     int _pid;
+    unsigned long long _senderID;
     int _subtype;
     unsigned int _taskPort;
     unsigned long long _time;
     unsigned int _type;
     void *_window;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _windowLocation;
 }
 
-@property(retain) NSData * HIDAttributeData;
-@property unsigned long long HIDSenderId;
-@property unsigned long long HIDTime;
-@property unsigned long long additionalFlags;
-@property(retain) NSString * clientId;
-@property unsigned int contextId;
-@property(retain) NSData * data;
-@property int flags;
-@property(retain) AXEventHandInfoRepresentation * handInfo;
-@property BOOL isBuiltIn;
-@property BOOL isGeneratedEvent;
-@property(retain) AXEventKeyInfoRepresentation * keyInfo;
-@property struct CGPoint { float x1; float x2; } location;
-@property int pid;
-@property int subtype;
-@property unsigned int taskPort;
-@property unsigned long long time;
-@property unsigned int type;
-@property void* window;
-@property struct CGPoint { float x1; float x2; } windowLocation;
+@property (nonatomic, retain) NSData *HIDAttributeData;
+@property (nonatomic) unsigned long long HIDTime;
+@property (nonatomic) unsigned long long additionalFlags;
+@property (nonatomic, retain) NSString *clientId;
+@property (nonatomic) unsigned int contextId;
+@property (nonatomic, retain) NSData *data;
+@property (nonatomic) int flags;
+@property (nonatomic, retain) AXEventHandInfoRepresentation *handInfo;
+@property (nonatomic) BOOL isBuiltIn;
+@property (nonatomic) BOOL isGeneratedEvent;
+@property (nonatomic, retain) AXEventKeyInfoRepresentation *keyInfo;
+@property (nonatomic) struct CGPoint { float x1; float x2; } location;
+@property (nonatomic) int pid;
+@property (nonatomic) unsigned long long senderID;
+@property (nonatomic) int subtype;
+@property (nonatomic) unsigned int taskPort;
+@property (nonatomic) unsigned long long time;
+@property (nonatomic) unsigned int type;
+@property (nonatomic) void*window;
+@property (nonatomic) struct CGPoint { float x1; float x2; } windowLocation;
 
 + (id)_digitizerRepresentation:(struct __IOHIDEvent { }*)arg1 hidStreamIdentifier:(id)arg2;
 + (id)_keyboardButtonEvent:(struct __IOHIDEvent { }*)arg1;
@@ -67,7 +65,6 @@
 + (id)touchRepresentationWithHandType:(unsigned int)arg1 location:(struct CGPoint { float x1; float x2; })arg2;
 
 - (id)HIDAttributeData;
-- (unsigned long long)HIDSenderId;
 - (unsigned long long)HIDTime;
 - (unsigned int)_contextIDFromHIDEvent:(struct __IOHIDEvent { }*)arg1;
 - (struct __IOHIDEvent { }*)_newButtonHIDEventRef;
@@ -80,9 +77,10 @@
 - (id)data;
 - (id)dataRepresentation;
 - (void)dealloc;
-- (id)denormalizedEventRepresentation:(BOOL)arg1;
+- (id)denormalizedEventRepresentation:(BOOL)arg1 descale:(BOOL)arg2;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
+- (id)fakeTouchScaleEventRepresentation:(BOOL)arg1;
 - (unsigned int)firstPathContextId;
 - (int)flags;
 - (id)handInfo;
@@ -94,15 +92,15 @@
 - (struct { int x1; int x2; struct CGPoint { float x_3_1_1; float x_3_1_2; } x3; struct CGPoint { float x_4_1_1; float x_4_1_2; } x4; unsigned int x5; unsigned long long x6; void *x7; int x8; int x9; unsigned int x10; unsigned long long x11; unsigned char x12[0]; }*)newEventRecord;
 - (struct __GSEvent { }*)newGSEventRef;
 - (struct __IOHIDEvent { }*)newHIDEventRef;
-- (id)normalizedEventRepresentation:(BOOL)arg1;
+- (id)normalizedEventRepresentation:(BOOL)arg1 scale:(BOOL)arg2;
 - (int)pid;
+- (unsigned long long)senderID;
 - (void)setAdditionalFlags:(unsigned long long)arg1;
 - (void)setClientId:(id)arg1;
 - (void)setContextId:(unsigned int)arg1;
 - (void)setData:(id)arg1;
 - (void)setFlags:(int)arg1;
 - (void)setHIDAttributeData:(id)arg1;
-- (void)setHIDSenderId:(unsigned long long)arg1;
 - (void)setHIDTime:(unsigned long long)arg1;
 - (void)setHandInfo:(id)arg1;
 - (void)setIsBuiltIn:(BOOL)arg1;
@@ -110,6 +108,7 @@
 - (void)setKeyInfo:(id)arg1;
 - (void)setLocation:(struct CGPoint { float x1; float x2; })arg1;
 - (void)setPid:(int)arg1;
+- (void)setSenderID:(unsigned long long)arg1;
 - (void)setSubtype:(int)arg1;
 - (void)setTaskPort:(unsigned int)arg1;
 - (void)setTime:(unsigned long long)arg1;

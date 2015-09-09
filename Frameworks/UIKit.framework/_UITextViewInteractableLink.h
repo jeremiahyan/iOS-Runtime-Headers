@@ -2,13 +2,15 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSURL;
-
-@interface _UITextViewInteractableLink : _UITextViewInteractableItem {
+@interface _UITextViewInteractableLink : _UITextViewInteractableItem <DDDetectionControllerInteractionDelegate> {
     NSURL *_link;
 }
 
-@property(retain) NSURL * link;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) NSURL *link;
+@property (readonly) Class superclass;
 
 + (id)interactableLinkWithURL:(id)arg1 range:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2;
 
@@ -16,6 +18,8 @@
 - (void)_linkInteractionAddToReadingList;
 - (void)_linkInteractionCopyLink;
 - (void)_linkInteractionOpenURL;
+- (void)action:(id)arg1 didDismissAlertController:(id)arg2;
+- (void)actionDidFinish:(id)arg1;
 - (id)actions;
 - (BOOL)allowInteraction;
 - (id)dataDetectorActionsForTextView:(id)arg1;

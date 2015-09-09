@@ -2,35 +2,16 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-@class NSString;
+@interface VKGridDrawStyle : VKRenderStyle
 
-@interface VKGridDrawStyle : VKDrawStyle {
-    struct _VGLColor { 
-        float r; 
-        float g; 
-        float b; 
-        float a; 
-    struct _VGLColor { 
-        float r; 
-        float g; 
-        float b; 
-        float a; 
-    } _fillColor;
-    } _lineColor;
-    NSString *_texture;
-}
+@property (nonatomic, readonly) /* Warning: unhandled struct encoding: '{Matrix<float' */ struct  fillColor; /* unknown property attribute:  1>=[4f]} */
+@property (nonatomic, readonly) /* Warning: unhandled struct encoding: '{Matrix<float' */ struct  lineColor; /* unknown property attribute:  1>=[4f]} */
+@property (nonatomic, readonly) NSString *texture;
 
-@property(readonly) struct _VGLColor { float x1; float x2; float x3; float x4; } fillColor;
-@property(readonly) struct _VGLColor { float x1; float x2; float x3; float x4; } lineColor;
-@property(readonly) NSString * texture;
++ (int)renderStyleID;
 
-- (id).cxx_construct;
-- (void)dealloc;
-- (struct _VGLColor { float x1; float x2; float x3; float x4; })fillColor;
-- (struct _VGLColor { float x1; float x2; float x3; float x4; })lineColor;
-- (void)takeFromStyleProperties:(id)arg1 atZoom:(unsigned int)arg2 globals:(id)arg3;
-- (void)takeFromZoomInvariantProperties:(id)arg1;
+- (struct Matrix<float, 4, 1> { float x1[4]; })fillColor;
+- (struct Matrix<float, 4, 1> { float x1[4]; })lineColor;
 - (id)texture;
-- (id)variant;
 
 @end

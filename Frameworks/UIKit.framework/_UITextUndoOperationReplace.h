@@ -2,13 +2,11 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSAttributedString;
-
 @interface _UITextUndoOperationReplace : NSUndoTextOperation {
+    NSAttributedString *_attributedString;
     struct _NSRange { 
         unsigned int location; 
         unsigned int length; 
-    NSAttributedString *_attributedString;
     } _replacementRange;
 }
 

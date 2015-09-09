@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/VUSocialUpload.framework/VUSocialUpload
  */
 
-@class <VimeoPostDelegate>, ACAccount, ALAsset, ALAssetsLibrary, NSArray, NSData, NSString, NSURL, VUDataReader;
-
 @interface VimeoPost : NSObject {
     unsigned int _accessType;
     ACAccount *_account;
@@ -16,9 +14,9 @@
     BOOL _continuingUpload;
     VUDataReader *_dataReader;
     <VimeoPostDelegate> *_delegate;
-    NSString *_description;
     NSURL *_exportedVideoURL;
     unsigned int _lastByteStored;
+    NSString *_postDescription;
     int _privacySettings;
     int _retryCount;
     NSArray *_tags;
@@ -30,28 +28,28 @@
     int _videoSize;
 }
 
-@property unsigned int accessType;
-@property(retain) ACAccount * account;
-@property(retain) ALAsset * asset;
-@property(retain) NSData * assetData;
-@property(retain) NSURL * assetURL;
-@property(retain) VUDataReader * dataReader;
-@property <VimeoPostDelegate> * delegate;
-@property(retain) NSString * description;
-@property(retain) NSURL * exportedVideoURL;
-@property int privacySettings;
-@property(retain) NSArray * tags;
-@property(retain) NSString * title;
-@property int videoSize;
+@property (nonatomic) unsigned int accessType;
+@property (nonatomic, retain) ACAccount *account;
+@property (nonatomic, retain) ALAsset *asset;
+@property (nonatomic, retain) NSData *assetData;
+@property (nonatomic, retain) NSURL *assetURL;
+@property (nonatomic, retain) VUDataReader *dataReader;
+@property (nonatomic) <VimeoPostDelegate> *delegate;
+@property (nonatomic, retain) NSURL *exportedVideoURL;
+@property (nonatomic, retain) NSString *postDescription;
+@property (nonatomic) int privacySettings;
+@property (nonatomic, retain) NSArray *tags;
+@property (nonatomic, retain) NSString *title;
+@property (nonatomic) int videoSize;
 
 + (BOOL)_isUsingCellular;
 + (id)dictionaryWithResponseData:(id)arg1 error:(id*)arg2;
-+ (void)getAvailableQuotaForAccount:(id)arg1 completion:(id)arg2;
++ (void)getAvailableQuotaForAccount:(id)arg1 completion:(id /* block */)arg2;
 
+- (void).cxx_destruct;
 - (void)_checkQuota;
 - (void)_cleanup;
 - (void)_commit;
-- (void)_errorWithCode:(int)arg1;
 - (void)_getTicket;
 - (void)_setDescription;
 - (void)_setPrivacy;
@@ -68,12 +66,13 @@
 - (id)assetURL;
 - (id)assetsLibrary;
 - (id)dataReader;
-- (void)dealloc;
 - (id)delegate;
-- (id)description;
 - (id)exportedVideoURL;
+- (void)failWithError:(id)arg1;
+- (void)failWithErrorCode:(int)arg1;
 - (id)init;
 - (id)initWithDictionary:(id)arg1;
+- (id)postDescription;
 - (unsigned long long)postSize;
 - (int)privacySettings;
 - (id)serializedDictionary;
@@ -84,15 +83,15 @@
 - (void)setAssetURL:(id)arg1;
 - (void)setDataReader:(id)arg1;
 - (void)setDelegate:(id)arg1;
-- (void)setDescription:(id)arg1;
 - (void)setExportedVideoURL:(id)arg1;
+- (void)setPostDescription:(id)arg1;
 - (void)setPrivacySettings:(int)arg1;
 - (void)setTags:(id)arg1;
 - (void)setTitle:(id)arg1;
 - (void)setVideoSize:(int)arg1;
 - (id)tags;
 - (id)title;
-- (void)uploadToAccount:(id)arg1;
+- (BOOL)uploadToAccount:(id)arg1 error:(id*)arg2;
 - (int)videoSize;
 
 @end

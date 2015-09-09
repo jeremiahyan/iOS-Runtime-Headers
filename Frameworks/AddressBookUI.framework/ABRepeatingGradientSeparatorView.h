@@ -2,29 +2,28 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class NSArray, UIColor;
-
 @interface ABRepeatingGradientSeparatorView : UIView {
     UIColor *_endColor;
-    NSArray *_gradientColors;
+    int _lineCount;
     UIColor *_startColor;
-    float _step;
 }
 
-@property(retain) UIColor * endColor;
-@property(readonly) NSArray * gradientColors;
-@property(retain) UIColor * startColor;
-@property float step;
+@property (nonatomic, retain) UIColor *endColor;
+@property (nonatomic, readonly) NSArray *gradientColors;
+@property (nonatomic) int lineCount;
+@property (nonatomic, retain) UIColor *startColor;
 
+- (void)_updateGradients;
 - (void)dealloc;
 - (id)endColor;
 - (id)gradientColors;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (struct CGSize { float x1; float x2; })intrinsicContentSize;
 - (void)layoutSubviews;
+- (int)lineCount;
 - (void)setEndColor:(id)arg1;
+- (void)setLineCount:(int)arg1;
 - (void)setStartColor:(id)arg1;
-- (void)setStep:(float)arg1;
 - (id)startColor;
-- (float)step;
 
 @end

@@ -2,8 +2,10 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@interface NSPipe : NSObject {
-}
+@interface NSPipe : NSObject
+
+@property (readonly, retain) NSFileHandle *fileHandleForReading;
+@property (readonly, retain) NSFileHandle *fileHandleForWriting;
 
 + (id)allocWithZone:(struct _NSZone { }*)arg1;
 + (id)pipe;

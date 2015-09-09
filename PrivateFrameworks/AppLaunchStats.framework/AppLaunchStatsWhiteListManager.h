@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/AppLaunchStats.framework/AppLaunchStats
  */
 
-@class AppLaunchStatsSaveAndRestore, LSApplicationWorkspace, NSMutableArray, NSObject<OS_dispatch_queue>;
-
-@interface AppLaunchStatsWhiteListManager : NSObject <LSApplicationWorkspaceObserverProtocol, DuetLoggerProtocol> {
+@interface AppLaunchStatsWhiteListManager : NSObject <DuetLoggerProtocol, LSApplicationWorkspaceObserverProtocol> {
     NSObject<OS_dispatch_queue> *aplsWLMQueue;
     NSMutableArray *defaultsWriteWhiteList;
     BOOL enableWhiteListCheck;
@@ -14,7 +12,11 @@
     LSApplicationWorkspace *wlmAppWorkSpace;
 }
 
-@property BOOL enableWhiteListCheck;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL enableWhiteListCheck;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)instance;
 
@@ -26,8 +28,8 @@
 - (void)initSetup;
 - (bool)isAppInList:(id)arg1 withBundleID:(id)arg2;
 - (bool)isWhiteListed:(id)arg1 withFetch:(int)arg2;
-- (void)logAll:(struct __aslclient { }*)arg1 withMsg:(struct __aslmsg { }*)arg2 withLevel:(int)arg3;
-- (void)logLight:(struct __aslclient { }*)arg1 withMsg:(struct __aslmsg { }*)arg2 withLevel:(int)arg3;
+- (void)logAll:(struct __asl_object_s { }*)arg1 withMsg:(struct __asl_object_s { }*)arg2 withLevel:(int)arg3;
+- (void)logLight:(struct __asl_object_s { }*)arg1 withMsg:(struct __asl_object_s { }*)arg2 withLevel:(int)arg3;
 - (void)reloadConfiguration;
 - (void)saveContext:(id)arg1;
 - (void)setEnableWhiteListCheck:(BOOL)arg1;

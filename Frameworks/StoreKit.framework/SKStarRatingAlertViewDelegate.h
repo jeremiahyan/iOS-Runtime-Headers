@@ -2,21 +2,20 @@
    Image: /System/Library/Frameworks/StoreKit.framework/StoreKit
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class SKStarRatingAlertView;
-
 @interface SKStarRatingAlertViewDelegate : NSObject <UIAlertViewDelegate> {
     SKStarRatingAlertView *_alertView;
-    id _completionBlock;
+    id /* block */ _completionBlock;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)alertView:(id)arg1 willDismissWithButtonIndex:(int)arg2;
 - (void)alertViewCancel:(id)arg1;
 - (BOOL)alertViewShouldEnableFirstOtherButton:(id)arg1;
 - (void)dealloc;
-- (void)showAlertView:(id)arg1 withCompletionBlock:(id)arg2;
+- (void)showAlertView:(id)arg1 withCompletionBlock:(id /* block */)arg2;
 
 @end

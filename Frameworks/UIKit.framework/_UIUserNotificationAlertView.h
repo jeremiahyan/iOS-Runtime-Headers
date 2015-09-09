@@ -13,6 +13,7 @@
 + (void)initialize;
 
 - (void)_cancelUserNotification;
+- (void)_removeObservervations;
 - (int)addButtonWithTitle:(id)arg1;
 - (void)cancelAlertView;
 - (void)dealloc;

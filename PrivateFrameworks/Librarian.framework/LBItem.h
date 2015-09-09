@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Librarian.framework/Librarian
  */
 
-@class NSMutableDictionary, NSString, NSURL;
-
 @interface LBItem : NSObject {
     NSMutableDictionary *_attributes;
     NSString *_path;
@@ -11,15 +9,15 @@
     NSURL *_url;
 }
 
-@property id replacement;
+@property (nonatomic) id replacement;
 
 - (id)_attributes;
 - (id)attributeForName:(id)arg1;
 - (id)attributeNames;
 - (id)attributesForNames:(id)arg1;
 - (void)dealloc;
-- (id)initWithURL:(id)arg1 itemUpdateInfo:(id)arg2;
 - (id)initWithURL:(id)arg1;
+- (id)initWithURL:(id)arg1 itemUpdateInfo:(id)arg2;
 - (id)path;
 - (id)replacement;
 - (void)setReplacement:(id)arg1;

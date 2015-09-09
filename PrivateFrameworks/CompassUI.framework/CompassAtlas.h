@@ -2,18 +2,17 @@
    Image: /System/Library/PrivateFrameworks/CompassUI.framework/CompassUI
  */
 
-@class CompassAtlasManifest;
-
 @interface CompassAtlas : NSObject {
+    CompassAtlasManifest *_manifest;
     struct CGSize { 
         float width; 
         float height; 
-    CompassAtlasManifest *_manifest;
     } _size;
     unsigned int _texName;
 }
 
 - (id).cxx_construct;
+- (void).cxx_destruct;
 - (void)bind;
 - (void)dealloc;
 - (id)initWithImageData:(char *)arg1 manifest:(id)arg2;

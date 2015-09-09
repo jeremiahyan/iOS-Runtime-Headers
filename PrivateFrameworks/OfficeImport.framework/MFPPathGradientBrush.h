@@ -2,15 +2,13 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSArray, TSDBezierPath, TSUColor;
-
 @interface MFPPathGradientBrush : MFPGradientBrush {
+    OITSUColor *mCenterColor;
     struct CGPoint { 
         float x; 
         float y; 
-    TSUColor *mCenterColor;
     } mCenterPoint;
-    TSDBezierPath *mPath;
+    OITSDBezierPath *mPath;
     NSArray *mSurroundColors;
 }
 

@@ -2,9 +2,7 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-@class <EKReminderViewControllerDelegate>, <EKStyleProvider>, EKEventStore, EKReminder, EKReminderEditor;
-
-@interface EKReminderViewController : UIViewController <EKCalendarItemEditorDelegate, EKReminderEditorDelegate, EKPickerTableViewDelegate> {
+@interface EKReminderViewController : UIViewController <EKCalendarItemEditorDelegate, EKPickerTableViewDelegate, EKReminderEditorDelegate> {
     SEL _datePickerAction;
     id _datePickerTarget;
     <EKReminderViewControllerDelegate> *_delegate;
@@ -13,11 +11,15 @@
     BOOL _shouldShowDatePicker;
 }
 
-@property <EKReminderViewControllerDelegate> * delegate;
-@property(retain) EKReminderEditor * editor;
-@property(retain) EKEventStore * eventStore;
-@property(retain) EKReminder * reminder;
-@property(retain) <EKStyleProvider> * styleProvider;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <EKReminderViewControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) EKReminderEditor *editor;
+@property (nonatomic, retain) EKEventStore *eventStore;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) EKReminder *reminder;
+@property (nonatomic, retain) <EKStyleProvider> *styleProvider;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_eventStoreChanged:(id)arg1;
@@ -26,9 +28,9 @@
 - (id)delegate;
 - (void)didEndDatePickingWithTarget:(id)arg1 animated:(BOOL)arg2;
 - (void)editItemChanged;
+- (id)editor;
 - (void)editor:(id)arg1 didChangeHeightAnimated:(BOOL)arg2;
 - (void)editor:(id)arg1 didCompleteWithAction:(int)arg2;
-- (id)editor;
 - (id)eventStore;
 - (id)getCurrentContext;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;

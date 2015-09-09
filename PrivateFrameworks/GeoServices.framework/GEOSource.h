@@ -2,18 +2,16 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSString;
-
 @interface GEOSource : PBCodable <NSCopying> {
     NSString *_sourceId;
     NSString *_sourceName;
     NSString *_sourceVersion;
 }
 
-@property(readonly) BOOL hasSourceVersion;
-@property(retain) NSString * sourceId;
-@property(retain) NSString * sourceName;
-@property(retain) NSString * sourceVersion;
+@property (nonatomic, readonly) BOOL hasSourceVersion;
+@property (nonatomic, retain) NSString *sourceId;
+@property (nonatomic, retain) NSString *sourceName;
+@property (nonatomic, retain) NSString *sourceVersion;
 
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -22,7 +20,9 @@
 - (id)dictionaryRepresentation;
 - (BOOL)hasSourceVersion;
 - (unsigned int)hash;
+- (id)initWithAttributionID:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
+- (void)mergeFrom:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 - (void)setSourceId:(id)arg1;
 - (void)setSourceName:(id)arg1;

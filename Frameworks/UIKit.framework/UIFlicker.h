@@ -2,20 +2,18 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIView;
-
 @interface UIFlicker : NSObject {
-    struct CGPoint { 
-        float x; 
-        float y; 
-    struct CGPoint { 
-        float x; 
-        float y; 
     float _delay;
     id _delegate;
     int _mouseDraggedCount;
     int _mouseUpCount;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _offset;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _startLocation;
     UIView *_target;
     int _throwIterations;

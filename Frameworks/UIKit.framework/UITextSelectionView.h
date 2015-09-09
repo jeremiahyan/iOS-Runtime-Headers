@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, NSTimer, UITextInteractionAssistant, UITextRangeView, UITextSelection, UIView;
-
 @interface UITextSelectionView : UIView {
     BOOL m_activated;
     BOOL m_caretBlinks;
@@ -23,14 +21,14 @@
     BOOL m_wasShowingCommands;
 }
 
-@property BOOL caretBlinks;
-@property(readonly) UIView * caretView;
-@property(readonly) UITextInteractionAssistant * interactionAssistant;
-@property(readonly) UITextRangeView * rangeView;
-@property(retain) NSArray * replacements;
-@property(readonly) UITextSelection * selection;
-@property(readonly) BOOL selectionCommandsShowing;
-@property BOOL visible;
+@property (nonatomic) BOOL caretBlinks;
+@property (nonatomic, readonly) UIView *caretView;
+@property (nonatomic, readonly) UITextInteractionAssistant *interactionAssistant;
+@property (nonatomic, readonly) UITextRangeView *rangeView;
+@property (nonatomic, retain) NSArray *replacements;
+@property (nonatomic, readonly) UITextSelection *selection;
+@property (nonatomic, readonly) BOOL selectionCommandsShowing;
+@property (nonatomic) BOOL visible;
 
 - (void)activate;
 - (BOOL)affectedByScrollerNotification:(id)arg1;
@@ -54,17 +52,20 @@
 - (void)detach;
 - (void)didRotate:(id)arg1;
 - (void)doneMagnifying;
+- (id)dynamicCaret;
+- (id)dynamicCaretList;
 - (void)hideCaret:(int)arg1;
 - (void)hideSelectionCommands;
 - (void)hideSelectionCommandsAfterDelay:(double)arg1;
 - (id)hitTest:(struct CGPoint { float x1; float x2; })arg1 withEvent:(id)arg2;
 - (id)initWithInteractionAssistant:(id)arg1;
+- (void)inputModeDidChange:(id)arg1;
 - (void)inputViewDidAnimate;
 - (void)inputViewDidChange;
 - (void)inputViewDidMove;
 - (void)inputViewWillAnimate;
 - (void)inputViewWillChange;
-- (void)inputViewWillMove;
+- (void)inputViewWillMove:(id)arg1;
 - (void)installIfNecessary;
 - (id)interactionAssistant;
 - (void)invalidate;
@@ -97,6 +98,7 @@
 - (void)touchCaretBlinkTimer;
 - (void)updateBaseIsStartWithDocumentPoint:(struct CGPoint { float x1; float x2; })arg1;
 - (BOOL)updateCalloutBarRects:(id)arg1 effectsWindow:(id)arg2;
+- (void)updateDocumentHasContent:(BOOL)arg1;
 - (void)updateSelectionCommands;
 - (void)updateSelectionDots;
 - (void)updateSelectionRects;

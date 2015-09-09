@@ -2,12 +2,11 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class OADCharacterProperties;
-
 @interface OADTextRun : NSObject {
     OADCharacterProperties *mProperties;
 }
 
+- (unsigned int)characterCount;
 - (void)dealloc;
 - (id)init;
 - (BOOL)isEmpty;

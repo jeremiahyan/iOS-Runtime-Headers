@@ -2,12 +2,13 @@
    Image: /System/Library/PrivateFrameworks/SiriUI.framework/SiriUI
  */
 
-@class SiriUISnippetViewController;
+@interface SiriUIClearBackgroundCell : UICollectionViewCell <SiriUIReusableView>
 
-@interface SiriUIClearBackgroundCell : UICollectionViewCell <SiriUIReusableView> {
-}
-
-@property SiriUISnippetViewController * snippetViewController;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) SiriUISnippetViewController *snippetViewController;
+@property (readonly) Class superclass;
 
 + (float)defaultHeight;
 + (id)elementKind;

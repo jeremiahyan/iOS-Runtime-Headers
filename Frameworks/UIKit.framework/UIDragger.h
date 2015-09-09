@@ -2,31 +2,24 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class NSArray, UIImageView, UIView;
-
 @interface UIDragger : NSObject {
-    struct CGPoint { 
-        float x; 
-        float y; 
-    struct CGPoint { 
-        float x; 
-        float y; 
-    int (*_interpolator)();
     SEL _action;
     id _delegate;
     double _duration;
     UIImageView *_fingerView;
+    int (*_interpolator;
     unsigned long long _lastTimestamp;
     NSArray *_modes;
     unsigned int _port;
     BOOL _showFinger;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _startLocation;
     unsigned long long _startTimestamp;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _stopLocation;
     unsigned long long _stopTimestamp;
     UIView *_target;
@@ -46,7 +39,7 @@
 - (void)setAction:(SEL)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setDuration:(double)arg1;
-- (void)setInterpolation:(int (*)())arg1;
+- (void)setInterpolation:(int (*)arg1;
 - (void)setStartLocation:(struct CGPoint { float x1; float x2; })arg1;
 - (void)setStopLocation:(struct CGPoint { float x1; float x2; })arg1;
 - (void)setTarget:(id)arg1;

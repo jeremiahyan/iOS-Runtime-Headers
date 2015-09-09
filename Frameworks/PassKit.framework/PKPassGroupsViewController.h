@@ -2,39 +2,53 @@
    Image: /System/Library/Frameworks/PassKit.framework/PassKit
  */
 
-@class <PKPassGroupsViewControllerDelegate>, NSMutableArray, NSTimer, PKGroupsController, PKPassGroupStackView, PKUsageNotificationServer;
-
-@interface PKPassGroupsViewController : UIViewController <PKGroupsControllerDelegate, PKPassGroupStackViewDatasource, PKPassGroupStackViewDelegate, UIScrollViewDelegate, PKCodeAcquisitionDelegate> {
+@interface PKPassGroupsViewController : UIViewController <PKCodeAcquisitionDelegate, PKGroupsControllerDelegate, PKPassGroupStackViewDatasource, PKPassGroupStackViewDelegate, PKPaymentServiceDelegate, UIScrollViewDelegate> {
     NSTimer *_allowDimmingTimer;
     BOOL _backgroundMode;
     NSMutableArray *_blocksQueuedForUpdateCompletion;
-    PKPassGroupStackView *_cardStackView;
     <PKPassGroupsViewControllerDelegate> *_delegate;
+    PKPassGroupStackView *_groupStackView;
     PKGroupsController *_groupsController;
     unsigned int _modalCardIndex;
     NSTimer *_passViewedNotificationTimer;
     BOOL _passesAreOutdated;
+    PKPaymentService *_paymentService;
     int _presentationState;
+    BOOL _reloadingPasses;
+    UIImageView *_statusBarGradient;
     PKUsageNotificationServer *_usageServer;
     BOOL _viewAppeared;
     BOOL _viewAppearedBefore;
-    unsigned long long tick;
-    unsigned long long tock;
+    BOOL _welcomeStateEnabled;
 }
 
-@property <PKPassGroupsViewControllerDelegate> * delegate;
-@property(retain) PKPassGroupStackView * groupStackView;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <PKPassGroupsViewControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly, retain) PKPassGroupStackView *groupStackView;
+@property (readonly) unsigned int hash;
 @property BOOL passesAreOutdated;
+@property (readonly) Class superclass;
+@property (getter=isWelcomeStateEnabled, nonatomic) BOOL welcomeStateEnabled;
 
-+ (id)viewControllerWithRestorationIdentifierPath:(id)arg1 coder:(id)arg2;
++ (void)beginTrackingAction;
++ (void)endTrackingAction;
++ (BOOL)isPerformingAction;
 
 - (void)_applyPresentationState;
 - (void)_clearPassViewedNotificationTimer;
+- (void)_dismissPresentedVCsWithRequirements:(unsigned int)arg1 performAction:(id /* block */)arg2;
 - (void)_handleApplicationWillEnterForeground:(id)arg1;
 - (void)_handleApplicationdidEnterBackground:(id)arg1;
+- (void)_handleStatusBarChange:(id)arg1;
+- (void)_localeDidChangeNotification:(id)arg1;
 - (void)_passViewedNotificationTimerFired;
-- (void)_presentWithUpdatedPasses:(id)arg1;
+- (void)_presentGroupWithIndex:(unsigned int)arg1 animated:(BOOL)arg2;
+- (void)_presentGroupWithIndex:(unsigned int)arg1 animated:(BOOL)arg2 completionHandler:(id /* block */)arg3;
+- (void)_presentWithUpdatedPasses:(id /* block */)arg1;
+- (void)_regionConfigurationDidChangeNotification;
 - (void)_startPassViewedNotificationTimer;
+- (void)_updateStatusBarGradientOpacity:(BOOL)arg1;
 - (void)allowIdleTimer;
 - (void)cardsChanged:(id)arg1;
 - (void)codeAcquisitionController:(id)arg1 didAcquirePass:(id)arg2;
@@ -44,42 +58,64 @@
 - (id)delegate;
 - (void)encodeRestorableStateWithCoder:(id)arg1;
 - (id)groupAtIndex:(unsigned int)arg1;
-- (float)groupHeightAtIndex:(unsigned int)arg1;
-- (void)groupStackView:(id)arg1 deleteConfirmedForPass:(id)arg2;
-- (void)groupStackView:(id)arg1 didAnimateToState:(int)arg2;
-- (void)groupStackView:(id)arg1 groupDidMoveFromIndex:(unsigned int)arg2 toIndex:(unsigned int)arg3;
 - (id)groupStackView;
+- (void)groupStackView:(id)arg1 deleteConfirmedForPass:(id)arg2;
+- (void)groupStackView:(id)arg1 didBeginShowingPassView:(id)arg2;
+- (void)groupStackView:(id)arg1 didEndShowingPassView:(id)arg2;
+- (void)groupStackView:(id)arg1 didTransitionToState:(int)arg2 animated:(BOOL)arg3;
+- (void)groupStackView:(id)arg1 groupDidMoveFromIndex:(unsigned int)arg2 toIndex:(unsigned int)arg3;
+- (id)groupStackView:(id)arg1 headerForPassType:(unsigned int)arg2;
+- (BOOL)groupStackView:(id)arg1 requiresHeaderForPassType:(unsigned int)arg2;
+- (id)groupStackView:(id)arg1 subheaderForPassType:(unsigned int)arg2;
+- (void)groupStackView:(id)arg1 transitioningToState:(int)arg2 animated:(BOOL)arg3;
 - (void)groupStackViewDidBeginReordering:(id)arg1;
 - (void)groupStackViewDidEndReordering:(id)arg1;
+- (BOOL)groupStackViewShouldAllowReordering:(id)arg1;
+- (BOOL)groupStackViewShouldShowHeaderViews:(id)arg1;
 - (void)groupsController:(id)arg1 didInsertGroup:(id)arg2 atIndex:(unsigned int)arg3;
 - (void)groupsController:(id)arg1 didMoveGroup:(id)arg2 fromIndex:(unsigned int)arg3 toIndex:(unsigned int)arg4;
 - (void)groupsController:(id)arg1 didRemoveGroup:(id)arg2 atIndex:(unsigned int)arg3;
 - (unsigned int)indexOfGroup:(id)arg1;
+- (unsigned int)indexOfSeparationGroup;
+- (id)init;
+- (id)initWithGroupsController:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
+- (BOOL)isWelcomeStateEnabled;
 - (void)loadView;
 - (unsigned int)numberOfGroups;
 - (BOOL)passesAreOutdated;
 - (BOOL)passesGrowWhenFlipped;
+- (void)paymentDeviceDidEnterField;
+- (int)preferredStatusBarStyle;
+- (BOOL)prefersStatusBarHidden;
 - (void)presentGroupTable;
-- (void)presentGroupWithIndex:(unsigned int)arg1;
+- (void)presentInitialState;
+- (void)presentOffscreenAnimated:(BOOL)arg1 split:(BOOL)arg2 withCompletionHandler:(id /* block */)arg3;
+- (void)presentOffscreenAnimated:(BOOL)arg1 withCompletionHandler:(id /* block */)arg2;
+- (void)presentOnscreen:(BOOL)arg1 withCompletionHandler:(id /* block */)arg2;
 - (void)presentPassWithBulletinRecordID:(id)arg1;
-- (void)presentPassWithUniqueID:(id)arg1;
+- (void)presentPassWithUniqueID:(id)arg1 animated:(BOOL)arg2;
+- (void)presentPassWithUniqueID:(id)arg1 animated:(BOOL)arg2 completionHandler:(id /* block */)arg3;
+- (void)presentPassWithUniqueID:(id)arg1 animated:(BOOL)arg2 completionHandler:(id /* block */)arg3 fallbackHandler:(id /* block */)arg4;
+- (void)presentPaymentSetup;
 - (void)reloadPasses;
-- (void)reloadPassesWithCompletion:(id)arg1;
+- (void)reloadPassesWithCompletion:(id /* block */)arg1;
 - (void)scrollViewDidEndDecelerating:(id)arg1;
 - (void)scrollViewDidEndScrollingAnimation:(id)arg1;
 - (void)scrollViewDidScroll:(id)arg1;
 - (void)scrollViewDidScrollToTop:(id)arg1;
 - (void)setDelegate:(id)arg1;
-- (void)setGroupStackView:(id)arg1;
 - (void)setPassesAreOutdated:(BOOL)arg1;
+- (void)setWelcomeStateEnabled:(BOOL)arg1;
+- (BOOL)shouldAutorotate;
+- (void)startPaymentPreflight:(id)arg1;
 - (unsigned int)supportedInterfaceOrientations;
-- (int)suppressedContent;
+- (unsigned int)suppressedContent;
+- (void)terminateFieldDetect;
 - (void)updateLockscreenIdleTimer;
-- (void)viewDidAppear:(BOOL)arg1;
+- (void)updateRegionSupportIfNecessary;
 - (void)viewDidDisappear:(BOOL)arg1;
-- (void)viewDidUnload;
 - (void)viewWillAppear:(BOOL)arg1;
-- (BOOL)wantsFullScreenLayout;
+- (void)viewWillLayoutSubviews;
 
 @end

@@ -2,20 +2,18 @@
    Image: /System/Library/PrivateFrameworks/VUSocialUpload.framework/VUSocialUpload
  */
 
-@class ACAccountStore;
-
 @interface VURemoteSession : SLRemoteSession {
     ACAccountStore *_accountStore;
 }
 
-@property(retain) ACAccountStore * accountStore;
+@property (nonatomic, retain) ACAccountStore *accountStore;
 
 + (void)decrementPowerAssertion;
 + (void)incrementPowerAssertion;
 + (void)refreshPowerAssertion;
 
+- (void).cxx_destruct;
 - (id)accountStore;
-- (void)dealloc;
 - (void)setAccountStore:(id)arg1;
 
 @end

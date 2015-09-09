@@ -2,10 +2,8 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class PDRootTimeNode, TSUNoCopyDictionary;
-
 @interface PDAnimation : NSObject {
-    TSUNoCopyDictionary *mBuildMap;
+    OITSUNoCopyDictionary *mBuildMap;
     PDRootTimeNode *mRootTimeNode;
 }
 

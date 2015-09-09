@@ -2,18 +2,16 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString;
-
 @interface UINibCoderValue : NSObject {
+    NSString *key;
+    unsigned long length;
+    unsigned int scope;
+    BOOL type;
     union { 
         float floatValue; 
         double doubleValue; 
         unsigned long long integerValue; 
         void *bytesValue; 
-    NSString *key;
-    unsigned long length;
-    unsigned int scope;
-    BOOL type;
     } value;
 }
 

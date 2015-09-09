@@ -2,25 +2,25 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSMutableArray, WDDocument, WDListDefinition;
-
 @interface WDList : NSObject {
     WDDocument *mDocument;
-    unsigned int mIndex;
     NSMutableArray *mLevelOverrides;
-    WDListDefinition *mListDefinition;
+    long mListDefinitionId;
+    long mListId;
 }
 
-- (id)addLevelOverride;
+@property (nonatomic, readonly) long listDefinitionId;
+@property (nonatomic, readonly) long listId;
+
+- (id)addLevelOverrideWithLevel:(unsigned char)arg1;
 - (void)dealloc;
-- (id)document;
-- (unsigned int)index;
-- (id)initWithDocument:(id)arg1 listDefinition:(id)arg2;
+- (id)description;
+- (id)initWithDocument:(id)arg1 listId:(long)arg2 listDefinitionId:(long)arg3;
 - (id)levelOverrideAt:(unsigned int)arg1;
 - (unsigned int)levelOverrideCount;
+- (id)levelOverrideForLevel:(unsigned char)arg1;
 - (id)levelOverrides;
-- (id)listDefinition;
+- (long)listDefinitionId;
 - (long)listId;
-- (void)setIndex:(unsigned int)arg1;
 
 @end

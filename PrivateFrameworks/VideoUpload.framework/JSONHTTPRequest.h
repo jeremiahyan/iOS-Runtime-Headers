@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/VideoUpload.framework/VideoUpload
  */
 
-@class <JSONHTTPRequestDelegate>, NSData, NSDictionary, NSHTTPURLResponse, NSMutableData, NSMutableURLRequest, NSString, NSURLConnection, OAURLRequestSigner;
-
 @interface JSONHTTPRequest : NSObject <NSURLConnectionDelegate> {
     int _HTTPMethod;
     NSString *_HTTPRequestBoundary;
@@ -23,17 +21,22 @@
     NSDictionary *_unsignedPostParams;
 }
 
-@property int HTTPMethod;
-@property BOOL allowsCellularAccess;
-@property(retain) NSDictionary * getParams;
-@property(retain) NSDictionary * postParams;
-@property(readonly) NSHTTPURLResponse * response;
-@property int responseType;
-@property BOOL signsMultipartPOSTData;
-@property(retain) NSDictionary * unsignedPostParams;
+@property (nonatomic) int HTTPMethod;
+@property (nonatomic) BOOL allowsCellularAccess;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) NSDictionary *getParams;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) NSDictionary *postParams;
+@property (nonatomic, readonly) NSHTTPURLResponse *response;
+@property (nonatomic) int responseType;
+@property (nonatomic) BOOL signsMultipartPOSTData;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) NSDictionary *unsignedPostParams;
 
 + (id)encodedStringForParameterDictionary:(id)arg1;
 
+- (void).cxx_destruct;
 - (int)HTTPMethod;
 - (id)HTTPRequestBoundary;
 - (id)_multipartParamData:(id)arg1;
@@ -46,8 +49,8 @@
 - (void)connectionDidFinishLoading:(id)arg1;
 - (void)dealloc;
 - (id)getParams;
-- (id)initWithURL:(id)arg1 delegate:(id)arg2 signer:(id)arg3;
 - (id)initWithURL:(id)arg1 delegate:(id)arg2;
+- (id)initWithURL:(id)arg1 delegate:(id)arg2 signer:(id)arg3;
 - (id)postParams;
 - (id)response;
 - (int)responseType;

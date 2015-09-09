@@ -2,19 +2,18 @@
    Image: /System/Library/PrivateFrameworks/SoftwareUpdateServices.framework/SoftwareUpdateServices
  */
 
-@interface SUAssetSupport : NSObject {
-}
+@interface SUAssetSupport : NSObject
 
 + (void)_cleanupAllAssetsOfType:(id)arg1;
 + (id)assetDownloadOptionsForDocumentation;
-+ (id)assetDownloadOptionsFromMetadata:(id)arg1 descriptor:(id)arg2 priority:(int)arg3;
++ (id)assetDownloadOptionsFromMetadata:(id)arg1 descriptor:(id)arg2 priority:(int)arg3 forBrain:(BOOL)arg4;
 + (void)cleanupAllSoftwareUpdateAndRelatedAssets;
 + (void)cleanupAllSoftwareUpdateAssets;
 + (id)defaultAssetDownloadOptionsWithPriority:(int)arg1;
 + (id)findAssetWithMatcher:(id)arg1 localSearch:(BOOL)arg2 error:(id*)arg3;
 + (id)getInstalledDocumentationAssetFromSoftwareUpdateAssetIfExists:(id)arg1;
 + (id)getLocalDefaultSoftwareUpdateAssetIfExists;
-+ (void)purgeMSUUpdate:(id)arg1;
++ (void)purgeMSUUpdate:(id /* block */)arg1;
 + (id)tryCreateDescriptorFromSoftwareUpdateAsset:(id)arg1;
 + (id)tryCreateDocumentationFromDocumentationAsset:(id)arg1;
 

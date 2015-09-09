@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSMutableArray;
-
 @interface OADStyleMatrix : NSObject {
     NSMutableArray *mBgFills;
     NSMutableArray *mEffects;
@@ -20,16 +18,16 @@
 - (id)bgFillAtIndex:(unsigned int)arg1;
 - (unsigned int)bgFillCount;
 - (void)dealloc;
-- (id)effectsAtIndex:(unsigned int)arg1 color:(id)arg2;
 - (id)effectsAtIndex:(unsigned int)arg1;
+- (id)effectsAtIndex:(unsigned int)arg1 color:(id)arg2;
 - (unsigned int)effectsCount;
-- (id)fillAtIndex:(unsigned int)arg1 color:(id)arg2;
 - (id)fillAtIndex:(unsigned int)arg1;
+- (id)fillAtIndex:(unsigned int)arg1 color:(id)arg2;
 - (unsigned int)fillCount;
 - (id)init;
 - (void)populateWithOfficeDefaults;
-- (id)strokeAtIndex:(unsigned int)arg1 color:(id)arg2;
 - (id)strokeAtIndex:(unsigned int)arg1;
+- (id)strokeAtIndex:(unsigned int)arg1 color:(id)arg2;
 - (unsigned int)strokeCount;
 
 @end

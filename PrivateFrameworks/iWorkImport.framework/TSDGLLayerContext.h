@@ -2,13 +2,16 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class EAGLContext;
-
 @interface TSDGLLayerContext : NSObject <TSDGLLayerContext> {
     EAGLContext *mContext;
     unsigned int mFramebuffer;
     unsigned int mRenderbuffer;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (BOOL)createFramebufferFromLayer:(id)arg1;
 - (void)dealloc;

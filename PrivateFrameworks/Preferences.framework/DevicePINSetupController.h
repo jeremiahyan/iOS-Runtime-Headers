@@ -7,6 +7,7 @@
 }
 
 - (BOOL)canBeShownFromSuspendedState;
+- (id)init;
 - (BOOL)popupStyleIsModal;
 - (struct CGSize { float x1; float x2; })preferredContentSize;
 - (BOOL)success;

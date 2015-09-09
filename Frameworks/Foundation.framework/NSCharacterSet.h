@@ -2,8 +2,12 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@interface NSCharacterSet : NSObject <NSCopying, NSMutableCopying, NSCoding> {
-}
+@interface NSCharacterSet : NSObject <NSCoding, NSCopying, NSMutableCopying>
+
+@property (readonly, copy) NSData *bitmapRepresentation;
+@property (readonly, copy) NSCharacterSet *invertedSet;
+
+// Image: /System/Library/Frameworks/Foundation.framework/Foundation
 
 + (id)URLFragmentAllowedCharacterSet;
 + (id)URLHostAllowedCharacterSet;
@@ -11,12 +15,8 @@
 + (id)URLPathAllowedCharacterSet;
 + (id)URLQueryAllowedCharacterSet;
 + (id)URLUserAllowedCharacterSet;
-+ (id)allQuotesCharacterSetExcludingLeft;
-+ (id)allQuotesCharacterSetExcludingRight;
 + (id)alphanumericCharacterSet;
-+ (id)breakingSpaceCharacterSet;
 + (id)capitalizedLetterCharacterSet;
-+ (id)characterSetRequiringSingleQuotes;
 + (id)characterSetWithBitmapRepresentation:(id)arg1;
 + (id)characterSetWithCharactersInString:(id)arg1;
 + (id)characterSetWithContentsOfFile:(id)arg1;
@@ -24,35 +24,17 @@
 + (id)controlCharacterSet;
 + (id)decimalDigitCharacterSet;
 + (id)decomposableCharacterSet;
-+ (id)dollarSignCharacterSet;
 + (id)illegalCharacterSet;
 + (void)initialize;
-+ (id)internationalColonCharacterSet;
-+ (id)internationalWhitespaceAndNewlineCharacterSet;
-+ (id)internationalWhitespaceCharacterSet;
-+ (id)invisibleCharacterSet;
 + (id)letterCharacterSet;
-+ (id)lineBreakingCharacterSet;
-+ (id)listDelimiterCharacterSet;
 + (id)lowercaseLetterCharacterSet;
 + (id)newlineCharacterSet;
 + (id)nonBaseCharacterSet;
-+ (id)normalQuotesCharacterSet;
-+ (id)periodCharacterSet;
-+ (id)postSmartSet;
-+ (id)preSmartSet;
 + (id)punctuationCharacterSet;
-+ (id)singleQuoteCharacterSet;
-+ (id)smartDoubleQuotesCharacterSet;
-+ (id)smartQuotesCharacterSet;
-+ (id)smartSingleQuotesCharacterSet;
-+ (id)spaceCharacterSet;
 + (id)symbolCharacterSet;
 + (id)uppercaseLetterCharacterSet;
 + (id)whitespaceAndNewlineCharacterSet;
 + (id)whitespaceCharacterSet;
-+ (id)whitespaceNewlineAndSpecialCharacterSet;
-+ (id)wordBreakCharacterSet;
 
 - (unsigned long)_cfTypeID;
 - (struct __CFCharacterSet { }*)_expandedCFCharacterSet;
@@ -75,5 +57,35 @@
 - (void)makeImmutable;
 - (id)mutableCopyWithZone:(struct _NSZone { }*)arg1;
 - (id)replacementObjectForPortCoder:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ScreenReaderCore.framework/ScreenReaderCore
+
++ (id)whitespaceNewlineAndSpecialCharacterSet;
++ (id)wordBreakCharacterSet;
+
+// Image: /System/Library/PrivateFrameworks/WebUI.framework/WebUI
+
++ (id)safari_lockRelatedEmojiCharacterSet;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
+
++ (id)tsce_characterSetRequiringSingleQuotes;
++ (id)tsce_dollarSignCharacterSet;
++ (id)tsce_internationalColonCharacterSet;
++ (id)tsce_internationalWhitespaceAndNewlineCharacterSet;
++ (id)tsce_internationalWhitespaceCharacterSet;
++ (id)tsce_listDelimiterCharacterSet;
++ (id)tsce_periodCharacterSet;
++ (id)tsce_singleQuoteCharacterSet;
++ (id)tswp_allQuotesCharacterSetExcludingLeft;
++ (id)tswp_allQuotesCharacterSetExcludingRight;
++ (id)tswp_breakingSpaceCharacterSet;
++ (id)tswp_invisibleCharacterSet;
++ (id)tswp_lineBreakingCharacterSet;
++ (id)tswp_postSmartSet;
++ (id)tswp_preSmartSet;
++ (id)tswp_smartSingleQuotesCharacterSet;
++ (id)tswp_spaceCharacterSet;
++ (id)tswp_variationSelectorCharacterSet;
 
 @end

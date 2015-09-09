@@ -2,15 +2,9 @@
    Image: /System/Library/PrivateFrameworks/CommunicationsSetupUI.framework/CommunicationsSetupUI
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class CNFRegLearnMoreButton, NSString, PSSpecifier;
-
 @interface CNFRegSignInController : CNFRegFirstRunController <CNFRegCreateAccountControllerDelegate> {
     PSSpecifier *_actionGroupSpecifier;
-    id _alertHandler;
+    id /* block */ _alertHandler;
     PSSpecifier *_createAccountButtonSpecifier;
     BOOL _hideLearnMoreButton;
     CNFRegLearnMoreButton *_learnMoreButton;
@@ -23,11 +17,15 @@
     PSSpecifier *_usernameSpecifier;
 }
 
-@property(copy) id alertHandler;
-@property BOOL hideLearnMoreButton;
-@property(copy) NSString * pendingPassword;
-@property(copy) NSString * pendingUsername;
-@property unsigned int signinFailureCount;
+@property (nonatomic, copy) id /* block */ alertHandler;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL hideLearnMoreButton;
+@property (nonatomic, copy) NSString *pendingPassword;
+@property (nonatomic, copy) NSString *pendingUsername;
+@property (nonatomic) unsigned int signinFailureCount;
+@property (readonly) Class superclass;
 
 - (void)__userTappedTextField;
 - (void)_buildCreateAccountButtonSpecifierCache:(id)arg1;
@@ -54,9 +52,8 @@
 - (void)_showSigninFailureAlert;
 - (void)_startTimeout;
 - (void)_updateControllerState;
-- (void)_updateDescriptionText;
 - (void)_updateUI;
-- (id)alertHandler;
+- (id /* block */)alertHandler;
 - (void)alertView:(id)arg1 didDismissWithButtonIndex:(int)arg2;
 - (void)applicationDidResume;
 - (id)bundle;
@@ -77,7 +74,7 @@
 - (id)passwordTextField;
 - (id)pendingPassword;
 - (id)pendingUsername;
-- (void)setAlertHandler:(id)arg1;
+- (void)setAlertHandler:(id /* block */)arg1;
 - (void)setCreateAccountButtonEnabled:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setHideLearnMoreButton:(BOOL)arg1;
 - (void)setPasswordEnabled:(BOOL)arg1 animated:(BOOL)arg2;

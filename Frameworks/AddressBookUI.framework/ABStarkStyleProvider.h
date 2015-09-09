@@ -2,8 +2,7 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@interface ABStarkStyleProvider : ABStyleProvider {
-}
+@interface ABStarkStyleProvider : ABStyleProvider
 
 + (float)memberRowHeight;
 
@@ -15,5 +14,8 @@
 - (id)memberNameTextColor;
 - (id)membersBackgroundColor;
 - (unsigned int)membersCountToShowIndex;
+- (id)membersSearchBackgroundColor;
+- (id)membersSearchCellBackgroundColor;
+- (id)personLabelHighlightedColor;
 
 @end

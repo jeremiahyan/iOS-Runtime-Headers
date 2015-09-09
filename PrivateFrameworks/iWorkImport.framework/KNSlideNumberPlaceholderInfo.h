@@ -2,18 +2,15 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface KNSlideNumberPlaceholderInfo : KNPlaceholderInfo {
-    unsigned int mSlideNumber;
-}
+@interface KNSlideNumberPlaceholderInfo : KNPlaceholderInfo
 
 - (void)acceptVisitor:(id)arg1;
 - (id)initFromUnarchiver:(id)arg1;
 - (id)instructionalText;
-- (BOOL)isMagicMoveEquivalentToInfo:(id)arg1;
 - (int)kind;
 - (Class)layoutClass;
+- (id)localizedChunkNameForTextureDeliveryStyle:(unsigned int)arg1 animationFilter:(id)arg2 chunkIndex:(unsigned int)arg3;
 - (Class)repClass;
 - (id)textureDeliveryStylesLocalized:(BOOL)arg1 animationFilter:(id)arg2;
-- (id)titleForBuildChunk:(id)arg1;
 
 @end

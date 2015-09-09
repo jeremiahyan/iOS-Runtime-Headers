@@ -2,13 +2,12 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface TSCHRenderUtilities : NSObject {
-}
+@interface TSCHRenderUtilities : NSObject
 
 + (void)addTextSubselectionHalosToArray:(id)arg1 rect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2 transform:(struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })arg3;
 + (void)addTextSubselectionKnobsToArray:(id)arg1 rect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2 transform:(struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })arg3;
-+ (BOOL)centerPointForSeries:(id)arg1 index:(unsigned int)arg2 frame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg3 point:(struct CGPoint { float x1; float x2; }*)arg4 nullsUseIntercept:(BOOL)arg5;
 + (BOOL)centerPointForSeries:(id)arg1 index:(unsigned int)arg2 frame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg3 point:(struct CGPoint { float x1; float x2; }*)arg4;
++ (BOOL)centerPointForSeries:(id)arg1 index:(unsigned int)arg2 frame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg3 point:(struct CGPoint { float x1; float x2; }*)arg4 nullsUseIntercept:(BOOL)arg5;
 + (void)drawFill:(id)arg1 inContext:(struct CGContext { }*)arg2 frame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg3;
 + (void)drawFill:(id)arg1 inContext:(struct CGContext { }*)arg2 path:(struct CGPath { }*)arg3;
 + (void)drawNullFillSwatchInContext:(struct CGContext { }*)arg1 frame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2;
@@ -19,7 +18,7 @@
 + (struct CGPath { }*)newClipPathForSymbol:(int)arg1 at:(struct CGPoint { float x1; float x2; })arg2 width:(float)arg3 stroke:(id)arg4;
 + (struct CGImage { }*)newImageFromFills:(id)arg1 size:(struct CGSize { float x1; float x2; })arg2 spaceBetween:(struct CGSize { float x1; float x2; })arg3 scale:(float)arg4 borderColor:(id)arg5 outFillRects:(struct CGRect {}**)arg6;
 + (struct CGColor { }*)newLightenedColor:(struct CGColor { }*)arg1 byPercent:(float)arg2;
-+ (struct CGPath { }*)newStrokedPathFromPath:(struct CGPath { }*)arg1 stroke:(id)arg2;
++ (struct CGPath { }*)newStrokedPathFromPath:(struct CGPath { }*)arg1 stroke:(id)arg2 cap:(int)arg3;
 + (struct CGPath { }*)newUnitPathForSymbol:(int)arg1 symbolSize:(float)arg2 stroke:(id)arg3;
 + (struct CGPath { }*)p_newCirclePath:(struct CGPoint { float x1; float x2; })arg1 width:(float)arg2 pathLocation:(int)arg3 stroke:(id)arg4;
 + (struct CGPath { }*)p_newCrossPath:(struct CGPoint { float x1; float x2; })arg1 width:(float)arg2 pathLocation:(int)arg3 stroke:(id)arg4;

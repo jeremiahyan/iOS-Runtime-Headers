@@ -2,27 +2,29 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class <SKUISlideshowItemViewControllerDelegate>, SKUIClientContext, SKUISlideshowImageScrollView, UIImage, UIView;
-
-@interface SKUISlideshowItemViewController : UIViewController <UIScrollViewDelegate, UIGestureRecognizerDelegatePrivate> {
-    struct CGPoint { 
-        float x; 
-        float y; 
+@interface SKUISlideshowItemViewController : UIViewController <UIGestureRecognizerDelegatePrivate, UIScrollViewDelegate> {
     SKUIClientContext *_clientContext;
     <SKUISlideshowItemViewControllerDelegate> *_delegate;
     SKUISlideshowImageScrollView *_imageScrollView;
     int _indexInCollection;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _lastContentOffset;
     float _lastZoomScale;
     UIView *_loadingView;
     BOOL _zoomingGestureThresholdBroken;
 }
 
-@property(retain) SKUIClientContext * clientContext;
-@property <SKUISlideshowItemViewControllerDelegate> * delegate;
-@property(readonly) SKUISlideshowImageScrollView * imageScrollView;
-@property int indexInCollection;
-@property(retain) UIImage * itemImage;
+@property (nonatomic, retain) SKUIClientContext *clientContext;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SKUISlideshowItemViewControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) SKUISlideshowImageScrollView *imageScrollView;
+@property (nonatomic) int indexInCollection;
+@property (nonatomic, retain) UIImage *itemImage;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (BOOL)_gestureRecognizer:(id)arg1 canBePreventedByGestureRecognizer:(id)arg2;

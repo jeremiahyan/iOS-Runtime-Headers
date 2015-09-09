@@ -2,38 +2,7 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class <AVPlayerItemDelegate>, AVAsset, AVAudioMix, AVCustomVideoCompositorSession, AVPlayerConnection, AVPlayerItem, AVPropertyStorage, AVVideoComposition, AVWeakReference, NSArray, NSDate, NSDictionary, NSError, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString, NSURL;
-
 @interface AVPlayerItemInternal : NSObject {
-    struct { 
-        long long value; 
-        int timescale; 
-        unsigned int flags; 
-        long long epoch; 
-    struct { 
-        long long value; 
-        int timescale; 
-        unsigned int flags; 
-        long long epoch; 
-    struct { 
-        long long value; 
-        int timescale; 
-        unsigned int flags; 
-        long long epoch; 
-    struct { 
-        long long value; 
-        int timescale; 
-        unsigned int flags; 
-        long long epoch; 
-    struct { 
-        long long value; 
-        int timescale; 
-        unsigned int flags; 
-        long long epoch; 
     unsigned int RTCReportingFlags;
     NSURL *URL;
     BOOL allowProgressiveSwitchUp;
@@ -43,10 +12,11 @@
     NSDictionary *audibleDRMInfo;
     AVAudioMix *audioMix;
     NSArray *automaticallyLoadedAssetKeys;
+    NSArray *cachedTracks;
+    AVWeakReference *clientsOriginalVideoComposition;
     AVCustomVideoCompositorSession *customVideoCompositorSession;
     NSString *dataYouTubeID;
     <AVPlayerItemDelegate> *delegate;
-    BOOL didApplyInitialAudioMix;
     BOOL didBecomeReadyForBasicInspection;
     BOOL didBecomeReadyForInspectionOfDuration;
     BOOL didBecomeReadyForInspectionOfMediaSelectionOptions;
@@ -60,17 +30,21 @@
     BOOL externalProtectionRequested;
     BOOL externalSubtitlesEnabled;
     struct OpaqueFigCPEProtector { } *figCPEProtector;
+    NSObject<OS_dispatch_queue> *figConfigurationQueue;
     struct OpaqueFigPlaybackItem { } *figPlaybackItem;
     struct OpaqueCMTimebase { } *figTimebase;
     void *figVideoCompositor;
+    struct { 
+        long long value; 
+        int timescale; 
+        unsigned int flags; 
+        long long epoch; 
     } forwardPlaybackEndTime;
     NSDictionary *gaplessInfo;
     NSMutableArray *handlersToCallWhenReadyForEnqueueing;
     BOOL haveCPEProtector;
     BOOL haveInitialSamples;
     BOOL initialAlwaysMonitorsPlayability;
-    double initialBufferingTargetMaximum;
-    double initialBufferingTargetMinimum;
     BOOL initialContinuesPlayingDuringPrerollForRateChange;
     BOOL initialContinuesPlayingDuringPrerollForSeek;
     NSDate *initialDate;
@@ -78,45 +52,86 @@
     struct __CFString { } *initialFigTimePitchAlgorithm;
     BOOL initialLimitReadAhead;
     int initialPlaybackLikelyToKeepUpTrigger;
+    struct { 
+        long long value; 
+        int timescale; 
+        unsigned int flags; 
+        long long epoch; 
     } initialTime;
+    struct { 
+        long long value; 
+        int timescale; 
+        unsigned int flags; 
+        long long epoch; 
     } initialToleranceAfter;
+    struct { 
+        long long value; 
+        int timescale; 
+        unsigned int flags; 
+        long long epoch; 
     } initialToleranceBefore;
     int initialVariantIndex;
     BOOL initialWillNeverSeekBackwardsHint;
     BOOL isCurrentPlayerItem;
-    NSMutableArray *itemLegibleOutputs;
+    NSMutableDictionary *itemLegibleOutputsForKeys;
+    NSMutableDictionary *itemMetadataOutputsForKeys;
     NSArray *itemOutputs;
     NSMutableArray *itemVideoOutputs;
-    float maximumBitRate;
+    NSObject<OS_dispatch_queue> *ivarAccessQueue;
+    struct { 
+        long long value; 
+        int timescale; 
+        unsigned int flags; 
+        long long epoch; 
+    } maximumTrailingBufferDuration;
     NSString *mediaKind;
     NSMutableDictionary *mediaOptionsSelectedByClient;
+    struct { 
+        long long value; 
+        int timescale; 
+        unsigned int flags; 
+        long long epoch; 
+    } minimumIntervalForIFrameOnlyPlayback;
+    BOOL minimumIntervalForIFrameOnlyPlaybackWasSet;
     BOOL needTimedMetadataNotification;
     BOOL networkUsuallyExceedsMaxBitRate;
     AVPlayerItem *nextItem;
-    int nextSeekIDToGenerate;
+    unsigned int nextSeekIDToGenerate;
     BOOL nonForcedSubtitlesEnabled;
     int pendingSeekID;
+    struct OpaqueVTPixelBufferAttributesMediator { } *pixelBufferAttributeMediator;
     AVPlayerConnection *playerConnection;
     AVWeakReference *playerReference;
+    double preferredPeakBitRate;
     AVPlayerItem *previousItem;
     AVPropertyStorage *propertyStorage;
+    struct OpaqueCMTimebase { } *proxyTimebase;
     NSDictionary *rampInOutInfo;
     BOOL requiresAccessLog;
     unsigned int restrictions;
+    struct { 
+        long long value; 
+        int timescale; 
+        unsigned int flags; 
+        long long epoch; 
     } reversePlaybackEndTime;
     BOOL savesDownloadedDataToDiskWhenDone;
-    id seekCompletionHandler;
+    id /* block */ seekCompletionHandler;
     struct OpaqueFigSimpleMutex { } *seekIDMutex;
     BOOL seekingWaitsForVideoCompositionRendering;
     NSString *serviceIdentifier;
     float soundCheckVolumeNormalization;
+    float speedThresholdForIFrameOnlyPlayback;
+    BOOL speedThresholdForIFrameOnlyPlaybackWasSet;
     NSObject<OS_dispatch_queue> *stateDispatchQueue;
     int status;
+    BOOL suppressesVideoLayers;
     NSMutableArray *syncLayers;
-    NSObject<OS_dispatch_queue> *syncLayersQ;
     NSArray *textStyleRules;
     NSArray *timedMetadata;
     NSArray *trackIDsForAssetWithFigPlaybackItem;
+    BOOL usesIFrameOnlyPlaybackForHighRateScaledEdits;
+    BOOL usesIFrameOnlyPlaybackForHighRateScaledEditsWasSet;
     AVVideoComposition *videoComposition;
     float volumeAdjustment;
     BOOL wasInitializedWithURL;

@@ -2,26 +2,33 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class GEOStructuredAddress, NSMutableArray;
-
 @interface GEOAddress : PBCodable <GEOURLSerializable, NSCopying> {
-    struct { 
-        unsigned int formattedAddressType : 1; 
     NSMutableArray *_formattedAddressLines;
     int _formattedAddressType;
+    struct { 
+        unsigned int formattedAddressType : 1; 
     } _has;
     GEOStructuredAddress *_structuredAddress;
 }
 
-@property(retain) NSMutableArray * formattedAddressLines;
-@property int formattedAddressType;
-@property BOOL hasFormattedAddressType;
-@property(readonly) BOOL hasStructuredAddress;
-@property(retain) GEOStructuredAddress * structuredAddress;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) NSMutableArray *formattedAddressLines;
+@property (nonatomic) int formattedAddressType;
+@property (nonatomic) BOOL hasFormattedAddressType;
+@property (nonatomic, readonly) BOOL hasStructuredAddress;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) GEOStructuredAddress *structuredAddress;
+@property (readonly) Class superclass;
+
+// Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
+
++ (id)geoAddressForPlaceData:(id)arg1;
 
 - (BOOL)_isEquivalentURLRepresentationTo:(id)arg1;
 - (void)addFormattedAddressLine:(id)arg1;
 - (id)addressDictionary;
+- (id)bestName;
 - (void)clearFormattedAddressLines;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -37,17 +44,20 @@
 - (unsigned int)hash;
 - (id)initWithAddressDictionary:(id)arg1;
 - (id)initWithAddressString:(id)arg1;
-- (id)initWithPlacemark:(id)arg1;
 - (id)initWithUrlRepresentation:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
+- (void)mergeFrom:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 - (void)setFormattedAddressLines:(id)arg1;
 - (void)setFormattedAddressType:(int)arg1;
 - (void)setHasFormattedAddressType:(BOOL)arg1;
 - (void)setStructuredAddress:(id)arg1;
-- (id)singleLineAddress;
 - (id)structuredAddress;
 - (id)urlRepresentation;
 - (void)writeTo:(id)arg1;
+
+// Image: /System/Library/Frameworks/MapKit.framework/MapKit
+
+- (id)singleLineAddress;
 
 @end

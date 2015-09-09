@@ -2,11 +2,9 @@
    Image: /System/Library/PrivateFrameworks/MusicLibrary.framework/MusicLibrary
  */
 
-@interface MLMediaLibraryServiceInterface : NSObject {
-}
+@interface MLMediaLibraryServiceInterface : NSObject
 
 + (id)clientInterface;
-+ (id)newServiceConnection;
 + (id)serviceInterface;
 
 @end

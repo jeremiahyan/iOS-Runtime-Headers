@@ -2,21 +2,36 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class <UISearchDisplayDelegate>, <UITableViewDataSource>, <UITableViewDelegate>, NSArray, NSString, UIButton, UIColor, UILabel, UINavigationItem, UIPopoverController, UIScrollView, UISearchBar, UISearchDisplayControllerContainerView, UITableView, UIView, UIViewController, _UINavigationControllerPalette, _UISearchDisplayControllerDidScrollDelegate;
-
 @interface UISearchDisplayController : NSObject <_UIScrollNotification> {
+    float __activationGapHeight;
+    float __additionalNonCollapsingHeightAboveSearchBar;
+    UIButton *_animatingAppearanceNavigationButton;
+    float _animatingAppearanceNavigationSearchBarWidth;
+    _UINavigationControllerPalette *_attachedNavigationPalette;
+    UISearchDisplayControllerContainerView *_containerView;
     struct CGPoint { 
         float x; 
         float y; 
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
+    } _containingScrollViewContentOffset;
+    struct __CFArray { } *_containingScrollViews;
+    <UISearchDisplayDelegate> *_delegate;
+    _UISearchControllerDidScrollDelegate *_didScrollDelegate;
+    UIColor *_dimmingOverlayColor;
+    UIView *_dimmingView;
+    BOOL _displaysSearchBarInNavigationBar;
+    float _lastFooterAdjustment;
+    float _lastKeyboardAdjustment;
+    unsigned int _navigationBarSearchFieldSizing;
+    id _navigationControllerBookkeeper;
+    UINavigationItem *_navigationItem;
+    UILabel *_noResultsLabel;
+    NSString *_noResultsMessage;
+    UIPopoverController *_popoverController;
+    NSString *_resultsTitle;
+    UIScrollView *_savedContainingScrollView;
+    unsigned int _savedSearchBarResizingMask;
+    NSArray *_savedSelectedCellsWhenViewWillAppear;
+    UISearchBar *_searchBar;
     struct { 
         unsigned int visible : 1; 
         unsigned int animating : 1; 
@@ -34,33 +49,16 @@
         unsigned int animatingSearchResultsDisappearance : 1; 
         unsigned int navigationBarShadowWasHidden : 1; 
         unsigned int hoistingSearchBar : 1; 
-    float __activationGapHeight;
-    float __additionalNonCollapsingHeightAboveSearchBar;
-    UIButton *_animatingAppearanceNavigationButton;
-    float _animatingAppearanceNavigationSearchBarWidth;
-    _UINavigationControllerPalette *_attachedNavigationPalette;
-    UISearchDisplayControllerContainerView *_containerView;
-    } _containingScrollViewContentOffset;
-    struct __CFArray { } *_containingScrollViews;
-    <UISearchDisplayDelegate> *_delegate;
-    _UISearchDisplayControllerDidScrollDelegate *_didScrollDelegate;
-    UIColor *_dimmingOverlayColor;
-    UIView *_dimmingView;
-    BOOL _displaysSearchBarInNavigationBar;
-    float _lastFooterAdjustment;
-    float _lastKeyboardAdjustment;
-    unsigned int _navigationBarSearchFieldSizing;
-    id _navigationControllerBookkeeper;
-    UINavigationItem *_navigationItem;
-    UILabel *_noResultsLabel;
-    NSString *_noResultsMessage;
-    UIPopoverController *_popoverController;
-    NSString *_resultsTitle;
-    UIScrollView *_savedContainingScrollView;
-    unsigned int _savedSearchBarResizingMask;
-    NSArray *_savedSelectedCellsWhenViewWillAppear;
-    UISearchBar *_searchBar;
     } _searchDisplayControllerFlags;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } _searchFieldInNavigationBarFrame;
     int _searchResultsTableViewStyle;
     UITableView *_tableView;
@@ -71,25 +69,29 @@
     UIViewController *_viewController;
 }
 
-@property float _activationGapHeight;
-@property float _additionalNonCollapsingHeightAboveSearchBar;
-@property(getter=isActive) BOOL active;
-@property BOOL automaticallyShowsNoResultsMessage;
-@property(getter=_isCancelButtonManagementDisabled,setter=_setCancelButtonManagementDisabled:) BOOL cancelButtonManagementDisabled;
-@property <UISearchDisplayDelegate> * delegate;
-@property BOOL dimTableViewOnEmptySearchString;
-@property BOOL displaysSearchBarInNavigationBar;
-@property(getter=isNavigationBarHidingEnabled) BOOL navigationBarHidingEnabled;
-@property unsigned int navigationBarSearchFieldSizing;
-@property(readonly) UINavigationItem * navigationItem;
-@property(copy) NSString * noResultsMessage;
-@property BOOL noResultsMessageVisible;
-@property(readonly) UISearchBar * searchBar;
-@property(readonly) UIViewController * searchContentsController;
-@property <UITableViewDataSource> * searchResultsDataSource;
-@property <UITableViewDelegate> * searchResultsDelegate;
-@property(readonly) UITableView * searchResultsTableView;
-@property(copy) NSString * searchResultsTitle;
+@property (nonatomic) float _activationGapHeight;
+@property (nonatomic) float _additionalNonCollapsingHeightAboveSearchBar;
+@property (getter=isActive, nonatomic) BOOL active;
+@property (nonatomic) BOOL automaticallyShowsNoResultsMessage;
+@property (getter=_isCancelButtonManagementDisabled, setter=_setCancelButtonManagementDisabled:, nonatomic) BOOL cancelButtonManagementDisabled;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <UISearchDisplayDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL dimTableViewOnEmptySearchString;
+@property (nonatomic) BOOL displaysSearchBarInNavigationBar;
+@property (readonly) unsigned int hash;
+@property (getter=isNavigationBarHidingEnabled, nonatomic) BOOL navigationBarHidingEnabled;
+@property (nonatomic) unsigned int navigationBarSearchFieldSizing;
+@property (nonatomic, readonly) UINavigationItem *navigationItem;
+@property (nonatomic, copy) NSString *noResultsMessage;
+@property (nonatomic) BOOL noResultsMessageVisible;
+@property (nonatomic, readonly) UISearchBar *searchBar;
+@property (nonatomic, readonly) UIViewController *searchContentsController;
+@property (nonatomic) <UITableViewDataSource> *searchResultsDataSource;
+@property (nonatomic) <UITableViewDelegate> *searchResultsDelegate;
+@property (nonatomic, readonly) UITableView *searchResultsTableView;
+@property (nonatomic, copy) NSString *searchResultsTitle;
+@property (readonly) Class superclass;
 
 - (float)_activationGapHeight;
 - (float)_additionalNonCollapsingHeightAboveSearchBar;
@@ -161,8 +163,8 @@
 - (BOOL)hidNavigationBar;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithSearchBar:(id)arg1 contentsController:(id)arg2 searchResultsTableViewStyle:(int)arg3;
 - (id)initWithSearchBar:(id)arg1 contentsController:(id)arg2;
+- (id)initWithSearchBar:(id)arg1 contentsController:(id)arg2 searchResultsTableViewStyle:(int)arg3;
 - (BOOL)isActive;
 - (BOOL)isNavigationBarHidingEnabled;
 - (unsigned int)navigationBarSearchFieldSizing;
@@ -174,9 +176,9 @@
 - (BOOL)noResultsMessageVisible;
 - (void)popoverController:(id)arg1 animationCompleted:(int)arg2;
 - (BOOL)popoverControllerShouldDismissPopover:(id)arg1;
+- (id)searchBar;
 - (void)searchBar:(id)arg1 selectedScopeButtonIndexDidChange:(int)arg2;
 - (void)searchBar:(id)arg1 textDidChange:(id)arg2;
-- (id)searchBar;
 - (void)searchBarCancelButtonClicked:(id)arg1;
 - (void)searchBarResultsListButtonClicked:(id)arg1;
 - (void)searchBarSearchButtonClicked:(id)arg1;
@@ -186,8 +188,8 @@
 - (id)searchResultsDelegate;
 - (id)searchResultsTableView;
 - (id)searchResultsTitle;
-- (void)setActive:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setActive:(BOOL)arg1;
+- (void)setActive:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setAutomaticallyShowsNoResultsMessage:(BOOL)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setDimTableViewOnEmptySearchString:(BOOL)arg1;

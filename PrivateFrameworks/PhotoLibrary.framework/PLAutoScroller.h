@@ -2,20 +2,18 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibrary.framework/PhotoLibrary
  */
 
-@class NSTimer, UIScrollView;
-
 @interface PLAutoScroller : NSObject {
+    NSTimer *_autoscrollTimer;
     struct CGPoint { 
         float x; 
         float y; 
-    NSTimer *_autoscrollTimer;
     } _targetPoint;
     UIScrollView *_targetScrollView;
     float _thresholdDistance;
 }
 
-@property struct CGPoint { float x1; float x2; } targetPoint;
-@property(readonly) float thresholdDistance;
+@property (nonatomic) struct CGPoint { float x1; float x2; } targetPoint;
+@property (readonly) float thresholdDistance;
 
 - (void)_stopAutoscrollTimer;
 - (void)_updateAutoscrollTimer:(id)arg1;

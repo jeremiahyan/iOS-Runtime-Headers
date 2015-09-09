@@ -2,15 +2,17 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class SKUIClientContext, SKUIRedeemConfiguration, UIViewController;
-
 @interface SKUIITunesPassLearnMoreAlertDelegate : NSObject <UIAlertViewDelegate> {
     SKUIClientContext *_clientContext;
     UIViewController *_presentingViewController;
     SKUIRedeemConfiguration *_redeemConfiguration;
 }
 
-@property UIViewController * presentingViewController;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) UIViewController *presentingViewController;
+@property (readonly) Class superclass;
 
 + (void)beginThrottleInterval;
 + (BOOL)shouldShowAlertForRedeem:(id)arg1 configuration:(id)arg2;

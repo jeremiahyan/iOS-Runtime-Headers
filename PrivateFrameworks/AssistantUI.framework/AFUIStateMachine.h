@@ -2,24 +2,22 @@
    Image: /System/Library/PrivateFrameworks/AssistantUI.framework/AssistantUI
  */
 
-@class <AFUIStateMachineDelegate>, NSMutableDictionary;
-
 @interface AFUIStateMachine : NSObject {
     <AFUIStateMachineDelegate> *_delegate;
     NSMutableDictionary *_endStatesByEventByStartState;
     int _state;
 }
 
-@property <AFUIStateMachineDelegate> * delegate;
-@property(getter=_endStatesByEventByStartState,retain) NSMutableDictionary * endStatesByEventByStartState;
-@property int state;
+@property (nonatomic) <AFUIStateMachineDelegate> *delegate;
+@property (getter=_endStatesByEventByStartState, nonatomic, retain) NSMutableDictionary *endStatesByEventByStartState;
+@property (nonatomic) int state;
 
 - (void).cxx_destruct;
 - (id)_descriptionForEvent:(int)arg1;
 - (id)_endStateNumberFromDictionary:(id)arg1 forEvent:(int)arg2;
 - (id)_endStatesByEventByStartState;
-- (void)_setState:(int)arg1 forEvent:(int)arg2;
 - (void)_setState:(int)arg1;
+- (void)_setState:(int)arg1 forEvent:(int)arg2;
 - (void)addTransitionFromState:(int)arg1 toState:(int)arg2 forEvent:(int)arg3;
 - (id)delegate;
 - (id)initWithInitialState:(int)arg1;

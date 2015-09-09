@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/QuickLook.framework/QuickLook
  */
 
-@class <QLPreviewContentDataSource>, <QLPreviewContentDelegate>, NSMapTable, QLPreviewController, QLPrintPageRenderer, _UIRemoteView;
-
 @interface QLRemotePreviewContentController : _UIRemoteViewController <QLPreviewContentControllerProtocol, QLPrintPageRendererDataSource> {
     int _currentPreviewItemIndex;
     <QLPreviewContentDataSource> *_dataSource;
@@ -18,10 +16,14 @@
     BOOL _statusBarWasHidden;
 }
 
-@property <QLPreviewContentDataSource> * dataSource;
-@property <QLPreviewContentDelegate> * delegate;
-@property QLPreviewController * previewController;
+@property <QLPreviewContentDataSource> *dataSource;
+@property (readonly, copy) NSString *debugDescription;
+@property <QLPreviewContentDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property QLPreviewController *previewController;
 @property int previewMode;
+@property (readonly) Class superclass;
 
 + (id)exportedInterface;
 + (id)serviceViewControllerInterface;
@@ -31,7 +33,7 @@
 - (void)_overlayWasTappedInPreviewContentController;
 - (void)_previewContentControllerDidLoadItem:(id)arg1 atIndex:(int)arg2 withError:(id)arg3;
 - (void)_previewContentControllerDidMoveToItemAtIndex:(int)arg1;
-- (void)_previewContentControllerGetPreviewItemAtIndex:(int)arg1 sourceUUID:(int)arg2 handler:(id)arg3;
+- (void)_previewContentControllerGetPreviewItemAtIndex:(int)arg1 sourceUUID:(int)arg2 handler:(id /* block */)arg3;
 - (void)_previewContentControllerReceivedTapOnURL:(id)arg1;
 - (void)_previewContentControllerWillHideOverlayWithDuration:(double)arg1;
 - (void)_previewContentControllerWillMoveToItemAtIndex:(int)arg1;
@@ -54,14 +56,14 @@
 - (void)endScrubbing;
 - (void)enterBackground;
 - (void)forceResignFirstResponder;
-- (int)numberOfPageInPrintPageRenderer:(id)arg1 withSize:(struct CGSize { float x1; float x2; })arg2;
+- (int)numberOfPagesInPrintPageRenderer:(id)arg1;
 - (int)numberOfPreviewItems;
 - (id)previewController;
 - (int)previewMode;
 - (id)printPageHelper;
-- (id)printPageRenderer:(id)arg1 pdfDataForPageAtIndex:(int)arg2 withSize:(struct CGSize { float x1; float x2; })arg3 printingDone:(BOOL*)arg4;
-- (void)printPageRenderer:(id)arg1 prepareForDrawingPages:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2;
 - (id)printPageRenderer;
+- (id)printPageRenderer:(id)arg1 pdfDataForPageAtIndex:(int)arg2 printingDone:(BOOL*)arg3;
+- (void)printPageRenderer:(id)arg1 prepareForDrawingPages:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2;
 - (void)refreshCurrentPreviewItem;
 - (void)scrubToValue:(double)arg1;
 - (void)setBlockRemoteImages:(BOOL)arg1;
@@ -74,12 +76,13 @@
 - (void)setOverlayHidden:(BOOL)arg1 duration:(double)arg2;
 - (void)setPreviewController:(id)arg1;
 - (void)setPreviewMode:(int)arg1;
-- (void)setTransitioning:(BOOL)arg1 synchronizedWithBlock:(id)arg2;
+- (void)setTransitioning:(BOOL)arg1 synchronizedWithBlock:(id /* block */)arg2;
 - (BOOL)shouldAutorotateToInterfaceOrientation:(int)arg1;
+- (void)stopLoadingCurrentPreviewItem;
 - (void)togglePlayState;
 - (void)viewDidLayoutSubviews;
 - (void)viewServiceDidTerminateWithError:(id)arg1;
-- (void)willAnimateRotationToInterfaceOrientation:(int)arg1 duration:(double)arg2;
+- (void)viewWillTransitionToSize:(struct CGSize { float x1; float x2; })arg1 withTransitionCoordinator:(id)arg2;
 - (void)willChangeContentFrame;
 
 @end

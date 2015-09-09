@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, NSMutableArray, UIKBRenderConfig;
-
 @interface UIKBRenderFactory : NSObject {
     BOOL _boldTextEnabled;
     BOOL _lightweightFactory;
@@ -13,11 +11,12 @@
     NSMutableArray *_segmentTraits;
 }
 
-@property BOOL lightweightFactory;
-@property(readonly) UIKBRenderConfig * renderConfig;
-@property float rivenSizeFactor;
-@property float scale;
-@property(readonly) NSArray * segmentTraits;
+@property (nonatomic, readonly) BOOL boldTextEnabled;
+@property (nonatomic) BOOL lightweightFactory;
+@property (nonatomic, readonly) UIKBRenderConfig *renderConfig;
+@property (nonatomic) float rivenSizeFactor;
+@property (nonatomic) float scale;
+@property (nonatomic, readonly) NSArray *segmentTraits;
 
 + (BOOL)_enabled;
 + (int)_graphicsQuality;
@@ -28,21 +27,28 @@
 + (id)segmentedControlColor:(BOOL)arg1;
 
 - (float)RivenFactor:(float)arg1;
+- (id)_controlKeyBackgroundColorName;
 - (void)_customizeTraits:(id)arg1 forPopupForKey:(id)arg2 withRenderConfig:(id)arg3 keycapsFontName:(id)arg4;
 - (id)_traitsForKey:(id)arg1 onKeyplane:(id)arg2;
 - (void)addLayoutSegment:(id)arg1;
 - (id)backgroundTraitsForKeyplane:(id)arg1;
+- (id)biuKeyImageName;
+- (id)boldKeyImageName;
+- (BOOL)boldTextEnabled;
 - (id)controlKeyBackgroundColorName;
 - (id)controlKeyForegroundColorName;
 - (id)controlKeyShadowColorName;
+- (id)copyKeyImageName;
+- (id)cutKeyImageName;
 - (void)dealloc;
 - (id)defaultKeyBackgroundColorName;
 - (id)defaultKeyShadowColorName;
 - (id)deleteKeyImageName;
-- (id)deleteKeyXImageName;
 - (id)dictationKeyImageName;
 - (id)dismissKeyImageName;
 - (id)displayContentsForKey:(id)arg1;
+- (float)emojiPopupDividerKeyOffset;
+- (int)enabledBlendForm;
 - (id)extraPasscodePaddleTraits;
 - (id)globalEmojiKeyImageName;
 - (id)globalKeyImageName;
@@ -51,6 +57,8 @@
 - (id)initWithRenderConfig:(id)arg1 skipLayoutSegments:(BOOL)arg2;
 - (float)keyCornerRadius;
 - (id)keyImageNameWithSkinnyVariation:(id)arg1;
+- (id)leftArrowKeyImageName;
+- (int)lightHighQualityEnabledBlendForm;
 - (id)lightKeycapsFontName;
 - (id)lightPadKeycapsFontName;
 - (id)lightTextFontName;
@@ -58,6 +66,7 @@
 - (void)lowQualityTraits:(id)arg1;
 - (void)modifyKeyTraitsForPasscode:(id)arg1 forKey:(id)arg2 onKeyplane:(id)arg3;
 - (void)modifyTraitsForDetachedInputSwitcher:(id)arg1 withKey:(id)arg2;
+- (void)modifyTraitsForDividerVariant:(id)arg1 withKey:(id)arg2;
 - (id)multitapCompleteKeyImageName;
 - (id)muttitapReverseKeyImageName;
 - (id)passcodeActiveControlKeyTraits;
@@ -66,8 +75,10 @@
 - (float)passcodeEdgeWeight;
 - (id)passcodeKeyEdgeColorName;
 - (id)passcodeShiftedControlKeyTraits;
+- (id)pasteKeyImageName;
 - (void)removeAllLayoutSegments;
 - (id)renderConfig;
+- (id)rightArrowKeyImageName;
 - (float)rivenSizeFactor;
 - (float)scale;
 - (void)scaleTraits:(id)arg1;
@@ -79,13 +90,14 @@
 - (id)shiftKeyImageName;
 - (id)shiftLockImageName;
 - (id)shiftOnKeyImageName;
-- (BOOL)shouldClearBaseDisplayStringForVariants;
+- (BOOL)shouldClearBaseDisplayStringForVariants:(id)arg1;
 - (float)skinnyKeyThreshold;
 - (id)thinKeycapsFontName;
 - (id)thinTextFontName;
 - (id)traitsForKey:(id)arg1 onKeyplane:(id)arg2;
 - (id)traitsHashStringForKey:(id)arg1 withGeometry:(id)arg2 controlOpacities:(BOOL)arg3;
 - (float)translucentGapWidth;
+- (id)undoKeyImageName;
 - (BOOL)useBlueThemingForKey:(id)arg1;
 
 @end

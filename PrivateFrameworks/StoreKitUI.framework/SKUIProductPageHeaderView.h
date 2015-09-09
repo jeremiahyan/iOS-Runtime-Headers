@@ -2,17 +2,14 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class NSString, SKUIClientContext, SKUIColorScheme, SKUIContentRatingArtworkResourceLoader, SKUIItemContentRating, SKUIItemOffer, SKUIItemOfferButton, SKUIItemState, SKUIProductPageHeaderLabel, UIButton, UIControl, UIImage, UIImageView, UILabel;
-
-@interface SKUIProductPageHeaderView : UIView <SKUIItemOfferButtonDelegate, SKUIContentRatingArtworkLoaderObserver> {
+@interface SKUIProductPageHeaderView : UIView <SKUIContentRatingArtworkLoaderObserver, SKUIItemOfferButtonDelegate> {
     UILabel *_ageBandLabel;
     UIButton *_artistButton;
     SKUIClientContext *_clientContext;
     SKUIColorScheme *_colorScheme;
     SKUIItemContentRating *_contentRating;
     SKUIContentRatingArtworkResourceLoader *_contentRatingArtworkLoader;
-    UILabel *_facebookFriendsLabel;
-    UIImageView *_facebookLogoImageView;
+    SKUIBadgeLabel *_editorialBadgeLabel;
     float _headerImageHeight;
     UIImageView *_headerImageView;
     UIImageView *_iconImageView;
@@ -33,32 +30,38 @@
     UIImageView *_userRatingStarsView;
 }
 
-@property(copy) NSString * ageBandString;
-@property(readonly) UIControl * artistButton;
-@property(copy) NSString * artistName;
-@property(retain) SKUIColorScheme * colorScheme;
-@property(retain) SKUIItemContentRating * contentRating;
-@property(retain) SKUIContentRatingArtworkResourceLoader * contentRatingArtworkLoader;
-@property(copy) NSString * facebookFriendsString;
-@property(retain) UIImage * headerImage;
-@property float headerImageHeight;
-@property(retain) UIImage * iconImage;
-@property(copy) NSString * inAppPurchasesString;
-@property(retain) SKUIItemOffer * itemOffer;
-@property(readonly) SKUIItemOfferButton * itemOfferButton;
-@property(copy) NSString * itemOfferExplanationText;
-@property(copy) NSString * itemOfferExplanationTitle;
-@property(copy) SKUIItemState * itemState;
-@property int numberOfUserRatings;
-@property(getter=isRestricted) BOOL restricted;
-@property(retain) SKUIItemContentRating * secondaryContentRating;
-@property(readonly) UIControl * shareButton;
-@property(copy) NSString * title;
-@property float userRating;
+@property (nonatomic, copy) NSString *ageBandString;
+@property (nonatomic, readonly) UIControl *artistButton;
+@property (nonatomic, copy) NSString *artistName;
+@property (nonatomic, retain) SKUIColorScheme *colorScheme;
+@property (nonatomic, retain) SKUIItemContentRating *contentRating;
+@property (nonatomic, retain) SKUIContentRatingArtworkResourceLoader *contentRatingArtworkLoader;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, copy) NSString *editorialBadge;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) UIImage *headerImage;
+@property (nonatomic) float headerImageHeight;
+@property (nonatomic, retain) UIImage *iconImage;
+@property (nonatomic, copy) NSString *inAppPurchasesString;
+@property (nonatomic, retain) SKUIItemOffer *itemOffer;
+@property (nonatomic, readonly) SKUIItemOfferButton *itemOfferButton;
+@property (nonatomic, copy) NSString *itemOfferExplanationText;
+@property (nonatomic, copy) NSString *itemOfferExplanationTitle;
+@property (nonatomic, copy) SKUIItemState *itemState;
+@property (nonatomic) int numberOfUserRatings;
+@property (getter=isRestricted, nonatomic) BOOL restricted;
+@property (nonatomic, retain) SKUIItemContentRating *secondaryContentRating;
+@property (nonatomic, readonly) UIControl *shareButton;
+@property (readonly) Class superclass;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic) float userRating;
 
 - (void).cxx_destruct;
 - (void)_cancelConfirmationAction:(id)arg1;
 - (void)_finishButtonAnimation;
+- (void)_getBottomLayoutProperties:(struct { /* ? */ }**)arg1 origins:(float**)arg2 height:(float*)arg3 forWidth:(float)arg4;
+- (void)_getTopLayoutProperties:(struct { /* ? */ }**)arg1 origins:(float**)arg2 height:(float*)arg3 forWidth:(float)arg4;
 - (void)_reloadItemOfferButton:(BOOL)arg1;
 - (void)_showConfirmationAction:(id)arg1;
 - (id)ageBandString;
@@ -66,11 +69,11 @@
 - (id)artistName;
 - (id)colorScheme;
 - (id)contentRating;
-- (void)contentRatingArtworkLoader:(id)arg1 didLoadImage:(id)arg2 forContentRating:(id)arg3;
 - (id)contentRatingArtworkLoader;
+- (void)contentRatingArtworkLoader:(id)arg1 didLoadImage:(id)arg2 forContentRating:(id)arg3;
 - (id)contentRatingName;
 - (void)dealloc;
-- (id)facebookFriendsString;
+- (id)editorialBadge;
 - (id)headerImage;
 - (float)headerImageHeight;
 - (id)iconImage;
@@ -93,7 +96,7 @@
 - (void)setColorScheme:(id)arg1;
 - (void)setContentRating:(id)arg1;
 - (void)setContentRatingArtworkLoader:(id)arg1;
-- (void)setFacebookFriendsString:(id)arg1;
+- (void)setEditorialBadge:(id)arg1;
 - (void)setHeaderImage:(id)arg1;
 - (void)setHeaderImageHeight:(float)arg1;
 - (void)setIconImage:(id)arg1;
@@ -101,8 +104,8 @@
 - (void)setItemOffer:(id)arg1;
 - (void)setItemOfferExplanationText:(id)arg1;
 - (void)setItemOfferExplanationTitle:(id)arg1;
-- (void)setItemState:(id)arg1 animated:(BOOL)arg2;
 - (void)setItemState:(id)arg1;
+- (void)setItemState:(id)arg1 animated:(BOOL)arg2;
 - (void)setNumberOfUserRatings:(int)arg1;
 - (void)setRestricted:(BOOL)arg1;
 - (void)setSecondaryContentRating:(id)arg1;

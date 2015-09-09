@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@class MPAVRoutingController, NSArray;
-
 @interface MPAudioVideoRoutingTableViewController : UITableViewController <MPAVRoutingControllerDelegate> {
     int _airPlayPasswordAlertDidAppearToken;
     BOOL _airPlayPasswordAlertDidAppearTokenIsValid;
@@ -16,7 +14,11 @@
     BOOL _wirelessDisplayRouteIsPendingAsPicked;
 }
 
-@property(readonly) MPAVRoutingController * routingController;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) MPAVRoutingController *routingController;
+@property (readonly) Class superclass;
 
 + (id)routesPreferringMirroring;
 

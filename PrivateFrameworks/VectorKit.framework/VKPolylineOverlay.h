@@ -2,101 +2,41 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-@class GEOMapRegion, GEORoute, GEOZilchDecoder, NSArray, NSMutableArray, VKTrafficSegmentsAlongRoute;
-
-@interface VKPolylineOverlay : GEOAttributedRoute <VKOverlay, GEOMapAccessRestrictions> {
-    struct unordered_map<VKPolylineOverlaySection *, std::__1::vector<VGLRect, vk_allocator<VGLRect> >, std::__1::hash<VKPolylineOverlaySection *>, std::__1::equal_to<VKPolylineOverlaySection *>, vk_allocator<std::__1::pair<VKPolylineOverlaySection *const, std::__1::vector<VGLRect, vk_allocator<VGLRect> > > > > { 
-        struct __hash_table<std::__1::pair<VKPolylineOverlaySection *, std::__1::vector<VGLRect, vk_allocator<VGLRect> > >, std::__1::__unordered_map_hasher<VKPolylineOverlaySection *, std::__1::vector<VGLRect, vk_allocator<VGLRect> >, std::__1::hash<VKPolylineOverlaySection *>, true>, std::__1::__unordered_map_equal<VKPolylineOverlaySection *, std::__1::vector<VGLRect, vk_allocator<VGLRect> >, std::__1::equal_to<VKPolylineOverlaySection *>, true>, vk_allocator<std::__1::pair<VKPolylineOverlaySection *, std::__1::vector<VGLRect, vk_allocator<VGLRect> > > > > { 
-            struct unique_ptr<std::__1::__hash_node<std::__1::pair<VKPolylineOverlaySection *, std::__1::vector<VGLRect, vk_allocator<VGLRect> > >, void *> *[], std::__1::__bucket_list_deallocator<vk_allocator<std::__1::__hash_node<std::__1::pair<VKPolylineOverlaySection *, std::__1::vector<VGLRect, vk_allocator<VGLRect> > >, void *> *> > > { 
-                struct __compressed_pair<std::__1::__hash_node<std::__1::pair<VKPolylineOverlaySection *, std::__1::vector<VGLRect, vk_allocator<VGLRect> > >, void *> **, std::__1::__bucket_list_deallocator<vk_allocator<std::__1::__hash_node<std::__1::pair<VKPolylineOverlaySection *, std::__1::vector<VGLRect, vk_allocator<VGLRect> > >, void *> *> > > { 
-                    struct __hash_node<std::__1::pair<VKPolylineOverlaySection *, std::__1::vector<VGLRect, vk_allocator<VGLRect> > >, void *> {} **__first_; 
-                    struct __bucket_list_deallocator<vk_allocator<std::__1::__hash_node<std::__1::pair<VKPolylineOverlaySection *, std::__1::vector<VGLRect, vk_allocator<VGLRect> > >, void *> *> > { 
-                        struct __compressed_pair<unsigned long, vk_allocator<std::__1::__hash_node<std::__1::pair<VKPolylineOverlaySection *, std::__1::vector<VGLRect, vk_allocator<VGLRect> > >, void *> *> > { 
-                            unsigned long __first_; 
-                        } __data_; 
-                    } __second_; 
-                } __ptr_; 
-            } __bucket_list_; 
-            struct __compressed_pair<std::__1::__hash_node_base<std::__1::__hash_node<std::__1::pair<VKPolylineOverlaySection *, std::__1::vector<VGLRect, vk_allocator<VGLRect> > >, void *> *>, vk_allocator<std::__1::__hash_node<std::__1::pair<VKPolylineOverlaySection *, std::__1::vector<VGLRect, vk_allocator<VGLRect> > >, void *> > > { 
-                struct __hash_node_base<std::__1::__hash_node<std::__1::pair<VKPolylineOverlaySection *, std::__1::vector<VGLRect, vk_allocator<VGLRect> > >, void *> *> { 
-                    struct __hash_node<std::__1::pair<VKPolylineOverlaySection *, std::__1::vector<VGLRect, vk_allocator<VGLRect> > >, void *> {} *__next_; 
-                } __first_; 
-            } __p1_; 
-            struct __compressed_pair<unsigned long, std::__1::__unordered_map_hasher<VKPolylineOverlaySection *, std::__1::vector<VGLRect, vk_allocator<VGLRect> >, std::__1::hash<VKPolylineOverlaySection *>, true> > { 
-                unsigned long __first_; 
-            } __p2_; 
-            struct __compressed_pair<float, std::__1::__unordered_map_equal<VKPolylineOverlaySection *, std::__1::vector<VGLRect, vk_allocator<VGLRect> >, std::__1::equal_to<VKPolylineOverlaySection *>, true> > { 
-                float __first_; 
-            } __p3_; 
-        } __table_; 
-    BOOL _allowsNetworkTileLoad;
-    GEOMapRegion *_boundingMapRegion;
-    unsigned int _firstVisiblePoint;
+@interface VKPolylineOverlay : NSObject <GEOComposedRouteObserver, VKOverlay> {
+    GEOComposedRoute *_composedRoute;
     BOOL _isReadyForSnapping;
     struct __CFSet { } *_observers;
-    } _sectionToRectsMap;
-    NSMutableArray *_sections;
-    NSMutableArray *_snappedPaths;
     VKTrafficSegmentsAlongRoute *_trafficSegments;
     double _trafficTimeStamp;
-    GEOZilchDecoder *_zilchDecoder;
 }
 
-@property BOOL allowsNetworkTileLoad;
-@property(readonly) GEOMapRegion * boundingMapRegion;
-@property(readonly) struct { double x1; double x2; } coordinate;
-@property unsigned int firstVisiblePoint;
-@property(readonly) GEORoute * geoRoute;
-@property(readonly) unsigned int pointCount;
-@property(readonly) NSArray * sections;
-@property(readonly) unsigned int* trafficColorOffsets;
-@property(readonly) unsigned int trafficColorOffsetsCount;
-@property(readonly) unsigned int* trafficColors;
-@property(readonly) unsigned int trafficColorsCount;
-@property(readonly) VKTrafficSegmentsAlongRoute * trafficSegments;
-@property(readonly) double trafficTimeStamp;
+@property (nonatomic, readonly) GEOMapRegion *boundingMapRegion;
+@property (nonatomic, readonly) GEOComposedRoute *composedRoute;
+@property (nonatomic, readonly) struct { double x1; double x2; } coordinate;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) VKTrafficSegmentsAlongRoute *trafficSegments;
+@property (nonatomic, readonly) double trafficTimeStamp;
 
-- (id).cxx_construct;
-- (void).cxx_destruct;
-- (void)_addPaths:(id)arg1 forObserver:(id)arg2;
-- (void)_addPolylinePathsForSection:(id)arg1 toPaths:(id)arg2;
-- (void)_addSnappedPolylinePathsForSection:(id)arg1 toPaths:(id)arg2 localRects:(const struct vector<VGLRect, vk_allocator<VGLRect> > { struct { /* ? */ } *x1; struct { /* ? */ } *x2; struct __compressed_pair<VGLRect *, vk_allocator<VGLRect> > { struct { /* ? */ } *x_3_1_1; } x3; }*)arg3;
-- (void)_addSnappedPolylinePathsForSection:(id)arg1 toPaths:(id)arg2;
-- (void)_buildSectionsFromRoute:(id)arg1;
-- (BOOL)_meetsMinimumPathLengthBetweenStart:(unsigned int)arg1 end:(unsigned int)arg2;
 - (void)_setNeedsLayout;
-- (void)_snapPaths:(id)arg1 completionHandler:(id)arg2;
+- (void)_updateTraffic;
 - (void)addObserver:(id)arg1;
-- (BOOL)allowsNetworkTileLoad;
-- (void)attributedRouteHasChanged;
 - (id)boundingMapRegion;
-- (void)calibrate:(struct RouteCalibration { unsigned int x1; float x2; }*)arg1 from:(unsigned int)arg2 to:(unsigned int)arg3 forDistance:(unsigned int)arg4;
-- (void)clearPathsForObserver:(id)arg1;
+- (id)composedRoute;
+- (void)composedRoute:(id)arg1 selectedSections:(id)arg2 deselectedSections:(id)arg3;
+- (void)composedRouteUpdatedSnappedPaths:(id)arg1;
+- (void)composedRouteUpdatedTraffic:(id)arg1;
 - (struct { double x1; double x2; })coordinate;
-- (struct { double x1; double x2; })coordinateAtIndex:(unsigned int)arg1;
 - (void)dealloc;
-- (unsigned int)firstVisiblePoint;
-- (void)forEachSnappedPath:(id)arg1;
-- (id)geoRoute;
-- (id)getPathsForPainter:(id)arg1 keysInView:(id)arg2 tiles:(id)arg3 shouldSnapToRoads:(BOOL)arg4 snappingCompletionHandler:(id)arg5;
-- (id)initWithRoute:(id)arg1;
+- (id)getPathsForPainter:(id)arg1 renderRegion:(id)arg2 shouldSnapToRoads:(BOOL)arg3 snappingCompletionHandler:(id /* block */)arg4;
+- (id)initWithComposedRoute:(id)arg1;
 - (BOOL)isSnappingForSceneTiles;
-- (unsigned int)pointCount;
 - (void)removeObserver:(id)arg1;
-- (BOOL)resetTrafficWithRoute:(id)arg1 WithStep:(struct RouteCalibration { unsigned int x1; float x2; }*)arg2 trafficWalking:(struct TrafficWalking { double x1; int x2; int x3; unsigned int *x4; unsigned int *x5; }*)arg3 routeIndex:(int*)arg4;
 - (struct _NSRange { unsigned int x1; unsigned int x2; })sectionRangeForBounds:(struct { double x1; double x2; double x3; double x4; })arg1;
-- (id)sections;
-- (void)setAllowsNetworkTileLoad:(BOOL)arg1;
-- (void)setFirstVisiblePoint:(unsigned int)arg1;
-- (BOOL)supportsSnapping;
-- (unsigned int*)trafficColorOffsets;
-- (unsigned int)trafficColorOffsetsCount;
-- (unsigned int*)trafficColors;
-- (unsigned int)trafficColorsCount;
 - (id)trafficSegments;
 - (double)trafficTimeStamp;
-- (BOOL)updateRectsForPainter:(id)arg1 keysInView:(id)arg2 tiles:(id)arg3 shouldSnapToRoads:(BOOL)arg4;
-- (void)updateSnappedPathsForLocation:(id)arg1;
-- (void)updateTraffic;
+- (void)updateLabelExternalObjectsInRenderRegion:(id)arg1;
 
 @end

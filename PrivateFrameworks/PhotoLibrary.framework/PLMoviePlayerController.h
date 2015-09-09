@@ -2,15 +2,10 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibrary.framework/PhotoLibrary
  */
 
-@class <PLMoviePlayerControllerDelegate>, AVAsset, AVAudioMix, AVPlayer, AVPlayerItem, NSString, PLMoviePlayerView, PLTVOutWindow, UIAlertView;
-
 @interface PLMoviePlayerController : NSObject {
     BOOL _TVOutEnabled;
     UIAlertView *_alertView;
-    AVAsset *_asset;
-    AVAudioMix *_audioMix;
     BOOL _audioSessionActive;
-    NSString *_audioTimePitchAlgorithm;
     unsigned int _backgroundTaskId;
     unsigned int _bufferingState;
     <PLMoviePlayerControllerDelegate> *_delegate;
@@ -33,32 +28,30 @@
     PLMoviePlayerView *_view;
 }
 
-@property BOOL TVOutEnabled;
-@property(copy) NSString * audioTimePitchAlgorithm;
-@property(readonly) unsigned int bufferingState;
-@property double currentTime;
-@property <PLMoviePlayerControllerDelegate> * delegate;
-@property(readonly) double duration;
-@property(setter=_setForceDisableTVOut:) BOOL forceDisableTVOut;
-@property BOOL isActiveController;
-@property(readonly) BOOL isPreparedForPlayback;
-@property(readonly) float playbackRate;
-@property(readonly) unsigned int playbackState;
-@property(readonly) AVPlayer * player;
-@property(readonly) PLMoviePlayerView * view;
+@property (nonatomic) BOOL TVOutEnabled;
+@property (nonatomic, readonly) unsigned int bufferingState;
+@property (nonatomic) double currentTime;
+@property (nonatomic) <PLMoviePlayerControllerDelegate> *delegate;
+@property (nonatomic, readonly) double duration;
+@property (setter=_setForceDisableTVOut:, nonatomic) BOOL forceDisableTVOut;
+@property (nonatomic) BOOL isActiveController;
+@property (nonatomic, readonly) BOOL isPreparedForPlayback;
+@property (nonatomic, readonly) float playbackRate;
+@property (nonatomic, readonly) unsigned int playbackState;
+@property (nonatomic, readonly, retain) AVPlayer *player;
+@property (nonatomic, readonly, retain) PLMoviePlayerView *view;
 
-+ (void)_cacheMoviePlayerView:(id)arg1;
++ (id)AVAssetURLWithPath:(id)arg1;
 + (BOOL)_isNetworkSupportedPath:(id)arg1;
 + (BOOL)_isStreamableAsset:(id)arg1;
-+ (id)_newOrCachedMoviePlayerView;
-+ (id)assetForMovieWithPath:(id)arg1 options:(id)arg2;
 
 - (BOOL)TVOutEnabled;
 - (BOOL)_allowsExternalPlayback;
+- (id)_asset;
 - (void)_delayedUpdateFromPendingTime;
 - (void)_didEnterBackgroundNotification:(id)arg1;
 - (void)_didLoadValueOfKey:(id)arg1 forAsset:(id)arg2;
-- (void)_dispatchOnMainThreadWithBlock:(id)arg1;
+- (void)_dispatchOnMainThreadWithBlock:(id /* block */)arg1;
 - (void)_displayVideoView;
 - (void)_exitPlayer:(int)arg1;
 - (void)_loadAsset:(id)arg1;
@@ -99,7 +92,6 @@
 - (void)_willResignNotification:(id)arg1;
 - (void)_willSuspendNotification:(id)arg1;
 - (void)alertView:(id)arg1 clickedButtonAtIndex:(int)arg2;
-- (id)audioTimePitchAlgorithm;
 - (unsigned int)bufferingState;
 - (double)currentTime;
 - (void)dealloc;
@@ -123,14 +115,13 @@
 - (id)player;
 - (void)requestToBecomeActiveController;
 - (void)requestToResignAsActiveController;
-- (void)setAsset:(id)arg1 audioMix:(id)arg2 startTime:(double)arg3;
-- (void)setAsset:(id)arg1;
-- (void)setAudioTimePitchAlgorithm:(id)arg1;
-- (void)setCurrentTime:(double)arg1 timeSnapOption:(unsigned int)arg2 forceUpdate:(BOOL)arg3;
-- (void)setCurrentTime:(double)arg1 timeSnapOption:(unsigned int)arg2;
+- (void)resetPlayer;
 - (void)setCurrentTime:(double)arg1;
+- (void)setCurrentTime:(double)arg1 timeSnapOption:(unsigned int)arg2;
+- (void)setCurrentTime:(double)arg1 timeSnapOption:(unsigned int)arg2 forceUpdate:(BOOL)arg3;
 - (void)setDelegate:(id)arg1;
 - (void)setIsActiveController:(BOOL)arg1;
+- (void)setPlayerItem:(id)arg1 startTime:(double)arg2;
 - (void)setTVOutEnabled:(BOOL)arg1;
 - (void)stop;
 - (void)tearDownTVOutWindow;

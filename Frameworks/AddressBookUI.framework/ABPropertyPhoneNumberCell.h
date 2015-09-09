@@ -2,16 +2,9 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class NSString;
+@interface ABPropertyPhoneNumberCell : ABPropertySimpleTransportCell
 
-@interface ABPropertyPhoneNumberCell : ABPropertySimpleCell {
-    NSString *_previousValue;
-}
-
-- (void)dealloc;
-- (void)setEditing:(BOOL)arg1 animated:(BOOL)arg2;
 - (BOOL)shouldPerformDefaultAction;
-- (struct { id x1; unsigned int x2; })suggestionsForString:(id)arg1 inputIndex:(unsigned int)arg2;
 - (void)updateTransportButtons;
 
 @end

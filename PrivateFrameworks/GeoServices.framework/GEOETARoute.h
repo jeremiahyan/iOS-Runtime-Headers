@@ -2,26 +2,16 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSData, NSMutableArray;
-
 @interface GEOETARoute : PBCodable <NSCopying> {
-    struct { 
-        unsigned int *list; 
-        unsigned int count; 
-        unsigned int size; 
-    struct { 
-        unsigned int *list; 
-        unsigned int count; 
-        unsigned int size; 
-    struct { 
-        unsigned int *list; 
-        unsigned int count; 
-        unsigned int size; 
     struct { 
         unsigned int historicTravelTime : 1; 
         unsigned int routeNoLongerValid : 1; 
     } _has;
     unsigned int _historicTravelTime;
+    struct { 
+        unsigned int *list; 
+        unsigned int count; 
+        unsigned int size; 
     } _incidentEndOffsetsInETARoutes;
     NSMutableArray *_incidentsOffReRoutes;
     NSMutableArray *_incidentsOnETARoutes;
@@ -31,31 +21,40 @@
     NSData *_routeID;
     BOOL _routeNoLongerValid;
     NSMutableArray *_steps;
+    struct { 
+        unsigned int *list; 
+        unsigned int count; 
+        unsigned int size; 
     } _trafficColorOffsets;
+    struct { 
+        unsigned int *list; 
+        unsigned int count; 
+        unsigned int size; 
     } _trafficColors;
     NSData *_zilchPoints;
 }
 
-@property BOOL hasHistoricTravelTime;
-@property(readonly) BOOL hasRouteID;
-@property BOOL hasRouteNoLongerValid;
-@property(readonly) BOOL hasZilchPoints;
-@property unsigned int historicTravelTime;
-@property(readonly) unsigned int* incidentEndOffsetsInETARoutes;
-@property(readonly) unsigned int incidentEndOffsetsInETARoutesCount;
-@property(retain) NSMutableArray * incidentsOffReRoutes;
-@property(retain) NSMutableArray * incidentsOnETARoutes;
-@property(retain) NSMutableArray * incidentsOnReRoutes;
-@property(retain) NSMutableArray * invalidSectionZilchPoints;
-@property(retain) NSMutableArray * reroutedRoutes;
-@property(retain) NSData * routeID;
-@property BOOL routeNoLongerValid;
-@property(retain) NSMutableArray * steps;
-@property(readonly) unsigned int* trafficColorOffsets;
-@property(readonly) unsigned int trafficColorOffsetsCount;
-@property(readonly) unsigned int* trafficColors;
-@property(readonly) unsigned int trafficColorsCount;
-@property(retain) NSData * zilchPoints;
+@property (nonatomic, readonly) double expectedTime;
+@property (nonatomic) BOOL hasHistoricTravelTime;
+@property (nonatomic, readonly) BOOL hasRouteID;
+@property (nonatomic) BOOL hasRouteNoLongerValid;
+@property (nonatomic, readonly) BOOL hasZilchPoints;
+@property (nonatomic) unsigned int historicTravelTime;
+@property (nonatomic, readonly) unsigned int*incidentEndOffsetsInETARoutes;
+@property (nonatomic, readonly) unsigned int incidentEndOffsetsInETARoutesCount;
+@property (nonatomic, retain) NSMutableArray *incidentsOffReRoutes;
+@property (nonatomic, retain) NSMutableArray *incidentsOnETARoutes;
+@property (nonatomic, retain) NSMutableArray *incidentsOnReRoutes;
+@property (nonatomic, retain) NSMutableArray *invalidSectionZilchPoints;
+@property (nonatomic, retain) NSMutableArray *reroutedRoutes;
+@property (nonatomic, retain) NSData *routeID;
+@property (nonatomic) BOOL routeNoLongerValid;
+@property (nonatomic, retain) NSMutableArray *steps;
+@property (nonatomic, readonly) unsigned int*trafficColorOffsets;
+@property (nonatomic, readonly) unsigned int trafficColorOffsetsCount;
+@property (nonatomic, readonly) unsigned int*trafficColors;
+@property (nonatomic, readonly) unsigned int trafficColorsCount;
+@property (nonatomic, retain) NSData *zilchPoints;
 
 - (void)addIncidentEndOffsetsInETARoute:(unsigned int)arg1;
 - (void)addIncidentsOffReRoutes:(id)arg1;
@@ -80,6 +79,7 @@
 - (void)dealloc;
 - (id)description;
 - (id)dictionaryRepresentation;
+- (double)expectedTime;
 - (BOOL)hasHistoricTravelTime;
 - (BOOL)hasRouteID;
 - (BOOL)hasRouteNoLongerValid;
@@ -102,7 +102,9 @@
 - (id)invalidSectionZilchPointsAtIndex:(unsigned int)arg1;
 - (unsigned int)invalidSectionZilchPointsCount;
 - (BOOL)isEqual:(id)arg1;
+- (void)mergeFrom:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (double)remainingTimeAlongRoute:(unsigned int)arg1 currentStepRemainingDistance:(double)arg2;
 - (id)reroutedRouteAtIndex:(unsigned int)arg1;
 - (id)reroutedRoutes;
 - (unsigned int)reroutedRoutesCount;

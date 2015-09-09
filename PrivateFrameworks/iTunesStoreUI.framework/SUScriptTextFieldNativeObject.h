@@ -2,18 +2,20 @@
    Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
  */
 
-@class NSString, SUScriptTextFieldDelegate;
-
 @interface SUScriptTextFieldNativeObject : SUScriptNativeObject <SUScriptTextFieldDelegate> {
     SUScriptTextFieldDelegate *_textFieldDelegate;
 }
 
-@property int autocapitalizationType;
-@property int autocorrectionType;
-@property int keyboardType;
-@property(copy) NSString * placeholder;
-@property(copy) NSString * value;
-@property float width;
+@property (nonatomic) int autocapitalizationType;
+@property (nonatomic) int autocorrectionType;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) int keyboardType;
+@property (nonatomic, copy) NSString *placeholder;
+@property (readonly) Class superclass;
+@property (nonatomic, copy) NSString *value;
+@property (nonatomic) float width;
 
 - (id)_nativeObjectDelegate;
 - (void)_sendScriptDidChange;

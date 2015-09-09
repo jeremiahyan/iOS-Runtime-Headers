@@ -2,54 +2,56 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-@class VKPuckAnimatorLocationProjector;
-
 @interface VKCameraContext : NSObject {
-    struct { 
-        double latitude; 
-        double longitude; 
-    struct { 
-        double latitude; 
-        double longitude; 
-    struct { 
-        double latitude; 
-        double longitude; 
-    struct vector<GEOLocationCoordinate2D, vk_allocator<GEOLocationCoordinate2D> > { 
-        struct { /* ? */ } *__begin_; 
-        struct { /* ? */ } *__end_; 
-        struct __compressed_pair<GEOLocationCoordinate2D *, vk_allocator<GEOLocationCoordinate2D> > { 
-            struct { /* ? */ } *__first_; 
-        } __end_cap_; 
+    BOOL _allowVerticalPanning;
     BOOL _animated;
     BOOL _applied;
     int _courseSource;
+    struct { 
+        double latitude; 
+        double longitude; 
     } _courseTargetLocation;
     int _focusStyle;
     double _heading;
     double _lastCameraFocusCourse;
     VKPuckAnimatorLocationProjector *_locationProjector;
+    struct { 
+        double latitude; 
+        double longitude; 
     } _pointOfFocus;
+    struct { 
+        double latitude; 
+        double longitude; 
     } _pointOfReference;
+    struct vector<GEOLocationCoordinate2D, std::__1::allocator<GEOLocationCoordinate2D> > { 
+        struct { /* ? */ } *__begin_; 
+        struct { /* ? */ } *__end_; 
+        struct __compressed_pair<GEOLocationCoordinate2D *, std::__1::allocator<GEOLocationCoordinate2D> > { 
+            struct { /* ? */ } *__first_; 
+        } __end_cap_; 
     } _pois;
     int _style;
     double _verticalGroundspanScale;
 }
 
-@property(readonly) BOOL animated;
-@property BOOL applied;
-@property int courseSource;
-@property struct { double x1; double x2; } courseTargetLocation;
-@property int focusStyle;
-@property(readonly) double heading;
-@property(readonly) struct { double x1; double x2; } pointOfFocus;
-@property(readonly) struct { double x1; double x2; } pointOfReference;
-@property int style;
-@property(readonly) double verticalGroundspanScale;
+@property (nonatomic, readonly) BOOL allowVerticalPanning;
+@property (nonatomic, readonly) BOOL animated;
+@property (nonatomic) BOOL applied;
+@property (nonatomic) int courseSource;
+@property (nonatomic) struct { double x1; double x2; } courseTargetLocation;
+@property (nonatomic) int focusStyle;
+@property (nonatomic, readonly) double heading;
+@property (nonatomic, readonly) struct { double x1; double x2; } pointOfFocus;
+@property (nonatomic, readonly) struct { double x1; double x2; } pointOfReference;
+@property (nonatomic) int style;
+@property (nonatomic, readonly) double verticalGroundspanScale;
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)_setPointOfReference:(struct { double x1; double x2; })arg1 heading:(double)arg2 routeMatch:(id)arg3 onRoute:(BOOL)arg4;
+- (void)_updateForLocation:(id)arg1 routeMatch:(id)arg2 isRouteMatch:(BOOL)arg3 speedMultiplier:(double)arg4 onRoute:(BOOL)arg5 animated:(BOOL)arg6 defaultCourse:(double)arg7;
 - (void)addPointOfInterest:(struct { double x1; double x2; })arg1;
+- (BOOL)allowVerticalPanning;
 - (BOOL)animated;
 - (BOOL)applied;
 - (void)clearPointsOfInterest;
@@ -57,7 +59,7 @@
 - (struct { double x1; double x2; })courseTargetLocation;
 - (void)dealloc;
 - (id)description;
-- (void)enumeratePointsOfInterestUsingBlock:(id)arg1;
+- (void)enumeratePointsOfInterestUsingBlock:(id /* block */)arg1;
 - (int)focusStyle;
 - (double)heading;
 - (id)init;

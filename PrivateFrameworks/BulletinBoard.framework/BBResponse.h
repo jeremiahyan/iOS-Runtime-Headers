@@ -2,45 +2,57 @@
    Image: /System/Library/PrivateFrameworks/BulletinBoard.framework/BulletinBoard
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class BBAssertion, NSArray, NSString;
-
-@interface BBResponse : NSObject <NSCoding> {
+@interface BBResponse : NSObject <NSSecureCoding> {
+    NSString *_actionID;
     int _actionType;
+    BOOL _activated;
     NSString *_bulletinID;
     NSString *_buttonID;
+    NSDictionary *_context;
     BBAssertion *_lifeAssertion;
     NSArray *_lifeAssertions;
+    NSString *_originID;
     NSString *_replyText;
-    id _sendBlock;
+    id /* block */ _sendBlock;
     BOOL _sent;
 }
 
-@property int actionType;
-@property(retain) NSString * bulletinID;
-@property(copy) NSString * buttonID;
-@property(copy) NSArray * lifeAssertions;
-@property(copy) NSString * replyText;
-@property(copy) id sendBlock;
+@property (nonatomic, copy) NSString *actionID;
+@property (nonatomic) int actionType;
+@property (nonatomic) BOOL activated;
+@property (nonatomic, retain) NSString *bulletinID;
+@property (nonatomic, copy) NSString *buttonID;
+@property (nonatomic, copy) NSDictionary *context;
+@property (nonatomic, copy) NSArray *lifeAssertions;
+@property (nonatomic, copy) NSString *originID;
+@property (nonatomic, copy) NSString *replyText;
+@property (nonatomic, copy) id /* block */ sendBlock;
 
++ (BOOL)supportsSecureCoding;
+
+- (id)actionID;
 - (int)actionType;
+- (BOOL)activated;
 - (id)bulletinID;
 - (id)buttonID;
+- (id)context;
 - (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)lifeAssertions;
+- (id)originID;
 - (id)replyText;
 - (void)send;
-- (id)sendBlock;
+- (id /* block */)sendBlock;
+- (void)setActionID:(id)arg1;
 - (void)setActionType:(int)arg1;
+- (void)setActivated:(BOOL)arg1;
 - (void)setBulletinID:(id)arg1;
 - (void)setButtonID:(id)arg1;
+- (void)setContext:(id)arg1;
 - (void)setLifeAssertions:(id)arg1;
+- (void)setOriginID:(id)arg1;
 - (void)setReplyText:(id)arg1;
-- (void)setSendBlock:(id)arg1;
+- (void)setSendBlock:(id /* block */)arg1;
 
 @end

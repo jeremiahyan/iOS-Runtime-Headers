@@ -2,9 +2,7 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class NSArray, NSDictionary, NSIndexPath, NSString, UILocalizedIndexedCollation, UISearchBar, UISearchDisplayController, UITableView;
-
-@interface ABCountryPickerViewController : ABPickerViewController <UITableViewDelegate, UITableViewDataSource, UISearchDisplayDelegate, UISearchBarDelegate> {
+@interface ABCountryPickerViewController : ABPickerViewController <UISearchBarDelegate, UISearchDisplayDelegate, UITableViewDataSource, UITableViewDelegate> {
     NSArray *_allCountries;
     UILocalizedIndexedCollation *_collation;
     NSArray *_filteredCountries;
@@ -18,9 +16,13 @@
     UITableView *_tableView;
 }
 
-@property(retain) NSString * selectedCountryCode;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) NSString *selectedCountryCode;
+@property (readonly) Class superclass;
 
-- (void)_getRotationContentSettings:(struct { BOOL x1; BOOL x2; BOOL x3; BOOL x4; float x5; int x6; }*)arg1;
+- (void)_getRotationContentSettings:(struct { BOOL x1; BOOL x2; BOOL x3; BOOL x4; BOOL x5; float x6; int x7; }*)arg1;
 - (void)_setSelectedCountryCode:(id)arg1 atPath:(id)arg2;
 - (float)ab_heightToFitForViewInPopoverView;
 - (void)configureSections;

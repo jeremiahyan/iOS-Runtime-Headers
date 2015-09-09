@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class NSIndexPath, NSMutableArray, NSObject<OS_dispatch_source>, SKUIGiftAddressingSection, SKUIGiftAmountSection, SKUIGiftItemView, SKUIGiftSendDateSection, SKUIGiftTermsAndConditionsSection, SKUIGiftValidationResponse, SKUIGiftValidator, UIDatePicker, UIImage, UIPopoverController, UITableView, UIView;
-
 @interface SKUIGiftComposeViewController : SKUIGiftStepViewController <UIPopoverControllerDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate> {
     SKUIGiftAddressingSection *_addressingSection;
     SKUIGiftAmountSection *_amountSection;
@@ -24,6 +22,11 @@
     NSObject<OS_dispatch_source> *_validationTimer;
     SKUIGiftValidator *_validator;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_amountControlAction:(id)arg1;

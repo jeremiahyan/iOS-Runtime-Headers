@@ -2,19 +2,19 @@
    Image: /System/Library/PrivateFrameworks/WebCore.framework/WebCore
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
 @interface WebCoreAuthenticationClientAsChallengeSender : NSObject <NSURLAuthenticationChallengeSender> {
     struct _CFURLAuthChallenge { } *m_cfChallenge;
     struct AuthenticationClient { int (**x1)(); } *m_client;
 }
 
-- (struct AuthenticationClient { int (**x1)(); }*)client;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+
 - (void)cancelAuthenticationChallenge:(id)arg1;
 - (struct _CFURLAuthChallenge { }*)cfChallenge;
+- (struct AuthenticationClient { int (**x1)(); }*)client;
 - (void)continueWithoutCredentialForAuthenticationChallenge:(id)arg1;
 - (void)detachClient;
 - (id)initWithAuthenticationClient:(struct AuthenticationClient { int (**x1)(); }*)arg1;

@@ -2,21 +2,23 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UICollectionView, UICollectionViewLayout;
-
-@interface UICollectionViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource> {
+@interface UICollectionViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate> {
+    UICollectionView *_collectionView;
     struct { 
         unsigned int clearsSelectionOnViewWillAppear : 1; 
         unsigned int useLayoutToLayoutNavigationTransitions : 1; 
-    UICollectionView *_collectionView;
     } _collectionViewControllerFlags;
     UICollectionViewLayout *_layout;
 }
 
-@property BOOL clearsSelectionOnViewWillAppear;
-@property(retain) UICollectionView * collectionView;
-@property(readonly) UICollectionViewLayout * collectionViewLayout;
-@property BOOL useLayoutToLayoutNavigationTransitions;
+@property (nonatomic) BOOL clearsSelectionOnViewWillAppear;
+@property (nonatomic, retain) UICollectionView *collectionView;
+@property (nonatomic, readonly) UICollectionViewLayout *collectionViewLayout;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+@property (nonatomic) BOOL useLayoutToLayoutNavigationTransitions;
 
 - (void)__viewWillAppear:(BOOL)arg1;
 - (id)_animatorForOperation:(int)arg1 fromViewController:(id)arg2 toViewController:(id)arg3;
@@ -27,9 +29,9 @@
 - (id)_uiCollectionView;
 - (id)_wrappingView;
 - (BOOL)clearsSelectionOnViewWillAppear;
+- (id)collectionView;
 - (id)collectionView:(id)arg1 cellForItemAtIndexPath:(id)arg2;
 - (int)collectionView:(id)arg1 numberOfItemsInSection:(int)arg2;
-- (id)collectionView;
 - (id)collectionViewLayout;
 - (id)contentScrollView;
 - (id)dataSource;
@@ -39,6 +41,7 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithCollectionViewLayout:(id)arg1;
 - (void)loadView;
+- (id)preferredFocusedItem;
 - (void)setClearsSelectionOnViewWillAppear:(BOOL)arg1;
 - (void)setCollectionView:(id)arg1;
 - (void)setUseLayoutToLayoutNavigationTransitions:(BOOL)arg1;

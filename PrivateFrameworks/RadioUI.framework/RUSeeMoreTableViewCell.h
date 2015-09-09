@@ -2,15 +2,16 @@
    Image: /System/Library/PrivateFrameworks/RadioUI.framework/RadioUI
  */
 
-@class SKUICircleProgressIndicator, UILabel;
-
-@interface RUSeeMoreTableViewCell : UITableViewCell {
+@interface RUSeeMoreTableViewCell : RUTableViewCell {
     SKUICircleProgressIndicator *_activityIndicator;
     UILabel *_detailLabel;
     int _seeMoreState;
 }
 
-@property int seeMoreState;
+@property (nonatomic) int seeMoreState;
+
++ (id)_detailLabelFontForSeeMoreState:(int)arg1;
++ (float)defaultHeightForTraitCollection:(id)arg1;
 
 - (void).cxx_destruct;
 - (void)_updateForChangedState;

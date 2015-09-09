@@ -2,12 +2,13 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface TSCHChartPieAxis : TSCHChartStackedPercentValueAxis {
-}
+@interface TSCHChartPieAxis : TSCHChartStackedPercentValueAxis
 
 - (id)computeMajorGridlinesFromMinMaxInAnalysis:(id)arg1;
 - (id)computeMinorGridlinesFromMajorGridlinesInAnalysis:(id)arg1;
 - (id)formattedStringForSeries:(id)arg1 index:(unsigned int)arg2;
+- (BOOL)supportsAxisValueLabels;
 - (BOOL)supportsFormattedStringForInvalidValue;
+- (BOOL)usesPercentNumberFormatPropertyForSeriesDataFormatting;
 
 @end

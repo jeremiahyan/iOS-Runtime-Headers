@@ -2,14 +2,10 @@
    Image: /System/Library/PrivateFrameworks/StoreBookkeeper.framework/StoreBookkeeper
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class NSMutableData;
-
 @interface SBKZipDeflateMemoryOutputStream : NSObject {
+    int _bufferingSize;
+    char *_outputBuffer;
+    NSMutableData *deflatedData;
     struct z_stream_s { 
         char *next_in; 
         unsigned int avail_in; 
@@ -25,9 +21,6 @@
         int data_type; 
         unsigned int adler; 
         unsigned int reserved; 
-    int _bufferingSize;
-    char *_outputBuffer;
-    NSMutableData *deflatedData;
     } zstream;
 }
 

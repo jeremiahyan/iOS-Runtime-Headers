@@ -2,19 +2,21 @@
    Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
  */
 
-@class <CKReaderViewControllerDelegate>, NSAttributedString, NSString, UITextView;
-
 @interface CKReaderViewController : UIViewController <UIWebViewDelegate> {
     <CKReaderViewControllerDelegate> *_delegate;
     NSString *_messageGUID;
     UITextView *_textView;
 }
 
-@property <CKReaderViewControllerDelegate> * delegate;
-@property(copy) NSString * messageGUID;
-@property(copy) NSAttributedString * text;
-@property(retain) UITextView * textView;
-@property struct _NSRange { unsigned int x1; unsigned int x2; } visibleRange;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <CKReaderViewControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *messageGUID;
+@property (readonly) Class superclass;
+@property (nonatomic, copy) NSAttributedString *text;
+@property (nonatomic, retain) UITextView *textView;
+@property (nonatomic) struct _NSRange { unsigned int x1; unsigned int x2; } visibleRange;
 
 - (BOOL)ckCanDismissWhenSuspending;
 - (void)contentSizeCategoryDidChange:(id)arg1;

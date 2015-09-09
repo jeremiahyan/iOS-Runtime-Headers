@@ -2,43 +2,41 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSMutableArray;
-
 @interface GEORegionalResource : PBCodable <NSCopying> {
-    struct { 
-        unsigned int *list; 
-        unsigned int count; 
-        unsigned int size; 
+    NSMutableArray *_attributions;
     struct { 
         unsigned int x : 1; 
         unsigned int y : 1; 
         unsigned int z : 1; 
-    NSMutableArray *_attributions;
     } _has;
     NSMutableArray *_iconChecksums;
     NSMutableArray *_icons;
     struct { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; unsigned int x5; unsigned int x6; } *_tileRanges;
     unsigned int _tileRangesCount;
     unsigned int _tileRangesSpace;
+    struct { 
+        unsigned int *list; 
+        unsigned int count; 
+        unsigned int size; 
     } _validSubManifestVersions;
     unsigned int _x;
     unsigned int _y;
     unsigned int _z;
 }
 
-@property(retain) NSMutableArray * attributions;
-@property BOOL hasX;
-@property BOOL hasY;
-@property BOOL hasZ;
-@property(retain) NSMutableArray * iconChecksums;
-@property(retain) NSMutableArray * icons;
-@property(readonly) struct { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; unsigned int x5; unsigned int x6; }* tileRanges;
-@property(readonly) unsigned int tileRangesCount;
-@property(readonly) unsigned int* validSubManifestVersions;
-@property(readonly) unsigned int validSubManifestVersionsCount;
-@property unsigned int x;
-@property unsigned int y;
-@property unsigned int z;
+@property (nonatomic, retain) NSMutableArray *attributions;
+@property (nonatomic) BOOL hasX;
+@property (nonatomic) BOOL hasY;
+@property (nonatomic) BOOL hasZ;
+@property (nonatomic, retain) NSMutableArray *iconChecksums;
+@property (nonatomic, retain) NSMutableArray *icons;
+@property (nonatomic, readonly) struct { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; unsigned int x5; unsigned int x6; }*tileRanges;
+@property (nonatomic, readonly) unsigned int tileRangesCount;
+@property (nonatomic, readonly) unsigned int*validSubManifestVersions;
+@property (nonatomic, readonly) unsigned int validSubManifestVersionsCount;
+@property (nonatomic) unsigned int x;
+@property (nonatomic) unsigned int y;
+@property (nonatomic) unsigned int z;
 
 - (void)addAttribution:(id)arg1;
 - (void)addIcon:(id)arg1;
@@ -69,6 +67,7 @@
 - (id)icons;
 - (unsigned int)iconsCount;
 - (BOOL)isEqual:(id)arg1;
+- (void)mergeFrom:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 - (void)setAttributions:(id)arg1;
 - (void)setHasX:(BOOL)arg1;

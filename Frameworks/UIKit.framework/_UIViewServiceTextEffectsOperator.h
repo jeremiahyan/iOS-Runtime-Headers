@@ -2,56 +2,60 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class <_UIViewServiceDeputyDelegate>, UIWindow, _UIAsyncInvocation;
-
-@interface _UIViewServiceTextEffectsOperator : NSObject <XPCProxyTarget, _UIViewServiceTextEffectsOperator_RemoteViewControllerInterface, _UIViewServiceDeputy, _UIViewServiceDeputyRotationDelegate> {
-    struct CGPoint { 
-        float x; 
-        float y; 
+@interface _UIViewServiceTextEffectsOperator : NSObject <_UIViewServiceDeputy, _UIViewServiceDeputyRotationDelegate, _UIViewServiceTextEffectsOperator_RemoteViewControllerInterface> {
     BOOL __automatic_invalidation_invalidated;
     int __automatic_invalidation_retainCount;
+    NSArray *_allowedNotifications;
     BOOL _canRestoreInputViews;
-    <_UIViewServiceDeputyDelegate> *_delegate;
     BOOL _didResignForDisappear;
     UIWindow *_hostedWindow;
     _UIAsyncInvocation *_invalidationInvocation;
     BOOL _isRestoringInputViews;
+    BOOL _localVCDisablesAutomaticBehaviors;
     _UIAsyncInvocation *_prepareForDisconnectionInvocation;
     id _remoteViewControllerProxy;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _windowOffset;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)XPCInterface;
 + (id)operatorWithRemoteViewControllerProxy:(id)arg1 hostPID:(int)arg2;
 
 - (int)__automatic_invalidation_logic;
-- (void)__createHostedTextEffectsWithReplyHandler:(id)arg1;
+- (void)__createHostedTextEffectsWithReplyHandler:(id /* block */)arg1;
 - (void)__hostDidEnterBackground;
 - (void)__hostViewWillAppear:(BOOL)arg1;
 - (void)__hostViewWillDisappear:(BOOL)arg1;
 - (void)__hostWillEnterForeground;
-- (void)__prepareForDisconnectionWithCompletionHandler:(id)arg1;
-- (void)__setContentSize:(id)arg1 windowOffset:(id)arg2;
+- (void)__prepareForDisconnectionWithCompletionHandler:(id /* block */)arg1;
+- (void)__setHostAllowedNotifications:(id)arg1;
 - (void)__setNextAutomaticOrderOutDirection:(int)arg1 duration:(double)arg2;
-- (void)_invalidateUnconditionallyThen:(id)arg1;
+- (void)__setWindowOffset:(struct CGPoint { float x1; float x2; })arg1;
+- (void)_invalidateUnconditionallyThen:(id /* block */)arg1;
 - (BOOL)_isDeallocating;
-- (void)_prepareForDisconnectionUnconditionallyThen:(id)arg1;
+- (void)_prepareForDisconnectionUnconditionallyThen:(id /* block */)arg1;
 - (id)_queue;
 - (void)_restoreInputViews;
 - (void)_sendNotification:(id)arg1;
 - (BOOL)_tryRetain;
 - (void)_viewServiceHostWillEnterForeground:(id)arg1;
 - (void)dealloc;
-- (void)finishRotation;
+- (void)finishRotationFromInterfaceOrientation:(int)arg1;
+- (void)forceSyncToStatusBarOrientation;
 - (id)invalidate;
-- (id)proxy:(id)arg1 detailedSignatureForSelector:(SEL)arg2;
 - (oneway void)release;
 - (id)retain;
 - (unsigned int)retainCount;
-- (void)rotateToInterfaceOrientation:(int)arg1;
-- (void)setDeputyDelegate:(id)arg1;
-- (void)setHostedWindow:(id)arg1;
-- (void)willRotateToInterfaceOrientation:(int)arg1;
+- (void)rotateToInterfaceOrientation:(int)arg1 duration:(double)arg2;
+- (void)setHostedWindow:(id)arg1 disableAutomaticBehaviors:(BOOL)arg2;
+- (void)willRotateToInterfaceOrientation:(int)arg1 duration:(double)arg2;
 - (void)windowDidGainFirstResponder:(id)arg1;
 
 @end

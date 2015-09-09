@@ -2,11 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
 @interface TSUCustomCallBackDictionary : NSMutableDictionary {
     struct __CFDictionary { } *mDictionary;
 }
@@ -15,14 +10,13 @@
 - (id)allValues;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (unsigned int)count;
-- (unsigned int)countByEnumeratingWithState:(struct { unsigned long x1; id *x2; unsigned long *x3; unsigned long x4[5]; }*)arg1 objects:(id*)arg2 count:(unsigned int)arg3;
+- (unsigned int)countByEnumeratingWithState:(struct { unsigned long x1; id *x2; unsigned long x3; unsigned long x4[5]; }*)arg1 objects:(id*)arg2 count:(unsigned int)arg3;
 - (void)dealloc;
 - (void)getObjects:(id*)arg1 andKeys:(id*)arg2;
 - (id)init;
-- (id)initForThemeAssetMapperWithCapacity:(unsigned int)arg1;
 - (id)initWithCFDictionary:(struct __CFDictionary { }*)arg1;
-- (id)initWithCapacity:(unsigned int)arg1 keyCallBacks:(const struct { int x1; int (*x2)(); int (*x3)(); int (*x4)(); int (*x5)(); int (*x6)(); }*)arg2 valueCallBacks:(const struct { int x1; int (*x2)(); int (*x3)(); int (*x4)(); int (*x5)(); }*)arg3;
 - (id)initWithCapacity:(unsigned int)arg1;
+- (id)initWithCapacity:(unsigned int)arg1 keyCallBacks:(const struct { int x1; int (*x2)(); int (*x3)(); int (*x4)(); int (*x5)(); int (*x6)(); }*)arg2 valueCallBacks:(const struct { int x1; int (*x2)(); int (*x3)(); int (*x4)(); int (*x5)(); }*)arg3;
 - (id)keyEnumerator;
 - (id)mutableCopyWithZone:(struct _NSZone { }*)arg1;
 - (id)objectEnumerator;

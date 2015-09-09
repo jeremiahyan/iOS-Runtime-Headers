@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/MobileBackup.framework/MobileBackup
  */
 
-@class MBConnection, NSObject<OS_dispatch_queue>;
-
 @interface MBManagerClient : MBManager <MBConnectionHandler> {
     MBConnection *_conn;
     NSObject<OS_dispatch_queue> *_eventQueue;
@@ -12,8 +10,8 @@
 
 - (void)_backupDidBeginNotification;
 - (void)_establishConnection;
-- (id)_sendRequest:(id)arg1 arguments:(id)arg2 error:(id*)arg3;
 - (id)_sendRequest:(id)arg1 arguments:(id)arg2;
+- (id)_sendRequest:(id)arg1 arguments:(id)arg2 error:(id*)arg3;
 - (void)accountChanged;
 - (BOOL)acquireLockWithBackupUDID:(id)arg1 owner:(id)arg2 timeout:(double)arg3 error:(id*)arg4;
 - (BOOL)addFileToBackupUDID:(id)arg1 snapshotID:(unsigned int)arg2 domainName:(id)arg3 relativePath:(id)arg4 fromPath:(id)arg5 error:(id*)arg6;
@@ -25,6 +23,8 @@
 - (void)connection:(id)arg1 didReceiveMessage:(id)arg2;
 - (void)connectionWasInterrupted:(id)arg1;
 - (void)connectionWasInvalid:(id)arg1;
+- (BOOL)countCameraRollQuota;
+- (BOOL)countCameraRollQuotaForBackupUDID:(id)arg1 error:(id*)arg2;
 - (unsigned int)countOfRestoreFailuresForDataclass:(id)arg1 assetType:(id)arg2;
 - (id)dateOfLastBackup;
 - (id)dateOfNextScheduledBackup;
@@ -33,10 +33,14 @@
 - (BOOL)deleteBackupUDID:(id)arg1 error:(id*)arg2;
 - (BOOL)deleteItemFromBackupUDID:(id)arg1 snapshotID:(unsigned int)arg2 domainName:(id)arg3 relativePath:(id)arg4 error:(id*)arg5;
 - (BOOL)deleteSnapshotID:(unsigned int)arg1 fromBackupUDID:(id)arg2 error:(id*)arg3;
+- (BOOL)discountCameraRollQuota;
+- (BOOL)discountCameraRollQuotaForBackupUDID:(id)arg1 error:(id*)arg2;
 - (id)domainInfoForName:(id)arg1;
 - (id)domainInfoList;
 - (BOOL)extractItemFromBackupUDID:(id)arg1 snapshotID:(unsigned int)arg2 domainName:(id)arg3 relativePath:(id)arg4 toPath:(id)arg5 error:(id*)arg6;
+- (id)filesForSnapshotID:(unsigned int)arg1 backupUDID:(id)arg2 error:(id*)arg3;
 - (void)finishRestore;
+- (id)getAppleIDsForBackupUDID:(id)arg1 snapshotID:(unsigned int)arg2 activeAppleID:(id*)arg3 error:(id*)arg4;
 - (id)getAppleIDsForBackupUDID:(id)arg1 snapshotID:(unsigned int)arg2 error:(id*)arg3;
 - (id)getBackupListWithError:(id*)arg1;
 - (id)getBackupListWithFiltering:(BOOL)arg1 error:(id*)arg2;
@@ -66,8 +70,8 @@
 - (id)restoreInfo;
 - (id)restoreState;
 - (void)setAllowiTunesBackup:(BOOL)arg1;
-- (void)setBackupEnabled:(BOOL)arg1 forDomainName:(id)arg2;
 - (void)setBackupEnabled:(BOOL)arg1;
+- (void)setBackupEnabled:(BOOL)arg1 forDomainName:(id)arg2;
 - (void)setDelegate:(id)arg1;
 - (void)setLogLevel:(int)arg1;
 - (BOOL)setupBackupWithPasscode:(id)arg1 error:(id*)arg2;

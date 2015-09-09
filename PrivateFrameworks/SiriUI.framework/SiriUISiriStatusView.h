@@ -2,11 +2,9 @@
    Image: /System/Library/PrivateFrameworks/SiriUI.framework/SiriUI
  */
 
-@class <SiriUISiriStatusViewAnimationDelegate>, <SiriUISiriStatusViewDelegate>, SiriUIMicButton, UIImageView, UILongPressGestureRecognizer, UIView, _UISiriWaveyView;
-
-@interface SiriUISiriStatusView : UIView <_UISiriWaveyViewDelegate, UIGestureRecognizerDelegate, SiriUISiriStatusViewProtocol> {
+@interface SiriUISiriStatusView : UIView <SiriUISiriStatusViewProtocol, UIGestureRecognizerDelegate, _UISiriWaveyViewDelegate> {
     <SiriUISiriStatusViewAnimationDelegate> *_animationDelegate;
-    SiriUIMicButton *_button;
+    UIButton *_button;
     <SiriUISiriStatusViewDelegate> *_delegate;
     float _disabledMicOpacity;
     int _imageSet;
@@ -14,29 +12,33 @@
     UILongPressGestureRecognizer *_longPressRecognizer;
     UIView *_micOutlineLineView;
     int _mode;
+    UIScreen *_screen;
     UIImageView *_siriMicGlyphView;
     _UISiriWaveyView *_waveyView;
     float _waveyViewWidth;
 }
 
-@property <SiriUISiriStatusViewAnimationDelegate> * animationDelegate;
-@property <SiriUISiriStatusViewDelegate> * delegate;
-@property float disabledMicOpacity;
-@property int mode;
-@property float waveyViewWidth;
+@property (nonatomic) <SiriUISiriStatusViewAnimationDelegate> *animationDelegate;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SiriUISiriStatusViewDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) float disabledMicOpacity;
+@property (readonly) unsigned int hash;
+@property (nonatomic) int mode;
+@property (readonly) Class superclass;
+@property (nonatomic) float waveyViewWidth;
 
-+ (float)_micGlyphYAdjustment;
-+ (float)statusViewHeight;
++ (float)statusViewHeightForWidthSizeClass:(BOOL)arg1;
 
 - (void).cxx_destruct;
 - (id)_animationForCGImages:(id)arg1;
 - (void)_cancelWhileListening;
 - (id)_defaultMicImage;
 - (void)_hideWaveform;
-- (struct CGImage { }*)_lastToThinkingCGImage;
+- (id)_lastToThinkingCGImage;
 - (void)_micButtonHeld:(id)arg1;
-- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_micButtonHitRect;
 - (void)_micButtonTapped:(id)arg1;
+- (float)_micGlyphYAdjustment;
 - (void)_setMicOutlineLayerContents:(struct CGImage { }*)arg1;
 - (void)_setPressedImageEnabled:(BOOL)arg1;
 - (void)_showWaveform;
@@ -48,6 +50,7 @@
 - (id)_transitionToListeningAnimation;
 - (id)_transitionToThinkingAnimation;
 - (id)_transitionToThinkingCompleteAnimation;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_waveyViewFrame;
 - (void)_zoomInMicGlyphForAnimationDuration:(double)arg1;
 - (void)_zoomOutMicGlyph;
 - (id)animationDelegate;
@@ -60,6 +63,7 @@
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 forImageSet:(int)arg2;
 - (void)layoutSubviews;
 - (int)mode;
+- (BOOL)pointInside:(struct CGPoint { float x1; float x2; })arg1 withEvent:(id)arg2;
 - (void)setAnimationDelegate:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setDisabledMicOpacity:(float)arg1;

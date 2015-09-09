@@ -2,10 +2,8 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class EXState;
-
 @interface EXOfficeArtState : OAXDrawingState {
-    EXState *mExcelState;
+    EXReadState *mExcelState;
 }
 
 - (id)excelState;

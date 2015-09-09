@@ -2,11 +2,12 @@
    Image: /System/Library/PrivateFrameworks/UIAccessibility.framework/UIAccessibility
  */
 
-@class SCRCMathExpression;
-
 @interface UIAccessibilityMathViewController : UIViewController {
+    NSDictionary *_mathDictionary;
     SCRCMathExpression *_mathExpression;
 }
+
+@property (nonatomic, readonly) NSDictionary *mathDictionary;
 
 + (id)_uiaxBundle;
 
@@ -14,8 +15,9 @@
 - (id)_htmlString;
 - (void)_styleBarButtonItem:(id)arg1;
 - (void)dealloc;
-- (id)initWithMathExpression:(id)arg1;
+- (id)initWithMathDictionary:(id)arg1;
 - (void)loadView;
+- (id)mathDictionary;
 - (void)viewDidLoad;
 
 @end

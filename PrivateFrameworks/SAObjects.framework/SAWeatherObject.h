@@ -2,18 +2,16 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSArray, NSString, SAWeatherCurrentConditions, SAWeatherLocation, SAWeatherUnits;
+@interface SAWeatherObject : SADomainObject
 
-@interface SAWeatherObject : SADomainObject {
-}
-
-@property(retain) SAWeatherCurrentConditions * currentConditions;
-@property(copy) NSArray * dailyForecasts;
-@property(copy) NSString * extendedForecastUrl;
-@property(copy) NSArray * hourlyForecasts;
-@property(retain) SAWeatherUnits * units;
-@property(copy) NSString * view;
-@property(retain) SAWeatherLocation * weatherLocation;
+@property (nonatomic, retain) SAWeatherCurrentConditions *currentConditions;
+@property (nonatomic, copy) NSArray *dailyForecasts;
+@property (nonatomic, copy) NSString *extendedForecastUrl;
+@property (nonatomic, copy) NSArray *hourlyForecasts;
+@property (nonatomic, retain) SAWeatherUnits *units;
+@property (nonatomic, copy) NSString *view;
+@property (nonatomic, retain) SAWeatherLocation *weatherLocation;
+@property (nonatomic, copy) NSString *weatherRequest;
 
 + (id)object;
 + (id)objectWithDictionary:(id)arg1 context:(id)arg2;
@@ -31,9 +29,11 @@
 - (void)setUnits:(id)arg1;
 - (void)setView:(id)arg1;
 - (void)setWeatherLocation:(id)arg1;
+- (void)setWeatherRequest:(id)arg1;
 - (id)units;
 - (void)updateUsingSet:(id)arg1 add:(id)arg2 remove:(id)arg3;
 - (id)view;
 - (id)weatherLocation;
+- (id)weatherRequest;
 
 @end

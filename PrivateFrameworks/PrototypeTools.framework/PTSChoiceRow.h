@@ -2,25 +2,23 @@
    Image: /System/Library/PrivateFrameworks/PrototypeTools.framework/PrototypeTools
  */
 
-@class NSArray;
-
 @interface PTSChoiceRow : PTSRow {
     NSArray *_possibleShortTitles;
     NSArray *_possibleTitles;
     NSArray *_possibleValues;
 }
 
-@property(copy) NSArray * possibleShortTitles;
-@property(copy) NSArray * possibleTitles;
-@property(copy) NSArray * possibleValues;
+@property (nonatomic, copy) NSArray *possibleShortTitles;
+@property (nonatomic, copy) NSArray *possibleTitles;
+@property (nonatomic, copy) NSArray *possibleValues;
 
 - (void).cxx_destruct;
 - (id)init;
-- (id)possibleShortTitles:(id)arg1;
 - (id)possibleShortTitles;
+- (id)possibleShortTitles:(id)arg1;
 - (id)possibleTitles;
-- (id)possibleValues:(id)arg1 titles:(id)arg2;
 - (id)possibleValues;
+- (id)possibleValues:(id)arg1 titles:(id)arg2;
 - (Class)rowTableViewCellClass;
 - (void)setPossibleShortTitles:(id)arg1;
 - (void)setPossibleTitles:(id)arg1;

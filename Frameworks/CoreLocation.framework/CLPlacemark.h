@@ -2,33 +2,33 @@
    Image: /System/Library/Frameworks/CoreLocation.framework/CoreLocation
  */
 
-@class CLLocation, CLPlacemarkInternal, CLRegion, NSArray, NSDictionary, NSString;
-
 @interface CLPlacemark : NSObject <NSCopying, NSSecureCoding> {
     CLPlacemarkInternal *_internal;
 }
 
-@property(readonly) NSString * ISOcountryCode;
-@property(readonly) NSDictionary * addressDictionary;
-@property(readonly) NSString * administrativeArea;
-@property(readonly) NSArray * areasOfInterest;
-@property(readonly) NSString * country;
-@property(readonly) NSString * inlandWater;
-@property(readonly) NSString * locality;
-@property(readonly) CLLocation * location;
-@property(readonly) NSString * name;
-@property(readonly) NSString * ocean;
-@property(readonly) NSString * postalCode;
-@property(readonly) CLRegion * region;
-@property(readonly) NSString * subAdministrativeArea;
-@property(readonly) NSString * subLocality;
-@property(readonly) NSString * subThoroughfare;
-@property(readonly) NSString * thoroughfare;
+@property (nonatomic, readonly, copy) NSString *ISOcountryCode;
+@property (nonatomic, readonly, copy) NSDictionary *addressDictionary;
+@property (nonatomic, readonly, copy) NSString *administrativeArea;
+@property (nonatomic, readonly, copy) NSArray *areasOfInterest;
+@property (nonatomic, readonly, copy) NSString *country;
+@property (nonatomic, readonly, copy) NSString *inlandWater;
+@property (nonatomic, readonly, copy) NSString *locality;
+@property (nonatomic, readonly, copy) CLLocation *location;
+@property (nonatomic, readonly, copy) NSString *name;
+@property (nonatomic, readonly, copy) NSString *ocean;
+@property (nonatomic, readonly, copy) NSString *postalCode;
+@property (nonatomic, readonly, copy) CLRegion *region;
+@property (nonatomic, readonly, copy) NSString *subAdministrativeArea;
+@property (nonatomic, readonly, copy) NSString *subLocality;
+@property (nonatomic, readonly, copy) NSString *subThoroughfare;
+@property (nonatomic, readonly, copy) NSString *thoroughfare;
 
-+ (id)placemarkWithPlace:(id)arg1;
++ (id)placemarkWithGEOMapItem:(id)arg1;
 + (BOOL)supportsSecureCoding;
 
 - (id)ISOcountryCode;
+- (id)_geoMapItem;
+- (id)_initWithGeoMapItem:(id)arg1;
 - (id)addressDictionary;
 - (id)administrativeArea;
 - (id)areasOfInterest;

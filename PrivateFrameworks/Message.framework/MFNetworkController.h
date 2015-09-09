@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/Message.framework/Message
  */
 
-@class NSLock, NSMutableArray, NSMutableSet, NSObject<OS_dispatch_queue>, NSString, NSThread, RadiosPreferences;
-
-@interface MFNetworkController : NSObject <RadiosPreferencesDelegate> {
+@interface MFNetworkController : NSObject <MFDiagnosticsGenerator, RadiosPreferencesDelegate> {
     NSMutableSet *_backgroundWifiClients;
     NSMutableSet *_calls;
     BOOL _data;
@@ -30,7 +28,11 @@
     void *_wifiManager;
 }
 
-@property void* wifiManager;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+@property (nonatomic) void*wifiManager;
 
 + (id)networkAssertionWithIdentifier:(id)arg1;
 + (id)sharedInstance;
@@ -49,7 +51,7 @@
 - (void)_tearDownTelephony_nts;
 - (void)_updateWifiClientType;
 - (void)addBackgroundWifiClient:(id)arg1;
-- (id)addNetworkObserverBlock:(id)arg1 queue:(id)arg2;
+- (id)addNetworkObserverBlock:(id /* block */)arg1 queue:(id)arg2;
 - (void)airplaneModeChanged;
 - (id)copyDiagnosticInformation;
 - (int)dataStatus;

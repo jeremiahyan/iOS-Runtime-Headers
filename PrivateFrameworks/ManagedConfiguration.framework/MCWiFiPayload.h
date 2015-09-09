@@ -2,13 +2,12 @@
    Image: /System/Library/PrivateFrameworks/ManagedConfiguration.framework/ManagedConfiguration
  */
 
-@class NSArray, NSDictionary, NSNumber, NSString;
-
 @interface MCWiFiPayload : MCPayload {
     NSString *_HESSID;
     NSArray *_MCCAndMNCs;
     NSArray *_NAIRealmNames;
     BOOL _autoJoin;
+    NSNumber *_autoJoinNum;
     NSString *_certificateUUID;
     NSString *_credentialUUID;
     NSString *_displayedOperatorName;
@@ -16,7 +15,9 @@
     NSDictionary *_eapClientConfig;
     NSString *_encryptionType;
     BOOL _isHidden;
+    NSNumber *_isHiddenNum;
     BOOL _isHotspot;
+    NSNumber *_isHotspotNum;
     BOOL _isWEP;
     BOOL _isWPA;
     NSString *_password;
@@ -24,6 +25,7 @@
     NSArray *_payloadCertificateAnchorUUID;
     NSNumber *_priority;
     BOOL _proxyPACFallbackAllowed;
+    NSNumber *_proxyPACFallbackAllowedNum;
     NSString *_proxyPACURLString;
     NSString *_proxyPassword;
     NSString *_proxyServer;
@@ -32,41 +34,47 @@
     NSString *_proxyUsername;
     NSArray *_roamingConsortiumOIs;
     BOOL _serviceProviderRoamingEnabled;
+    NSNumber *_serviceProviderRoamingEnabledNum;
     NSString *_ssid;
     NSString *_username;
     BOOL _usernameRequired;
 }
 
-@property(retain) NSString * HESSID;
-@property(retain) NSArray * MCCAndMNCs;
-@property(retain) NSArray * NAIRealmNames;
-@property BOOL autoJoin;
-@property(retain) NSString * certificateUUID;
-@property(retain) NSString * credentialUUID;
-@property(retain) NSString * displayedOperatorName;
-@property(retain) NSString * domainName;
-@property(retain) NSDictionary * eapClientConfig;
-@property(retain) NSString * encryptionType;
-@property BOOL isHidden;
-@property BOOL isHotspot;
-@property BOOL isWEP;
-@property BOOL isWPA;
-@property(retain) NSString * password;
-@property BOOL passwordRequired;
-@property(retain) NSArray * payloadCertificateAnchorUUID;
-@property(retain) NSNumber * priority;
-@property BOOL proxyPACFallbackAllowed;
-@property(retain) NSString * proxyPACURLString;
-@property(retain) NSString * proxyPassword;
-@property(retain) NSString * proxyServer;
-@property(retain) NSNumber * proxyServerPort;
-@property int proxyType;
-@property(retain) NSString * proxyUsername;
-@property(retain) NSArray * roamingConsortiumOIs;
-@property(getter=isServiceProviderRoamingEnabled) BOOL serviceProviderRoamingEnabled;
-@property(retain) NSString * ssid;
-@property(retain) NSString * username;
-@property BOOL usernameRequired;
+@property (nonatomic, retain) NSString *HESSID;
+@property (nonatomic, retain) NSArray *MCCAndMNCs;
+@property (nonatomic, retain) NSArray *NAIRealmNames;
+@property (nonatomic) BOOL autoJoin;
+@property (nonatomic, retain) NSNumber *autoJoinNum;
+@property (nonatomic, retain) NSString *certificateUUID;
+@property (nonatomic, retain) NSString *credentialUUID;
+@property (nonatomic, retain) NSString *displayedOperatorName;
+@property (nonatomic, retain) NSString *domainName;
+@property (nonatomic, retain) NSDictionary *eapClientConfig;
+@property (nonatomic, retain) NSString *encryptionType;
+@property (nonatomic) BOOL isHidden;
+@property (nonatomic, retain) NSNumber *isHiddenNum;
+@property (nonatomic) BOOL isHotspot;
+@property (nonatomic, retain) NSNumber *isHotspotNum;
+@property (nonatomic) BOOL isWEP;
+@property (nonatomic) BOOL isWPA;
+@property (nonatomic, retain) NSString *password;
+@property (nonatomic) BOOL passwordRequired;
+@property (nonatomic, retain) NSArray *payloadCertificateAnchorUUID;
+@property (nonatomic, retain) NSNumber *priority;
+@property (nonatomic) BOOL proxyPACFallbackAllowed;
+@property (nonatomic, retain) NSNumber *proxyPACFallbackAllowedNum;
+@property (nonatomic, retain) NSString *proxyPACURLString;
+@property (nonatomic, retain) NSString *proxyPassword;
+@property (nonatomic, retain) NSString *proxyServer;
+@property (nonatomic, retain) NSNumber *proxyServerPort;
+@property (nonatomic) int proxyType;
+@property (nonatomic, retain) NSString *proxyUsername;
+@property (nonatomic, retain) NSArray *roamingConsortiumOIs;
+@property (getter=isServiceProviderRoamingEnabled, nonatomic) BOOL serviceProviderRoamingEnabled;
+@property (nonatomic, retain) NSNumber *serviceProviderRoamingEnabledNum;
+@property (nonatomic, retain) NSString *ssid;
+@property (nonatomic, retain) NSString *username;
+@property (nonatomic) BOOL usernameRequired;
 
 + (id)localizedPluralForm;
 + (id)localizedSingularForm;
@@ -80,7 +88,9 @@
 - (id)_eapPasswordFromConfig:(id)arg1 isRequired:(BOOL*)arg2;
 - (id)_eapUsernameFromConfig:(id)arg1 isRequired:(BOOL*)arg2;
 - (BOOL)_isEAPSIMConfig:(id)arg1;
+- (id)_localizedEncryptionTypeString;
 - (BOOL)autoJoin;
+- (id)autoJoinNum;
 - (id)certificateUUID;
 - (id)credentialUUID;
 - (id)description;
@@ -89,16 +99,21 @@
 - (id)eapClientConfig;
 - (id)encryptionType;
 - (id)initWithDictionary:(id)arg1 profile:(id)arg2 outError:(id*)arg3;
+- (id)installationWarnings;
 - (BOOL)isHidden;
+- (id)isHiddenNum;
 - (BOOL)isHotspot;
+- (id)isHotspotNum;
 - (BOOL)isServiceProviderRoamingEnabled;
 - (BOOL)isWEP;
 - (BOOL)isWPA;
 - (id)password;
 - (BOOL)passwordRequired;
 - (id)payloadCertificateAnchorUUID;
+- (id)payloadDescriptionKeyValueSections;
 - (id)priority;
 - (BOOL)proxyPACFallbackAllowed;
+- (id)proxyPACFallbackAllowedNum;
 - (id)proxyPACURLString;
 - (id)proxyPassword;
 - (id)proxyServer;
@@ -106,7 +121,9 @@
 - (int)proxyType;
 - (id)proxyUsername;
 - (id)roamingConsortiumOIs;
+- (id)serviceProviderRoamingEnabledNum;
 - (void)setAutoJoin:(BOOL)arg1;
+- (void)setAutoJoinNum:(id)arg1;
 - (void)setCertificateUUID:(id)arg1;
 - (void)setCredentialUUID:(id)arg1;
 - (void)setDisplayedOperatorName:(id)arg1;
@@ -115,7 +132,9 @@
 - (void)setEncryptionType:(id)arg1;
 - (void)setHESSID:(id)arg1;
 - (void)setIsHidden:(BOOL)arg1;
+- (void)setIsHiddenNum:(id)arg1;
 - (void)setIsHotspot:(BOOL)arg1;
+- (void)setIsHotspotNum:(id)arg1;
 - (void)setIsWEP:(BOOL)arg1;
 - (void)setIsWPA:(BOOL)arg1;
 - (void)setMCCAndMNCs:(id)arg1;
@@ -125,6 +144,7 @@
 - (void)setPayloadCertificateAnchorUUID:(id)arg1;
 - (void)setPriority:(id)arg1;
 - (void)setProxyPACFallbackAllowed:(BOOL)arg1;
+- (void)setProxyPACFallbackAllowedNum:(id)arg1;
 - (void)setProxyPACURLString:(id)arg1;
 - (void)setProxyPassword:(id)arg1;
 - (void)setProxyServer:(id)arg1;
@@ -133,6 +153,7 @@
 - (void)setProxyUsername:(id)arg1;
 - (void)setRoamingConsortiumOIs:(id)arg1;
 - (void)setServiceProviderRoamingEnabled:(BOOL)arg1;
+- (void)setServiceProviderRoamingEnabledNum:(id)arg1;
 - (void)setSsid:(id)arg1;
 - (void)setUsername:(id)arg1;
 - (void)setUsernameRequired:(BOOL)arg1;

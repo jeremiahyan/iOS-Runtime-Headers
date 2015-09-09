@@ -2,8 +2,12 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@interface SASettingOpenAirplaneMode : SASettingOpenSettings {
-}
+@interface SASettingOpenAirplaneMode : SASettingOpenSettings <SASettingSettingsAction>
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)openAirplaneMode;
 + (id)openAirplaneModeWithDictionary:(id)arg1 context:(id)arg2;

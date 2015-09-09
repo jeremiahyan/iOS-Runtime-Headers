@@ -2,17 +2,17 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@class NSLock;
-
 @interface _NSXPCConnectionImportInfo : NSObject {
+    unsigned long long _generationCount;
+    struct __CFSet { } *_knownProxies;
     NSLock *_lock;
-    struct __CFDictionary { } *_map;
+    struct __CFDictionary { } *_proxyNumberToCount;
 }
 
+- (void)addProxy:(id)arg1;
 - (void)dealloc;
-- (BOOL)decrement:(unsigned long long)arg1;
 - (void)finalize;
-- (void)increment:(unsigned long long)arg1;
 - (id)init;
+- (BOOL)removeProxy:(id)arg1;
 
 @end

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSString;
-
 @interface OADOle : NSObject {
     NSString *mAnsiClipboardFormatName;
     NSString *mAnsiProgID;
@@ -19,13 +17,15 @@
 }
 
 + (BOOL)isCLSIDSupported:(id)arg1;
-+ (BOOL)isProgIDSupported:(id)arg1;
++ (BOOL)isProgIDChart:(id)arg1;
++ (BOOL)isProgIDMathType:(id)arg1;
 
 - (id)CLSID;
 - (id)ansiClipboardFormatName;
 - (id)ansiProgID;
 - (id)ansiUserType;
 - (void)dealloc;
+- (id)description;
 - (BOOL)iconic;
 - (id)init;
 - (id)macClipboardFormat;

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSArray;
-
 @interface TSCHChartSeriesType : NSObject {
     NSArray *mSeriesRendererClasses;
 }
@@ -35,8 +33,9 @@
 + (id)stackedBarSeries;
 + (id)stackedColumn3DSeries;
 + (id)stackedColumnSeries;
++ (id)styleArchTypes;
 
-- (unsigned int)adjustLabelPosition:(unsigned int)arg1 forValue:(double)arg2;
+- (unsigned int)adjustLabelPosition:(unsigned int)arg1 forAxisValue:(double)arg2 intercept:(double)arg3;
 - (id)autorelease;
 - (id)axisTypesForValueLabels;
 - (double)beginDataValueForSeries:(id)arg1 groupIndex:(unsigned int)arg2 valueAxisID:(id)arg3;
@@ -50,8 +49,8 @@
 - (int)defaultSymbolType;
 - (id)elementBuilder;
 - (int)fillSetFillProperty;
-- (unsigned int)filterChartLabelPosition:(unsigned int)arg1 forSeries:(id)arg2;
 - (unsigned int)filterChartLabelPosition:(unsigned int)arg1;
+- (unsigned int)filterChartLabelPosition:(unsigned int)arg1 forSeries:(id)arg2;
 - (BOOL)floatValueForLabelExplosion:(float*)arg1 series:(id)arg2;
 - (id)genericToSpecificPropertyMap;
 - (id)init;
@@ -73,6 +72,7 @@
 - (Class)sceneObjectClass;
 - (unsigned int)seriesIndexForDrawing:(id)arg1;
 - (id)seriesRendererClasses;
+- (int)specificFillSetFillProperty;
 - (id)supportedSymbols;
 - (id)supportedValueLabelsAxisCombinations;
 - (BOOL)supportsBarGap;
@@ -84,6 +84,7 @@
 - (BOOL)supportsSeriesGradientFill;
 - (BOOL)supportsSeriesStroke;
 - (BOOL)supportsSetGap;
+- (BOOL)supportsShadowOffset;
 - (BOOL)supportsSymbolDrawing;
 - (BOOL)supportsSymbolFillForSymbolType:(int)arg1;
 - (BOOL)supportsSymbolTypeEditing;

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class ODDColorTransform, ODDNodePoint, ODDStyleDefinition;
-
 @interface ODDDiagram : OADDrawable {
     ODDColorTransform *mColorTransform;
     ODDNodePoint *mDocumentPoint;
@@ -12,6 +10,7 @@
 
 - (id)colorTransform;
 - (void)dealloc;
+- (id)description;
 - (id)documentPoint;
 - (id)init;
 - (void)setDocumentPoint:(id)arg1;

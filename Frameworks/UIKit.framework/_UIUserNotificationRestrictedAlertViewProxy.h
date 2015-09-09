@@ -6,6 +6,11 @@
     id _delegate;
 }
 
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+
 + (id)restrictedProxyForAlertView:(id)arg1;
 
 - (id)delegate;

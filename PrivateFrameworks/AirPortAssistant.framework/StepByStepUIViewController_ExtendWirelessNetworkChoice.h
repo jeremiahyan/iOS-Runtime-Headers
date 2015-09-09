@@ -16,6 +16,6 @@
 - (void)stepByStepUpdateProgress:(id)arg1 forState:(int)arg2;
 - (void)touchInCellAtIndexPath:(id)arg1;
 - (void)updateNavigationButtons;
-- (void)viewDidLoad;
+- (void)viewWillAppear:(BOOL)arg1;
 
 @end

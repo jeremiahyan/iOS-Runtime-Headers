@@ -2,18 +2,19 @@
    Image: /System/Library/PrivateFrameworks/SpringBoardFoundation.framework/SpringBoardFoundation
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
 @interface _SBFBlockObserver : NSObject <SBFObserver> {
-    id _completionBlock;
-    id _failureBlock;
-    id _resultBlock;
+    id /* block */ _completionBlock;
+    id /* block */ _failureBlock;
+    id /* block */ _resultBlock;
 }
 
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+
 - (void)dealloc;
-- (id)initWithResultBlock:(id)arg1 completionBlock:(id)arg2 failureBlock:(id)arg3;
+- (id)initWithResultBlock:(id /* block */)arg1 completionBlock:(id /* block */)arg2 failureBlock:(id /* block */)arg3;
 - (void)observerDidComplete;
 - (void)observerDidFailWithError:(id)arg1;
 - (void)observerDidReceiveResult:(id)arg1;

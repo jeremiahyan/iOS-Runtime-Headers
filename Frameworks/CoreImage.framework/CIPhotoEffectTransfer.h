@@ -2,9 +2,10 @@
    Image: /System/Library/Frameworks/CoreImage.framework/CoreImage
  */
 
-@interface CIPhotoEffectTransfer : CIPhotoEffect {
-}
+@interface CIPhotoEffectTransfer : CIPhotoEffect
 
 + (id)customAttributes;
+
+- (void)setDefaults;
 
 @end

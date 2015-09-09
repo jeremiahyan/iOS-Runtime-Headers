@@ -2,11 +2,8 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@class UICalloutView;
-
 @interface MKCalloutBasedAnnotationCalloutController : MKAnnotationCalloutController {
     UICalloutView *_calloutView;
-    Class _calloutViewClass;
 }
 
 - (void).cxx_destruct;
@@ -21,12 +18,10 @@
 - (BOOL)calloutContainsPoint:(struct CGPoint { float x1; float x2; })arg1;
 - (void)calloutView:(id)arg1 didMoveToAnchorPoint:(struct CGPoint { float x1; float x2; })arg2 animated:(BOOL)arg3;
 - (void)calloutView:(id)arg1 willMoveToAnchorPoint:(struct CGPoint { float x1; float x2; })arg2 animated:(BOOL)arg3;
-- (Class)calloutViewClass;
 - (float)defaultCalloutHeight;
 - (void)hideCalloutAnimated:(BOOL)arg1;
 - (id)init;
 - (BOOL)isCalloutExpanded;
-- (void)setCalloutViewClass:(Class)arg1;
 - (void)showCalloutForAnnotationView:(id)arg1 animated:(BOOL)arg2 scrollToFit:(BOOL)arg3 avoid:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg4;
 
 @end

@@ -2,12 +2,10 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface TSCHChartTypeArea : TSCH2DChartType {
-}
+@interface TSCHChartTypeArea : TSCH2DChartType
 
 - (id)defaultSeriesType:(unsigned int)arg1;
 - (id)init;
-- (BOOL)supportsMultipleValueScales;
 - (id)userInterfaceName;
 
 @end

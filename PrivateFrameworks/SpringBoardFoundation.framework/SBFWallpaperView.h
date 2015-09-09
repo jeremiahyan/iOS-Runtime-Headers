@@ -2,10 +2,7 @@
    Image: /System/Library/PrivateFrameworks/SpringBoardFoundation.framework/SpringBoardFoundation
  */
 
-@class <SBFWallpaperViewInternalObserver>, <SBFWallpaperViewLegibilityObserver>, NSTimer, SBFWallpaperParallaxSettings, SBFWallpaperSettings, UIColor, UIImage, UIImageView, UIView, _UILegibilitySettings, _UILegibilitySettingsProvider;
-
 @interface SBFWallpaperView : UIView <_UISettingsKeyObserver> {
-    UIImageView *_bottomGradientView;
     NSTimer *_colorSampleTimer;
     float _contentScaleFactor;
     UIView *_contentView;
@@ -25,8 +22,6 @@
     SBFWallpaperParallaxSettings *_parallaxSettings;
     UIView *_parallaxView;
     BOOL _shouldGenerateBlurredImagesWhenVisible;
-    BOOL _suppressesGradients;
-    UIImageView *_topGradientView;
     int _variant;
     BOOL _wallpaperAnimationEnabled;
     SBFWallpaperSettings *_wallpaperSettings;
@@ -34,21 +29,24 @@
     float _zoomFactor;
 }
 
-@property(retain) UIView * contentView;
-@property BOOL continuousColorSamplingEnabled;
-@property float contrast;
-@property BOOL filtersAverageColor;
-@property <SBFWallpaperViewInternalObserver> * internalObserver;
-@property <SBFWallpaperViewLegibilityObserver> * legibilityObserver;
-@property(retain) _UILegibilitySettings * legibilitySettings;
-@property float parallaxAxisAdjustmentAngle;
-@property BOOL parallaxEnabled;
-@property float parallaxFactor;
-@property BOOL suppressesGradients;
-@property int variant;
-@property BOOL wallpaperAnimationEnabled;
-@property(readonly) UIImage * wallpaperImage;
-@property float zoomFactor;
+@property (nonatomic, retain) UIView *contentView;
+@property (nonatomic) BOOL continuousColorSamplingEnabled;
+@property (nonatomic) float contrast;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL filtersAverageColor;
+@property (readonly) unsigned int hash;
+@property (nonatomic) <SBFWallpaperViewInternalObserver> *internalObserver;
+@property (nonatomic) <SBFWallpaperViewLegibilityObserver> *legibilityObserver;
+@property (nonatomic, retain) _UILegibilitySettings *legibilitySettings;
+@property (nonatomic) float parallaxAxisAdjustmentAngle;
+@property (nonatomic) BOOL parallaxEnabled;
+@property (nonatomic) float parallaxFactor;
+@property (readonly) Class superclass;
+@property (nonatomic) int variant;
+@property (nonatomic) BOOL wallpaperAnimationEnabled;
+@property (nonatomic, readonly) UIImage *wallpaperImage;
+@property (nonatomic) float zoomFactor;
 
 + (BOOL)_allowsParallax;
 + (BOOL)_allowsRasterization;
@@ -60,9 +58,6 @@
 - (void)_beginDisallowRasterizationBlock;
 - (id)_blurReplacementImage;
 - (id)_blurredImage;
-- (float)_bottomGradientAlpha;
-- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_bottomGradientTestRect;
-- (void)_cleanupAfterAnimatingGradients;
 - (id)_computeAverageColor;
 - (id)_displayedImage;
 - (void)_endDisallowRasterizationBlock;
@@ -72,50 +67,49 @@
 - (BOOL)_isVisible;
 - (void)_notifyBlursInvalidated;
 - (void)_notifyGeometryInvalidated;
-- (void)_prepareToAnimateGradients;
+- (id)_primaryColorOverride;
 - (void)_removeParallax;
 - (void)_setLegibilitySettings:(id)arg1 notify:(BOOL)arg2;
-- (BOOL)_shouldShowBottomGradient;
-- (BOOL)_shouldShowTopGradient;
 - (void)_startGeneratingBlurredImages;
 - (void)_stopGeneratingBlurredImages;
-- (float)_topGradientAlpha;
-- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_topGradientTestRect;
 - (void)_updateContentViewScale;
 - (void)_updateGeneratingBlurs;
-- (void)_updateGradientAlpha;
-- (void)_updateGradientImage;
 - (void)_updateLegibilitySettingsForAverageColor:(id)arg1 notify:(BOOL)arg2;
 - (void)_updateParallaxSettings;
 - (void)_updateRasterizationState;
 - (void)_updateScaleFactor;
+- (id)_wallpaperName;
 - (id)averageColorInRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 withSmudgeRadius:(float)arg2;
 - (id)blurredImage;
 - (float)contentScaleFactor;
 - (id)contentView;
 - (BOOL)continuousColorSamplingEnabled;
 - (float)contrast;
-- (float)contrastInRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 contrastWithinBoxes:(float*)arg2 contrastBetweenBoxes:(float*)arg3;
 - (float)contrastInRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (float)contrastInRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 contrastWithinBoxes:(float*)arg2 contrastBetweenBoxes:(float*)arg3;
+- (BOOL)contrastRequiresGradient;
 - (BOOL)contrastRequiresTreatments;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })cropRect;
 - (float)cropZoomScale;
 - (void)dealloc;
 - (void)didMoveToWindow;
 - (BOOL)filtersAverageColor;
-- (float)gradientOpacityInRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 contrastWithinBoxesFactor:(float)arg2 allowLuminanceCheck:(BOOL)arg3;
 - (id)imageForBackdropParameters:(struct { int x1; int x2; int x3; })arg1 includeTint:(BOOL)arg2;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 variant:(int)arg2;
 - (id)internalObserver;
 - (void)invalidate;
-- (BOOL)isDisplayingWallpaper:(id)arg1;
+- (BOOL)isDisplayingWallpaper:(id)arg1 forVariant:(int)arg2 options:(id)arg3;
 - (void)layoutSubviews;
 - (id)legibilityObserver;
 - (id)legibilitySettings;
+- (void)legibilitySettingsDidChange;
 - (BOOL)luminanceInRectRequiresTreatments:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (float)parallaxAxisAdjustmentAngle;
 - (BOOL)parallaxEnabled;
 - (float)parallaxFactor;
+- (void)prepareToAppear;
+- (void)prepareToDisappear;
 - (void)setContentView:(id)arg1;
 - (void)setContentsRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)setContinuousColorSamplingEnabled:(BOOL)arg1;
@@ -130,14 +124,13 @@
 - (void)setParallaxAxisAdjustmentAngle:(float)arg1;
 - (void)setParallaxEnabled:(BOOL)arg1;
 - (void)setParallaxFactor:(float)arg1;
-- (void)setSuppressesGradients:(BOOL)arg1;
-- (void)setVariant:(int)arg1 withAnimationFactory:(id)arg2;
 - (void)setVariant:(int)arg1;
+- (void)setVariant:(int)arg1 withAnimationFactory:(id)arg2;
+- (void)setVariant:(int)arg1 withAnimationFactory:(id)arg2 forced:(BOOL)arg3;
 - (void)setWallpaperAnimationEnabled:(BOOL)arg1;
 - (void)setZoomFactor:(float)arg1;
 - (void)settings:(id)arg1 changedValueForKey:(id)arg2;
 - (BOOL)supportsCropping;
-- (BOOL)suppressesGradients;
 - (void)updateLegibilitySettingsForAverageColor:(id)arg1;
 - (int)variant;
 - (BOOL)wallpaperAnimationEnabled;

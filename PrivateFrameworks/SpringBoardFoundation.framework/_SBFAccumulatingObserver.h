@@ -2,14 +2,17 @@
    Image: /System/Library/PrivateFrameworks/SpringBoardFoundation.framework/SpringBoardFoundation
  */
 
-@class NSError, NSMutableArray, NSObject<OS_dispatch_semaphore>;
-
 @interface _SBFAccumulatingObserver : NSObject <SBFObserver> {
     BOOL _didComplete;
     NSError *_error;
     NSMutableArray *_results;
     NSObject<OS_dispatch_semaphore> *_semaphore;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)dealloc;
 - (id)init;

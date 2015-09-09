@@ -2,33 +2,37 @@
    Image: /System/Library/PrivateFrameworks/RadioUI.framework/RadioUI
  */
 
-@class <RUHistoryViewControllerDelegate>, MPAVItem, NSArray, NSMutableArray, RUHistoryDataSource, RUPreviewSession, RUWishlistDataSource, RadioHistoryCategory, SKUICircleProgressIndicator, UIActionSheet, UILabel, UITableView;
-
-@interface RUHistoryViewController : UIViewController <RUAudioPreviewViewDelegate, RUHistoryDataSourceDelegate, RUWishlistDataSourceDelegate, UIActionSheetDelegate, UITableViewDataSource, UITableViewDelegate> {
+@interface RUHistoryViewController : UIViewController <RUAudioPreviewViewDelegate, RUHistoryDataSourceDelegate, RUPreviewSessionObserver, RUWishlistDataSourceDelegate, UIActionSheetDelegate, UITableViewDataSource, UITableViewDelegate> {
     SKUICircleProgressIndicator *_activityIndicator;
     UIActionSheet *_confirmationActionSheet;
     <RUHistoryViewControllerDelegate> *_delegate;
     NSArray *_historyCategories;
     RUHistoryDataSource *_historyDataSource;
     int _historyType;
-    BOOL _isVisible;
     UILabel *_loadingLabel;
     UILabel *_noHistoryLabel;
     RUPreviewSession *_previewSession;
     MPAVItem *_previewingAVItem;
     RadioHistoryCategory *_previewingHistoryCategory;
     UITableView *_tableView;
+    MPMoviePlayerController *_videoAdPreviewMoviePlayerController;
+    RURadioAdTrack *_videoAdTrack;
     RUWishlistDataSource *_wishlistDataSource;
     NSMutableArray *_wishlistedTracks;
 }
 
-@property <RUHistoryViewControllerDelegate> * delegate;
-@property(readonly) int historyType;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <RUHistoryViewControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) int historyType;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_clearAction:(id)arg1;
 - (void)_configureCell:(id)arg1 forAdTrack:(id)arg2;
 - (void)_configureCell:(id)arg1 forRadioTrack:(id)arg2;
+- (void)_contentSizeCategoryDidChangeNotification:(id)arg1;
 - (unsigned int)_count;
 - (void)_didReceiveRadioAccountDidDeauthenticateNotification:(id)arg1;
 - (void)_doneAction:(id)arg1;
@@ -36,13 +40,16 @@
 - (id)_indexPathForPreviewingItem;
 - (BOOL)_isHistoryItem:(id)arg1 effectivelyPlayingWithAVItem:(id)arg2;
 - (BOOL)_isLoading;
-- (id)_newSectionFooterForType:(int)arg1 inSection:(int)arg2;
-- (id)_newSectionHeaderForType:(int)arg1 withAttributedText:(id)arg2 detailAttributedText:(id)arg3;
 - (id)_newSegmentedControl;
 - (void)_refreshHistoryTracks;
 - (void)_refreshWishlistedTracks;
+- (void)_reportVideoAdPreviewDidFinishIfNeeded;
 - (void)_selectedSegmentIndexDidChangeAction:(id)arg1;
+- (void)_updateTableViewRowHeight;
 - (void)_updateViewForHistoryChange;
+- (void)_updateViewForHorizontalSizeClassChange;
+- (void)_updateViewForTraitCollectionChange;
+- (void)_videoAdPreviewMoviePlaybackDidFinishNotification:(id)arg1;
 - (id)_wishlistedTrackAtIndexPath:(id)arg1;
 - (void)actionSheet:(id)arg1 clickedButtonAtIndex:(int)arg2;
 - (void)audioPreviewViewDidCancel:(id)arg1 forReason:(int)arg2;
@@ -54,6 +61,7 @@
 - (int)historyType;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (int)numberOfSectionsInTableView:(id)arg1;
+- (void)previewSession:(id)arg1 didChangeFromItem:(id)arg2 toItem:(id)arg3;
 - (void)setDelegate:(id)arg1;
 - (unsigned int)supportedInterfaceOrientations;
 - (BOOL)tableView:(id)arg1 canEditRowAtIndexPath:(id)arg2;
@@ -67,6 +75,8 @@
 - (id)tableView:(id)arg1 viewForHeaderInSection:(int)arg2;
 - (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forRowAtIndexPath:(id)arg3;
 - (void)tableView:(id)arg1 willDisplayFooterView:(id)arg2 forSection:(int)arg3;
+- (void)traitCollectionDidChange:(id)arg1;
+- (void)viewDidAppear:(BOOL)arg1;
 - (void)viewDidLoad;
 - (void)viewWillAppear:(BOOL)arg1;
 - (void)viewWillDisappear:(BOOL)arg1;

@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/CFNetwork.framework/CFNetwork
  */
 
-@class NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>;
-
 @interface __NSCFMemoryURLCache : NSObject {
     unsigned int _currentLength;
     id _internal;
@@ -21,6 +19,7 @@
 - (void)dealloc;
 - (id)description;
 - (unsigned int)diskCapacity;
+- (id)initByCallingSuperSuperInit;
 - (id)initEmptyCache;
 - (id)initMemoryCache;
 - (id)initWithMemoryCapacity:(unsigned int)arg1 diskCapacity:(unsigned int)arg2 diskPath:(id)arg3;

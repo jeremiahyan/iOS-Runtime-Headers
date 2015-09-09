@@ -2,11 +2,14 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class EMFPlayer;
-
 @interface EMFReader : NSObject <MFReader> {
     EMFPlayer *m_player;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)dealloc;
 - (id)initWithEMFPlayer:(id)arg1;

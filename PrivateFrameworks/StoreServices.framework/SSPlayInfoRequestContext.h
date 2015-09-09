@@ -2,21 +2,25 @@
    Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
  */
 
-@class NSArray, NSData, NSNumber, NSString;
-
-@interface SSPlayInfoRequestContext : NSObject <SSXPCCoding, NSCopying> {
+@interface SSPlayInfoRequestContext : NSObject <NSCopying, SSXPCCoding> {
     NSNumber *_accountIdentifier;
     NSNumber *_contentIdentifier;
+    NSString *_playbackType;
     NSString *_playerGUID;
     NSData *_sic;
     NSArray *_sinfs;
 }
 
-@property(copy) NSData * SICData;
-@property(copy) NSNumber * accountIdentifier;
-@property(copy) NSNumber * contentIdentifier;
-@property(copy) NSString * playerGUID;
-@property(copy) NSArray * sinfs;
+@property (nonatomic, copy) NSData *SICData;
+@property (nonatomic, copy) NSNumber *accountIdentifier;
+@property (nonatomic, copy) NSNumber *contentIdentifier;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *playbackType;
+@property (nonatomic, copy) NSString *playerGUID;
+@property (nonatomic, copy) NSArray *sinfs;
+@property (readonly) Class superclass;
 
 - (id)SICData;
 - (id)accountIdentifier;
@@ -25,9 +29,11 @@
 - (id)copyXPCEncoding;
 - (void)dealloc;
 - (id)initWithXPCEncoding:(id)arg1;
+- (id)playbackType;
 - (id)playerGUID;
 - (void)setAccountIdentifier:(id)arg1;
 - (void)setContentIdentifier:(id)arg1;
+- (void)setPlaybackType:(id)arg1;
 - (void)setPlayerGUID:(id)arg1;
 - (void)setSICData:(id)arg1;
 - (void)setSinfs:(id)arg1;

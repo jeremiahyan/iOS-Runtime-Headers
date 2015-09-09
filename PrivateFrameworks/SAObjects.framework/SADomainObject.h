@@ -2,12 +2,13 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSURL;
+@interface SADomainObject : AceObject <SAAceIdentifiable>
 
-@interface SADomainObject : AceObject <SAAceIdentifiable> {
-}
-
-@property(copy) NSURL * identifier;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSURL *identifier;
+@property (readonly) Class superclass;
 
 + (id)domainObject;
 + (id)domainObjectWithDictionary:(id)arg1 context:(id)arg2;

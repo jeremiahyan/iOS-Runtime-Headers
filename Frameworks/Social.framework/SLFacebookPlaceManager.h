@@ -2,12 +2,6 @@
    Image: /System/Library/Frameworks/Social.framework/Social
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class ACAccount, CLLocation, CLLocationManager, NSHTTPURLResponse, NSMutableData, NSObject<SLPlaceDataSourceDelegate>, NSURLConnection;
-
 @interface SLFacebookPlaceManager : NSObject <CLLocationManagerDelegate, SLPlaceDataSource> {
     ACAccount *_account;
     CLLocation *_currentLocation;
@@ -17,16 +11,20 @@
     BOOL _isUpdatingLocation;
     CLLocationManager *_locationManager;
     NSMutableData *_placeData;
-    id _queuedSearchRequest;
+    id /* block */ _queuedSearchRequest;
     double _timeout;
     NSURLConnection *_urlConnection;
     NSHTTPURLResponse *_urlResponse;
 }
 
-@property(retain) ACAccount * account;
-@property(retain) CLLocation * currentLocation;
-@property(readonly) double currentLocationAccuracy;
-@property NSObject<SLPlaceDataSourceDelegate> * delegate;
+@property (retain) ACAccount *account;
+@property (retain) CLLocation *currentLocation;
+@property (readonly) double currentLocationAccuracy;
+@property (readonly, copy) NSString *debugDescription;
+@property NSObject<SLPlaceDataSourceDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_handleResponse:(id)arg1 error:(id)arg2;

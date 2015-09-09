@@ -2,18 +2,15 @@
    Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
  */
 
-@class <MFGroupDetailViewControllerDelegate>, MFRecentComposeRecipientGroup;
-
-@interface MFGroupDetailViewController : UITableViewController <UIActionSheetDelegate> {
+@interface MFGroupDetailViewController : UITableViewController {
     <MFGroupDetailViewControllerDelegate> *_delegate;
     MFRecentComposeRecipientGroup *_group;
 }
 
-@property <MFGroupDetailViewControllerDelegate> * delegate;
-@property(retain) MFRecentComposeRecipientGroup * group;
+@property (nonatomic) <MFGroupDetailViewControllerDelegate> *delegate;
+@property (nonatomic, retain) MFRecentComposeRecipientGroup *group;
 
 - (void)_removeButtonTapped:(id)arg1;
-- (void)actionSheet:(id)arg1 didDismissWithButtonIndex:(int)arg2;
 - (void)dealloc;
 - (id)delegate;
 - (id)group;

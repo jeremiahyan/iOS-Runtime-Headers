@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSMutableArray, WDTable, WDTableRowProperties;
-
 @interface WDTableRow : NSObject {
     NSMutableArray *mCells;
     unsigned int mIndex;
@@ -17,10 +15,12 @@
 - (unsigned int)cellCount;
 - (id)cellIterator;
 - (void)dealloc;
+- (id)description;
 - (unsigned int)index;
 - (id)initWithTable:(id)arg1 at:(unsigned int)arg2;
 - (id)newCellIterator;
 - (id)properties;
+- (void)setIndex:(unsigned int)arg1;
 - (id)table;
 
 @end

@@ -2,14 +2,9 @@
    Image: /System/Library/PrivateFrameworks/Message.framework/Message
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class MFLock, NSMutableDictionary, NSMutableSet, NSString;
-
 @interface MFLibraryMessage : MFMailMessage {
-    id _deallocationHandler;
+    unsigned long long _conversationFlags;
+    id /* block */ _deallocationHandler;
     unsigned int _libraryID;
     unsigned int _mailboxID;
     NSString *_messageID;
@@ -23,7 +18,7 @@
     unsigned long long _uniqueRemoteId;
 }
 
-@property(copy) id deallocationHandler;
+@property (nonatomic, copy) id /* block */ deallocationHandler;
 
 + (id)messageWithLibraryID:(unsigned int)arg1;
 
@@ -35,11 +30,12 @@
 - (BOOL)canBeDeleted;
 - (void)commit;
 - (int)compareByUidWithMessage:(id)arg1;
+- (unsigned long long)conversationFlags;
 - (id)copyMessageInfo;
 - (id)dataConsumerForMimePart:(id)arg1;
 - (id)dataPathForMimePart:(id)arg1;
 - (void)dealloc;
-- (id)deallocationHandler;
+- (id /* block */)deallocationHandler;
 - (id)description;
 - (BOOL)hasTemporaryUid;
 - (unsigned int)hash;
@@ -69,7 +65,8 @@
 - (id)persistentID;
 - (id)preferredEmailAddressToReplyWith;
 - (id)remoteID;
-- (void)setDeallocationHandler:(id)arg1;
+- (void)setConversationFlags:(unsigned long long)arg1;
+- (void)setDeallocationHandler:(id /* block */)arg1;
 - (void)setFlags:(unsigned long long)arg1;
 - (void)setHasTemporaryUid:(BOOL)arg1;
 - (void)setIsPartial:(BOOL)arg1;
@@ -83,8 +80,8 @@
 - (void)setMutableInfoFromMessage:(id)arg1;
 - (void)setOriginalMailboxID:(unsigned int)arg1;
 - (void)setPreferredEncoding:(unsigned long)arg1;
-- (void)setRemoteID:(const char *)arg1 flags:(unsigned long long)arg2 size:(unsigned int)arg3 mailboxID:(unsigned int)arg4 originalMailboxID:(unsigned int)arg5;
 - (void)setRemoteID:(id)arg1;
+- (void)setRemoteID:(const char *)arg1 flags:(unsigned long long)arg2 size:(unsigned int)arg3 mailboxID:(unsigned int)arg4 originalMailboxID:(unsigned int)arg5;
 - (void)setSummary:(id)arg1;
 - (void)setUid:(unsigned long)arg1;
 - (void)setUniqueRemoteId:(unsigned long long)arg1;

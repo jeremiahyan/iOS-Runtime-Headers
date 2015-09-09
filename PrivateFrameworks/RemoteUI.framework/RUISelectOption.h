@@ -2,17 +2,15 @@
    Image: /System/Library/PrivateFrameworks/RemoteUI.framework/RemoteUI
  */
 
-@class NSString;
-
 @interface RUISelectOption : NSObject {
-    NSString *label;
-    NSString *value;
+    NSString *_label;
+    NSString *_value;
 }
 
-@property(retain) NSString * label;
-@property(retain) NSString * value;
+@property (nonatomic, retain) NSString *label;
+@property (nonatomic, retain) NSString *value;
 
-- (void)dealloc;
+- (void).cxx_destruct;
 - (id)label;
 - (void)setLabel:(id)arg1;
 - (void)setValue:(id)arg1;

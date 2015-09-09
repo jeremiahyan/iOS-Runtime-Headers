@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@class <MKUserTrackingView>, MKMapView, UIButton, UIImage, UINavigationBar, UIToolbar, UIView, _MKUserTrackingButton, _MKUserTrackingButtonController;
-
 @interface MKUserTrackingBarButtonItem : UIBarButtonItem <MKUserTrackingButtonTarget> {
     UIView *_associatedView;
     _MKUserTrackingButtonController *_controller;
@@ -17,16 +15,19 @@
     UIImage *_trackingFollowWithHeadingImage;
     UIImage *_trackingNoneImage;
     _MKUserTrackingButton *_userTrackingButton;
-    <MKUserTrackingView> *_userTrackingView;
 }
 
-@property(retain) UIView * _associatedView;
-@property(retain) UINavigationBar * _navigationBar;
-@property(setter=_setState:) int _state;
-@property(retain) UIToolbar * _toolbar;
-@property(setter=_setUserTrackingView:,retain) <MKUserTrackingView> * _userTrackingView;
-@property(retain) MKMapView * mapView;
-@property(getter=_selectsWhenTracking,setter=_setSelectsWhenTracking:) BOOL selectsWhenTracking;
+@property (nonatomic, retain) UIView *_associatedView;
+@property (nonatomic, retain) UINavigationBar *_navigationBar;
+@property (setter=_setState:, nonatomic) int _state;
+@property (nonatomic, retain) UIToolbar *_toolbar;
+@property (setter=_setUserTrackingView:, nonatomic, retain) <MKUserTrackingView> *_userTrackingView;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) MKMapView *mapView;
+@property (getter=_selectsWhenTracking, setter=_setSelectsWhenTracking:, nonatomic) BOOL selectsWhenTracking;
+@property (readonly) Class superclass;
 
 + (Class)_activityIndicatorClass;
 
@@ -36,7 +37,6 @@
 - (void)_goToNextMode:(id)arg1;
 - (id)_imageForState:(int)arg1 controlState:(unsigned int)arg2;
 - (id)_imageForUserTrackingMode:(int)arg1;
-- (id)_initWithUserTrackingView:(id)arg1;
 - (BOOL)_isHighlightedForState:(int)arg1;
 - (BOOL)_isInMiniBar;
 - (id)_landscapeImagePhoneForUserTrackingMode:(int)arg1;
@@ -60,6 +60,7 @@
 - (id)createViewForNavigationItem:(id)arg1;
 - (id)createViewForToolbar:(id)arg1;
 - (void)dealloc;
+- (id)init;
 - (id)initWithMapView:(id)arg1;
 - (id)mapView;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void*)arg4;

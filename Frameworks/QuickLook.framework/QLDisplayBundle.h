@@ -2,9 +2,17 @@
    Image: /System/Library/Frameworks/QuickLook.framework/QuickLook
  */
 
-@class <QLPreviewItem>, <QLPreviewItemInteractionDelegate>, NSString, NSTimer, UIView;
-
 @interface QLDisplayBundle : UIViewController {
+    <QLPreviewItemInteractionDelegate> *_delegate;
+    int _index;
+    BOOL _loaded;
+    BOOL _loading;
+    float _navigationBarVerticalOffset;
+    BOOL _overlayHidden;
+    NSString *_password;
+    <QLPreviewItem> *_previewItem;
+    int _previewMode;
+    NSTimer *_refreshTimer;
     struct { 
         int pid; 
         struct { 
@@ -20,29 +28,21 @@
                 float height; 
             } size; 
         } contentFrame; 
-    <QLPreviewItemInteractionDelegate> *_delegate;
-    int _index;
-    BOOL _loaded;
-    BOOL _loading;
-    BOOL _overlayHidden;
-    NSString *_password;
-    <QLPreviewItem> *_previewItem;
-    int _previewMode;
-    NSTimer *_refreshTimer;
     } clientContext;
 }
 
-@property(readonly) UIView * accessoryView;
-@property(readonly) int airPlayMode;
-@property(readonly) UIView * airplayView;
+@property (readonly) UIView *accessoryView;
+@property (readonly) int airPlayMode;
+@property (readonly) UIView *airplayView;
 @property struct { int x1; struct { unsigned int x_2_1_1[8]; } x2; struct CGRect { struct CGPoint { float x_1_2_1; float x_1_2_2; } x_3_1_1; struct CGSize { float x_2_2_1; float x_2_2_2; } x_3_1_2; } x3; } clientContext;
-@property(readonly) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } contentFrame;
-@property <QLPreviewItemInteractionDelegate> * delegate;
+@property (readonly) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } contentFrame;
+@property <QLPreviewItemInteractionDelegate> *delegate;
 @property int index;
 @property BOOL loaded;
 @property BOOL loading;
-@property(retain) NSString * password;
-@property(retain) <QLPreviewItem> * previewItem;
+@property float navigationBarVerticalOffset;
+@property (retain) NSString *password;
+@property (retain) <QLPreviewItem> *previewItem;
 @property int previewMode;
 
 + (double)allowedLoadingDelay;
@@ -52,6 +52,7 @@
 - (void)_performCancelLoad;
 - (BOOL)acceptControllerTouch:(id)arg1 fromGestureRecognizer:(id)arg2;
 - (id)accessoryView;
+- (BOOL)adaptativeHeight;
 - (int)airPlayMode;
 - (id)airplayView;
 - (void)beginScrubbing;
@@ -80,6 +81,9 @@
 - (BOOL)loaded;
 - (BOOL)loading;
 - (int)modalPresentationStyle;
+- (float)navigationBarVerticalOffset;
+- (BOOL)needsContentInset;
+- (BOOL)needsContentInsetEvenIfNavigationBarIsHidden;
 - (BOOL)overlayIsHidden;
 - (id)password;
 - (id)pdfPreviewData;
@@ -88,6 +92,7 @@
 - (id)printPageHelper;
 - (id)printPageRenderer;
 - (void)requiresDisplayBundle:(id)arg1 withHints:(id)arg2;
+- (id)scrollView;
 - (void)scrubToValue:(double)arg1;
 - (void)setClientContext:(struct { int x1; struct { unsigned int x_2_1_1[8]; } x2; struct CGRect { struct CGPoint { float x_1_2_1; float x_1_2_2; } x_3_1_1; struct CGSize { float x_2_2_1; float x_2_2_2; } x_3_1_2; } x3; })arg1;
 - (void)setDelegate:(id)arg1;
@@ -101,7 +106,9 @@
 - (void)setPreviewMode:(int)arg1;
 - (void)setupAirPlayView;
 - (void)togglePlayState;
+- (void)updateContentOffsetAnimated:(BOOL)arg1;
 - (void)viewDidAppear:(BOOL)arg1;
 - (void)viewDidUpdate;
+- (void)viewWillAppear:(BOOL)arg1;
 
 @end

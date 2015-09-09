@@ -2,13 +2,11 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface KNTitlePlaceholderInfo : KNPlaceholderInfo {
-}
+@interface KNTitlePlaceholderInfo : KNPlaceholderInfo
 
 - (void)acceptVisitor:(id)arg1;
-- (id)buildImageTitle;
+- (id)defaultBuildChunkTitle;
 - (id)initWithKNPlaceholderInfo:(id)arg1;
 - (int)kind;
-- (id)p_defaultBuildChunkTitle;
 
 @end

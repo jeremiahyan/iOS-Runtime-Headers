@@ -2,37 +2,31 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSData, NSString, UIImage;
-
 @interface UIKBRenderer : NSObject {
-    struct CGSize { 
-        float width; 
-        float height; 
     NSString *_cacheKey;
     struct CGContext { } *_cachingContext;
-    id _cachingContextCompletion;
+    id /* block */ _cachingContextCompletion;
     BOOL _containsRGBContent;
     struct CGContext { } *_ctx;
     BOOL _opaque;
     int _renderFlags;
     UIImage *_renderedImage;
     float _scale;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _size;
 }
 
-@property(retain) NSString * cacheKey;
-@property(readonly) BOOL containsRGBContent;
-@property(readonly) struct CGContext { }* context;
-@property(readonly) NSData * contextData;
-@property(readonly) BOOL opaque;
-@property(readonly) int renderFlags;
-@property(readonly) UIImage * renderedImage;
-@property(readonly) float scale;
-@property(readonly) struct CGSize { float x1; float x2; } size;
+@property (nonatomic, retain) NSString *cacheKey;
+@property (nonatomic, readonly) BOOL containsRGBContent;
+@property (nonatomic, readonly) struct CGContext { }*context;
+@property (nonatomic, readonly) NSData *contextData;
+@property (nonatomic, readonly) BOOL opaque;
+@property (nonatomic, readonly) int renderFlags;
+@property (nonatomic, readonly) UIImage *renderedImage;
+@property (nonatomic, readonly) float scale;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } size;
 
 + (void)clearInternalCaches;
 + (struct CGContext { }*)imageContextWithSize:(struct CGSize { float x1; float x2; })arg1 scale:(float)arg2 opaque:(BOOL)arg3 invert:(BOOL)arg4;
@@ -70,8 +64,8 @@
 - (id)pathForFlickPopupGeometries:(id)arg1;
 - (id)pathForRenderGeometry:(id)arg1;
 - (id)pathForSplitGeometry:(id)arg1;
-- (void)renderBackgroundTraits:(id)arg1 allowCaching:(BOOL)arg2;
 - (void)renderBackgroundTraits:(id)arg1;
+- (void)renderBackgroundTraits:(id)arg1 allowCaching:(BOOL)arg2;
 - (void)renderEdgeEffect:(id)arg1 withTraits:(id)arg2;
 - (int)renderFlags;
 - (void)renderKeyContents:(id)arg1 withTraits:(id)arg2;

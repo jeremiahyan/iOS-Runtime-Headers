@@ -2,20 +2,18 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class CADisplayLink, UIColor, UIImage, UIImageView;
-
 @interface _UICircleProgressIndicator : UIView {
-    struct UIEdgeInsets { 
-        float top; 
-        float left; 
-        float bottom; 
-        float right; 
     float _animatedValue;
     double _animationEndTime;
     double _animationStartTime;
     float _animationStartValue;
     UIImage *_borderImage;
     UIImage *_centerImage;
+    struct UIEdgeInsets { 
+        float top; 
+        float left; 
+        float bottom; 
+        float right; 
     } _centerImageInsets;
     CADisplayLink *_displayLink;
     UIImage *_fillImage;
@@ -26,13 +24,13 @@
     UIColor *_unhighlightedBackgroundColor;
 }
 
-@property(retain) UIImage * borderImage;
-@property(retain) UIImage * fillImage;
-@property(getter=isHighlighted) BOOL highlighted;
-@property(retain) UIImage * image;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } imageInsets;
-@property(getter=isIndeterminate) BOOL indeterminate;
-@property float progress;
+@property (nonatomic, retain) UIImage *borderImage;
+@property (nonatomic, retain) UIImage *fillImage;
+@property (getter=isHighlighted, nonatomic) BOOL highlighted;
+@property (nonatomic, retain) UIImage *image;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } imageInsets;
+@property (getter=isIndeterminate, nonatomic) BOOL indeterminate;
+@property (nonatomic) float progress;
 
 + (id)_borderImage;
 + (id)_fillImage;
@@ -59,8 +57,8 @@
 - (void)setImage:(id)arg1;
 - (void)setImageInsets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
 - (void)setIndeterminate:(BOOL)arg1;
-- (void)setProgress:(float)arg1 animated:(BOOL)arg2;
 - (void)setProgress:(float)arg1;
+- (void)setProgress:(float)arg1 animated:(BOOL)arg2;
 - (struct CGSize { float x1; float x2; })sizeThatFits:(struct CGSize { float x1; float x2; })arg1;
 - (void)tintColorDidChange;
 

@@ -2,9 +2,8 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class NSString, UILabel;
-
 @interface SKUIProductPageInAppPurchaseTableCell : SKUITableViewCell {
+    SKUIColorScheme *_colorScheme;
     struct UIEdgeInsets { 
         float top; 
         float left; 
@@ -16,18 +15,21 @@
     UILabel *_priceLabel;
 }
 
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } contentInsets;
-@property(copy) NSString * indexString;
-@property(copy) NSString * priceString;
-@property(copy) NSString * productName;
+@property (nonatomic, retain) SKUIColorScheme *colorScheme;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } contentInsets;
+@property (nonatomic, copy) NSString *indexString;
+@property (nonatomic, copy) NSString *priceString;
+@property (nonatomic, copy) NSString *productName;
 
 - (void).cxx_destruct;
+- (id)colorScheme;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })contentInsets;
 - (id)indexString;
 - (void)layoutSubviews;
 - (id)priceString;
 - (id)productName;
 - (void)setBackgroundColor:(id)arg1;
+- (void)setColorScheme:(id)arg1;
 - (void)setContentInsets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
 - (void)setHighlighted:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setIndexString:(id)arg1;

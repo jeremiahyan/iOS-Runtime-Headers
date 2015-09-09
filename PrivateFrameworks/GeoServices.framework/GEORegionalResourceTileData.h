@@ -2,15 +2,13 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSMutableArray;
-
 @interface GEORegionalResourceTileData : PBCodable <NSCopying> {
     NSMutableArray *_attributions;
     NSMutableArray *_icons;
 }
 
-@property(retain) NSMutableArray * attributions;
-@property(retain) NSMutableArray * icons;
+@property (nonatomic, retain) NSMutableArray *attributions;
+@property (nonatomic, retain) NSMutableArray *icons;
 
 - (void)addAttribution:(id)arg1;
 - (void)addIcon:(id)arg1;
@@ -29,6 +27,7 @@
 - (id)icons;
 - (unsigned int)iconsCount;
 - (BOOL)isEqual:(id)arg1;
+- (void)mergeFrom:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 - (void)setAttributions:(id)arg1;
 - (void)setIcons:(id)arg1;

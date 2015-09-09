@@ -2,23 +2,23 @@
    Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
  */
 
-@class NSString, UIImage, UIImageView, UILabel;
-
-@interface CKAttachmentView : UIView {
+@interface CKAttachmentView : UIView <CKAttachmentView> {
     UILabel *_actionLabel;
     UIImageView *_iconImageView;
+    CKMediaObject *_mediaObject;
     UILabel *_subtitleLabel;
     UILabel *_titleLabel;
 }
 
-@property(copy) NSString * action;
-@property(retain) UILabel * actionLabel;
-@property(copy) UIImage * icon;
-@property(retain) UIImageView * iconImageView;
-@property(copy) NSString * subtitle;
-@property(retain) UILabel * subtitleLabel;
-@property(copy) NSString * title;
-@property(retain) UILabel * titleLabel;
+@property (nonatomic, retain) UILabel *actionLabel;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) UIImageView *iconImageView;
+@property (nonatomic, retain) CKMediaObject *mediaObject;
+@property (nonatomic, retain) UILabel *subtitleLabel;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) UILabel *titleLabel;
 
 - (id)action;
 - (id)actionLabel;
@@ -27,10 +27,14 @@
 - (id)iconImageView;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)layoutSubviews;
+- (id)mediaObject;
+- (void)prepareForDisplay;
+- (void)prepareForReuse;
 - (void)setAction:(id)arg1;
 - (void)setActionLabel:(id)arg1;
 - (void)setIcon:(id)arg1;
 - (void)setIconImageView:(id)arg1;
+- (void)setMediaObject:(id)arg1;
 - (void)setSubtitle:(id)arg1;
 - (void)setSubtitleLabel:(id)arg1;
 - (void)setTitle:(id)arg1;

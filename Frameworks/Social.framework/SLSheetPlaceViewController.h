@@ -2,9 +2,7 @@
    Image: /System/Library/Frameworks/Social.framework/Social
  */
 
-@class ACAccount, MKMapView, NSArray, NSBundle, NSObject<SLPlaceDataSource>, NSObject<SLSheetPlaceViewControllerDelegate>, SLPlace, SLSheetPlaceSearchController, UISearchBar, UISearchDisplayController, UITableView;
-
-@interface SLSheetPlaceViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate, MKMapViewDelegate, SLPlaceDataSourceDelegate> {
+@interface SLSheetPlaceViewController : UIViewController <MKMapViewDelegate, SLPlaceDataSourceDelegate, UISearchBarDelegate, UISearchDisplayDelegate, UITableViewDataSource, UITableViewDelegate> {
     ACAccount *_account;
     NSBundle *_effectiveBundle;
     float _mapHeight;
@@ -22,13 +20,18 @@
     UITableView *_tableView;
 }
 
-@property(retain) ACAccount * account;
-@property(retain) NSObject<SLPlaceDataSource> * placeDataSource;
-@property(retain) NSArray * places;
-@property BOOL searchEnabled;
-@property NSObject<SLSheetPlaceViewControllerDelegate> * selectionDelegate;
+@property (retain) ACAccount *account;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (retain) NSObject<SLPlaceDataSource> *placeDataSource;
+@property (retain) NSArray *places;
+@property (nonatomic) BOOL searchEnabled;
+@property NSObject<SLSheetPlaceViewControllerDelegate> *selectionDelegate;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
+- (void)_calculatePreferredContentSize;
 - (void)_centerMapForPlaces;
 - (void)_centerMapWithSelectedPlace:(id)arg1;
 - (BOOL)_forceSelectPlace:(id)arg1 setMapAnnotation:(BOOL)arg2;
@@ -42,7 +45,6 @@
 - (void)_restoreFromSearch;
 - (id)account;
 - (void)cancelButtonTapped:(id)arg1;
-- (struct CGSize { float x1; float x2; })contentSizeForViewInPopover;
 - (void)dealloc;
 - (void)didReceiveMemoryWarning;
 - (id)initWithPlaceDataSource:(id)arg1 effectiveBundle:(id)arg2;

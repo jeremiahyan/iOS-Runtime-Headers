@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iCalendar.framework/iCalendar
  */
 
-@class ICSColor, ICSDuration, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString;
-
 @interface ICSCalendar : ICSComponent {
     NSMutableSet *_keys;
     NSMutableDictionary *_masters;
@@ -12,23 +10,24 @@
     NSMutableDictionary *_timezones;
 }
 
-@property(retain) NSString * calscale;
-@property int method;
-@property(retain) NSString * prodid;
-@property(retain) NSString * version;
-@property(retain) ICSDuration * x_apple_auto_refresh;
-@property(retain) ICSColor * x_apple_calendar_color;
+@property (nonatomic, retain) NSString *calscale;
+@property (nonatomic) int method;
+@property (nonatomic, retain) NSString *prodid;
+@property (nonatomic, retain) NSString *version;
+@property (nonatomic, retain) ICSDuration *x_apple_auto_refresh;
+@property (nonatomic, retain) ICSColor *x_apple_calendar_color;
 @property BOOL x_apple_ignore_on_restore;
 @property int x_calendarserver_access;
-@property(retain) NSString * x_wr_caldesc;
-@property(retain) NSString * x_wr_calname;
-@property(retain) NSString * x_wr_relcalid;
-@property(retain) NSString * x_wr_timezone;
+@property (nonatomic, retain) NSString *x_wr_caldesc;
+@property (nonatomic, retain) NSString *x_wr_calname;
+@property (nonatomic, retain) NSString *x_wr_relcalid;
+@property (nonatomic, retain) NSString *x_wr_timezone;
 
 + (id)ICSStringFromCalendarServerAccess:(int)arg1;
 + (id)ICSStringFromMethod:(int)arg1;
 + (int)calendarServerAccessFromICSString:(id)arg1;
 + (id)calendarWithKnownTimeZones;
++ (int)compareCalendarServerAccess:(int)arg1 withAccess:(int)arg2;
 + (id)defaultProdid;
 + (int)methodFromICSString:(id)arg1;
 + (id)name;
@@ -55,9 +54,9 @@
 - (id)prodid;
 - (id)propertiesToIncludeForChecksumVersion:(int)arg1;
 - (void)setCalscale:(id)arg1;
+- (void)setComponents:(id)arg1;
 - (void)setComponents:(id)arg1 options:(int)arg2;
 - (void)setComponents:(id)arg1 timeZones:(BOOL)arg2;
-- (void)setComponents:(id)arg1;
 - (void)setMethod:(int)arg1;
 - (void)setProdid:(id)arg1;
 - (void)setVersion:(id)arg1;

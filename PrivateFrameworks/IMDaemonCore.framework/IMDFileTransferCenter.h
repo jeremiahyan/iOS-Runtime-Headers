@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/IMDaemonCore.framework/IMDaemonCore
  */
 
-@class NSMutableArray, NSMutableDictionary, NSMutableSet, NSString, NSTimer;
-
 @interface IMDFileTransferCenter : NSObject <IMFileCopierDelegate> {
     NSMutableSet *_activeTransfers;
     NSString *_contextStamp;
@@ -14,8 +12,8 @@
     NSMutableArray *_transferringTransfers;
 }
 
-@property(retain) NSString * contextStamp;
-@property(readonly) BOOL hasActiveFileTransfers;
+@property (nonatomic, retain) NSString *contextStamp;
+@property (nonatomic, readonly) BOOL hasActiveFileTransfers;
 
 + (id)sharedInstance;
 
@@ -26,6 +24,8 @@
 - (void)_addTransferringTransfer:(id)arg1;
 - (id)_allFileTransfers;
 - (void)_archiveFileTransfer:(id)arg1;
+- (void)_clearProgressForTransferGUID:(id)arg1;
+- (void)_completeProgressForTransferGUID:(id)arg1;
 - (id)_createWrapperForTransfer:(id)arg1;
 - (id)_dictionaryRepresentationsForFileTransfers:(id)arg1 toSave:(BOOL)arg2;
 - (void)_handleFileTransfer:(id)arg1 acceptedWithPath:(id)arg2 autoRename:(BOOL)arg3 overwrite:(BOOL)arg4 postNotification:(BOOL)arg5;
@@ -34,12 +34,11 @@
 - (void)_handleFileTransferRemoved:(id)arg1;
 - (void)_handleFileTransferStopped:(id)arg1;
 - (void)_handleSendFileTransfer:(id)arg1;
-- (void)_loadTransfersFromDefaults;
 - (void)_postUpdated:(id)arg1;
+- (id)_progressForTransferGUID:(id)arg1 allowCreate:(BOOL)arg2 path:(id)arg3;
 - (void)_removeActiveTransfer:(id)arg1;
 - (void)_removeTransferringTransfer:(id)arg1;
 - (id)_removeWrapperForTransfer:(id)arg1;
-- (void)_saveTransfersToDefaults;
 - (id)_temporaryPathForGUID:(id)arg1 filename:(id)arg2;
 - (void)_transferTimerTick:(id)arg1;
 - (void)_updateContextStamp;
@@ -69,7 +68,7 @@
 - (void)startFinalizingTransfer:(id)arg1;
 - (void)startTransfer:(id)arg1;
 - (id)transferForGUID:(id)arg1;
-- (void)updateTransfer:(id)arg1 currentBytes:(unsigned long long)arg2 totalBytes:(unsigned long long)arg3;
 - (void)updateTransfer:(id)arg1;
+- (void)updateTransfer:(id)arg1 currentBytes:(unsigned long long)arg2 totalBytes:(unsigned long long)arg3;
 
 @end

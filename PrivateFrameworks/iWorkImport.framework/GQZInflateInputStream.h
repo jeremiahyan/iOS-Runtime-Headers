@@ -2,14 +2,8 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class <GQZEntryInputStream>;
-
 @interface GQZInflateInputStream : NSObject <GQZEntryInputStream> {
+    <GQZEntryInputStream> *mInput;
     struct z_stream_s { 
         char *next_in; 
         unsigned int avail_in; 
@@ -25,9 +19,13 @@
         int data_type; 
         unsigned int adler; 
         unsigned int reserved; 
-    <GQZEntryInputStream> *mInput;
     } mStream;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (id).cxx_construct;
 - (void)dealloc;

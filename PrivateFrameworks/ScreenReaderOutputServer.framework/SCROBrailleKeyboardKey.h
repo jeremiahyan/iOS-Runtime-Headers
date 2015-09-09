@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/ScreenReaderOutputServer.framework/ScreenReaderOutputServer
  */
 
-@class NSString;
-
 @interface SCROBrailleKeyboardKey : SCROBrailleKey {
     NSString *_keyString;
     unsigned int _modifiers;

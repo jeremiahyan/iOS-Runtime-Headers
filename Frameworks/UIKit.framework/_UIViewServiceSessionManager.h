@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSMutableArray, NSXPCListener;
-
 @interface _UIViewServiceSessionManager : NSObject <NSXPCListenerDelegate> {
     int _connectionNotificationToken;
     NSXPCListener *_listener;
@@ -11,14 +9,21 @@
     NSMutableArray *_sessions;
 }
 
-+ (BOOL)_shouldUseXPCObjects;
-+ (BOOL)hasActiveSessions;
-+ (void)startViewServiceSessionManager;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
++ (id)__serviceSessionManager;
++ (BOOL)hasActiveSessions;
++ (void)startViewServiceSessionManagerAsPlugin:(BOOL)arg1;
+
+- (void)_configureSessionForConnection:(id)arg1;
 - (BOOL)_hasActiveSessions;
-- (id)_init;
+- (id)_initAsPlugIn:(BOOL)arg1;
 - (void)_registerSessionForDefaultDeputies:(id)arg1;
 - (void)_startListener;
+- (void)_startListenerWithName:(id)arg1;
 - (void)_startOrStopSystemsForBackgroundRunning;
 - (void)dealloc;
 - (id)init;

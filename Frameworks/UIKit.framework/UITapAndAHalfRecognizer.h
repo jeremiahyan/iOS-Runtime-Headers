@@ -2,26 +2,24 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSMutableSet, UIDelayedAction, UITouch;
-
 @interface UITapAndAHalfRecognizer : UIGestureRecognizer {
-    struct CGPoint { 
-        float x; 
-        float y; 
     NSMutableSet *_activeTouches;
     float _allowableMovement;
     int _currentNumberOfTaps;
     double _minimumFinalPressDuration;
     int _numberOfFullTaps;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _startPoint;
     UIDelayedAction *_tapTimer;
     UITouch *_touch;
 }
 
-@property float allowableMovement;
-@property double minimumFinalPressDuration;
-@property int numberOfFullTaps;
-@property(retain) UITouch * touch;
+@property (nonatomic) float allowableMovement;
+@property (nonatomic) double minimumFinalPressDuration;
+@property (nonatomic) int numberOfFullTaps;
+@property (nonatomic, retain) UITouch *touch;
 
 - (void)_resetGestureRecognizer;
 - (void)_verifyMovementInAllowableRange;

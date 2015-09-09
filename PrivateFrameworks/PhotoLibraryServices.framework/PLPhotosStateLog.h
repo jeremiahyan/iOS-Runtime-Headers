@@ -2,20 +2,18 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
  */
 
-@class NSObject<OS_dispatch_group>, PLPhotoLibrary;
-
 @interface PLPhotosStateLog : NSObject {
     NSObject<OS_dispatch_group> *_group;
     PLPhotoLibrary *_photoLibrary;
 }
 
-@property(readonly) NSObject<OS_dispatch_group> * group;
-@property(readonly) PLPhotoLibrary * photoLibrary;
+@property (nonatomic, readonly) NSObject<OS_dispatch_group> *group;
+@property (nonatomic, readonly, retain) PLPhotoLibrary *photoLibrary;
 
 - (void)_logAssets:(id)arg1 forAlbum:(id)arg2 indent:(unsigned int)arg3;
 - (BOOL)compressFileFromPath:(id)arg1 toPath:(id)arg2;
 - (BOOL)copyFilesMatching:(id)arg1 andExcluding:(id)arg2 fromPath:(id)arg3 toPath:(id)arg4 usingCompression:(BOOL)arg5;
-- (BOOL)createSnapshot;
+- (void)createSnapshot;
 - (void)dealloc;
 - (id)group;
 - (id)init;

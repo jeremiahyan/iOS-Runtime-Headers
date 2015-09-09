@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@class <MKUserTrackingView>, MKMapView, NSMutableDictionary, _MKUserTrackingButtonController;
-
 @interface _MKUserTrackingButton : UIButton <MKUserTrackingButtonTarget> {
     _MKUserTrackingButtonController *_controller;
     NSMutableDictionary *_customImages;
@@ -12,10 +10,14 @@
     BOOL _selectsWhenTracking;
 }
 
-@property(readonly) _MKUserTrackingButtonController * controller;
-@property(retain) MKMapView * mapView;
-@property(getter=_selectsWhenTracking,setter=_setSelectsWhenTracking:) BOOL selectsWhenTracking;
-@property(retain) <MKUserTrackingView> * userTrackingView;
+@property (nonatomic, readonly) _MKUserTrackingButtonController *controller;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) MKMapView *mapView;
+@property (getter=_selectsWhenTracking, setter=_setSelectsWhenTracking:, nonatomic) BOOL selectsWhenTracking;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) <MKUserTrackingView> *userTrackingView;
 
 + (Class)_activityIndicatorClass;
 + (id)buttonWithMapView:(id)arg1;

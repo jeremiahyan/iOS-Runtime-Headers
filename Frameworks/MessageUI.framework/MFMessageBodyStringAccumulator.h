@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
  */
 
-@class NSMutableString;
-
 @interface MFMessageBodyStringAccumulator : NSObject <MFMessageBodyStringAccumulator> {
     NSMutableString *_accumulatedString;
     BOOL _isFull;
@@ -13,10 +11,16 @@
     unsigned int _remainingLength;
 }
 
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+
 - (id)accumulatedString;
 - (void)appendCharacters:(const unsigned short*)arg1 length:(unsigned int)arg2;
 - (void)appendCustomEntityWithTag:(unsigned int)arg1 stringRepresentation:(id)arg2;
 - (void)appendInnerTextWithConsumableNode:(id)arg1;
+- (void)appendNewline;
 - (void)appendRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1 ofString:(id)arg2;
 - (void)appendString:(id)arg1;
 - (void)dealloc;

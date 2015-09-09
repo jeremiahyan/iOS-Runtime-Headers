@@ -2,57 +2,49 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class NSString, SKUIClientContext, SKUIColorScheme, SKUILinkButton, SKUIRoundedRectButton, UIButton, UIControl, UILabel;
-
 @interface SKUIAccountButtonsView : UIView {
     UILabel *_accountCreditsLabel;
     SKUIRoundedRectButton *_appleIDButton;
     SKUIClientContext *_clientContext;
-    SKUIColorScheme *_colorScheme;
     SKUILinkButton *_ecommerceButton;
     SKUIRoundedRectButton *_giftingButton;
-    int _interfaceOrientation;
     UIButton *_redeemButton;
     UIButton *_termsAndConditionsButton;
     SKUIRoundedRectButton *_usernameButton;
 }
 
-@property(readonly) UIControl * ECommerceButton;
-@property(copy) NSString * ECommerceLinkTitle;
-@property(copy) NSString * accountCredits;
-@property(readonly) UIButton * appleIDButton;
-@property(copy) SKUIColorScheme * colorScheme;
-@property(readonly) UIButton * giftingButton;
-@property(getter=isGiftingHidden) BOOL giftingHidden;
-@property int interfaceOrientation;
-@property(readonly) UIButton * redeemButton;
-@property(readonly) UIButton * termsAndConditionsButton;
-@property(getter=isTermsAndConditionsHidden) BOOL termsAndConditionsHidden;
+@property (nonatomic, readonly) UIControl *ECommerceButton;
+@property (nonatomic, copy) NSString *ECommerceLinkTitle;
+@property (nonatomic, copy) NSString *accountCredits;
+@property (nonatomic, readonly) UIButton *appleIDButton;
+@property (nonatomic, readonly) UIButton *giftingButton;
+@property (getter=isGiftingHidden, nonatomic) BOOL giftingHidden;
+@property (nonatomic, readonly) UIButton *redeemButton;
+@property (nonatomic, readonly) UIButton *termsAndConditionsButton;
+@property (getter=isTermsAndConditionsHidden, nonatomic) BOOL termsAndConditionsHidden;
 
 - (void).cxx_destruct;
 - (id)ECommerceButton;
 - (id)ECommerceLinkTitle;
-- (void)_layoutForIPad;
-- (void)_layoutForIPhone;
+- (void)_layoutOneRow;
+- (void)_layoutTwoRows;
 - (id)_newLinkButtonWithTitle:(id)arg1;
-- (id)_termsChevronImage;
+- (void)_reloadFonts;
 - (id)accountCredits;
 - (id)appleIDButton;
-- (id)colorScheme;
+- (void)dealloc;
 - (id)giftingButton;
 - (id)initWithClientContext:(id)arg1;
-- (int)interfaceOrientation;
 - (BOOL)isGiftingHidden;
 - (BOOL)isTermsAndConditionsHidden;
 - (void)layoutSubviews;
 - (id)redeemButton;
 - (void)setAccountCredits:(id)arg1;
-- (void)setColorScheme:(id)arg1;
 - (void)setECommerceLinkTitle:(id)arg1;
 - (void)setGiftingHidden:(BOOL)arg1;
-- (void)setInterfaceOrientation:(int)arg1;
 - (void)setTermsAndConditionsHidden:(BOOL)arg1;
 - (struct CGSize { float x1; float x2; })sizeThatFits:(struct CGSize { float x1; float x2; })arg1;
 - (id)termsAndConditionsButton;
+- (void)tintColorDidChange;
 
 @end

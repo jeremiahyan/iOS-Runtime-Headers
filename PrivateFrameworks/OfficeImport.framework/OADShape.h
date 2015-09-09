@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class OADShapeGeometry, OADTextBody;
-
 @interface OADShape : OADGraphic {
     OADShapeGeometry *mGeometry;
     OADTextBody *mTextBody;
@@ -11,6 +9,7 @@
 
 - (void)createPresetGeometryWithShapeType:(int)arg1;
 - (void)dealloc;
+- (id)description;
 - (void)flattenProperties;
 - (id)geometry;
 - (id)init;

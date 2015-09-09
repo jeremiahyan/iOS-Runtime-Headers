@@ -2,17 +2,15 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSString;
-
 @interface GEORPUserCredentials : PBCodable <NSCopying> {
-    NSString *_iCloudUserMapsAuthToken;
-    NSString *_iCloudUserPersonID;
+    NSString *_icloudUserMapsAuthToken;
+    NSString *_icloudUserPersonId;
 }
 
-@property(readonly) BOOL hasICloudUserMapsAuthToken;
-@property(readonly) BOOL hasICloudUserPersonID;
-@property(retain) NSString * iCloudUserMapsAuthToken;
-@property(retain) NSString * iCloudUserPersonID;
+@property (nonatomic, readonly) BOOL hasIcloudUserMapsAuthToken;
+@property (nonatomic, readonly) BOOL hasIcloudUserPersonId;
+@property (nonatomic, retain) NSString *icloudUserMapsAuthToken;
+@property (nonatomic, retain) NSString *icloudUserPersonId;
 
 + (id)_credentialsForPrimaryICloudAccount;
 
@@ -21,15 +19,16 @@
 - (void)dealloc;
 - (id)description;
 - (id)dictionaryRepresentation;
-- (BOOL)hasICloudUserMapsAuthToken;
-- (BOOL)hasICloudUserPersonID;
+- (BOOL)hasIcloudUserMapsAuthToken;
+- (BOOL)hasIcloudUserPersonId;
 - (unsigned int)hash;
-- (id)iCloudUserMapsAuthToken;
-- (id)iCloudUserPersonID;
+- (id)icloudUserMapsAuthToken;
+- (id)icloudUserPersonId;
 - (BOOL)isEqual:(id)arg1;
+- (void)mergeFrom:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
-- (void)setICloudUserMapsAuthToken:(id)arg1;
-- (void)setICloudUserPersonID:(id)arg1;
+- (void)setIcloudUserMapsAuthToken:(id)arg1;
+- (void)setIcloudUserPersonId:(id)arg1;
 - (void)writeTo:(id)arg1;
 
 @end

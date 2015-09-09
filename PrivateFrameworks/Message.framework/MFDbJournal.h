@@ -2,14 +2,12 @@
    Image: /System/Library/PrivateFrameworks/Message.framework/Message
  */
 
-@class NSMutableData, NSString;
-
 @interface MFDbJournal : NSObject {
+    NSMutableData *_buffer;
+    int _fd;
     struct _opaque_pthread_mutex_t { 
         long __sig; 
         BOOL __opaque[40]; 
-    NSMutableData *_buffer;
-    int _fd;
     } _lock;
     NSString *_path;
 }

@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@class NSLocale;
-
 @interface NSAutoLocale : NSLocale {
     NSLocale *loc;
 }
@@ -11,7 +9,9 @@
 + (BOOL)supportsSecureCoding;
 
 - (id)_init;
+- (unsigned char)_nullLocale;
 - (id)_prefs;
+- (void)_setNullLocale;
 - (void)_update:(id)arg1;
 - (Class)classForCoder;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

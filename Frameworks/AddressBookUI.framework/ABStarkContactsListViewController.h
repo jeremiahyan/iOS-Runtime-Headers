@@ -2,9 +2,7 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class <ABStarkContactsListViewControllerDelegate>, ABMembersDataSource, ABModel, ABStarkNoContentBannerView, AVExternalDevice;
-
-@interface ABStarkContactsListViewController : UITableViewController <ABMembersDataSourceDelegate, ABContactViewControllerDelegate> {
+@interface ABStarkContactsListViewController : UITableViewController <ABContactViewControllerDelegate, ABMembersDataSourceDelegate> {
     ABMembersDataSource *_dataSource;
     AVExternalDevice *_externalDevice;
     BOOL _limitedUI;
@@ -13,10 +11,14 @@
     <ABStarkContactsListViewControllerDelegate> *_peoplePickerDelegate;
 }
 
-@property(retain) AVExternalDevice * externalDevice;
-@property BOOL limitedUI;
-@property(retain) ABStarkNoContentBannerView * overlayView;
-@property <ABStarkContactsListViewControllerDelegate> * peoplePickerDelegate;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) AVExternalDevice *externalDevice;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL limitedUI;
+@property (nonatomic, retain) ABStarkNoContentBannerView *overlayView;
+@property (nonatomic) <ABStarkContactsListViewControllerDelegate> *peoplePickerDelegate;
+@property (readonly) Class superclass;
 
 - (BOOL)abDataSource:(id)arg1 selectedPerson:(void*)arg2 atIndexPath:(id)arg3 withMemberCell:(id)arg4 animate:(BOOL)arg5;
 - (BOOL)abDataSource:(id)arg1 shouldAllowSelectingPersonWithRecordID:(int)arg2;
@@ -30,8 +32,7 @@
 - (void)limitedUINotification:(id)arg1;
 - (id)overlayView;
 - (id)peoplePickerDelegate;
-- (void)postMessageOverlay:(id)arg1;
-- (void)removeMessageOverlay;
+- (void)postMessageOverlayIfNecessary;
 - (void)setExternalDevice:(id)arg1;
 - (void)setLimitedUI:(BOOL)arg1;
 - (void)setOverlayView:(id)arg1;

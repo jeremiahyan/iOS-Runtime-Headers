@@ -2,18 +2,16 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIView;
-
 @interface UIPickerTableViewWrapperCell : UIPickerTableViewCell {
+    UIView *_wrappedView;
+    UIView *_wrappedViewContainer;
     struct CGSize { 
         float width; 
         float height; 
-    UIView *_wrappedView;
-    UIView *_wrappedViewContainer;
     } _wrappedViewSize;
 }
 
-@property(retain) UIView * wrappedView;
+@property (nonatomic, retain) UIView *wrappedView;
 
 - (id)_anyDateLabel;
 - (void)_setIsCenterCell:(BOOL)arg1 shouldModifyAlphaOfView:(BOOL)arg2;

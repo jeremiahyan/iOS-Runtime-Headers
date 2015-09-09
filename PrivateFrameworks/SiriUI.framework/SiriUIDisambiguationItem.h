@@ -2,12 +2,7 @@
    Image: /System/Library/PrivateFrameworks/SiriUI.framework/SiriUI
  */
 
-@class NSString, UIImageView;
-
 @interface SiriUIDisambiguationItem : NSObject {
-    struct _NSRange { 
-        unsigned int location; 
-        unsigned int length; 
     NSString *_extraDisambiguationSubText;
     NSString *_extraDisambiguationText;
     NSString *_headingText;
@@ -15,17 +10,20 @@
     BOOL _showsFavoriteStar;
     NSString *_subtitle;
     NSString *_title;
+    struct _NSRange { 
+        unsigned int location; 
+        unsigned int length; 
     } _titleBoldedRange;
 }
 
-@property(copy) NSString * extraDisambiguationSubText;
-@property(copy) NSString * extraDisambiguationText;
-@property(copy) NSString * headingText;
-@property(retain) UIImageView * imageView;
-@property BOOL showsFavoriteStar;
-@property(copy) NSString * subtitle;
-@property(copy) NSString * title;
-@property struct _NSRange { unsigned int x1; unsigned int x2; } titleBoldedRange;
+@property (nonatomic, copy) NSString *extraDisambiguationSubText;
+@property (nonatomic, copy) NSString *extraDisambiguationText;
+@property (nonatomic, copy) NSString *headingText;
+@property (nonatomic, retain) UIImageView *imageView;
+@property (nonatomic) BOOL showsFavoriteStar;
+@property (nonatomic, copy) NSString *subtitle;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic) struct _NSRange { unsigned int x1; unsigned int x2; } titleBoldedRange;
 
 + (id)disambiguationItem;
 

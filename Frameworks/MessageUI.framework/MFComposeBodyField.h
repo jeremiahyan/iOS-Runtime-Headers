@@ -2,32 +2,30 @@
    Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
  */
 
-@class <MFMailComposeViewDelegate>, DOMHTMLDocument, DOMHTMLElement, MFGenericAttachmentStore;
-
 @interface MFComposeBodyField : UIWebDocumentView {
-    struct CGSize { 
-        float width; 
-        float height; 
-    struct CGSize { 
-        float width; 
-        float height; 
-    struct _NSRange { 
-        unsigned int location; 
-        unsigned int length; 
-    unsigned int _isDirty : 1;
-    unsigned int _forwardingNotification : 1;
-    unsigned int _replaceAttachments : 1;
-    unsigned int _isLoading : 1;
-    unsigned int _needsReplaceImages : 1;
-    MFGenericAttachmentStore *_attachmentStore;
+    NSArray *_attachmentURLsToReplaceWithFilenames;
     DOMHTMLElement *_blockquote;
     DOMHTMLElement *_body;
     DOMHTMLDocument *_document;
+    unsigned int _forwardingNotification;
+    unsigned int _imageCount;
+    unsigned int _isDirty;
+    unsigned int _isLoading;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _layoutSize;
     <MFMailComposeViewDelegate> *_mailComposeViewDelegate;
+    unsigned int _needsReplaceImages;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _originalSize;
     BOOL _prefersFirstLineSelection;
     int _preventLayout;
+    struct _NSRange { 
+        unsigned int location; 
+        unsigned int length; 
     } _rangeToSelect;
     BOOL _shouldShowStandardButtons;
 }
@@ -36,7 +34,8 @@
 
 + (void)addAdditionalItemsToCalloutBar;
 
-- (id)_addInlineAttachmentWithData:(id)arg1 text:(id)arg2 type:(id)arg3 contentID:(id)arg4;
+- (id)_addInlineAttachmentWithData:(id)arg1 text:(id)arg2 type:(id)arg3;
+- (void)_ensureQuotedImagesHaveAttachmentStyleForElement:(id)arg1;
 - (void)_finishedLoadingURLRequest:(id)arg1 success:(BOOL)arg2;
 - (id)_nodeForAttachmentData:(id)arg1 text:(id)arg2 type:(id)arg3;
 - (void)_nts_AddDOMNode:(id)arg1 quote:(BOOL)arg2 baseURL:(id)arg3 emptyFirst:(BOOL)arg4 prepended:(BOOL)arg5;
@@ -64,8 +63,8 @@
 - (id)documentFragmentForPasteboardItemAtIndex:(int)arg1;
 - (void)endPreventingLayout;
 - (void)ensureSelection;
-- (void)htmlString:(id*)arg1 otherHtmlStringsAndAttachments:(id*)arg2 charsets:(id*)arg3 withAttachmentSource:(id)arg4;
 - (id)htmlString;
+- (void)htmlString:(id*)arg1 otherHtmlStringsAndAttachments:(id*)arg2 charsets:(id*)arg3;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)insertNode:(id)arg1 parent:(id)arg2 nextSibling:(id)arg3;
 - (void)insertNode:(id)arg1 parent:(id)arg2 offset:(int)arg3;
@@ -75,33 +74,34 @@
 - (BOOL)isDirty;
 - (BOOL)isForwardingNotification;
 - (void)layoutWithMinimumSize;
+- (id)mailComposeViewDelegate;
 - (void)paste:(id)arg1;
 - (id)plainTextAlternative;
-- (id)plainTextContentWithAttachmentSource:(id)arg1;
-- (void)prependMarkupString:(id)arg1 quote:(BOOL)arg2 baseURL:(id)arg3 emptyFirst:(BOOL)arg4;
+- (id)plainTextContent;
 - (void)prependMarkupString:(id)arg1 quote:(BOOL)arg2;
+- (void)prependMarkupString:(id)arg1 quote:(BOOL)arg2 baseURL:(id)arg3 emptyFirst:(BOOL)arg4;
 - (void)prependString:(id)arg1;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })rectOfElementWithID:(id)arg1;
 - (void)removeBlockQuoteFromTree:(id)arg1;
 - (void)replaceImages;
 - (void)replaceImagesIfNecessary;
 - (void)replaceNode:(id)arg1 oldNode:(id)arg2;
-- (void)restoreSelectionFromTemporaryMarkers:(BOOL)arg1;
 - (void)restoreSelectionFromTemporaryMarkers;
+- (void)restoreSelectionFromTemporaryMarkers:(BOOL)arg1;
 - (void)saveSelectionForUndo;
-- (void)scaleImagesToScale:(unsigned int)arg1 withAttachmentStore:(id)arg2;
+- (void)scaleImagesToScale:(unsigned int)arg1;
 - (struct _NSRange { unsigned int x1; unsigned int x2; })selectedRange;
-- (void)setAttachmentStore:(id)arg1;
+- (void)setAttachmentURLsToBeReplacedWithFilename:(id)arg1;
+- (void)setCaretPosition:(unsigned int)arg1;
 - (void)setDirty:(BOOL)arg1;
 - (void)setFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)setLayoutInterval:(int)arg1;
 - (void)setLoading:(BOOL)arg1;
 - (void)setMailComposeViewDelegate:(id)arg1;
-- (void)setMarkupString:(id)arg1 baseURL:(id)arg2 quote:(BOOL)arg3;
 - (void)setMarkupString:(id)arg1;
+- (void)setMarkupString:(id)arg1 baseURL:(id)arg2 quote:(BOOL)arg3;
 - (void)setPinHeight:(float)arg1;
 - (void)setPrefersFirstLineSelection;
-- (void)setReplaceAttachmentsWithFilename:(BOOL)arg1;
 - (void)setSelectedDOMRange:(id)arg1 affinityDownstream:(BOOL)arg2;
 - (void)setSelectedRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1;
 - (void)setSelectionStart:(id)arg1 offset:(int)arg2 end:(id)arg3 offset:(int)arg4 affinity:(int)arg5;

@@ -2,39 +2,31 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSString, PFUbiquityKnowledgeVector, PFUbiquityLocation;
-
 @interface PFUbiquityBaselineHeuristics : NSObject {
-     /* Encoded args for previous method: D8@0:4 */
-     /* Encoded args for previous method: v16@0:4D8 */
     PFUbiquityKnowledgeVector *_currentBaselineKV;
     PFUbiquityKnowledgeVector *_currentKV;
     NSString *_localPeerID;
     long long _logSize;
+    long double_logToStoreSizeRatio;
     int _minLogBytes;
     NSString *_modelVersionHash;
     int _numRequiredTransactions;
     NSString *_storeName;
     long long _storeSize;
     PFUbiquityLocation *_ubiquityRootLocation;
-    /* Warning: Unrecognized filer type: 'D' using 'void*' */ void*_logToStoreSizeRatio;
 }
 
-@property(retain) PFUbiquityKnowledgeVector * currentBaselineKV;
-@property(retain) PFUbiquityKnowledgeVector * currentKV;
-@property(readonly) NSString * localPeerID;
-@property(readonly) long long logSize;
-@property /* Warning: Unrecognized filer type: 'D' using 'void*' */ void* logToStoreSizeRatio;
-@property int minLogBytes;
-@property(readonly) NSString * modelVersionHash;
-@property int numRequiredTransactions;
-@property(readonly) NSString * storeName;
-@property(readonly) long long storeSize;
-@property(readonly) PFUbiquityLocation * ubiquityRootLocation;
+@property (nonatomic, retain) PFUbiquityKnowledgeVector *currentBaselineKV;
+@property (nonatomic, retain) PFUbiquityKnowledgeVector *currentKV;
+@property (nonatomic, readonly) NSString *localPeerID;
+@property (nonatomic, readonly) long long logSize;
+@property (nonatomic) long double logToStoreSizeRatio;
+@property (nonatomic) int minLogBytes;
+@property (nonatomic, readonly) NSString *modelVersionHash;
+@property (nonatomic) int numRequiredTransactions;
+@property (nonatomic, readonly) NSString *storeName;
+@property (nonatomic, readonly) long long storeSize;
+@property (nonatomic, readonly) PFUbiquityLocation *ubiquityRootLocation;
 
 - (long long)bytesForFileAtPath:(id)arg1;
 - (BOOL)canRollBaseline:(id*)arg1;
@@ -48,7 +40,7 @@
 - (id)initWithLocalPeerID:(id)arg1 storeName:(id)arg2 modelVersionHash:(id)arg3 andUbiquityRootLocation:(id)arg4;
 - (id)localPeerID;
 - (long long)logSize;
-- (/* Warning: Unrecognized filer type: 'D' using 'void*' */ void*)logToStoreSizeRatio;
+- (long double)logToStoreSizeRatio;
 - (BOOL)logsConsumeEnoughDiskSpace;
 - (int)minLogBytes;
 - (id)modelVersionHash;
@@ -56,7 +48,7 @@
 - (void)setCurrentBaselineKV:(id)arg1;
 - (void)setCurrentKV:(id)arg1;
 - (void)setLogSize:(long long)arg1;
-- (void)setLogToStoreSizeRatio:(/* Warning: Unrecognized filer type: 'D' using 'void*' */ void*)arg1;
+- (void)setLogToStoreSizeRatio:(long double)arg1;
 - (void)setMinLogBytes:(int)arg1;
 - (void)setNumRequiredTransactions:(int)arg1;
 - (void)setStoreSize:(long long)arg1;

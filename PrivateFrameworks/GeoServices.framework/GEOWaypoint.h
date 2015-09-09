@@ -2,19 +2,17 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class GEOLocation, GEOPlaceSearchRequest, NSMutableArray;
-
 @interface GEOWaypoint : PBCodable <NSCopying> {
     NSMutableArray *_entryPoints;
     GEOLocation *_location;
     GEOPlaceSearchRequest *_placeSearchRequest;
 }
 
-@property(retain) NSMutableArray * entryPoints;
-@property(readonly) BOOL hasLocation;
-@property(readonly) BOOL hasPlaceSearchRequest;
-@property(retain) GEOLocation * location;
-@property(retain) GEOPlaceSearchRequest * placeSearchRequest;
+@property (nonatomic, retain) NSMutableArray *entryPoints;
+@property (nonatomic, readonly) BOOL hasLocation;
+@property (nonatomic, readonly) BOOL hasPlaceSearchRequest;
+@property (nonatomic, retain) GEOLocation *location;
+@property (nonatomic, retain) GEOPlaceSearchRequest *placeSearchRequest;
 
 - (void)addEntryPoint:(id)arg1;
 - (void)clearEntryPoints;
@@ -29,12 +27,9 @@
 - (BOOL)hasLocation;
 - (BOOL)hasPlaceSearchRequest;
 - (unsigned int)hash;
-- (id)initWithLocation:(id)arg1;
-- (id)initWithMapItem:(id)arg1 includeEntryPoints:(BOOL)arg2;
-- (id)initWithPlace:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (id)location;
-- (id)locationForWaypoint;
+- (void)mergeFrom:(id)arg1;
 - (id)placeSearchRequest;
 - (BOOL)readFrom:(id)arg1;
 - (void)setEntryPoints:(id)arg1;

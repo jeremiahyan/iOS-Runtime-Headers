@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Message.framework/Message
  */
 
-@class MFMessageInfo;
-
 @interface MFMailMessage : MFMessage {
     MFMessageInfo *_info;
     unsigned long long _messageFlags;
@@ -13,6 +11,8 @@
 
 @property unsigned long long modSequenceNumber;
 
+// Image: /System/Library/PrivateFrameworks/Message.framework/Message
+
 + (Class)dataMessageStoreToUse;
 + (unsigned int)displayablePriorityForPriority:(int)arg1;
 + (id)forwardedMessagePrefixWithSpacer:(BOOL)arg1;
@@ -20,6 +20,7 @@
 
 - (id)URL;
 - (id)account;
+- (unsigned long long)conversationFlags;
 - (id)copyMessageInfo;
 - (void)dealloc;
 - (id)externalConversationID;
@@ -42,17 +43,22 @@
 - (id)originalMailboxURL;
 - (int)priority;
 - (id)remoteMailboxURL;
+- (void)setConversationFlags:(unsigned long long)arg1;
 - (void)setMessageFlags:(unsigned long long)arg1;
 - (void)setMessageFlagsWithoutCommitting:(unsigned long long)arg1;
 - (void)setModSequenceNumber:(unsigned long long)arg1;
 - (void)setMutableInfoFromMessage:(id)arg1;
 - (void)setPriorityFromHeaders:(id)arg1;
-- (void)setSubject:(id)arg1 to:(id)arg2 cc:(id)arg3 bcc:(id)arg4 sender:(id)arg5 dateReceived:(double)arg6 dateSent:(double)arg7 messageIDHash:(long long)arg8 conversationIDHash:(long long)arg9 summary:(id)arg10 withOptions:(unsigned int)arg11;
 - (void)setSubject:(id)arg1;
+- (void)setSubject:(id)arg1 to:(id)arg2 cc:(id)arg3 bcc:(id)arg4 sender:(id)arg5 dateReceived:(double)arg6 dateSent:(double)arg7 messageIDHash:(long long)arg8 conversationIDHash:(long long)arg9 summary:(id)arg10 withOptions:(unsigned int)arg11;
 - (void)setSummary:(id)arg1;
 - (BOOL)shouldSetSummary;
 - (id)subject;
 - (id)subjectAndPrefixLength:(unsigned int*)arg1;
 - (id)subjectNotIncludingReAndFwdPrefix;
+
+// Image: /System/Library/PrivateFrameworks/CoreSuggestionsInternals.framework/CoreSuggestionsInternals
+
+- (id)sg_bestAlternativePart;
 
 @end

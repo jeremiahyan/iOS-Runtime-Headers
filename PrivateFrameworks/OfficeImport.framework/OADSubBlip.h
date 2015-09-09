@@ -2,12 +2,8 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSData;
-
 @interface OADSubBlip : OCDDelayedMedia {
-    struct CGSize { 
-        float width; 
-        float height; 
+    NSData *mData;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -17,9 +13,11 @@
             float width; 
             float height; 
         } size; 
-    NSData *mData;
     } mFrame;
     long mSizeInBytes;
+    struct CGSize { 
+        float width; 
+        float height; 
     } mSizeInPoints;
     int mType;
 }
@@ -36,6 +34,7 @@
 - (void)setFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)setSizeInBytes:(long)arg1;
 - (void)setSizeInPoints:(struct CGSize { float x1; float x2; })arg1;
+- (void)setType:(int)arg1;
 - (long)sizeInBytes;
 - (struct CGSize { float x1; float x2; })sizeInPoints;
 - (int)type;

@@ -2,19 +2,23 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-@class NSObject<OS_dispatch_queue>;
-
 @interface VKDispatch : NSObject {
     NSObject<OS_dispatch_queue> *_homeQueue;
     NSObject<OS_dispatch_queue> *_layoutQueue;
     NSObject<OS_dispatch_queue> *_renderQueue;
 }
 
-@property(readonly) NSObject<OS_dispatch_queue> * homeQueue;
-@property(readonly) NSObject<OS_dispatch_queue> * layoutQueue;
-@property(readonly) NSObject<OS_dispatch_queue> * renderQueue;
+@property (nonatomic, readonly) NSObject<OS_dispatch_queue> *homeQueue;
+@property (nonatomic, readonly) NSObject<OS_dispatch_queue> *layoutQueue;
+@property (nonatomic, readonly) NSObject<OS_dispatch_queue> *renderQueue;
 
 + (id)defaultDispatch;
++ (id)iconRenderQueue;
++ (id)preemptiveLoadQueue;
++ (id)stylesheetLoadQueue;
++ (id)textureManagerRootQueue;
++ (id)tileDecodeQueue;
++ (id)tileDecodeStylingQueue;
 
 - (id)_initWithHomeQueue:(id)arg1 layoutQueue:(id)arg2 renderQueue:(id)arg3;
 - (id)_newLayoutQueue:(const char *)arg1;

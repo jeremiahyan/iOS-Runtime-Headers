@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@class NSArray, NSString, PFUbiquityLocation;
-
 @interface PFUbiquityLocation : NSObject <NSCopying> {
     NSString *_exportingPeerID;
     NSString *_filename;
@@ -18,24 +16,24 @@
     NSString *_ubiquityRootLocationPath;
 }
 
-@property(readonly) NSString * exportingPeerID;
-@property(readonly) NSString * filename;
-@property(readonly) unsigned int hash;
-@property(readonly) BOOL isDirectory;
-@property(readonly) BOOL isRootUbiquitous;
-@property(getter=isTransactionLogLocation,readonly) BOOL isTransactionLogLocation;
-@property(readonly) NSString * modelVersionHash;
-@property(readonly) NSArray * otherPathComponents;
-@property(readonly) NSString * storeName;
-@property(readonly) int ubiquityLocationType;
-@property(readonly) PFUbiquityLocation * ubiquityRootLocation;
-@property(readonly) NSString * ubiquityRootLocationPath;
-@property(readonly) BOOL usesBaselineDirectory;
-@property(readonly) BOOL usesBaselineStagingDirectory;
-@property(readonly) BOOL usesCurrentBaselineDirectory;
-@property(readonly) BOOL usesNosyncDirectory;
-@property(readonly) BOOL usesStagingLogDirectory;
-@property(readonly) BOOL usesTemporaryLogDirectory;
+@property (nonatomic, readonly) NSString *exportingPeerID;
+@property (nonatomic, readonly) NSString *filename;
+@property (nonatomic, readonly) unsigned int hash;
+@property (nonatomic, readonly) BOOL isDirectory;
+@property (nonatomic, readonly) BOOL isRootUbiquitous;
+@property (getter=isTransactionLogLocation, nonatomic, readonly) BOOL isTransactionLogLocation;
+@property (nonatomic, readonly) NSString *modelVersionHash;
+@property (nonatomic, readonly) NSArray *otherPathComponents;
+@property (nonatomic, readonly) NSString *storeName;
+@property (nonatomic, readonly) int ubiquityLocationType;
+@property (nonatomic, readonly) PFUbiquityLocation *ubiquityRootLocation;
+@property (nonatomic, readonly) NSString *ubiquityRootLocationPath;
+@property (nonatomic, readonly) BOOL usesBaselineDirectory;
+@property (nonatomic, readonly) BOOL usesBaselineStagingDirectory;
+@property (nonatomic, readonly) BOOL usesCurrentBaselineDirectory;
+@property (nonatomic, readonly) BOOL usesNosyncDirectory;
+@property (nonatomic, readonly) BOOL usesStagingLogDirectory;
+@property (nonatomic, readonly) BOOL usesTemporaryLogDirectory;
 
 + (id)createArrayOfSubLocationsAtLocation:(id)arg1 error:(id*)arg2;
 + (id)createBaselineLocation:(int)arg1 forStoreName:(id)arg2 andModelVersionHash:(id)arg3 withUbiquityRootLocation:(id)arg4;
@@ -51,6 +49,7 @@
 + (id)createMetadataStoreFileLocationForLocalPeerID:(id)arg1 storeName:(id)arg2 andUbiquityRootLocation:(id)arg3;
 + (id)createMetadataUUIDLocationForLocalPeerID:(id)arg1 storeName:(id)arg2 UUID:(id)arg3 andUbiquityRootLocation:(id)arg4;
 + (id)createPeerBaselineFileLocationForLocalPeerID:(id)arg1 andBaselineFileLocation:(id)arg2;
++ (id)createPeerBaselineFileSafeSaveLocationForLocalPeerID:(id)arg1 andBaselineFileLocation:(id)arg2;
 + (id)createPeerRootLocationForPeerID:(id)arg1 withUbiquityRootLocation:(id)arg2;
 + (id)createPeerStoreLocationForPeerID:(id)arg1 andStoreName:(id)arg2 withUbiquityRootLocation:(id)arg3;
 + (id)createPeerStoreVersionLocationForPeerID:(id)arg1 storeName:(id)arg2 andModelVersionHash:(id)arg3 withUbiquityRootLocation:(id)arg4;
@@ -66,8 +65,8 @@
 + (id)createUbiquityExternalDataReferenceStoreLocationForStoreName:(id)arg1 withUbiquityRootLocation:(id)arg2;
 + (id)createUbiquityLocationForPath:(id)arg1 withUbiquityRootLocation:(id)arg2;
 + (id)createUbiquityLocationForPath:(id)arg1 withUbiquityRootPath:(id)arg2;
-+ (id)createUbiquityLocationForRootPath:(id)arg1 checkIsUbiquitous:(BOOL)arg2;
 + (id)createUbiquityLocationForRootPath:(id)arg1;
++ (id)createUbiquityLocationForRootPath:(id)arg1 checkIsUbiquitous:(BOOL)arg2;
 + (id)createUbiquityLocationForRootURL:(id)arg1;
 + (id)createUbiquityLocationForSubpath:(id)arg1 ofUbiquityRootPath:(id)arg2;
 + (id)createUbiquityLocationForURL:(id)arg1 withUbiquityRootLocation:(id)arg2;

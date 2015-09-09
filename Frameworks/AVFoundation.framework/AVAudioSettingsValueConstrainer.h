@@ -2,48 +2,46 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class NSArray, NSMutableArray;
-
 @interface AVAudioSettingsValueConstrainer : NSObject {
-    struct AudioStreamBasicDescription { 
-        double mSampleRate; 
-        unsigned int mFormatID; 
-        unsigned int mFormatFlags; 
-        unsigned int mBytesPerPacket; 
-        unsigned int mFramesPerPacket; 
-        unsigned int mBytesPerFrame; 
-        unsigned int mChannelsPerFrame; 
-        unsigned int mBitsPerChannel; 
-        unsigned int mReserved; 
-    struct AudioStreamBasicDescription { 
-        double mSampleRate; 
-        unsigned int mFormatID; 
-        unsigned int mFormatFlags; 
-        unsigned int mBytesPerPacket; 
-        unsigned int mFramesPerPacket; 
-        unsigned int mBytesPerFrame; 
-        unsigned int mChannelsPerFrame; 
-        unsigned int mBitsPerChannel; 
-        unsigned int mReserved; 
     NSMutableArray *_applicableOutputDataRatesForSampleRate;
     NSMutableArray *_applicableOutputSampleRatesForDataRate;
     struct OpaqueAudioConverter { } *_audioConverter;
     NSMutableArray *_availableOutputDataRates;
     NSArray *_availableOutputSampleRates;
+    struct AudioStreamBasicDescription { 
+        double mSampleRate; 
+        unsigned int mFormatID; 
+        unsigned int mFormatFlags; 
+        unsigned int mBytesPerPacket; 
+        unsigned int mFramesPerPacket; 
+        unsigned int mBytesPerFrame; 
+        unsigned int mChannelsPerFrame; 
+        unsigned int mBitsPerChannel; 
+        unsigned int mReserved; 
     } _inputASBD;
     BOOL _needApplicableParameters;
     BOOL _needAvailableSampleRates;
     BOOL _needNewConverter;
+    struct AudioStreamBasicDescription { 
+        double mSampleRate; 
+        unsigned int mFormatID; 
+        unsigned int mFormatFlags; 
+        unsigned int mBytesPerPacket; 
+        unsigned int mFramesPerPacket; 
+        unsigned int mBytesPerFrame; 
+        unsigned int mChannelsPerFrame; 
+        unsigned int mBitsPerChannel; 
+        unsigned int mReserved; 
     } _outputASBD;
     unsigned long _outputDataRate;
 }
 
-@property unsigned long outputBitsPerChannel;
-@property unsigned long outputChannelCount;
-@property unsigned long outputDataRate;
-@property unsigned long outputFormat;
-@property unsigned long outputFormatFlags;
-@property float outputSampleRate;
+@property (nonatomic) unsigned long outputBitsPerChannel;
+@property (nonatomic) unsigned long outputChannelCount;
+@property (nonatomic) unsigned long outputDataRate;
+@property (nonatomic) unsigned long outputFormat;
+@property (nonatomic) unsigned long outputFormatFlags;
+@property (nonatomic) float outputSampleRate;
 
 - (void)_bringUpToDate;
 - (void)_buildApplicableDataRatesForSampleRates;

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/CertInfo.framework/CertInfo
  */
 
-@class CertInfoGradientLabel, UIImage, UILabel;
-
 @interface CertInfoCertificateHeaderCell : UITableViewCell {
     UIImage *_certificateImage;
     UIImage *_notTrustedGradient;
@@ -12,12 +10,12 @@
     CertInfoGradientLabel *_trustedLabel;
 }
 
+- (void).cxx_destruct;
 - (id)_certificateImage;
 - (id)_notTrustedGradient;
 - (id)_subtitleLabel;
 - (id)_titleLabel;
 - (id)_trustedLabel;
-- (void)dealloc;
 - (id)initWithStyle:(int)arg1 reuseIdentifier:(id)arg2;
 - (void)layoutSubviews;
 - (float)rowHeight;

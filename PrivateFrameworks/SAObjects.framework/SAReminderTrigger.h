@@ -2,8 +2,12 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@interface SAReminderTrigger : AceObject <SAAceSerializable> {
-}
+@interface SAReminderTrigger : AceObject <SAAceSerializable>
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)trigger;
 + (id)triggerWithDictionary:(id)arg1 context:(id)arg2;

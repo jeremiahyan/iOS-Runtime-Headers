@@ -18,10 +18,10 @@
 - (void)addTheme:(id)arg1;
 - (id)colorForMissingAppBundleResource:(struct __CFString { }*)arg1 processorBundle:(struct __CFBundle { }*)arg2;
 - (struct __CFString { }*)createUpgradedAppBundleResourcePath:(struct __CFString { }*)arg1 processorBundle:(struct __CFBundle { }*)arg2;
-- (struct __CFURL { }*)createUrlToAppBundleResource:(struct __CFString { }*)arg1 processorBundle:(struct __CFBundle { }*)arg2;
+- (struct __CFURL { }*)createUrlToAppBundleResource:(struct __CFString { }*)arg1 processorBundle:(struct __CFBundle { }*)arg2 fileUrl:(struct __CFURL { }*)arg3;
 - (void)dealloc;
 - (id)init;
-- (void)initializeAppBundleResourcesUrl;
+- (void)initializeAppBundleResourcesUrl:(struct __CFURL { }*)arg1;
 - (void)loadAppBundleResourceToColorMap;
 - (struct CGSize { float x1; float x2; })slideSize;
 - (struct __CFArray { }*)themes;

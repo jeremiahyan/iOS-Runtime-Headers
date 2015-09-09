@@ -2,18 +2,16 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
  */
 
-@class <PLAssetContainer>, NSDictionary, NSObject<PLAlbumProtocol>;
-
 @interface PLAssetContainerChangeNotification : PLContainerChangeNotification {
     BOOL _keyAssetDidChange;
     BOOL _titleDidChange;
     NSDictionary *_userInfo;
 }
 
-@property(readonly) NSObject<PLAlbumProtocol> * album;
-@property(readonly) <PLAssetContainer> * container;
-@property(readonly) BOOL keyAssetDidChange;
-@property(readonly) BOOL titleDidChange;
+@property (nonatomic, readonly, retain) NSObject<PLAlbumProtocol> *album;
+@property (nonatomic, readonly, retain) <PLAssetContainer> *container;
+@property (nonatomic, readonly) BOOL keyAssetDidChange;
+@property (nonatomic, readonly) BOOL titleDidChange;
 
 + (id)notificationWithContainer:(id)arg1 snapshot:(id)arg2 changedAssets:(id)arg3;
 
@@ -25,6 +23,7 @@
 - (id)container;
 - (void)dealloc;
 - (id)description;
+- (BOOL)hasDeletes;
 - (BOOL)keyAssetDidChange;
 - (id)name;
 - (BOOL)titleDidChange;

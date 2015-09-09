@@ -2,15 +2,16 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSString;
+@interface SASyncAnchor : AceObject <SAAceSerializable>
 
-@interface SASyncAnchor : AceObject <SAAceSerializable> {
-}
-
-@property int count;
-@property(copy) NSString * generation;
-@property(copy) NSString * key;
-@property(copy) NSString * validity;
+@property (nonatomic) int count;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, copy) NSString *generation;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *key;
+@property (readonly) Class superclass;
+@property (nonatomic, copy) NSString *validity;
 
 + (id)anchor;
 + (id)anchorWithDictionary:(id)arg1 context:(id)arg2;

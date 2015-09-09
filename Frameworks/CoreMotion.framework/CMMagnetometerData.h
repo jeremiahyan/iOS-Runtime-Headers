@@ -6,7 +6,9 @@
     id _internal;
 }
 
-@property(readonly) struct { double x1; double x2; double x3; } magneticField;
+@property (nonatomic, readonly) struct { double x1; double x2; double x3; } magneticField;
+
++ (BOOL)supportsSecureCoding;
 
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;

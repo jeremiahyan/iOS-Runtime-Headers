@@ -2,15 +2,17 @@
    Image: /System/Library/PrivateFrameworks/MediaStream.framework/MediaStream
  */
 
-@class NSData;
-
 @interface MSMSPlatform : NSObject <MSPlatform> {
     BOOL _isPerfLoggingEnabled;
     NSData *_pushToken;
 }
 
-@property BOOL isPerfLoggingEnabled;
-@property(retain) NSData * pushToken;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL isPerfLoggingEnabled;
+@property (nonatomic, retain) NSData *pushToken;
+@property (readonly) Class superclass;
 
 + (id)thePlatform;
 
@@ -25,6 +27,7 @@
 - (id)appBundleInfoString;
 - (id)authTokenForPersonID:(id)arg1;
 - (id)baseURLForPersonID:(id)arg1;
+- (id)contentURLForPersonID:(id)arg1;
 - (Class)deletePluginClass;
 - (void)didDetectUnrecoverableCondition;
 - (id)fullNameFromFirstName:(id)arg1 lastName:(id)arg2;

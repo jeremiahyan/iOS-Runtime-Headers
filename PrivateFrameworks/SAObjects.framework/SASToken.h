@@ -2,35 +2,47 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSNumber, NSString;
+@interface SASToken : AceObject <SAAceSerializable>
 
-@interface SASToken : AceObject <SAAceSerializable> {
-}
+@property (nonatomic, copy) NSNumber *confidenceScore;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, copy) NSNumber *endTime;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *originalText;
+@property (nonatomic, copy) NSString *recognitionStability;
+@property (nonatomic) BOOL removeSpaceAfter;
+@property (nonatomic) BOOL removeSpaceBefore;
+@property (nonatomic, copy) NSNumber *startTime;
+@property (readonly) Class superclass;
+@property (nonatomic, copy) NSString *text;
 
-@property(copy) NSNumber * confidenceScore;
-@property(copy) NSNumber * endTime;
-@property BOOL removeSpaceAfter;
-@property BOOL removeSpaceBefore;
-@property(copy) NSNumber * startTime;
-@property(copy) NSString * text;
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
 
 + (id)token;
 + (id)tokenWithDictionary:(id)arg1 context:(id)arg2;
 
-- (id)af_speechToken;
 - (id)confidenceScore;
 - (id)encodedClassName;
 - (id)endTime;
 - (id)groupIdentifier;
+- (id)originalText;
+- (id)recognitionStability;
 - (BOOL)removeSpaceAfter;
 - (BOOL)removeSpaceBefore;
 - (void)setConfidenceScore:(id)arg1;
 - (void)setEndTime:(id)arg1;
+- (void)setOriginalText:(id)arg1;
+- (void)setRecognitionStability:(id)arg1;
 - (void)setRemoveSpaceAfter:(BOOL)arg1;
 - (void)setRemoveSpaceBefore:(BOOL)arg1;
 - (void)setStartTime:(id)arg1;
 - (void)setText:(id)arg1;
 - (id)startTime;
 - (id)text;
+
+// Image: /System/Library/PrivateFrameworks/AssistantServices.framework/AssistantServices
+
+- (id)af_speechToken;
 
 @end

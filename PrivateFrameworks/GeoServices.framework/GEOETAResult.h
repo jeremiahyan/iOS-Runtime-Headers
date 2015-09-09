@@ -2,33 +2,35 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class GEOPlaceSearchResponse;
-
 @interface GEOETAResult : PBCodable <NSCopying> {
+    unsigned int _distance;
     struct { 
         unsigned int distance : 1; 
         unsigned int historicTravelTime : 1; 
         unsigned int liveTravelTime : 1; 
         unsigned int status : 1; 
-    unsigned int _distance;
     } _has;
     unsigned int _historicTravelTime;
     unsigned int _liveTravelTime;
     GEOPlaceSearchResponse *_placeSearchResponse;
+    NSMutableArray *_sortedETAs;
     int _status;
 }
 
-@property unsigned int distance;
-@property BOOL hasDistance;
-@property BOOL hasHistoricTravelTime;
-@property BOOL hasLiveTravelTime;
-@property(readonly) BOOL hasPlaceSearchResponse;
-@property BOOL hasStatus;
-@property unsigned int historicTravelTime;
-@property unsigned int liveTravelTime;
-@property(retain) GEOPlaceSearchResponse * placeSearchResponse;
-@property int status;
+@property (nonatomic) unsigned int distance;
+@property (nonatomic) BOOL hasDistance;
+@property (nonatomic) BOOL hasHistoricTravelTime;
+@property (nonatomic) BOOL hasLiveTravelTime;
+@property (nonatomic, readonly) BOOL hasPlaceSearchResponse;
+@property (nonatomic) BOOL hasStatus;
+@property (nonatomic) unsigned int historicTravelTime;
+@property (nonatomic) unsigned int liveTravelTime;
+@property (nonatomic, retain) GEOPlaceSearchResponse *placeSearchResponse;
+@property (nonatomic, retain) NSMutableArray *sortedETAs;
+@property (nonatomic) int status;
 
+- (void)addSortedETA:(id)arg1;
+- (void)clearSortedETAs;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
@@ -44,6 +46,7 @@
 - (unsigned int)historicTravelTime;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned int)liveTravelTime;
+- (void)mergeFrom:(id)arg1;
 - (id)placeSearchResponse;
 - (BOOL)readFrom:(id)arg1;
 - (void)setDistance:(unsigned int)arg1;
@@ -54,7 +57,11 @@
 - (void)setHistoricTravelTime:(unsigned int)arg1;
 - (void)setLiveTravelTime:(unsigned int)arg1;
 - (void)setPlaceSearchResponse:(id)arg1;
+- (void)setSortedETAs:(id)arg1;
 - (void)setStatus:(int)arg1;
+- (id)sortedETAAtIndex:(unsigned int)arg1;
+- (id)sortedETAs;
+- (unsigned int)sortedETAsCount;
 - (int)status;
 - (void)writeTo:(id)arg1;
 

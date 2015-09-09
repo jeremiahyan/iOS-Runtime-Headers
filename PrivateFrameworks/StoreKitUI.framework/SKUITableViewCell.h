@@ -2,25 +2,23 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class SKUIBorderView, UIColor;
-
 @interface SKUITableViewCell : UITableViewCell {
+    float _borderPaddingLeft;
+    SKUIBorderView *_bottomBorderView;
     struct UIEdgeInsets { 
         float top; 
         float left; 
         float bottom; 
         float right; 
-    float _borderPaddingLeft;
-    SKUIBorderView *_bottomBorderView;
     } _textLabelInsets;
     float _titlePaddingLeft;
     SKUIBorderView *_topBorderView;
 }
 
-@property float borderPaddingLeft;
-@property(copy) UIColor * bottomBorderColor;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } textLabelInsets;
-@property(copy) UIColor * topBorderColor;
+@property (nonatomic) float borderPaddingLeft;
+@property (nonatomic, copy) UIColor *bottomBorderColor;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } textLabelInsets;
+@property (nonatomic, copy) UIColor *topBorderColor;
 
 - (void).cxx_destruct;
 - (void)_reloadBorderVisibility;

@@ -2,14 +2,16 @@
    Image: /System/Library/PrivateFrameworks/MIME.framework/MIME
  */
 
-@class NSArray, NSMutableData, NSString;
-
 @interface MFBufferedDataConsumer : NSObject <MFGuaranteedCollectingDataConsumer> {
     NSMutableData *_data;
     int _fd;
     NSString *_path;
-    NSArray *_stack;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (int)appendData:(id)arg1;
 - (id)data;

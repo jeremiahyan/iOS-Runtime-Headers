@@ -2,19 +2,21 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibrary.framework/PhotoLibrary
  */
 
-@class UIView;
-
 @interface PLPhonePhotoScrollerViewController : PLPhotoScrollerViewController <UINavigationControllerDelegate> {
     BOOL _didDisappearUnderModalTransition;
     BOOL _isModalTransition;
     UIView *_viewToRemoveForSlideShow;
 }
 
-- (void)_emailComposeSheetIsReady;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+
 - (BOOL)_isPerformingModalTransitionFromCamera;
 - (void)beginSlideshowByRemovingView:(id)arg1;
 - (void)dealloc;
-- (id)initWithPhotoAtIndexPath:(id)arg1 inAssetContainerList:(id)arg2 lockStatusBar:(BOOL)arg3 delayImageLoading:(BOOL)arg4;
+- (id)initWithPhotoAtIndexPath:(id)arg1 inAssetCollections:(id)arg2 dataSource:(id)arg3 lockStatusBar:(BOOL)arg4 delayImageLoading:(BOOL)arg5;
 - (BOOL)isModalTransitioning;
 - (void)viewDidAppear:(BOOL)arg1;
 - (void)viewDidDisappear:(BOOL)arg1;

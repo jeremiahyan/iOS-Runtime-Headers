@@ -2,40 +2,48 @@
    Image: /System/Library/PrivateFrameworks/AirTraffic.framework/AirTraffic
  */
 
-@class NSData, NSDictionary, NSString;
-
-@interface ATMessage : NSObject {
-    NSString *_name;
-    NSDictionary *_params;
-    unsigned int _session;
-    NSData *_sig;
+@interface ATMessage : NSObject <NSSecureCoding> {
+    NSStream *_dataStream;
+    unsigned int _messageID;
+    NSDictionary *_parameters;
+    unsigned int _sessionID;
+    double _timestamp;
 }
 
-@property(retain) NSString * name;
-@property(retain) NSDictionary * parameters;
-@property(readonly) unsigned int sessionNumber;
-@property(retain) NSData * sig;
+@property (nonatomic, retain) NSStream *dataStream;
+@property (nonatomic) unsigned int messageID;
+@property (nonatomic) unsigned int options;
+@property (nonatomic, retain) NSDictionary *parameters;
+@property (nonatomic) unsigned int sessionID;
+@property (nonatomic) double timestamp;
 
-+ (unsigned int)currentSessionNumber;
-+ (id)messageFromData:(id)arg1;
-+ (id)messageFromDictionary:(id)arg1;
-+ (id)messageWithName:(id)arg1 parameters:(id)arg2 session:(unsigned int)arg3;
-+ (id)messageWithName:(id)arg1 parameters:(id)arg2;
-+ (unsigned int)nextSessionNumber;
-+ (void)setSessionNumber:(unsigned int)arg1;
+// Image: /System/Library/PrivateFrameworks/AirTraffic.framework/AirTraffic
 
-- (id)data;
-- (void)dealloc;
++ (BOOL)supportsSecureCoding;
+
+- (void).cxx_destruct;
+- (id)additionalDescription;
+- (id)dataStream;
 - (id)description;
-- (id)dictionary;
-- (id)initWithDictionary:(id)arg1;
-- (id)name;
+- (void)encodeWithCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
+- (unsigned int)messageID;
+- (unsigned int)options;
 - (id)parameterForKey:(id)arg1;
 - (id)parameters;
-- (unsigned int)sessionNumber;
-- (void)setName:(id)arg1;
+- (unsigned int)sessionID;
+- (void)setDataStream:(id)arg1;
+- (void)setMessageID:(unsigned int)arg1;
+- (void)setOptions:(unsigned int)arg1;
 - (void)setParameters:(id)arg1;
-- (void)setSig:(id)arg1;
-- (id)sig;
+- (void)setSessionID:(unsigned int)arg1;
+- (void)setTimestamp:(double)arg1;
+- (double)timestamp;
+
+// Image: /System/Library/PrivateFrameworks/ATFoundation.framework/ATFoundation
+
+- (id)ATPMessage;
+- (id)ATPMessageWithPayloadData:(id)arg1;
+- (id)initWithATPMessage:(id)arg1;
 
 @end

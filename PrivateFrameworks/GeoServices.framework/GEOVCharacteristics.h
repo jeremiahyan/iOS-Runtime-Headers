@@ -2,17 +2,16 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSMutableArray;
-
-@interface GEOVCharacteristics : PBCodable {
+@interface GEOVCharacteristics : PBCodable <NSCopying> {
     NSMutableArray *_pointCharacteristics;
 }
 
-@property(retain) NSMutableArray * pointCharacteristics;
+@property (nonatomic, retain) NSMutableArray *pointCharacteristics;
 
 - (void)addPointCharacteristic:(id)arg1;
 - (void)clearPointCharacteristics;
 - (void)copyTo:(id)arg1;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)description;
 - (id)dictionaryRepresentation;

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/AXHearingAidSupport.framework/AXHearingAidSupport
  */
 
-@class NSString;
-
 @interface AXHearingAidMode : NSObject <NSSecureCoding> {
     int _category;
     int _ear;
@@ -13,12 +11,12 @@
     int syncAttempts;
 }
 
-@property int category;
-@property int ear;
-@property unsigned char index;
-@property BOOL isSelected;
-@property(copy) NSString * name;
-@property int syncAttempts;
+@property (nonatomic) int category;
+@property (nonatomic) int ear;
+@property (nonatomic) unsigned char index;
+@property (nonatomic) BOOL isSelected;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic) int syncAttempts;
 
 + (BOOL)supportsSecureCoding;
 
@@ -29,6 +27,7 @@
 - (void)encodeWithCoder:(id)arg1;
 - (unsigned char)index;
 - (id)initWithCoder:(id)arg1;
+- (id)initWithRepresentation:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isSelected;
 - (BOOL)isStream;
@@ -40,5 +39,6 @@
 - (void)setName:(id)arg1;
 - (void)setSyncAttempts:(int)arg1;
 - (int)syncAttempts;
+- (id)transportRepresentation;
 
 @end

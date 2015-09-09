@@ -2,17 +2,7 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, NSMapTable;
-
 @interface UIDynamicItemBehavior : UIDynamicBehavior {
-    struct { 
-        unsigned int elasticityChanged : 1; 
-        unsigned int frictionChanged : 1; 
-        unsigned int densityChanged : 1; 
-        unsigned int resistanceChanged : 1; 
-        unsigned int angularResistanceChanged : 1; 
-        unsigned int rotationEnabledChanged : 1; 
-        unsigned int useDefaultViewPropertiesApplierChanged : 1; 
     BOOL _allowsRotation;
     float _angularResistance;
     NSMapTable *_cachedAngularVelocities;
@@ -21,18 +11,26 @@
     float _elasticity;
     float _friction;
     float _resistance;
+    struct { 
+        unsigned int elasticityChanged : 1; 
+        unsigned int frictionChanged : 1; 
+        unsigned int densityChanged : 1; 
+        unsigned int resistanceChanged : 1; 
+        unsigned int angularResistanceChanged : 1; 
+        unsigned int rotationEnabledChanged : 1; 
+        unsigned int useDefaultViewPropertiesApplierChanged : 1; 
     } _stateFlags;
     BOOL _useCircularBoundingBox;
     BOOL _useDefaultViewPropertiesApplier;
 }
 
-@property BOOL allowsRotation;
-@property float angularResistance;
-@property float density;
-@property float elasticity;
-@property float friction;
-@property(readonly) NSArray * items;
-@property float resistance;
+@property (nonatomic) BOOL allowsRotation;
+@property (nonatomic) float angularResistance;
+@property (nonatomic) float density;
+@property (nonatomic) float elasticity;
+@property (nonatomic) float friction;
+@property (nonatomic, readonly, copy) NSArray *items;
+@property (nonatomic) float resistance;
 
 - (float)_angleForItem:(id)arg1;
 - (float)_angularResistanceForItem:(id)arg1;

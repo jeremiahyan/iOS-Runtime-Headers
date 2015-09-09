@@ -9,12 +9,13 @@
 + (id)set;
 
 - (id)_generateAllObjectsFromSelector:(SEL)arg1;
+- (void)_setupSetWithCapacity:(unsigned int)arg1;
 - (void)addObject:(id)arg1;
 - (id)allCommentedAddresses;
 - (id)allObjects;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (unsigned int)count;
-- (unsigned int)countByEnumeratingWithState:(struct { unsigned long x1; id *x2; unsigned long *x3; unsigned long x4[5]; }*)arg1 objects:(id*)arg2 count:(unsigned int)arg3;
+- (unsigned int)countByEnumeratingWithState:(struct { unsigned long x1; id *x2; unsigned long x3; unsigned long x4[5]; }*)arg1 objects:(id*)arg2 count:(unsigned int)arg3;
 - (void)dealloc;
 - (id)init;
 - (id)initWithCapacity:(unsigned int)arg1;

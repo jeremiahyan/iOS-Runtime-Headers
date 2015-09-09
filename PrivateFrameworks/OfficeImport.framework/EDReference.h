@@ -14,12 +14,13 @@
 + (id)reference;
 + (id)referenceWithAreaReference:(struct EDAreaReference { int x1; int x2; int x3; int x4; }*)arg1;
 + (id)referenceWithFirstRow:(int)arg1 lastRow:(int)arg2 firstColumn:(int)arg3 lastColumn:(int)arg4;
++ (id)referenceWithReference:(id)arg1;
 
 - (id).cxx_construct;
 - (struct EDAreaReference { int x1; int x2; int x3; int x4; })areaReference;
 - (bool)containsRow:(int)arg1 column:(int)arg2;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (unsigned int)countOfCellsBeingReferenced;
+- (unsigned long long)countOfCellsBeingReferenced;
 - (int)firstColumn;
 - (int)firstRow;
 - (bool)fullyAdjacentToReference:(id)arg1;
@@ -27,6 +28,7 @@
 - (id)init;
 - (id)initWithAreaReference:(struct EDAreaReference { int x1; int x2; int x3; int x4; }*)arg1;
 - (id)initWithFirstRow:(int)arg1 lastRow:(int)arg2 firstColumn:(int)arg3 lastColumn:(int)arg4;
+- (id)initWithReference:(id)arg1;
 - (bool)isCellReference;
 - (bool)isColumnReference;
 - (BOOL)isEqual:(id)arg1;

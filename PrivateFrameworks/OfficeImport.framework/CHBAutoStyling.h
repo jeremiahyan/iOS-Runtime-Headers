@@ -2,22 +2,26 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@interface CHBAutoStyling : CHAutoStyling <CHAutoStyling> {
-}
+@interface CHBAutoStyling : CHAutoStyling <CHAutoStyling>
 
-- (id)autoAxisStroke;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+
 - (id)autoFill;
 - (id)autoSeriesBorderStroke;
 - (id)autoSeriesFill:(unsigned int)arg1;
 - (id)autoStroke;
 - (id)autoStrokeForSeriesIndex:(unsigned int)arg1;
+- (id)autoTextFill;
 - (id)fillWithColorIndex:(unsigned int)arg1;
 - (void)resolveAxisGraphicProperties:(id)arg1;
 - (void)resolveChartAreaGraphicProperties:(id)arg1;
 - (void)resolveFloorGraphicProperties:(id)arg1;
-- (void)resolveGraphicPropertiesOfErrorBar:(id)arg1 forSeriesIndex:(unsigned int)arg2 colorMap:(id)arg3 colorScheme:(id)arg4;
-- (void)resolveGraphicPropertiesOfSeries:(id)arg1 forSeriesIndex:(unsigned int)arg2 colorMap:(id)arg3 colorScheme:(id)arg4;
-- (void)resolveGraphicPropertiesOfSeries:(id)arg1 forSeriesIndex:(unsigned int)arg2 isLine:(bool)arg3 colorMap:(id)arg4 colorScheme:(id)arg5;
+- (void)resolveGraphicPropertiesOfErrorBar:(id)arg1 forSeriesIndex:(unsigned int)arg2;
+- (void)resolveGraphicPropertiesOfSeries:(id)arg1 forSeriesIndex:(unsigned int)arg2;
+- (void)resolveGraphicPropertiesOfSeries:(id)arg1 forSeriesIndex:(unsigned int)arg2 isLine:(bool)arg3;
 - (void)resolveGraphicPropertiesOfTrendline:(id)arg1 forSeriesIndex:(unsigned int)arg2;
 - (void)resolveLegendGraphicProperties:(id)arg1;
 - (void)resolveMajorGridLinesGraphicProperties:(id)arg1;

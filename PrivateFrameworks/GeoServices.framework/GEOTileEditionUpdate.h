@@ -2,21 +2,23 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSMutableArray;
-
 @interface GEOTileEditionUpdate : NSObject {
     NSMutableArray *_entries;
     BOOL _flushEverything;
+    BOOL _invalidateEverything;
 }
 
-@property BOOL flushEverything;
+@property (nonatomic) BOOL flushEverything;
+@property (nonatomic) BOOL invalidateEverything;
 
-- (void)addTileset:(unsigned int)arg1 edition:(unsigned int)arg2 provider:(unsigned int)arg3;
+- (void)addTileset:(unsigned int)arg1 edition:(unsigned int)arg2 provider:(unsigned int)arg3 invalidateOnly:(BOOL)arg4;
 - (void)dealloc;
 - (BOOL)flushEverything;
 - (id)init;
+- (BOOL)invalidateEverything;
 - (void)setFlushEverything:(BOOL)arg1;
-- (void)tileset:(unsigned int*)arg1 edition:(unsigned int*)arg2 provider:(unsigned int*)arg3 atIndex:(unsigned int)arg4;
+- (void)setInvalidateEverything:(BOOL)arg1;
+- (void)tileset:(unsigned int*)arg1 edition:(unsigned int*)arg2 provider:(unsigned int*)arg3 invalidateOnly:(BOOL*)arg4 atIndex:(unsigned int)arg5;
 - (unsigned int)tilesetCount;
 
 @end

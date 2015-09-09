@@ -2,37 +2,7 @@
    Image: /System/Library/PrivateFrameworks/CoreMediaStream.framework/CoreMediaStream
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class NSArray;
-
 @interface MSPublishStreamsProtocol : MSStreamsProtocol {
-    struct __MSPSPCContext { 
-        struct __MSSPCContext { 
-            void *owner; 
-            struct __CFString {} *personID; 
-            struct __CFString {} *authToken; 
-            struct __CFDictionary {} *deviceInfo; 
-            struct __CFDictionary {} *clientHeadersRef; 
-            double connectionTimeout; 
-            int (*__didReceiveDataCallback)(); 
-            int (*__didFinishCallback)(); 
-            int (*__didFailAuthenticationCallback)(); 
-            int (*__didReceiveServerSideConfigVersionCallback)(); 
-            int (*__didReceiveRetryAfterCallback)(); 
-            struct CFURLConnectionClient_V1 {} *__client; 
-            struct _CFURLConnection {} *__connection; 
-            struct __CFData {} *__responseData; 
-            struct __CFHTTPMessage {} *__response; 
-            struct __CFError {} *__error; 
-        } _super; 
-        int (*finishedCallback)(); 
-        int (*authFailedCallback)(); 
-        int (*didReceiveServerSideConfigurationVersionCallback)(); 
-        int (*didReceiveRetryAfterCallback)(); 
     struct __MSPSPCUCContext { 
         struct __MSSPCContext { 
             void *owner; 
@@ -57,6 +27,29 @@
         int (*didReceiveServerSideConfigurationVersionCallback)(); 
     } _UCContext;
     NSArray *_assetCollectionsInFlight;
+    struct __MSPSPCContext { 
+        struct __MSSPCContext { 
+            void *owner; 
+            struct __CFString {} *personID; 
+            struct __CFString {} *authToken; 
+            struct __CFDictionary {} *deviceInfo; 
+            struct __CFDictionary {} *clientHeadersRef; 
+            double connectionTimeout; 
+            int (*__didReceiveDataCallback)(); 
+            int (*__didFinishCallback)(); 
+            int (*__didFailAuthenticationCallback)(); 
+            int (*__didReceiveServerSideConfigVersionCallback)(); 
+            int (*__didReceiveRetryAfterCallback)(); 
+            struct CFURLConnectionClient_V1 {} *__client; 
+            struct _CFURLConnection {} *__connection; 
+            struct __CFData {} *__responseData; 
+            struct __CFHTTPMessage {} *__response; 
+            struct __CFError {} *__error; 
+        } _super; 
+        int (*finishedCallback)(); 
+        int (*authFailedCallback)(); 
+        int (*didReceiveServerSideConfigurationVersionCallback)(); 
+        int (*didReceiveRetryAfterCallback)(); 
     } _context;
 }
 

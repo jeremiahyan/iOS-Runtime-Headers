@@ -2,9 +2,19 @@
    Image: /System/Library/PrivateFrameworks/VoiceServices.framework/VoiceServices
  */
 
-@class <VSSpeechSynthesizerDelegate>, NSObject<OS_dispatch_queue>, NSString, VSKeepAlive, VSSpeechConnection;
-
 @interface VSSpeechSynthesizer : NSObject <VSSpeechConnectionDelegate> {
+    unsigned int _audioQueueFlags;
+    unsigned int _audioSessionID;
+    BOOL _audioSessionIDIsValid;
+    <VSSpeechSynthesizerDelegate> *_delegate;
+    int _footprint;
+    int _gender;
+    VSKeepAlive *_inactiveKeepAlive;
+    VSKeepAlive *_keepAlive;
+    float _pitch;
+    NSObject<OS_dispatch_queue> *_queue;
+    float _rate;
+    VSSpeechConnection *_speechConnection;
     struct { 
         unsigned int delegateStart : 1; 
         unsigned int delegateFinish : 1; 
@@ -19,18 +29,6 @@
         unsigned int delegateContinueWithRequest : 1; 
         unsigned int delegateWillSpeakWithRequest : 1; 
         unsigned int willUseInput : 1; 
-    unsigned int _audioQueueFlags;
-    unsigned int _audioSessionID;
-    BOOL _audioSessionIDIsValid;
-    <VSSpeechSynthesizerDelegate> *_delegate;
-    int _footprint;
-    int _gender;
-    VSKeepAlive *_inactiveKeepAlive;
-    VSKeepAlive *_keepAlive;
-    float _pitch;
-    NSObject<OS_dispatch_queue> *_queue;
-    float _rate;
-    VSSpeechConnection *_speechConnection;
     } _synthesizerFlags;
     BOOL _useCustomVoice;
     BOOL _useSharedSession;
@@ -38,23 +36,26 @@
     float _volume;
 }
 
-@property <VSSpeechSynthesizerDelegate> * delegate;
-@property float pitch;
-@property float rate;
-@property(retain) NSString * voice;
-@property float volume;
+@property (nonatomic) <VSSpeechSynthesizerDelegate> *delegate;
+@property (nonatomic) float pitch;
+@property (nonatomic) float rate;
+@property (nonatomic, retain) NSString *voice;
+@property (nonatomic) float volume;
 
 + (id)availableFootprintsForVoice:(id)arg1 languageCode:(id)arg2;
 + (id)availableLanguageCodes;
 + (id)availableVoices;
 + (id)availableVoicesForLanguageCode:(id)arg1;
-+ (void)downloadVoiceAsset:(id)arg1 progress:(id)arg2 completion:(id)arg3;
-+ (void)getAllVoiceAssets:(id)arg1;
-+ (void)getAutoDownloadedVoiceAssets:(id)arg1;
-+ (void)getLocalVoiceAssets:(id)arg1;
-+ (void)getVoiceInfoForLanguageCode:(id)arg1 footprint:(int)arg2 gender:(int)arg3 custom:(BOOL)arg4 reply:(id)arg5;
++ (void)downloadVoiceAsset:(id)arg1 progress:(id /* block */)arg2 completion:(id /* block */)arg3;
++ (void)getAllVoiceAssets:(id /* block */)arg1;
++ (void)getAutoDownloadedVoiceAssets:(id /* block */)arg1;
++ (void)getLocalVoiceAssets:(id /* block */)arg1;
++ (void)getLogToFile:(id /* block */)arg1;
++ (void)getVoiceInfoForLanguageCode:(id)arg1 footprint:(int)arg2 gender:(int)arg3 custom:(BOOL)arg4 reply:(id /* block */)arg5;
++ (void)initialize;
 + (BOOL)isSystemSpeaking;
 + (void)setAutoDownloadedVoiceAssets:(id)arg1;
++ (void)setLogToFile:(BOOL)arg1;
 
 - (void).cxx_destruct;
 - (BOOL)_continueSpeakingRequest:(id)arg1 withError:(id*)arg2;

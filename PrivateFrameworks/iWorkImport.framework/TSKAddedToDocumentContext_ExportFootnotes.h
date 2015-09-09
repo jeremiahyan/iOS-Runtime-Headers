@@ -2,10 +2,9 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface TSKAddedToDocumentContext_ExportFootnotes : TSKAddedToDocumentContext {
-}
+@interface TSKAddedToDocumentContext_ExportFootnotes : TSKAddedToDocumentContext
 
 - (id)description;
-- (BOOL)exportingFootnotes;
+- (BOOL)preserveChangeTracking;
 
 @end

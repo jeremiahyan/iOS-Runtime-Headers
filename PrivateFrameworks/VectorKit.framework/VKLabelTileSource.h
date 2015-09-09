@@ -11,15 +11,15 @@
     BOOL _localizeLabels;
 }
 
-@property int labelScaleFactor;
-@property BOOL localizeLabels;
+@property (nonatomic) int labelScaleFactor;
+@property (nonatomic) BOOL localizeLabels;
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (int)_labelTileType;
+- (unsigned char)_labelTileType;
 - (void)dealloc;
 - (int)defaultMaximumZoomLevel;
-- (id)initWithTileSet:(id)arg1 labelManager:(const struct shared_ptr<vk::LabelManager> { struct LabelManager {} *x1; struct __shared_weak_count {} *x2; }*)arg2;
+- (id)initWithTileSet:(id)arg1 resourceManifestConfiguration:(id)arg2 locale:(id)arg3 labelManager:(const struct shared_ptr<vk::LabelManager> { struct LabelManager {} *x1; struct __shared_weak_count {} *x2; }*)arg4;
 - (int)labelScaleFactor;
 - (BOOL)localizeLabels;
 - (BOOL)maximumZoomLevelBoundsCamera;

@@ -2,18 +2,14 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIColor, UIPickerTableView, UIPickerView, UIView;
-
 @interface UIPickerColumnView : UIView <UIPickerTableViewContainerDelegate, UITableViewDataSource> {
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
+    UIColor *__textColor;
+    UIView *_bottomContainerView;
+    UIPickerTableView *_bottomTable;
+    float _leftHitTestExtension;
+    float _middleBarHeight;
+    UIView *_middleContainerView;
+    UIPickerTableView *_middleTable;
     struct CATransform3D { 
         float m11; 
         float m12; 
@@ -31,29 +27,35 @@
         float m42; 
         float m43; 
         float m44; 
-    UIColor *__textColor;
-    UIView *_bottomContainerView;
-    UIPickerTableView *_bottomTable;
-    float _leftHitTestExtension;
-    float _middleBarHeight;
-    UIView *_middleContainerView;
-    UIPickerTableView *_middleTable;
     } _perspectiveTransform;
     UIPickerView *_pickerView;
     float _rightHitTestExtension;
     float _rowHeight;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } _tableFrame;
     UIView *_topContainerView;
     UIPickerTableView *_topTable;
 }
 
-@property(getter=_textColor,setter=_setTextColor:,retain) UIColor * _textColor;
-@property float leftHitTestExtension;
-@property struct CATransform3D { float x1; float x2; float x3; float x4; float x5; float x6; float x7; float x8; float x9; float x10; float x11; float x12; float x13; float x14; float x15; float x16; } perspectiveTransform;
-@property float rightHitTestExtension;
-@property float rowHeight;
-@property struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } selectionBarRect;
-@property(readonly) int selectionBarRow;
+@property (getter=_textColor, setter=_setTextColor:, nonatomic, retain) UIColor *_textColor;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) float leftHitTestExtension;
+@property (nonatomic) struct CATransform3D { float x1; float x2; float x3; float x4; float x5; float x6; float x7; float x8; float x9; float x10; float x11; float x12; float x13; float x14; float x15; float x16; } perspectiveTransform;
+@property (nonatomic) float rightHitTestExtension;
+@property (nonatomic) float rowHeight;
+@property (nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } selectionBarRect;
+@property (nonatomic, readonly) int selectionBarRow;
+@property (readonly) Class superclass;
 
 - (id)_allVisibleCells;
 - (void)_centerTableInContainer:(id)arg1;

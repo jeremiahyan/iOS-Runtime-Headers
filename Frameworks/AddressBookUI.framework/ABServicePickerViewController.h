@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class NSArray, NSIndexPath, NSString;
-
 @interface ABServicePickerViewController : ABPickerViewController <ABSimpleTextInputViewControllerDelegate> {
     NSString *_customService;
     NSArray *_defaultServices;
@@ -11,7 +9,11 @@
     NSString *_selectedService;
 }
 
-@property(copy) NSString * selectedService;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *selectedService;
+@property (readonly) Class superclass;
 
 + (id)defaultService;
 + (id)defaultServices;

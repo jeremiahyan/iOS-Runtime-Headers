@@ -2,14 +2,14 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface TSCHChartFeatureTwoAxis : TSCHChartFeatureCategory {
-}
+@interface TSCHChartFeatureTwoAxis : TSCHChartFeatureCategory
 
 - (id)defaultDataFileName;
 - (id)genericToSpecificPropertyMap;
 - (void)p_initializeAxisIDs;
 - (Class)presetImagerClass;
-- (BOOL)requiresAxisOrdinal;
+- (int)representativeGridValueAxisType;
+- (BOOL)requiresYAxisOrdinal;
 - (unsigned int)styleIndexForAxisID:(id)arg1;
 - (id)supportedAxisScales;
 - (id)supportedSeriesTypes;
@@ -18,6 +18,7 @@
 - (BOOL)supportsGroupedShadows;
 - (BOOL)supportsIndividualShadowRendering;
 - (BOOL)supportsMultipleSeriesTypes;
+- (BOOL)supportsReferenceLines;
 - (BOOL)supportsSymbolOverhang;
 - (void)updateTitlesForExportingModel:(id)arg1 info:(id)arg2;
 - (id)userInterfaceName;

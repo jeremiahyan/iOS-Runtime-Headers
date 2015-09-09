@@ -2,25 +2,23 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSDictionary, NSManagedObjectContext, NSManagedObjectModel, NSPersistentStoreCoordinator, NSString;
-
 @interface UIManagedDocument : UIDocument {
-    struct __mdocFlags { 
-        unsigned int shouldWriteAdditionalContent : 1; 
-        unsigned int _reserved : 31; 
     NSDictionary *_documentMetadata;
     NSManagedObjectContext *_managedObjectContext;
     NSManagedObjectModel *_managedObjectModel;
+    struct __mdocFlags { 
+        unsigned int shouldWriteAdditionalContent : 1; 
+        unsigned int _reserved : 31; 
     } _mdocFlags;
     NSPersistentStoreCoordinator *_persistentStoreCoordinator;
     NSString *modelConfiguration;
     NSDictionary *persistentStoreOptions;
 }
 
-@property(readonly) NSManagedObjectContext * managedObjectContext;
-@property(readonly) NSManagedObjectModel * managedObjectModel;
-@property(copy) NSString * modelConfiguration;
-@property(copy) NSDictionary * persistentStoreOptions;
+@property (nonatomic, readonly, retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, readonly, retain) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, copy) NSString *modelConfiguration;
+@property (nonatomic, copy) NSDictionary *persistentStoreOptions;
 
 + (id)additionalContentPathComponent;
 + (void)initialize;
@@ -43,7 +41,7 @@
 - (id)persistentStoreTypeForFileType:(id)arg1;
 - (BOOL)readAdditionalContentFromURL:(id)arg1 error:(id*)arg2;
 - (BOOL)readFromURL:(id)arg1 error:(id*)arg2;
-- (void)revertToContentsOfURL:(id)arg1 completionHandler:(id)arg2;
+- (void)revertToContentsOfURL:(id)arg1 completionHandler:(id /* block */)arg2;
 - (void)setModelConfiguration:(id)arg1;
 - (void)setPersistentStoreOptions:(id)arg1;
 - (BOOL)writeAdditionalContent:(id)arg1 toURL:(id)arg2 originalContentsURL:(id)arg3 error:(id*)arg4;

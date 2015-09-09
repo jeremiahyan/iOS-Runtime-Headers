@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/PrototypeTools.framework/PrototypeTools
  */
 
-@class NSArray, NSString, UILabel, UITableView, _UISettings;
-
-@interface PTSPicker : UIView <UITableViewDelegate, UITableViewDataSource, PTSHUDControl, _UISettingsKeyPathObserver> {
+@interface PTSPicker : UIView <PTSHUDControl, UITableViewDataSource, UITableViewDelegate, _UISettingsKeyPathObserver> {
     int _alignment;
     NSArray *_choices;
     BOOL _enabled;
@@ -15,14 +13,18 @@
     NSString *_valueKeyPath;
 }
 
-@property int alignment;
-@property(copy) NSArray * choices;
-@property BOOL enabled;
-@property _UISettings * settings;
-@property(retain) NSArray * subviewConstraints;
-@property(retain) UITableView * tableView;
-@property(retain) UILabel * titleLabel;
-@property(copy) NSString * valueKeyPath;
+@property (nonatomic) int alignment;
+@property (nonatomic, copy) NSArray *choices;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL enabled;
+@property (readonly) unsigned int hash;
+@property (nonatomic) _UISettings *settings;
+@property (nonatomic, retain) NSArray *subviewConstraints;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) UITableView *tableView;
+@property (nonatomic, retain) UILabel *titleLabel;
+@property (nonatomic, copy) NSString *valueKeyPath;
 
 + (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })defaultFrame;
 + (id)picker;
@@ -43,21 +45,21 @@
 - (void)setChoices:(id)arg1;
 - (void)setEnabled:(BOOL)arg1;
 - (void)setSelection:(id)arg1;
-- (void)setSettings:(id)arg1 valueKeyPath:(id)arg2;
 - (void)setSettings:(id)arg1;
+- (void)setSettings:(id)arg1 valueKeyPath:(id)arg2;
 - (void)setSubviewConstraints:(id)arg1;
 - (void)setTableView:(id)arg1;
 - (void)setTitleLabel:(id)arg1;
 - (void)setValueKeyPath:(id)arg1;
-- (void)settings:(id)arg1 changedValueForKeyPath:(id)arg2;
 - (id)settings;
+- (void)settings:(id)arg1 changedValueForKeyPath:(id)arg2;
 - (id)subviewConstraints;
+- (id)tableView;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
 - (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
 - (float)tableView:(id)arg1 heightForRowAtIndexPath:(id)arg2;
 - (int)tableView:(id)arg1 numberOfRowsInSection:(int)arg2;
 - (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forRowAtIndexPath:(id)arg3;
-- (id)tableView;
 - (id)titleLabel;
 - (id)valueKeyPath;
 

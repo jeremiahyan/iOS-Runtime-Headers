@@ -2,20 +2,13 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class NSString, SKUIColorScheme, UIImageView, UILabel;
-
 @interface SKUITextBoxView : UIControl {
-    struct UIEdgeInsets { 
-        float top; 
-        float left; 
-        float bottom; 
-        float right; 
-    struct UIEdgeInsets { 
-        float top; 
-        float left; 
-        float bottom; 
-        float right; 
     SKUIColorScheme *_colorScheme;
+    struct UIEdgeInsets { 
+        float top; 
+        float left; 
+        float bottom; 
+        float right; 
     } _contentInsets;
     UILabel *_moreButtonLabel;
     int _numberOfVisibleLines;
@@ -24,6 +17,11 @@
     UILabel *_ratingLabel;
     UILabel *_subtitleLabel;
     struct __CTFrame { } *_textFrame;
+    struct UIEdgeInsets { 
+        float top; 
+        float left; 
+        float bottom; 
+        float right; 
     } _titleInsets;
     UILabel *_titleLabel;
     struct __CTFrame { } *_titleTextFrame;
@@ -32,15 +30,15 @@
     NSString *_underlyingText;
 }
 
-@property(retain) SKUIColorScheme * colorScheme;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } contentInsets;
-@property(copy) NSString * moreButtonTitle;
-@property int numberOfVisibleLines;
-@property float rating;
-@property(copy) NSString * ratingText;
-@property(copy) NSString * subtitle;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } titleInsets;
-@property int truncationStyle;
+@property (nonatomic, retain) SKUIColorScheme *colorScheme;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } contentInsets;
+@property (nonatomic, copy) NSString *moreButtonTitle;
+@property (nonatomic) int numberOfVisibleLines;
+@property (nonatomic) float rating;
+@property (nonatomic, copy) NSString *ratingText;
+@property (nonatomic, copy) NSString *subtitle;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } titleInsets;
+@property (nonatomic) int truncationStyle;
 
 - (void).cxx_destruct;
 - (id)_moreButtonLabel;

@@ -2,33 +2,31 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSMutableArray, TNPageController, TNPdfHyperlinkController;
-
 @interface TNRenderingExporter : TSARenderingExporter {
-    struct vector<unsigned int, std::__1::allocator<unsigned int> > { 
-        unsigned int *__begin_; 
-        unsigned int *__end_; 
-        struct __compressed_pair<unsigned int *, std::__1::allocator<unsigned int> > { 
-            unsigned int *__first_; 
-        } __end_cap_; 
-    struct vector<unsigned int, std::__1::allocator<unsigned int> > { 
-        unsigned int *__begin_; 
-        unsigned int *__end_; 
-        struct __compressed_pair<unsigned int *, std::__1::allocator<unsigned int> > { 
-            unsigned int *__first_; 
-        } __end_cap_; 
     BOOL _renderingAllSheets;
     NSMutableArray *mCanvasBasedSheets;
     TNPdfHyperlinkController *mHyperlinkController;
     TNPageController *mPageController;
     unsigned int mPageIndex;
     unsigned int mSheetIndex;
+    struct vector<unsigned int, std::__1::allocator<unsigned int> > { 
+        unsigned int *__begin_; 
+        unsigned int *__end_; 
+        struct __compressed_pair<unsigned int *, std::__1::allocator<unsigned int> > { 
+            unsigned int *__first_; 
+        } __end_cap_; 
     } mSheetPageCountArray;
+    struct vector<unsigned int, std::__1::allocator<unsigned int> > { 
+        unsigned int *__begin_; 
+        unsigned int *__end_; 
+        struct __compressed_pair<unsigned int *, std::__1::allocator<unsigned int> > { 
+            unsigned int *__first_; 
+        } __end_cap_; 
     } mSheetPageStartArray;
     unsigned int mTotalPagesCount;
 }
 
-@property(getter=isRenderingAllSheets) BOOL renderingAllSheets;
+@property (getter=isRenderingAllSheets, nonatomic) BOOL renderingAllSheets;
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
@@ -52,8 +50,10 @@
 - (struct vector<unsigned int, std::__1::allocator<unsigned int> > { unsigned int *x1; unsigned int *x2; struct __compressed_pair<unsigned int *, std::__1::allocator<unsigned int> > { unsigned int *x_3_1_1; } x3; })p_pageStartArray;
 - (id)pageController;
 - (unsigned int)pageCount;
+- (int)pageIndexFromQuickLookSheet:(id)arg1;
 - (BOOL)preparePage:(unsigned int)arg1;
 - (double)progressForCurrentPage;
+- (id)quickLookSheets;
 - (void)setRenderingAllSheets:(BOOL)arg1;
 - (void)setSheetIndex:(unsigned int)arg1 andPageIndex:(unsigned int)arg2;
 - (void)setup;

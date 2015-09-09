@@ -2,16 +2,7 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, UISnapshotView, UIView, UIWindow;
-
 @interface UIClientRotationContext : NSObject {
-    struct { 
-        BOOL animateContentRotation; 
-        BOOL preserveHeight; 
-        BOOL avoidFadingBottomOfContent; 
-        BOOL skipSnapshotOfEndState; 
-        float contentStretchRightEdgeInset; 
-        int edgeClip; 
     NSArray *_backdropViews;
     UISnapshotView *_contentSnapshotViewStart;
     float _contentTopAdjustmentStart;
@@ -30,6 +21,14 @@
     BOOL _orderKeyboardInAfterRotating;
     id _rotatingClient;
     UIView *_rotatingSnapshotView;
+    struct { 
+        BOOL animateContentRotation; 
+        BOOL preserveHeight; 
+        BOOL avoidFadingBottomOfContent; 
+        BOOL skipSnapshotOfEndState; 
+        BOOL preventAdditveAnimations; 
+        float contentStretchRightEdgeInset; 
+        int edgeClip; 
     } _rotationSettings;
     BOOL _skipClientRotationCallbacks;
     BOOL _skipFooterRotation;
@@ -41,12 +40,12 @@
     float contentBottomInset;
 }
 
-@property(readonly) UIView * contentView;
-@property(readonly) double duration;
-@property(readonly) int fromOrientation;
-@property(readonly) id rotatingClient;
-@property BOOL skipClientRotationCallbacks;
-@property(readonly) int toOrientation;
+@property (nonatomic, readonly) UIView *contentView;
+@property (nonatomic, readonly) double duration;
+@property (nonatomic, readonly) int fromOrientation;
+@property (nonatomic, readonly) id rotatingClient;
+@property (nonatomic) BOOL skipClientRotationCallbacks;
+@property (nonatomic, readonly) int toOrientation;
 
 - (BOOL)_isFooterTranslucent;
 - (BOOL)_isHeaderTranslucent;

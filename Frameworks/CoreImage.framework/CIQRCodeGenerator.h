@@ -2,19 +2,16 @@
    Image: /System/Library/Frameworks/CoreImage.framework/CoreImage
  */
 
-@class NSString;
-
 @interface CIQRCodeGenerator : CICodeGenerator {
     NSString *inputCorrectionLevel;
 }
 
-@property(copy) NSString * inputCorrectionLevel;
+@property (nonatomic, copy) NSString *inputCorrectionLevel;
 
 + (id)customAttributes;
 
 - (id)inputCorrectionLevel;
 - (struct CGImage { }*)outputCGImage;
-- (void)setDefaults;
 - (void)setInputCorrectionLevel:(id)arg1;
 - (void)setValue:(id)arg1 forUndefinedKey:(id)arg2;
 

@@ -2,16 +2,14 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@class AVAsset, MPAVItem, NSURL;
-
 @interface MPMovie : NSObject {
-    struct CGSize { 
-        float width; 
-        float height; 
     double _endPlaybackTime;
     BOOL _explicitlySetMovieSourceType;
     MPAVItem *_item;
     double _lastKnownDuration;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _lastKnownNaturalSize;
     unsigned int _lastKnownType;
     BOOL _movieIsUnplayable;
@@ -20,17 +18,19 @@
     NSURL *_url;
 }
 
-@property(readonly) AVAsset * asset;
-@property(readonly) double duration;
-@property double endPlaybackTime;
-@property(readonly) int movieMediaTypes;
-@property int movieSourceType;
-@property(readonly) struct CGSize { float x1; float x2; } naturalSize;
-@property(readonly) double playableDuration;
-@property double startPlaybackTime;
-@property(readonly) NSURL * url;
+@property (nonatomic, readonly) AVAsset *asset;
+@property (nonatomic, readonly) double duration;
+@property (nonatomic) double endPlaybackTime;
+@property (nonatomic, readonly) unsigned int movieMediaTypes;
+@property (nonatomic) int movieSourceType;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } naturalSize;
+@property (nonatomic, readonly) double playableDuration;
+@property (nonatomic, readonly) AVPlayerItem *playerItem;
+@property (nonatomic) double startPlaybackTime;
+@property (nonatomic, readonly) NSURL *url;
 
 + (id)movieWithAsset:(id)arg1 error:(id*)arg2;
++ (id)movieWithPlayerItem:(id)arg1 error:(id*)arg2;
 + (id)movieWithURL:(id)arg1 options:(id)arg2 error:(id*)arg3;
 
 - (void).cxx_destruct;
@@ -38,6 +38,7 @@
 - (void)_determineMediaType;
 - (void)_durationAvailableNotification:(id)arg1;
 - (id)_initWithAsset:(id)arg1 error:(id*)arg2;
+- (id)_initWithPlayerItem:(id)arg1 error:(id*)arg2;
 - (id)_initWithURL:(id)arg1 options:(id)arg2 error:(id*)arg3;
 - (void)_naturalSizeAvailableNotification:(id)arg1;
 - (void)_sharedInit;
@@ -46,10 +47,11 @@
 - (void)dealloc;
 - (double)duration;
 - (double)endPlaybackTime;
-- (int)movieMediaTypes;
+- (unsigned int)movieMediaTypes;
 - (int)movieSourceType;
 - (struct CGSize { float x1; float x2; })naturalSize;
 - (double)playableDuration;
+- (id)playerItem;
 - (void)setEndPlaybackTime:(double)arg1;
 - (void)setMovieSourceType:(int)arg1;
 - (void)setStartPlaybackTime:(double)arg1;

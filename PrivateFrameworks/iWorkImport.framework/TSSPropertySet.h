@@ -8,6 +8,8 @@
 
 + (id)p_mutableIndexSetWithFirstProperty:(int)arg1 argumentList:(void*)arg2;
 + (id)propertySet;
++ (id)propertySetFromUnionOfPropertySets:(id)arg1;
++ (id)propertySetWithArray:(id)arg1;
 + (id)propertySetWithProperties:(int)arg1;
 + (id)propertySetWithProperty:(int)arg1;
 
@@ -16,7 +18,7 @@
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (unsigned int)count;
 - (void)dealloc;
-- (void)enumeratePropertiesUsingBlock:(id)arg1;
+- (void)enumeratePropertiesUsingBlock:(id /* block */)arg1;
 - (unsigned int)hash;
 - (id)init;
 - (id)initWithFirstProperty:(int)arg1 argumentList:(void*)arg2;

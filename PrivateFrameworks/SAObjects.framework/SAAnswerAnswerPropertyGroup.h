@@ -2,13 +2,14 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSArray, NSString;
+@interface SAAnswerAnswerPropertyGroup : AceObject <SAAceSerializable>
 
-@interface SAAnswerAnswerPropertyGroup : AceObject <SAAceSerializable> {
-}
-
-@property(copy) NSArray * answerProperties;
-@property(copy) NSString * title;
+@property (nonatomic, copy) NSArray *answerProperties;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+@property (nonatomic, copy) NSString *title;
 
 + (id)answerPropertyGroup;
 + (id)answerPropertyGroupWithDictionary:(id)arg1 context:(id)arg2;

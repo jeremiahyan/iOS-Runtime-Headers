@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/Social.framework/Social
  */
 
-@class NSBundle, NSSet, NSString, NSURL, UIImage;
-
 @interface SLRemoteService : SLService <NSSecureCoding> {
     NSString *_accountTypeIdentifier;
     UIImage *_activityImage;
@@ -22,34 +20,28 @@
     NSURL *_serviceBundleURL;
     BOOL _serviceRegionTargetIsChina;
     NSString *_serviceTypeIdentifier;
-    NSString *_shareSheetClassName;
-    NSString *_shareSheetHostingBundleIdentifier;
     NSSet *_supportedImageAssetURLSchemes;
     NSSet *_supportedVideoAssetURLSchemes;
-    NSString *_xpcServiceIdentifier;
 }
 
-@property(retain) NSString * accountTypeIdentifier;
-@property(retain) NSString * activityImageName;
-@property(retain) NSString * activityViewIconResourceName;
+@property (retain) NSString *accountTypeIdentifier;
+@property (retain) NSString *activityImageName;
+@property (retain) NSString *activityViewIconResourceName;
 @property BOOL addDeviceClassToRequest;
 @property int authenticationStyle;
-@property(retain) NSString * localizedServiceName;
+@property (retain) NSString *localizedServiceName;
 @property int maximumImageCount;
 @property int maximumImageDataSize;
 @property int maximumURLCount;
-@property int maximumVideoCount;
+@property (nonatomic) int maximumVideoCount;
 @property int maximumVideoDataSize;
 @property int maximumVideoTimeLimit;
-@property(readonly) NSBundle * serviceBundle;
-@property(retain) NSURL * serviceBundleURL;
+@property (readonly) NSBundle *serviceBundle;
+@property (retain) NSURL *serviceBundleURL;
 @property BOOL serviceRegionTargetIsChina;
-@property(retain) NSString * serviceTypeIdentifier;
-@property(retain) NSString * shareSheetClassName;
-@property(retain) NSString * shareSheetHostingBundleIdentifier;
-@property(retain) NSSet * supportedImageAssetURLSchemes;
-@property(retain) NSSet * supportedVideoAssetURLSchemes;
-@property(retain) NSString * xpcServiceIdentifier;
+@property (retain) NSString *serviceTypeIdentifier;
+@property (retain) NSSet *supportedImageAssetURLSchemes;
+@property (retain) NSSet *supportedVideoAssetURLSchemes;
 
 + (id)_cachedServiceWithType:(id)arg1;
 + (id)_cachedServices;
@@ -75,7 +67,6 @@
 - (void)addExtraParameters:(id)arg1 forRequest:(id)arg2;
 - (int)authenticationStyle;
 - (id)composeViewController;
-- (id)connectionName;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (BOOL)infoDictHasRequiredKeys:(id)arg1;
@@ -110,17 +101,11 @@
 - (void)setServiceBundleURL:(id)arg1;
 - (void)setServiceRegionTargetIsChina:(BOOL)arg1;
 - (void)setServiceTypeIdentifier:(id)arg1;
-- (void)setShareSheetClassName:(id)arg1;
-- (void)setShareSheetHostingBundleIdentifier:(id)arg1;
 - (void)setSupportedImageAssetURLSchemes:(id)arg1;
 - (void)setSupportedVideoAssetURLSchemes:(id)arg1;
-- (void)setXpcServiceIdentifier:(id)arg1;
-- (id)shareSheetClassName;
-- (id)shareSheetHostingBundleIdentifier;
 - (id)supportedImageAssetURLSchemes;
 - (id)supportedVideoAssetURLSchemes;
 - (BOOL)supportsImageURL:(id)arg1;
 - (BOOL)supportsVideoURL:(id)arg1;
-- (id)xpcServiceIdentifier;
 
 @end

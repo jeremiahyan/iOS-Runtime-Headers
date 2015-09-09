@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/PassKit.framework/PassKit
  */
 
-@class <PKAddPassesViewControllerDelegate>, NSArray, NSDate, NSURL, PKRemoteAddPassesViewController, _UIAsyncInvocation;
-
 @interface PKAddPassesViewController : UIViewController {
     NSURL *_URL;
     BOOL _allowsPassIngestion;
@@ -17,14 +15,15 @@
     BOOL _viewHasAppeared;
 }
 
-@property(retain) NSURL * URL;
-@property(retain) _UIAsyncInvocation * cancelViewServiceRequest;
-@property <PKAddPassesViewControllerDelegate> * delegate;
-@property(retain) NSArray * passes;
-@property int previousStatusBarStyle;
-@property(retain) PKRemoteAddPassesViewController * remoteViewController;
+@property (nonatomic, retain) NSURL *URL;
+@property (nonatomic, retain) _UIAsyncInvocation *cancelViewServiceRequest;
+@property (nonatomic) <PKAddPassesViewControllerDelegate> *delegate;
+@property (nonatomic, retain) NSArray *passes;
+@property (nonatomic) int previousStatusBarStyle;
+@property (nonatomic, retain) PKRemoteAddPassesViewController *remoteViewController;
 
-+ (BOOL)isAvailable;
++ (BOOL)_shouldForwardViewWillTransitionToSize;
++ (BOOL)canAddPasses;
 
 - (id)URL;
 - (void)_transitionDidStop:(id)arg1 finished:(id)arg2;
@@ -35,8 +34,6 @@
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (id)initWithPass:(id)arg1;
 - (id)initWithPasses:(id)arg1;
-- (id)initWithURL:(id)arg1;
-- (void)loadView;
 - (int)modalPresentationStyle;
 - (int)modalTransitionStyle;
 - (id)passes;
@@ -49,12 +46,13 @@
 - (void)setPreviousStatusBarStyle:(int)arg1;
 - (void)setRemoteViewController:(id)arg1;
 - (void)setURL:(id)arg1;
-- (BOOL)shouldAutorotateToInterfaceOrientation:(int)arg1;
+- (BOOL)shouldAutorotate;
+- (struct CGSize { float x1; float x2; })sizeForChildContentContainer:(id)arg1 withParentContainerSize:(struct CGSize { float x1; float x2; })arg2;
 - (BOOL)succeeded;
 - (unsigned int)supportedInterfaceOrientations;
 - (void)viewDidAppear:(BOOL)arg1;
 - (void)viewWillAppear:(BOOL)arg1;
 - (void)viewWillDisappear:(BOOL)arg1;
-- (BOOL)wantsFullScreenLayout;
+- (void)viewWillLayoutSubviews;
 
 @end

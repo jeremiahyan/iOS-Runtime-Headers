@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@class NSDictionary, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSOperationQueue, NSString, NSURL, PFUbiquityLocation;
-
 @interface PFUbiquityFilePresenter : NSObject <NSFilePresenter> {
     NSString *_localPeerID;
     NSMutableDictionary *_locationToSafeSaveFile;
@@ -17,18 +15,24 @@
     PFUbiquityLocation *_ubiquityRootLocation;
 }
 
-@property(readonly) NSString * localPeerID;
-@property(readonly) NSDictionary * locationToSafeSaveFile;
-@property(readonly) NSDictionary * locationToStatus;
-@property(readonly) NSOperationQueue * presentedItemOperationQueue;
-@property(readonly) NSURL * presentedItemURL;
-@property(readonly) NSURL * primaryPresentedItemURL;
-@property(readonly) PFUbiquityLocation * ubiquityRootLocation;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) NSString *localPeerID;
+@property (nonatomic, readonly) NSDictionary *locationToSafeSaveFile;
+@property (nonatomic, readonly) NSDictionary *locationToStatus;
+@property (readonly) NSOperationQueue *presentedItemOperationQueue;
+@property (readonly, copy) NSURL *presentedItemURL;
+@property (readonly, copy) NSURL *primaryPresentedItemURL;
+@property (readonly) Class superclass;
+@property (readonly) PFUbiquityLocation *ubiquityRootLocation;
 
++ (id)cloudDocsRootFolder;
 + (void)initialize;
-+ (void)registerInitialSyncHandlerForURL:(id)arg1 onQueue:(id)arg2 withBlock:(id)arg3;
++ (void)registerInitialSyncHandlerForURL:(id)arg1 andContainerID:(id)arg2 onQueue:(id)arg3 withBlock:(id /* block */)arg4;
 + (id)sharedPrivateOperationQueue;
-+ (void)startDownloadForItems:(id)arg1 onQueue:(id)arg2 withBlock:(id)arg3;
++ (void)startDownloadForItems:(id)arg1 onQueue:(id)arg2 withBlock:(id /* block */)arg3;
++ (int)usesCloudDocsFramework;
 
 - (id)copyStatusDictionary;
 - (void)dealloc;
@@ -36,6 +40,7 @@
 - (void)exporterDidMoveLog:(id)arg1;
 - (id)init;
 - (id)initWithUbiquityRootLocation:(id)arg1 localPeerID:(id)arg2 storeName:(id)arg3 processingQueue:(id)arg4;
+- (BOOL)isiCloudExtension:(id)arg1;
 - (id)localPeerID;
 - (id)locationToSafeSaveFile;
 - (id)locationToStatus;
@@ -50,8 +55,8 @@
 - (void)printStatus:(id)arg1;
 - (void)processPendingURLs;
 - (void)registerSafeSaveFile:(id)arg1;
-- (void)relinquishPresentedItemToReader:(id)arg1;
-- (void)relinquishPresentedItemToWriter:(id)arg1;
+- (void)relinquishPresentedItemToReader:(id /* block */)arg1;
+- (void)relinquishPresentedItemToWriter:(id /* block */)arg1;
 - (id)retainedStatusForLocation:(id)arg1;
 - (void)setupAssistantDiscoveredPathsFromMetadataQuery:(id)arg1;
 - (id)ubiquityRootLocation;

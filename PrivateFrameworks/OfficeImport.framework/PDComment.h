@@ -2,15 +2,13 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSString;
-
 @interface PDComment : NSObject {
+    unsigned int mAuthorId;
+    NSDate *mDate;
+    unsigned int mIndex;
     struct CGPoint { 
         float x; 
         float y; 
-    unsigned int mAuthorId;
-    NSString *mDate;
-    unsigned int mIndex;
     } mPosition;
     NSString *mText;
 }

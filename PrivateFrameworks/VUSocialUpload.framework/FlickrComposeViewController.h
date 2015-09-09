@@ -2,36 +2,39 @@
    Image: /System/Library/PrivateFrameworks/VUSocialUpload.framework/VUSocialUpload
  */
 
-@class ACAccount, ACAccountStore, FlickrAudienceController, FlickrPhotoSetController, FlickrPhotoSetManager, NSString, SLSheetAction, UIImageView;
-
 @interface FlickrComposeViewController : SLComposeServiceViewController <FlickrComposeOptionViewDelegate> {
     ACAccountStore *_accountStore;
     int _audience;
-    SLSheetAction *_audienceAction;
+    SLComposeSheetConfigurationItem *_audienceConfigurationItem;
     FlickrAudienceController *_audienceController;
     ACAccount *_flickrAccount;
     BOOL _hasFlickrAccount;
     UIImageView *_logoView;
     FlickrPhotoSetManager *_manager;
-    SLSheetAction *_photoSetAction;
+    SLComposeSheetConfigurationItem *_photoSetConfigurationItem;
     FlickrPhotoSetController *_photoSetController;
     long long _photoSetID;
     NSString *_photoSetTitle;
+    FlickrUploadSession *_session;
 }
 
-@property(retain) ACAccountStore * accountStore;
-@property(retain) ACAccount * flickrAccount;
+@property (nonatomic, retain) ACAccountStore *accountStore;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) ACAccount *flickrAccount;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
+- (void).cxx_destruct;
 - (id)accountStore;
-- (void)dealloc;
+- (id)configurationItems;
+- (void)didSelectPost;
 - (id)flickrAccount;
 - (void)flickrComposeOptionView:(id)arg1 didFinishWithSelection:(id)arg2;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (unsigned int)postVisibility;
-- (void)send;
 - (void)setAccountStore:(id)arg1;
 - (void)setFlickrAccount:(id)arg1;
-- (id)sheetActions;
 - (void)viewDidAppear:(BOOL)arg1;
 
 @end

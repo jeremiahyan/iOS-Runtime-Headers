@@ -2,30 +2,15 @@
    Image: /System/Library/PrivateFrameworks/GameKitServices.framework/GameKitServices
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class CDXClient, NSData, NSMutableArray, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_source>, NSString, TimingCollection;
-
 @interface GKConnectionInternal : GKConnection <CDXClientDelegate, CDXClientSessionDelegate> {
-    struct _opaque_pthread_mutex_t { 
-        long __sig; 
-        BOOL __opaque[40]; 
-    struct _opaque_pthread_cond_t { 
-        long __sig; 
-        BOOL __opaque[24]; 
-    struct _opaque_pthread_mutex_t { 
-        long __sig; 
-        BOOL __opaque[40]; 
-    struct _opaque_pthread_cond_t { 
-        long __sig; 
-        BOOL __opaque[24]; 
-    struct _opaque_pthread_mutex_t { 
-        long __sig; 
-        BOOL __opaque[40]; 
     NSMutableArray *_allowRelayPIDList;
+    struct _opaque_pthread_cond_t { 
+        long __sig; 
+        BOOL __opaque[24]; 
     } _cPreblobFetch;
+    struct _opaque_pthread_cond_t { 
+        long __sig; 
+        BOOL __opaque[24]; 
     } _cPrepareThread;
     CDXClient *_cdxClient;
     NSMutableDictionary *_cdxSessions;
@@ -54,21 +39,30 @@
     NSMutableDictionary *_pidToRelayUpdateInfoMap;
     NSMutableSet *_pidsPreparedForConnection;
     NSData *_preblob;
-    id _preblobCallback;
+    id /* block */ _preblobCallback;
     double _preblobCallbackCancelTime;
     NSMutableDictionary *_preblobToPIDMap;
     struct opaqueRTCReporting { } *_reportingAgent;
     BOOL _toForwardEVents;
     NSMutableDictionary *_updateRelayQueue;
     double _wakeTime;
+    struct _opaque_pthread_mutex_t { 
+        long __sig; 
+        BOOL __opaque[40]; 
     } _xPreblobFetch;
+    struct _opaque_pthread_mutex_t { 
+        long __sig; 
+        BOOL __opaque[40]; 
     } _xPrepareThread;
+    struct _opaque_pthread_mutex_t { 
+        long __sig; 
+        BOOL __opaque[40]; 
     } _xRelay;
 }
 
-@property(retain) CDXClient * cdxClient;
-@property(retain) NSMutableDictionary * cdxSessions;
-@property(retain) NSMutableDictionary * pidToConnectTimeoutSource;
+@property (nonatomic, retain) CDXClient *cdxClient;
+@property (retain) NSMutableDictionary *cdxSessions;
+@property (retain) NSMutableDictionary *pidToConnectTimeoutSource;
 
 - (void)CDXClient:(id)arg1 error:(id)arg2;
 - (void)CDXClient:(id)arg1 preblob:(id)arg2;
@@ -91,7 +85,7 @@
 - (unsigned int)gckPID;
 - (struct OpaqueGCKSession { }*)gckSession;
 - (id)getLocalConnectionDataForLocalGaming;
-- (void)getLocalConnectionDataWithCompletionHandler:(id)arg1;
+- (void)getLocalConnectionDataWithCompletionHandler:(id /* block */)arg1;
 - (id)initWithParticipantID:(id)arg1;
 - (void)initiateRelayWithParticipant:(id)arg1 withConnectionData:(id)arg2 withRelayInfo:(id)arg3 didInitiate:(BOOL)arg4;
 - (void)internalInitiateRelayWithParticipant:(id)arg1 withConnectionData:(id)arg2 withRelayInfo:(id)arg3 didInitiate:(BOOL)arg4;

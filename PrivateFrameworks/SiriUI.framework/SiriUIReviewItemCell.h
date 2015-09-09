@@ -2,27 +2,25 @@
    Image: /System/Library/PrivateFrameworks/SiriUI.framework/SiriUI
  */
 
-@class UILabel, UIView;
-
 @interface SiriUIReviewItemCell : SiriUIContentCollectionViewCell {
-    struct UIOffset { 
-        float horizontal; 
-        float vertical; 
+    UILabel *_authorLabel;
+    int _characterLimit;
+    UILabel *_commentLabel;
     struct UIEdgeInsets { 
         float top; 
         float left; 
         float bottom; 
         float right; 
-    UILabel *_authorLabel;
-    int _characterLimit;
-    UILabel *_commentLabel;
     } _contentInsets;
+    struct UIOffset { 
+        float horizontal; 
+        float vertical; 
     } _ratingOffset;
     UIView *_ratingView;
 }
 
-@property int characterLimit;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } contentInsets;
+@property (nonatomic) int characterLimit;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } contentInsets;
 
 + (id)_authorDateFontAttribute;
 + (id)_authorFontAttribute;

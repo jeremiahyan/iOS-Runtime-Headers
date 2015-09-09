@@ -2,12 +2,7 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSString;
-
 @interface PDAnimateMotionBehavior : PDAnimateScaleBehavior {
-    struct CGPoint { 
-        float x; 
-        float y; 
     double mAngle;
     BOOL mHasAngle;
     BOOL mHasOriginType;
@@ -16,6 +11,9 @@
     int mOriginType;
     NSString *mPath;
     int mPointType;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } mRotationCenter;
 }
 
@@ -27,6 +25,7 @@
 - (BOOL)hasPath;
 - (BOOL)hasPointType;
 - (BOOL)hasRotationCenter;
+- (BOOL)isEqual:(id)arg1;
 - (int)originType;
 - (id)path;
 - (int)pointType;

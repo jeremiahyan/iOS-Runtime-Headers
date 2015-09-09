@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class GQUProgressiveHelper;
-
 @interface GQUProgressiveOutputBundle : NSObject <GQUOutputBundle> {
     struct __CFDictionary { } *mAttachmentsURLs;
     struct __CFDictionary { } *mComputedAttachments;
@@ -13,6 +11,11 @@
     struct __CFString { } *mUriScheme;
     struct __CFString { } *mUuidStr;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (BOOL)appendData:(struct __CFData { }*)arg1 mimeType:(struct __CFString { }*)arg2 resourceName:(struct __CFString { }*)arg3;
 - (void)closeAttachment:(struct __CFString { }*)arg1;

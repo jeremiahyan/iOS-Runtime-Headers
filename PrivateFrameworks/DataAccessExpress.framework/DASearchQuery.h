@@ -2,13 +2,11 @@
    Image: /System/Library/PrivateFrameworks/DataAccessExpress.framework/DataAccessExpress
  */
 
-@class <DASearchQueryConsumer>, NSString;
-
 @interface DASearchQuery : NSObject {
+    <DASearchQueryConsumer> *_consumer;
     struct _NSRange { 
         unsigned int location; 
         unsigned int length; 
-    <DASearchQueryConsumer> *_consumer;
     } _range;
     NSString *_searchID;
     NSString *_searchString;
@@ -16,18 +14,18 @@
     int _timeLimit;
 }
 
-@property <DASearchQueryConsumer> * consumer;
-@property unsigned int maxResults;
-@property struct _NSRange { unsigned int x1; unsigned int x2; } range;
-@property(copy) NSString * searchID;
-@property(readonly) NSString * searchString;
-@property int state;
-@property int timeLimit;
+@property (nonatomic) <DASearchQueryConsumer> *consumer;
+@property (nonatomic) unsigned int maxResults;
+@property (nonatomic) struct _NSRange { unsigned int x1; unsigned int x2; } range;
+@property (nonatomic, copy) NSString *searchID;
+@property (nonatomic, copy) NSString *searchString;
+@property (nonatomic) int state;
+@property (nonatomic) int timeLimit;
 
 + (id)searchQueryWithSearchString:(id)arg1 consumer:(id)arg2;
 
+- (void).cxx_destruct;
 - (id)consumer;
-- (void)dealloc;
 - (id)description;
 - (id)dictionaryRepresentation;
 - (id)initWithDictionaryRepresentation:(id)arg1 consumer:(id)arg2;
@@ -43,6 +41,7 @@
 - (void)setMaxResults:(unsigned int)arg1;
 - (void)setRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1;
 - (void)setSearchID:(id)arg1;
+- (void)setSearchString:(id)arg1;
 - (void)setState:(int)arg1;
 - (void)setTimeLimit:(int)arg1;
 - (int)state;

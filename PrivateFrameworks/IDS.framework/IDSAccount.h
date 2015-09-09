@@ -2,35 +2,37 @@
    Image: /System/Library/PrivateFrameworks/IDS.framework/IDS
  */
 
-@class NSArray, NSData, NSDate, NSDictionary, NSString, _IDSAccount;
-
 @interface IDSAccount : NSObject {
     _IDSAccount *_internal;
 }
 
-@property(retain) NSDictionary * accountInfo;
-@property(readonly) int accountType;
-@property(readonly) NSArray * aliasStrings;
-@property(readonly) NSArray * aliases;
-@property(readonly) BOOL canSend;
-@property(readonly) NSDate * dateRegistered;
-@property(readonly) NSArray * devices;
-@property(readonly) BOOL isActive;
-@property(retain) NSString * loginID;
-@property(readonly) NSDate * nextRegistrationDate;
-@property(readonly) NSString * profileID;
-@property(readonly) NSDictionary * profileInfo;
-@property(readonly) NSData * pushToken;
-@property(readonly) NSString * regionBasePhoneNumber;
-@property(readonly) NSString * regionID;
-@property(readonly) NSDictionary * regionServerContext;
-@property(readonly) NSArray * registeredURIs;
-@property(readonly) NSData * registrationCertificate;
-@property(readonly) int registrationStatus;
-@property(readonly) NSString * serviceName;
-@property(readonly) NSString * uniqueID;
-@property(readonly) NSArray * vettedAliases;
+@property (nonatomic, retain) NSDictionary *accountInfo;
+@property (nonatomic, readonly) int accountType;
+@property (nonatomic, readonly, retain) NSArray *aliasStrings;
+@property (nonatomic, readonly, retain) NSArray *aliases;
+@property (nonatomic, readonly) BOOL canSend;
+@property (nonatomic, readonly) NSDate *dateRegistered;
+@property (nonatomic, readonly, retain) NSArray *devices;
+@property (nonatomic, readonly, retain) NSString *displayName;
+@property (nonatomic, readonly) BOOL isActive;
+@property (nonatomic, retain) NSString *loginID;
+@property (nonatomic, readonly, retain) NSArray *nearbyDevices;
+@property (nonatomic, readonly) NSDate *nextRegistrationDate;
+@property (nonatomic, readonly, retain) NSString *primaryServiceName;
+@property (nonatomic, readonly) NSString *profileID;
+@property (nonatomic, readonly, retain) NSDictionary *profileInfo;
+@property (nonatomic, readonly) NSData *pushToken;
+@property (nonatomic, readonly) NSString *regionBasePhoneNumber;
+@property (nonatomic, readonly) NSString *regionID;
+@property (nonatomic, readonly) NSDictionary *regionServerContext;
+@property (nonatomic, readonly) NSArray *registeredURIs;
+@property (nonatomic, readonly) NSData *registrationCertificate;
+@property (nonatomic, readonly) int registrationStatus;
+@property (nonatomic, readonly, retain) NSString *serviceName;
+@property (nonatomic, readonly, retain) NSString *uniqueID;
+@property (nonatomic, readonly, retain) NSArray *vettedAliases;
 
+- (void)_callNearbyDevicesChanged;
 - (id)_initWithDictionary:(id)arg1 uniqueID:(id)arg2 serviceName:(id)arg3;
 - (id)_internal;
 - (BOOL)_isEnabled;
@@ -50,12 +52,15 @@
 - (void)dealloc;
 - (id)description;
 - (id)devices;
+- (id)displayName;
 - (id)initWithDictionary:(id)arg1 uniqueID:(id)arg2 serviceName:(id)arg3;
 - (id)initWithLoginID:(id)arg1 uniqueID:(id)arg2 serviceName:(id)arg3;
 - (BOOL)isActive;
 - (id)loginID;
+- (id)nearbyDevices;
 - (id)nextRegistrationDate;
 - (void)passwordUpdated;
+- (id)primaryServiceName;
 - (id)profileID;
 - (id)profileInfo;
 - (id)pushToken;

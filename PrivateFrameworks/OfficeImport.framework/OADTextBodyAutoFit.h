@@ -6,6 +6,7 @@
     int mType;
 }
 
+- (id)description;
 - (unsigned int)hash;
 - (id)initWithType:(int)arg1;
 - (BOOL)isEqual:(id)arg1;

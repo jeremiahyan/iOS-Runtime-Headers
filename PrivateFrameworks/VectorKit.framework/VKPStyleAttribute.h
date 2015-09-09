@@ -4,25 +4,34 @@
 
 @interface VKPStyleAttribute : PBCodable <NSCopying> {
     struct { 
+        unsigned int score : 1; 
+    } _has;
+    struct { 
         int *list; 
         unsigned int count; 
         unsigned int size; 
-    struct { 
-        unsigned int score : 1; 
-    } _has;
     } _intValues;
     int _key;
+    struct { 
+        unsigned long long *list; 
+        unsigned int count; 
+        unsigned int size; 
+    } _longIntValues;
     int _score;
 }
 
-@property BOOL hasScore;
-@property(readonly) int* intValues;
-@property(readonly) unsigned int intValuesCount;
-@property int key;
-@property int score;
+@property (nonatomic) BOOL hasScore;
+@property (nonatomic, readonly) int*intValues;
+@property (nonatomic, readonly) unsigned int intValuesCount;
+@property (nonatomic) int key;
+@property (nonatomic, readonly) unsigned long long*longIntValues;
+@property (nonatomic, readonly) unsigned int longIntValuesCount;
+@property (nonatomic) int score;
 
 - (void)addIntValue:(int)arg1;
+- (void)addLongIntValue:(unsigned long long)arg1;
 - (void)clearIntValues;
+- (void)clearLongIntValues;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
@@ -35,11 +44,16 @@
 - (unsigned int)intValuesCount;
 - (BOOL)isEqual:(id)arg1;
 - (int)key;
+- (unsigned long long)longIntValueAtIndex:(unsigned int)arg1;
+- (unsigned long long*)longIntValues;
+- (unsigned int)longIntValuesCount;
+- (void)mergeFrom:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 - (int)score;
 - (void)setHasScore:(BOOL)arg1;
 - (void)setIntValues:(int*)arg1 count:(unsigned int)arg2;
 - (void)setKey:(int)arg1;
+- (void)setLongIntValues:(unsigned long long*)arg1 count:(unsigned int)arg2;
 - (void)setScore:(int)arg1;
 - (void)writeTo:(id)arg1;
 

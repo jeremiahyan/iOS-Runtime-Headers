@@ -2,9 +2,10 @@
    Image: /System/Library/PrivateFrameworks/MusicLibrary.framework/MusicLibrary
  */
 
-@class ML3MusicLibrary, NSString;
-
 @interface ML3SpotlightMatchingNameCache : NSObject {
+    BOOL _idle;
+    ML3MusicLibrary *_library;
+    NSString *_matchString;
     struct unordered_set<long long, std::__1::hash<long long>, std::__1::equal_to<long long>, std::__1::allocator<long long> > { 
         struct __hash_table<long long, std::__1::hash<long long>, std::__1::equal_to<long long>, std::__1::allocator<long long> > { 
             struct unique_ptr<std::__1::__hash_node<long long, void *> *[], std::__1::__bucket_list_deallocator<std::__1::allocator<std::__1::__hash_node<long long, void *> *> > > { 
@@ -29,18 +30,15 @@
                 float __first_; 
             } __p3_; 
         } __table_; 
-    BOOL _idle;
-    ML3MusicLibrary *_library;
-    NSString *_matchString;
     } _matchingSet;
 }
 
 + (void)initialize;
-+ (void)loadFromLibrary:(id)arg1 namesMatchingString:(id)arg2 cancelHandler:(id)arg3;
++ (void)loadFromLibrary:(id)arg1 namesMatchingString:(id)arg2 cancelHandler:(id /* block */)arg3;
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (id)_initWithLibrary:(id)arg1 matchString:(id)arg2 cancelHandler:(id)arg3;
+- (id)_initWithLibrary:(id)arg1 matchString:(id)arg2 cancelHandler:(id /* block */)arg3;
 - (void)dealloc;
 
 @end

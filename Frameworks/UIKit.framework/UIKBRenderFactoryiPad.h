@@ -2,8 +2,7 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@interface UIKBRenderFactoryiPad : UIKBRenderFactoryiPhone {
-}
+@interface UIKBRenderFactoryiPad : UIKBRenderFactoryiPhone
 
 - (void)_customizeGeometry:(id)arg1 forKey:(id)arg2 contents:(id)arg3;
 - (void)_customizePopupTraits:(id)arg1 forKey:(id)arg2 onKeyplane:(id)arg3;
@@ -11,11 +10,7 @@
 - (void)_customizeTraits:(id)arg1 forPopupForKey:(id)arg2 withRenderConfig:(id)arg3 keycapsFontName:(id)arg4;
 - (float)_row4ControlSegmentWidth;
 - (id)_traitsForKey:(id)arg1 onKeyplane:(id)arg2;
-- (id)backgroundTraitsForKeyplane:(id)arg1;
 - (float)bottomRowDefaultFontSize;
-- (id)controlKeyBackgroundColorName;
-- (id)controlKeyForegroundColorName;
-- (id)defaultKeyBackgroundColorName;
 - (float)defaultPathWeight;
 - (struct CGSize { float x1; float x2; })defaultVariantGeometrySize;
 - (float)defaultVariantSizeThreshold;
@@ -29,6 +24,7 @@
 - (id)dismissKeyImageName;
 - (struct CGPoint { float x1; float x2; })dismissKeyOffset;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })dismissKeySymbolFrame;
+- (id)displayContentsForKey:(id)arg1;
 - (float)dualStringKeyFontSizeAdjustment;
 - (float)dualStringKeyMiddleMargin;
 - (struct CGPoint { float x1; float x2; })dualStringKeyOffset;
@@ -46,17 +42,16 @@
 - (id)multitapCompleteKeyImageName;
 - (id)muttitapReverseKeyImageName;
 - (float)returnKeySymbolFrameInset;
+- (int)rowLimitForKey:(id)arg1;
 - (struct CGPoint { float x1; float x2; })secondaryShiftKeyOffset;
 - (void)setupLayoutSegments;
-- (id)shiftDeleteGlyphTraits;
 - (float)shiftKeyFontSize;
 - (id)shiftKeyImageName;
 - (struct CGPoint { float x1; float x2; })shiftKeyOffset;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })shiftKeySymbolFrame;
 - (id)shiftLockImageName;
 - (id)shiftOnKeyImageName;
-- (id)shiftedControlKeyTraits;
-- (BOOL)shouldClearBaseDisplayStringForVariants;
+- (BOOL)shouldClearBaseDisplayStringForVariants:(id)arg1;
 - (float)skinnyKeyThreshold;
 - (float)smallKanaKeyFontSize;
 - (float)spaceKeyFontSize;
@@ -64,7 +59,7 @@
 - (float)symbolFrameInset;
 - (id)thinKeycapsFontName;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })variantDisplayFrameInsets;
-- (id)variantGeometriesForGeometry:(id)arg1 variantCount:(unsigned int)arg2;
+- (id)variantGeometriesForGeometry:(id)arg1 variantCount:(unsigned int)arg2 rowLimit:(int)arg3;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })variantSymbolFrameInsets;
 - (float)zhuyinFirstToneKeyFontSize;
 

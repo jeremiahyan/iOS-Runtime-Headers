@@ -2,20 +2,18 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-@class NSMutableData;
-
 @interface VKTriangulator : NSObject {
     unsigned int *_mesh;
-    unsigned long _mesh_capacity;
+    unsigned int _mesh_capacity;
     void *_opaque_segments;
     void *_opaque_triangulator;
     NSMutableData *_scratch;
-    unsigned long _segments_capacity;
+    unsigned int _segments_capacity;
 }
 
 - (BOOL)_triangulateIndicesInto:(id)arg1;
 - (void)dealloc;
 - (id)init;
-- (id)triangulateIndicesForPoints:(struct { int x1; int x2; }*)arg1 pointCount:(int)arg2;
+- (id)triangulateIndicesForPoints:(struct Matrix<int, 2, 1> { int x1[2]; }*)arg1 pointCount:(unsigned int)arg2;
 
 @end

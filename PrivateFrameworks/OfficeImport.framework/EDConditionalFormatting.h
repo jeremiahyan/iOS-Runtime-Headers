@@ -2,9 +2,8 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class EDReferenceCollection, NSMutableArray;
-
 @interface EDConditionalFormatting : NSObject {
+    bool mApplyToDate;
     EDReferenceCollection *mRanges;
     NSMutableArray *mRules;
 }
@@ -15,11 +14,11 @@
 - (void)addRule:(id)arg1;
 - (void)dealloc;
 - (id)init;
-- (void)insertRule:(id)arg1 atIndex:(unsigned int)arg2;
+- (bool)isApplyToDate;
 - (id)rangeAtIndex:(unsigned int)arg1;
 - (unsigned int)rangeCount;
 - (id)ruleAtIndex:(unsigned int)arg1;
 - (unsigned int)ruleCount;
-- (void)sortRulesByPriority;
+- (id)rules;
 
 @end

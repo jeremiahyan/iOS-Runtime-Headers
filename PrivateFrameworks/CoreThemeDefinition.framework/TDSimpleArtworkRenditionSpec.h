@@ -2,21 +2,44 @@
    Image: /System/Library/PrivateFrameworks/CoreThemeDefinition.framework/CoreThemeDefinition
  */
 
-@class NSOrderedSet, TDPNGAsset;
-
 @interface TDSimpleArtworkRenditionSpec : TDRenditionSpec {
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
+    } _alignmentRect;
+    BOOL _allowsMultiPassEncoding;
 }
 
-@property(retain) TDPNGAsset * asset;
-@property(retain) NSOrderedSet * slices;
+@property (nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } alignmentRect;
+@property (nonatomic, retain) NSString *alignmentRectString;
+@property (nonatomic) BOOL allowsMultiPassEncoding;
+@property (nonatomic, retain) TDPNGAsset *asset;
+@property (nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } primitiveAlignmentRect;
+@property (nonatomic, retain) NSOrderedSet *slices;
 
-- (struct { struct CGSize { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; struct CGSize { float x_3_1_1; float x_3_1_2; } x3; })_edgeMetricsForAlignmentRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 withRenditionSize:(struct { int x1; int x2; })arg2;
++ (void)initialize;
+
+- (struct { struct CGSize { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; struct CGSize { float x_3_1_1; float x_3_1_2; } x3; })_edgeMetricsForAlignmentRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 originalRenditionSize:(struct { int x1; int x2; })arg2 newRenditionSize:(struct { int x1; int x2; })arg3;
 - (void)_logError:(id)arg1;
 - (void)_logExtra:(id)arg1;
 - (void)_logWarning:(id)arg1;
 - (id)_sliceRectanglesForRenditionSize:(struct { int x1; int x2; })arg1;
 - (id)_slicesToUseForCSI;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })alignmentRect;
+- (BOOL)allowsMultiPassEncoding;
 - (id)associatedFileModificationDateWithDocument:(id)arg1;
+- (void)awakeFromFetch;
 - (id)createCSIRepresentationWithCompression:(BOOL)arg1 colorSpaceID:(unsigned int)arg2 document:(id)arg3;
+- (id)initWithEntity:(id)arg1 insertIntoManagedObjectContext:(id)arg2;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })primitiveAlignmentRect;
+- (void)setAlignmentRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (void)setAllowsMultiPassEncoding:(BOOL)arg1;
+- (void)setPrimitiveAlignmentRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 
 @end

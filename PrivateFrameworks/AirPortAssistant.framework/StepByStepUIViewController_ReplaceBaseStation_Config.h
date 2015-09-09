@@ -2,21 +2,20 @@
    Image: /System/Library/PrivateFrameworks/AirPortAssistant.framework/AirPortAssistant
  */
 
-@class NSString, UILabel, UIView;
-
 @interface StepByStepUIViewController_ReplaceBaseStation_Config : StepByStepUIViewController_DevicePicker <StepByStepUIDevicePicker> {
     UIView *justTextContainerView2;
     UILabel *justTextLabel2;
     NSString *personalizedBaseName;
 }
 
-@property(retain) UIView * justTextContainerView2;
-@property(retain) NSString * personalizedBaseName;
+@property (nonatomic, retain) UIView *justTextContainerView2;
+@property (nonatomic, retain) NSString *personalizedBaseName;
 
 - (void)dealloc;
 - (id)devicePickerLabel;
 - (id)deviceTableLabel;
 - (id)justTextContainerView2;
+- (void)loadView;
 - (id)personalizedBaseName;
 - (void)prepareParams;
 - (void)primaryActionSelected:(BOOL)arg1;
@@ -29,7 +28,6 @@
 - (BOOL)shouldChangeTextField:(id)arg1 atIndexPath:(id)arg2 forTextIndex:(unsigned int)arg3 toString:(id)arg4;
 - (void)updateNavigationButtons;
 - (void)validateAndUpdateNextButton;
-- (void)viewDidLoad;
 - (void)viewWillAppear:(BOOL)arg1;
 
 @end

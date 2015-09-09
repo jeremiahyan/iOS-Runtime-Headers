@@ -2,18 +2,18 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class NSString;
-
 @interface SKUIDividerPageComponent : SKUIPageComponent {
     NSString *_title;
 }
 
-@property(readonly) NSString * dividerTitle;
+@property (nonatomic, readonly) NSString *dividerTitle;
+@property (nonatomic, readonly) SKUIDividerViewElement *viewElement;
 
 - (void).cxx_destruct;
 - (int)componentType;
 - (id)dividerTitle;
 - (id)initWithCustomPageContext:(id)arg1;
 - (id)initWithDividerTitle:(id)arg1;
+- (id)initWithViewElement:(id)arg1;
 
 @end

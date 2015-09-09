@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/SpringBoardUIServices.framework/SpringBoardUIServices
  */
 
-@class <SBUIPasscodeLockNumberPadDelegate>, NSArray, SBNumberPadWithDelegate, SBUIButton, UIColor, UIControl<SBUIPasscodeNumberPadButton>, UIView;
-
 @interface SBUIPasscodeLockNumberPad : UIView <SBNumberPadDelegate> {
     SBUIButton *_backspaceButton;
     UIView *_bottomPaddingView;
@@ -18,16 +16,21 @@
     BOOL _showsBackspaceButton;
     BOOL _showsCancelButton;
     BOOL _showsEmergencyCallButton;
+    BOOL _useLightStyle;
 }
 
-@property(readonly) NSArray * buttons;
-@property <SBUIPasscodeLockNumberPadDelegate> * delegate;
-@property(retain) UIControl<SBUIPasscodeNumberPadButton> * downButton;
-@property BOOL showsBackspaceButton;
-@property BOOL showsCancelButton;
-@property BOOL showsEmergencyCallButton;
+@property (nonatomic, readonly) NSArray *buttons;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SBUIPasscodeLockNumberPadDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) UIControl<SBUIPasscodeNumberPadButton> *downButton;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL showsBackspaceButton;
+@property (nonatomic) BOOL showsCancelButton;
+@property (nonatomic) BOOL showsEmergencyCallButton;
+@property (readonly) Class superclass;
 
-+ (id)_buttonForCharacter:(unsigned int)arg1;
++ (id)_buttonForCharacter:(unsigned int)arg1 withLightStyle:(BOOL)arg2;
 + (struct CGSize { float x1; float x2; })_inputButtonCircleSize;
 + (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })_inputButtonCircleSpacing;
 
@@ -46,7 +49,7 @@
 - (void)dealloc;
 - (id)delegate;
 - (id)downButton;
-- (id)initWithDefaultSize;
+- (id)initWithDefaultSizeAndLightStyle:(BOOL)arg1;
 - (void)setBackgroundAlpha:(float)arg1;
 - (void)setCustomBackgroundColor:(id)arg1;
 - (void)setDelegate:(id)arg1;

@@ -2,23 +2,25 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class NSArray;
-
 @interface SKUIEditorialLinkLayout : NSObject <SKUICachedLayout> {
+    NSArray *_links;
+    struct CGSize { float x1; float x2; } *_sizes;
     struct CGSize { 
         float width; 
         float height; 
-    NSArray *_links;
-    struct CGSize { float x1; float x2; } *_sizes;
     } _totalSize;
 }
 
-@property(readonly) NSArray * links;
-@property(readonly) struct CGSize { float x1; float x2; } totalSize;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) NSArray *links;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } totalSize;
 
 - (void).cxx_destruct;
 - (void)dealloc;
-- (void)enumerateLinesUsingBlock:(id)arg1;
+- (void)enumerateLinesUsingBlock:(id /* block */)arg1;
 - (id)initWithLayoutRequest:(id)arg1;
 - (id)links;
 - (struct CGSize { float x1; float x2; })sizeForLinkAtIndex:(int)arg1;

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/DuetPLLConfigLogger.framework/DuetPLLConfigLogger
  */
 
-@class BudgetPool, NSDate, NSNumber, NSObject<OS_dispatch_queue>;
-
 @interface PowerLogStub : NSObject <DuetLoggerProtocol> {
     NSNumber *batteryCapacity;
     NSObject<OS_dispatch_queue> *pllStubQueue;
@@ -34,7 +32,7 @@
 - (void)energyStopLogging:(const char *)arg1 withPowerLogStubType:(short)arg2 andSeqNum:(unsigned long long)arg3;
 - (id)getBatteryCapacity;
 - (id)init;
-- (void)logAll:(struct __aslclient { }*)arg1 withMsg:(struct __aslmsg { }*)arg2 withLevel:(int)arg3;
-- (void)logLight:(struct __aslclient { }*)arg1 withMsg:(struct __aslmsg { }*)arg2 withLevel:(int)arg3;
+- (void)logAll:(struct __asl_object_s { }*)arg1 withMsg:(struct __asl_object_s { }*)arg2 withLevel:(int)arg3;
+- (void)logLight:(struct __asl_object_s { }*)arg1 withMsg:(struct __asl_object_s { }*)arg2 withLevel:(int)arg3;
 
 @end

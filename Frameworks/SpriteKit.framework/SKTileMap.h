@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/SpriteKit.framework/SpriteKit
  */
 
-@class NSMutableArray, NSString, NSXMLParser;
-
 @interface SKTileMap : SKNode <NSXMLParserDelegate> {
     int _firstGid;
     int _imgHeight;
@@ -31,8 +29,12 @@
     NSString *_tilesetName;
 }
 
-@property(readonly) struct CGSize { float x1; float x2; } mapSize;
-@property(readonly) struct CGSize { float x1; float x2; } tileSize;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } mapSize;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } tileSize;
 
 + (id)tileMapWithName:(id)arg1;
 

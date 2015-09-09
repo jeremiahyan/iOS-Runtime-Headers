@@ -2,13 +2,14 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSString, SAGKSpeakableAnswer;
+@interface SAGKDirectAnswer : AceObject <SAAceSerializable>
 
-@interface SAGKDirectAnswer : AceObject <SAAceSerializable> {
-}
-
-@property(copy) NSString * answer;
-@property(retain) SAGKSpeakableAnswer * speakableAnswer;
+@property (nonatomic, copy) NSString *answer;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) SAGKSpeakableAnswer *speakableAnswer;
+@property (readonly) Class superclass;
 
 + (id)directAnswer;
 + (id)directAnswerWithDictionary:(id)arg1 context:(id)arg2;

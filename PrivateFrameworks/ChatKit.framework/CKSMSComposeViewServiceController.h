@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
  */
 
-@class CKModalTranscriptController;
-
-@interface CKSMSComposeViewServiceController : UINavigationController <CKTranscriptComposeDelegate, CKSMSComposeViewServiceProtocol> {
+@interface CKSMSComposeViewServiceController : UINavigationController <CKSMSComposeViewServiceProtocol, CKTranscriptComposeDelegate> {
     BOOL _canEditRecipients;
     BOOL _disableCameraAttachments;
     BOOL _forceMMS;
@@ -13,11 +11,16 @@
     BOOL _supportsMessageInspection;
 }
 
-@property BOOL canEditRecipients;
-@property id delegate;
-@property(retain) CKModalTranscriptController * modalTranscriptController;
+@property (nonatomic) BOOL canEditRecipients;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) id delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) CKModalTranscriptController *modalTranscriptController;
+@property (readonly) Class superclass;
 
 + (id)_exportedInterface;
++ (BOOL)_isSecureForRemoteViewService;
 + (id)_remoteViewControllerInterface;
 
 - (void)_forceMMSIfNecessary;
@@ -25,6 +28,7 @@
 - (BOOL)canEditRecipients;
 - (void)dealloc;
 - (void)didCancelComposition:(id)arg1;
+- (void)didRotateFromInterfaceOrientation:(int)arg1;
 - (void)disableCameraAttachments;
 - (void)forceCancelComposition;
 - (void)forceMMS;
@@ -33,23 +37,22 @@
 - (void)insertData:(id)arg1 MIMEType:(id)arg2 exportedFilename:(id)arg3;
 - (void)insertFileURL:(id)arg1 filename:(id)arg2 transcoderUserInfo:(id)arg3;
 - (void)insertFilename:(id)arg1 MIMEType:(id)arg2 exportedFilename:(id)arg3 options:(id)arg4;
-- (void)insertFilename:(id)arg1 MIMEType:(id)arg2 exportedFilename:(id)arg3;
-- (void)insertTextPart:(id)arg1;
 - (id)modalTranscriptController;
 - (void)setCanEditRecipients:(BOOL)arg1;
 - (void)setModalTranscriptController:(id)arg1;
 - (void)setPendingAddresses:(id)arg1;
-- (void)setText:(id)arg1 addresses:(id)arg2;
 - (void)setText:(id)arg1 subject:(id)arg2 addresses:(id)arg3;
 - (void)setTextEntryContentsVisible:(BOOL)arg1;
 - (void)setUICustomizationData:(id)arg1;
-- (void)showForwardedMessageParts:(id)arg1;
-- (void)showNewMessageCompositionForMessageParts:(id)arg1;
+- (void)showNewMessageCompositionForComposition:(id)arg1;
 - (BOOL)supportsAttachments;
 - (BOOL)supportsMessageInspection;
 - (void)transcriptController:(id)arg1 didSelectNewConversation:(id)arg2;
 - (void)transcriptController:(id)arg1 didSendMessageInConversation:(id)arg2;
 - (void)transcriptController:(id)arg1 willSendComposition:(id)arg2 inConversation:(id)arg3;
+- (void)transcriptControllerDidReportSpam:(id)arg1;
 - (void)viewDidAppear:(BOOL)arg1;
+- (void)willAnimateRotationToInterfaceOrientation:(int)arg1 duration:(double)arg2;
+- (void)willRotateToInterfaceOrientation:(int)arg1 duration:(double)arg2;
 
 @end

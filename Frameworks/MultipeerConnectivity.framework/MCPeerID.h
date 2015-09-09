@@ -2,13 +2,11 @@
    Image: /System/Library/Frameworks/MultipeerConnectivity.framework/MultipeerConnectivity
  */
 
-@class MCPeerIDInternal, NSString;
-
 @interface MCPeerID : NSObject <NSCopying, NSSecureCoding> {
     MCPeerIDInternal *_internal;
 }
 
-@property(readonly) NSString * displayName;
+@property (nonatomic, readonly) NSString *displayName;
 
 + (BOOL)supportsSecureCoding;
 
@@ -26,8 +24,8 @@
 - (id)initWithSerializedRepresentation:(id)arg1;
 - (id)internalDescription;
 - (BOOL)isEqual:(id)arg1;
-- (unsigned long long)pid64;
 - (unsigned int)pid;
+- (unsigned long long)pid64;
 - (id)serializedRepresentation;
 
 @end

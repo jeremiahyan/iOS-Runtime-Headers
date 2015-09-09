@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
  */
 
-@class MFMailComposeRecipientView, NSArray, NSMutableArray, NSMutableIndexSet, UITableView;
-
 @interface MFMailComposeCorecipientViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
     MFMailComposeRecipientView *_recipientView;
     NSMutableArray *_recipients;
@@ -11,8 +9,12 @@
     UITableView *_tableView;
 }
 
-@property(retain) MFMailComposeRecipientView * recipientView;
-@property(readonly) NSArray * recipients;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) MFMailComposeRecipientView *recipientView;
+@property (nonatomic, readonly) NSArray *recipients;
+@property (readonly) Class superclass;
 
 - (void)_didTapDoneButton:(id)arg1;
 - (void)_dismissAndAddSelectedContacts;

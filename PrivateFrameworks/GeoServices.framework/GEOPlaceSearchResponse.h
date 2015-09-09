@@ -2,20 +2,14 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class GEOMapRegion, NSData, NSMutableArray;
-
 @interface GEOPlaceSearchResponse : PBCodable <NSCopying> {
     struct { 
         unsigned int turnaroundTime : 1; 
-        unsigned int localSearchProviderID : 1; 
         unsigned int statusCodeInfo : 1; 
-        unsigned int abTestResponse : 1; 
-    BOOL _abTestResponse;
     } _has;
-    int _localSearchProviderID;
     GEOMapRegion *_mapRegion;
+    NSMutableArray *_namedFeatures;
     NSMutableArray *_placeResults;
-    NSMutableArray *_searchs;
     int _status;
     int _statusCodeInfo;
     NSMutableArray *_suggestionEntryLists;
@@ -23,61 +17,51 @@
     double _turnaroundTime;
 }
 
-@property BOOL abTestResponse;
-@property BOOL hasAbTestResponse;
-@property BOOL hasLocalSearchProviderID;
-@property(readonly) BOOL hasMapRegion;
-@property BOOL hasStatusCodeInfo;
-@property(readonly) BOOL hasSuggestionMetadata;
-@property BOOL hasTurnaroundTime;
-@property int localSearchProviderID;
-@property(retain) GEOMapRegion * mapRegion;
-@property(retain) NSMutableArray * placeResults;
-@property(retain) NSMutableArray * searchs;
-@property int status;
-@property int statusCodeInfo;
-@property(retain) NSMutableArray * suggestionEntryLists;
-@property(retain) NSData * suggestionMetadata;
-@property double turnaroundTime;
+@property (nonatomic, readonly) BOOL hasMapRegion;
+@property (nonatomic) BOOL hasStatusCodeInfo;
+@property (nonatomic, readonly) BOOL hasSuggestionMetadata;
+@property (nonatomic) BOOL hasTurnaroundTime;
+@property (nonatomic, retain) GEOMapRegion *mapRegion;
+@property (nonatomic, retain) NSMutableArray *namedFeatures;
+@property (nonatomic, retain) NSMutableArray *placeResults;
+@property (nonatomic) int status;
+@property (nonatomic) int statusCodeInfo;
+@property (nonatomic, retain) NSMutableArray *suggestionEntryLists;
+@property (nonatomic, retain) NSData *suggestionMetadata;
+@property (nonatomic) double turnaroundTime;
 
-- (BOOL)abTestResponse;
+- (void)_geoMapItemsWithHandler:(id /* block */)arg1;
+- (void)addNamedFeatures:(id)arg1;
 - (void)addPlaceResult:(id)arg1;
-- (void)addSearch:(id)arg1;
 - (void)addSuggestionEntryLists:(id)arg1;
+- (void)clearNamedFeatures;
 - (void)clearPlaceResults;
-- (void)clearSearchs;
 - (void)clearSuggestionEntryLists;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)description;
 - (id)dictionaryRepresentation;
-- (BOOL)hasAbTestResponse;
-- (BOOL)hasLocalSearchProviderID;
 - (BOOL)hasMapRegion;
 - (BOOL)hasStatusCodeInfo;
 - (BOOL)hasSuggestionMetadata;
 - (BOOL)hasTurnaroundTime;
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
-- (int)localSearchProviderID;
 - (id)mapRegion;
+- (void)mergeFrom:(id)arg1;
+- (id)namedFeatures;
+- (id)namedFeaturesAtIndex:(unsigned int)arg1;
+- (unsigned int)namedFeaturesCount;
 - (id)placeResultAtIndex:(unsigned int)arg1;
 - (id)placeResults;
 - (unsigned int)placeResultsCount;
 - (BOOL)readFrom:(id)arg1;
-- (id)searchAtIndex:(unsigned int)arg1;
-- (id)searchs;
-- (unsigned int)searchsCount;
-- (void)setAbTestResponse:(BOOL)arg1;
-- (void)setHasAbTestResponse:(BOOL)arg1;
-- (void)setHasLocalSearchProviderID:(BOOL)arg1;
 - (void)setHasStatusCodeInfo:(BOOL)arg1;
 - (void)setHasTurnaroundTime:(BOOL)arg1;
-- (void)setLocalSearchProviderID:(int)arg1;
 - (void)setMapRegion:(id)arg1;
+- (void)setNamedFeatures:(id)arg1;
 - (void)setPlaceResults:(id)arg1;
-- (void)setSearchs:(id)arg1;
 - (void)setStatus:(int)arg1;
 - (void)setStatusCodeInfo:(int)arg1;
 - (void)setSuggestionEntryLists:(id)arg1;

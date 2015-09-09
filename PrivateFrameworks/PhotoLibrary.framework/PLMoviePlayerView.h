@@ -2,21 +2,17 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibrary.framework/PhotoLibrary
  */
 
-@class AVPlayer, PLAVPlayerView, PLAirPlayBackgroundView, PLVideoOutBackgroundView, UIView;
-
 @interface PLMoviePlayerView : UIView {
     PLAirPlayBackgroundView *_airPlayView;
     PLAVPlayerView *_avPlayerView;
     BOOL _destinationPlaceholderHidden;
-    unsigned int _scaleMode;
     PLVideoOutBackgroundView *_videoOutView;
 }
 
-@property(getter=isDestinationPlaceholderHidden) BOOL destinationPlaceholderHidden;
-@property(readonly) int destinationPlaceholderStyle;
-@property(retain) AVPlayer * player;
-@property unsigned int scaleMode;
-@property(readonly) UIView * videoView;
+@property (getter=isDestinationPlaceholderHidden, nonatomic) BOOL destinationPlaceholderHidden;
+@property (nonatomic, readonly) int destinationPlaceholderStyle;
+@property (nonatomic, retain) AVPlayer *player;
+@property (nonatomic, readonly, retain) UIView *videoView;
 
 - (void)_clearAirPlayView;
 - (void)_clearVideoView;
@@ -27,12 +23,11 @@
 - (BOOL)isDestinationPlaceholderHidden;
 - (id)player;
 - (void)reattachVideoView;
-- (unsigned int)scaleMode;
 - (void)setDestinationPlaceholderHidden:(BOOL)arg1;
 - (void)setDestinationPlaceholderStyle:(int)arg1 airPlayDeviceName:(id)arg2;
 - (void)setPlayer:(id)arg1;
-- (void)setScaleMode:(unsigned int)arg1 duration:(double)arg2;
 - (void)setScaleMode:(unsigned int)arg1;
+- (void)setScaleMode:(unsigned int)arg1 duration:(double)arg2;
 - (id)videoView;
 
 @end

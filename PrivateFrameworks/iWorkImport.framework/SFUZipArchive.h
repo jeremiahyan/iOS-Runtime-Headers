@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSData, NSMutableDictionary, NSString, SFUCryptoKey, SFUDataRepresentation<SFUZipArchiveDataRepresentation>;
-
 @interface SFUZipArchive : NSObject {
     SFUCryptoKey *mCryptoKey;
     SFUDataRepresentation<SFUZipArchiveDataRepresentation> *mDataRepresentation;
@@ -16,14 +14,18 @@
 + (BOOL)isZipArchiveAtPath:(id)arg1;
 
 - (id)allEntryNames;
-- (void)collapseCommonRootDirectory;
+- (void)collapseCommonRootDirectoryIgnoreCase:(BOOL)arg1;
+- (id)commonRootDirectoryIgnoringCase:(BOOL)arg1;
 - (void)dealloc;
 - (BOOL)decompressAtPath:(id)arg1;
+- (BOOL)decompressAtPath:(id)arg1 wasEmpty:(BOOL*)arg2;
 - (id)encryptedDocumentUuid;
-- (id)entryWithName:(id)arg1 dataLength:(long long)arg2;
 - (id)entryWithName:(id)arg1;
+- (id)entryWithName:(id)arg1 dataLength:(long long)arg2;
 - (id)initWithData:(id)arg1 collapseCommonRootDirectory:(BOOL)arg2;
+- (id)initWithData:(id)arg1 collapseCommonRootDirectory:(BOOL)arg2 ignoreCase:(BOOL)arg3;
 - (id)initWithPath:(id)arg1 collapseCommonRootDirectory:(BOOL)arg2;
+- (id)initWithPath:(id)arg1 collapseCommonRootDirectory:(BOOL)arg2 ignoreCase:(BOOL)arg3;
 - (BOOL)isEncrypted;
 - (id)passphraseHint;
 - (id)passphraseVerifier;

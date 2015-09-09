@@ -2,15 +2,17 @@
    Image: /System/Library/PrivateFrameworks/iTunesStore.framework/iTunesStore
  */
 
-@class ISReview;
-
 @interface ISPostReviewOperation : ISOperation <ISStoreURLOperationDelegate> {
     BOOL _backgroundReview;
     ISReview *_review;
 }
 
-@property(getter=isBackgroundReview) BOOL backgroundReview;
-@property(retain) ISReview * review;
+@property (getter=isBackgroundReview) BOOL backgroundReview;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (retain) ISReview *review;
+@property (readonly) Class superclass;
 
 - (id)_httpBody;
 - (void)dealloc;

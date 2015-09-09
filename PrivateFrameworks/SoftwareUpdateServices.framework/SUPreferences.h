@@ -4,15 +4,19 @@
 
 @interface SUPreferences : NSObject {
     BOOL _allowSameBuildUpdates;
+    BOOL _disableAutoDownload;
+    BOOL _disableAvailabilityAlerts;
     BOOL _disableBuildNumberComparison;
     BOOL _disableUserWiFiOnlyPeriod;
     int _logLevel;
 }
 
-@property(readonly) BOOL allowSameBuildUpdates;
-@property(readonly) BOOL disableBuildNumberComparison;
-@property(readonly) BOOL disableUserWiFiOnlyPeriod;
-@property(readonly) int logLevel;
+@property (nonatomic, readonly) BOOL allowSameBuildUpdates;
+@property (getter=isAutoDownloadDisabled, nonatomic, readonly) BOOL disableAutoDownload;
+@property (nonatomic, readonly) BOOL disableAvailabilityAlerts;
+@property (nonatomic, readonly) BOOL disableBuildNumberComparison;
+@property (nonatomic, readonly) BOOL disableUserWiFiOnlyPeriod;
+@property (nonatomic, readonly) int logLevel;
 
 + (id)sharedInstance;
 
@@ -22,9 +26,12 @@
 - (void)_loadPreferences;
 - (BOOL)allowSameBuildUpdates;
 - (void)dealloc;
+- (BOOL)disableAvailabilityAlerts;
 - (BOOL)disableBuildNumberComparison;
 - (BOOL)disableUserWiFiOnlyPeriod;
 - (id)init;
+- (BOOL)isAutoDownloadDisabled;
 - (int)logLevel;
+- (void)reload;
 
 @end

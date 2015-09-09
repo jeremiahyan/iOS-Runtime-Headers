@@ -2,12 +2,11 @@
    Image: /System/Library/PrivateFrameworks/VisualAlert.framework/VisualAlert
  */
 
-@class <AXCameraTorchManager>, AXNotificationHandler, AXTimer, NSArray, NSDictionary;
-
 @interface AXVisualAlertManager : NSObject {
     NSDictionary *_activePattern;
     unsigned int _activePatternCursor;
     unsigned int _alertTypes;
+    NSMutableArray *_bulletins;
     <AXCameraTorchManager> *_cameraTorchManager;
     BOOL _captureSessionRunning;
     AXNotificationHandler *_deviceLockStateChangedNotificationHandler;
@@ -28,18 +27,18 @@
     BOOL _videoConferenceCallRinging;
 }
 
-@property(setter=_setActivePattern:,retain) NSDictionary * _activePattern;
-@property(readonly) NSDictionary * _patterns;
-@property(getter=_isTorchDeviceOn,setter=_setTorchDeviceOn:) BOOL _torchDeviceOn;
-@property(getter=_isTorchDeviceOpen,setter=_setTorchDeviceOpen:) BOOL _torchDeviceOpen;
-@property(setter=_setTypeToUseForVisualAlertAfterCaptureSessionStopsRunning:) unsigned int _typeToUseForVisualAlertAfterCaptureSessionStopsRunning;
+@property (setter=_setActivePattern:, nonatomic, retain) NSDictionary *_activePattern;
+@property (nonatomic, readonly, retain) NSDictionary *_patterns;
+@property (getter=_isTorchDeviceOn, setter=_setTorchDeviceOn:, nonatomic) BOOL _torchDeviceOn;
+@property (getter=_isTorchDeviceOpen, setter=_setTorchDeviceOpen:, nonatomic) BOOL _torchDeviceOpen;
+@property (setter=_setTypeToUseForVisualAlertAfterCaptureSessionStopsRunning:, nonatomic) unsigned int _typeToUseForVisualAlertAfterCaptureSessionStopsRunning;
 
 + (void)initialize;
 + (id)sharedVisualAlertManager;
 
 - (id)_activePattern;
-- (void)_beginVisualAlertForType:(unsigned int)arg1 repeat:(BOOL)arg2 skipAutomaticStopOnUserInteraction:(BOOL)arg3;
 - (void)_beginVisualAlertForType:(unsigned int)arg1 repeat:(BOOL)arg2;
+- (void)_beginVisualAlertForType:(unsigned int)arg1 repeat:(BOOL)arg2 skipAutomaticStopOnUserInteraction:(BOOL)arg3;
 - (void)_endVisualAlert;
 - (void)_handleBeginVisualAlertForAlarmWithSound:(BOOL)arg1;
 - (void)_handleBeginVisualAlertForIncomingCall;
@@ -79,9 +78,12 @@
 - (void)_stop;
 - (BOOL)_supportsVisualAlertsForVideoConferenceCalls;
 - (unsigned int)_typeToUseForVisualAlertAfterCaptureSessionStopsRunning;
+- (void)addBulletin:(id)arg1;
 - (void)dealloc;
 - (id)description;
+- (id)existingBulletinForBulletin:(id)arg1;
 - (id)init;
+- (void)removeBulletin:(id)arg1;
 - (void)startForAlertTypes:(unsigned int)arg1 cameraTorchManager:(id)arg2;
 - (void)stop;
 

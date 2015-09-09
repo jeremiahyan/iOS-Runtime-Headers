@@ -2,14 +2,14 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@interface _UIPopoverSlidingChromeView : UIPopoverBackgroundView {
-}
+@interface _UIPopoverSlidingChromeView : UIPopoverBackgroundView
 
 + (float)arrowBase;
 + (float)arrowHeight;
 + (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })contentViewInsets;
 + (float)cornerRadius;
 
+- (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })_contentViewInsets;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })_shadowInsets;
 - (struct CGSize { float x1; float x2; })_shadowOffset;
 - (float)_shadowOpacity;

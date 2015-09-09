@@ -2,16 +2,14 @@
    Image: /System/Library/PrivateFrameworks/VoiceServices.framework/VoiceServices
  */
 
-@class <VSRecognitionResultHandlingThreadDelegate>, NSConditionLock, NSMutableArray;
-
 @interface VSRecognitionResultHandlingThread : NSObject {
+    <VSRecognitionResultHandlingThreadDelegate> *_delegate;
+    NSConditionLock *_lock;
+    NSMutableArray *_requests;
     struct { 
         unsigned int running : 1; 
         unsigned int delegateDidHandleResults : 1; 
         unsigned int valid : 1; 
-    <VSRecognitionResultHandlingThreadDelegate> *_delegate;
-    NSConditionLock *_lock;
-    NSMutableArray *_requests;
     } _resultHandlingFlags;
 }
 

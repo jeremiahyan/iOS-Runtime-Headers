@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class OADFontReference, OADStyleMatrixReference;
-
 @interface OADShapeStyle : NSObject <NSCopying> {
     OADStyleMatrixReference *mEffectReference;
     OADStyleMatrixReference *mFillReference;
@@ -11,8 +9,8 @@
     OADStyleMatrixReference *mLineReference;
 }
 
-- (void)applyToGraphicProperties:(id)arg1 styleMatrix:(id)arg2 useNull:(BOOL)arg3 strokeWidthMultiplier:(float)arg4;
 - (void)applyToGraphicProperties:(id)arg1 styleMatrix:(id)arg2;
+- (void)applyToGraphicProperties:(id)arg1 styleMatrix:(id)arg2 useNull:(BOOL)arg3 strokeWidthMultiplier:(float)arg4;
 - (void)applyToParagraphProperties:(id)arg1;
 - (void)applyToTextBody:(id)arg1;
 - (void)applyToTextListStyle:(id)arg1;

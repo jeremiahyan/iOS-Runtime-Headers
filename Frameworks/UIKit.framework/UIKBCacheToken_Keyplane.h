@@ -2,12 +2,13 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString;
-
 @interface UIKBCacheToken_Keyplane : UIKBCacheToken {
+    NSString *_geometrySetName;
+    NSString *_keySetName;
     struct CGSize { 
         float width; 
         float height; 
+    } _size;
     union { 
         struct { 
             unsigned int idiom : 6; 
@@ -17,9 +18,6 @@
             unsigned int rendering : 16; 
         } styling; 
         int intValue; 
-    NSString *_geometrySetName;
-    NSString *_keySetName;
-    } _size;
     } _style;
 }
 

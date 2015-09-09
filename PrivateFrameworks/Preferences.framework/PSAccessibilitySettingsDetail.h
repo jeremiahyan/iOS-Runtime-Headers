@@ -2,8 +2,12 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@interface PSAccessibilitySettingsDetail : NSObject <PSSettingsDetail> {
-}
+@interface PSAccessibilitySettingsDetail : NSObject <PSSettingsDetail>
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)iconImage;
 + (id)preferencesURL;

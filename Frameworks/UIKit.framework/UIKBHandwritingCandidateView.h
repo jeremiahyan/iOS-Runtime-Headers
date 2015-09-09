@@ -2,36 +2,43 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class <UIKeyboardCandidateList>, <UIKeyboardCandidateListDelegate>, NSArray, TIKeyboardCandidateResultSet, UIKBCandidateCollectionView, UIKeyboardCandidateLogButton, UIKeyboardCandidatePocketShadow;
-
-@interface UIKBHandwritingCandidateView : UIKBKeyView <UIKeyboardCandidateList, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout> {
+@interface UIKBHandwritingCandidateView : UIKBKeyView <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIKeyboardCandidateList> {
+    TIKeyboardCandidateResultSet *_candidateResultSet;
+    UIKBCandidateCollectionView *_candidatesCollectionView;
+    <UIKeyboardCandidateListDelegate> *_delegate;
+    unsigned int _dummyCellCount;
+    float _dummyCellWidth;
+    UIKeyboardCandidateLogButton *_logButton;
+    UIKeyboardCandidatePocketShadow *_pocketShadow;
+    BOOL _usesCandidateSelection;
     struct { 
         unsigned int idiom : 6; 
         unsigned int landscape : 1; 
         unsigned int split : 1; 
         unsigned int appearance : 8; 
         unsigned int rendering : 16; 
-    TIKeyboardCandidateResultSet *_candidateResultSet;
-    UIKBCandidateCollectionView *_candidatesCollectionView;
-    <UIKeyboardCandidateListDelegate> *_delegate;
-    UIKeyboardCandidateLogButton *_logButton;
-    UIKeyboardCandidatePocketShadow *_pocketShadow;
-    BOOL _usesCandidateSelection;
     } _visualStyling;
 }
 
-@property(readonly) <UIKeyboardCandidateList> * candidateList;
-@property(retain) TIKeyboardCandidateResultSet * candidateResultSet;
-@property(readonly) NSArray * candidates;
-@property(retain) UIKBCandidateCollectionView * candidatesCollectionView;
-@property <UIKeyboardCandidateListDelegate> * delegate;
-@property(retain) UIKeyboardCandidateLogButton * logButton;
-@property(retain) UIKeyboardCandidatePocketShadow * pocketShadow;
-@property BOOL usesCandidateSelection;
-@property struct { unsigned int x1 : 6; unsigned int x2 : 1; unsigned int x3 : 1; unsigned int x4 : 8; unsigned int x5 : 16; } visualStyling;
+@property (nonatomic, readonly) <UIKeyboardCandidateList> *candidateList;
+@property (nonatomic, retain) TIKeyboardCandidateResultSet *candidateResultSet;
+@property (nonatomic, readonly) NSArray *candidates;
+@property (nonatomic, retain) UIKBCandidateCollectionView *candidatesCollectionView;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <UIKeyboardCandidateListDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) unsigned int dummyCellCount;
+@property (nonatomic) float dummyCellWidth;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) UIKeyboardCandidateLogButton *logButton;
+@property (nonatomic, retain) UIKeyboardCandidatePocketShadow *pocketShadow;
+@property (readonly) Class superclass;
+@property (nonatomic) BOOL usesCandidateSelection;
+@property (nonatomic) struct { unsigned int x1 : 6; unsigned int x2 : 1; unsigned int x3 : 1; unsigned int x4 : 8; unsigned int x5 : 16; } visualStyling;
 
 - (id)_inheritedRenderConfig;
 - (void)_setRenderConfig:(id)arg1;
+- (void)calculateDummyCellAttributes;
 - (void)candidateAcceptedAtIndex:(unsigned int)arg1;
 - (id)candidateList;
 - (id)candidateResultSet;
@@ -45,7 +52,8 @@
 - (unsigned int)currentIndex;
 - (void)dealloc;
 - (id)delegate;
-- (unsigned int)dummyCellsCount;
+- (unsigned int)dummyCellCount;
+- (float)dummyCellWidth;
 - (BOOL)hasCandidates;
 - (BOOL)hasNextPage;
 - (BOOL)hasPreviousPage;
@@ -65,13 +73,15 @@
 - (void)setCandidates:(id)arg1 inlineText:(id)arg2 inlineRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg3 maxX:(float)arg4 layout:(BOOL)arg5;
 - (void)setCandidatesCollectionView:(id)arg1;
 - (void)setDelegate:(id)arg1;
+- (void)setDummyCellCount:(unsigned int)arg1;
+- (void)setDummyCellWidth:(float)arg1;
 - (void)setLogButton:(id)arg1;
 - (void)setPocketShadow:(id)arg1;
 - (void)setRenderConfig:(id)arg1;
 - (void)setUIKeyboardCandidateListDelegate:(id)arg1;
 - (void)setUsesCandidateSelection:(BOOL)arg1;
 - (void)setVisualStyling:(struct { unsigned int x1 : 6; unsigned int x2 : 1; unsigned int x3 : 1; unsigned int x4 : 8; unsigned int x5 : 16; })arg1;
-- (void)showCandidate:(id)arg1;
+- (BOOL)showCandidate:(id)arg1;
 - (void)showCandidateAtIndex:(unsigned int)arg1;
 - (void)showNextCandidate;
 - (void)showNextPage;

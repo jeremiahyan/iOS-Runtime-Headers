@@ -2,20 +2,33 @@
    Image: /System/Library/PrivateFrameworks/DataAccess.framework/DataAccess
  */
 
-@class NSDictionary, NSMutableDictionary;
-
 @interface DAResolvedRecipient : NSObject {
-    NSMutableDictionary *_resolvedEmailToX509Certs;
+    int _availabilityStatus;
+    int _certificatesStatus;
+    NSMutableDictionary *_mResolvedEmailToX509Certs;
+    NSString *_mergedFreeBusy;
     int _status;
 }
 
-@property(readonly) NSDictionary * resolvedEmailToX509Certs;
-@property int status;
+@property (nonatomic) int availabilityStatus;
+@property (nonatomic) int certificatesStatus;
+@property (nonatomic, retain) NSMutableDictionary *mResolvedEmailToX509Certs;
+@property (nonatomic, retain) NSString *mergedFreeBusy;
+@property (nonatomic, readonly) NSDictionary *resolvedEmailToX509Certs;
+@property (nonatomic) int status;
 
+- (void).cxx_destruct;
 - (void)addCert:(id)arg1 forEmailAddress:(id)arg2;
-- (void)dealloc;
+- (int)availabilityStatus;
+- (int)certificatesStatus;
 - (id)description;
+- (id)mResolvedEmailToX509Certs;
+- (id)mergedFreeBusy;
 - (id)resolvedEmailToX509Certs;
+- (void)setAvailabilityStatus:(int)arg1;
+- (void)setCertificatesStatus:(int)arg1;
+- (void)setMResolvedEmailToX509Certs:(id)arg1;
+- (void)setMergedFreeBusy:(id)arg1;
 - (void)setStatus:(int)arg1;
 - (int)status;
 

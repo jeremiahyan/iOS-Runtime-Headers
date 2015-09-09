@@ -2,17 +2,15 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSMutableArray, NSString;
-
 @interface GEOSearchAttribution : PBCodable <NSCopying> {
     NSMutableArray *_attributionURLs;
     NSString *_sourceIdentifier;
     unsigned int _sourceVersion;
 }
 
-@property(retain) NSMutableArray * attributionURLs;
-@property(retain) NSString * sourceIdentifier;
-@property unsigned int sourceVersion;
+@property (nonatomic, retain) NSMutableArray *attributionURLs;
+@property (nonatomic, retain) NSString *sourceIdentifier;
+@property (nonatomic) unsigned int sourceVersion;
 
 - (void)addAttributionURLs:(id)arg1;
 - (id)attributionURLs;
@@ -26,6 +24,7 @@
 - (id)dictionaryRepresentation;
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
+- (void)mergeFrom:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 - (void)setAttributionURLs:(id)arg1;
 - (void)setSourceIdentifier:(id)arg1;

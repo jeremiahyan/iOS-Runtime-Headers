@@ -2,30 +2,31 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class TIKeyboardCandidateResultSet, UIKeyboardCandidateGridCollectionViewController, UIKeyboardCandidateSortControl, UIView;
-
 @interface UIKBCandidateView : UIKBKeyView <UIKeyboardCandidateGridCollectionViewControllerDelegate> {
+    UIView *_clippingView;
+    UIKeyboardCandidateGridCollectionViewController *_collectionViewController;
+    UIKeyboardCandidateSortControl *_scrollViewSortControl;
+    unsigned int _selectedSortIndex;
+    UIView *_topBorder;
     struct { 
         unsigned int idiom : 6; 
         unsigned int landscape : 1; 
         unsigned int split : 1; 
         unsigned int appearance : 8; 
         unsigned int rendering : 16; 
-    UIView *_clippingView;
-    UIKeyboardCandidateGridCollectionViewController *_collectionViewController;
-    UIKeyboardCandidateSortControl *_scrollViewSortControl;
-    unsigned int _selectedSortIndex;
-    UIView *_topBorder;
     } _visualStyling;
 }
 
-@property(readonly) TIKeyboardCandidateResultSet * candidateResultSet;
-@property(retain) UIKeyboardCandidateGridCollectionViewController * collectionViewController;
-@property(retain) UIKeyboardCandidateSortControl * scrollViewSortControl;
-@property unsigned int selectedSortIndex;
-@property struct { unsigned int x1 : 6; unsigned int x2 : 1; unsigned int x3 : 1; unsigned int x4 : 8; unsigned int x5 : 16; } visualStyling;
+@property (nonatomic, readonly) TIKeyboardCandidateResultSet *candidateResultSet;
+@property (nonatomic, retain) UIKeyboardCandidateGridCollectionViewController *collectionViewController;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) UIKeyboardCandidateSortControl *scrollViewSortControl;
+@property (nonatomic) unsigned int selectedSortIndex;
+@property (readonly) Class superclass;
+@property (nonatomic) struct { unsigned int x1 : 6; unsigned int x2 : 1; unsigned int x3 : 1; unsigned int x4 : 8; unsigned int x5 : 16; } visualStyling;
 
-- (id).cxx_construct;
 - (void)addSubview:(id)arg1;
 - (void)candidateAcceptedAtIndex:(unsigned int)arg1;
 - (id)candidateList;
@@ -55,7 +56,7 @@
 - (void)setSelectedSortIndex:(unsigned int)arg1;
 - (void)setUIKeyboardCandidateListDelegate:(id)arg1;
 - (void)setVisualStyling:(struct { unsigned int x1 : 6; unsigned int x2 : 1; unsigned int x3 : 1; unsigned int x4 : 8; unsigned int x5 : 16; })arg1;
-- (void)showCandidate:(id)arg1;
+- (BOOL)showCandidate:(id)arg1;
 - (void)showCandidateAtIndex:(unsigned int)arg1;
 - (void)showNextCandidate;
 - (void)showNextPage;
@@ -65,8 +66,8 @@
 - (void)showPreviousRow;
 - (void)sortSelectionBarAction:(id)arg1;
 - (id)statisticsIdentifier;
-- (void)updateCollectionViewController:(BOOL)arg1;
 - (void)updateCollectionViewController;
+- (void)updateCollectionViewController:(BOOL)arg1;
 - (void)updateForKeyplane:(id)arg1 key:(id)arg2;
 - (struct { unsigned int x1 : 6; unsigned int x2 : 1; unsigned int x3 : 1; unsigned int x4 : 8; unsigned int x5 : 16; })visualStyling;
 

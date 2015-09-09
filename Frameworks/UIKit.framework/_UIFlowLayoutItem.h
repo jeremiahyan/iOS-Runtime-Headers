@@ -2,9 +2,10 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class _UIFlowLayoutRow, _UIFlowLayoutSection;
-
 @interface _UIFlowLayoutItem : NSObject {
+    struct { 
+        unsigned int positionEstimated : 1; 
+    } _itemFlags;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -19,15 +20,18 @@
     _UIFlowLayoutSection *_section;
 }
 
-@property struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } itemFrame;
-@property _UIFlowLayoutRow * rowObject;
-@property _UIFlowLayoutSection * section;
+@property (nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } itemFrame;
+@property (getter=isPositionEstimated, nonatomic) BOOL positionEstimated;
+@property (nonatomic) _UIFlowLayoutRow *rowObject;
+@property (nonatomic) _UIFlowLayoutSection *section;
 
 - (id)copy;
+- (BOOL)isPositionEstimated;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })itemFrame;
 - (id)rowObject;
 - (id)section;
 - (void)setItemFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (void)setPositionEstimated:(BOOL)arg1;
 - (void)setRowObject:(id)arg1;
 - (void)setSection:(id)arg1;
 

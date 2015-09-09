@@ -2,32 +2,30 @@
    Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
  */
 
-@class NSArray, NSString, SUScriptNavigationController, SUScriptNavigationItem, SUScriptPopOver, SUScriptSection, SUScriptSplitViewController, SUScriptViewController, UIViewController;
-
 @interface SUScriptViewController : SUScriptObject {
     NSArray *_scriptToolbarItems;
 }
 
-@property(retain) id backgroundColor;
-@property(readonly) NSString * contextDictionary;
-@property(retain) SUScriptViewController * inputAccessoryViewController;
-@property(retain) NSString * modalPresentationStyle;
-@property(readonly) NSString * modalPresentationStyleNameFormSheet;
-@property(readonly) NSString * modalPresentationStyleNameFullScreen;
-@property(readonly) SUScriptViewController * modalViewController;
-@property(retain) UIViewController * nativeViewController;
-@property(readonly) SUScriptNavigationController * navigationController;
-@property(readonly) SUScriptNavigationItem * navigationItem;
-@property(readonly) SUScriptPopOver * popOver;
-@property(readonly) SUScriptViewController * presentingViewController;
-@property(retain) SUScriptSection * section;
+@property (retain) id backgroundColor;
+@property (readonly) NSString *contextDictionary;
+@property (retain) SUScriptViewController *inputAccessoryViewController;
+@property (retain) NSString *modalPresentationStyle;
+@property (readonly) NSString *modalPresentationStyleNameFormSheet;
+@property (readonly) NSString *modalPresentationStyleNameFullScreen;
+@property (readonly) SUScriptViewController *modalViewController;
+@property (nonatomic, retain) UIViewController *nativeViewController;
+@property (readonly) SUScriptNavigationController *navigationController;
+@property (readonly) SUScriptNavigationItem *navigationItem;
+@property (readonly) SUScriptPopOver *popOver;
+@property (readonly) SUScriptViewController *presentingViewController;
+@property (retain) SUScriptSection *section;
 @property id showsLibraryButton;
-@property(readonly) SUScriptSplitViewController * splitViewController;
-@property(copy) id toolbarItems;
-@property(retain) id topBackgroundColor;
-@property(retain) SUScriptViewController * transientViewController;
+@property (readonly) SUScriptSplitViewController *splitViewController;
+@property (copy) id toolbarItems;
+@property (retain) id topBackgroundColor;
+@property (retain) SUScriptViewController *transientViewController;
 @property id usesBlurredBackground;
-@property(readonly) SUScriptViewController * volumeViewController;
+@property (readonly) SUScriptViewController *volumeViewController;
 @property id wantsFullScreenLayout;
 
 + (void)initialize;
@@ -47,7 +45,7 @@
 - (void)dealloc;
 - (void)dismissModalViewControllerAnimated:(BOOL)arg1;
 - (void)dismissModalViewControllerWithTransition:(id)arg1;
-- (void)dismissViewControllerAnimated:(BOOL)arg1 completion:(id)arg2;
+- (void)dismissViewControllerAnimated:(BOOL)arg1 completion:(id /* block */)arg2;
 - (void)dismissVolumeViewControllerAnimated:(id)arg1;
 - (BOOL)equals:(id)arg1;
 - (id)inputAccessoryViewController;
@@ -73,8 +71,8 @@
 - (void)setNativeViewController:(id)arg1;
 - (void)setSection:(id)arg1;
 - (void)setShowsLibraryButton:(id)arg1;
-- (void)setToolbarItems:(id)arg1 animated:(BOOL)arg2;
 - (void)setToolbarItems:(id)arg1;
+- (void)setToolbarItems:(id)arg1 animated:(BOOL)arg2;
 - (void)setTopBackgroundColor:(id)arg1;
 - (void)setTransientViewController:(id)arg1;
 - (void)setUsesBlurredBackground:(id)arg1;

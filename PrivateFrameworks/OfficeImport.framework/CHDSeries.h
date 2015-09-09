@@ -2,19 +2,17 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class CHDChart, CHDChartType, CHDData, CHDDataLabel, CHDDataValue, CHDErrorBar, CHDFormula, EDCollection, EDKeyedCollection, OADGraphicProperties;
-
 @interface CHDSeries : NSObject <EDKeyedObject> {
-    boolmDateTimeFormattingFlag;
-    boolmHiddenFlag;
     CHDData *mCategoryData;
     CHDChart *mChart;
     CHDChartType *mChartType;
     EDKeyedCollection *mDataValuePropertiesCollection;
+    bool mDateTimeFormattingFlag;
     CHDDataLabel *mDefaultDataLabel;
     CHDErrorBar *mErrorBarX;
     CHDErrorBar *mErrorBarY;
     OADGraphicProperties *mGraphicProperties;
+    bool mHiddenFlag;
     CHDDataValue *mLastCachedName;
     CHDFormula *mName;
     unsigned int mOrder;
@@ -22,6 +20,11 @@
     EDCollection *mTrendlinesCollection;
     CHDData *mValueData;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)seriesWithChart:(id)arg1;
 

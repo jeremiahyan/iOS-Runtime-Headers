@@ -8,9 +8,9 @@
     int _year;
 }
 
-@property(readonly) int day;
-@property(readonly) int month;
-@property(readonly) int year;
+@property (readonly) int day;
+@property (readonly) int month;
+@property (readonly) int year;
 
 + (id)dateFromICSString:(id)arg1;
 + (id)dateFromICSUTF8String:(const char *)arg1;
@@ -25,6 +25,7 @@
 - (id)icsString;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithYear:(int)arg1 month:(int)arg2 day:(int)arg3;
+- (BOOL)isEqual:(id)arg1;
 - (int)month;
 - (int)year;
 

@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/iTunesStore.framework/iTunesStore
  */
 
-@class NSDictionary, NSString;
-
-@interface ISDialogButton : NSObject {
+@interface ISDialogButton : NSObject <SSXPCCoding> {
     int _actionType;
     NSDictionary *_dictionary;
     id _parameter;
@@ -14,21 +12,26 @@
 }
 
 @property int actionType;
-@property(retain) NSDictionary * dictionary;
-@property(retain) id parameter;
-@property(copy) NSString * subtarget;
-@property(retain) NSString * title;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (retain) NSDictionary *dictionary;
+@property (readonly) unsigned int hash;
+@property (retain) id parameter;
+@property (copy) NSString *subtarget;
+@property (readonly) Class superclass;
+@property (retain) NSString *title;
 @property int urlType;
 
 + (id)buttonWithTitle:(id)arg1;
 
-- (id)_accountURLForURL:(id)arg1 authenticationContext:(id)arg2;
 - (int)_actionTypeForString:(id)arg1;
 - (void)_openURLWithRequest:(id)arg1;
 - (int)_urlTypeForString:(id)arg1;
 - (int)actionType;
+- (id)copyXPCEncoding;
 - (void)dealloc;
 - (id)dictionary;
+- (id)initWithXPCEncoding:(id)arg1;
 - (BOOL)isEqual:(id)arg1 superficial:(BOOL)arg2;
 - (void)loadFromDictionary:(id)arg1;
 - (id)parameter;

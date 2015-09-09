@@ -2,12 +2,7 @@
    Image: /System/Library/PrivateFrameworks/ImageCapture.framework/ImageCapture
  */
 
-@class NSString;
-
 @interface PTPDataPacket : NSObject {
-    struct _PTPRange { 
-        unsigned long long location; 
-        unsigned long long length; 
     long long _bufferSize;
     long long _bytesTransferred;
     id _data;
@@ -15,6 +10,9 @@
     NSString *_filepath;
     long long _offsetInBuffer;
     unsigned short _operationCode;
+    struct _PTPRange { 
+        unsigned long long location; 
+        unsigned long long length; 
     } _range;
     unsigned long _transactionID;
 }

@@ -2,12 +2,6 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class AVAssetResourceLoadingContentInformationRequest, AVAssetResourceLoadingDataRequest, AVWeakReference, NSDictionary, NSMutableData, NSMutableURLRequest, NSObject<OS_dispatch_queue>, NSURLRequest, NSURLResponse;
-
 @interface AVAssetResourceLoadingRequestInternal : NSObject {
     NSMutableURLRequest *URLRequest;
     NSDictionary *cachedContentInformation;
@@ -16,13 +10,14 @@
     AVAssetResourceLoadingContentInformationRequest *contentInformationRequest;
     NSObject<OS_dispatch_queue> *dataCachingQueue;
     AVAssetResourceLoadingDataRequest *dataRequest;
+    struct OpaqueFigAssetImageGenerator { } *figImageGenerator;
     struct OpaqueFigPlaybackItem { } *figPlaybackItem;
     int finished;
     NSURLRequest *redirect;
     NSDictionary *requestDictionary;
     NSURLResponse *response;
     int sentContentInfo;
-    id streamingKeyRequestCompletionHandler;
+    id /* block */ streamingKeyRequestCompletionHandler;
     AVWeakReference *weakReference;
     AVWeakReference *weakReferenceToResourceLoader;
 }

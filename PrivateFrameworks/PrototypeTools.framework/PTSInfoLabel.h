@@ -2,18 +2,20 @@
    Image: /System/Library/PrivateFrameworks/PrototypeTools.framework/PrototypeTools
  */
 
-@class NSString, _UISettings;
-
 @interface PTSInfoLabel : UILabel <PTSHUDControl, _UISettingsKeyPathObserver> {
     int _alignment;
     _UISettings *_settings;
     NSString *_valueKeyPath;
 }
 
-@property int alignment;
-@property BOOL enabled;
-@property _UISettings * settings;
-@property(copy) NSString * valueKeyPath;
+@property (nonatomic) int alignment;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL enabled;
+@property (readonly) unsigned int hash;
+@property (nonatomic) _UISettings *settings;
+@property (readonly) Class superclass;
+@property (nonatomic, copy) NSString *valueKeyPath;
 
 + (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })defaultFrame;
 + (id)infoLabel;
@@ -25,11 +27,11 @@
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (struct CGSize { float x1; float x2; })intrinsicContentSize;
 - (void)setAlignment:(int)arg1;
-- (void)setSettings:(id)arg1 valueKeyPath:(id)arg2;
 - (void)setSettings:(id)arg1;
+- (void)setSettings:(id)arg1 valueKeyPath:(id)arg2;
 - (void)setValueKeyPath:(id)arg1;
-- (void)settings:(id)arg1 changedValueForKeyPath:(id)arg2;
 - (id)settings;
+- (void)settings:(id)arg1 changedValueForKeyPath:(id)arg2;
 - (id)valueKeyPath;
 
 @end

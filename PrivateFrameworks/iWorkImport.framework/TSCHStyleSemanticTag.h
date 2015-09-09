@@ -7,16 +7,22 @@
     int mType;
 }
 
-@property(readonly) unsigned int index;
-@property(readonly) int type;
+@property (nonatomic, readonly) unsigned int index;
+@property (nonatomic, readonly) BOOL isReferenceLine;
+@property (nonatomic, readonly) BOOL isSeries;
+@property (nonatomic, readonly) int type;
 
 + (id)styleSemanticTagWithType:(int)arg1 index:(unsigned int)arg2;
 
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (id)description;
 - (unsigned int)hash;
 - (unsigned int)index;
 - (id)initWithType:(int)arg1 index:(unsigned int)arg2;
 - (BOOL)isEqual:(id)arg1;
+- (BOOL)isReferenceLine;
+- (BOOL)isSeries;
+- (Class)styleClass;
 - (int)type;
 
 @end

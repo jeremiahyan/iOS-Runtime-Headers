@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/AssistantServices.framework/AssistantServices
  */
 
-@class NSObject<OS_dispatch_queue>;
-
 @interface AFPreferences : NSObject {
     int _navToken;
     BOOL _navTokenIsValid;
@@ -26,6 +24,7 @@
 - (void)_registerForOutputVoice;
 - (void)_setAssistantIsEnabledLocal:(BOOL)arg1;
 - (void)_setDictationIsEnabledLocal:(BOOL)arg1;
+- (void)_setLoggingDefaultValue:(id)arg1 forKey:(id)arg2;
 - (BOOL)assistantIsEnabled;
 - (id)birthCertificateDataForLanguageCode:(id)arg1;
 - (int)bugReportingMode;
@@ -55,8 +54,10 @@
 - (void)setManualEndpointingThreshold:(id)arg1;
 - (void)setOutputVoice:(id)arg1;
 - (void)setShouldShowReadyForLanguageCode:(id)arg1;
+- (void)setStreamingDictationEnabled:(BOOL)arg1;
 - (void)setValue:(id)arg1 forSessionContextKey:(id)arg2;
 - (BOOL)shouldShowReadyForLanguageCode:(id)arg1;
+- (BOOL)streamingDictationEnabled;
 - (void)synchronize;
 - (void)synchronizeVoiceServicesLanguageCode;
 - (id)valueForSessionContextPreferenceKey:(id)arg1;

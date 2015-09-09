@@ -2,31 +2,30 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-@class NSData, NSString, VGLUncompressedTexture;
-
 @interface VKImage : NSObject {
+    NSData *_data;
+    struct Texture2D { int (**x1)(); struct ResourceManager {} *x2; struct RenderResource {} *x3; int x4; int x5; unsigned int x6; int x7; int x8; int x9; float x10; struct TextureDataAbstract {} *x11; bool x12; bool x13; bool x14; unsigned int x15; unsigned int x16; int x17; int x18; } *_gglTexture;
+    struct CGImage { } *_imageRef;
+    NSString *_name;
+    VKResourceManager *_resourceManager;
+    float _scale;
     struct CGSize { 
         float width; 
         float height; 
-    NSData *_data;
-    struct CGImage { } *_imageRef;
-    NSString *_name;
-    float _scale;
     } _size;
-    VGLUncompressedTexture *_texture;
     BOOL _usedAsTextureAndImage;
 }
 
 - (id).cxx_construct;
 - (void)dealloc;
+- (struct Texture2D { int (**x1)(); struct ResourceManager {} *x2; struct RenderResource {} *x3; int x4; int x5; unsigned int x6; int x7; int x8; int x9; float x10; struct TextureDataAbstract {} *x11; bool x12; bool x13; bool x14; unsigned int x15; unsigned int x16; int x17; int x18; }*)gglTexture;
 - (struct CGImage { }*)image;
-- (id)initWithCGImage:(struct CGImage { }*)arg1 scale:(float)arg2 usedAsTextureAndImage:(BOOL)arg3;
 - (id)initWithCGImage:(struct CGImage { }*)arg1 scale:(float)arg2;
-- (id)initWithData:(id)arg1 scale:(float)arg2 usedAsTextureAndImage:(BOOL)arg3;
+- (id)initWithCGImage:(struct CGImage { }*)arg1 scale:(float)arg2 usedAsTextureAndImage:(BOOL)arg3;
 - (id)initWithData:(id)arg1 scale:(float)arg2;
-- (id)initWithName:(id)arg1 scale:(float)arg2;
+- (id)initWithData:(id)arg1 scale:(float)arg2 usedAsTextureAndImage:(BOOL)arg3;
+- (id)initWithName:(id)arg1 scale:(float)arg2 resourceManager:(id)arg3;
 - (float)scale;
 - (struct CGSize { float x1; float x2; })size;
-- (id)texture;
 
 @end

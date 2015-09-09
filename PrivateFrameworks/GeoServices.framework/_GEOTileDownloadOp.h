@@ -2,9 +2,20 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class GEOSimpleTileRequester, NSData, NSMutableData, NSString, NSURL, NSURLConnection, _GEOTileDownloadOp;
-
 @interface _GEOTileDownloadOp : NSObject <NSURLConnectionDelegate> {
+    int _attempts;
+    NSData *_auditToken;
+    _GEOTileDownloadOp *_baseTile;
+    NSData *_cachedData;
+    NSString *_cachedEtag;
+    NSURLConnection *_conn;
+    unsigned int _contentLength;
+    NSMutableData *_data;
+    GEOSimpleTileRequester *_delegate;
+    int _eTagType;
+    NSString *_editionHeader;
+    BOOL _finished;
+    BOOL _gotData;
     struct _GEOTileKey { 
         unsigned int z : 6; 
         unsigned int x : 26; 
@@ -16,19 +27,10 @@
         unsigned int expires : 1; 
         unsigned int reserved1 : 7; 
         unsigned char reserved2[4]; 
-    int _attempts;
-    NSData *_auditToken;
-    _GEOTileDownloadOp *_baseTile;
-    NSURLConnection *_conn;
-    unsigned int _contentLength;
-    NSMutableData *_data;
-    GEOSimpleTileRequester *_delegate;
-    NSString *_editionHeader;
-    BOOL _finished;
-    BOOL _gotData;
     } _key;
     _GEOTileDownloadOp *_localizationTile;
     BOOL _requireWiFi;
+    NSString *_responseEtag;
     double _startTime;
     unsigned int _tileEdition;
     double _timeout;
@@ -37,25 +39,35 @@
     NSString *_userAgent;
 }
 
-@property(retain) NSData * auditToken;
-@property(retain) _GEOTileDownloadOp * baseTile;
-@property(retain) NSURLConnection * conn;
-@property(readonly) unsigned int contentLength;
-@property(retain) NSMutableData * data;
-@property GEOSimpleTileRequester * delegate;
-@property(retain) NSString * editionHeader;
-@property(readonly) BOOL finished;
+@property (nonatomic, retain) NSData *auditToken;
+@property (nonatomic, retain) _GEOTileDownloadOp *baseTile;
+@property (nonatomic, retain) NSData *cachedData;
+@property (nonatomic, retain) NSString *cachedEtag;
+@property (nonatomic, retain) NSURLConnection *conn;
+@property (nonatomic, readonly) unsigned int contentLength;
+@property (nonatomic, retain) NSMutableData *data;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) GEOSimpleTileRequester *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) int eTagType;
+@property (nonatomic, retain) NSString *editionHeader;
+@property (nonatomic, readonly) BOOL finished;
+@property (readonly) unsigned int hash;
 @property struct _GEOTileKey { unsigned int x1 : 6; unsigned int x2 : 26; unsigned int x3 : 26; unsigned int x4 : 6; unsigned int x5 : 8; unsigned int x6 : 8; unsigned int x7 : 8; unsigned int x8 : 1; unsigned int x9 : 7; unsigned char x10[4]; } key;
-@property(retain) _GEOTileDownloadOp * localizationTile;
-@property BOOL requireWiFi;
+@property (nonatomic, retain) _GEOTileDownloadOp *localizationTile;
+@property (nonatomic) BOOL requireWiFi;
+@property (nonatomic, retain) NSString *responseEtag;
+@property (readonly) Class superclass;
 @property unsigned int tileEdition;
-@property double timeout;
-@property(retain) NSURL * url;
-@property BOOL useCookies;
-@property(retain) NSString * userAgent;
+@property (nonatomic) double timeout;
+@property (nonatomic, retain) NSURL *url;
+@property (nonatomic) BOOL useCookies;
+@property (nonatomic, retain) NSString *userAgent;
 
 - (id)auditToken;
 - (id)baseTile;
+- (id)cachedData;
+- (id)cachedEtag;
 - (void)cancel;
 - (id)conn;
 - (void)connection:(id)arg1 didFailWithError:(id)arg2;
@@ -67,21 +79,27 @@
 - (void)dealloc;
 - (id)delegate;
 - (id)description;
+- (int)eTagType;
 - (id)editionHeader;
 - (double)elapsed;
 - (BOOL)finished;
 - (struct _GEOTileKey { unsigned int x1 : 6; unsigned int x2 : 26; unsigned int x3 : 26; unsigned int x4 : 6; unsigned int x5 : 8; unsigned int x6 : 8; unsigned int x7 : 8; unsigned int x8 : 1; unsigned int x9 : 7; unsigned char x10[4]; })key;
 - (id)localizationTile;
 - (BOOL)requireWiFi;
+- (id)responseEtag;
 - (void)setAuditToken:(id)arg1;
 - (void)setBaseTile:(id)arg1;
+- (void)setCachedData:(id)arg1;
+- (void)setCachedEtag:(id)arg1;
 - (void)setConn:(id)arg1;
 - (void)setData:(id)arg1;
 - (void)setDelegate:(id)arg1;
+- (void)setETagType:(int)arg1;
 - (void)setEditionHeader:(id)arg1;
 - (void)setKey:(struct _GEOTileKey { unsigned int x1 : 6; unsigned int x2 : 26; unsigned int x3 : 26; unsigned int x4 : 6; unsigned int x5 : 8; unsigned int x6 : 8; unsigned int x7 : 8; unsigned int x8 : 1; unsigned int x9 : 7; unsigned char x10[4]; })arg1;
 - (void)setLocalizationTile:(id)arg1;
 - (void)setRequireWiFi:(BOOL)arg1;
+- (void)setResponseEtag:(id)arg1;
 - (void)setTileEdition:(unsigned int)arg1;
 - (void)setTimeout:(double)arg1;
 - (void)setUrl:(id)arg1;

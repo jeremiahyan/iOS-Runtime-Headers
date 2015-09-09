@@ -2,13 +2,14 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class SADistance, SADuration;
+@interface SALocalSearchAceNavigationEta : AceObject <SAAceSerializable>
 
-@interface SALocalSearchAceNavigationEta : AceObject <SAAceSerializable> {
-}
-
-@property(retain) SADistance * distanceEta;
-@property(retain) SADuration * timeEta;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) SADistance *distanceEta;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) SADuration *timeEta;
 
 + (id)aceNavigationEta;
 + (id)aceNavigationEtaWithDictionary:(id)arg1 context:(id)arg2;

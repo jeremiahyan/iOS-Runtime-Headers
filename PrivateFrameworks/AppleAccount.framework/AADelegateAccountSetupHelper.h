@@ -2,19 +2,13 @@
    Image: /System/Library/PrivateFrameworks/AppleAccount.framework/AppleAccount
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class AASetupAssistantService, ACAccountStore, NSArray, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_source>;
-
 @interface AADelegateAccountSetupHelper : NSObject {
     AASetupAssistantService *_aaService;
     ACAccountStore *_accountStore;
     NSMutableDictionary *_assistantDelegates;
     NSArray *_delegatesToSetup;
     NSObject<OS_dispatch_source> *_delegatetimer;
-    id _handler;
+    id /* block */ _handler;
     NSMutableArray *_pendingCompletionBundles;
 }
 
@@ -25,6 +19,6 @@
 - (void)_setupDelegateAccountsWithEmailChoice:(id)arg1;
 - (id)init;
 - (id)initWithStore:(id)arg1;
-- (void)setupiCloudDelegateWithUsername:(id)arg1 password:(id)arg2 emailChoice:(id)arg3 withHandler:(id)arg4;
+- (void)setupiCloudDelegateWithUsername:(id)arg1 password:(id)arg2 emailChoice:(id)arg3 withHandler:(id /* block */)arg4;
 
 @end

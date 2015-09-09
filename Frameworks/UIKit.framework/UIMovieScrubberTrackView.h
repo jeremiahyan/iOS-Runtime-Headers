@@ -2,12 +2,25 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class <UIMovieScrubberTrackViewDataSource>, <UIMovieScrubberTrackViewDelegate>, NSArray, NSDictionary, NSMutableDictionary, UIMovieScrubberTrackOverlayView, UIView;
-
 @interface UIMovieScrubberTrackView : UIView {
+    NSDictionary *_childThumbnailViews;
+    <UIMovieScrubberTrackViewDataSource> *_dataSource;
+    <UIMovieScrubberTrackViewDelegate> *_delegate;
+    double _duration;
+    double _endValue;
+    UIView *_maskContainerView;
+    UIMovieScrubberTrackOverlayView *_overlayView;
+    double _startValue;
+    NSArray *_summaryThumbnailChildTimestamps;
+    NSArray *_summaryThumbnailTimestamps;
+    NSArray *_summaryThumbnailViews;
     struct CGSize { 
         float width; 
         float height; 
+    } _thumbnailSize;
+    NSDictionary *_thumbnailStartXValues;
+    NSMutableDictionary *_thumbnailViews;
+    NSArray *_timestamps;
     struct { 
         unsigned int delegateSizeOriginDelta : 1; 
         unsigned int delegateDidExpand : 1; 
@@ -20,21 +33,6 @@
         unsigned int editing : 1; 
         unsigned int editingHandle; 
         unsigned int zoomIsDisabled : 1; 
-    NSDictionary *_childThumbnailViews;
-    <UIMovieScrubberTrackViewDataSource> *_dataSource;
-    <UIMovieScrubberTrackViewDelegate> *_delegate;
-    double _duration;
-    double _endValue;
-    UIView *_maskContainerView;
-    UIMovieScrubberTrackOverlayView *_overlayView;
-    double _startValue;
-    NSArray *_summaryThumbnailChildTimestamps;
-    NSArray *_summaryThumbnailTimestamps;
-    NSArray *_summaryThumbnailViews;
-    } _thumbnailSize;
-    NSDictionary *_thumbnailStartXValues;
-    NSMutableDictionary *_thumbnailViews;
-    NSArray *_timestamps;
     } _trackFlags;
     float _unclampedZoomWidthDelta;
     double _value;
@@ -43,8 +41,8 @@
     float _zoomWidthDelta;
 }
 
-@property <UIMovieScrubberTrackViewDataSource> * dataSource;
-@property <UIMovieScrubberTrackViewDelegate> * delegate;
+@property (nonatomic) <UIMovieScrubberTrackViewDataSource> *dataSource;
+@property (nonatomic) <UIMovieScrubberTrackViewDelegate> *delegate;
 
 - (id)_createImageViewForTimestamp:(id)arg1 isSummaryThumbnail:(BOOL)arg2;
 - (void)_reallyReloadData;

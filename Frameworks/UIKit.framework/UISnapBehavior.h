@@ -2,27 +2,25 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSMutableArray, PKPhysicsBody;
-
 @interface UISnapBehavior : UIDynamicBehavior {
+    PKPhysicsBody *_anchorBody;
     struct CGPoint { 
         float x; 
         float y; 
-    struct { 
-        unsigned int attachedToView : 1; 
-        unsigned int dampingSet : 1; 
-        unsigned int frequencySet : 1; 
-        unsigned int lengthSet : 1; 
-    PKPhysicsBody *_anchorBody;
     } _anchorPoint;
     float _damping;
     float _distance;
     float _frequency;
     NSMutableArray *_joints;
+    struct { 
+        unsigned int attachedToView : 1; 
+        unsigned int dampingSet : 1; 
+        unsigned int frequencySet : 1; 
+        unsigned int lengthSet : 1; 
     } _stateFlags;
 }
 
-@property float damping;
+@property (nonatomic) float damping;
 
 - (void)_associate;
 - (void)_dissociate;

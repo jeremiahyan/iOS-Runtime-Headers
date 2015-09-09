@@ -2,32 +2,38 @@
    Image: /System/Library/PrivateFrameworks/WebUI.framework/WebUI
  */
 
-@class NSArray, NSDictionary, NSMutableDictionary, NSString, NSTimer, NSXPCConnection;
-
 @interface WBSAutomaticReadingListSocialSource : NSObject {
     NSArray *_accounts;
     NSMutableDictionary *_accountsToNumberOfRequestsInProgressForOlderItems;
     NSDictionary *_accountsToTrackedRecordsInfoMap;
+    NSArray *_activeAccounts;
+    Class _fallbackIconProviderClass;
     NSTimer *_minimumTimeBetweenRequestsTimer;
     unsigned int _numberOfRequestsInProgressForNewerItems;
     id _serviceImage;
     NSXPCConnection *_socialHelperConnection;
 }
 
-@property(readonly) NSString * accountTypeIdentifier;
-@property(copy) NSArray * accounts;
-@property(retain) NSDictionary * accountsToTrackedRecordsInfoMap;
-@property(retain) NSTimer * minimumTimeBetweenRequestsTimer;
-@property unsigned int numberOfRequestsInProgressForNewerItems;
-@property(readonly) id serviceImage;
-@property(readonly) NSString * serviceName;
-@property(readonly) NSString * serviceType;
-@property(retain) NSXPCConnection * socialHelperConnection;
+@property (nonatomic, readonly) NSString *accountTypeIdentifier;
+@property (nonatomic, copy) NSArray *accounts;
+@property (nonatomic, retain) NSDictionary *accountsToTrackedRecordsInfoMap;
+@property (getter=isActive, nonatomic, readonly) BOOL active;
+@property (nonatomic, readonly, copy) NSArray *activeAccounts;
+@property (nonatomic, retain) Class fallbackIconProviderClass;
+@property (nonatomic, retain) NSTimer *minimumTimeBetweenRequestsTimer;
+@property (nonatomic) unsigned int numberOfRequestsInProgressForNewerItems;
+@property (nonatomic, readonly) id serviceImage;
+@property (nonatomic, readonly) NSString *serviceName;
+@property (nonatomic, readonly) NSString *serviceType;
+@property (nonatomic, retain) NSXPCConnection *socialHelperConnection;
 
 + (id)allSocialSources;
 + (id)itemsFromAllSocialSourcesByDate;
++ (void)refreshAllSocialSources;
 
+- (void).cxx_destruct;
 - (void)_accountsChanged:(id)arg1;
+- (id)_activeAccountsFromAccountList:(id)arg1;
 - (void)_addItems:(id)arg1 withAge:(int)arg2 inRange:(id)arg3 rangeOfTrackedRecordsAtTimeOfRequest:(id)arg4 forAccountWithIdentifier:(id)arg5;
 - (void)_didAddItemsForAccountWithIdentifier:(id)arg1;
 - (void)_didCompleteRequestForItemsWithAge:(int)arg1 accountIdentifier:(id)arg2;
@@ -36,17 +42,20 @@
 - (id)_findAccounts;
 - (void)_invalidateSocialHelperConnectionIfPossible;
 - (void)_minimumTimeBetweenRequestsTimerFired:(id)arg1;
-- (void)_performRequestForMoreItemsWithAge:(int)arg1 accountIdentifier:(id)arg2 successHandler:(id)arg3;
+- (void)_performRequestForMoreItemsWithAge:(int)arg1 accountIdentifier:(id)arg2 successHandler:(id /* block */)arg3;
 - (void)_requestOlderItemsIfNecessaryToReachMaximumForAccountWithIdentifier:(id)arg1;
 - (id)accountTypeIdentifier;
 - (id)accounts;
 - (id)accountsToTrackedRecordsInfoMap;
+- (id)activeAccounts;
 - (int)compareItem:(id)arg1 toItem:(id)arg2;
 - (int)compareNewestRecordInRange:(id)arg1 toNewestRecordInRange:(id)arg2;
 - (int)compareNewestRecordInRange:(id)arg1 toOldestRecordInRange:(id)arg2;
 - (int)compareOldestRecordInRange:(id)arg1 toOldestRecordInRange:(id)arg2;
 - (void)dealloc;
+- (Class)fallbackIconProviderClass;
 - (id)init;
+- (BOOL)isActive;
 - (Class)itemClass;
 - (double)minimumTimeBetweenRequests;
 - (id)minimumTimeBetweenRequestsTimer;
@@ -63,9 +72,12 @@
 - (id)serviceType;
 - (void)setAccounts:(id)arg1;
 - (void)setAccountsToTrackedRecordsInfoMap:(id)arg1;
+- (void)setFallbackIconProviderClass:(Class)arg1;
 - (void)setMinimumTimeBetweenRequestsTimer:(id)arg1;
 - (void)setNumberOfRequestsInProgressForNewerItems:(unsigned int)arg1;
+- (void)setShouldHideItems:(BOOL)arg1 forAccount:(id)arg2;
 - (void)setSocialHelperConnection:(id)arg1;
+- (BOOL)shouldHideItemsFromAccount:(id)arg1;
 - (id)socialHelperConnection;
 - (void)updateMinimumTimeBetweenRequestsFromResponseHeaders:(id)arg1;
 

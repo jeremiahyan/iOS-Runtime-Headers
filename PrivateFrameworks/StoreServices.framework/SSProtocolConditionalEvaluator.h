@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
  */
 
-@class NSDictionary, SSProtocolConditionalContext;
-
 @interface SSProtocolConditionalEvaluator : NSObject {
     SSProtocolConditionalContext *_context;
     NSDictionary *_dictionary;
@@ -22,7 +20,7 @@
 - (id)dictionaryByEvaluatingConditions;
 - (id)dictionaryByRemovingConditions;
 - (id)init;
-- (id)initWithDictionary:(id)arg1 conditionalContext:(id)arg2;
 - (id)initWithDictionary:(id)arg1;
+- (id)initWithDictionary:(id)arg1 conditionalContext:(id)arg2;
 
 @end

@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/AddressBook.framework/AddressBook
  */
 
-@class <ABPredicateDelegate>, DAContactsSearchQuery, DADConnection, NSConditionLock, NSMutableArray, NSString;
-
 @interface ABServerSearchPredicate : ABPredicate <DASearchQueryConsumer> {
     NSString *_accountIdentifier;
     DADConnection *_connection;
@@ -18,14 +16,14 @@
     void *_source;
 }
 
-@property(copy) NSString * accountIdentifier;
-@property(retain) DADConnection * connection;
-@property <ABPredicateDelegate> * delegate;
-@property(readonly) int error;
-@property BOOL includePhotosInResults;
-@property BOOL includeSourceInResults;
-@property(copy) NSString * searchString;
-@property void* source;
+@property (nonatomic, copy) NSString *accountIdentifier;
+@property (nonatomic, retain) DADConnection *connection;
+@property (nonatomic) <ABPredicateDelegate> *delegate;
+@property (nonatomic, readonly) int error;
+@property (nonatomic) BOOL includePhotosInResults;
+@property (nonatomic) BOOL includeSourceInResults;
+@property (nonatomic, copy) NSString *searchString;
+@property (nonatomic) void*source;
 
 - (int)_errorForDAStatusCode:(int)arg1;
 - (void)_searchQueryIsDone;
@@ -37,9 +35,9 @@
 - (int)error;
 - (BOOL)includePhotosInResults;
 - (BOOL)includeSourceInResults;
-- (id)initWithSearchString:(id)arg1 source:(void*)arg2 account:(id)arg3 includeSourceInResults:(BOOL)arg4 includePhotosInResults:(BOOL)arg5;
-- (id)initWithSearchString:(id)arg1 source:(void*)arg2 account:(id)arg3 includeSourceInResults:(BOOL)arg4;
 - (id)initWithSearchString:(id)arg1 source:(void*)arg2 account:(id)arg3;
+- (id)initWithSearchString:(id)arg1 source:(void*)arg2 account:(id)arg3 includeSourceInResults:(BOOL)arg4;
+- (id)initWithSearchString:(id)arg1 source:(void*)arg2 account:(id)arg3 includeSourceInResults:(BOOL)arg4 includePhotosInResults:(BOOL)arg5;
 - (void)runPredicate;
 - (void)runPredicateWithDelegate:(id)arg1;
 - (void)searchQuery:(id)arg1 finishedWithError:(id)arg2;

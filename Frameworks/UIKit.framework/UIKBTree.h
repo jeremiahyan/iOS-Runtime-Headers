@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSMutableArray, NSMutableDictionary, NSString;
-
 @interface UIKBTree : NSObject <NSCopying> {
     NSMutableDictionary *cache;
     NSString *layoutTag;
@@ -13,13 +11,14 @@
     int type;
 }
 
-@property(retain) NSMutableDictionary * cache;
-@property(retain) NSString * layoutTag;
-@property(retain) NSString * name;
-@property(retain) NSMutableDictionary * properties;
-@property(retain) NSMutableArray * subtrees;
-@property int type;
+@property (nonatomic, retain) NSMutableDictionary *cache;
+@property (nonatomic, retain) NSString *layoutTag;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSMutableDictionary *properties;
+@property (nonatomic, retain) NSMutableArray *subtrees;
+@property (nonatomic) int type;
 
++ (int)extraIPhoneIdiom:(int)arg1 width:(float)arg2 landscape:(BOOL)arg3;
 + (id)key;
 + (id)keyboard;
 + (id)mergeStringForKeyName:(id)arg1;
@@ -53,10 +52,12 @@
 - (void)clearTransientCaches;
 - (int)clipCorners;
 - (id)componentName;
+- (BOOL)containsDividerVariant;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)description;
 - (BOOL)disabled;
+- (BOOL)disablesEdgeSwipe;
 - (int)displayRowHint;
 - (id)displayString;
 - (int)displayType;
@@ -78,16 +79,20 @@
 - (id)geometry;
 - (id)geometrySet:(BOOL)arg1;
 - (BOOL)ghost;
+- (int)handBias;
 - (BOOL)hasLayoutTag:(id)arg1;
 - (int)highlightedVariantIndex;
+- (id)highlightedVariantsList;
 - (int)indexOfSubtree:(id)arg1;
-- (id)initWithType:(int)arg1 withName:(id)arg2 withProperties:(id)arg3 withSubtrees:(id)arg4 withCache:(id)arg5;
 - (id)initWithType:(int)arg1;
+- (id)initWithType:(int)arg1 withName:(id)arg2 withProperties:(id)arg3 withSubtrees:(id)arg4 withCache:(id)arg5;
 - (int)intForProperty:(id)arg1;
 - (int)interactionType;
 - (BOOL)isAlphabeticPlane;
 - (BOOL)isDuplicateOfTree:(id)arg1;
 - (BOOL)isEqualToTree:(id)arg1;
+- (BOOL)isExemptFromInputManagerHitTesting;
+- (BOOL)isExemptFromInputManagerLayout;
 - (BOOL)isGenerated;
 - (BOOL)isHashed;
 - (BOOL)isLeafType;
@@ -102,6 +107,7 @@
 - (id)keyplaneForKey:(id)arg1;
 - (id)keys;
 - (id)keysByKeyName:(id)arg1;
+- (id)keysForMergeConditions;
 - (id)keysOrderedByPosition;
 - (id)keysOrderedByPositionWithoutZip;
 - (id)keysWithString:(id)arg1;
@@ -111,21 +117,27 @@
 - (id)localizationKey;
 - (BOOL)looksLike:(id)arg1;
 - (BOOL)looksLikeShiftAlternate;
+- (id)mergeKeyNames:(id)arg1;
 - (BOOL)modifiesKeyplane;
 - (id)name;
 - (id)nameFromAttributes;
 - (BOOL)noLanguageIndicator;
 - (BOOL)notUseCandidateSelection;
 - (id)numberForProperty:(id)arg1;
+- (id)objectForProperty:(id)arg1;
 - (void)orderVariantKeys:(BOOL)arg1;
 - (id)overrideDisplayString;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })paddedFrame;
+- (id)parentKey;
 - (void)precacheLayoutName:(id)arg1;
+- (float)primaryKeylayoutOffset;
+- (float)primaryKeylayoutWidthRatio;
 - (id)properties;
 - (id)recursiveDescription;
 - (BOOL)renderKeyInKeyplane:(id)arg1;
 - (int)rendering;
 - (id)representedString;
+- (int)selectedVariantIndex;
 - (void)setActiveGeometriesList:(id)arg1;
 - (void)setAttributes:(id)arg1;
 - (void)setCache:(id)arg1;
@@ -138,11 +150,10 @@
 - (void)setFlickDirection:(int)arg1;
 - (void)setForceMultitap:(BOOL)arg1;
 - (void)setFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
-- (void)setFrameOnly:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)setGeometriesList:(id)arg1;
 - (void)setGeometry:(id)arg1;
 - (void)setGhost:(BOOL)arg1;
-- (void)setHighlightedVariantIndex:(int)arg1;
+- (void)setHighlightedVariantsList:(id)arg1;
 - (void)setInteractionType:(int)arg1;
 - (void)setIsGenerated:(BOOL)arg1;
 - (void)setLayoutTag:(id)arg1;
@@ -150,9 +161,11 @@
 - (BOOL)setObject:(id)arg1 forProperty:(id)arg2;
 - (void)setOverrideDisplayString:(id)arg1;
 - (void)setPaddedFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (void)setParentKey:(id)arg1;
 - (void)setProperties:(id)arg1;
 - (void)setRendering:(int)arg1;
 - (void)setRepresentedString:(id)arg1;
+- (void)setSelectedVariantIndex:(int)arg1;
 - (void)setShape:(id)arg1;
 - (void)setSplitMode:(int)arg1;
 - (void)setState:(int)arg1;
@@ -173,8 +186,9 @@
 - (int)state;
 - (id)stringForProperty:(id)arg1;
 - (struct { unsigned int x1 : 6; unsigned int x2 : 1; unsigned int x3 : 1; unsigned int x4 : 8; unsigned int x5 : 16; })stylingFromVisualStyle;
-- (id)subtreeWithName:(id)arg1 rows:(id)arg2;
+- (void)subsumeDisappearingKeyName:(id)arg1 intoKeyName:(id)arg2 factors:(id)arg3;
 - (id)subtreeWithName:(id)arg1;
+- (id)subtreeWithName:(id)arg1 rows:(id)arg2;
 - (id)subtreeWithType:(int)arg1;
 - (id)subtrees;
 - (BOOL)subtreesAreOrdered;

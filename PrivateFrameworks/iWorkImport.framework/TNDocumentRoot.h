@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSArray, NSMutableArray, NSString, TNTheme, TNUIState, TSKTreeNode, TSSStylesheet;
-
 @interface TNDocumentRoot : TSADocumentRoot <TSTResolverContainerNameProvider> {
     struct CGSize { 
         float width; 
@@ -12,6 +10,7 @@
     NSString *_paperID;
     NSString *_printerID;
     BOOL _printingAllSheets;
+    BOOL mDocumentWasPreparedFromTemplate;
     unsigned int mSheetNameCounter;
     NSMutableArray *mSheets;
     TSKTreeNode *mSidebarOrder;
@@ -20,23 +19,28 @@
     TNUIState *mUIState;
 }
 
-@property struct CGSize { float x1; float x2; } pageSize;
-@property(copy) NSString * paperID;
-@property(copy) NSString * printerID;
-@property(getter=isPrintingAllSheets) BOOL printingAllSheets;
-@property BOOL removedAllQuickCalcFunctions;
-@property(copy) NSArray * selectedQuickCalcFunctions;
-@property(readonly) NSArray * sheets;
-@property(readonly) TSKTreeNode * sidebarOrder;
-@property(readonly) TSSStylesheet * stylesheet;
-@property(readonly) unsigned int tableCount;
-@property(retain) TNTheme * theme;
-@property(retain) TNUIState * uiState;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) struct CGSize { float x1; float x2; } pageSize;
+@property (nonatomic, copy) NSString *paperID;
+@property (nonatomic, copy) NSString *printerID;
+@property (getter=isPrintingAllSheets, nonatomic) BOOL printingAllSheets;
+@property (nonatomic) BOOL removedAllQuickCalcFunctions;
+@property (nonatomic, copy) NSArray *selectedQuickCalcFunctions;
+@property (nonatomic, readonly) NSArray *sheets;
+@property (nonatomic, readonly, retain) TSKTreeNode *sidebarOrder;
+@property (nonatomic, readonly) TSSStylesheet *stylesheet;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) unsigned int tableCount;
+@property (nonatomic, retain) TNTheme *theme;
+@property (nonatomic, retain) TNUIState *uiState;
 
 + (struct CGSize { float x1; float x2; })previewImageMaxSizeForType:(unsigned int)arg1;
 + (struct CGSize { float x1; float x2; })previewImageSizeForType:(unsigned int)arg1;
 
 - (id).cxx_construct;
+- (id)UIStateForChart:(id)arg1;
 - (id)activeSheet;
 - (void)addSheet:(id)arg1 dolcContext:(id)arg2;
 - (unsigned int)applicationType;
@@ -51,8 +55,9 @@
 - (void)insertSheet:(id)arg1 sheetIndex:(unsigned int)arg2 context:(id)arg3;
 - (BOOL)isMultiPageForQuickLook;
 - (BOOL)isPrintingAllSheets;
-- (void)moveSheet:(id)arg1 toIndex:(unsigned int)arg2;
+- (void)moveSheetFromIndex:(unsigned int)arg1 toIndex:(unsigned int)arg2;
 - (id)nameForResolverContainer:(id)arg1;
+- (int)naturalAlignmentAtCharIndex:(unsigned int)arg1 inTextStorage:(id)arg2;
 - (void)p_addSidebarNodeForSheet:(id)arg1;
 - (struct CGSize { float x1; float x2; })p_adjustCapturedContentSize:(struct CGSize { float x1; float x2; })arg1 toAspectRatio:(struct CGSize { float x1; float x2; })arg2;
 - (void)p_buildSidebarOrder;
@@ -77,9 +82,9 @@
 - (id)resolverContainerForName:(id)arg1 caseSensitive:(BOOL)arg2;
 - (id)resolverContainerNameForResolver:(id)arg1;
 - (id)resolverContainerNamesMatchingPrefix:(id)arg1;
+- (id)resolverMatchingName:(id)arg1;
 - (id)resolverMatchingName:(id)arg1 contextContainerName:(id)arg2;
 - (id)resolverMatchingName:(id)arg1 contextResolver:(id)arg2;
-- (id)resolverMatchingName:(id)arg1;
 - (id)resolversMatchingPrefix:(id)arg1;
 - (void)saveToArchiver:(id)arg1;
 - (id)selectedQuickCalcFunctions;
@@ -91,17 +96,25 @@
 - (void)setRemovedAllQuickCalcFunctions:(BOOL)arg1;
 - (void)setSelectedQuickCalcFunctions:(id)arg1;
 - (void)setSidebarChildren:(id)arg1 forSheet:(id)arg2;
+- (void)setStylesheet:(id)arg1 andThemeForImport:(id)arg2;
+- (void)setStylesheetForUpgradeToSingleStylesheet:(id)arg1;
 - (void)setTheme:(id)arg1;
 - (void)setThemeForTemplateImport:(id)arg1;
+- (void)setUIState:(id)arg1 forChart:(id)arg2;
 - (void)setUiState:(id)arg1;
 - (void)sheet:(id)arg1 insertedDrawable:(id)arg2;
 - (void)sheet:(id)arg1 removedDrawable:(id)arg2;
 - (id)sheets;
 - (BOOL)shouldAllowDrawableInGroups:(id)arg1 forImport:(BOOL)arg2;
+- (BOOL)shouldShowComments;
 - (id)sidebarOrder;
 - (id)stylesheet;
 - (unsigned int)tableCount;
 - (id)theme;
 - (id)uiState;
+- (BOOL)validName:(id)arg1 forRenamingSheet:(id)arg2;
+- (BOOL)validNameForNewSheet:(id)arg1;
+- (void)validateViewState:(id)arg1;
+- (int)verticalAlignmentForTextStorage:(id)arg1;
 
 @end

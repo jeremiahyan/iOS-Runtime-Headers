@@ -2,26 +2,30 @@
    Image: /System/Library/PrivateFrameworks/MediaPlayerUI.framework/MediaPlayerUI
  */
 
-@class <MPUMediaControlsTitlesViewDelegate>, CAGradientLayer, NSString;
-
-@interface MPUMediaControlsTitlesView : MPUNowPlayingTitlesView <SBUIControlCenterControlObserver> {
+@interface MPUMediaControlsTitlesView : MPUNowPlayingTitlesView <MPUContentSizeCategoryChanging, SBUIControlCenterControlObserver> {
     NSString *_appDisplayName;
     <MPUMediaControlsTitlesViewDelegate> *_delegate;
+    CALayer *_detailEdgesLayerMask;
     BOOL _displayingAppName;
-    CAGradientLayer *_edgesLayerMask;
     BOOL _highlighted;
     int _mediaControlsStyle;
+    CALayer *_titleEdgesLayerMask;
 }
 
-@property <MPUMediaControlsTitlesViewDelegate> * delegate;
-@property(getter=isHighlighted) BOOL highlighted;
-@property(readonly) int mediaControlsStyle;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <MPUMediaControlsTitlesViewDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (getter=isHighlighted, nonatomic) BOOL highlighted;
+@property (nonatomic, readonly) int mediaControlsStyle;
+@property (readonly) Class superclass;
+
++ (id)detailTextColorForMediaControlsStyle:(int)arg1 highlighted:(BOOL)arg2;
 
 - (void).cxx_destruct;
+- (id)_createEdgesLayerMask;
 - (id)_detailTextAttributes;
-- (id)_secondaryLabelsColor;
 - (void)_setGlowEnabled:(BOOL)arg1 forLabel:(id)arg2;
-- (void)_setupEdgesLayerMask;
 - (id)_titleTextAttributes;
 - (void)_touchControlActivate:(id)arg1;
 - (void)_touchControlDeactivate:(id)arg1;
@@ -35,6 +39,7 @@
 - (void)setDelegate:(id)arg1;
 - (void)setHighlighted:(BOOL)arg1;
 - (void)updateNowPlayingAppDisplayName:(id)arg1;
+- (void)updateTextForContentSizeCategory:(id)arg1;
 - (void)updateTrackInformationWithNowPlayingInfo:(id)arg1;
 
 @end

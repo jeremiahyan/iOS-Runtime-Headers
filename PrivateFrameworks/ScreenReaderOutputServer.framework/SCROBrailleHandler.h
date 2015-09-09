@@ -2,9 +2,8 @@
    Image: /System/Library/PrivateFrameworks/ScreenReaderOutputServer.framework/ScreenReaderOutputServer
  */
 
-@class SCROBrailleDisplayManager;
-
 @interface SCROBrailleHandler : SCROHandler <SCROSBrailleDisplayManagerDelegate> {
+    SCROBrailleDisplayManager *_brailleDisplayManager;
     struct { 
         BOOL didDisplay; 
         BOOL keypress; 
@@ -16,14 +15,20 @@
         BOOL showNextAnnouncement; 
         BOOL configChanged; 
         BOOL playDisplayConnectionSound; 
+        BOOL playBorderHitSound; 
+        BOOL playCommandNotSupportedSound; 
         BOOL bluetoothDisplayLoadFailed; 
         BOOL tableLoadFailed; 
         BOOL displayModeChanged; 
-    SCROBrailleDisplayManager *_brailleDisplayManager;
     } _callbacks;
     BOOL _wantsDidDisplayCallbacks;
     BOOL _wantsInputCallbacks;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)configurationDidChange;
 - (void)dealloc;
@@ -42,6 +47,8 @@
 - (void)handleFailedToLoadBluetoothDevice:(id)arg1;
 - (int)handleGetValue:(id*)arg1 forKey:(int)arg2 withObject:(id)arg3 trusted:(BOOL)arg4;
 - (int)handlePerformActionForKey:(int)arg1 trusted:(BOOL)arg2;
+- (void)handlePlayBorderHitSound;
+- (void)handlePlayCommandNotSupportedSound;
 - (int)handleRegisterCallbackForKey:(int)arg1 trusted:(BOOL)arg2;
 - (int)handleSetValue:(id)arg1 forKey:(int)arg2 trusted:(BOOL)arg3;
 - (id)initWithBrailleDisplayManager:(id)arg1;

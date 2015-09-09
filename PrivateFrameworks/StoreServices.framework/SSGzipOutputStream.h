@@ -2,14 +2,8 @@
    Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class NSError, NSOutputStream;
-
 @interface SSGzipOutputStream : NSOutputStream {
+    NSOutputStream *_actualOutputStream;
     struct z_stream_s { 
         char *next_in; 
         unsigned int avail_in; 
@@ -25,7 +19,6 @@
         int data_type; 
         unsigned int adler; 
         unsigned int reserved; 
-    NSOutputStream *_actualOutputStream;
     } _stream;
     unsigned int _streamContentLength;
     NSError *_streamError;

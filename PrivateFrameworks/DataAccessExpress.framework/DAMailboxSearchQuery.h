@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/DataAccessExpress.framework/DataAccessExpress
  */
 
-@class NSDate, NSString;
-
 @interface DAMailboxSearchQuery : DASearchQuery {
     int _MIMESupport;
     BOOL _allOrNone;
@@ -15,22 +13,22 @@
     long long _truncationSize;
 }
 
-@property int MIMESupport;
-@property BOOL allOrNone;
-@property int bodyType;
-@property(retain) NSString * collectionID;
-@property BOOL deepTraversal;
-@property(retain) NSDate * priorToDate;
-@property BOOL rebuildResults;
-@property long long truncationSize;
+@property (nonatomic) int MIMESupport;
+@property (nonatomic) BOOL allOrNone;
+@property (nonatomic) int bodyType;
+@property (nonatomic, retain) NSString *collectionID;
+@property (nonatomic) BOOL deepTraversal;
+@property (nonatomic, retain) NSDate *priorToDate;
+@property (nonatomic) BOOL rebuildResults;
+@property (nonatomic) long long truncationSize;
 
 + (id)mailboxSearchQueryWithSearchString:(id)arg1 consumer:(id)arg2;
 
+- (void).cxx_destruct;
 - (int)MIMESupport;
 - (BOOL)allOrNone;
 - (int)bodyType;
 - (id)collectionID;
-- (void)dealloc;
 - (BOOL)deepTraversal;
 - (id)dictionaryRepresentation;
 - (id)initWithDictionaryRepresentation:(id)arg1 consumer:(id)arg2;

@@ -2,13 +2,15 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class SKUIQuicklinksPageComponent, SKUIQuicklinksViewController;
-
 @interface SKUIQuicklinksPageSection : SKUIStorePageSection <SKUIQuicklinksViewControllerDelegate> {
     SKUIQuicklinksViewController *_quicklinksViewController;
 }
 
-@property(readonly) SKUIQuicklinksPageComponent * pageComponent;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) SKUIQuicklinksPageComponent *pageComponent;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (id)_quicklinksViewController;
@@ -19,5 +21,6 @@
 - (int)numberOfCells;
 - (void)quicklinksViewController:(id)arg1 didSelectLink:(id)arg2 atIndex:(int)arg3;
 - (void)willAppearInContext:(id)arg1;
+- (void)willTransitionToSize:(struct CGSize { float x1; float x2; })arg1 withTransitionCoordinator:(id)arg2;
 
 @end

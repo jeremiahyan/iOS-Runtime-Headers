@@ -2,17 +2,15 @@
    Image: /System/Library/PrivateFrameworks/XPCKit.framework/XPCKit
  */
 
-@class <NSCoding>, NSData, XPCRequest;
-
 @interface XPCNSRequest : NSObject {
     NSData *_data;
     <NSCoding> *_message;
     XPCRequest *_request;
 }
 
-@property(readonly) NSData * data;
-@property(readonly) <NSCoding> * message;
-@property(readonly) XPCRequest * request;
+@property (nonatomic, readonly, retain) NSData *data;
+@property (nonatomic, readonly, retain) <NSCoding> *message;
+@property (nonatomic, readonly, retain) XPCRequest *request;
 
 - (void).cxx_destruct;
 - (id)data;

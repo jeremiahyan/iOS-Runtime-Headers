@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIColor, UIImage, UIImageView, UIView;
-
 @interface _UISwitchInternalViewNeueStyle1 : UIView <_UISwitchInternalViewProtocol> {
     BOOL _isAlwaysAccessible;
     UIImageView *_knobView;
@@ -25,15 +23,19 @@
     BOOL _useAlternateColor;
 }
 
-@property BOOL isAlwaysAccessible;
-@property(retain) UIImage * offImage;
-@property BOOL on;
-@property(retain) UIImage * onImage;
-@property(retain) UIColor * onTintColor;
-@property BOOL pressedIsHandledByGestureRecognizer;
-@property(retain) UIColor * thumbTintColor;
-@property(retain) UIColor * tintColor;
-@property BOOL useAlternateColor;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL isAlwaysAccessible;
+@property (nonatomic, retain) UIImage *offImage;
+@property (nonatomic) BOOL on;
+@property (nonatomic, retain) UIImage *onImage;
+@property (nonatomic, retain) UIColor *onTintColor;
+@property (nonatomic) BOOL pressedIsHandledByGestureRecognizer;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) UIColor *thumbTintColor;
+@property (nonatomic, retain) UIColor *tintColor;
+@property (nonatomic) BOOL useAlternateColor;
 
 - (void)_accessibilitySettingChanged;
 - (id)_accessibleOffImage;
@@ -64,11 +66,11 @@
 - (void)_orderSubviews;
 - (void)_prepareForInteraction;
 - (void)_setOn:(BOOL)arg1 animated:(BOOL)arg2 force:(BOOL)arg3;
-- (void)_setPressed:(BOOL)arg1 animated:(BOOL)arg2;
-- (void)_setPressed:(BOOL)arg1 on:(BOOL)arg2 animated:(BOOL)arg3 shouldAnimateLabels:(BOOL)arg4 completion:(id)arg5;
 - (void)_setPressed:(BOOL)arg1;
-- (void)_setProgress:(float)arg1 animated:(BOOL)arg2 withDuration:(float)arg3 force:(BOOL)arg4 sendAction:(BOOL)arg5;
+- (void)_setPressed:(BOOL)arg1 animated:(BOOL)arg2;
+- (void)_setPressed:(BOOL)arg1 on:(BOOL)arg2 animated:(BOOL)arg3 shouldAnimateLabels:(BOOL)arg4 completion:(id /* block */)arg5;
 - (void)_setProgress:(float)arg1;
+- (void)_setProgress:(float)arg1 animated:(BOOL)arg2 withDuration:(float)arg3 force:(BOOL)arg4 sendAction:(BOOL)arg5;
 - (BOOL)_shouldDrawAccessibly;
 - (BOOL)_shouldUseLightTintOverColor:(id)arg1;
 - (id)_switchSpringAnimationWithKeyPath:(id)arg1 fromValue:(id)arg2 toValue:(id)arg3 pressed:(BOOL)arg4;

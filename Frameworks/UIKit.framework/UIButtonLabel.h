@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIButton;
-
 @interface UIButtonLabel : UILabel {
     UIButton *_button;
     BOOL _reverseShadow;
@@ -17,6 +15,7 @@
 - (void)_setWantsAutolayout;
 - (BOOL)_shouldAnimatePropertyWithKey:(id)arg1;
 - (struct CGSize { float x1; float x2; })intrinsicContentSize;
+- (void)invalidateIntrinsicContentSize;
 - (void)setAdjustsFontSizeToFitWidth:(BOOL)arg1;
 - (void)setFont:(id)arg1;
 - (void)setLineBreakMode:(int)arg1;

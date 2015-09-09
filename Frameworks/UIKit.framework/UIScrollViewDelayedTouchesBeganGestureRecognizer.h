@@ -2,13 +2,11 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIDelayedAction;
-
 @interface UIScrollViewDelayedTouchesBeganGestureRecognizer : UIGestureRecognizer {
     struct CGPoint { 
         float x; 
         float y; 
-    } _startScreenLocation;
+    } _startSceneReferenceLocation;
     UIDelayedAction *_touchDelay;
 }
 

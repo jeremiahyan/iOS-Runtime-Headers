@@ -2,8 +2,7 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@interface NSFalsePredicate : NSPredicate {
-}
+@interface NSFalsePredicate : NSPredicate
 
 + (BOOL)_allowsEvaluation;
 + (id)allocWithZone:(struct _NSZone { }*)arg1;
@@ -11,6 +10,7 @@
 + (void)initialize;
 + (BOOL)supportsSecureCoding;
 
+- (void)_validateForMetadataQueryScopes:(id)arg1;
 - (void)acceptVisitor:(id)arg1 flags:(unsigned int)arg2;
 - (id)autorelease;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

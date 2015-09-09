@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, NSMutableArray, UIResponder, UIWindow;
-
 @interface _UIPhysicalButton : NSObject <_UIResponderForwardable> {
     BOOL _abandonForwardingRecord;
     NSMutableArray *_forwardingRecord;
@@ -15,14 +13,18 @@
     UIWindow *_window;
 }
 
-@property(setter=_setForwardablePhase:) int _forwardablePhase;
-@property(setter=_setResponder:,retain) UIResponder * _responder;
-@property(copy) NSArray * gestureRecognizers;
-@property int phase;
-@property(retain) UIResponder * responder;
-@property double timestamp;
-@property int type;
-@property(retain) UIWindow * window;
+@property (setter=_setForwardablePhase:, nonatomic) int _forwardablePhase;
+@property (setter=_setResponder:, nonatomic, retain) UIResponder *_responder;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, copy) NSArray *gestureRecognizers;
+@property (readonly) unsigned int hash;
+@property (nonatomic) int phase;
+@property (nonatomic, retain) UIResponder *responder;
+@property (readonly) Class superclass;
+@property (nonatomic) double timestamp;
+@property (nonatomic) int type;
+@property (nonatomic, retain) UIWindow *window;
 
 - (void)_abandonForwardingRecord;
 - (int)_forwardablePhase;

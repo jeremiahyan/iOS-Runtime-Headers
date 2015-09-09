@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class OADRotation3D;
-
 @interface OADCamera : NSObject <NSCopying> {
     int mCameraType;
     float mFieldOfView;
@@ -14,6 +12,7 @@
 - (int)cameraType;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
+- (id)description;
 - (float)fieldOfView;
 - (unsigned int)hash;
 - (id)init;

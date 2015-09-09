@@ -2,27 +2,31 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-@class <EKShareeViewControllerDelegate>, EKSharee, UIActionSheet;
-
-@interface EKShareeViewController : UITableViewController <UIActionSheetDelegate> {
-    UIActionSheet *_alertSheet;
+@interface EKShareeViewController : UITableViewController {
     BOOL _allowEditing;
+    BOOL _allowResendInvitations;
+    BOOL _allowStopSharing;
     <EKShareeViewControllerDelegate> *_delegate;
+    UIAlertController *_removeAlertController;
     EKSharee *_sharee;
 }
 
-@property BOOL allowEditing;
-@property <EKShareeViewControllerDelegate> * delegate;
-@property(retain) EKSharee * sharee;
+@property (nonatomic) BOOL allowEditing;
+@property (nonatomic) BOOL allowResendInvitations;
+@property (nonatomic) BOOL allowStopSharing;
+@property (nonatomic) <EKShareeViewControllerDelegate> *delegate;
+@property (nonatomic, retain) EKSharee *sharee;
 
 - (void).cxx_destruct;
 - (void)_allowEditingChanged:(id)arg1;
 - (void)_reloadTitle;
 - (int)_rowForSubitem:(int)arg1;
 - (BOOL)_shouldDisplayResendInvitationButton;
+- (BOOL)_shouldDisplayStopSharingButton;
 - (int)_subitemAtRow:(int)arg1;
-- (void)actionSheet:(id)arg1 clickedButtonAtIndex:(int)arg2;
 - (BOOL)allowEditing;
+- (BOOL)allowResendInvitations;
+- (BOOL)allowStopSharing;
 - (id)delegate;
 - (id)initWithSharee:(id)arg1;
 - (void)loadView;
@@ -30,6 +34,8 @@
 - (struct CGSize { float x1; float x2; })preferredContentSize;
 - (void)removeClicked:(id)arg1;
 - (void)setAllowEditing:(BOOL)arg1;
+- (void)setAllowResendInvitations:(BOOL)arg1;
+- (void)setAllowStopSharing:(BOOL)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setSharee:(id)arg1;
 - (id)sharee;

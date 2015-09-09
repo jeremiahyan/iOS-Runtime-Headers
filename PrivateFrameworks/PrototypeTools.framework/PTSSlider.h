@@ -2,12 +2,7 @@
    Image: /System/Library/PrivateFrameworks/PrototypeTools.framework/PrototypeTools
  */
 
-@class NSArray, NSNumberFormatter, NSString, NSTimer, UIButton, UILabel, UISlider, _UISettings;
-
 @interface PTSSlider : UIView <PTSHUDControl, _UISettingsKeyPathObserver> {
-    struct { 
-        double mark; 
-        double limit; 
     int _alignment;
     NSTimer *_buttonRepeatTimer;
     UIButton *_downIncrementButton;
@@ -19,6 +14,9 @@
     NSArray *_subviewConstraints;
     UILabel *_titleLabel;
     UIButton *_upIncrementButton;
+    struct { 
+        double mark; 
+        double limit; 
     } _valueChangePublishTTL;
     NSString *_valueKeyPath;
     UILabel *_valueLabel;
@@ -26,29 +24,34 @@
     NSArray *_valueLabelStrings;
 }
 
-@property int alignment;
-@property(retain) NSTimer * buttonRepeatTimer;
-@property(retain) UIButton * downIncrementButton;
-@property BOOL enabled;
-@property float increment;
-@property float maximumValue;
-@property float minimumValue;
-@property _UISettings * settings;
-@property BOOL showsValueLabel;
-@property(retain) UISlider * sliderControl;
-@property(retain) NSArray * subviewConstraints;
-@property(retain) UILabel * titleLabel;
-@property(retain) UIButton * upIncrementButton;
-@property float value;
-@property struct { double x1; double x2; } valueChangePublishTTL;
-@property(copy) NSString * valueKeyPath;
-@property(retain) UILabel * valueLabel;
-@property(retain) NSNumberFormatter * valueLabelFormatter;
-@property(copy) NSArray * valueLabelStrings;
+@property (nonatomic) int alignment;
+@property (nonatomic, retain) NSTimer *buttonRepeatTimer;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) UIButton *downIncrementButton;
+@property (nonatomic) BOOL enabled;
+@property (readonly) unsigned int hash;
+@property (nonatomic) float increment;
+@property (nonatomic) float maximumValue;
+@property (nonatomic) float minimumValue;
+@property (nonatomic) _UISettings *settings;
+@property (nonatomic) BOOL showsValueLabel;
+@property (nonatomic, retain) UISlider *sliderControl;
+@property (nonatomic, retain) NSArray *subviewConstraints;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) UILabel *titleLabel;
+@property (nonatomic, retain) UIButton *upIncrementButton;
+@property (nonatomic) float value;
+@property (nonatomic) struct { double x1; double x2; } valueChangePublishTTL;
+@property (nonatomic, copy) NSString *valueKeyPath;
+@property (nonatomic, retain) UILabel *valueLabel;
+@property (nonatomic, retain) NSNumberFormatter *valueLabelFormatter;
+@property (nonatomic, copy) NSArray *valueLabelStrings;
 
 + (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })defaultFrame;
 + (id)slider;
 + (id)sliderForSettings:(id)arg1 valueKeyPath:(id)arg2 title:(id)arg3 minimumValue:(float)arg4 maximumValue:(float)arg5;
++ (id)zeroToOneSliderForSettings:(id)arg1 valueKeyPath:(id)arg2 title:(id)arg3;
 
 - (void).cxx_destruct;
 - (int)alignment;
@@ -74,22 +77,22 @@
 - (void)setDownIncrementButton:(id)arg1;
 - (void)setEnabled:(BOOL)arg1;
 - (void)setIncrement:(float)arg1;
-- (void)setSettings:(id)arg1 valueKeyPath:(id)arg2;
 - (void)setSettings:(id)arg1;
+- (void)setSettings:(id)arg1 valueKeyPath:(id)arg2;
 - (void)setShowsValueLabel:(BOOL)arg1;
 - (void)setSliderControl:(id)arg1;
 - (void)setSubviewConstraints:(id)arg1;
 - (void)setTitleLabel:(id)arg1;
 - (void)setUpIncrementButton:(id)arg1;
-- (void)setValue:(float)arg1 animated:(BOOL)arg2;
 - (void)setValue:(float)arg1;
+- (void)setValue:(float)arg1 animated:(BOOL)arg2;
 - (void)setValueChangePublishTTL:(struct { double x1; double x2; })arg1;
 - (void)setValueKeyPath:(id)arg1;
 - (void)setValueLabel:(id)arg1;
 - (void)setValueLabelFormatter:(id)arg1;
 - (void)setValueLabelStrings:(id)arg1;
-- (void)settings:(id)arg1 changedValueForKeyPath:(id)arg2;
 - (id)settings;
+- (void)settings:(id)arg1 changedValueForKeyPath:(id)arg2;
 - (BOOL)showsValueLabel;
 - (id)sliderControl;
 - (void)stopIncrementRepeatAction;

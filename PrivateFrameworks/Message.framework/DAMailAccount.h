@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Message.framework/Message
  */
 
-@class DAAccount, MFDAMailbox, MFDAOfflineCache, MFRecursiveLock, NSArray, NSCountedSet, NSLock, NSMutableDictionary, NSObject<ASAccountActorMessages>, NSSet, NSString;
-
 @interface DAMailAccount : MailAccount {
     NSObject<ASAccountActorMessages> *_accountConduit;
     NSString *_cachedAccountID;
@@ -18,6 +16,7 @@
     BOOL _cachedIsActive;
     BOOL _cachedIsHotmailAccount;
     NSString *_cachedJunkFolderID;
+    BOOL _cachedPerMessageEncryptionEnabled;
     BOOL _cachedRestrictMessageTransfersToOtherAccounts;
     BOOL _cachedRestrictSendingFromExternalProcesses;
     BOOL _cachedRestrictSyncingRecents;
@@ -38,6 +37,7 @@
     MFRecursiveLock *_offlineCacheLock;
     BOOL _receivedInitialMailboxUpdate;
     NSMutableDictionary *_requestQueuesByFolderID;
+    int _supportsConversations;
     int _supportsMessageFlagging;
     int _supportsServerSearch;
     MFDAMailbox *_temporaryInbox;
@@ -67,7 +67,7 @@
 - (void)_loadChildrenForParent:(id)arg1 fromMap:(id)arg2 intoArray:(id)arg3 replacingInbox:(id)arg4 withID:(id)arg5;
 - (id)_newMailboxWithParent:(id)arg1 name:(id)arg2 attributes:(unsigned int)arg3 dictionary:(id)arg4 withCreationOption:(int)arg5;
 - (id)_offlineCache;
-- (void)_performFolderChange:(id)arg1 completion:(id)arg2;
+- (void)_performFolderChange:(id)arg1 completion:(id /* block */)arg2;
 - (void)_reachabilityChanged:(id)arg1;
 - (id)_relativePathForType:(int)arg1;
 - (id)_relativePathSpecialMailboxUidWithType:(int)arg1 create:(BOOL)arg2;
@@ -117,6 +117,7 @@
 - (id)meetingStorePersistentID;
 - (BOOL)moveMessages:(id)arg1 fromMailbox:(id)arg2 toMailbox:(id)arg3 markAsRead:(BOOL)arg4 unsuccessfulOnes:(id)arg5 newMessages:(id)arg6;
 - (BOOL)newMailboxNameIsAcceptable:(id)arg1 reasonForFailure:(id*)arg2;
+- (BOOL)perMessageEncryptionEnabled;
 - (BOOL)performRequests:(id)arg1 mailbox:(id)arg2 consumers:(id)arg3;
 - (void)performSearchQuery:(id)arg1;
 - (id)primaryMailboxUid;
@@ -140,6 +141,7 @@
 - (BOOL)shouldAppearInMailSettings;
 - (BOOL)shouldArchiveByDefault;
 - (BOOL)shouldDisplayHostnameInErrorMessages;
+- (BOOL)shouldFetchAgainWithError:(id)arg1 foregroundRequest:(BOOL)arg2;
 - (BOOL)shouldRestoreMessagesAfterFailedDelete;
 - (id)signingIdentityPersistentReferenceForAddress:(id)arg1;
 - (BOOL)sourceIsManaged;
@@ -151,12 +153,14 @@
 - (BOOL)supportsMessageFlagging;
 - (BOOL)supportsRemoteAppend;
 - (BOOL)supportsServerSearch;
+- (BOOL)supportsThreadNotifications;
 - (BOOL)supportsUserPushedMailboxes;
 - (id)syncAnchorForFolderID:(id)arg1 mailbox:(id*)arg2;
 - (id)syncAnchorForMailbox:(id)arg1;
 - (id)unactionableInvitationICSRepresentationInMessage:(id)arg1 summary:(id*)arg2;
 - (id)uniqueId;
 - (id)uniqueIdForPersistentConnection;
+- (id)unsupportedContinuationTypes;
 - (id)username;
 
 @end

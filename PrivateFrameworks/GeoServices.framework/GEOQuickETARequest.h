@@ -2,40 +2,59 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class GEOLocation, GEOWaypoint, NSDate;
-
 @interface GEOQuickETARequest : NSObject {
+    NSArray *_additionalTransportTypesRequested;
     NSDate *_arrivalDate;
+    GEOAutomobileOptions *_automobileOptions;
     GEOLocation *_currentLocation;
     NSDate *_departureDate;
-    GEOWaypoint *_destination;
+    GEOComposedWaypoint *_destinationWaypoint;
     BOOL _includeDistance;
-    GEOWaypoint *_source;
+    GEOComposedWaypoint *_sourceWaypoint;
     int _transportType;
+    GEOWalkingOptions *_walkingOptions;
 }
 
-@property(readonly) NSDate * arrivalDate;
-@property(readonly) GEOLocation * currentLocation;
-@property(readonly) NSDate * departureDate;
-@property(readonly) GEOWaypoint * destination;
-@property(readonly) BOOL includeDistance;
-@property(readonly) GEOWaypoint * source;
-@property(readonly) int transportType;
+@property (nonatomic, readonly) NSArray *additionalTransportTypesRequested;
+@property (nonatomic, readonly) NSDate *arrivalDate;
+@property (nonatomic, readonly) GEOAutomobileOptions *automobileOptions;
+@property (nonatomic, readonly) GEOLocation *currentLocation;
+@property (nonatomic, readonly) NSDate *departureDate;
+@property (nonatomic, readonly) GEOComposedWaypoint *destinationWaypoint;
+@property (nonatomic, readonly) BOOL includeDistance;
+@property (nonatomic, readonly) GEOComposedWaypoint *sourceWaypoint;
+@property (nonatomic, readonly) int transportType;
+@property (nonatomic, readonly) GEOWalkingOptions *walkingOptions;
 
+// Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
+
+- (id)additionalTransportTypesRequested;
 - (id)arrivalDate;
+- (id)automobileOptions;
 - (id)currentLocation;
 - (void)dealloc;
 - (id)departureDate;
 - (id)description;
-- (id)destination;
+- (id)destinationWaypoint;
 - (BOOL)includeDistance;
-- (id)initWithDirectionsRequest:(id)arg1;
-- (id)initWithOrigin:(id)arg1 destinationPLOI:(id)arg2;
-- (id)initWithSource:(id)arg1 destination:(id)arg2 arrivalDate:(id)arg3 transportType:(int)arg4 currentLocation:(id)arg5 includeDistance:(BOOL)arg6;
-- (id)initWithSource:(id)arg1 destination:(id)arg2 arrivalDate:(id)arg3 transportType:(int)arg4 currentLocation:(id)arg5;
-- (id)initWithSource:(id)arg1 destination:(id)arg2 departureDate:(id)arg3 transportType:(int)arg4 currentLocation:(id)arg5 includeDistance:(BOOL)arg6;
-- (id)initWithSource:(id)arg1 destination:(id)arg2 departureDate:(id)arg3 transportType:(int)arg4 currentLocation:(id)arg5;
-- (id)source;
+- (id)initWithSource:(id)arg1 toDestination:(id)arg2 arrivalDate:(id)arg3 currentLocation:(id)arg4 includeDistance:(BOOL)arg5 automobileOptions:(id)arg6 walkingOptions:(id)arg7;
+- (id)initWithSource:(id)arg1 toDestination:(id)arg2 arrivalDate:(id)arg3 transportType:(int)arg4 currentLocation:(id)arg5;
+- (id)initWithSource:(id)arg1 toDestination:(id)arg2 arrivalDate:(id)arg3 transportType:(int)arg4 currentLocation:(id)arg5 includeDistance:(BOOL)arg6;
+- (id)initWithSource:(id)arg1 toDestination:(id)arg2 arrivalDate:(id)arg3 transportType:(int)arg4 currentLocation:(id)arg5 includeDistance:(BOOL)arg6 additionalTransportTypesRequested:(id)arg7;
+- (id)initWithSource:(id)arg1 toDestination:(id)arg2 departureDate:(id)arg3 currentLocation:(id)arg4 includeDistance:(BOOL)arg5 automobileOptions:(id)arg6 walkingOptions:(id)arg7;
+- (id)initWithSource:(id)arg1 toDestination:(id)arg2 departureDate:(id)arg3 transportType:(int)arg4 currentLocation:(id)arg5;
+- (id)initWithSource:(id)arg1 toDestination:(id)arg2 departureDate:(id)arg3 transportType:(int)arg4 currentLocation:(id)arg5 includeDistance:(BOOL)arg6;
+- (id)initWithSource:(id)arg1 toDestination:(id)arg2 departureDate:(id)arg3 transportType:(int)arg4 currentLocation:(id)arg5 includeDistance:(BOOL)arg6 additionalTransportTypesRequested:(id)arg7;
+- (id)sourceWaypoint;
 - (int)transportType;
+- (id)walkingOptions;
+
+// Image: /System/Library/Frameworks/MapKit.framework/MapKit
+
+- (id)initWithDirectionsRequest:(id)arg1 origin:(id)arg2 destination:(id)arg3;
+
+// Image: /System/Library/PrivateFrameworks/CoreRoutine.framework/CoreRoutine
+
+- (id)initWithOrigin:(id)arg1 destinationPLOI:(id)arg2;
 
 @end

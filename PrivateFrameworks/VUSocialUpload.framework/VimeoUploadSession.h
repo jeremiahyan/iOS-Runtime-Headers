@@ -2,14 +2,13 @@
    Image: /System/Library/PrivateFrameworks/VUSocialUpload.framework/VUSocialUpload
  */
 
-@class <VimeoRemoteSessionProtocol>;
-
 @interface VimeoUploadSession : NSObject {
     <VimeoRemoteSessionProtocol> *_remoteSession;
 }
 
 + (id)sharedSession;
 
+- (void).cxx_destruct;
 - (id)init;
 - (BOOL)uploadPost:(id)arg1 error:(id*)arg2;
 

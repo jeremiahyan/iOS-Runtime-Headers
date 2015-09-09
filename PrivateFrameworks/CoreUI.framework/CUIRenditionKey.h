@@ -2,17 +2,19 @@
    Image: /System/Library/PrivateFrameworks/CoreUI.framework/CoreUI
  */
 
-@interface CUIRenditionKey : NSObject <NSCopying, NSCoding> {
+@interface CUIRenditionKey : NSObject <NSCoding, NSCopying> {
+    unsigned short _highwaterKeyCount;
+    struct _renditionkeytoken { unsigned short x1; unsigned short x2; } *_key;
     struct _renditionkeytoken { 
         unsigned short identifier; 
         unsigned short value; 
-    unsigned short _highwaterKeyCount;
-    struct _renditionkeytoken { unsigned short x1; unsigned short x2; } *_key;
-    } _stackKey[16];
+    } _stackKey;
 }
 
 + (id)_placeHolderKey;
 + (void)initialize;
++ (id)renditionKey;
++ (id)renditionKeyWithKeyList:(const struct _renditionkeytoken { unsigned short x1; unsigned short x2; }*)arg1;
 
 - (void)_expandKeyIfNecessaryForCount:(int)arg1;
 - (unsigned short)_systemTokenCount;
@@ -33,13 +35,19 @@
 - (void)setThemeDimension2:(int)arg1;
 - (void)setThemeDirection:(int)arg1;
 - (void)setThemeElement:(int)arg1;
+- (void)setThemeGraphicsClass:(int)arg1;
 - (void)setThemeIdentifier:(int)arg1;
 - (void)setThemeIdiom:(int)arg1;
 - (void)setThemeLayer:(int)arg1;
+- (void)setThemeMemoryClass:(int)arg1;
 - (void)setThemePart:(int)arg1;
 - (void)setThemePresentationState:(int)arg1;
+- (void)setThemePreviousState:(int)arg1;
+- (void)setThemePreviousValue:(int)arg1;
 - (void)setThemeScale:(int)arg1;
 - (void)setThemeSize:(int)arg1;
+- (void)setThemeSizeClassHorizontal:(int)arg1;
+- (void)setThemeSizeClassVertical:(int)arg1;
 - (void)setThemeState:(int)arg1;
 - (void)setThemeSubtype:(int)arg1;
 - (void)setThemeValue:(int)arg1;
@@ -48,13 +56,19 @@
 - (int)themeDimension2;
 - (int)themeDirection;
 - (int)themeElement;
+- (int)themeGraphicsClass;
 - (int)themeIdentifier;
 - (int)themeIdiom;
 - (int)themeLayer;
+- (int)themeMemoryClass;
 - (int)themePart;
 - (int)themePresentationState;
+- (int)themePreviousState;
+- (int)themePreviousValue;
 - (int)themeScale;
 - (int)themeSize;
+- (int)themeSizeClassHorizontal;
+- (int)themeSizeClassVertical;
 - (int)themeState;
 - (int)themeSubtype;
 - (int)themeValue;

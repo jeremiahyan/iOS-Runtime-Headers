@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
  */
 
-@class <SUPurchaseManagerDelegate>, NSMutableArray, NSMutableSet, NSSet, NSString, SUQueueSessionManager;
-
-@interface SUPurchaseManager : NSObject <SSPurchaseRequestDelegatePrivate, SUContinuationDelegate, SSDownloadManagerObserver, SSPurchaseRequestDelegate> {
+@interface SUPurchaseManager : NSObject <SSDownloadManagerObserver, SSPurchaseRequestDelegate, SSPurchaseRequestDelegatePrivate, SUContinuationDelegate> {
     <SUPurchaseManagerDelegate> *_delegate;
     NSMutableSet *_futurePurchases;
     NSMutableSet *_inflightContinuations;
@@ -20,12 +18,16 @@
     BOOL _waitingForAuthentication;
 }
 
-@property <SUPurchaseManagerDelegate> * delegate;
-@property(readonly) NSSet * futurePurchases;
-@property(readonly) int numberOfPendingPurchases;
-@property(readonly) NSSet * purchasedItemIdentifiers;
-@property(retain) SUQueueSessionManager * queueSessionManager;
-@property(copy) NSString * userAgent;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SUPurchaseManagerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) NSSet *futurePurchases;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) int numberOfPendingPurchases;
+@property (nonatomic, readonly) NSSet *purchasedItemIdentifiers;
+@property (nonatomic, retain) SUQueueSessionManager *queueSessionManager;
+@property (readonly) Class superclass;
+@property (nonatomic, copy) NSString *userAgent;
 
 - (id)_accountForPurchase:(id)arg1;
 - (void)_addBatchForPurchases:(id)arg1 options:(id)arg2;
@@ -59,8 +61,8 @@
 - (void)cancelFuturePurchase:(id)arg1;
 - (void)continuation:(id)arg1 failedWithError:(id)arg2;
 - (void)continuationFinished:(id)arg1;
-- (id)copyPurchaseForScriptObject:(id)arg1 inContext:(struct OpaqueJSContext { }*)arg2;
 - (id)copyPurchaseForScriptObject:(id)arg1;
+- (id)copyPurchaseForScriptObject:(id)arg1 inContext:(struct OpaqueJSContext { }*)arg2;
 - (void)dealloc;
 - (id)delegate;
 - (void)endUpdates;
@@ -74,8 +76,8 @@
 - (void)purchaseRequest:(id)arg1 purchaseDidFail:(id)arg2 withError:(id)arg3;
 - (void)purchaseRequest:(id)arg1 purchaseDidSucceed:(id)arg2;
 - (void)purchaseRequest:(id)arg1 purchaseDidSucceedWithResponse:(id)arg2;
-- (void)purchaseScriptObject:(id)arg1 withOptions:(id)arg2 inContext:(struct OpaqueJSContext { }*)arg3;
 - (void)purchaseScriptObject:(id)arg1;
+- (void)purchaseScriptObject:(id)arg1 withOptions:(id)arg2 inContext:(struct OpaqueJSContext { }*)arg3;
 - (id)purchasedItemIdentifiers;
 - (id)queueSessionManager;
 - (void)removePurchasedItemIdentifier:(unsigned long long)arg1;

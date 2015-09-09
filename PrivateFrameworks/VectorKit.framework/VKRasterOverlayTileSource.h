@@ -2,15 +2,13 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-@class NSArray, NSMutableArray, NSObject<OS_dispatch_group>, NSObject<OS_dispatch_queue>;
-
 @interface VKRasterOverlayTileSource : VKTileSource {
     NSObject<OS_dispatch_queue> *_homeQ;
     NSMutableArray *_overlays;
     NSObject<OS_dispatch_group> *_renderGroup;
 }
 
-@property(readonly) NSArray * overlays;
+@property (nonatomic, readonly) NSArray *overlays;
 
 - (void)_flush;
 - (void)_queueDraw:(const struct VKTileKey { unsigned int x1; int x2; int x3; unsigned int x4; }*)arg1;
@@ -26,9 +24,9 @@
 - (void)insertOverlay:(id)arg1 belowOverlay:(id)arg2;
 - (void)invalidate;
 - (void)invalidateRect:(const struct { double x1; double x2; double x3; double x4; }*)arg1 level:(int)arg2;
-- (int)maximumDownloadZoomLevel;
+- (unsigned int)maximumDownloadZoomLevel;
 - (BOOL)maximumZoomLevelBoundsCamera;
-- (int)minimumDownloadZoomLevel;
+- (unsigned int)minimumDownloadZoomLevel;
 - (BOOL)minimumZoomLevelBoundsCamera;
 - (id)overlays;
 - (void)removeOverlay:(id)arg1;

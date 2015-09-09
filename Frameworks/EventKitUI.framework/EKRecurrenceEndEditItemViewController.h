@@ -2,10 +2,7 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-@class NSDate, PreferencesValueCell, UIDatePicker, UITableView, UITableViewCell;
-
-@interface EKRecurrenceEndEditItemViewController : EKEditItemViewController <UITableViewDataSource, UITableViewDelegate, EKCellShortener> {
-    unsigned int _updatingPicker : 1;
+@interface EKRecurrenceEndEditItemViewController : EKEditItemViewController <EKCellShortener, UITableViewDataSource, UITableViewDelegate> {
     NSDate *_bestInitialDate;
     PreferencesValueCell *_dateCell;
     UIDatePicker *_datePicker;
@@ -15,10 +12,15 @@
     NSDate *_repeatEndDate;
     int _shorteningStatus;
     UITableView *_table;
+    unsigned int _updatingPicker;
 }
 
-@property(copy) NSDate * bestInitialDate;
-@property(copy) NSDate * repeatEndDate;
+@property (nonatomic, copy) NSDate *bestInitialDate;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSDate *repeatEndDate;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (id)_cellForRow:(int)arg1;
@@ -45,8 +47,8 @@
 - (int)tableView:(id)arg1 numberOfRowsInSection:(int)arg2;
 - (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forRowAtIndexPath:(id)arg3;
 - (id)tableView:(id)arg1 willSelectRowAtIndexPath:(id)arg2;
+- (void)traitCollectionDidChange:(id)arg1;
 - (void)updatePicker;
 - (void)viewDidLoad;
-- (void)willAnimateRotationToInterfaceOrientation:(int)arg1 duration:(double)arg2;
 
 @end

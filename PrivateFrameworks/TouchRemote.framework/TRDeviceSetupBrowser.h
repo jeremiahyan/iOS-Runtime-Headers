@@ -2,22 +2,25 @@
    Image: /System/Library/PrivateFrameworks/TouchRemote.framework/TouchRemote
  */
 
-@class <TRDeviceSetupBrowserDelegate>, TRDeviceSetupPeripheral, TRTransferBrowser;
-
 @interface TRDeviceSetupBrowser : NSObject <TRTransferBrowserDelegate> {
     <TRDeviceSetupBrowserDelegate> *_delegate;
     TRDeviceSetupPeripheral *_peripheral;
     TRTransferBrowser *_transferBrowser;
 }
 
-@property <TRDeviceSetupBrowserDelegate> * delegate;
-@property(readonly) int state;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <TRDeviceSetupBrowserDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) int state;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (id)browser:(id)arg1 didReceiveData:(id)arg2;
 - (void)browserDidChangeState:(id)arg1;
 - (void)browserDidDisconnect:(id)arg1;
 - (id)browserDidStartTransfer:(id)arg1;
+- (void)defer;
 - (id)delegate;
 - (id)init;
 - (void)setDelegate:(id)arg1;

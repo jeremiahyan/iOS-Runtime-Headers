@@ -2,16 +2,14 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSBundle, NSMutableDictionary, NSString;
-
 @interface TSDFrameSpec : NSObject <NSCopying> {
     struct CGPoint { 
         float x; 
         float y; 
+    } mAdornmentPosition;
     struct CGSize { 
         float width; 
         float height; 
-    } mAdornmentPosition;
     } mAdornmentSize;
     float mBottomHeight;
     float mBottomInset;
@@ -34,8 +32,8 @@
     float mTopInset;
 }
 
-@property(readonly) BOOL displayInPicker;
-@property(readonly) NSString * frameName;
+@property (nonatomic, readonly) BOOL displayInPicker;
+@property (nonatomic, readonly, copy) NSString *frameName;
 
 + (id)frameSpecWithName:(id)arg1;
 + (id)frameSpecs;

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
  */
 
-@class <SUTabBarControllerDelegate>, NSArray, NSMutableArray, NSString, SUClientInterface, SUNavigationBarBackgroundView, SUPreviewOverlayViewController, SUViewController, UIImage, UIViewController;
-
 @interface SUTabBarController : UITabBarController <SUOverlayBackgroundDelegate, _UIBasicAnimationFactory> {
     SUClientInterface *_clientInterface;
     BOOL _ignoreTabReselection;
@@ -22,12 +20,16 @@
     SUNavigationBarBackgroundView *_tabBarBackdropView;
 }
 
-@property(getter=_previewOverlayViewController,readonly) SUPreviewOverlayViewController * _previewOverlayViewController;
-@property(readonly) SUClientInterface * clientInterface;
-@property <SUTabBarControllerDelegate> * delegate;
-@property(retain) NSString * moreListTitle;
-@property(retain) NSArray * sections;
-@property(retain) NSString * selectedIdentifier;
+@property (getter=_previewOverlayViewController, nonatomic, readonly) SUPreviewOverlayViewController *_previewOverlayViewController;
+@property (nonatomic, readonly) SUClientInterface *clientInterface;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SUTabBarControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) NSString *moreListTitle;
+@property (nonatomic, retain) NSArray *sections;
+@property (nonatomic, retain) NSString *selectedIdentifier;
+@property (readonly) Class superclass;
 
 + (Class)_moreNavigationControllerClass;
 
@@ -40,8 +42,6 @@
 - (void)_endReloadingUnderneathTransientViewController;
 - (void)_fixupTabBarSelection;
 - (void)_fixupViewControllers;
-- (void)_hidePadPreviewOverlayAnimated:(BOOL)arg1;
-- (void)_hidePhonePreviewOverlayAnimated:(BOOL)arg1;
 - (void)_hidePreviewOverlayAnimated:(BOOL)arg1;
 - (BOOL)_isReloadingUnderneathTransientViewController;
 - (void)_longPressAction:(id)arg1;
@@ -50,7 +50,6 @@
 - (void)_partnerChanged:(id)arg1;
 - (id)_previewOverlayViewController;
 - (void)_reloadViewControllersFromSections:(id)arg1 animated:(BOOL)arg2;
-- (void)_removePreviewOverlayViewController;
 - (void)_restoreArchivedContexts:(id)arg1;
 - (void)_restoreArchivedTransientContexts:(id)arg1;
 - (void)_restoreOverlayContexts:(id)arg1;
@@ -62,8 +61,6 @@
 - (id)_sectionForViewController:(id)arg1;
 - (void)_setSelectedViewController:(id)arg1;
 - (void)_setStoreBarStyle:(int)arg1;
-- (void)_showPadPreviewOverlay:(id)arg1 animated:(BOOL)arg2;
-- (void)_showPhonePreviewOverlay:(id)arg1 animated:(BOOL)arg2;
 - (void)_showPreviewOverlay:(id)arg1 animated:(BOOL)arg2;
 - (id)_timingFunctionForAnimation;
 - (void)_transitionSafeHandlePartnerChange:(id)arg1;

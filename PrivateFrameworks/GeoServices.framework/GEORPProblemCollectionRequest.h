@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class GEORPUserCredentials, NSData, NSMutableArray, NSString;
-
 @interface GEORPProblemCollectionRequest : PBRequest <NSCopying> {
     NSString *_countryCode;
     NSData *_devicePushToken;
@@ -12,21 +10,27 @@
     NSString *_osRelease;
     NSMutableArray *_requestElements;
     GEORPUserCredentials *_userCredentials;
+    NSString *_userEmail;
+    GEOLocation *_userLocation;
 }
 
-@property(retain) NSString * countryCode;
-@property(retain) NSData * devicePushToken;
-@property(readonly) BOOL hasCountryCode;
-@property(readonly) BOOL hasDevicePushToken;
-@property(readonly) BOOL hasHwMachine;
-@property(readonly) BOOL hasInputLanguage;
-@property(readonly) BOOL hasOsRelease;
-@property(readonly) BOOL hasUserCredentials;
-@property(retain) NSString * hwMachine;
-@property(retain) NSString * inputLanguage;
-@property(retain) NSString * osRelease;
-@property(retain) NSMutableArray * requestElements;
-@property(retain) GEORPUserCredentials * userCredentials;
+@property (nonatomic, retain) NSString *countryCode;
+@property (nonatomic, retain) NSData *devicePushToken;
+@property (nonatomic, readonly) BOOL hasCountryCode;
+@property (nonatomic, readonly) BOOL hasDevicePushToken;
+@property (nonatomic, readonly) BOOL hasHwMachine;
+@property (nonatomic, readonly) BOOL hasInputLanguage;
+@property (nonatomic, readonly) BOOL hasOsRelease;
+@property (nonatomic, readonly) BOOL hasUserCredentials;
+@property (nonatomic, readonly) BOOL hasUserEmail;
+@property (nonatomic, readonly) BOOL hasUserLocation;
+@property (nonatomic, retain) NSString *hwMachine;
+@property (nonatomic, retain) NSString *inputLanguage;
+@property (nonatomic, retain) NSString *osRelease;
+@property (nonatomic, retain) NSMutableArray *requestElements;
+@property (nonatomic, retain) GEORPUserCredentials *userCredentials;
+@property (nonatomic, retain) NSString *userEmail;
+@property (nonatomic, retain) GEOLocation *userLocation;
 
 - (void)addRequestElement:(id)arg1;
 - (void)clearRequestElements;
@@ -43,10 +47,13 @@
 - (BOOL)hasInputLanguage;
 - (BOOL)hasOsRelease;
 - (BOOL)hasUserCredentials;
+- (BOOL)hasUserEmail;
+- (BOOL)hasUserLocation;
 - (unsigned int)hash;
 - (id)hwMachine;
 - (id)inputLanguage;
 - (BOOL)isEqual:(id)arg1;
+- (void)mergeFrom:(id)arg1;
 - (id)osRelease;
 - (BOOL)readFrom:(id)arg1;
 - (id)requestElementAtIndex:(unsigned int)arg1;
@@ -61,7 +68,11 @@
 - (void)setOsRelease:(id)arg1;
 - (void)setRequestElements:(id)arg1;
 - (void)setUserCredentials:(id)arg1;
+- (void)setUserEmail:(id)arg1;
+- (void)setUserLocation:(id)arg1;
 - (id)userCredentials;
+- (id)userEmail;
+- (id)userLocation;
 - (void)writeTo:(id)arg1;
 
 @end

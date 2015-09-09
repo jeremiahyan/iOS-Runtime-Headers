@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSMutableArray;
-
 @interface GEOHours : PBCodable <NSCopying> {
     struct { 
         int *list; 
@@ -13,9 +11,9 @@
     NSMutableArray *_timeRanges;
 }
 
-@property(readonly) int* days;
-@property(readonly) unsigned int daysCount;
-@property(retain) NSMutableArray * timeRanges;
+@property (nonatomic, readonly) int*days;
+@property (nonatomic, readonly) unsigned int daysCount;
+@property (nonatomic, retain) NSMutableArray *timeRanges;
 
 - (void)addDay:(int)arg1;
 - (void)addTimeRange:(id)arg1;
@@ -30,7 +28,9 @@
 - (id)description;
 - (id)dictionaryRepresentation;
 - (unsigned int)hash;
+- (id)initWithPlaceDataHours:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
+- (void)mergeFrom:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 - (void)setDays:(int*)arg1 count:(unsigned int)arg2;
 - (void)setTimeRanges:(id)arg1;

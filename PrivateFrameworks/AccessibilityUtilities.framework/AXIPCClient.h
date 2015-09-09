@@ -2,12 +2,6 @@
    Image: /System/Library/PrivateFrameworks/AccessibilityUtilities.framework/AccessibilityUtilities
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class AXAccessQueue, NSLock, NSMutableArray, NSString;
-
 @interface AXIPCClient : NSObject {
     unsigned int _assignedServerMachPort;
     NSString *_clientIdentifier;
@@ -15,29 +9,35 @@
     BOOL _connected;
     unsigned int _connectionAttempts;
     AXAccessQueue *_connectionQueue;
-    id _portDeathHandler;
+    int _pid;
+    AXAccessQueue *_portDeathAccessQueue;
+    id /* block */ _portDeathHandler;
     NSMutableArray *_postConnectionTasks;
     struct __CFMachPort { } *_serverPort;
     NSLock *_serverPortLock;
     NSString *_serviceName;
     float _timeout;
+    BOOL _usesPerPidLookup;
     unsigned int clientCallbackPort;
     struct __CFRunLoopSource { } *clientCallbackSource;
     BOOL shouldRegisterCallbackSourceOnMainRunloop;
 }
 
-@property(readonly) unsigned int clientCallbackPort;
-@property(readonly) struct __CFRunLoopSource { }* clientCallbackSource;
-@property(copy) NSString * clientIdentifier;
-@property(getter=isConnected) BOOL connected;
-@property(retain) AXAccessQueue * connectionQueue;
-@property(copy) id portDeathHandler;
-@property(retain) NSMutableArray * postConnectionTasks;
-@property struct __CFMachPort { }* serverPort;
-@property(readonly) unsigned int serviceMachPort;
-@property(copy) NSString * serviceName;
-@property BOOL shouldRegisterCallbackSourceOnMainRunloop;
-@property float timeout;
+@property (nonatomic, readonly) unsigned int clientCallbackPort;
+@property (nonatomic, readonly) struct __CFRunLoopSource { }*clientCallbackSource;
+@property (nonatomic, copy) NSString *clientIdentifier;
+@property (getter=isConnected, nonatomic) BOOL connected;
+@property (nonatomic, retain) AXAccessQueue *connectionQueue;
+@property (nonatomic) int pid;
+@property (nonatomic, retain) AXAccessQueue *portDeathAccessQueue;
+@property (nonatomic, copy) id /* block */ portDeathHandler;
+@property (nonatomic, retain) NSMutableArray *postConnectionTasks;
+@property (nonatomic) struct __CFMachPort { }*serverPort;
+@property (nonatomic, readonly) unsigned int serviceMachPort;
+@property (nonatomic, copy) NSString *serviceName;
+@property (nonatomic) BOOL shouldRegisterCallbackSourceOnMainRunloop;
+@property (nonatomic) float timeout;
+@property (nonatomic) BOOL usesPerPidLookup;
 
 + (id)allClients;
 + (void)initialize;
@@ -56,29 +56,36 @@
 - (void)dealloc;
 - (id)description;
 - (BOOL)disconnectWithError:(id*)arg1;
-- (void)establishConnectionWithTimeout:(double)arg1 completion:(id)arg2;
+- (void)establishConnectionWithTimeout:(double)arg1 completion:(id /* block */)arg2;
 - (id)initWithPort:(unsigned int)arg1;
 - (id)initWithServiceName:(id)arg1;
 - (BOOL)isConnected;
-- (id)portDeathHandler;
+- (int)pid;
+- (id)portDeathAccessQueue;
+- (id /* block */)portDeathHandler;
 - (id)postConnectionTasks;
 - (id)sendMessage:(id)arg1 withError:(id*)arg2;
-- (BOOL)sendSimpleMessage:(id)arg1 withError:(id*)arg2;
 - (void)sendSimpleMessage:(id)arg1;
+- (BOOL)sendSimpleMessage:(id)arg1 synchronizationPort:(unsigned int)arg2 error:(id*)arg3;
+- (BOOL)sendSimpleMessage:(id)arg1 withError:(id*)arg2;
 - (struct __CFMachPort { }*)serverPort;
 - (unsigned int)serviceMachPort;
 - (id)serviceName;
 - (void)setClientIdentifier:(id)arg1;
 - (void)setConnected:(BOOL)arg1;
 - (void)setConnectionQueue:(id)arg1;
-- (void)setPortDeathHandler:(id)arg1;
+- (void)setPid:(int)arg1;
+- (void)setPortDeathAccessQueue:(id)arg1;
+- (void)setPortDeathHandler:(id /* block */)arg1;
 - (void)setPostConnectionTasks:(id)arg1;
 - (void)setServerPort:(struct __CFMachPort { }*)arg1;
 - (void)setServiceName:(id)arg1;
 - (void)setShouldRegisterCallbackSourceOnMainRunloop:(BOOL)arg1;
 - (void)setTimeout:(float)arg1;
+- (void)setUsesPerPidLookup:(BOOL)arg1;
 - (BOOL)shouldRegisterCallbackSourceOnMainRunloop;
 - (float)timeout;
+- (BOOL)usesPerPidLookup;
 - (BOOL)verifyConnectionExists;
 
 @end

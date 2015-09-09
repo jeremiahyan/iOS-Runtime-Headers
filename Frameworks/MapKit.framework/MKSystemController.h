@@ -2,16 +2,18 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@interface MKSystemController : NSObject {
-}
+@interface MKSystemController : NSObject
 
 + (id)sharedInstance;
 
+- (BOOL)isDevicePluggedIn;
 - (BOOL)isHiDPI;
 - (BOOL)isInternalInstall;
 - (BOOL)isWifiEnabled;
 - (BOOL)openURL:(id)arg1;
+- (BOOL)openURL:(id)arg1 bundleIdentifier:(id)arg2;
 - (BOOL)overrideBlurStyle;
+- (BOOL)requiresRTT;
 - (float)screenScale;
 - (struct CGSize { float x1; float x2; })screenSize;
 - (BOOL)shouldRateLimitSearchCompletions;

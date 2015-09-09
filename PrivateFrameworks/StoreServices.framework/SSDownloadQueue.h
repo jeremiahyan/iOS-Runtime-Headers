@@ -2,38 +2,31 @@
    Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class NSArray, NSSet, SSDownloadManager;
-
 @interface SSDownloadQueue : NSObject <SSDownloadManagerObserverPrivate> {
     BOOL _autoFinishDownloads;
     SSDownloadManager *_downloadManager;
     struct __CFSet { } *_observers;
 }
 
-@property(readonly) NSSet * downloadKinds;
-@property(readonly) SSDownloadManager * downloadManager;
-@property(readonly) NSArray * downloads;
-@property(readonly) NSArray * placeholderDownloads;
-@property(readonly) NSArray * preorders;
-@property BOOL shouldAutomaticallyFinishDownloads;
-@property(getter=isUsingNetwork,readonly) BOOL usingNetwork;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) NSSet *downloadKinds;
+@property (readonly) SSDownloadManager *downloadManager;
+@property (nonatomic, readonly) NSArray *downloads;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) NSArray *placeholderDownloads;
+@property (nonatomic, readonly) NSArray *preorders;
+@property (nonatomic) BOOL shouldAutomaticallyFinishDownloads;
+@property (readonly) Class superclass;
+@property (getter=isUsingNetwork, readonly) BOOL usingNetwork;
 
-+ (id)cachedArtworkForDownload:(id)arg1;
-+ (void)cancelLoadArtworkForDownload:(id)arg1;
-+ (void)loadArtworkForDownload:(id)arg1;
 + (id)mediaDownloadKinds;
-+ (void)setCachedArtwork:(id)arg1 forDownload:(id)arg2;
 + (id)softwareApplicationDownloadKinds;
 
 - (void)_handleDownloadsDidChange:(id)arg1;
 - (void)_handleDownloadsRemoved:(id)arg1;
 - (id)_initWithDownloadManagerOptions:(id)arg1;
-- (void)_messageObserversWithFunction:(int (*)())arg1 context:(void*)arg2;
+- (void)_messageObserversWithFunction:(int (*)arg1 context:(void*)arg2;
 - (void)_sendDownloadStatusChangedAtIndex:(int)arg1;
 - (void)_sendQueueChangedWithRemovals:(id)arg1;
 - (void)_sendQueueNetworkUsageChanged;
@@ -46,13 +39,13 @@
 - (void)dealloc;
 - (id)downloadForItemIdentifier:(unsigned long long)arg1;
 - (id)downloadKinds;
+- (id)downloadManager;
 - (void)downloadManager:(id)arg1 downloadStatesDidChange:(id)arg2;
 - (void)downloadManager:(id)arg1 downloadsDidChange:(id)arg2;
-- (id)downloadManager;
 - (void)downloadManagerDownloadsDidChange:(id)arg1;
 - (void)downloadManagerNetworkUsageDidChange:(id)arg1;
 - (id)downloads;
-- (void)getDownloadsUsingBlock:(id)arg1;
+- (void)getDownloadsUsingBlock:(id /* block */)arg1;
 - (id)init;
 - (id)initWithDownloadKinds:(id)arg1;
 - (id)initWithDownloadManagerOptions:(id)arg1;

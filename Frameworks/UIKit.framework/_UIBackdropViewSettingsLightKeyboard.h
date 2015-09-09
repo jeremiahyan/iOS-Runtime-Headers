@@ -2,9 +2,10 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@interface _UIBackdropViewSettingsLightKeyboard : _UIBackdropViewSettings {
-}
+@interface _UIBackdropViewSettingsLightKeyboard : _UIBackdropViewSettings
 
+- (id)_defaultColorTintColorWithOpacity:(float)arg1;
+- (BOOL)_shouldUseDarkeningTintLayer;
 - (void)setDefaultValues;
 
 @end

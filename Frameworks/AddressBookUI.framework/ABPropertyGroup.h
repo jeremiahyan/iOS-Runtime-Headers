@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class ABActionsController, ABCapabilitiesManager, NSMutableArray, NSMutableDictionary, NSString;
-
 @interface ABPropertyGroup : ABAbstractPropertyGroup {
     ABActionsController *_actionsController;
     BOOL _allowsVibrations;
@@ -55,20 +53,21 @@
 - (BOOL)_propertyIsDate;
 - (BOOL)_recordInfoDictionary:(id)arg1 containsPerson:(id)arg2;
 - (id)_recordInfoDictionaryAtIndex:(int)arg1;
-- (id)_recordInfoDictionaryForPerson:(id)arg1 identifier:(int)arg2;
 - (id)_recordInfoDictionaryForPerson:(id)arg1;
+- (id)_recordInfoDictionaryForPerson:(id)arg1 identifier:(int)arg2;
 - (id)_recordInfoDictionaryWithAllPeople;
-- (id)_recordInfoForPerson:(id)arg1 identifier:(int)arg2;
 - (id)_recordInfoForPerson:(id)arg1;
+- (id)_recordInfoForPerson:(id)arg1 identifier:(int)arg2;
 - (void)_reloadPreinsertedStuff:(BOOL)arg1 insertionStuff:(BOOL)arg2;
 - (BOOL)_removeValueInCacheForPerson:(id)arg1;
 - (void)_setCountryCode:(id)arg1 atIndex:(int)arg2 withCountryName:(BOOL)arg3;
 - (void)_setPropertyLabel:(id)arg1 atIndex:(int)arg2 markChanged:(BOOL)arg3;
 - (void)_setRecordInfoDictionary:(id)arg1 atIndex:(int)arg2;
-- (BOOL)_setValueInCache:(void*)arg1 forPerson:(id)arg2 preventLabelChange:(BOOL)arg3;
 - (BOOL)_setValueInCache:(void*)arg1 forPerson:(id)arg2;
+- (BOOL)_setValueInCache:(void*)arg1 forPerson:(id)arg2 preventLabelChange:(BOOL)arg3;
 - (id)_sortedPeople:(id)arg1;
 - (id)_stringRepresentationOfPropertyValue:(id)arg1;
+- (id)_toneManager;
 - (BOOL)_updateCacheForPerson:(id)arg1 identifier:(int*)arg2 value:(id)arg3 label:(struct __CFString { }*)arg4 shouldSetValue:(BOOL)arg5 shouldSetLabel:(BOOL)arg6;
 - (BOOL)_updateCacheWithPropertyLabel:(id)arg1 atIndex:(int)arg2;
 - (BOOL)_updateCacheWithPropertyValue:(id)arg1 atIndex:(int)arg2;
@@ -122,15 +121,15 @@
 - (id)placeholderTextForKey:(id)arg1 info:(id)arg2;
 - (void)prepareActionsController:(id)arg1 withValueAtIndex:(int)arg2;
 - (int)property;
-- (id)propertyLabelAtIndex:(int)arg1 forceUseReadonly:(BOOL)arg2;
 - (id)propertyLabelAtIndex:(int)arg1;
-- (id)propertyValueAtIndex:(int)arg1 forceUseReadonly:(BOOL)arg2;
+- (id)propertyLabelAtIndex:(int)arg1 forceUseReadonly:(BOOL)arg2;
 - (id)propertyValueAtIndex:(int)arg1;
+- (id)propertyValueAtIndex:(int)arg1 forceUseReadonly:(BOOL)arg2;
 - (id)propertyValueForInfo:(id)arg1;
 - (void)refreshVibrations;
 - (void)reloadFromModel;
-- (BOOL)removeItemAtRow:(int)arg1 whenEditing:(BOOL)arg2;
 - (BOOL)removeItemAtRow:(int)arg1;
+- (BOOL)removeItemAtRow:(int)arg1 whenEditing:(BOOL)arg2;
 - (int)rowCountWhenEditing:(BOOL)arg1;
 - (int)rowForIndex:(int)arg1 editableFlag:(BOOL)arg2 whenEditing:(BOOL)arg3;
 - (id)rowsToDeleteInTransition:(BOOL)arg1;

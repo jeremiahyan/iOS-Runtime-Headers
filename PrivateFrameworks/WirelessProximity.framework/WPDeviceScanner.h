@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/WirelessProximity.framework/WirelessProximity
  */
 
-@class <WPDeviceScannerDelegate>, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, XPCClient;
-
 @interface WPDeviceScanner : NSObject <XPCClientDelegate> {
     NSMutableDictionary *_activeScans;
     <WPDeviceScannerDelegate> *_delegate;
@@ -13,10 +11,14 @@
     XPCClient *_xpcClient;
 }
 
-@property(retain) NSMutableDictionary * activeScans;
-@property(retain) NSMutableArray * liveDevices;
-@property(retain) NSObject<OS_dispatch_queue> * queue;
+@property (nonatomic, retain) NSMutableDictionary *activeScans;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) NSMutableArray *liveDevices;
+@property (retain) NSObject<OS_dispatch_queue> *queue;
 @property int state;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (id)activeScans;
@@ -25,8 +27,8 @@
 - (void)connectionInterrupted;
 - (void)dealloc;
 - (id)description;
-- (id)initWithDelegate:(id)arg1 queue:(id)arg2;
 - (id)initWithDelegate:(id)arg1;
+- (id)initWithDelegate:(id)arg1 queue:(id)arg2;
 - (id)liveDevices;
 - (void)messageArrived:(id)arg1;
 - (void)postDevice:(id)arg1;

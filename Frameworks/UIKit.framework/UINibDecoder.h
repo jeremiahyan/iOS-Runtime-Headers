@@ -2,9 +2,12 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString, UINibStringIDTable;
-
 @interface UINibDecoder : NSCoder {
+    Class arrayClass;
+    Class *classes;
+    id delegate;
+    Class dictionaryClass;
+    int failedByKeyMask;
     struct UINibDecoderHeader { 
         unsigned char type[10]; 
         unsigned int formatVersion; 
@@ -25,11 +28,8 @@
             unsigned int count; 
             unsigned int offset; 
         } classes; 
-    struct UINibDecoderRecursiveState { 
-        int objectID; 
-        int nextGenericKey; 
-        unsigned int nextValueSearchIndex; 
-        BOOL replaced; 
+    } header;
+    long inlinedValueKey;
     struct UIKeyToKeyIDCache { 
         NSString *previousKey[64]; 
         void *previousKeyID[64]; 
@@ -37,17 +37,6 @@
         int hashHits; 
         int hashHotMisses; 
         int hashColdMisses; 
-    struct UIKeyAndScopeToValueCache { 
-        unsigned int previousScope; 
-        unsigned int previousKey; 
-        struct UINibDecoderValue {} *previousValue; 
-    Class arrayClass;
-    Class *classes;
-    id delegate;
-    Class dictionaryClass;
-    int failedByKeyMask;
-    } header;
-    long inlinedValueKey;
     } keyIDCache;
     UINibStringIDTable *keyIDTable;
     unsigned int *keyMasks;
@@ -57,10 +46,19 @@
     id *missingClasses;
     struct UINibDecoderObjectEntry { unsigned int x1; unsigned int x2; } *objects;
     id *objectsByObjectID;
+    struct UINibDecoderRecursiveState { 
+        int objectID; 
+        int nextGenericKey; 
+        unsigned int nextValueSearchIndex; 
+        BOOL replaced; 
     } recursiveState;
     int savedByKeyMask;
     Class setClass;
     char *shortObjectClassIDs;
+    struct UIKeyAndScopeToValueCache { 
+        unsigned int previousScope; 
+        unsigned int previousKey; 
+        struct UINibDecoderValue {} *previousValue; 
     } valueCache;
     void *valueData;
     unsigned long valueDataSize;
@@ -103,8 +101,8 @@
 - (void)decodeValuesOfObjCTypes:(const char *)arg1;
 - (id)delegate;
 - (void)finishDecoding;
-- (id)initForReadingWithData:(id)arg1 error:(id*)arg2;
 - (id)initForReadingWithData:(id)arg1;
+- (id)initForReadingWithData:(id)arg1 error:(id*)arg2;
 - (id)nextGenericKey;
 - (void)replaceObject:(id)arg1 withObject:(id)arg2;
 - (void)setDelegate:(id)arg1;

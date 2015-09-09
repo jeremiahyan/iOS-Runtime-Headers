@@ -2,18 +2,20 @@
    Image: /System/Library/PrivateFrameworks/CalDAV.framework/CalDAV
  */
 
-@class <CoreDAVTaskGroupDelegate>, CoreDAVPropFindTask, ICSDocument, NSURL;
-
 @interface CalDAVGetOfficeHoursTaskGroup : CoreDAVTaskGroup <CoreDAVPropFindTaskDelegate> {
     ICSDocument *_calendarAvailability;
     CoreDAVPropFindTask *_fetchTask;
     NSURL *_inboxURL;
 }
 
-@property(retain) ICSDocument * calendarAvailability;
-@property <CoreDAVTaskGroupDelegate> * delegate;
-@property(retain) CoreDAVPropFindTask * fetchTask;
-@property(retain) NSURL * inboxURL;
+@property (nonatomic, retain) ICSDocument *calendarAvailability;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <CoreDAVTaskGroupDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) CoreDAVPropFindTask *fetchTask;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) NSURL *inboxURL;
+@property (readonly) Class superclass;
 
 - (void)_finishWithError:(id)arg1;
 - (id)calendarAvailability;

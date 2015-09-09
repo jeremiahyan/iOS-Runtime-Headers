@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
  */
 
-@class CKMediaObject, UIImageView, UILabel;
-
-@interface CKContactBalloonView : CKColoredBalloonView {
+@interface CKContactBalloonView : CKColoredBalloonView <CKContactBalloonViewProtocol> {
     UIImageView *_chevron;
     UIImageView *_contactImageView;
     CKMediaObject *_mediaObject;
@@ -12,14 +10,19 @@
     UILabel *_organizationLabel;
 }
 
-@property(retain) UIImageView * chevron;
-@property(retain) UIImageView * contactImageView;
-@property(retain) CKMediaObject * mediaObject;
-@property(retain) UILabel * nameLabel;
-@property(retain) UILabel * organizationLabel;
+@property (nonatomic, retain) UIImageView *chevron;
+@property (nonatomic, retain) UIImageView *contactImageView;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) CKMediaObject *mediaObject;
+@property (nonatomic, retain) UILabel *nameLabel;
+@property (nonatomic, retain) UILabel *organizationLabel;
+@property (readonly) Class superclass;
 
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })alignmentRectInsets;
 - (id)chevron;
+- (void)configureForMediaObject:(id)arg1 previewWidth:(float)arg2 orientation:(BOOL)arg3;
 - (void)configureForMessagePart:(id)arg1;
 - (id)contactImageView;
 - (void)dealloc;

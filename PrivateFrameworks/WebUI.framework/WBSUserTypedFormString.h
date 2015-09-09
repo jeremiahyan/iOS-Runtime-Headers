@@ -2,16 +2,14 @@
    Image: /System/Library/PrivateFrameworks/WebUI.framework/WebUI
  */
 
-@class NSString;
-
 @interface WBSUserTypedFormString : WBSFormAutoFillItem {
     NSString *_userTypedString;
 }
 
-@property(readonly) NSString * userTypedString;
+@property (nonatomic, readonly) NSString *userTypedString;
 
+- (void).cxx_destruct;
 - (id)completion;
-- (void)dealloc;
 - (id)initWithUserTypedString:(id)arg1;
 - (id)userTypedString;
 

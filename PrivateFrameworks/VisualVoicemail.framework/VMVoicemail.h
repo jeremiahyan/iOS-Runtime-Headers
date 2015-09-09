@@ -2,19 +2,21 @@
    Image: /System/Library/PrivateFrameworks/VisualVoicemail.framework/VisualVoicemail
  */
 
-@class NSMutableDictionary, NSObject<OS_dispatch_queue>, VMAccount;
-
 @interface VMVoicemail : NSObject {
     VMAccount *_account;
     NSMutableDictionary *_cache;
     NSObject<OS_dispatch_queue> *_cacheQueue;
+    id _cachedAddressBookRef;
+    NSString *_cachedDisplayName;
     struct __CFPhoneNumber { } *_callbackPhoneNumber;
     long long _identifier;
     struct __CFPhoneNumber { } *_senderPhoneNumber;
 }
 
-@property(readonly) struct __CFPhoneNumber { }* callbackPhoneNumber;
-@property(readonly) struct __CFPhoneNumber { }* senderPhoneNumber;
+@property (nonatomic, retain) id cachedAddressBookRef;
+@property (nonatomic, retain) NSString *cachedDisplayName;
+@property (readonly) struct __CFPhoneNumber { }*callbackPhoneNumber;
+@property (readonly) struct __CFPhoneNumber { }*senderPhoneNumber;
 
 + (void)_doVoicemailMapHousekeepingNoLock;
 + (id)_findPreviouslyCreatedVoicemailWithAccountNoLock:(id)arg1 identifier:(long long)arg2;
@@ -26,11 +28,13 @@
 
 - (void)_forceUpdateCache;
 - (void)_handleDataAvailable:(id)arg1;
-- (void)_lockedPreemptivelySetFlags:(unsigned int)arg1 clearFlags:(unsigned int)arg2 unlockedBlock:(id*)arg3;
+- (void)_lockedPreemptivelySetFlags:(unsigned int)arg1 clearFlags:(unsigned int)arg2 unlockedBlock:(id /* block */*)arg3;
 - (void)_preemptivelySetFlags:(unsigned int)arg1 clearFlags:(unsigned int)arg2;
 - (void)_updateCache;
-- (void*)abRecordUsingAddressBook:(void*)arg1 withIdentifier:(int*)arg2;
 - (void*)abRecordUsingAddressBook:(void*)arg1;
+- (void*)abRecordUsingAddressBook:(void*)arg1 withIdentifier:(int*)arg2;
+- (id)cachedAddressBookRef;
+- (id)cachedDisplayName;
 - (id)callbackNumber;
 - (struct __CFPhoneNumber { }*)callbackPhoneNumber;
 - (id)dataPath;
@@ -49,6 +53,8 @@
 - (unsigned long long)remoteUID;
 - (id)sender;
 - (struct __CFPhoneNumber { }*)senderPhoneNumber;
+- (void)setCachedAddressBookRef:(id)arg1;
+- (void)setCachedDisplayName:(id)arg1;
 - (void)setFlags:(unsigned int)arg1;
 - (BOOL)willBroadcastNotificationName:(id)arg1 userInfo:(id)arg2;
 

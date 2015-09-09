@@ -2,17 +2,19 @@
    Image: /System/Library/PrivateFrameworks/TelephonyUI.framework/TelephonyUI
  */
 
-@class <TPDialerKeypadDelegate>, TPDialerSoundController;
-
 @interface TPDialerNumberPad : TPNumberPad <TPDialerKeypadProtocol> {
     <TPDialerKeypadDelegate> *_delegate;
     BOOL _playsSounds;
     TPDialerSoundController *_soundController;
 }
 
-@property <TPDialerKeypadDelegate> * delegate;
-@property BOOL playsSounds;
-@property(retain) TPDialerSoundController * soundController;
+@property (readonly, copy) NSString *debugDescription;
+@property <TPDialerKeypadDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL playsSounds;
+@property (retain) TPDialerSoundController *soundController;
+@property (readonly) Class superclass;
 
 + (id)dialerNumberPadFullCharacters;
 + (id)dialerNumberPadNumericCharacters;

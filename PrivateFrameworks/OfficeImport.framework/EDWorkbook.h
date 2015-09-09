@@ -2,11 +2,10 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class ECMappingContext, EDProcessors, EDReference, EDResources, EDWarnings, ESDContainer, NSDate, NSMutableArray, NSString, OADTheme;
-
 @interface EDWorkbook : OCDDocument {
     unsigned int mActiveSheetIndex;
-    unsigned int mDateBase;
+    NSMutableArray *mBulletBlips;
+    int mDateBase;
     NSDate *mDateBaseDate;
     ESDContainer *mEscherDrawingGroup;
     NSString *mFileName;
@@ -26,7 +25,8 @@
 - (void)addOtherResources:(id)arg1;
 - (void)addSheet:(id)arg1;
 - (void)applyProcessors;
-- (unsigned int)dateBase;
+- (id)bulletBlips;
+- (int)dateBase;
 - (id)dateBaseDate;
 - (void)dealloc;
 - (id)escherDrawingGroup;
@@ -36,22 +36,24 @@
 - (id)init;
 - (id)initWithFileName:(id)arg1 andStringOptimization:(bool)arg2;
 - (id)initWithStringOptimization:(bool)arg1;
+- (unsigned int)legacyDateBase;
 - (id)mappingContext;
 - (id)processors;
 - (void)reduceMemoryIfPossible;
+- (void)removeSheetAtIndex:(unsigned int)arg1;
 - (void)removeWorksheetAtIndex:(unsigned int)arg1;
 - (id)resources;
 - (void)setActiveSheet:(id)arg1;
 - (void)setActiveSheetIndex:(unsigned int)arg1;
-- (void)setDateBase:(unsigned int)arg1;
+- (void)setDateBase:(int)arg1;
 - (void)setEscherDrawingGroup:(id)arg1;
 - (void)setMappingContext:(id)arg1;
 - (void)setResources:(id)arg1;
 - (void)setTemporaryDirectory:(id)arg1;
 - (void)setTheme:(id)arg1;
 - (void)setVisibleRange:(id)arg1;
-- (id)sheetAtIndex:(unsigned int)arg1 loadIfNeeded:(bool)arg2;
 - (id)sheetAtIndex:(unsigned int)arg1;
+- (id)sheetAtIndex:(unsigned int)arg1 loadIfNeeded:(bool)arg2;
 - (unsigned int)sheetCount;
 - (id)temporaryDirectory;
 - (id)theme;

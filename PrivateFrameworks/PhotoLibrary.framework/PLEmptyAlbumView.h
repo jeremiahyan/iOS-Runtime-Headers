@@ -2,16 +2,14 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibrary.framework/PhotoLibrary
  */
 
-@class NSObject<PLAlbumProtocol>, NSString, UIImage, UIImageView, UILabel, UILongPressGestureRecognizer;
-
 @interface PLEmptyAlbumView : UIView {
+    struct NSObject { Class x1; } *_album;
+    int _currentOrientation;
     struct UIEdgeInsets { 
         float top; 
         float left; 
         float bottom; 
         float right; 
-    struct NSObject { Class x1; } *_album;
-    int _currentOrientation;
     } _edgeInsets;
     int _filter;
     BOOL _filterInUse;
@@ -28,9 +26,9 @@
     BOOL _useLargeImages;
 }
 
-@property(retain) NSObject<PLAlbumProtocol> * album;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } edgeInsets;
-@property int filter;
+@property (nonatomic, retain) NSObject<PLAlbumProtocol> *album;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } edgeInsets;
+@property (nonatomic) int filter;
 
 - (id)_emptyRollImageForAlbum:(struct NSObject { Class x1; }*)arg1 interfaceOrientation:(int)arg2;
 - (void)_longPressGesture:(id)arg1;
@@ -45,8 +43,8 @@
 - (void)dealloc;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })edgeInsets;
 - (int)filter;
-- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 useLargeImages:(BOOL)arg2;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 useLargeImages:(BOOL)arg2;
 - (void)layoutSubviews;
 - (void)paste:(id)arg1;
 - (void)setAlbum:(struct NSObject { Class x1; }*)arg1;

@@ -2,9 +2,13 @@
    Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
  */
 
-@class <SUOverlayBackgroundDelegate>, NSArray, NSMutableArray, SUOverlayViewController, SUScalingFlipView, SUTouchCaptureView, UISwipeGestureRecognizer;
-
 @interface SUOverlayBackgroundViewController : SUViewController <SUScalingFlipViewDelegate, UIGestureRecognizerDelegate> {
+    NSMutableArray *_actionQueue;
+    SUScalingFlipView *_activeFlipView;
+    BOOL _askingToDismissEverything;
+    BOOL _askingToDismissSelection;
+    SUTouchCaptureView *_captureView;
+    <SUOverlayBackgroundDelegate> *_delegate;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -14,21 +18,19 @@
             float width; 
             float height; 
         } size; 
-    NSMutableArray *_actionQueue;
-    SUScalingFlipView *_activeFlipView;
-    BOOL _askingToDismissEverything;
-    BOOL _askingToDismissSelection;
-    SUTouchCaptureView *_captureView;
-    <SUOverlayBackgroundDelegate> *_delegate;
     } _keyboardFrame;
     int _selectedViewControllerIndex;
     UISwipeGestureRecognizer *_swipeGestureRecognizer;
     NSMutableArray *_viewControllers;
 }
 
-@property <SUOverlayBackgroundDelegate> * delegate;
-@property(readonly) SUOverlayViewController * selectedViewController;
-@property(readonly) NSArray * viewControllers;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SUOverlayBackgroundDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) SUOverlayViewController *selectedViewController;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) NSArray *viewControllers;
 
 - (void)_addViewController:(id)arg1;
 - (void)_backgroundAnimationDidStop:(id)arg1 finished:(id)arg2 context:(void*)arg3;

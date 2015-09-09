@@ -2,9 +2,8 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSMutableArray;
-
 @interface OADGroup : OADDrawable <OADDrawableContainer> {
+    NSMutableArray *mChildren;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -14,9 +13,13 @@
             float width; 
             float height; 
         } size; 
-    NSMutableArray *mChildren;
     } mLogicalBounds;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (id).cxx_construct;
 - (void)addChild:(id)arg1;
@@ -25,6 +28,7 @@
 - (unsigned int)childCount;
 - (id)children;
 - (void)dealloc;
+- (id)description;
 - (id)groupProperties;
 - (id)init;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })logicalBounds;

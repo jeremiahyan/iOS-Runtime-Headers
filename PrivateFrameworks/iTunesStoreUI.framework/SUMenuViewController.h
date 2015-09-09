@@ -2,16 +2,18 @@
    Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
  */
 
-@class <SUMenuViewControllerDelegate>, UITableView;
-
 @interface SUMenuViewController : SUViewController <UITableViewDataSource, UITableViewDelegate> {
     <SUMenuViewControllerDelegate> *_delegate;
     int _selectedIndex;
     UITableView *_tableView;
 }
 
-@property <SUMenuViewControllerDelegate> * delegate;
-@property int selectedIndex;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SUMenuViewControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) int selectedIndex;
+@property (readonly) Class superclass;
 
 - (BOOL)_sendDidCancel;
 - (id)_tableView;

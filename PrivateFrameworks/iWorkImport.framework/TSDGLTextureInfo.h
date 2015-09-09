@@ -10,16 +10,21 @@
     unsigned int _width;
 }
 
-@property(readonly) BOOL containsMipmaps;
-@property(readonly) unsigned int height;
-@property(readonly) unsigned int name;
-@property(readonly) unsigned int target;
-@property(readonly) unsigned int width;
+@property (nonatomic, readonly) BOOL containsMipmaps;
+@property (nonatomic, readonly) unsigned int height;
+@property (nonatomic, readonly) unsigned int name;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } size;
+@property (nonatomic, readonly) unsigned int target;
+@property (nonatomic, readonly) unsigned int width;
+
++ (id)textureInfoWithName:(unsigned int)arg1 target:(unsigned int)arg2 width:(unsigned int)arg3 height:(unsigned int)arg4 containsMipmaps:(BOOL)arg5;
 
 - (BOOL)containsMipmaps;
+- (id)description;
 - (unsigned int)height;
 - (id)initWithName:(unsigned int)arg1 target:(unsigned int)arg2 width:(unsigned int)arg3 height:(unsigned int)arg4 containsMipmaps:(BOOL)arg5;
 - (unsigned int)name;
+- (struct CGSize { float x1; float x2; })size;
 - (unsigned int)target;
 - (void)teardown;
 - (unsigned int)width;

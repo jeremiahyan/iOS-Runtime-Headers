@@ -2,13 +2,13 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class _UIRemoteViewController;
-
 @interface _UITextEffectsRemoteView : _UIRemoteView {
     _UIRemoteViewController *_remoteViewController;
 }
 
-@property _UIRemoteViewController * remoteViewController;
+@property (nonatomic) _UIRemoteViewController *remoteViewController;
+
++ (BOOL)_requiresWindowTouches;
 
 - (id)remoteViewController;
 - (void)setRemoteViewController:(id)arg1;

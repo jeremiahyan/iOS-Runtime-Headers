@@ -2,12 +2,10 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class WDAContent, WDDocument, WDText;
-
 @interface WDATextBox : NSObject {
-    boolmOle;
     WDDocument *mDocument;
     unsigned long mNextTextBoxId;
+    bool mOle;
     WDAContent *mParent;
     WDText *mText;
 }

@@ -2,13 +2,15 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface TSCHChartFeatureBubble : TSCHChartFeatureScatter {
-}
+@interface TSCHChartFeatureBubble : TSCHChartFeatureScatter
 
 - (id)defaultDataFileName;
+- (id)filteredStyleOwnersFromStyleOwners:(id)arg1;
 - (id)genericToSpecificPropertyMap;
+- (unsigned int)gridOffsetToSeriesForScatterFormat:(int)arg1;
 - (void)p_initializeAxisIDs;
 - (Class)presetImagerClass;
+- (int)representativeGridValueAxisType;
 - (unsigned int)styleIndexForAxisID:(id)arg1;
 - (id)supportedAxisScales;
 - (id)supportedSeriesTypes;
@@ -16,6 +18,7 @@
 - (BOOL)supportsConnectingLines;
 - (BOOL)supportsEditingForAxisID:(id)arg1;
 - (BOOL)supportsSharedAndSeparateX;
+- (BOOL)supportsShowLabelsInFrontOption;
 - (void)updateTitlesForExportingModel:(id)arg1 info:(id)arg2;
 - (Class)valueAxisClassForID:(id)arg1 scale:(int)arg2;
 

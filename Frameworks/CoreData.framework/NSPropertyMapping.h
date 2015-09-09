@@ -2,13 +2,11 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@class NSArray, NSDictionary, NSExpression, NSString;
-
 @interface NSPropertyMapping : NSObject {
+    NSString *_name;
     struct __propertyMappingFlags { 
         unsigned int _isInUse : 1; 
         unsigned int _reservedPropertyMapping : 31; 
-    NSString *_name;
     } _propertyMappingFlags;
     NSArray *_propertyTransforms;
     void *_reserved;
@@ -16,6 +14,10 @@
     NSDictionary *_userInfo;
     NSExpression *_valueExpression;
 }
+
+@property (copy) NSString *name;
+@property (retain) NSDictionary *userInfo;
+@property (retain) NSExpression *valueExpression;
 
 + (void)initialize;
 

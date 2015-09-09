@@ -2,20 +2,20 @@
    Image: /System/Library/PrivateFrameworks/IMAVCore.framework/IMAVCore
  */
 
-@class IMAVCamera;
-
 @interface IMAVLocalPreviewClient : NSObject <IMSystemMonitorListener> {
+    BOOL _supportsPreview;
     BOOL _wantsPausedPreview;
     BOOL _wantsPreview;
     BOOL _wantsUnpausedPreview;
 }
 
-@property unsigned int cameraOrientation;
-@property unsigned int cameraType;
-@property(readonly) BOOL isPreviewRunning;
-@property IMAVCamera * localCamera;
-@property void* localVideoBackLayer;
-@property void* localVideoLayer;
+@property (nonatomic) unsigned int cameraOrientation;
+@property (nonatomic) unsigned int cameraType;
+@property (nonatomic, readonly) BOOL isPreviewRunning;
+@property (nonatomic) IMAVCamera *localCamera;
+@property (nonatomic) void*localVideoBackLayer;
+@property (nonatomic) void*localVideoLayer;
+@property (nonatomic) BOOL supportsPreview;
 
 + (id)sharedInstance;
 
@@ -50,8 +50,10 @@
 - (void)setLocalScreenAttributes:(id)arg1;
 - (void)setLocalVideoBackLayer:(void*)arg1;
 - (void)setLocalVideoLayer:(void*)arg1;
+- (void)setSupportsPreview:(BOOL)arg1;
 - (void)startPreview;
 - (void)stopPreview;
+- (BOOL)supportsPreview;
 - (void)systemApplicationDidEnterBackground;
 - (void)systemApplicationWillEnterForeground;
 - (void)systemScreenDidPowerDown;

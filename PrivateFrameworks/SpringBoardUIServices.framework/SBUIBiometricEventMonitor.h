@@ -2,13 +2,13 @@
    Image: /System/Library/PrivateFrameworks/SpringBoardUIServices.framework/SpringBoardUIServices
  */
 
-@class <SBUIBiometricEventMonitorDelegate>, BiometricKit, NSCountedSet, NSHashTable;
-
 @interface SBUIBiometricEventMonitor : NSObject <BiometricKitDelegate> {
     NSCountedSet *_activePasscodeViews;
     BiometricKit *_biometricKit;
     <SBUIBiometricEventMonitorDelegate> *_delegate;
     BOOL _deviceLocked;
+    NSCountedSet *_fingerDetectRequesters;
+    BOOL _fingerDetectionEnabled;
     unsigned int _lastEvent;
     BOOL _lockScreenTopmost;
     NSCountedSet *_matchingDisabledRequesters;
@@ -18,7 +18,13 @@
     BOOL _shouldSendFingerOffNotification;
 }
 
-@property <SBUIBiometricEventMonitorDelegate> * delegate;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SBUIBiometricEventMonitorDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) unsigned int lockoutState;
+@property (getter=isMatchingEnabled, nonatomic, readonly) BOOL matchingEnabled;
+@property (readonly) Class superclass;
 
 + (id)sharedInstance;
 
@@ -27,7 +33,9 @@
 - (void)_reevaluateMatching;
 - (void)_setDeviceLocked:(BOOL)arg1;
 - (void)_setMatchingEnabled:(BOOL)arg1;
+- (void)_startFingerDetection;
 - (void)_startMatching;
+- (void)_stopFingerDetection;
 - (void)_stopMatching;
 - (void)_updateHandlersForEvent:(unsigned int)arg1;
 - (void)addObserver:(id)arg1;
@@ -38,12 +46,14 @@
 - (BOOL)hasEnrolledIdentities;
 - (id)init;
 - (BOOL)isMatchingEnabled;
+- (unsigned int)lockoutState;
 - (void)matchResult:(id)arg1 withDetails:(id)arg2;
 - (void)noteScreenDidTurnOff;
 - (void)noteScreenWillTurnOff;
 - (void)noteScreenWillTurnOn;
 - (void)removeObserver:(id)arg1;
 - (void)setDelegate:(id)arg1;
+- (void)setFingerDetectEnabled:(BOOL)arg1 requester:(id)arg2;
 - (void)setLockScreenTopmost:(BOOL)arg1;
 - (void)setMatchingDisabled:(BOOL)arg1 requester:(id)arg2;
 - (void)statusMessage:(unsigned int)arg1;

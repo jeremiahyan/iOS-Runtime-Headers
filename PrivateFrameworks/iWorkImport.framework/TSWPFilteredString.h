@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSString, TSWPDeletionRangeMap, TSWPRangeArray;
-
 @interface TSWPFilteredString : NSString {
     unsigned int _length;
     TSWPDeletionRangeMap *_rangeMap;
@@ -11,10 +9,9 @@
     NSString *_sourceString;
 }
 
-@property(readonly) unsigned int length;
-@property(retain) TSWPDeletionRangeMap * rangeMap;
-@property(readonly) TSWPRangeArray * sourceRanges;
-@property NSString * sourceString;
+@property (nonatomic, retain) TSWPDeletionRangeMap *rangeMap;
+@property (nonatomic, readonly, retain) TSWPRangeArray *sourceRanges;
+@property (nonatomic) NSString *sourceString;
 
 - (unsigned int)charIndexMappedFromStorage:(unsigned int)arg1;
 - (unsigned int)charIndexMappedToStorage:(unsigned int)arg1;

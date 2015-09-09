@@ -2,28 +2,28 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@class NSObject<OS_xpc_object>, NSXPCConnection, NSXPCInterface;
-
 @interface NSXPCDecoder : NSXPCCoder {
-    struct { 
-        unsigned int offset; 
-        int type; 
     int _allowedClassesIndex;
-    id _allowedClassesList[128];
+    /* Warning: unhandled array encoding: '[128@]' */ id _allowedClassesList;
     unsigned int _collectionPointer;
-    struct { /* ? */ } *_collections[128];
+    struct { /* ? */ } *_collections;
     NSXPCConnection *_connection;
     void **_decoder;
     unsigned long long _genericIndex;
     NSXPCInterface *_interface;
     NSObject<OS_xpc_object> *_oolObjects;
     SEL _replyToSelector;
+    struct { 
+        unsigned int offset; 
+        int type; 
     } _rootObject;
 }
 
-@property NSXPCConnection * _connection;
-@property(retain) NSXPCInterface * interface;
+@property NSXPCConnection *_connection;
+@property (retain) NSXPCInterface *interface;
 @property SEL replyToSelector;
+
++ (id)_createXPCObjectWithData:(id)arg1;
 
 - (id)_connection;
 - (id)_decodeArrayOfObjectsForKey:(id)arg1;

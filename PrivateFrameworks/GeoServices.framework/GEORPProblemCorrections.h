@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class GEORPCorrectedCoordinate, GEORPCorrectedLabel, GEORPCorrectedSearch, GEORPMapLocation, NSMutableArray, NSString;
-
 @interface GEORPProblemCorrections : PBCodable <NSCopying> {
     NSString *_comments;
     GEORPCorrectedCoordinate *_correctedCoordinate;
@@ -11,28 +9,38 @@
     GEORPCorrectedLabel *_correctedLabel;
     GEORPMapLocation *_correctedMapLocation;
     GEORPCorrectedSearch *_correctedSearch;
+    GEORPDirectionsProblem *_directionsProblem;
+    NSMutableArray *_photoWithMetadatas;
+    GEORPPlaceProblem *_placeProblem;
 }
 
-@property(retain) NSString * comments;
-@property(retain) GEORPCorrectedCoordinate * correctedCoordinate;
-@property(retain) NSMutableArray * correctedFields;
-@property(retain) GEORPCorrectedLabel * correctedLabel;
-@property(retain) GEORPMapLocation * correctedMapLocation;
-@property(retain) GEORPCorrectedSearch * correctedSearch;
-@property(readonly) BOOL hasComments;
-@property(readonly) BOOL hasCorrectedCoordinate;
-@property(readonly) BOOL hasCorrectedLabel;
-@property(readonly) BOOL hasCorrectedMapLocation;
-@property(readonly) BOOL hasCorrectedSearch;
+@property (nonatomic, retain) NSString *comments;
+@property (nonatomic, retain) GEORPCorrectedCoordinate *correctedCoordinate;
+@property (nonatomic, retain) NSMutableArray *correctedFields;
+@property (nonatomic, retain) GEORPCorrectedLabel *correctedLabel;
+@property (nonatomic, retain) GEORPMapLocation *correctedMapLocation;
+@property (nonatomic, retain) GEORPCorrectedSearch *correctedSearch;
+@property (nonatomic, retain) GEORPDirectionsProblem *directionsProblem;
+@property (nonatomic, readonly) BOOL hasComments;
+@property (nonatomic, readonly) BOOL hasCorrectedCoordinate;
+@property (nonatomic, readonly) BOOL hasCorrectedLabel;
+@property (nonatomic, readonly) BOOL hasCorrectedMapLocation;
+@property (nonatomic, readonly) BOOL hasCorrectedSearch;
+@property (nonatomic, readonly) BOOL hasDirectionsProblem;
+@property (nonatomic, readonly) BOOL hasPlaceProblem;
+@property (nonatomic, retain) NSMutableArray *photoWithMetadatas;
+@property (nonatomic, retain) GEORPPlaceProblem *placeProblem;
 
-- (void)addCorrectedFields:(id)arg1;
+- (void)addCorrectedField:(id)arg1;
+- (void)addPhotoWithMetadata:(id)arg1;
 - (void)clearCorrectedFields;
+- (void)clearPhotoWithMetadatas;
 - (id)comments;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)correctedCoordinate;
+- (id)correctedFieldAtIndex:(unsigned int)arg1;
 - (id)correctedFields;
-- (id)correctedFieldsAtIndex:(unsigned int)arg1;
 - (unsigned int)correctedFieldsCount;
 - (id)correctedLabel;
 - (id)correctedMapLocation;
@@ -40,13 +48,21 @@
 - (void)dealloc;
 - (id)description;
 - (id)dictionaryRepresentation;
+- (id)directionsProblem;
 - (BOOL)hasComments;
 - (BOOL)hasCorrectedCoordinate;
 - (BOOL)hasCorrectedLabel;
 - (BOOL)hasCorrectedMapLocation;
 - (BOOL)hasCorrectedSearch;
+- (BOOL)hasDirectionsProblem;
+- (BOOL)hasPlaceProblem;
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
+- (void)mergeFrom:(id)arg1;
+- (id)photoWithMetadataAtIndex:(unsigned int)arg1;
+- (id)photoWithMetadatas;
+- (unsigned int)photoWithMetadatasCount;
+- (id)placeProblem;
 - (BOOL)readFrom:(id)arg1;
 - (void)setComments:(id)arg1;
 - (void)setCorrectedCoordinate:(id)arg1;
@@ -54,6 +70,9 @@
 - (void)setCorrectedLabel:(id)arg1;
 - (void)setCorrectedMapLocation:(id)arg1;
 - (void)setCorrectedSearch:(id)arg1;
+- (void)setDirectionsProblem:(id)arg1;
+- (void)setPhotoWithMetadatas:(id)arg1;
+- (void)setPlaceProblem:(id)arg1;
 - (void)writeTo:(id)arg1;
 
 @end

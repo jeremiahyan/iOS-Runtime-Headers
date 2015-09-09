@@ -2,14 +2,7 @@
    Image: /System/Library/PrivateFrameworks/TelephonyUI.framework/TelephonyUI
  */
 
-@class TPBackgroundRoundedRectView, TPPathView, UIColor;
-
 @interface TPRevealingRingView : UIView {
-    struct UIEdgeInsets { 
-        float top; 
-        float left; 
-        float bottom; 
-        float right; 
     float _alphaInsideRing;
     float _alphaOutsideRing;
     int _animationStyle;
@@ -27,27 +20,32 @@
     float _minimumRevealingScale;
     TPPathView *_outerGammaView;
     TPBackgroundRoundedRectView *_outerView;
+    struct UIEdgeInsets { 
+        float top; 
+        float left; 
+        float bottom; 
+        float right; 
     } _paddingOutsideRing;
     float _revealAnimationDuration;
     BOOL _revealed;
     float _unrevealAnimationDuration;
 }
 
-@property float alphaInsideRing;
-@property float alphaOutsideRing;
-@property int animationStyle;
-@property(retain) UIColor * colorInsideRing;
-@property(retain) UIColor * colorOutsideRing;
-@property float cornerRadius;
-@property float defaultRingStrokeWidth;
-@property float gammaBoost;
-@property BOOL gammaBoostInside;
-@property BOOL gammaBoostOuterRing;
-@property float minimumRevealingScale;
-@property(readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } paddingOutsideRing;
-@property float revealAnimationDuration;
-@property(readonly) struct CGSize { float x1; float x2; } ringSize;
-@property float unrevealAnimationDuration;
+@property (nonatomic) float alphaInsideRing;
+@property (nonatomic) float alphaOutsideRing;
+@property (nonatomic) int animationStyle;
+@property (nonatomic, retain) UIColor *colorInsideRing;
+@property (nonatomic, retain) UIColor *colorOutsideRing;
+@property (nonatomic) float cornerRadius;
+@property (nonatomic) float defaultRingStrokeWidth;
+@property (nonatomic) float gammaBoost;
+@property (nonatomic) BOOL gammaBoostInside;
+@property (nonatomic) BOOL gammaBoostOuterRing;
+@property (nonatomic) float minimumRevealingScale;
+@property (nonatomic, readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } paddingOutsideRing;
+@property (nonatomic) float revealAnimationDuration;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } ringSize;
+@property (nonatomic) float unrevealAnimationDuration;
 
 - (void)_adjustGammaBoostIfNecessary;
 - (void)_animateForReveal:(BOOL)arg1 withDuration:(float)arg2 delay:(double)arg3;
@@ -70,8 +68,8 @@
 - (float)gammaBoost;
 - (BOOL)gammaBoostInside;
 - (BOOL)gammaBoostOuterRing;
-- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 paddingOutsideRing:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg2;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 paddingOutsideRing:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg2;
 - (struct CGSize { float x1; float x2; })intrinsicContentSize;
 - (void)layoutSubviews;
 - (float)minimumRevealingScale;
@@ -92,8 +90,8 @@
 - (void)setMinimumRevealingScale:(float)arg1;
 - (void)setPaddingOutsideRing:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
 - (void)setRevealAnimationDuration:(float)arg1;
-- (void)setRevealed:(BOOL)arg1 animated:(BOOL)arg2 delay:(double)arg3;
 - (void)setRevealed:(BOOL)arg1 animated:(BOOL)arg2;
+- (void)setRevealed:(BOOL)arg1 animated:(BOOL)arg2 delay:(double)arg3;
 - (void)setRingGammaBoost:(float)arg1;
 - (void)setUnrevealAnimationDuration:(float)arg1;
 - (void)setUsesColorBurnBlending:(BOOL)arg1;

@@ -2,30 +2,28 @@
    Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
  */
 
-@class NSString, NSURL, UIImage;
-
 @interface SUSectionButton : NSObject <NSCopying> {
+    NSString *_accessibilityTitle;
+    NSString *_displayTitle;
+    UIImage *_image;
     struct UIEdgeInsets { 
         float top; 
         float left; 
         float bottom; 
         float right; 
-    NSString *_accessibilityTitle;
-    NSString *_displayTitle;
-    UIImage *_image;
     } _imageInsets;
     NSURL *_imageURL;
     float _imageURLScale;
     int _tag;
 }
 
-@property(copy) NSString * accessibilityTitle;
-@property(copy) NSString * displayTitle;
-@property(retain) UIImage * image;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } imageInsets;
-@property(copy) NSURL * imageURL;
-@property float imageURLScale;
-@property int tag;
+@property (nonatomic, copy) NSString *accessibilityTitle;
+@property (nonatomic, copy) NSString *displayTitle;
+@property (nonatomic, retain) UIImage *image;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } imageInsets;
+@property (nonatomic, copy) NSURL *imageURL;
+@property (nonatomic) float imageURLScale;
+@property (nonatomic) int tag;
 
 - (id)accessibilityTitle;
 - (void)applyToBarButtonItem:(id)arg1;

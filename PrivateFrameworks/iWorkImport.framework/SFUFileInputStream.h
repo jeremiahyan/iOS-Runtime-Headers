@@ -10,6 +10,11 @@
     long long mStartOffset;
 }
 
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+
 - (BOOL)canSeek;
 - (void)close;
 - (id)closeLocalStream;
@@ -17,8 +22,8 @@
 - (void)disableSystemCaching;
 - (void)enableSystemCaching;
 - (id)initWithFileDescriptor:(int)arg1 offset:(long long)arg2 length:(long long)arg3;
-- (id)initWithPath:(id)arg1 offset:(long long)arg2 length:(long long)arg3;
 - (id)initWithPath:(id)arg1 offset:(long long)arg2;
+- (id)initWithPath:(id)arg1 offset:(long long)arg2 length:(long long)arg3;
 - (long long)offset;
 - (unsigned long)readToBuffer:(char *)arg1 size:(unsigned long)arg2;
 - (void)seekToOffset:(long long)arg1;

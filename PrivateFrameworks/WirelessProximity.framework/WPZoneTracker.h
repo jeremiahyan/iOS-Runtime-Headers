@@ -2,23 +2,23 @@
    Image: /System/Library/PrivateFrameworks/WirelessProximity.framework/WirelessProximity
  */
 
-@class <WPZoneTrackerDelegate>, NSObject<OS_dispatch_queue>, XPCClient;
-
 @interface WPZoneTracker : NSObject <XPCClientDelegate> {
     XPCClient *_connection;
     <WPZoneTrackerDelegate> *_delegate;
-    NSObject<OS_dispatch_queue> *_queue;
     int _state;
     BOOL _wantEntry;
     BOOL _wantExit;
 }
 
-@property(retain) XPCClient * connection;
-@property <WPZoneTrackerDelegate> * delegate;
-@property(retain) NSObject<OS_dispatch_queue> * queue;
+@property (nonatomic, retain) XPCClient *connection;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <WPZoneTrackerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
 @property int state;
-@property BOOL wantEntry;
-@property BOOL wantExit;
+@property (readonly) Class superclass;
+@property (nonatomic) BOOL wantEntry;
+@property (nonatomic) BOOL wantExit;
 
 - (void).cxx_destruct;
 - (void)changeState:(int)arg1;
@@ -29,15 +29,13 @@
 - (id)delegate;
 - (id)description;
 - (void)getCurrentTrackedZones;
-- (id)initWithDelegate:(id)arg1 queue:(id)arg2;
 - (id)initWithDelegate:(id)arg1;
+- (id)initWithDelegate:(id)arg1 queue:(id)arg2;
 - (void)messageArrived:(id)arg1;
-- (id)queue;
 - (void)registerForZoneChangesMatching:(id)arg1;
 - (void)registerZonesFailed:(id)arg1;
 - (void)setConnection:(id)arg1;
 - (void)setDelegate:(id)arg1;
-- (void)setQueue:(id)arg1;
 - (void)setState:(int)arg1;
 - (void)setWantEntry:(BOOL)arg1;
 - (void)setWantExit:(BOOL)arg1;

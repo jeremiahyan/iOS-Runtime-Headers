@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class EDCollection, EDReference, EDRowBlock, EDRowBlocks, EDWorkbook, EDWorksheet;
-
 @interface EDReferenceIterator : NSObject {
     unsigned int mCellIndex;
     int mCurrentCellIndex;
@@ -15,7 +13,7 @@
     EDRowBlock *mRowBlock;
     unsigned int mRowBlockIndex;
     EDRowBlocks *mRowBlocks;
-    struct EDRowInfo { unsigned int x1; unsigned int x2; unsigned short x3; unsigned short x4; unsigned short x5; unsigned short x6; unsigned char x7; unsigned int x8 : 1; unsigned int x9 : 1; } *mRowInfo;
+    struct EDRowInfo { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; unsigned int x5; unsigned short x6; unsigned char x7; unsigned int x8 : 1; unsigned int x9 : 1; } *mRowInfo;
     unsigned int mRowInfoIndex;
     EDWorkbook *mWorkbook;
 }
@@ -28,7 +26,7 @@
 - (id)initWithReference:(id)arg1 workbook:(id)arg2;
 - (id)initWithReferenceArray:(id)arg1 reference:(id)arg2 workbook:(id)arg3;
 - (id)initWithReferenceArray:(id)arg1 workbook:(id)arg2;
-- (struct EDCellHeader { unsigned short x1; unsigned int x2; }*)nextCell;
+- (struct EDCellHeader { unsigned int x1; unsigned int x2; }*)nextCell;
 - (bool)nextReference;
 - (bool)nextRow;
 - (void)setCurrentSheet:(id)arg1;

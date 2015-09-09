@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/CoreDAV.framework/CoreDAV
  */
 
-@class <CoreDAVGetAccountPropertiesTaskGroupDelegate>, NSMutableSet, NSSet, NSString, NSURL;
-
-@interface CoreDAVGetAccountPropertiesTaskGroup : CoreDAVTaskGroup <CoreDAVPropFindTaskDelegate, CoreDAVOptionsTaskDelegate, CoreDAVPrincipalSearchPropertySetTaskDelegate, CoreDAVTaskDelegate> {
+@interface CoreDAVGetAccountPropertiesTaskGroup : CoreDAVTaskGroup <CoreDAVOptionsTaskDelegate, CoreDAVPrincipalSearchPropertySetTaskDelegate, CoreDAVPropFindTaskDelegate, CoreDAVTaskDelegate> {
     NSSet *_collections;
     NSString *_displayName;
     NSSet *_emailAddresses;
@@ -17,16 +15,20 @@
     BOOL _shouldIgnoreHomeSetOnDifferentHost;
 }
 
-@property(readonly) NSSet * collections;
-@property <CoreDAVGetAccountPropertiesTaskGroupDelegate> * delegate;
-@property(readonly) NSString * displayName;
-@property(readonly) NSSet * emailAddresses;
-@property BOOL fetchPrincipalSearchProperties;
-@property(readonly) BOOL isExpandPropertyReportSupported;
-@property(readonly) NSSet * principalSearchProperties;
-@property(readonly) NSURL * principalURL;
-@property(readonly) NSURL * resourceID;
-@property BOOL shouldIgnoreHomeSetOnDifferentHost;
+@property (nonatomic, readonly) NSSet *collections;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <CoreDAVGetAccountPropertiesTaskGroupDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) NSString *displayName;
+@property (nonatomic, readonly) NSSet *emailAddresses;
+@property (nonatomic) BOOL fetchPrincipalSearchProperties;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) BOOL isExpandPropertyReportSupported;
+@property (nonatomic, readonly) NSSet *principalSearchProperties;
+@property (nonatomic, readonly) NSURL *principalURL;
+@property (nonatomic, readonly) NSURL *resourceID;
+@property (nonatomic) BOOL shouldIgnoreHomeSetOnDifferentHost;
+@property (readonly) Class superclass;
 
 - (id)_copyAccountPropertiesPropFindElements;
 - (void)_setPropertiesFromParsedResponses:(id)arg1;

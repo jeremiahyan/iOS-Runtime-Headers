@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/CorePDF.framework/CorePDF
  */
 
-@class CPPage, CPZone, NSMutableArray;
-
 @interface CPParagraphMaker : NSObject {
     NSMutableArray *avail;
     NSMutableArray *compoundedShapesOnPage;
@@ -18,8 +16,8 @@
 
 - (void)addCompoundedShapesOn:(id)arg1 to:(id)arg2;
 - (void)addLinesTo:(id)arg1;
-- (unsigned int)alignmentOf:(id)arg1 and:(id)arg2 and:(id)arg3;
 - (unsigned int)alignmentOf:(id)arg1 and:(id)arg2;
+- (unsigned int)alignmentOf:(id)arg1 and:(id)arg2 and:(id)arg3;
 - (void)dealloc;
 - (BOOL)firstWordOf:(id)arg1 fits:(id)arg2 indent:(float)arg3;
 - (BOOL)fitsBelow:(id)arg1 alignment:(unsigned int)arg2 spacing:(float)arg3 from:(int)arg4;

@@ -2,24 +2,22 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@class MPMediaQuery, NSArray, NSMutableArray;
-
-@interface MPMediaQueryShuffledItems : NSObject <NSSecureCoding, NSCopying> {
+@interface MPMediaQueryShuffledItems : NSObject <NSCopying, NSSecureCoding> {
+    unsigned int _activeShuffleType;
+    BOOL _dirty;
     struct _NSRange { 
         unsigned int location; 
         unsigned int length; 
-    unsigned int _activeShuffleType;
-    BOOL _dirty;
     } _focusedRange;
     NSMutableArray *_orderedArray;
     MPMediaQuery *_sourceMediaQuery;
     NSArray *_sourceMediaQueryItems;
 }
 
-@property struct _NSRange { unsigned int x1; unsigned int x2; } focusedRange;
-@property(readonly) NSArray * items;
-@property(readonly) unsigned int realShuffleType;
-@property(readonly) MPMediaQuery * sourceMediaQuery;
+@property (nonatomic) struct _NSRange { unsigned int x1; unsigned int x2; } focusedRange;
+@property (nonatomic, readonly, copy) NSArray *items;
+@property (nonatomic, readonly) unsigned int realShuffleType;
+@property (nonatomic, readonly) MPMediaQuery *sourceMediaQuery;
 
 + (BOOL)supportsSecureCoding;
 
@@ -35,13 +33,13 @@
 - (unsigned int)count;
 - (void)encodeWithCoder:(id)arg1;
 - (struct _NSRange { unsigned int x1; unsigned int x2; })focusedRange;
-- (unsigned int)indexOfItemWithPersistentID:(unsigned long long)arg1 greaterThanOrEqualToIndex:(unsigned int)arg2;
 - (unsigned int)indexOfItemWithPersistentID:(unsigned long long)arg1;
-- (unsigned int)indexOfObject:(id)arg1 greaterThanOrEqualToIndex:(unsigned int)arg2;
+- (unsigned int)indexOfItemWithPersistentID:(unsigned long long)arg1 greaterThanOrEqualToIndex:(unsigned int)arg2;
 - (unsigned int)indexOfObject:(id)arg1;
+- (unsigned int)indexOfObject:(id)arg1 greaterThanOrEqualToIndex:(unsigned int)arg2;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithSourceMediaQuery:(id)arg1 orderedItems:(id)arg2 shuffleType:(unsigned int)arg3;
 - (id)initWithSourceMediaQuery:(id)arg1;
+- (id)initWithSourceMediaQuery:(id)arg1 orderedItems:(id)arg2 shuffleType:(unsigned int)arg3;
 - (void)invalidateSourceMediaQueryAndLoadItems;
 - (id)items;
 - (id)objectAtIndex:(unsigned int)arg1;

@@ -2,18 +2,11 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@interface GEOSearchRequest : GEOPlaceSearchRequest {
-    unsigned short _provider;
-}
+@interface GEOSearchRequest : GEOPlaceSearchRequest
 
-@property unsigned short provider;
-
-- (id)_mapkit_initForCompletionsWithEntriesType:(int)arg1 listType:(int)arg2;
-- (id)_mapkit_initWithLocalSearchRequest:(id)arg1;
-- (id)init;
-- (unsigned short)provider;
+- (id)initWithBusinessIDs:(id)arg1 traits:(id)arg2;
+- (id)initWithFragment:(id)arg1 entriesType:(int)arg2 listType:(int)arg3 traits:(id)arg4;
+- (id)initWithSearchQuery:(id)arg1 hint:(id)arg2 maxResults:(unsigned int)arg3 suppressResultsRequiringAttribution:(BOOL)arg4 traits:(id)arg5;
 - (Class)responseClass;
-- (void)setDeviceGEOCoordinate:(struct { double x1; double x2; })arg1;
-- (void)setProvider:(unsigned short)arg1;
 
 @end

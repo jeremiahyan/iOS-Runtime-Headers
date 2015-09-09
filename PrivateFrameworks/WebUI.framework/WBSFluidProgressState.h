@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/WebUI.framework/WebUI
  */
 
-@class NSString;
-
 @interface WBSFluidProgressState : NSObject {
     float _animationDuration;
     int _fluidProgressAnimationPhase;
@@ -27,19 +25,19 @@
 @property BOOL hasCanceledLoad;
 @property BOOL hasCommittedLoad;
 @property BOOL hasCompletedLoad;
-@property(retain) NSString * loadURL;
+@property (retain) NSString *loadURL;
 @property float minProgressPosition;
 @property BOOL shouldAnimateUsingInitialPosition;
 
 + (double)_estimatedLoadTimeRemainingFromProgressValue:(float)arg1;
 
+- (void).cxx_destruct;
 - (float)_adjustProgressPosition:(float)arg1;
 - (double)_animationDuration;
 - (double)_estimatedLoadTimeRemaining;
 - (double)_fractionCompleteAtElapsedTime:(float)arg1;
 - (float)_nextProgressPosition:(double)arg1;
 - (void)_updateLinearFunction;
-- (void)dealloc;
 - (id)description;
 - (int)fluidProgressAnimationPhase;
 - (int)fluidProgressType;

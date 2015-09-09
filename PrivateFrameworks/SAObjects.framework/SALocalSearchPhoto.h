@@ -2,15 +2,18 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSString, NSURL, SAUIAppPunchOut;
+@interface SALocalSearchPhoto : AceObject <SAAceSerializable>
 
-@interface SALocalSearchPhoto : AceObject <SAAceSerializable> {
-}
-
-@property(copy) NSURL * fullsize;
-@property(copy) NSString * identifier;
-@property(retain) SAUIAppPunchOut * photoPunchOut;
-@property(copy) NSURL * thumbnail;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, copy) NSURL *fullsize;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *identifier;
+@property (nonatomic, copy) NSURL *largeSize;
+@property (nonatomic, copy) NSURL *maximumSize;
+@property (nonatomic, retain) SAUIAppPunchOut *photoPunchOut;
+@property (readonly) Class superclass;
+@property (nonatomic, copy) NSURL *thumbnail;
 
 + (id)photo;
 + (id)photoWithDictionary:(id)arg1 context:(id)arg2;
@@ -19,9 +22,13 @@
 - (id)fullsize;
 - (id)groupIdentifier;
 - (id)identifier;
+- (id)largeSize;
+- (id)maximumSize;
 - (id)photoPunchOut;
 - (void)setFullsize:(id)arg1;
 - (void)setIdentifier:(id)arg1;
+- (void)setLargeSize:(id)arg1;
+- (void)setMaximumSize:(id)arg1;
 - (void)setPhotoPunchOut:(id)arg1;
 - (void)setThumbnail:(id)arg1;
 - (id)thumbnail;

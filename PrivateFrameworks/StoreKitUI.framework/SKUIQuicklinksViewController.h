@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class <SKUIQuicklinksViewControllerDelegate>, NSArray, SKUIColorScheme, SKUIQuicklinksView, UICollectionView;
-
 @interface SKUIQuicklinksViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate> {
     UICollectionView *_collectionView;
     SKUIColorScheme *_colorScheme;
@@ -12,13 +10,16 @@
     SKUIQuicklinksView *_quicklinksView;
 }
 
-@property <SKUIQuicklinksViewControllerDelegate> * delegate;
-@property(readonly) NSArray * indexPathsForVisibleItems;
-@property(copy) NSArray * links;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SKUIQuicklinksViewControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) NSArray *indexPathsForVisibleItems;
+@property (nonatomic, copy) NSArray *links;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (int)_numberOfRows;
-- (void)_reloadForInterfaceOrientation:(int)arg1;
 - (id)collectionView:(id)arg1 cellForItemAtIndexPath:(id)arg2;
 - (void)collectionView:(id)arg1 didSelectItemAtIndexPath:(id)arg2;
 - (int)collectionView:(id)arg1 numberOfItemsInSection:(int)arg2;
@@ -33,6 +34,6 @@
 - (void)setLinks:(id)arg1;
 - (void)setTitle:(id)arg1;
 - (void)viewWillAppear:(BOOL)arg1;
-- (void)willAnimateRotationToInterfaceOrientation:(int)arg1 duration:(double)arg2;
+- (void)willTransitionToSize:(struct CGSize { float x1; float x2; })arg1 withTransitionCoordinator:(id)arg2;
 
 @end

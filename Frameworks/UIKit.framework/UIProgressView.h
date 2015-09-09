@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, UIColor, UIImage, UIImageView;
-
 @interface UIProgressView : UIView <NSCoding> {
     int _barStyle;
     BOOL _isAnimating;
@@ -19,17 +17,17 @@
     UIImageView *_trackView;
 }
 
-@property float progress;
-@property(retain) UIImage * progressImage;
-@property(retain) UIColor * progressTintColor;
-@property int progressViewStyle;
-@property(retain) UIImage * trackImage;
-@property(retain) UIColor * trackTintColor;
+@property (nonatomic) float progress;
+@property (nonatomic, retain) UIImage *progressImage;
+@property (nonatomic, retain) UIColor *progressTintColor;
+@property (nonatomic) int progressViewStyle;
+@property (nonatomic, retain) UIImage *trackImage;
+@property (nonatomic, retain) UIColor *trackTintColor;
 
 + (int)_indexForStyle:(int)arg1 barStyle:(int)arg2;
-+ (struct { id x1; id x2; })_standardImagesForStyle:(int)arg1 barStyle:(int)arg2;
-+ (id)_tintedImageForHeight:(float)arg1 andColors:(id)arg2 roundingRectCorners:(unsigned int)arg3;
++ (struct { id x1; })_standardImagesForStyle:(int)arg1 barStyle:(int)arg2;
 + (id)_tintedImageForHeight:(float)arg1 andColors:(id)arg2;
++ (id)_tintedImageForHeight:(float)arg1 andColors:(id)arg2 roundingRectCorners:(unsigned int)arg3;
 + (struct CGSize { float x1; float x2; })defaultSize;
 
 - (id)_appropriateProgressImage;
@@ -63,8 +61,8 @@
 - (void)setBarStyle:(int)arg1;
 - (void)setBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)setFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
-- (void)setProgress:(float)arg1 animated:(BOOL)arg2;
 - (void)setProgress:(float)arg1;
+- (void)setProgress:(float)arg1 animated:(BOOL)arg2;
 - (void)setProgressImage:(id)arg1;
 - (void)setProgressTintColor:(id)arg1;
 - (void)setProgressViewStyle:(int)arg1;

@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@class MKLocationManager, UILabel, UIView;
-
 @interface MKStarkCompassView : UIView <MKLocationManagerObserver> {
     int _compassPoint;
     UIView *_contentsView;
@@ -13,8 +11,12 @@
     BOOL _monitoringCourse;
 }
 
-@property int compassPoint;
-@property double heading;
+@property (nonatomic) int compassPoint;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) double heading;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_createSubviews;

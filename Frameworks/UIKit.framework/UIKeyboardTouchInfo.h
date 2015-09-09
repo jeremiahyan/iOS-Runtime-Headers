@@ -2,17 +2,16 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIKBTree, UITouch;
-
 @interface UIKeyboardTouchInfo : NSObject {
-    struct CGPoint { 
-        float x; 
-        float y; 
-    struct CGPoint { 
-        float x; 
-        float y; 
     BOOL _dragged;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _initialDragPoint;
+    int _initialKeyState;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _initialPoint;
     UIKBTree *_key;
     UIKBTree *_keyplane;
@@ -22,25 +21,28 @@
     UITouch *_touch;
 }
 
-@property BOOL dragged;
-@property struct CGPoint { float x1; float x2; } initialDragPoint;
-@property struct CGPoint { float x1; float x2; } initialPoint;
-@property(retain) UIKBTree * key;
-@property(retain) UIKBTree * keyplane;
-@property BOOL maySuppressUpAction;
-@property(retain) UIKBTree * slidOffKey;
-@property int stage;
-@property(retain) UITouch * touch;
+@property (nonatomic) BOOL dragged;
+@property (nonatomic) struct CGPoint { float x1; float x2; } initialDragPoint;
+@property (nonatomic) int initialKeyState;
+@property (nonatomic) struct CGPoint { float x1; float x2; } initialPoint;
+@property (nonatomic, retain) UIKBTree *key;
+@property (nonatomic, retain) UIKBTree *keyplane;
+@property (nonatomic) BOOL maySuppressUpAction;
+@property (nonatomic, retain) UIKBTree *slidOffKey;
+@property (nonatomic) int stage;
+@property (nonatomic, retain) UITouch *touch;
 
 - (void)dealloc;
 - (BOOL)dragged;
 - (struct CGPoint { float x1; float x2; })initialDragPoint;
+- (int)initialKeyState;
 - (struct CGPoint { float x1; float x2; })initialPoint;
 - (id)key;
 - (id)keyplane;
 - (BOOL)maySuppressUpAction;
 - (void)setDragged:(BOOL)arg1;
 - (void)setInitialDragPoint:(struct CGPoint { float x1; float x2; })arg1;
+- (void)setInitialKeyState:(int)arg1;
 - (void)setInitialPoint:(struct CGPoint { float x1; float x2; })arg1;
 - (void)setKey:(id)arg1;
 - (void)setKeyplane:(id)arg1;

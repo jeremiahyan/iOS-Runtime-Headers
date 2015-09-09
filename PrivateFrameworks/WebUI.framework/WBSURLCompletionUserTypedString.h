@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/WebUI.framework/WebUI
  */
 
-@class NSString;
-
 @interface WBSURLCompletionUserTypedString : NSObject {
     const char *_chars;
     BOOL _containsAnySpaces;
@@ -14,10 +12,11 @@
     const unsigned short *_unichars;
 }
 
-@property(readonly) NSString * normalizedString;
+@property (nonatomic, readonly) NSString *normalizedString;
 
 + (void)initialize;
 
+- (void).cxx_destruct;
 - (void)dealloc;
 - (id)initWithString:(id)arg1;
 - (id)normalizedString;

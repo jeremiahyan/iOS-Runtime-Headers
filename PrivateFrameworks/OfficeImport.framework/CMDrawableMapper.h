@@ -2,18 +2,7 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class CMDrawableStyle, NSData, NSString, OADDrawable, OADOrientedBounds;
-
 @interface CMDrawableMapper : CMMapper {
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -35,6 +24,15 @@
     float mRotation;
     NSString *mSourcePath;
     CMDrawableStyle *mStyle;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } mUncroppedBox;
 }
 

@@ -2,31 +2,35 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class <UIWebViewDelegate>, NSURLRequest, UIScrollView, UIWebViewInternal;
-
 @interface UIWebView : UIView <NSCoding, UIScrollViewDelegate> {
     UIWebViewInternal *_internal;
 }
 
-@property BOOL allowsInlineMediaPlayback;
-@property(getter=canGoBack,readonly) BOOL canGoBack;
-@property(getter=canGoForward,readonly) BOOL canGoForward;
-@property unsigned int dataDetectorTypes;
-@property <UIWebViewDelegate> * delegate;
-@property BOOL detectsPhoneNumbers;
-@property float gapBetweenPages;
-@property BOOL keyboardDisplayRequiresUserAction;
-@property(getter=isLoading,readonly) BOOL loading;
-@property BOOL mediaPlaybackAllowsAirPlay;
-@property BOOL mediaPlaybackRequiresUserAction;
-@property(readonly) unsigned int pageCount;
-@property float pageLength;
-@property int paginationBreakingMode;
-@property int paginationMode;
-@property(readonly) NSURLRequest * request;
-@property BOOL scalesPageToFit;
-@property(readonly) UIScrollView * scrollView;
-@property BOOL suppressesIncrementalRendering;
+@property (nonatomic) BOOL allowsInlineMediaPlayback;
+@property (getter=canGoBack, nonatomic, readonly) BOOL canGoBack;
+@property (getter=canGoForward, nonatomic, readonly) BOOL canGoForward;
+@property (nonatomic) unsigned int dataDetectorTypes;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <UIWebViewDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL detectsPhoneNumbers;
+@property (nonatomic) float gapBetweenPages;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL keyboardDisplayRequiresUserAction;
+@property (getter=isLoading, nonatomic, readonly) BOOL loading;
+@property (nonatomic) BOOL mediaPlaybackAllowsAirPlay;
+@property (nonatomic) BOOL mediaPlaybackRequiresUserAction;
+@property (nonatomic, readonly) unsigned int pageCount;
+@property (nonatomic) float pageLength;
+@property (nonatomic) int paginationBreakingMode;
+@property (nonatomic) int paginationMode;
+@property (nonatomic, readonly, retain) NSURLRequest *request;
+@property (nonatomic) BOOL scalesPageToFit;
+@property (nonatomic, readonly, retain) UIScrollView *scrollView;
+@property (readonly) Class superclass;
+@property (nonatomic) BOOL suppressesIncrementalRendering;
+
+// Image: /System/Library/Frameworks/UIKit.framework/UIKit
 
 + (void)_fixPathsForSandboxDirectoryChange;
 + (id)_relativePathFromAbsolutePath:(id)arg1 removingPathComponents:(unsigned int)arg2;
@@ -79,7 +83,7 @@
 - (void)_updateRequest;
 - (void)_updateScrollerViewForInputView:(id)arg1;
 - (void)_updateViewSettings;
-- (void)_webViewCommonInitWithWebView:(id)arg1 scalesPageToFit:(BOOL)arg2 shouldEnableReachability:(BOOL)arg3;
+- (void)_webViewCommonInitWithWebView:(id)arg1 scalesPageToFit:(BOOL)arg2;
 - (void)alertView:(id)arg1 didDismissWithButtonIndex:(int)arg2;
 - (BOOL)allowsInlineMediaPlayback;
 - (BOOL)canGoBack;
@@ -153,6 +157,7 @@
 - (BOOL)suppressesIncrementalRendering;
 - (void)view:(id)arg1 didSetFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2 oldFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg3;
 - (id)viewForZoomingInScrollView:(id)arg1;
+- (id)webThreadWebView:(id)arg1 resource:(id)arg2 willSendRequest:(id)arg3 redirectResponse:(id)arg4 fromDataSource:(id)arg5;
 - (id)webView:(id)arg1 connectionPropertiesForResource:(id)arg2 dataSource:(id)arg3;
 - (void)webView:(id)arg1 decidePolicyForGeolocationRequestFromOrigin:(id)arg2 frame:(id)arg3 listener:(id)arg4;
 - (void)webView:(id)arg1 decidePolicyForMIMEType:(id)arg2 request:(id)arg3 frame:(id)arg4 decisionListener:(id)arg5;
@@ -177,7 +182,6 @@
 - (void)webView:(id)arg1 resource:(id)arg2 didFailLoadingWithError:(id)arg3 fromDataSource:(id)arg4;
 - (void)webView:(id)arg1 resource:(id)arg2 didFinishLoadingFromDataSource:(id)arg3;
 - (void)webView:(id)arg1 resource:(id)arg2 didReceiveAuthenticationChallenge:(id)arg3 fromDataSource:(id)arg4;
-- (id)webView:(id)arg1 resource:(id)arg2 willSendRequest:(id)arg3 redirectResponse:(id)arg4 fromDataSource:(id)arg5;
 - (void)webView:(id)arg1 runJavaScriptAlertPanelWithMessage:(id)arg2 initiatedByFrame:(id)arg3;
 - (BOOL)webView:(id)arg1 runJavaScriptConfirmPanelWithMessage:(id)arg2 initiatedByFrame:(id)arg3;
 - (id)webView:(id)arg1 runJavaScriptTextInputPanelWithPrompt:(id)arg2 defaultText:(id)arg3 initiatedByFrame:(id)arg4;
@@ -188,5 +192,10 @@
 - (void)webViewMainFrameDidFinishLoad:(id)arg1;
 - (void)webViewMainFrameDidFirstVisuallyNonEmptyLayoutInFrame:(id)arg1;
 - (void)webViewSupportedOrientationsUpdated:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/HelpKit.framework/HelpKit
+
+- (int)highlightAllOccurencesOfString:(id)arg1;
+- (void)removeAllHighlights;
 
 @end

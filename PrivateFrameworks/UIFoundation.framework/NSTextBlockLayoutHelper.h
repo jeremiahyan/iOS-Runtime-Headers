@@ -2,44 +2,42 @@
    Image: /System/Library/PrivateFrameworks/UIFoundation.framework/UIFoundation
  */
 
-@class NSTextTableBlock;
-
 @interface NSTextBlockLayoutHelper : NSObject {
-    struct _NSRange { 
-        unsigned int location; 
-        unsigned int length; 
-    struct _NSRange { 
-        unsigned int location; 
-        unsigned int length; 
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
     float _bBorder;
     float _bMargin;
     float _bPadding;
     NSTextTableBlock *_block;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } _boundsRect;
+    struct _NSRange { 
+        unsigned int location; 
+        unsigned int length; 
     } _charRange;
+    struct _NSRange { 
+        unsigned int location; 
+        unsigned int length; 
     } _glyphRange;
     float _height;
     float _lBorder;
     float _lMargin;
     float _lPadding;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
     } _layoutRect;
     float _rBorder;
     float _rMargin;
@@ -50,6 +48,9 @@
     float _width;
 }
 
+@property (readonly) NSTextTableBlock *block;
+
+- (id)block;
 - (void)dealloc;
 - (id)description;
 - (id)initWithTextBlock:(id)arg1 charIndex:(unsigned int)arg2 text:(id)arg3 layoutManager:(id)arg4 containerWidth:(float)arg5 collapseBorders:(BOOL)arg6;

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Message.framework/Message
  */
 
-@class MFLock, NSMutableDictionary;
-
 @interface MFWebAttachmentSource : NSObject {
     NSMutableDictionary *_attachmentsByURL;
     MFLock *_attachmentsLock;
@@ -15,8 +13,8 @@
 + (id)_setOfAllSources;
 + (id)allSources;
 
-- (id)attachmentForURL:(id)arg1 includeRemoved:(BOOL)arg2;
 - (id)attachmentForURL:(id)arg1;
+- (id)attachmentForURL:(id)arg1 includeRemoved:(BOOL)arg2;
 - (void)dealloc;
 - (id)description;
 - (id)init;

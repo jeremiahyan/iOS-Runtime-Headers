@@ -2,63 +2,62 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class <UIWebTouchEventsGestureRecognizerDelegate>, NSMutableArray;
-
 @interface UIWebTouchEventsGestureRecognizer : UIGestureRecognizer {
-    struct CGPoint { 
-        float x; 
-        float y; 
-    unsigned int _passedHitTest : 1;
-    unsigned int _defaultPrevented : 1;
-    unsigned int _inJavaScriptGesture : 1;
-    unsigned int _type : 2;
-    } _locationInWindow;
+    BOOL _defaultPrevented;
+    BOOL _dispatchingTouchEvents;
+    struct _UIWebTouchEvent { 
+        int type; 
+        double timestamp; 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } locationInScreenCoordinates; 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } locationInDocumentCoordinates; 
+        float scale; 
+        float rotation; 
+        bool inJavaScriptGesture; 
+        struct _UIWebTouchPoint {} *touchPoints; 
+        unsigned int touchPointCount; 
+    } _lastTouchEvent;
     float _originalGestureAngle;
     float _originalGestureDistance;
-    float _rotation;
-    float _scale;
+    BOOL _passedHitTest;
     SEL _touchAction;
-    NSMutableArray *_touchIdentifiers;
-    NSMutableArray *_touchLocations;
-    NSMutableArray *_touchPhases;
     id _touchTarget;
     <UIWebTouchEventsGestureRecognizerDelegate> *_webTouchDelegate;
 }
 
-@property(getter=isDefaultPrevented) BOOL defaultPrevented;
-@property(readonly) BOOL inJavaScriptGesture;
-@property(readonly) struct CGPoint { float x1; float x2; } locationInWindow;
-@property(readonly) float rotation;
-@property(readonly) float scale;
-@property(retain) NSMutableArray * touchIdentifiers;
-@property(retain) NSMutableArray * touchLocations;
-@property(retain) NSMutableArray * touchPhases;
-@property(readonly) int type;
+@property (getter=isDefaultPrevented, nonatomic) BOOL defaultPrevented;
+@property (getter=isDispatchingTouchEvents, nonatomic, readonly) BOOL dispatchingTouchEvents;
+@property (nonatomic, readonly) BOOL inJavaScriptGesture;
+@property (nonatomic, readonly) const struct _UIWebTouchEvent { int x1; double x2; struct CGPoint { float x_3_1_1; float x_3_1_2; } x3; struct CGPoint { float x_4_1_1; float x_4_1_2; } x4; float x5; float x6; bool x7; struct _UIWebTouchPoint {} *x8; unsigned int x9; }*lastTouchEvent;
+@property (nonatomic, readonly) struct CGPoint { float x1; float x2; } locationInWindow;
+@property (nonatomic, readonly) float rotation;
+@property (nonatomic, readonly) float scale;
+@property (nonatomic, readonly) NSMutableArray *touchIdentifiers;
+@property (nonatomic, readonly) NSMutableArray *touchLocations;
+@property (nonatomic, readonly) NSMutableArray *touchPhases;
+@property (nonatomic, readonly) int type;
 
-- (id).cxx_construct;
-- (unsigned int)_getNextTouchIdentifier;
-- (id)_identifiersDescription;
-- (id)_locationsDescription;
-- (id)_phaseDescription:(int)arg1;
-- (id)_phasesDescription;
++ (void)initialize;
+
 - (void)_processTouches:(id)arg1 withEvent:(id)arg2 type:(int)arg3;
 - (void)_recordTouches:(id)arg1 type:(int)arg2;
-- (void)_reset;
-- (void)_resetGestureRecognizer;
-- (id)_typeDescription;
 - (BOOL)canBePreventedByGestureRecognizer:(id)arg1;
 - (void)dealloc;
-- (id)description;
 - (BOOL)inJavaScriptGesture;
 - (id)initWithTarget:(id)arg1 action:(SEL)arg2 touchDelegate:(id)arg3;
 - (BOOL)isDefaultPrevented;
+- (BOOL)isDispatchingTouchEvents;
+- (const struct _UIWebTouchEvent { int x1; double x2; struct CGPoint { float x_3_1_1; float x_3_1_2; } x3; struct CGPoint { float x_4_1_1; float x_4_1_2; } x4; float x5; float x6; bool x7; struct _UIWebTouchPoint {} *x8; unsigned int x9; }*)lastTouchEvent;
 - (struct CGPoint { float x1; float x2; })locationInWindow;
+- (void)reset;
 - (float)rotation;
 - (float)scale;
 - (void)setDefaultPrevented:(BOOL)arg1;
-- (void)setTouchIdentifiers:(id)arg1;
-- (void)setTouchLocations:(id)arg1;
-- (void)setTouchPhases:(id)arg1;
 - (id)touchIdentifiers;
 - (id)touchLocations;
 - (id)touchPhases;

@@ -2,8 +2,7 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@interface PBSlideMaster : PBSlideBase {
-}
+@interface PBSlideMaster : PBSlideBase
 
 + (id)createMasterStyleMap:(id)arg1 state:(id)arg2;
 + (void)flattenBaseMasterStyleType:(int)arg1 masterStyleMap:(id)arg2;
@@ -18,7 +17,5 @@
 + (void)setFont:(id)arg1 fromCharacterProperties:(id)arg2;
 + (id)textBodyForPlaceholderType:(int)arg1 slideLayout:(id)arg2;
 + (int)textTypeFor:(int)arg1 placeholderType:(int)arg2;
-+ (void)writeSlideMaster:(id)arg1 presentationState:(id)arg2;
-+ (void)writeSlideMasterOrLayout:(id)arg1 presentationState:(id)arg2;
 
 @end

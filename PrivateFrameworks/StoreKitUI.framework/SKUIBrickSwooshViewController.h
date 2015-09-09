@@ -2,21 +2,29 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class NSArray, NSMutableIndexSet, NSString, SKUISwooshView, UICollectionView;
-
 @interface SKUIBrickSwooshViewController : SKUISwooshViewController <UICollectionViewDataSource, UICollectionViewDelegate> {
     NSArray *_bricks;
     UICollectionView *_collectionView;
     BOOL _delegateWantsWillDisplay;
     NSMutableIndexSet *_hiddenImageIndexSet;
+    struct { 
+        float cellHeight; 
+        float cellWidth; 
+        float interItemSpacing; 
+    } _metrics;
     BOOL _showBrickTitles;
     NSString *_swooshTitle;
     SKUISwooshView *_swooshView;
 }
 
-@property(copy) NSArray * bricks;
+@property (nonatomic, copy) NSArray *bricks;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
+- (struct { float x1; float x2; float x3; })_brickSwooshMetrics;
 - (id)bricks;
 - (id)collectionView:(id)arg1 cellForItemAtIndexPath:(id)arg2;
 - (void)collectionView:(id)arg1 didSelectItemAtIndexPath:(id)arg2;
@@ -31,6 +39,7 @@
 - (void)loadView;
 - (id)popImageViewForItemAtIndex:(int)arg1;
 - (void)setBricks:(id)arg1;
+- (void)setClientContext:(id)arg1;
 - (void)setColorScheme:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setImage:(id)arg1 forItemAtIndex:(int)arg2;

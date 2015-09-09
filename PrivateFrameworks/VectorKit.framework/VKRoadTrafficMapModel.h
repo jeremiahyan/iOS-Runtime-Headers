@@ -2,29 +2,31 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-@class VKRoadMapModel, VKTrafficDrawStyle, VKTrafficPainter;
-
 @interface VKRoadTrafficMapModel : VKVectorMapModel {
     BOOL _enabled;
     VKRoadMapModel *_roadModel;
-    float _styleZAdjust;
-    VKTrafficDrawStyle *_trafficDrawStyle;
-    VKTrafficPainter *_trafficPainter;
+    struct unique_ptr<vk::TrafficManager, std::__1::default_delete<vk::TrafficManager> > { 
+        struct __compressed_pair<vk::TrafficManager *, std::__1::default_delete<vk::TrafficManager> > { 
+            struct TrafficManager {} *__first_; 
+        } __ptr_; 
+    } _trafficManager;
 }
 
-@property BOOL enabled;
-@property(retain) VKRoadMapModel * roadModel;
+@property (nonatomic) BOOL enabled;
+@property (nonatomic, retain) VKRoadMapModel *roadModel;
 
+- (id).cxx_construct;
+- (void).cxx_destruct;
 - (void)dealloc;
-- (void)drawScene:(id)arg1 withContext:(id)arg2;
+- (void)didReceiveMemoryWarning:(BOOL)arg1;
 - (BOOL)enabled;
+- (void)gglLayoutScene:(id)arg1 withContext:(id)arg2 renderQueue:(struct RenderQueue { int (**x1)(); struct shared_ptr<ggl::RenderQueue> { struct RenderQueue {} *x_2_1_1; struct __shared_weak_count {} *x_2_1_2; } x2; }*)arg3;
 - (id)init;
-- (void)layoutScene:(id)arg1 withContext:(id)arg2;
-- (unsigned int)mapLayerPosition;
+- (unsigned long long)mapLayerPosition;
 - (id)roadModel;
 - (void)setEnabled:(BOOL)arg1;
 - (void)setRoadModel:(id)arg1;
 - (void)stylesheetDidChange;
-- (unsigned int)supportedRenderPasses;
+- (void)stylesheetDidReload;
 
 @end

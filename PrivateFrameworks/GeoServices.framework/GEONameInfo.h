@@ -2,14 +2,13 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSString;
-
 @interface GEONameInfo : PBCodable <NSCopying> {
     struct { 
         unsigned int phoneticType : 1; 
         unsigned int shieldType : 1; 
         unsigned int signType : 1; 
     } _has;
+    NSString *_locale;
     NSString *_name;
     NSString *_phoneticName;
     int _phoneticType;
@@ -18,24 +17,27 @@
     int _signType;
 }
 
-@property(readonly) BOOL hasName;
-@property(readonly) BOOL hasPhoneticName;
-@property BOOL hasPhoneticType;
-@property(readonly) BOOL hasShield;
-@property BOOL hasShieldType;
-@property BOOL hasSignType;
-@property(retain) NSString * name;
-@property(retain) NSString * phoneticName;
-@property int phoneticType;
-@property(retain) NSString * shield;
-@property int shieldType;
-@property int signType;
+@property (nonatomic, readonly) BOOL hasLocale;
+@property (nonatomic, readonly) BOOL hasName;
+@property (nonatomic, readonly) BOOL hasPhoneticName;
+@property (nonatomic) BOOL hasPhoneticType;
+@property (nonatomic, readonly) BOOL hasShield;
+@property (nonatomic) BOOL hasShieldType;
+@property (nonatomic) BOOL hasSignType;
+@property (nonatomic, retain) NSString *locale;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSString *phoneticName;
+@property (nonatomic) int phoneticType;
+@property (nonatomic, retain) NSString *shield;
+@property (nonatomic) int shieldType;
+@property (nonatomic) int signType;
 
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)description;
 - (id)dictionaryRepresentation;
+- (BOOL)hasLocale;
 - (BOOL)hasName;
 - (BOOL)hasPhoneticName;
 - (BOOL)hasPhoneticType;
@@ -44,6 +46,8 @@
 - (BOOL)hasSignType;
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
+- (id)locale;
+- (void)mergeFrom:(id)arg1;
 - (id)name;
 - (id)phoneticName;
 - (int)phoneticType;
@@ -51,6 +55,7 @@
 - (void)setHasPhoneticType:(BOOL)arg1;
 - (void)setHasShieldType:(BOOL)arg1;
 - (void)setHasSignType:(BOOL)arg1;
+- (void)setLocale:(id)arg1;
 - (void)setName:(id)arg1;
 - (void)setPhoneticName:(id)arg1;
 - (void)setPhoneticType:(int)arg1;

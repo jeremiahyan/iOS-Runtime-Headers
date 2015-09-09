@@ -2,16 +2,18 @@
    Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
  */
 
-@class UIColor, UIWindow;
-
 @interface SUApplication : UIApplication <UIApplicationDelegate> {
     UIColor *_interactionTintColor;
     BOOL _terminateOnNextSuspend;
     UIWindow *_window;
 }
 
-@property(copy) UIColor * interactionTintColor;
-@property(retain) UIWindow * window;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) UIColor *interactionTintColor;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) UIWindow *window;
 
 - (void)_applicationDidFinishLaunching:(id)arg1;
 - (void)_exitForStoreNotAvailable;
@@ -25,7 +27,7 @@
 - (unsigned int)application:(id)arg1 supportedInterfaceOrientationsForWindow:(id)arg2;
 - (void)applicationDidEnterBackground:(id)arg1;
 - (void)applicationDidFinishLaunching:(id)arg1;
-- (BOOL)applicationSuspend:(struct __GSEvent { }*)arg1 settings:(id)arg2;
+- (BOOL)applicationSuspendWithSettings:(id)arg1;
 - (void)applicationWillEnterForeground:(id)arg1;
 - (void)dealloc;
 - (double)defaultImageSnapshotExpiration;

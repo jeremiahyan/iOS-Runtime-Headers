@@ -2,14 +2,17 @@
    Image: /System/Library/PrivateFrameworks/iTunesStore.framework/iTunesStore
  */
 
-@class ISUniqueOperationContext, NSLock, NSMutableArray, NSMutableDictionary;
-
 @interface ISUniqueOperationManager : NSObject <ISSingleton> {
     ISUniqueOperationContext *_activeContext;
     NSMutableArray *_contexts;
     NSLock *_lock;
     NSMutableDictionary *_lockPool;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (void)setSharedInstance:(id)arg1;
 + (id)sharedInstance;

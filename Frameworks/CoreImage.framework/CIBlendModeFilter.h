@@ -2,21 +2,20 @@
    Image: /System/Library/Frameworks/CoreImage.framework/CoreImage
  */
 
-@class CIImage;
-
 @interface CIBlendModeFilter : CIFilter {
     CIImage *inputBackgroundImage;
     CIImage *inputImage;
 }
 
-@property(retain) CIImage * inputBackgroundImage;
-@property(retain) CIImage * inputImage;
+@property (nonatomic, retain) CIImage *inputBackgroundImage;
+@property (nonatomic, retain) CIImage *inputImage;
 
 + (id)_filter_display_name;
 + (id)_kernel;
 + (id)customAttributes;
 
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_extent;
+- (BOOL)_needUnpremuls;
 - (id)inputBackgroundImage;
 - (id)inputImage;
 - (id)outputImage;

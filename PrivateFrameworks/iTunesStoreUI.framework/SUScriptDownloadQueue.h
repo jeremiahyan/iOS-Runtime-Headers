@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
  */
 
-@class NSArray, NSString, SSPreorderManager, SUClientInterface, SUDownloadManager;
-
 @interface SUScriptDownloadQueue : SUScriptObject <SSDownloadManagerObserver, SSPreorderManagerObserver> {
     SUClientInterface *_clientInterface;
     SUDownloadManager *_downloadManager;
@@ -11,8 +9,12 @@
     NSString *_queueType;
 }
 
-@property(readonly) NSArray * downloads;
-@property(readonly) NSString * queueType;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) NSArray *downloads;
+@property (readonly) unsigned int hash;
+@property (readonly) NSString *queueType;
+@property (readonly) Class superclass;
 
 + (void)initialize;
 + (id)webScriptNameForKeyName:(id)arg1;

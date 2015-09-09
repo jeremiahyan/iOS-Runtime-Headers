@@ -2,20 +2,22 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UILongPressGestureRecognizer, UITapAndAHalfRecognizer, UIWebDocumentView, UIWebSelection, UIWebSelectionView;
-
 @interface UIWebSelectionAssistant : NSObject <UIGestureRecognizerDelegate> {
     BOOL _enabled;
     UILongPressGestureRecognizer *_longPressGestureRecognizer;
     UIWebSelectionView *_selectionView;
     UITapAndAHalfRecognizer *_tapAndAHalfGestureRecognizer;
-    UIWebDocumentView *_webView;
+    UIView *_view;
 }
 
-@property BOOL enabled;
-@property(readonly) UIWebSelection * selection;
-@property(readonly) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } selectionFrame;
-@property(readonly) UIWebSelectionView * selectionView;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL enabled;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) UIWebSelection *selection;
+@property (nonatomic, readonly) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } selectionFrame;
+@property (nonatomic, readonly) UIWebSelectionView *selectionView;
+@property (readonly) Class superclass;
 
 - (void)clearSelection;
 - (void)dealloc;
@@ -28,7 +30,7 @@
 - (BOOL)gestureRecognizerShouldBegin:(id)arg1;
 - (void)hideCallout;
 - (id)hitTest:(struct CGPoint { float x1; float x2; })arg1 withEvent:(id)arg2 fromView:(id)arg3;
-- (id)initWithWebView:(id)arg1;
+- (id)initWithView:(id)arg1;
 - (BOOL)isSelectionGestureRecognizer:(id)arg1;
 - (void)layoutChangedByScrolling:(BOOL)arg1;
 - (void)makeWebSelection:(id)arg1;

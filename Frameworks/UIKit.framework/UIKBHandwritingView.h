@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSMutableArray, UIBezierPath, UIKBHandwritingBoxcarFilterPointFIFO, UIKBHandwritingQuadCurvePointFIFO, UIKBHandwritingStrokePointFIFO, UIKBHandwritingStrokeView;
-
 @interface UIKBHandwritingView : UIKBKeyView <UIGestureRecognizerDelegate> {
     UIBezierPath *_currentPath;
     struct CGColor { } *_inkColor;
@@ -16,15 +14,19 @@
     UIKBHandwritingStrokeView *_strokeView;
 }
 
-@property(retain) UIBezierPath * currentPath;
-@property struct CGColor { }* inkColor;
-@property struct CGImage { }* inkMask;
-@property float inkWidth;
-@property(retain) NSMutableArray * interpolatedPaths;
-@property(retain) UIKBHandwritingQuadCurvePointFIFO * interpolatingFIFO;
-@property(retain) UIKBHandwritingBoxcarFilterPointFIFO * smoothingFIFO;
-@property(retain) UIKBHandwritingStrokePointFIFO * strokeFIFO;
-@property(retain) UIKBHandwritingStrokeView * strokeView;
+@property (nonatomic, retain) UIBezierPath *currentPath;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) struct CGColor { }*inkColor;
+@property (nonatomic) struct CGImage { }*inkMask;
+@property (nonatomic) float inkWidth;
+@property (nonatomic, retain) NSMutableArray *interpolatedPaths;
+@property (nonatomic, retain) UIKBHandwritingQuadCurvePointFIFO *interpolatingFIFO;
+@property (nonatomic, retain) UIKBHandwritingBoxcarFilterPointFIFO *smoothingFIFO;
+@property (nonatomic, retain) UIKBHandwritingStrokePointFIFO *strokeFIFO;
+@property (nonatomic, retain) UIKBHandwritingStrokeView *strokeView;
+@property (readonly) Class superclass;
 
 - (void)addInkPoint:(struct CGPoint { float x1; float x2; })arg1;
 - (BOOL)cancelTouchTracking;
@@ -32,7 +34,6 @@
 - (id)currentPath;
 - (void)dealloc;
 - (void)deleteStrokesAtIndexes:(id)arg1;
-- (void)drawRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 keyplane:(id)arg2 key:(id)arg3;
 - (struct CGColor { }*)inkColor;
 - (struct CGImage { }*)inkMask;

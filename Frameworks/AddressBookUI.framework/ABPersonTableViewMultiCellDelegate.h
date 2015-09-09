@@ -2,18 +2,20 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class ABPersonPickersDelegate, ABPersonTableViewDataSource, ABStyleProvider, UIDatePicker;
-
-@interface ABPersonTableViewMultiCellDelegate : NSObject <ABMultiCellContentViewUpdateDelegate, ABPersonTableHeaderViewDelegate, ABDatePickerViewControllerDismissDelegate> {
+@interface ABPersonTableViewMultiCellDelegate : NSObject <ABDatePickerViewControllerDismissDelegate, ABMultiCellContentViewUpdateDelegate, ABPersonTableHeaderViewDelegate> {
     ABPersonTableViewDataSource *_dataSource;
     UIDatePicker *_datePicker;
     ABPersonPickersDelegate *_pickersDelegate;
     ABStyleProvider *_styleProvider;
 }
 
-@property ABPersonTableViewDataSource * dataSource;
-@property ABPersonPickersDelegate * pickersDelegate;
-@property(retain) ABStyleProvider * styleProvider;
+@property (nonatomic) ABPersonTableViewDataSource *dataSource;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) ABPersonPickersDelegate *pickersDelegate;
+@property (nonatomic, retain) ABStyleProvider *styleProvider;
+@property (readonly) Class superclass;
 
 - (BOOL)ABTabToNextResponder:(BOOL)arg1 fromView:(id)arg2;
 - (id)_capitalizedTitleForContentView:(id)arg1;

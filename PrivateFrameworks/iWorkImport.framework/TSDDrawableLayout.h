@@ -2,15 +2,17 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class TSDBezierPath, TSDWrapPolygon;
-
 @interface TSDDrawableLayout : TSDLayout <TSDWrappable> {
-    TSDBezierPath *mCachedExternalWrapPath;
-    TSDBezierPath *mCachedWrapPath;
-    TSDWrapPolygon *mCachedWrapPolygon;
+    TSUBezierPath *mCachedExternalWrapPath;
+    TSUBezierPath *mCachedWrapPath;
+    TSDWrapSegments *mCachedWrapSegments;
 }
 
-@property(readonly) BOOL hasAlpha;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) BOOL hasAlpha;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (BOOL)allowsConnections;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })boundsInRoot;
@@ -33,7 +35,8 @@
 - (BOOL)supportsInspectorPositioning;
 - (int)wrapDirection;
 - (int)wrapFitType;
-- (id)wrapPolygon;
+- (id)wrapPath;
+- (id)wrapSegments;
 - (int)wrapType;
 
 @end

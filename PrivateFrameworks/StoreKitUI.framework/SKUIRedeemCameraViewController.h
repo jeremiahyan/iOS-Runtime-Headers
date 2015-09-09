@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class <SKUIRedeemCameraViewControllerDelegate>, CRCodeRedeemerController, NSString, SKUIRedeem, UIBarButtonItem;
-
-@interface SKUIRedeemCameraViewController : SKUIRedeemStepViewController <CRCodeRedeemerControllerDelegate, SKUIRedeemCameraViewDelegate, UIAlertViewDelegate, SKUIRedeemCameraViewControllerDelegate> {
+@interface SKUIRedeemCameraViewController : SKUIRedeemStepViewController <CRCodeRedeemerControllerDelegate, SKUIRedeemCameraViewControllerDelegate, SKUIRedeemCameraViewDelegate, UIAlertViewDelegate> {
     BOOL _alreadyPushed;
     CRCodeRedeemerController *_camera;
     int _category;
@@ -16,9 +14,13 @@
     SKUIRedeem *_successfulRedeem;
 }
 
-@property(readonly) int category;
-@property <SKUIRedeemCameraViewControllerDelegate> * delegate;
-@property(copy) NSString * initialCode;
+@property (nonatomic, readonly) int category;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SKUIRedeemCameraViewControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *initialCode;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)SKUIRedeemCameraView:(id)arg1 textFieldDidChange:(id)arg2;

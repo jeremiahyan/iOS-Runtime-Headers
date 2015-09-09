@@ -16,6 +16,11 @@
     BOOL _withKeyboard;
 }
 
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+
 - (void)_collapse:(id)arg1;
 - (unsigned int)_numberOfColumns:(BOOL)arg1;
 - (BOOL)_shouldShowHideKeyboard;

@@ -2,13 +2,13 @@
    Image: /System/Library/PrivateFrameworks/MailServices.framework/MailServices
  */
 
-@class <NSObject>, NSString;
-
-@interface MSCriterion : NSObject <NSCoding> {
+@interface MSCriterion : NSObject <NSSecureCoding> {
     <NSObject> *_criteria;
     NSString *_qualifier;
     NSString *_type;
 }
+
++ (BOOL)supportsSecureCoding;
 
 - (id)_initWithType:(id)arg1 qualifier:(id)arg2 criteria:(id)arg3;
 - (id)criteria;

@@ -2,19 +2,22 @@
    Image: /System/Library/PrivateFrameworks/VoiceMemos.framework/VoiceMemos
  */
 
-@class <RCCurrentRecordingViewControllerDelegate>;
-
 @interface RCCurrentRecordingRemoteViewController : _UIRemoteViewController <RCUIClientCurrentRecordingViewController> {
     <RCCurrentRecordingViewControllerDelegate> *_delegate;
 }
 
-@property <RCCurrentRecordingViewControllerDelegate> * delegate;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <RCCurrentRecordingViewControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)exportedInterface;
 + (id)serviceViewControllerInterface;
 + (BOOL)shouldPropagateAppearanceCustomizations;
 
 - (void).cxx_destruct;
+- (void)currentRecordingAVStateDidChange:(id)arg1;
 - (void)currentRecordingDidEnd;
 - (id)delegate;
 - (void)setDelegate:(id)arg1;

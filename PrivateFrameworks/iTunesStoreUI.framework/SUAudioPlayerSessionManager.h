@@ -2,13 +2,11 @@
    Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
  */
 
-@class NSArray, NSMutableDictionary;
-
 @interface SUAudioPlayerSessionManager : NSObject {
     NSMutableDictionary *_sessions;
 }
 
-@property(readonly) NSArray * allSessionURLs;
+@property (nonatomic, readonly) NSArray *allSessionURLs;
 
 + (id)sessionManager;
 
@@ -19,5 +17,6 @@
 - (id)endSessionForURL:(id)arg1;
 - (id)init;
 - (id)startSessionWithURL:(id)arg1;
+- (id)stopAllAudioPlayerSessions;
 
 @end

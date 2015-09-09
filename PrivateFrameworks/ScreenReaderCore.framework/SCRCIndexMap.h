@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/ScreenReaderCore.framework/ScreenReaderCore
  */
 
-@interface SCRCIndexMap : NSObject <NSCopying> {
+@interface SCRCIndexMap : NSObject <NSCoding, NSCopying> {
     struct __CFDictionary { } *_map;
 }
 
@@ -15,8 +15,10 @@
 - (void)dealloc;
 - (id)deepCopyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
+- (void)encodeWithCoder:(id)arg1;
 - (id)indexes;
 - (id)init;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithObjects:(id*)arg1 andIndexes:(unsigned int*)arg2 count:(unsigned long)arg3;
 - (id)objectForIndex:(unsigned long)arg1;
 - (void)removeAllObjects;

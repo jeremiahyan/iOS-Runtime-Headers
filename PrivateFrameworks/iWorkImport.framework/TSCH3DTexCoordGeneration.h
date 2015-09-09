@@ -2,9 +2,8 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class TSCH3DNormalDirectionMapper;
-
 @interface TSCH3DTexCoordGeneration : NSObject {
+    TSCH3DNormalDirectionMapper *mNormalDirectionMapper;
     struct tmat4x4<float> { 
         struct tvec4<float> { 
             union { 
@@ -28,11 +27,10 @@
                 float q; 
             } ; 
         } value[4]; 
-    TSCH3DNormalDirectionMapper *mNormalDirectionMapper;
     } mTransform;
 }
 
-@property(retain) TSCH3DNormalDirectionMapper * normalDirectionMapper;
+@property (nonatomic, retain) TSCH3DNormalDirectionMapper *normalDirectionMapper;
 
 - (id).cxx_construct;
 - (void)dealloc;

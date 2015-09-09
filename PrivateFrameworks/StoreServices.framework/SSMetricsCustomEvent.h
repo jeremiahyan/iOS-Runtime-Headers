@@ -2,13 +2,11 @@
    Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
  */
 
-@class NSString;
+@interface SSMetricsCustomEvent : SSMetricsMutableEvent
 
-@interface SSMetricsCustomEvent : SSMetricsMutableEvent {
-}
+@property (nonatomic, retain) NSString *topic;
 
-@property(retain) NSString * topic;
-
+- (id)decorateReportingURL:(id)arg1;
 - (BOOL)isFieldBlacklistEnabled;
 - (void)setTopic:(id)arg1;
 - (id)topic;

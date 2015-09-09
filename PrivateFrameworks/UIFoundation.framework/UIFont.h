@@ -2,43 +2,33 @@
    Image: /System/Library/PrivateFrameworks/UIFoundation.framework/UIFoundation
  */
 
-@class NSString;
+@interface UIFont : NSObject <NSCopying>
 
-@interface UIFont : NSObject <NSCopying> {
-}
+@property (nonatomic, readonly) float ascender;
+@property (nonatomic, readonly) float capHeight;
+@property (nonatomic, readonly) float descender;
+@property (nonatomic, readonly, retain) NSString *familyName;
+@property (nonatomic, readonly, retain) NSString *fontName;
+@property (nonatomic, readonly) float leading;
+@property (nonatomic, readonly) float lineHeight;
+@property (nonatomic, readonly) float pointSize;
+@property (nonatomic, readonly) NSString *rc_textStyle;
+@property (nonatomic, readonly) float xHeight;
 
-@property(readonly) float ascender;
-@property(readonly) float capHeight;
-@property(readonly) float descender;
-@property(readonly) NSString * familyName;
-@property(readonly) NSString * fontName;
-@property(readonly) float leading;
-@property(readonly) float lineHeight;
-@property(readonly) float pointSize;
-@property(readonly) float xHeight;
+// Image: /System/Library/PrivateFrameworks/UIFoundation.framework/UIFoundation
 
-+ (id)__ck_emphasizedPreferredFontForTextStyle:(id)arg1;
-+ (id)__ck_shortDefaultFontForTextStyle:(id)arg1;
-+ (id)__ck_shortEmphasizedPreferredFontForTextStyle:(id)arg1;
-+ (id)__ck_shortPreferredFontForTextStyle:(id)arg1;
 + (void)_evictAllItemsFromFontAndFontDescriptorCaches;
 + (id)_lightSystemFontOfSize:(float)arg1;
 + (id)_opticalBoldSystemFontOfSize:(float)arg1;
 + (id)_opticalSystemFontOfSize:(float)arg1;
++ (float)_readableWidth;
 + (id)_sharedFontCache;
 + (id)_sharedZeroPointFont;
-+ (BOOL)_shouldUseDefaultFont;
 + (id)_systemFontsOfSize:(float)arg1 traits:(int)arg2;
 + (id)_thinSystemFontOfSize:(float)arg1;
-+ (id)_ui_bulletFontForFont:(id)arg1;
 + (id)_ultraLightSystemFontOfSize:(float)arg1;
-+ (BOOL)ab_preferredContentSizeCategoryIsAccessibilityCategory;
-+ (id)ab_preferredContentSizeCategoryName;
-+ (id)ab_preferredFontForTextStyle:(id)arg1;
-+ (void)ab_setIgnoreUserFontSize:(BOOL)arg1;
 + (id)boldSystemFontOfSize:(float)arg1;
 + (float)buttonFontSize;
-+ (id)cam_cameraFontOfSize:(float)arg1;
 + (id)classFallbacksForKeyedArchiver;
 + (id)defaultFontForTextStyle:(id)arg1;
 + (id)familyNames;
@@ -46,34 +36,20 @@
 + (id)fontWithDescriptor:(id)arg1 size:(float)arg2;
 + (id)fontWithFamilyName:(id)arg1 traits:(int)arg2 size:(float)arg3;
 + (id)fontWithMarkupDescription:(id)arg1;
-+ (id)fontWithName:(id)arg1 size:(float)arg2 traits:(int)arg3;
 + (id)fontWithName:(id)arg1 size:(float)arg2;
++ (id)fontWithName:(id)arg1 size:(float)arg2 traits:(int)arg3;
 + (id)ib_preferredFontForTextStyle:(id)arg1;
 + (void)initialize;
 + (id)italicSystemFontOfSize:(float)arg1;
 + (float)labelFontSize;
 + (id)preferredFontForTextStyle:(id)arg1;
-+ (id)preferredFontForUsage:(id)arg1 contentSizeCategoryName:(id)arg2;
 + (id)preferredFontForUsage:(id)arg1;
-+ (id)pu_defaultFontForTextStyle:(id)arg1 withSymbolicTraits:(unsigned int)arg2;
-+ (id)siriui_headerFont;
-+ (id)siriui_largeHeaderFontWithSize:(float)arg1;
-+ (id)siriui_lightWeightBodySizeFont;
-+ (id)siriui_lightWeightBodySubtextSizeFont;
-+ (id)siriui_lightWeightFontWithSize:(float)arg1;
-+ (id)siriui_mediumWeightBodySizeFont;
-+ (id)siriui_mediumWeightBodySubtextSizeFont;
-+ (id)siriui_mediumWeightFontWithSize:(float)arg1;
-+ (id)siriui_multiLineHeaderFont;
-+ (id)siriui_scaledServerUtteranceFont;
-+ (id)siriui_scaledUserUtteranceFont;
-+ (id)siriui_subtitleFont;
-+ (id)siriui_thinWeightBodySizeFont;
-+ (id)siriui_thinWeightBodySubtextSizeFont;
-+ (id)siriui_thinWeightFontWithSize:(float)arg1;
++ (id)preferredFontForUsage:(id)arg1 contentSizeCategoryName:(id)arg2;
 + (float)smallSystemFontSize;
-+ (id)systemFontOfSize:(float)arg1 traits:(int)arg2;
 + (id)systemFontOfSize:(float)arg1;
++ (id)systemFontOfSize:(float)arg1 traits:(int)arg2;
++ (id)systemFontOfSize:(float)arg1 weight:(float)arg2;
++ (id)systemFontOfSize:(float)arg1 weight:(float)arg2 design:(id)arg3;
 + (float)systemFontSize;
 + (id)userFontOfSize:(float)arg1;
 
@@ -88,15 +64,13 @@
 - (id)_familyName;
 - (id)_fontScaledByScaleFactor:(float)arg1;
 - (bool)_getLatin1GlyphMapping:(const unsigned short**)arg1 andAdvanceMapping:(const struct CGSize {}**)arg2;
-- (struct __CTFont { }*)_gkCTFont;
 - (BOOL)_isDefaultFace;
 - (BOOL)_isHiraginoFont;
 - (id)_kernOverride;
 - (float)_leading;
+- (float)_scaledValueForValue:(float)arg1;
 - (struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })_textMatrixTransformForContext:(struct CGContext { }*)arg1;
 - (float)_totalAdvancementForNativeGlyphs:(const unsigned short*)arg1 count:(long)arg2;
-- (id)ab_boldFont;
-- (id)ab_italicFont;
 - (struct CGSize { float x1; float x2; })advancementForGlyph:(unsigned short)arg1;
 - (float)ascender;
 - (id)bestMatchingFontForCharacters:(const unsigned short*)arg1 length:(unsigned int)arg2 attributes:(id)arg3 actualCoveredLength:(unsigned int*)arg4;
@@ -116,6 +90,7 @@
 - (void)getAdvancements:(struct CGSize { float x1; float x2; }*)arg1 forCGGlyphs:(const unsigned short*)arg2 count:(unsigned int)arg3;
 - (void)getBoundingRects:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; }*)arg1 forCGGlyphs:(const unsigned short*)arg2 count:(unsigned int)arg3;
 - (unsigned int)getCaretPositions:(float*)arg1 forGlyph:(unsigned int)arg2 maximumLength:(unsigned int)arg3;
+- (void)getVerticalOriginTranslations:(struct CGSize { float x1; float x2; }*)arg1 forCGGlyphs:(const unsigned short*)arg2 count:(unsigned int)arg3;
 - (unsigned short)glyphWithName:(id)arg1;
 - (unsigned int)hyphenGlyphForLocale:(id)arg1;
 - (id)initWithCoder:(id)arg1;
@@ -130,16 +105,10 @@
 - (float)leading;
 - (float)lineHeight;
 - (id)markupDescription;
-- (struct CGPoint { float x1; float x2; })mf_baselinePointFromCaplinePoint:(struct CGPoint { float x1; float x2; })arg1;
-- (struct CGPoint { float x1; float x2; })mf_baselinePointFromOriginPoint:(struct CGPoint { float x1; float x2; })arg1;
-- (struct CGPoint { float x1; float x2; })mf_caplinePointFromBaselinePoint:(struct CGPoint { float x1; float x2; })arg1;
-- (struct CGPoint { float x1; float x2; })mf_caplinePointFromOriginPoint:(struct CGPoint { float x1; float x2; })arg1;
-- (struct CGPoint { float x1; float x2; })mf_originPointFromBaselinePoint:(struct CGPoint { float x1; float x2; })arg1;
-- (struct CGPoint { float x1; float x2; })mf_originPointFromCaplinePoint:(struct CGPoint { float x1; float x2; })arg1;
-- (struct CGPoint { float x1; float x2; })mf_originPointFromMidlinePoint:(struct CGPoint { float x1; float x2; })arg1;
 - (unsigned int)mostCompatibleStringEncoding;
 - (unsigned int)numberOfGlyphs;
 - (float)pointSize;
+- (float)readableWidth;
 - (unsigned int)renderingMode;
 - (id)screenFontWithRenderingMode:(unsigned int)arg1;
 - (void)setInContext:(struct CGContext { }*)arg1;
@@ -147,5 +116,118 @@
 - (float)underlineThickness;
 - (id)verticalFont;
 - (float)xHeight;
+
+// Image: /System/Library/Frameworks/AVKit.framework/AVKit
+
++ (id)_timeFontFromFont:(id)arg1;
++ (id)boldTimeFontOfSize:(float)arg1;
++ (id)italicTimeFontOfSize:(float)arg1;
++ (id)timeFontOfSize:(float)arg1;
++ (id)timeFontWithName:(id)arg1 size:(float)arg2;
+
+// Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
+
++ (BOOL)_shouldUseDefaultFont;
++ (BOOL)ab_preferredContentSizeCategoryIsAccessibilityCategory;
++ (id)ab_preferredContentSizeCategoryName;
++ (id)ab_preferredFontForTextStyle:(id)arg1;
++ (id)ab_preferredRowFontForTextStyle:(id)arg1;
++ (void)ab_setIgnoreUserFontSize:(BOOL)arg1;
+
+- (id)ab_boldFont;
+- (id)ab_italicFont;
+
+// Image: /System/Library/Frameworks/MapKit.framework/MapKit
+
+- (float)_mapkit_lineHeight;
+
+// Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
+
+- (struct CGPoint { float x1; float x2; })mf_baselinePointFromCaplinePoint:(struct CGPoint { float x1; float x2; })arg1;
+- (struct CGPoint { float x1; float x2; })mf_baselinePointFromOriginPoint:(struct CGPoint { float x1; float x2; })arg1;
+- (struct CGPoint { float x1; float x2; })mf_caplinePointFromBaselinePoint:(struct CGPoint { float x1; float x2; })arg1;
+- (struct CGPoint { float x1; float x2; })mf_caplinePointFromOriginPoint:(struct CGPoint { float x1; float x2; })arg1;
+- (struct CGPoint { float x1; float x2; })mf_originPointFromBaselinePoint:(struct CGPoint { float x1; float x2; })arg1;
+- (struct CGPoint { float x1; float x2; })mf_originPointFromCaplinePoint:(struct CGPoint { float x1; float x2; })arg1;
+- (struct CGPoint { float x1; float x2; })mf_originPointFromMidlinePoint:(struct CGPoint { float x1; float x2; })arg1;
+
+// Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
+
++ (id)pu_defaultFontForTextStyle:(id)arg1 withSymbolicTraits:(unsigned int)arg2;
+
+// Image: /System/Library/Frameworks/UIKit.framework/UIKit
+
++ (id)_ui_bulletFontForFont:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/AppleAccountUI.framework/AppleAccountUI
+
++ (id)aa_fontForLargeButton;
++ (id)aa_fontForLargerInformationLabel;
++ (id)aa_fontForPageTitle;
++ (id)aa_fontForPrimaryInformationLabel;
+
+// Image: /System/Library/PrivateFrameworks/CameraKit.framework/CameraKit
+
++ (float)_interpolatedAdditionalFontSizeForMainScreen;
++ (id)cam_cameraFontForContentSize:(id)arg1;
++ (id)cam_cameraFontOfSize:(float)arg1;
++ (id)cam_cameraKerningForContentSize:(id)arg1;
++ (id)cam_cameraModeDialApproximateFontForContentSize:(id)arg1;
++ (id)cam_cameraModeDialFontForContentSize:(id)arg1;
++ (id)cam_cameraModeDialKerningForContentSize:(id)arg1;
++ (id)cam_cameraPadModeDialFontForContentSize:(id)arg1;
++ (id)cam_cameraTimerFontForContentSize:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
+
++ (id)__ck_emphasizedPreferredFontForTextStyle:(id)arg1;
++ (id)__ck_shortDefaultFontForTextStyle:(id)arg1;
++ (id)__ck_shortEmphasizedPreferredFontForTextStyle:(id)arg1;
++ (id)__ck_shortPreferredFontForTextStyle:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/FitnessUI.framework/FitnessUI
+
++ (id)_fu_sausageFontOfSize:(float)arg1 fontWeight:(float)arg2;
++ (id)_fu_sausageFontOfSize:(float)arg1 fontWeight:(float)arg2 centeredColons:(BOOL)arg3;
++ (id)fu_alternateColonsFeatureSetting;
++ (id)fu_bodyEmphasizeFont;
++ (id)fu_bodyShortFont;
++ (id)fu_boldSausageFontOfSize:(float)arg1;
++ (id)fu_fontByApplyingFeatureSettings:(id)arg1 toFont:(id)arg2;
++ (id)fu_lightSausageFontOfSize:(float)arg1;
++ (id)fu_mediumFontOfSize:(float)arg1;
++ (id)fu_mediumFontOfSize:(float)arg1 centeredColons:(BOOL)arg2;
++ (id)fu_mediumSausageFontOfSize:(float)arg1;
++ (id)fu_sausageFontOfSize:(float)arg1;
++ (id)fu_sausageFontOfSize:(float)arg1 centeredColons:(BOOL)arg2;
++ (id)fu_systemFontOfSize:(float)arg1 centeredColons:(BOOL)arg2;
+
+// Image: /System/Library/PrivateFrameworks/MPUFoundation.framework/MPUFoundation
+
+- (float)MPU_scaledValueForValue:(float)arg1;
+
+// Image: /System/Library/PrivateFrameworks/SiriUI.framework/SiriUI
+
++ (id)siriui_headerFont;
++ (id)siriui_largeHeaderFontWithSize:(float)arg1;
++ (id)siriui_lightWeightBodySizeFont;
++ (id)siriui_lightWeightBodySubtextSizeFont;
++ (id)siriui_lightWeightFontWithSize:(float)arg1;
++ (id)siriui_mediumWeightBodySizeFont;
++ (id)siriui_mediumWeightBodySubtextSizeFont;
++ (id)siriui_mediumWeightFontWithSize:(float)arg1;
++ (id)siriui_multiLineHeaderFont;
++ (id)siriui_scaledServerUtteranceFont;
++ (id)siriui_scaledUserUtteranceFont;
++ (id)siriui_subtitleFont;
++ (id)siriui_thinWeightBodySizeFont;
++ (id)siriui_thinWeightBodySubtextSizeFont;
++ (id)siriui_thinWeightFontWithSize:(float)arg1;
+
+// Image: /System/Library/PrivateFrameworks/VoiceMemos.framework/VoiceMemos
+
++ (id)rcs_ultraLightMonospacedFontOfSize:(float)arg1;
+
+- (id)rc_textStyle;
 
 @end

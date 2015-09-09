@@ -2,19 +2,27 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@class NSString;
-
-@interface MPVolumeSettingsController : UITwoSidedAlertController <UITwoSidedAlertControllerDelegate> {
+@interface MPVolumeSettingsController : UIViewController {
+    UIAlertController *_alertController;
     NSString *_audioCategory;
+    UIWindow *_hostingWindow;
+    UIWindow *_previousWindow;
 }
 
+@property (nonatomic) UIWindow *hostingWindow;
+@property (nonatomic) UIWindow *previousWindow;
+
 - (void).cxx_destruct;
-- (void)alertView:(id)arg1 didDismissWithButtonIndex:(int)arg2;
-- (void)audioRoutingPicker:(id)arg1 didSelectRouteAtIndex:(int)arg2;
-- (id)createBackAlert;
-- (id)createFrontAlert;
-- (void)flip;
+- (void)_flip;
+- (void)_keyWindowDidChange:(id)arg1;
+- (void)dealloc;
+- (void)dismissAlertController;
+- (id)hostingWindow;
 - (id)initWithAudioCategory:(id)arg1;
-- (void)twoSidedAlertControllerDidDismiss:(id)arg1;
+- (void)presentAlertControllerInWindow:(id)arg1;
+- (id)previousWindow;
+- (void)setHostingWindow:(id)arg1;
+- (void)setPreviousWindow:(id)arg1;
+- (void)viewDidAppear:(BOOL)arg1;
 
 @end

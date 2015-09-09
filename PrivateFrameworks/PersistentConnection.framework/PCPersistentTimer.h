@@ -2,13 +2,12 @@
    Image: /System/Library/PrivateFrameworks/PersistentConnection.framework/PersistentConnection
  */
 
-@class NSString, PCSimpleTimer;
-
-@interface PCPersistentTimer : NSObject <PCLoggingDelegate, CUTPowerMonitorDelegate> {
+@interface PCPersistentTimer : NSObject <CUTPowerMonitorDelegate, PCLoggingDelegate> {
     BOOL _disableSystemWaking;
     double _fireTime;
     unsigned int _guidancePriority;
     double _minimumEarlyFireProportion;
+    NSObject<OS_dispatch_queue> *_queue;
     SEL _selector;
     NSString *_serviceIdentifier;
     PCSimpleTimer *_simpleTimer;
@@ -18,12 +17,16 @@
     id _userInfo;
 }
 
-@property BOOL disableSystemWaking;
-@property(readonly) double fireTime;
-@property(readonly) NSString * loggingIdentifier;
-@property double minimumEarlyFireProportion;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL disableSystemWaking;
+@property (nonatomic, readonly) double fireTime;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) NSString *loggingIdentifier;
+@property (nonatomic) double minimumEarlyFireProportion;
+@property (readonly) Class superclass;
 
-+ (struct dispatch_queue_s { }*)_backgroundUpdateQueue;
++ (id)_backgroundUpdateQueue;
 + (double)_currentGuidanceTime;
 + (void)_updateTime:(double)arg1 forGuidancePriority:(unsigned int)arg2;
 + (double)currentMachTimeInterval;
@@ -50,8 +53,9 @@
 - (BOOL)isValid;
 - (id)loggingIdentifier;
 - (double)minimumEarlyFireProportion;
-- (void)scheduleInRunLoop:(id)arg1 inMode:(id)arg2;
+- (void)scheduleInQueue:(id)arg1;
 - (void)scheduleInRunLoop:(id)arg1;
+- (void)scheduleInRunLoop:(id)arg1 inMode:(id)arg2;
 - (void)setDisableSystemWaking:(BOOL)arg1;
 - (void)setMinimumEarlyFireProportion:(double)arg1;
 - (id)userInfo;

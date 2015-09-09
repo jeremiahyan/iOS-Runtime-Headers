@@ -2,10 +2,9 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface TSCHChartSeriesTypeStackedBar : TSCHChartSeriesTypeBar {
-}
+@interface TSCHChartSeriesTypeStackedBar : TSCHChartSeriesTypeBar
 
-- (unsigned int)adjustLabelPosition:(unsigned int)arg1 forValue:(double)arg2;
+- (unsigned int)adjustLabelPosition:(unsigned int)arg1 forAxisValue:(double)arg2 intercept:(double)arg3;
 - (double)beginDataValueForSeries:(id)arg1 groupIndex:(unsigned int)arg2 valueAxisID:(id)arg3;
 - (double)beginValueForSeries:(unsigned int)arg1 index:(unsigned int)arg2 unitSpaceIntercept:(double)arg3 relativelyPositive:(BOOL)arg4 valueAxis:(id)arg5;
 - (id)elementBuilder;

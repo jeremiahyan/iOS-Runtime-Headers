@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class NSMutableDictionary, NSString, NSURL;
-
 @interface SKUIArtwork : NSObject <SKUICacheCoding> {
     int _height;
     NSURL *_url;
@@ -11,14 +9,20 @@
     int _width;
 }
 
-@property(readonly) NSURL * URL;
-@property(readonly) NSMutableDictionary * cacheRepresentation;
-@property(readonly) int height;
-@property(readonly) struct CGSize { float x1; float x2; } size;
-@property(readonly) int width;
+@property (nonatomic, readonly) NSURL *URL;
+@property (getter=_lookupDictionary, nonatomic, readonly) NSDictionary *_lookupDictionary;
+@property (nonatomic, readonly) NSMutableDictionary *cacheRepresentation;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) int height;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } size;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) int width;
 
 - (void).cxx_destruct;
 - (id)URL;
+- (id)_lookupDictionary;
 - (id)cacheRepresentation;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/MusicLibrary.framework/MusicLibrary
  */
 
-@class NSArray;
-
 @interface ML3DatabaseCachedRow : ML3DatabaseRow {
     NSArray *_arrayRepresentation;
 }
@@ -11,6 +9,8 @@
 - (void).cxx_destruct;
 - (id)_numberOrZeroForColumnIndex:(unsigned int)arg1;
 - (id)arrayRepresentation;
+- (const char *)cStringForColumnIndex:(unsigned int)arg1;
+- (const char *)cStringForColumnName:(id)arg1;
 - (unsigned int)columnCount;
 - (id)dataForColumnIndex:(unsigned int)arg1;
 - (id)dataForColumnName:(id)arg1;

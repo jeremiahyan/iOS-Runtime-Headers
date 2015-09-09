@@ -2,21 +2,18 @@
    Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
  */
 
-@class SUGradient, SUGradientView, SULoadingView;
-
 @interface SUPlaceholderViewController : SUViewController {
     SUGradient *_backgroundGradient;
     SUGradient *_defaultBackgroundGradient;
     SUGradientView *_gradientView;
     BOOL _hideLoadingView;
     SULoadingView *_loadingView;
-    BOOL _shouldShowLoadingView;
 }
 
-@property(copy) SUGradient * backgroundGradient;
-@property(copy) SUGradient * defaultBackgroundGradient;
-@property(readonly) SULoadingView * loadingView;
-@property BOOL shouldShowLoadingView;
+@property (nonatomic, copy) SUGradient *backgroundGradient;
+@property (nonatomic, copy) SUGradient *defaultBackgroundGradient;
+@property (nonatomic, readonly) SULoadingView *loadingView;
+@property (nonatomic) BOOL shouldShowLoadingView;
 
 - (void)_bagDidLoadNotification:(id)arg1;
 - (id)_copyActiveGradient;

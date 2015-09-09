@@ -2,20 +2,18 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UITextPosition, _UITextKitTextPosition;
-
 @interface _UITextKitTextRange : UITextRange <NSCopying> {
     _UITextKitTextPosition *_end;
     _UITextKitTextPosition *_start;
 }
 
-@property(readonly) int affinity;
-@property(retain) UITextPosition * end;
-@property(retain) UITextPosition * start;
+@property (nonatomic, readonly) int affinity;
+@property (nonatomic, retain) UITextPosition *end;
+@property (nonatomic, retain) UITextPosition *start;
 
 + (id)defaultRange;
-+ (id)rangeWithRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1 affinity:(int)arg2;
 + (id)rangeWithRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1;
++ (id)rangeWithRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1 affinity:(int)arg2;
 + (id)rangeWithStart:(id)arg1 end:(id)arg2;
 
 - (int)affinity;

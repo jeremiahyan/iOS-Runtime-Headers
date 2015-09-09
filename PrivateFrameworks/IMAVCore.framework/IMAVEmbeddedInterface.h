@@ -2,8 +2,7 @@
    Image: /System/Library/PrivateFrameworks/IMAVCore.framework/IMAVCore
  */
 
-@interface IMAVEmbeddedInterface : IMAVConferenceInterface {
-}
+@interface IMAVEmbeddedInterface : IMAVConferenceInterface
 
 + (void)updateCriticalState;
 
@@ -16,5 +15,6 @@
 - (void)chatStateUpdated;
 - (void)endInterruptionForChat:(id)arg1;
 - (void)startInterruptionForChat:(id)arg1;
+- (void)updateInterruptionForChat:(id)arg1;
 
 @end

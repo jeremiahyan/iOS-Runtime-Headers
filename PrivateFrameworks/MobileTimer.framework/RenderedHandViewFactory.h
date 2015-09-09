@@ -2,32 +2,30 @@
    Image: /System/Library/PrivateFrameworks/MobileTimer.framework/MobileTimer
  */
 
-@class NSBundle, NSMutableDictionary, NSString;
-
 @interface RenderedHandViewFactory : NSObject {
-    struct CGPoint { 
-        float x; 
-        float y; 
-    struct CGSize { 
-        float width; 
-        float height; 
-    struct CGSize { 
-        float width; 
-        float height; 
     BOOL _allowCaching;
     NSMutableDictionary *_angleCache;
     NSString *_imagePath;
+    struct CGPoint { 
+        float x; 
+        float y; 
     } _offset;
     struct CGPDFPage { } *_page;
     unsigned int _registeredClientsCount;
     NSBundle *_resourcesBundle;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _scale;
+    struct CGSize { 
+        float width; 
+        float height; 
     } _viewSize;
 }
 
-@property(readonly) BOOL allowCaching;
-@property(readonly) NSString * key;
-@property unsigned int registeredClientsCount;
+@property (nonatomic, readonly) BOOL allowCaching;
+@property (nonatomic, readonly) NSString *key;
+@property (nonatomic) unsigned int registeredClientsCount;
 
 + (void)flushAllCaches;
 + (id)keyForBundle:(id)arg1 imagePath:(id)arg2 offset:(struct CGPoint { float x1; float x2; })arg3 scale:(struct CGSize { float x1; float x2; })arg4;

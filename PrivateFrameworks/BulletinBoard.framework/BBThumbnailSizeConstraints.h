@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/BulletinBoard.framework/BulletinBoard
  */
 
-@interface BBThumbnailSizeConstraints : NSObject <NSCoding> {
+@interface BBThumbnailSizeConstraints : NSObject <NSSecureCoding> {
     int _constraintType;
     float _fixedDimension;
     float _fixedHeight;
@@ -12,16 +12,19 @@
     float _thumbnailScale;
 }
 
-@property int constraintType;
-@property float fixedDimension;
-@property float fixedHeight;
-@property float fixedWidth;
-@property float maxAspectRatio;
-@property float minAspectRatio;
-@property float thumbnailScale;
+@property (nonatomic) int constraintType;
+@property (nonatomic) float fixedDimension;
+@property (nonatomic) float fixedHeight;
+@property (nonatomic) float fixedWidth;
+@property (nonatomic) float maxAspectRatio;
+@property (nonatomic) float minAspectRatio;
+@property (nonatomic) float thumbnailScale;
+
++ (BOOL)supportsSecureCoding;
 
 - (BOOL)areReasonable;
 - (int)constraintType;
+- (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (float)fixedDimension;
 - (float)fixedHeight;

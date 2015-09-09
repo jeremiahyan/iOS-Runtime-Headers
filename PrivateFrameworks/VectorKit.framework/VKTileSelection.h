@@ -9,14 +9,14 @@
     int _tileSize;
 }
 
-@property BOOL bootstrap;
-@property double lodBias;
-@property unsigned int maxZ;
-@property int tileSize;
+@property (nonatomic) BOOL bootstrap;
+@property (nonatomic) double lodBias;
+@property (nonatomic) unsigned int maxZ;
+@property (nonatomic) int tileSize;
 
 - (BOOL)bootstrap;
 - (id)init;
-- (id)keysForContext:(id)arg1 neighbors:(id)arg2;
+- (id)keysForContext:(id)arg1 neighbors:(id)arg2 selectionScale:(float)arg3;
 - (double)lodBias;
 - (unsigned int)maxZ;
 - (struct { unsigned int x1; int x2; int x3; int x4; int x5; })relevantTilesForContext:(id)arg1;

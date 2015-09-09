@@ -2,17 +2,17 @@
    Image: /System/Library/PrivateFrameworks/StoreBookkeeper.framework/StoreBookkeeper
  */
 
-@class SSAccount;
-
 @interface SBKStoreAuthenticationController : NSObject {
     BOOL _shouldAuthenticate;
     SSAccount *_storeAccount;
 }
 
 @property BOOL shouldAuthenticate;
-@property(readonly) SSAccount * storeAccount;
+@property (readonly) SSAccount *storeAccount;
 
 + (void)clearLastSyncnedAccount;
++ (id)lastFailedSyncAccountIdentifier;
++ (id)lastFailedSyncAccountName;
 + (id)lastSyncedAccountIdentifier;
 + (id)lastSyncedAccountName;
 
@@ -20,6 +20,7 @@
 - (id)authenticationErrorsForTransaction:(id)arg1;
 - (id)initWithStoreAccount:(id)arg1;
 - (BOOL)isAuthenticationValidForTransaction:(id)arg1 error:(id*)arg2;
+- (void)saveAccountToLastFailedSyncDefaults;
 - (void)saveAccountToLastSyncedDefaults;
 - (void)setShouldAuthenticate:(BOOL)arg1;
 - (BOOL)shouldAuthenticate;
