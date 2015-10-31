@@ -4,7 +4,6 @@
 
 @interface CKDAccount : NSObject <CKDAccountInfoProvider> {
     ACAccountType *_acAccountType;
-    ACAccountStore *_accountStore;
     BOOL _accountWantsPushRegistration;
     CKDBackingAccount *_backingAccount;
     CKDClientContext *_context;
@@ -16,10 +15,10 @@
 @property (nonatomic, retain) ACAccountType *acAccountType;
 @property (nonatomic, readonly) NSString *accountID;
 @property (nonatomic, readonly) NSString *accountIdentifier;
-@property (nonatomic, retain) ACAccountStore *accountStore;
+@property (nonatomic, readonly) ACAccountStore *accountStore;
 @property (nonatomic) BOOL accountWantsPushRegistration;
-@property (nonatomic, readonly) BOOL allowsCellularAccess;
 @property (nonatomic, readonly) CKDBackingAccount *backingAccount;
+@property (nonatomic, readonly) BOOL canAccessAccount;
 @property (nonatomic, readonly) BOOL cloudKitIsEnabled;
 @property (nonatomic, readonly) BOOL cloudPhotosIsEnabled;
 @property (nonatomic) CKDClientContext *context;
@@ -27,6 +26,7 @@
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned int hash;
 @property (nonatomic) BOOL haveWarnedAboutServerPreferredPushEnvironment;
+@property (nonatomic, readonly) BOOL iCloudDriveAllowsCellularAccess;
 @property (nonatomic) BOOL isAnonymousAccount;
 @property (nonatomic, readonly) BOOL isFakeAccount;
 @property (nonatomic) BOOL isUnitTestingAccount;
@@ -40,7 +40,6 @@
 - (id)accountIdentifier;
 - (id)accountStore;
 - (BOOL)accountWantsPushRegistration;
-- (BOOL)allowsCellularAccess;
 - (id)applicationBundle;
 - (id)backingAccount;
 - (id)baseURLForServerType:(int)arg1 partitionType:(int)arg2;
@@ -64,6 +63,7 @@
 - (id)hardwareID;
 - (BOOL)haveWarnedAboutServerPreferredPushEnvironment;
 - (id)iCloudAuthToken;
+- (BOOL)iCloudDriveAllowsCellularAccess;
 - (id)initAnonymousAccountWithContext:(id)arg1;
 - (id)initFakeAccountWithEmail:(id)arg1 password:(id)arg2 context:(id)arg3;
 - (id)initPrimaryAccountWithContext:(id)arg1;
@@ -78,12 +78,11 @@
 - (void)noteSuccessfulRequestWithNumDownloadedElements:(int)arg1;
 - (void)noteTimeSpentInNetworking:(double)arg1;
 - (id)regionCode;
-- (void)renewAuthTokenWithCompletionHandler:(id /* block */)arg1;
+- (void)renewAuthTokenWithReason:(id)arg1 completionHandler:(id /* block */)arg2;
 - (void)renewMescalSessionForRequest:(id)arg1 withCompletionHandler:(id /* block */)arg2;
 - (void)resetMescalSession;
 - (id)serverPreferredPushEnvironment;
 - (void)setAcAccountType:(id)arg1;
-- (void)setAccountStore:(id)arg1;
 - (void)setAccountWantsPushRegistration:(BOOL)arg1;
 - (void)setContext:(id)arg1;
 - (void)setHaveWarnedAboutServerPreferredPushEnvironment:(BOOL)arg1;

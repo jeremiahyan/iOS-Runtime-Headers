@@ -4,7 +4,7 @@
 
 @interface UINavigationBar : UIView <NSCoding, UIBarPositioning, UIGestureRecognizerDelegate, UIStatusBarTinting, _UIBarPositioningInternal, _UIBasicAnimationFactory, _UIShadowedView> {
     NSMutableArray *__animationIds;
-    BOOL __condensed;
+    UIColor *_accessibilityButtonBackgroundTintColor;
     UIView *_accessoryView;
     id _appearanceStorage;
     UIImageView *_backIndicatorView;
@@ -12,6 +12,7 @@
     UIView *_backgroundView;
     int _barPosition;
     UIColor *_barTintColor;
+    UIFocusContainerGuide *_contentFocusContainerGuide;
     id _currentAlert;
     id _delegate;
     NSMutableArray *_itemStack;
@@ -58,25 +59,23 @@
     BOOL _wantsLetterpressContent;
 }
 
+@property (setter=_setAccessibilityButtonBackgroundTintColor:, nonatomic, retain) UIColor *_accessibilityButtonBackgroundTintColor;
 @property (setter=_setAnimationIds:, nonatomic, retain) NSMutableArray *_animationIds;
 @property (setter=_setBackIndicatorImage:, nonatomic, retain) UIImage *_backIndicatorImage;
 @property (setter=_setBackIndicatorLeftMargin:, nonatomic) float _backIndicatorLeftMargin;
-@property (nonatomic, readonly, retain) NSString *_backdropViewLayerGroupName;
 @property (setter=_setBackdropViewLayerGroupName:, nonatomic, retain) NSString *_backdropViewLayerGroupName;
-@property (setter=_setBackgroundView:, nonatomic, retain) UIView *_backgroundView;
 @property (nonatomic, readonly) int _barTranslucence;
-@property (getter=_isCondensed, setter=_setCondensed:, nonatomic) BOOL _condensed;
 @property (nonatomic, readonly) float _heightIncludingBackground;
 @property (setter=_setNeedsUpdateBackIndicatorImage:, nonatomic) BOOL _needsUpdateBackIndicatorImage;
 @property (setter=_setRequestedMaxBackButtonWidth:, nonatomic) float _requestedMaxBackButtonWidth;
-@property (setter=_setShadowAlpha:, nonatomic) float _shadowAlpha;
 @property (setter=_setWantsLetterpressContent:, nonatomic) BOOL _wantsLetterpressContent;
 @property (nonatomic, retain) UIImage *backIndicatorImage;
 @property (nonatomic, retain) UIImage *backIndicatorTransitionMaskImage;
-@property (nonatomic, readonly, retain) UINavigationItem *backItem;
+@property (nonatomic, readonly) UINavigationItem *backItem;
 @property (nonatomic, readonly) int barPosition;
 @property (nonatomic) int barStyle;
 @property (nonatomic, retain) UIColor *barTintColor;
+@property (getter=_contentFocusContainerGuide, nonatomic, readonly) UIFocusContainerGuide *contentFocusContainerGuide;
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic) <UINavigationBarDelegate> *delegate;
 @property (readonly, copy) NSString *description;
@@ -86,17 +85,21 @@
 @property (readonly) Class superclass;
 @property (nonatomic, retain) UIColor *tintColor;
 @property (nonatomic, copy) NSDictionary *titleTextAttributes;
-@property (nonatomic, readonly, retain) UINavigationItem *topItem;
+@property (nonatomic, readonly) UINavigationItem *topItem;
 @property (getter=isTranslucent, nonatomic) BOOL translucent;
 
 // Image: /System/Library/Frameworks/UIKit.framework/UIKit
 
 + (id)_bottomColorForBackgroundImage:(id)arg1 viewSize:(struct CGSize { float x1; float x2; })arg2;
++ (id)_defaultBackIndicatorImage;
++ (id)_defaultBackIndicatorTransitionMaskImage;
++ (id)_defaultVisualStyleForOrientation:(int)arg1;
 + (void)_initializeForIdiom:(int)arg1;
 + (void)_setUseCustomBackButtonAction:(BOOL)arg1;
 + (id)_statusBarBaseTintColorForStyle:(int)arg1 translucent:(BOOL)arg2 tintColor:(id)arg3;
 + (id)_statusBarBaseTintColorForStyle:(int)arg1 translucent:(BOOL)arg2 tintColor:(id)arg3 backgroundImage:(id)arg4 viewSize:(struct CGSize { float x1; float x2; })arg5;
 + (BOOL)_useCustomBackButtonAction;
++ (id)_visualStyleForIdiom:(int)arg1 metrics:(int)arg2 isContainedInPopover:(BOOL)arg3 wantsLetterpressContent:(BOOL)arg4;
 + (id)defaultPromptFont;
 + (struct CGSize { float x1; float x2; })defaultSize;
 + (struct CGSize { float x1; float x2; })defaultSizeForOrientation:(int)arg1;
@@ -104,9 +107,12 @@
 + (struct CGSize { float x1; float x2; })defaultSizeWithPromptForOrientation:(int)arg1;
 + (void)setDefaultAnimationDuration:(double)arg1;
 
+- (void).cxx_destruct;
+- (id)_accessibilityButtonBackgroundTintColor;
 - (void)_accessibilityButtonShapesDidChangeNotification:(id)arg1;
 - (void)_accessibilityButtonShapesParametersDidChange;
 - (int)_activeBarMetrics;
+- (id)_activeVisualStyle;
 - (void)_addItem:(id)arg1 withEffectiveDelegate:(id)arg2 transition:(int)arg3;
 - (void)_addItems:(id)arg1 withEffectiveDelegate:(id)arg2 transition:(int)arg3;
 - (id)_allViews;
@@ -142,6 +148,7 @@
 - (id)_commonHitTest:(struct CGPoint { float x1; float x2; })arg1 forView:(id)arg2;
 - (void)_commonNavBarInit;
 - (void)_configurePaletteConstraintsIfNecessary;
+- (id)_contentFocusContainerGuide;
 - (BOOL)_contentHuggingDefault_isUsuallyFixedHeight;
 - (void)_crossFadeToBarBackgroundImageForItem:(id)arg1;
 - (id)_currentBackButtonForNthItemFromTop:(unsigned int)arg1;
@@ -156,6 +163,7 @@
 - (id)_defaultTitleFont;
 - (id)_defaultTitleFontFittingHeight:(float)arg1 withScaleAdjustment:(float)arg2;
 - (id)_defaultTitleFontWithScaleAdjustment:(float)arg1;
+- (id)_defaultVisualStyleForOrientation:(int)arg1;
 - (BOOL)_deferShadowToSearchBar;
 - (void)_didChangeFromIdiom:(int)arg1 onScreen:(id)arg2 traverseHierarchy:(BOOL)arg3;
 - (void)_didMoveFromWindow:(id)arg1 toWindow:(id)arg2;
@@ -173,7 +181,6 @@
 - (void)_fadeViewsIn:(id)arg1;
 - (void)_fadeViewsOut:(id)arg1;
 - (void)_finishInteractiveTransition:(float)arg1 completionSpeed:(float)arg2 completionCurve:(int)arg3;
-- (id)_focusableViews;
 - (BOOL)_gestureRecognizerShouldBegin:(id)arg1;
 - (void)_getTitleViewFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; }*)arg1 leftViewFrames:(id)arg2 rightViewFrames:(id)arg3;
 - (void)_getTitleViewFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; }*)arg1 leftViewFrames:(id)arg2 rightViewFrames:(id)arg3 forItemAtIndex:(unsigned int)arg4;
@@ -190,7 +197,6 @@
 - (void)_incrementAnimationCountIfNecessary;
 - (void)_intrinsicContentSizeInvalidatedForChildView:(id)arg1;
 - (BOOL)_isAlwaysHidden;
-- (BOOL)_isCondensed;
 - (BOOL)_isIncomingButtonSameAsOutgoingButtonOnLeft:(BOOL)arg1;
 - (id)_itemStack;
 - (int)_itemStackCount;
@@ -198,7 +204,7 @@
 - (BOOL)_legacyIsTranslucent;
 - (BOOL)_modernIsTranslucent;
 - (void)_navBarButtonPressed:(id)arg1;
-- (void)_navigationAnimationDidFinish:(id)arg1 finished:(id)arg2 context:(id)arg3;
+- (void)_navigationAnimationDidFinish:(BOOL)arg1 context:(id)arg2;
 - (BOOL)_needsUpdateBackIndicatorImage;
 - (id)_nthNavigationItemFromTop:(int)arg1;
 - (void)_palette:(id)arg1 isAttaching:(BOOL)arg2 didComplete:(BOOL)arg3;
@@ -217,6 +223,7 @@
 - (void)_removeItemsFromSuperview:(id)arg1;
 - (float)_requestedMaxBackButtonWidth;
 - (void)_resetBackgroundImageAsNecessary;
+- (void)_setAccessibilityButtonBackgroundTintColor:(id)arg1;
 - (void)_setActiveBarMetrics:(int)arg1;
 - (void)_setAnimationIds:(id)arg1;
 - (void)_setAutoAdjustTitle:(BOOL)arg1;
@@ -233,14 +240,15 @@
 - (void)_setButtonItemTextColor:(id)arg1 shadowColor:(id)arg2;
 - (void)_setButtonItemTextColor:(id)arg1 shadowColor:(id)arg2 forState:(unsigned int)arg3;
 - (void)_setButtonTextShadowOffset:(struct CGSize { float x1; float x2; })arg1;
-- (void)_setCondensed:(BOOL)arg1;
+- (void)_setDecodedItems:(id)arg1;
 - (void)_setDefaultBarMetrics:(int)arg1;
 - (void)_setDeferShadowToSearchBar:(BOOL)arg1;
 - (void)_setHidesShadow:(BOOL)arg1;
 - (void)_setIsContainedInPopover:(BOOL)arg1;
 - (void)_setItems:(id)arg1 transition:(int)arg2;
 - (void)_setItems:(id)arg1 transition:(int)arg2 reset:(BOOL)arg3;
-- (void)_setItemsUpToItem:(id)arg1 transition:(id)arg2;
+- (void)_setItems:(id)arg1 transition:(int)arg2 reset:(BOOL)arg3 resetOwningRelationship:(BOOL)arg4;
+- (void)_setItemsUpToItem:(id)arg1 transition:(int)arg2;
 - (void)_setLeftView:(id)arg1 rightView:(id)arg2;
 - (void)_setLeftViews:(id)arg1 rightViews:(id)arg2;
 - (void)_setNeedsUpdateBackIndicatorImage:(BOOL)arg1;
@@ -248,6 +256,7 @@
 - (void)_setRequestedMaxBackButtonWidth:(float)arg1;
 - (void)_setReversesButtonTextShadowOffsetWhenPressed:(BOOL)arg1;
 - (void)_setShadowAlpha:(float)arg1;
+- (void)_setUpContentFocusContainerGuide;
 - (void)_setVisualAltitude:(float)arg1;
 - (void)_setVisualAltitudeBias:(struct CGSize { float x1; float x2; })arg1;
 - (void)_setWantsLetterpressContent:(BOOL)arg1;
@@ -256,7 +265,7 @@
 - (id)_shadowView;
 - (BOOL)_shouldPopForTouchAtPoint:(struct CGPoint { float x1; float x2; })arg1;
 - (BOOL)_shouldShowBackButtonForNavigationItem:(id)arg1;
-- (void)_showLeftRightButtonsAnimationDidStop:(id)arg1 finished:(id)arg2 context:(id)arg3;
+- (void)_showLeftRightButtonsAnimationDidFinish:(BOOL)arg1 context:(id)arg2;
 - (void)_startBarStyleAnimation:(int)arg1 withTintColor:(id)arg2;
 - (void)_startInteractiveNavigationBarTransition;
 - (void)_startPopAnimationFromItems:(id)arg1 fromBarStyle:(int)arg2 toItems:(id)arg3 toBarStyle:(int)arg4;
@@ -284,6 +293,7 @@
 - (void)_updateOpacity;
 - (void)_updatePaletteBackgroundIfNecessary;
 - (void)_updateTitleView;
+- (id)_visualStyleForMetrics:(int)arg1;
 - (BOOL)_wantsAdaptiveBackdrop;
 - (BOOL)_wantsAdaptiveBackdropForPalette;
 - (BOOL)_wantsAdaptiveBackdropWhenNotHidden;
@@ -304,7 +314,6 @@
 - (id)barTintColor;
 - (id)buttonItemShadowColor;
 - (id)buttonItemTextColor;
-- (BOOL)canBecomeFocused;
 - (id)createButtonWithContents:(id)arg1 width:(float)arg2 barStyle:(int)arg3 buttonStyle:(int)arg4 isRight:(BOOL)arg5;
 - (id)currentBackButton;
 - (id)currentLeftView;
@@ -341,7 +350,7 @@
 - (id)navigationItems;
 - (void)popNavigationItem;
 - (id)popNavigationItemAnimated:(BOOL)arg1;
-- (id)preferredFocusedItem;
+- (id)preferredFocusedView;
 - (id)prompt;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })promptBounds;
 - (id)promptView;
@@ -370,6 +379,7 @@
 - (void)setNeedsLayout;
 - (void)setPrompt:(id)arg1;
 - (void)setRightMargin:(float)arg1;
+- (void)setSemanticContentAttribute:(int)arg1;
 - (void)setShadowImage:(id)arg1;
 - (void)setTintColor:(id)arg1;
 - (void)setTitleAutoresizesToFit:(BOOL)arg1;
@@ -400,6 +410,15 @@
 - (void)touchesMoved:(id)arg1 withEvent:(id)arg2;
 - (void)updatePrompt;
 - (void)willRemoveSubview:(id)arg1;
+
+// Image: /System/Library/Frameworks/ContactsUI.framework/ContactsUI
+
+- (void)_cnui_applyContactStyle;
+
+// Image: /System/Library/Frameworks/PassKit.framework/PassKit
+
+- (void)pk_applyAppearance:(struct _PKAppearanceSpecifier { BOOL x1; id x2; id x3; id x4; id x5; id x6; id x7; id x8; id x9; id x10; id x11; id x12; id x13; /* Warning: Unrecognized filer type: '' using 'void*' */ void*x14; void*x15; void*x16; void*x17; void*x18; void*x19; void*x20; void*x21; void*x22; void*x23; void*x24; void*x25; void*x26; void*x27; void*x28; void*x29; void*x30; void*x31; void*x32; void*x33; void*x34; void*x35; void*x36; void*x37; void*x38; void*x39; void*x40; void*x41; void*x42; void*x43; void*x44; void*x45; void*x46; void*x47; void*x48; void*x49; void*x50; void*x51; void*x52; void*x53; void*x54; void*x55; void*x56; void*x57; void*x58; void*x59; void*x60; long doublex61; unsigned char x62; void*x63; long x64; long x65; void*x66; int x67; short x68; void*x69; out const void*x70; unsigned short x71; void*x72; in BOOL x73; void*x74; void*x75; void*x76; void*x77; void*x78; void*x79; void*x80; void*x81; void*x82; void*x83; void*x84; void*x85; void*x86; void*x87; void*x88; void*x89; void*x90; void*x91; unsigned long x92; void*x93; void*x94; void*x95; void*x96; void*x97; void*x98; void*x99; void*x100; void*x101; void*x102; void*x103; void*x104; void*x105; void*x106; void*x107; void*x108; void*x109; void*x110; void*x111; void*x112; void*x113; void*x114; void*x115; void*x116; void*x117; void*x118; void*x119; void*x120; void*x121; void*x122; void*x123; unsigned long x124; void*x125; void*x126; void*x127; void*x128; void*x129; void*x130; void*x131; void*x132; void*x133; void*x134; void*x135; void*x136; void*x137; void*x138; void*x139; void*x140; void*x141; void*x142; void*x143; void*x144; void*x145; void*x146; void*x147; void*x148; void*x149; void*x150; void*x151; void*x152; void*x153; void*x154; void*x155; unsigned long x156; void*x157; void*x158; void*x159; void*x160; void*x161; void*x162; void*x163; void*x164; void*x165; void*x166; void*x167; void*x168; void*x169; void*x170; void*x171; void*x172; void*x173; void*x174; void*x175; void*x176; void*x177; void*x178; void*x179; void*x180; void*x181; void*x182; void*x183; void*x184; void*x185; void*x186; void*x187; unsigned long x188; void*x189; void*x190; void*x191; void*x192; void*x193; void*x194; void*x195; void*x196; void*x197; void*x198; void*x199; void*x200; void*x201; void*x202; void*x203; void*x204; void*x205; void*x206; void*x207; void*x208; void*x209; void*x210; void*x211; }*)arg1;
+- (id)pk_childrenForAppearance;
 
 // Image: /System/Library/PrivateFrameworks/GameCenterUI.framework/GameCenterUI
 

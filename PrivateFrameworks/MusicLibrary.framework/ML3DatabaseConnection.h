@@ -10,6 +10,7 @@
     NSString *_databasePath;
     NSMutableArray *_enqueuedTransactionCommitBlocks;
     const void *_iTunesExtensions;
+    BOOL _isHandlingIOError;
     BOOL _isOpen;
     BOOL _isReadOnly;
     unsigned int _journalingMode;
@@ -47,6 +48,7 @@
 
 - (void).cxx_destruct;
 - (BOOL)_alterTableNamed:(id)arg1 withNewColumnDefinitions:(id)arg2 newColumnNames:(id)arg3 oldColumnNames:(id)arg4;
+- (BOOL)_closeAndFlushTransactionState:(BOOL)arg1;
 - (void)_createDatabaseDirectoryIfNonexistent;
 - (void)_createDatabaseFileIfNonexistent;
 - (BOOL)_databaseFileExists;
@@ -58,9 +60,11 @@
 - (void)_executeTransactionCommitBlocks:(BOOL)arg1;
 - (void)_finalizeAllStatements;
 - (BOOL)_handleBusyLockWithNumberOfRetries:(int)arg1;
+- (BOOL)_handleConnectionErrorWhileOpening:(int)arg1;
 - (void)_handleDatabaseCorruption;
 - (void)_handleDatabaseProfileStatement:(const char *)arg1 executionTimeNS:(unsigned long long)arg2;
 - (void)_handleDatabaseTraceStatement:(const char *)arg1;
+- (BOOL)_handleDiskIOError;
 - (BOOL)_handleZombieSQLiteConnection:(struct sqlite3 { }*)arg1;
 - (BOOL)_internalBeginTransactionWithBehaviorType:(unsigned int)arg1;
 - (BOOL)_internalEndTransactionAndCommit:(BOOL)arg1;
@@ -126,6 +130,7 @@
 - (BOOL)registerFunctionName:(id)arg1 argumentCount:(int)arg2 functionPointer:(int (*)arg3 userData:(void*)arg4;
 - (BOOL)registerModule:(id)arg1;
 - (BOOL)registerModuleName:(id)arg1 moduleMethods:(struct sqlite3_module { int x1; int (*x2)(); int (*x3)(); int (*x4)(); int (*x5)(); int (*x6)(); int (*x7)(); int (*x8)(); int (*x9)(); int (*x10)(); int (*x11)(); int (*x12)(); int (*x13)(); int (*x14)(); int (*x15)(); int (*x16)(); int (*x17)(); int (*x18)(); int (*x19)(); int (*x20)(); int (*x21)(); int (*x22)(); int (*x23)(); }*)arg2;
+- (BOOL)removeModuleNamed:(id)arg1;
 - (BOOL)schemaAddColumnDefinition:(id)arg1 toTable:(id)arg2;
 - (BOOL)schemaDeleteColumn:(id)arg1 inTable:(id)arg2;
 - (BOOL)schemaDeleteColumns:(id)arg1 inTable:(id)arg2;

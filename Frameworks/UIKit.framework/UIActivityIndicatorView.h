@@ -12,6 +12,7 @@
     double _duration;
     BOOL _hasShadow;
     BOOL _hidesWhenStopped;
+    NSString *_highlightArtBackupKeyString;
     float _innerRadius;
     UIImageView *_internalView;
     UIColor *_shadowColor;
@@ -23,6 +24,7 @@
     float _spinningDuration;
     int _spokeCount;
     int _spokeFrameRatio;
+    NSArray *_spokeHighlightImages;
     NSArray *_spokeImages;
     BOOL _useArtwork;
     BOOL _useOutlineShadow;
@@ -35,6 +37,7 @@
 @property (nonatomic, retain) UIColor *color;
 @property BOOL hasShadow;
 @property (nonatomic) BOOL hidesWhenStopped;
+@property (nonatomic, readonly) NSString *highlightArtBackupKeyString;
 @property (nonatomic) float innerRadius;
 @property (nonatomic, readonly) UIImageView *internalView;
 @property (nonatomic, retain) UIColor *shadowColor;
@@ -43,33 +46,40 @@
 @property (nonatomic) float spinningDuration;
 @property (nonatomic) int spokeCount;
 @property (nonatomic) int spokeFrameRatio;
+@property (readonly) NSArray *spokeHighlightImages;
 @property (readonly) NSArray *spokeImages;
 @property (nonatomic) BOOL useArtwork;
 @property (nonatomic) BOOL useOutlineShadow;
 @property (nonatomic) float width;
+
+// Image: /System/Library/Frameworks/UIKit.framework/UIKit
 
 + (BOOL)_isModernStyle:(int)arg1;
 + (id)_loadResourcesForStyle:(int)arg1;
 + (struct CGSize { float x1; float x2; })defaultSizeForStyle:(int)arg1;
 + (struct CGSize { float x1; float x2; })size;
 
+- (void).cxx_destruct;
 - (float)_alphaValueForStep:(int)arg1;
 - (void)_applicationDidEnterBackground:(id)arg1;
 - (void)_applicationWillEnterForeground:(id)arg1;
-- (id)_artBackupKey;
+- (id)_artBackupKeyWithHighlight:(BOOL)arg1;
 - (BOOL)_canCustomize;
 - (BOOL)_canCustomizeStyle:(int)arg1;
 - (void)_commonInit;
 - (BOOL)_contentHuggingDefault_isUsuallyFixedHeight;
 - (BOOL)_contentHuggingDefault_isUsuallyFixedWidth;
 - (int)_customStyleForStyle:(int)arg1;
-- (id)_defaulColorForStyle:(int)arg1;
+- (id)_defaultColorForStyle:(int)arg1;
 - (void)_didMoveFromWindow:(id)arg1 toWindow:(id)arg2;
+- (int)_externalStyleForStyle:(int)arg1;
 - (void)_feedTheGear;
-- (id)_generateImages;
-- (id)_generateModernImagesForImages:(id)arg1;
+- (id)_generateImagesForColor:(id)arg1 highlight:(BOOL)arg2;
+- (id)_generateModernImagesForImages:(id)arg1 color:(id)arg2;
 - (BOOL)_hasCustomColor;
-- (id)_imageForStep:(int)arg1;
+- (id)_highlightColorForStyle:(int)arg1;
+- (id)_imageForStep:(int)arg1 withColor:(id)arg2;
+- (int)_internalStyleForStyle:(int)arg1;
 - (struct CGSize { float x1; float x2; })_intrinsicSizeWithinSize:(struct CGSize { float x1; float x2; })arg1;
 - (BOOL)_isArtWorkBased;
 - (BOOL)_isModern;
@@ -95,6 +105,7 @@
 - (void)generateImages;
 - (BOOL)hasShadow;
 - (BOOL)hidesWhenStopped;
+- (id)highlightArtBackupKeyString;
 - (id)initWithActivityIndicatorStyle:(int)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
@@ -131,13 +142,20 @@
 - (float)spinningDuration;
 - (int)spokeCount;
 - (int)spokeFrameRatio;
+- (id)spokeHighlightImages;
 - (id)spokeImages;
 - (void)startAnimating;
 - (void)startAnimation;
 - (void)stopAnimating;
 - (void)stopAnimation;
+- (void)tintColorDidChange;
 - (BOOL)useArtwork;
 - (BOOL)useOutlineShadow;
 - (float)width;
+
+// Image: /System/Library/Frameworks/PassKit.framework/PassKit
+
+- (void)pk_applyAppearance:(struct _PKAppearanceSpecifier { BOOL x1; id x2; id x3; id x4; id x5; id x6; id x7; id x8; id x9; id x10; id x11; id x12; id x13; /* Warning: Unrecognized filer type: '' using 'void*' */ void*x14; void*x15; void*x16; void*x17; void*x18; void*x19; void*x20; void*x21; void*x22; void*x23; void*x24; void*x25; void*x26; void*x27; void*x28; void*x29; void*x30; void*x31; void*x32; void*x33; void*x34; void*x35; void*x36; void*x37; void*x38; void*x39; void*x40; void*x41; void*x42; void*x43; void*x44; void*x45; void*x46; void*x47; void*x48; void*x49; void*x50; void*x51; void*x52; void*x53; void*x54; void*x55; void*x56; void*x57; void*x58; void*x59; void*x60; unsigned short x61; void*x62; short x63; void*x64; void*x65; void*x66; void*x67; unsigned long x68; int x69; unsigned int x70/* : ? */; const void*x71; const void*x72; void*x73; void*x74; const int x75; void x76; void*x77; void*x78; void*x79; void*x80; const void*x81; void*x82; void*x83; void*x84; out const void*x85; short x86; void*x87; void*x88; void*x89; unsigned char x90; out const void*x91; void*x92; float x93; const void*x94; void*x95; void*x96; void*x97; out const void*x98; void*x99; void*x100; void*x101; unsigned char x102; out const void*x103; void*x104; void*x105; void*x106; void*x107; void*x108; void*x109; void*x110; void*x111; void*x112; void*x113; void*x114; void*x115; void*x116; void*x117; void*x118; void*x119; void*x120; void*x121; void*x122; void*x123; void*x124; void*x125; void*x126; void*x127; void*x128; void*x129; void*x130; void*x131; void*x132; void*x133; const void*x134; void*x135; void*x136; void*x137; const void*x138; void*x139; void*x140; void*x141; void*x142; void*x143; void*x144; void*x145; void*x146; void*x147; void*x148; void*x149; void*x150; void*x151; void*x152; void*x153; void*x154; void*x155; void*x156; id x157; void*x158; id x159; const void*x160; void*x161; id x162; void*x163; void*x164; void*x165; void*x166; void*x167; void*x168; void*x169; void*x170; void*x171; void*x172; void*x173; void*x174; void*x175; void*x176; void*x177; void*x178; void*x179; void*x180; void*x181; void*x182; void*x183; void*x184; void*x185; void*x186; void*x187; void*x188; unsigned long x189; void*x190; void*x191; void*x192; void*x193; void*x194; void*x195; void*x196; oneway void*x197; void*x198; void*x199; void*x200; void*x201; void*x202; void*x203; void*x204; void*x205; void*x206; void*x207; void*x208; void*x209; void*x210; void*x211; void*x212; void*x213; void*x214; void*x215; void*x216; void*x217; void*x218; void*x219; void*x220; void*x221; void*x222; void*x223; void*x224; void*x225; void*x226; void*x227; void*x228; void*x229; void*x230; void*x231; void*x232; void*x233; void*x234; void*x235; void*x236; void*x237; void*x238; void*x239; void*x240; void*x241; void*x242; void*x243; void*x244; void*x245; void*x246; void*x247; void*x248; void*x249; void*x250; void*x251; void*x252; void*x253; void*x254; void*x255; void*x256; void*x257; void*x258; void*x259; void*x260; void*x261; void*x262; void*x263; void*x264; void*x265; void*x266; void*x267; void*x268; void*x269; void*x270; void*x271; void*x272; void*x273; void*x274; void*x275; void*x276; void*x277; void*x278; void*x279; void*x280; unsigned short x281; void*x282; short x283; void*x284; void*x285; void*x286; void*x287; unsigned long x288; int x289; unsigned int x290/* : ? */; const void*x291; const void*x292; void*x293; void*x294; const int x295; void x296; void*x297; void*x298; void*x299; void*x300; const void*x301; void*x302; void*x303; void*x304; out const void*x305; short x306; void*x307; void*x308; in out void*x309; void*x310; void*x311; int x312; out in void*x313; int x314; void*x315; void*x316; float x317; const void*x318; void*x319; void*x320; void*x321; out const void*x322; void*x323; void*x324; in out void*x325; void*x326; void*x327; int x328; out in void*x329; int x330; void*x331; void*x332; void*x333; void*x334; void*x335; void*x336; void*x337; void*x338; void*x339; void*x340; void*x341; void*x342; void*x343; void*x344; void*x345; void*x346; void*x347; void*x348; void*x349; void*x350; void*x351; void*x352; void*x353; void*x354; void*x355; void*x356; void*x357; unsigned char x358; const out void*x359; void*x360; in out void*x361; void*x362; void*x363; int x364; out in void*x365; void*x366; in double x367; void*x368; const void*x369; const void*x370; void*x371; void*x372; void*x373; void*x374; void*x375; void*x376; void*x377; void*x378; void*x379; void*x380; void*x381; void*x382; void*x383; void*x384; void*x385; void*x386; void*x387; void*x388; void*x389; void*x390; void*x391; void*x392; void*x393; void*x394; void*x395; void*x396; void*x397; void*x398; void*x399; void*x400; void*x401; void*x402; void*x403; void*x404; void*x405; void*x406; void*x407; void*x408; void*x409; void*x410; void*x411; void*x412; void*x413; void*x414; void*x415; void x416; void*x417; void*x418; void*x419; }*)arg1;
+- (id)pk_childrenForAppearance;
 
 @end

@@ -2,7 +2,8 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@interface UITextField : UIControl <ABText, MPUAutoupdatingTextContainer, NSCoding, UIKeyboardInput, UIPopoverControllerDelegate, UITextInput, UITextInputTraits_Private, _UILayoutBaselineUpdating> {
+@interface UITextField : UIControl <ABText, MPUAutoupdatingTextContainer, NSCoding, UIGestureRecognizerDelegate, UIKeyInputPrivate, UIKeyboardInput, UIPopoverControllerDelegate, UITextInput, UITextInputTraits_Private, _UIFloatingContentViewDelegate, _UILayoutBaselineUpdating> {
+    BOOL _animateNextHighlightChange;
     UITextFieldAtomBackgroundView *_atomBackgroundView;
     BOOL _avoidBecomeFirstResponder;
     UIImage *_background;
@@ -16,11 +17,15 @@
         float width; 
         float height; 
     } _clearButtonOffset;
+    UIVisualEffectView *_contentBackdropView;
     BOOL _deferringBecomeFirstResponder;
     id _delegate;
     UIImage *_disabledBackground;
     UITextFieldBorderView *_disabledBackgroundView;
     UITextFieldLabel *_displayLabel;
+    _UIDetachedFieldEditorBackgroundView *_fieldEditorBackgroundView;
+    UIVisualEffectView *_fieldEditorEffectView;
+    _UIFloatingContentView *_floatingContentView;
     float _fullFontSize;
     UIImageView *_iconView;
     UIView *_inputAccessoryView;
@@ -53,6 +58,7 @@
     } _rightViewOffset;
     int _scrollXOffset;
     int _scrollYOffset;
+    UITapGestureRecognizer *_selectGestureRecognizer;
     struct _NSRange { 
         unsigned int location; 
         unsigned int length; 
@@ -60,6 +66,7 @@
     BOOL _setSelectionRangeAfterFieldEditorIsAttached;
     UITextFieldLabel *_suffixLabel;
     UITextFieldBackgroundView *_systemBackgroundView;
+    UISystemInputViewController *_systemInputViewController;
     struct { 
         unsigned int verticallyCenterText : 1; 
         unsigned int isAnimating : 4; 
@@ -80,6 +87,10 @@
         unsigned int usesAttributedText : 1; 
         unsigned int backgroundViewState : 2; 
         unsigned int clearingBehavior : 2; 
+        unsigned int overridePasscodeStyle : 1; 
+        unsigned int shouldResignWithoutUpdate : 1; 
+        unsigned int blurEnabled : 1; 
+        unsigned int disableFocus : 1; 
     } _textFieldFlags;
     _UICascadingTextStorage *_textStorage;
     UITextInputTraits *_traits;
@@ -129,6 +140,7 @@
 @property (retain) UIView *inputView;
 @property (nonatomic, retain) UIColor *insertionPointColor;
 @property (nonatomic) unsigned int insertionPointWidth;
+@property (nonatomic) BOOL isCarPlayIdiom;
 @property (nonatomic) BOOL isSingleLineDocument;
 @property (nonatomic) int keyboardAppearance;
 @property (nonatomic) int keyboardType;
@@ -139,6 +151,7 @@
 @property (nonatomic, copy) NSDictionary *markedTextStyle;
 @property (nonatomic) float minimumFontSize;
 @property (nonatomic, copy) NSString *placeholder;
+@property (nonatomic, copy) NSString *recentInputIdentifier;
 @property (nonatomic, copy) NSString *responseContext;
 @property (nonatomic) BOOL returnKeyGoesToNextResponder;
 @property (nonatomic) int returnKeyType;
@@ -171,6 +184,7 @@
 + (BOOL)_isCompatibilityTextField;
 + (BOOL)_isDisplayingShortcutViewController;
 
+- (void).cxx_destruct;
 - (void)__resumeBecomeFirstResponder;
 - (void)_activateSelectionView;
 - (void)_addShortcut:(id)arg1;
@@ -185,6 +199,8 @@
 - (id)_baselineLayoutLabel;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_baselineLeftViewRectForBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)_becomeFirstResponder;
+- (int)_blurEffectStyleForAppearance;
+- (BOOL)_blurEnabled;
 - (BOOL)_canDrawContent;
 - (void)_clearBackgroundViews;
 - (id)_clearButton;
@@ -192,19 +208,24 @@
 - (id)_clearButtonImageForState:(unsigned int)arg1;
 - (struct CGSize { float x1; float x2; })_clearButtonSize;
 - (void)_clearSelectionUI;
+- (unsigned int)_controlEventsForActionTriggered;
 - (id)_copyFont:(id)arg1 newSize:(float)arg2 maxSize:(float)arg3;
 - (void)_createBaselineLayoutLabelIfNecessary;
 - (void)_createInteractionAssistant;
 - (int)_currentTextAlignment;
+- (id)_defaultPromptString;
 - (void)_define:(id)arg1;
 - (void)_deleteBackwardAndNotify:(BOOL)arg1;
 - (id)_dictationInterpretations;
 - (void)_drawTextInRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 forLabel:(id)arg2;
+- (id)_effectiveContentView;
+- (id)_encodableSubviews;
 - (void)_encodeBackgroundColorWithCoder:(id)arg1;
 - (void)_endedEditing;
 - (id)_fieldEditor;
 - (BOOL)_fieldEditorAttached;
-- (void)_finishResignFirstResponder;
+- (BOOL)_finishResignFirstResponder;
+- (id)_floatingContentView;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_frameForLabel:(id)arg1 inTextRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2;
 - (BOOL)_hasContent;
 - (BOOL)_hasSuffixField;
@@ -214,26 +235,33 @@
 - (void)_initialScrollDidFinish:(id)arg1;
 - (id)_inputController;
 - (void)_insertAttributedTextWithoutClosingTyping:(id)arg1;
+- (void)_installSelectGestureRecognizer;
 - (struct CGSize { float x1; float x2; })_intrinsicSizeWithinSize:(struct CGSize { float x1; float x2; })arg1;
 - (void)_invalidateBaselineLayoutConstraints;
+- (BOOL)_isDisplayingLookupViewController;
 - (BOOL)_isDisplayingReferenceLibraryViewController;
+- (BOOL)_isDisplayingShareViewController;
 - (BOOL)_isPasscodeStyle;
 - (BOOL)_isShowingPlaceholder;
 - (BOOL)_isShowingPrefix;
+- (void)_layoutContent;
+- (void)_layoutLabels;
 - (struct CGSize { float x1; float x2; })_leftViewOffset;
+- (void)_lookup:(struct CGPoint { float x1; float x2; })arg1;
 - (float)_marginTop;
 - (float)_marginTopForBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (void)_nonDestructivelyResignFirstResponder;
 - (struct CGPoint { float x1; float x2; })_originForTextFieldLabel:(id)arg1;
+- (BOOL)_overridePasscodeStyle;
+- (BOOL)_ownsInputAccessoryView;
 - (BOOL)_partsShouldBeMini;
 - (float)_passcodeStyleAlpha;
-- (void)_physicalButtonsBegan:(id)arg1 withEvent:(id)arg2;
-- (void)_physicalButtonsCancelled:(id)arg1 withEvent:(id)arg2;
-- (void)_physicalButtonsEnded:(id)arg1 withEvent:(id)arg2;
 - (id)_placeholderColor;
 - (id)_placeholderLabel;
 - (Class)_placeholderLabelClass;
 - (id)_placeholderView;
 - (void)_populateArchivedSubviews:(id)arg1;
+- (id)_preferredConfigurationForFocusAnimation:(int)arg1 inContext:(id)arg2;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_prefixFrame;
 - (void)_promptForReplace:(id)arg1;
 - (id)_proxyTextInput;
@@ -242,28 +270,39 @@
 - (void)_resignFirstResponder;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_responderExternalTouchRectForWindow:(id)arg1;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_responderSelectionRectForWindow:(id)arg1;
+- (BOOL)_restoreFirstResponder;
 - (struct CGSize { float x1; float x2; })_rightViewOffset;
 - (void)_sanitizeText:(id)arg1;
 - (id)_scriptingInfo;
 - (struct CGPoint { float x1; float x2; })_scrollOffset;
 - (void)_scrollRangeToVisible:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1 animated:(BOOL)arg2;
+- (void)_selectGestureChanged:(id)arg1;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_selectionClipRect;
 - (void)_selectionMayChange:(id)arg1;
+- (void)_setActualLeftView:(id)arg1;
+- (void)_setActualLeftViewMode:(int)arg1;
+- (void)_setActualRightView:(id)arg1;
+- (void)_setActualRightViewMode:(int)arg1;
 - (void)_setAttributedText:(id)arg1 onFieldEditorAndSetCaretSelectionAfterText:(BOOL)arg2;
 - (void)_setBackgroundFillColor:(id)arg1;
 - (void)_setBackgroundStrokeColor:(id)arg1;
 - (void)_setBackgroundStrokeWidth:(float)arg1;
 - (void)_setBaselineLayoutConstraint:(id)arg1;
 - (void)_setBaselineLayoutLabel:(id)arg1;
+- (void)_setBlurEnabled:(BOOL)arg1;
+- (void)_setDisableFocus:(BOOL)arg1;
 - (void)_setEnabled:(BOOL)arg1 animated:(BOOL)arg2;
+- (void)_setHighlighted:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)_setLeftViewOffset:(struct CGSize { float x1; float x2; })arg1;
 - (void)_setNeedsStyleRecalc;
+- (void)_setOverridePasscodeStyle:(BOOL)arg1;
 - (void)_setPasscodeStyleAlpha:(float)arg1;
 - (void)_setPrefix:(id)arg1;
 - (void)_setRightViewOffset:(struct CGSize { float x1; float x2; })arg1;
 - (void)_setSuffix:(id)arg1 withColor:(id)arg2;
 - (void)_setSystemBackgroundViewActive:(BOOL)arg1;
 - (void)_setUpBaselineLayoutConstraintsForBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (void)_share:(id)arg1;
 - (BOOL)_shouldEndEditing;
 - (BOOL)_shouldObscureInput;
 - (BOOL)_shouldSendContentChangedNotificationsIfOnlyMarkedTextChanged;
@@ -289,16 +328,21 @@
 - (struct CGSize { float x1; float x2; })_textSize;
 - (struct CGSize { float x1; float x2; })_textSizeUsingFullFontSize:(BOOL)arg1;
 - (void)_transliterateChinese:(id)arg1;
+- (void)_uninstallSelectGestureRecognizer;
 - (void)_updateAtomBackground;
 - (void)_updateAtomTextColor;
 - (void)_updateAutosizeStyleIfNeeded;
 - (void)_updateBackgroundViewsAnimated:(BOOL)arg1;
 - (void)_updateBaselineInformationDependentOnBounds;
 - (void)_updateButtons;
+- (void)_updateContentBackdropView;
+- (void)_updateFieldEditorBackgroundViewLayout:(BOOL)arg1;
 - (void)_updateForPasscodeAppearance;
+- (void)_updateForTintColor;
 - (void)_updateLabel;
 - (void)_updatePlaceholderPosition;
 - (void)_updateSuffix:(id)arg1;
+- (void)_updateTextColorForFocusedState;
 - (void)_updateTextLabel;
 - (BOOL)_useGesturesForEditableContent;
 - (BOOL)_wantsBaselineUpdatingFollowingConstraintsPass;
@@ -317,11 +361,13 @@
 - (id)backgroundColor;
 - (int)baseWritingDirectionForPosition:(id)arg1 inDirection:(int)arg2;
 - (BOOL)becomeFirstResponder;
+- (void)beginFloatingCursorAtPoint:(struct CGPoint { float x1; float x2; })arg1;
 - (void)beginSelectionChange;
 - (id)beginningOfDocument;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })borderRectForBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (int)borderStyle;
 - (BOOL)canBecomeFirstResponder;
+- (BOOL)canBecomeFocused;
 - (BOOL)canPerformAction:(SEL)arg1 withSender:(id)arg2;
 - (BOOL)canResignFirstResponder;
 - (void)cancelAutoscroll;
@@ -356,6 +402,9 @@
 - (id)defaultTextAttributes;
 - (id)delegate;
 - (void)deleteBackward;
+- (BOOL)detachFieldEditor:(id)arg1;
+- (void)didAttachFieldEditor:(id)arg1;
+- (void)didUpdateFocusInContext:(id)arg1 withAnimationCoordinator:(id)arg2;
 - (void)disableClearsOnInsertion;
 - (id)disabledBackground;
 - (id)documentFragmentForPasteboardItemAtIndex:(int)arg1;
@@ -370,6 +419,7 @@
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })editingRectForBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)encodeRestorableStateWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
+- (void)endFloatingCursor;
 - (id)endOfDocument;
 - (void)endSelectionChange;
 - (BOOL)fieldEditor:(id)arg1 shouldInsertText:(id)arg2 replacingRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg3;
@@ -379,9 +429,11 @@
 - (void)finishedSettingPlaceholder;
 - (void)finishedSettingTextOrAttributedText;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })firstRectForRange:(id)arg1;
+- (void)floatingContentView:(id)arg1 isTransitioningFromState:(unsigned int)arg2 toState:(unsigned int)arg3;
 - (id)font;
 - (id)forwardingTargetForSelector:(SEL)arg1;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })frameForDictationResultPlaceholder:(id)arg1;
+- (BOOL)gestureRecognizerShouldBegin:(id)arg1;
 - (BOOL)hasMarkedText;
 - (BOOL)hasSelection;
 - (BOOL)hasText;
@@ -395,8 +447,10 @@
 - (id)inputView;
 - (void)insertDictationResult:(id)arg1 withCorrectionIdentifier:(id)arg2;
 - (id)insertDictationResultPlaceholder;
+- (struct _NSRange { unsigned int x1; unsigned int x2; })insertFilteredText:(id)arg1;
 - (void)insertText:(id)arg1;
 - (id)interactionAssistant;
+- (void)interactionTintColorDidChange;
 - (BOOL)isAccessibilityElementByDefault;
 - (BOOL)isEditable;
 - (BOOL)isEditing;
@@ -431,6 +485,10 @@
 - (id)positionFromPosition:(id)arg1 inDirection:(int)arg2 offset:(int)arg3;
 - (id)positionFromPosition:(id)arg1 offset:(int)arg2;
 - (id)positionWithinRange:(id)arg1 farthestInDirection:(int)arg2;
+- (void)pressesBegan:(id)arg1 withEvent:(id)arg2;
+- (void)pressesCancelled:(id)arg1 withEvent:(id)arg2;
+- (void)pressesChanged:(id)arg1 withEvent:(id)arg2;
+- (void)pressesEnded:(id)arg1 withEvent:(id)arg2;
 - (id)rangeWithTextAlternatives:(id*)arg1 atPosition:(id)arg2;
 - (void)removeDictationResultPlaceholder:(id)arg1 willInsertResult:(BOOL)arg2;
 - (void)replace:(id)arg1;
@@ -484,6 +542,7 @@
 - (void)setFont:(id)arg1;
 - (void)setFont:(id)arg1 fullFontSize:(float)arg2;
 - (void)setFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (void)setHighlighted:(BOOL)arg1;
 - (void)setIcon:(id)arg1;
 - (void)setInactiveHasDimAppearance:(BOOL)arg1;
 - (void)setInputAccessoryView:(id)arg1;
@@ -545,21 +604,31 @@
 - (id)tokenizer;
 - (void)touchesCancelled:(id)arg1 withEvent:(id)arg2;
 - (void)touchesEnded:(id)arg1 withEvent:(id)arg2;
+- (void)traitCollectionDidChange:(id)arg1;
 - (id)typingAttributes;
 - (id)undoManager;
 - (void)unmarkText;
-- (id)viewForBaselineLayout;
+- (void)updateFloatingCursorAtPoint:(struct CGPoint { float x1; float x2; })arg1;
+- (id)viewForLastBaselineLayout;
 - (id)webView;
 - (void)willAttachFieldEditor:(id)arg1;
 - (void)willDetachFieldEditor:(id)arg1;
 - (void)willMoveToWindow:(id)arg1;
 
-// Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
+// Image: /System/Library/Frameworks/ContactsUI.framework/ContactsUI
 
+- (void)_cnui_applyContactStyle;
 - (id)ab_text;
 - (id)ab_textAttributes;
 - (void)setAb_text:(id)arg1;
 - (void)setAb_textAttributes:(id)arg1;
+
+// Image: /System/Library/Frameworks/PassKit.framework/PassKit
+
+- (void)pk_applyAppearance:(struct _PKAppearanceSpecifier { BOOL x1; id x2; id x3; id x4; id x5; id x6; id x7; id x8; id x9; id x10; id x11; id x12; id x13; /* Warning: Unrecognized filer type: '' using 'void*' */ void*x14; void*x15; void*x16; void*x17; void*x18; void*x19; void*x20; void*x21; void*x22; void*x23; void*x24; void*x25; void*x26; void*x27; void*x28; void*x29; void*x30; void*x31; void*x32; void*x33; void*x34; void*x35; void*x36; void*x37; void*x38; void*x39; void*x40; void*x41; void*x42; void*x43; void*x44; void*x45; void*x46; void*x47; void*x48; void*x49; void*x50; void*x51; void*x52; void*x53; void*x54; void*x55; void*x56; void*x57; void*x58; void*x59; void*x60; void*x61; void*x62; union x63; void*x64; void*x65; void*x66; void*x67; void*x68; void*x69; void*x70; void*x71; void*x72; void*x73; void*x74; void*x75; void*x76; void*x77; void*x78; void*x79; void*x80; void*x81; void*x82; void*x83; union x84; void*x85; void*x86; void*x87; void*x88; void*x89; void*x90; void*x91; void*x92; void*x93; void*x94; void*x95; void*x96; void*x97; void*x98; void*x99; void*x100; void*x101; void*x102; void*x103; void*x104; void*x105; void*x106; void*x107; void*x108; void*x109; void*x110; void*x111; void*x112; unsigned long x113; void*x114; void*x115; void*x116; void*x117; void*x118; void*x119; void*x120; void*x121; void*x122; void*x123; void*x124; void*x125; void*x126; void*x127; void*x128; void*x129; void*x130; void*x131; void*x132; void*x133; void*x134; void*x135; void*x136; void*x137; void*x138; void*x139; void*x140; void*x141; void*x142; void*x143; void*x144; void*x145; void*x146; void*x147; void*x148; void*x149; void*x150; void*x151; void*x152; void*x153; void*x154; void*x155; void*x156; void*x157; void*x158; void*x159; void*x160; void*x161; void*x162; void*x163; void*x164; void*x165; void*x166; void*x167; void*x168; void*x169; void*x170; void*x171; void*x172; void*x173; void*x174; void*x175; void*x176; unsigned long x177; void*x178; void*x179; void*x180; void*x181; void*x182; void*x183; void*x184; void*x185; void*x186; void*x187; void*x188; void*x189; void*x190; void*x191; void*x192; void*x193; void*x194; void*x195; void*x196; void*x197; void*x198; void*x199; void*x200; void*x201; void*x202; void*x203; void*x204; void*x205; void*x206; void*x207; void*x208; void*x209; void*x210; void*x211; void*x212; void*x213; void*x214; void*x215; void*x216; void*x217; void*x218; void*x219; void*x220; void*x221; void*x222; void*x223; void*x224; void*x225; void*x226; void*x227; void*x228; void*x229; void*x230; void*x231; void*x232; void*x233; void*x234; void*x235; void*x236; void*x237; void*x238; void*x239; void*x240; void*x241; void*x242; void*x243; void*x244; void*x245; void*x246; void*x247; void*x248; void*x249; void*x250; void*x251; void*x252; void*x253; void*x254; void*x255; void*x256; void*x257; void*x258; void*x259; bycopy void*x260; const void*x261; void*x262; void*x263; unsigned long long x264; void*x265; void*x266; void*x267; void*x268; void*x269; void*x270; void*x271; void*x272; void*x273; void*x274; void*x275; void*x276; void*x277; void*x278; void*x279; void*x280; void*x281; void*x282; void*x283; void*x284; void*x285; void*x286; void*x287; void*x288; void*x289; void*x290; void*x291; void*x292; void*x293; void*x294; void*x295; void*x296; void*x297; void*x298; void*x299; void*x300; void*x301; void*x302; void*x303; void*x304; void*x305; void*x306; void*x307; void*x308; void*x309; void*x310; void x311; void*x312; void*x313; void*x314; void*x315; void*x316; void*x317; void*x318; void*x319; void*x320; void*x321; void*x322; void*x323; void*x324; void*x325; void*x326; void*x327; void*x328; void*x329; void*x330; void*x331; void*x332; void*x333; void*x334; void*x335; void*x336; void*x337; void*x338; void*x339; void*x340; void*x341; void*x342; void*x343; unsigned char x344; void*x345; unsigned short x346; void*x347; short x348; void*x349; void*x350; void*x351; void*x352; unsigned long x353; int x354; unsigned int x355/* : ? */; const void*x356; const void*x357; void*x358; void*x359; const int x360; void x361; void*x362; void*x363; void*x364; void*x365; const void*x366; void*x367; void*x368; void*x369; out const void*x370; short x371; void*x372; void*x373; void*x374; out unsigned short x375; void*x376; const void x377; int x378; BOOL x379; void*x380; short x381; void*x382; float x383; const void*x384; void*x385; void*x386; void*x387; out const void*x388; void*x389; void*x390; void*x391; out unsigned short x392; void*x393; const void x394; int x395; BOOL x396; void*x397; short x398; void*x399; void*x400; void*x401; void*x402; void*x403; void*x404; void*x405; void*x406; char *x407; void*x408; }*)arg1;
+- (id)pk_childrenForAppearance;
+- (id)pk_placeholderColor;
+- (void)pk_setPlaceholderColor:(id)arg1;
 
 // Image: /System/Library/PrivateFrameworks/GameCenterUI.framework/GameCenterUI
 

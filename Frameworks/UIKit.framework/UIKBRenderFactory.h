@@ -3,17 +3,22 @@
  */
 
 @interface UIKBRenderFactory : NSObject {
+    BOOL _allowsPaddles;
     BOOL _boldTextEnabled;
     BOOL _lightweightFactory;
+    BOOL _preferStringKeycapOverImage;
     UIKBRenderConfig *_renderConfig;
     float _rivenSizeFactor;
     float _scale;
     NSMutableArray *_segmentTraits;
+    BOOL _suppressSegmentTraits;
 }
 
+@property (nonatomic) BOOL allowsPaddles;
 @property (nonatomic, readonly) BOOL boldTextEnabled;
 @property (nonatomic) BOOL lightweightFactory;
-@property (nonatomic, readonly) UIKBRenderConfig *renderConfig;
+@property (nonatomic) BOOL preferStringKeycapOverImage;
+@property (nonatomic, retain) UIKBRenderConfig *renderConfig;
 @property (nonatomic) float rivenSizeFactor;
 @property (nonatomic) float scale;
 @property (nonatomic, readonly) NSArray *segmentTraits;
@@ -23,6 +28,7 @@
 + (id)cacheKeyForString:(id)arg1 withRenderFlags:(int)arg2 renderConfig:(id)arg3;
 + (Class)factoryClassForVisualStyle:(struct { unsigned int x1 : 6; unsigned int x2 : 1; unsigned int x3 : 1; unsigned int x4 : 8; unsigned int x5 : 16; })arg1;
 + (id)factoryForVisualStyle:(struct { unsigned int x1 : 6; unsigned int x2 : 1; unsigned int x3 : 1; unsigned int x4 : 8; unsigned int x5 : 16; })arg1 renderConfig:(id)arg2;
++ (id)factoryForVisualStyle:(struct { unsigned int x1 : 6; unsigned int x2 : 1; unsigned int x3 : 1; unsigned int x4 : 8; unsigned int x5 : 16; })arg1 renderConfig:(id)arg2 skipLayoutSegments:(BOOL)arg3;
 + (id)lightweightFactoryForVisualStyle:(struct { unsigned int x1 : 6; unsigned int x2 : 1; unsigned int x3 : 1; unsigned int x4 : 8; unsigned int x5 : 16; })arg1 renderConfig:(id)arg2;
 + (id)segmentedControlColor:(BOOL)arg1;
 
@@ -31,6 +37,8 @@
 - (void)_customizeTraits:(id)arg1 forPopupForKey:(id)arg2 withRenderConfig:(id)arg3 keycapsFontName:(id)arg4;
 - (id)_traitsForKey:(id)arg1 onKeyplane:(id)arg2;
 - (void)addLayoutSegment:(id)arg1;
+- (BOOL)allowsPaddles;
+- (void)applyBoldTextForContent:(id)arg1 withKey:(id)arg2;
 - (id)backgroundTraitsForKeyplane:(id)arg1;
 - (id)biuKeyImageName;
 - (id)boldKeyImageName;
@@ -44,6 +52,7 @@
 - (id)defaultKeyBackgroundColorName;
 - (id)defaultKeyShadowColorName;
 - (id)deleteKeyImageName;
+- (id)deleteOnKeyImageName;
 - (id)dictationKeyImageName;
 - (id)dismissKeyImageName;
 - (id)displayContentsForKey:(id)arg1;
@@ -57,6 +66,7 @@
 - (id)initWithRenderConfig:(id)arg1 skipLayoutSegments:(BOOL)arg2;
 - (float)keyCornerRadius;
 - (id)keyImageNameWithSkinnyVariation:(id)arg1;
+- (BOOL)keyIsRightToLeftSensitive:(id)arg1;
 - (id)leftArrowKeyImageName;
 - (int)lightHighQualityEnabledBlendForm;
 - (id)lightKeycapsFontName;
@@ -76,14 +86,17 @@
 - (id)passcodeKeyEdgeColorName;
 - (id)passcodeShiftedControlKeyTraits;
 - (id)pasteKeyImageName;
-- (void)removeAllLayoutSegments;
+- (BOOL)preferStringKeycapOverImage;
 - (id)renderConfig;
 - (id)rightArrowKeyImageName;
 - (float)rivenSizeFactor;
 - (float)scale;
 - (void)scaleTraits:(id)arg1;
 - (id)segmentTraits;
+- (void)setAllowsPaddles:(BOOL)arg1;
 - (void)setLightweightFactory:(BOOL)arg1;
+- (void)setPreferStringKeycapOverImage:(BOOL)arg1;
+- (void)setRenderConfig:(id)arg1;
 - (void)setRivenSizeFactor:(float)arg1;
 - (void)setScale:(float)arg1;
 - (void)setupLayoutSegments;
@@ -92,10 +105,12 @@
 - (id)shiftOnKeyImageName;
 - (BOOL)shouldClearBaseDisplayStringForVariants:(id)arg1;
 - (float)skinnyKeyThreshold;
+- (BOOL)supportsInputTraits:(id)arg1 forKeyplane:(id)arg2;
+- (void)suppressLayoutSegments;
 - (id)thinKeycapsFontName;
 - (id)thinTextFontName;
 - (id)traitsForKey:(id)arg1 onKeyplane:(id)arg2;
-- (id)traitsHashStringForKey:(id)arg1 withGeometry:(id)arg2 controlOpacities:(BOOL)arg3;
+- (id)traitsHashStringForKey:(id)arg1 withGeometry:(id)arg2 withSymbolStyle:(id)arg3 controlOpacities:(BOOL)arg4;
 - (float)translucentGapWidth;
 - (id)undoKeyImageName;
 - (BOOL)useBlueThemingForKey:(id)arg1;

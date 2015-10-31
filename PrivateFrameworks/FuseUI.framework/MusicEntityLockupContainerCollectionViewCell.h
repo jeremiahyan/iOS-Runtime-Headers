@@ -4,6 +4,7 @@
 
 @interface MusicEntityLockupContainerCollectionViewCell : UICollectionViewCell <MusicEntityContentDescriptorViewConfiguring, MusicEntityHorizontalLockupViewDelegate, MusicEntityVerticalLockupViewDelegate, MusicEntityViewPlaybackStatusObserving> {
     UITraitCollection *_cachedTraitCollection;
+    BOOL _entityDisabled;
     UIColor *_hairlineColor;
     UIView *_hairlineView;
     UIImageView *_highlightBackgroundView;
@@ -11,6 +12,7 @@
     unsigned int _highlightBackgroundVisibilityTransactionCount;
     MusicEntityVerticalLockupView *_lockupView;
     BOOL _showsHairline;
+    float _textLateralEdgePadding;
 }
 
 @property (nonatomic, retain) MusicEntityViewContentDescriptor *contentDescriptor;
@@ -47,9 +49,11 @@
 - (void)setPlaybackStatus:(id)arg1;
 - (void)setSelected:(BOOL)arg1;
 - (void)setShowsHairline:(BOOL)arg1;
+- (void)setTextLateralEdgePadding:(float)arg1;
 - (BOOL)showsHairline;
 - (id)traitCollection;
 - (void)traitCollectionDidChange:(id)arg1;
+- (void)updateForAsynchronousPropertyLoadCompleted;
 - (void)verticalLockupView:(id)arg1 didSelectPlayButtonAction:(unsigned int)arg2;
 
 @end

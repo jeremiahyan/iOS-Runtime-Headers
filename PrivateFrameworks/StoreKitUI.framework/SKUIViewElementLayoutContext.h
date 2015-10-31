@@ -18,6 +18,12 @@
     SKUIItemOfferButton *_itemOfferButton;
     NSMutableDictionary *_itemOfferButtonSizes;
     SKUIViewElementTextLayoutCache *_labelLayoutCache;
+    struct UIEdgeInsets { 
+        float top; 
+        float left; 
+        float bottom; 
+        float right; 
+    } _largeScreenElementPadding;
     NSMutableSet *_observedArtworkRequestIDs;
     UIViewController *_parentViewController;
     UIColor *_placeholderColor;
@@ -35,10 +41,14 @@
 @property (nonatomic) unsigned int containerViewElementType;
 @property (nonatomic) float displayScale;
 @property (nonatomic, retain) SKUIViewElementTextLayoutCache *labelLayoutCache;
+@property (nonatomic, readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } largeScreenElementPadding;
 @property (nonatomic) UIViewController *parentViewController;
 @property (nonatomic, retain) UIColor *placeholderColor;
 @property (nonatomic, retain) SKUIResourceLoader *resourceLoader;
 @property (nonatomic, retain) UIColor *tintColor;
+
++ (float)_calculateValueFromString:(id)arg1 withDefault:(float)arg2 coefficent:(float)arg3;
++ (float)itemWidthForElement:(id)arg1 withDefaultWidth:(float)arg2 fitWidth:(float)arg3;
 
 - (void).cxx_destruct;
 - (void)_artworkRequestDidLoadImageNotification:(id)arg1;
@@ -67,6 +77,7 @@
 - (void)invalidateAllEditorialLayouts;
 - (BOOL)isEditorialLayoutExpanded:(id)arg1;
 - (id)labelLayoutCache;
+- (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })largeScreenElementPadding;
 - (BOOL)loadImageForArtwork:(id)arg1 dataConsumer:(id)arg2 reason:(int)arg3;
 - (BOOL)loadImageForArtwork:(id)arg1 reason:(int)arg2;
 - (BOOL)loadImageForBadgeElement:(id)arg1 reason:(int)arg2;
@@ -91,6 +102,7 @@
 - (void)setContainerViewElementType:(unsigned int)arg1;
 - (void)setDisplayScale:(float)arg1;
 - (void)setLabelLayoutCache:(id)arg1;
+- (void)setLargeScreenElementPaddingFromContext:(id)arg1;
 - (void)setParentViewController:(id)arg1;
 - (void)setPlaceholderColor:(id)arg1;
 - (void)setResourceLoader:(id)arg1;

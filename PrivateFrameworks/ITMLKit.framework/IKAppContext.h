@@ -11,6 +11,7 @@
     IKJSFoundation *_jsFoundation;
     struct __CFRunLoop { } *_jsThreadRunLoop;
     struct __CFRunLoopSource { } *_jsThreadRunLoopSource;
+    NSObject<OS_dispatch_source> *_lowMemoryWarningSource;
     BOOL _mescalPrimeEnabledForXHRRequests;
     unsigned int _mode;
     NSMutableArray *_pendingQueue;
@@ -19,6 +20,8 @@
     BOOL _remoteInspectionEnabled;
     NSError *_responseError;
     NSString *_responseScript;
+    BOOL _trusted;
+    IKJSInspectorController *_webInspectorController;
 }
 
 @property (nonatomic, readonly) <IKApplication> *app;
@@ -39,21 +42,26 @@
 @property (nonatomic, retain) NSError *responseError;
 @property (nonatomic, copy) NSString *responseScript;
 @property (readonly) Class superclass;
+@property (getter=isTrusted, nonatomic) BOOL trusted;
+@property (nonatomic, retain) IKJSInspectorController *webInspectorController;
 
 + (id)currentAppContext;
++ (void)registerPrivateProtocols:(id)arg1 forClass:(Class)arg2;
 
 - (void).cxx_destruct;
 - (void)_addStopRecordToPendingQueueWithReload:(BOOL)arg1;
 - (void)_dispatchError:(id)arg1;
+- (void)_doEvaluate:(id /* block */)arg1;
 - (id)_errorWithMessage:(id)arg1;
 - (void)_evaluate:(id /* block */)arg1;
 - (void)_evaluateFoundationWithDeviceConfig:(id)arg1;
+- (BOOL)_isAppTrusted;
 - (void)_jsThreadMain;
 - (id)_preferredLaunchURL;
 - (void)_sourceCanceledOnRunLoop:(struct __CFRunLoop { }*)arg1;
 - (void)_sourcePerform;
 - (void)_sourceScheduledOnRunLoop:(struct __CFRunLoop { }*)arg1;
-- (void)_startWithScript:(id)arg1;
+- (void)_startWithScript:(id)arg1 scriptUrl:(id)arg2;
 - (void)_startWithURL:(id)arg1 urlTrusted:(BOOL)arg2;
 - (void)_stopAndReload:(BOOL)arg1;
 - (void)addPostEvaluateBlock:(id /* block */)arg1;
@@ -65,8 +73,8 @@
 - (void)evaluateFoundationJS;
 - (void)exitAppWithOptions:(id)arg1;
 - (void)handleReloadWithUrgencyType:(unsigned int)arg1 data:(id)arg2;
-- (void)handleRestart;
 - (id)initWithApplication:(id)arg1 mode:(unsigned int)arg2 delegate:(id)arg3;
+- (BOOL)isTrusted;
 - (BOOL)isValid;
 - (id)jsContext;
 - (id)jsFoundation;
@@ -96,9 +104,12 @@
 - (void)setRemoteInspectionEnabled:(BOOL)arg1;
 - (void)setResponseError:(id)arg1;
 - (void)setResponseScript:(id)arg1;
+- (void)setTrusted:(BOOL)arg1;
+- (void)setWebInspectorController:(id)arg1;
 - (void)start;
 - (void)stop;
 - (void)suspendWithOptions:(id)arg1;
 - (BOOL)validateDOMDocument:(id)arg1 error:(id*)arg2;
+- (id)webInspectorController;
 
 @end

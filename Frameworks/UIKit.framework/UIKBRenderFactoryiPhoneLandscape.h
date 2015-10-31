@@ -4,16 +4,19 @@
 
 @interface UIKBRenderFactoryiPhoneLandscape : UIKBRenderFactoryiPhone
 
-- (float)_row4ControlSegmentWidth;
+- (float)_row4ControlSegmentWidthLeft;
+- (float)_row4ControlSegmentWidthRight;
 - (id)_traitsForKey:(id)arg1 onKeyplane:(id)arg2;
 - (id)biuKeyImageName;
 - (id)boldKeyImageName;
 - (id)copyKeyImageName;
 - (id)cutKeyImageName;
 - (id)deleteKeyImageName;
+- (id)deleteOnKeyImageName;
 - (id)dictationKeyImageName;
 - (id)dismissKeyImageName;
 - (float)emojiPopupDividerKeyOffset;
+- (id)globalEmojiKeyImageName;
 - (id)globalKeyImageName;
 - (BOOL)isTallPopup;
 - (id)leftArrowKeyImageName;

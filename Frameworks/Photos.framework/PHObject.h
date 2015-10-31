@@ -20,18 +20,15 @@
 
 + (id)authorizationAwareFetchResultWithOptions:(id)arg1 fetchBlock:(id /* block */)arg2;
 + (id)entityKeyForPropertyKey:(id)arg1;
-+ (id)fetchPredicateFromComparisonPredicate:(id)arg1;
++ (id)fetchPredicateFromComparisonPredicate:(id)arg1 options:(id)arg2;
 + (id)identifierCode;
 + (id)localIdentifierWithUUID:(id)arg1;
 + (id)managedEntityName;
 + (BOOL)managedObjectSupportsBursts;
-+ (BOOL)managedObjectSupportsCloudSharedType;
 + (BOOL)managedObjectSupportsHiddenState;
-+ (BOOL)managedObjectSupportsPhotoStreamType;
++ (BOOL)managedObjectSupportsSavedAssetType;
 + (BOOL)managedObjectSupportsTrashedState;
 + (BOOL)managedObjectSupportsVisibilityState;
-+ (BOOL)managedObjectSupportsWallpaperType;
-+ (BOOL)managedObjectSupportsiTunesSyncType;
 + (id)propertiesToFetchWithHint:(unsigned int)arg1;
 + (id)uuidFromLocalIdentifier:(id)arg1;
 

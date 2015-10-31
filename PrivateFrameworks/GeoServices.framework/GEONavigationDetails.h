@@ -5,32 +5,38 @@
 @interface GEONavigationDetails : NSObject {
     unsigned int _annoucementStage;
     GEOCompanionRouteDetails *_companionRoute;
+    id /* block */ _companionRouteFilterBlock;
     GEOCompanionRouteStatus *_companionStatus;
     NSString *_destinationName;
+    int _displayStep;
     double _distanceRemainingOnRoute;
     double _distanceToManeuverEnd;
     double _distanceToManeuverStart;
     double _distanceToRoute;
-    GEONavigationGuidanceState *_guidanceState;
+    BOOL _guidancePromptsEnabled;
     GEOLocation *_location;
     BOOL _locationUnreliable;
+    int _navigationState;
     unsigned int _nextAnnoucementStage;
     double _remainingTime;
     GEOComposedRoute *_route;
     GEORouteMatch *_routeMatch;
     GEONavigationRouteSummary *_routeSummary;
     double _timeUntilNextAnnouncement;
+    GEONavigationRouteTransitSummary *_transitSummary;
 }
 
 @property (nonatomic) unsigned int announcementStage;
 @property (nonatomic, readonly) GEOCompanionRouteDetails *companionRoute;
+@property (nonatomic, copy) id /* block */ companionRouteFilterBlock;
 @property (nonatomic, readonly) GEOCompanionRouteStatus *companionStatus;
 @property (nonatomic, readonly) NSString *destinationName;
+@property (nonatomic) int displayStep;
 @property (nonatomic) double distanceRemainingOnRoute;
 @property (nonatomic) double distanceToManeuverEnd;
 @property (nonatomic) double distanceToManeuverStart;
 @property (nonatomic) double distanceToRoute;
-@property (nonatomic, readonly) GEONavigationGuidanceState *guidanceState;
+@property (nonatomic) BOOL guidancePromptsEnabled;
 @property (nonatomic, retain) GEOLocation *location;
 @property (nonatomic) BOOL locationUnreliable;
 @property (nonatomic) int navigationState;
@@ -40,18 +46,21 @@
 @property (nonatomic, retain) GEORouteMatch *routeMatch;
 @property (nonatomic, readonly) GEONavigationRouteSummary *routeSummary;
 @property (nonatomic, readonly) double timeUntilNextAnnouncement;
+@property (nonatomic, readonly) GEONavigationRouteTransitSummary *transitSummary;
 
 - (unsigned int)announcementStage;
 - (id)companionRoute;
+- (id /* block */)companionRouteFilterBlock;
 - (id)companionStatus;
 - (void)dealloc;
 - (id)destinationName;
+- (int)displayStep;
 - (double)distanceRemainingOnRoute;
 - (double)distanceToManeuverEnd;
 - (double)distanceToManeuverStart;
 - (double)distanceToRoute;
-- (id)guidanceState;
-- (id)initWithRoute:(id)arg1 destinationName:(id)arg2;
+- (BOOL)guidancePromptsEnabled;
+- (id)initWithDestinationName:(id)arg1;
 - (id)location;
 - (BOOL)locationUnreliable;
 - (int)navigationState;
@@ -61,10 +70,13 @@
 - (id)routeMatch;
 - (id)routeSummary;
 - (void)setAnnouncementStage:(unsigned int)arg1;
+- (void)setCompanionRouteFilterBlock:(id /* block */)arg1;
+- (void)setDisplayStep:(int)arg1;
 - (void)setDistanceRemainingOnRoute:(double)arg1;
 - (void)setDistanceToManeuverEnd:(double)arg1;
 - (void)setDistanceToManeuverStart:(double)arg1;
 - (void)setDistanceToRoute:(double)arg1;
+- (void)setGuidancePromptsEnabled:(BOOL)arg1;
 - (void)setLocation:(id)arg1;
 - (void)setLocationUnreliable:(BOOL)arg1;
 - (void)setNavigationState:(int)arg1;
@@ -73,5 +85,6 @@
 - (void)setRoute:(id)arg1;
 - (void)setRouteMatch:(id)arg1;
 - (double)timeUntilNextAnnouncement;
+- (id)transitSummary;
 
 @end

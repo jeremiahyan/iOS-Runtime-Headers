@@ -38,6 +38,7 @@
 - (void)acceptJaliscGeniusTermsAndConditionsVersion:(long long)arg1 withCompletionHandler:(id /* block */)arg2;
 - (void)addGeniusPlaylistWithPersistentID:(unsigned long long)arg1 name:(id)arg2 seedItemSagaIDs:(id)arg3 itemSagaIDs:(id)arg4 completionHandler:(id /* block */)arg5;
 - (void)addStoreItemWithAdamID:(long long)arg1 completionHandler:(id /* block */)arg2;
+- (void)addStoreItemWithAdamID:(long long)arg1 toPlaylistWithPersistentID:(unsigned long long)arg2 completionHandler:(id /* block */)arg3;
 - (void)addStorePlaylistWithGlobalID:(id)arg1 completionHandler:(id /* block */)arg2;
 - (void)becomeActive;
 - (void)becomeActiveAndWaitUntilDone:(BOOL)arg1;
@@ -50,6 +51,7 @@
 - (id)cloudClient;
 - (void)createPlaylistWithPersistentID:(unsigned long long)arg1 properties:(id)arg2 trackList:(id)arg3 completionHandler:(id /* block */)arg4;
 - (void)dealloc;
+- (void)deprioritizeArtworkRequestForEntityPersistentID:(long long)arg1 entityType:(int)arg2 artworkType:(int)arg3 artworkSourceType:(int)arg4;
 - (void)disableCloudLibraryWithCompletionHandler:(id /* block */)arg1;
 - (void)enableCloudLibraryWithOptions:(id)arg1 completionHandler:(id /* block */)arg2;
 - (BOOL)enablingJaliscoGeniusRequiresTerms;

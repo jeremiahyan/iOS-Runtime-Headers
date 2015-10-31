@@ -2,8 +2,12 @@
    Image: /System/Library/PrivateFrameworks/Message.framework/Message
  */
 
-@interface MFMailMessageLibraryMigrator : NSObject
+@interface MFMailMessageLibraryMigrator : NSObject {
+    int _needsSpotlightReindex;
+}
 
 - (BOOL)migrateWithSQLiteConnection:(id)arg1;
+- (BOOL)needsSpotlightReindex;
+- (void)noteNeedsSpotlightReindex;
 
 @end

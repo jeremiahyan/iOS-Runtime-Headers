@@ -4,7 +4,6 @@
 
 @interface GKAchievement : NSObject <NSCoding, NSCopying, NSSecureCoding> {
     GKGame *_game;
-    BOOL _hidden;
     GKAchievementInternal *_internal;
     GKPlayer *_player;
     BOOL _showsCompletionBanner;
@@ -35,6 +34,7 @@
 + (void)resetAchievementsWithCompletionHandler:(id /* block */)arg1;
 + (BOOL)supportsSecureCoding;
 
+- (id)_achievementDescription;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)description;
@@ -52,14 +52,12 @@
 - (id)internal;
 - (BOOL)isCompleted;
 - (BOOL)isEqual:(id)arg1;
-- (BOOL)isHidden;
 - (id)methodSignatureForSelector:(SEL)arg1;
 - (id)player;
 - (id)playerID;
 - (void)reportAchievementWithCompletionHandler:(id /* block */)arg1;
 - (BOOL)respondsToSelector:(SEL)arg1;
 - (void)setGame:(id)arg1;
-- (void)setHidden:(BOOL)arg1;
 - (void)setInternal:(id)arg1;
 - (void)setShowsCompletionBanner:(BOOL)arg1;
 - (void)setValue:(id)arg1 forUndefinedKey:(id)arg2;

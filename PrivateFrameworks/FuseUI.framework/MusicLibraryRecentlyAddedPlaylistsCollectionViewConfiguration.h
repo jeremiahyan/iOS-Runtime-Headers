@@ -12,10 +12,14 @@
 + (unsigned int)defaultEntityLimit;
 
 - (void).cxx_destruct;
+- (id)_playlistsViewConfiguration;
+- (BOOL)canPreviewEntityValueContext:(id)arg1;
 - (unsigned int)entityLimit;
+- (void)handleCommitPreviewViewController:(id)arg1 fromViewController:(id)arg2;
 - (int)handleSelectionOfEntityValueContext:(id)arg1 fromViewController:(id)arg2;
 - (id)init;
 - (id)initWithEntityLimit:(unsigned int)arg1;
 - (id)loadEntityViewDescriptor;
+- (id)previewViewControllerForEntityValueContext:(id)arg1 fromViewController:(id)arg2;
 
 @end

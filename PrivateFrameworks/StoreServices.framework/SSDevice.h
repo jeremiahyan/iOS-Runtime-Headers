@@ -32,6 +32,7 @@
 @property (readonly) NSSet *automaticDownloadKinds;
 @property (readonly) double batteryLevel;
 @property (copy) NSString *cloudMediaLibraryIdentifier;
+@property (readonly) NSString *compatibleProductType;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) int deviceType;
@@ -49,6 +50,7 @@
 @property (getter=isStoreFrontIdentifierTransient, readonly) BOOL storeFrontIdentifierTransient;
 @property (readonly) Class superclass;
 @property (readonly) NSString *synchedStoreFrontIdentifier;
+@property (readonly) NSString *thinnedApplicationVariantIdentifier;
 @property (readonly) NSString *uniqueDeviceIdentifier;
 @property (readonly) NSString *userAgent;
 
@@ -94,6 +96,7 @@
 - (double)batteryLevel;
 - (id)carrierBundleStatusForService:(int)arg1;
 - (id)cloudMediaLibraryIdentifier;
+- (id)compatibleProductType;
 - (id)copyStoreFrontRequestHeaders;
 - (void)dealloc;
 - (int)deviceType;
@@ -133,6 +136,7 @@
 - (BOOL)supportsDeviceCapability:(int)arg1;
 - (id)synchedStoreFrontIdentifier;
 - (void)synchronizeAutomaticDownloadKinds;
+- (id)thinnedApplicationVariantIdentifier;
 - (void)unionAutomaticDownloadKinds:(id)arg1 withCompletionBlock:(id /* block */)arg2;
 - (id)uniqueDeviceIdentifier;
 - (id)userAgent;

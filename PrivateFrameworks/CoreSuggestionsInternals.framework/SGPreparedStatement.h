@@ -3,6 +3,7 @@
  */
 
 @interface SGPreparedStatement : NSObject <NSCopying> {
+    SGSqliteDatabase *_owner;
     struct sqlite3_stmt { } *_stmt;
 }
 
@@ -10,7 +11,7 @@
 
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
-- (id)initWithStatementPointer:(struct sqlite3_stmt { }*)arg1;
+- (id)initWithStatementPointer:(struct sqlite3_stmt { }*)arg1 owner:(id)arg2;
 - (struct sqlite3_stmt { }*)stmt;
 
 @end

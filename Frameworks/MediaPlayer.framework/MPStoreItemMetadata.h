@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@interface MPStoreItemMetadata : NSObject <NSCopying> {
+@interface MPStoreItemMetadata : NSObject <NSCopying, NSSecureCoding> {
     NSDictionary *_downloadAssetDictionary;
     NSDictionary *_downloadMetadataDictionary;
     BOOL _hasOverrideChildStorePlatformDictionaries;
@@ -40,6 +40,8 @@
 
 // Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
 
++ (BOOL)supportsSecureCoding;
+
 - (void).cxx_destruct;
 - (id)_artworkRequestTokenForStorePlatformDictionary:(id)arg1 artworkKey:(id)arg2;
 - (id)_storePlatformDateFormatter;
@@ -62,8 +64,11 @@
 - (unsigned int)discNumber;
 - (double)duration;
 - (id)editorNotes;
+- (id)editorNotesWithStyle:(id)arg1;
 - (id)effectiveStorePlatformDictionary;
+- (void)encodeWithCoder:(id)arg1;
 - (id)genreNames;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithDownloadAssetDictionary:(id)arg1;
 - (id)initWithStorePlatformDictionary:(id)arg1;
 - (id)initWithStorePlatformDictionary:(id)arg1 parentStoreItemMetadata:(id)arg2;
@@ -73,6 +78,7 @@
 - (BOOL)isPreorder;
 - (id)itemKind;
 - (id)latestAlbumArtworkRequestToken;
+- (id)metadataByAppendingMetadata:(id)arg1;
 - (id)metadataWithChildStorePlatformDictionaries:(id)arg1;
 - (id)metadataWithParentMetadata:(id)arg1;
 - (id)name;

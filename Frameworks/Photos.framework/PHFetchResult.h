@@ -46,7 +46,6 @@
 - (unsigned int)count;
 - (unsigned int)countByEnumeratingWithState:(struct { unsigned long x1; id *x2; unsigned long x3; unsigned long x4[5]; }*)arg1 objects:(id*)arg2 count:(unsigned int)arg3;
 - (unsigned int)countOfAssetsWithMediaType:(int)arg1;
-- (void)dealloc;
 - (id)description;
 - (void)enumerateObjectsAtIndexes:(id)arg1 options:(unsigned int)arg2 usingBlock:(id /* block */)arg3;
 - (void)enumerateObjectsUsingBlock:(id /* block */)arg1;
@@ -63,7 +62,6 @@
 - (unsigned int)indexOfObject:(id)arg1 inRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2;
 - (id)initWithQuery:(id)arg1;
 - (id)initWithQuery:(id)arg1 oids:(id)arg2 registerIfNeeded:(BOOL)arg3 usingManagedObjectContext:(id)arg4;
-- (BOOL)interestedInChange:(id)arg1;
 - (BOOL)isRegisteredForChangeNotificationDeltas;
 - (id)lastObject;
 - (id)objectAtIndex:(unsigned int)arg1;
@@ -72,6 +70,7 @@
 - (id)objectsAtIndexes:(id)arg1;
 - (id)photoLibrary;
 - (id)pl_photoLibraryObject;
+- (unsigned int)possibleChangesForChange:(id)arg1;
 - (void)prefetchObjectsAtIndexes:(id)arg1;
 - (id)query;
 - (void)setChunkSizeForFetch:(int)arg1;

@@ -3,7 +3,7 @@
  */
 
 @interface MusicEntityTracklistItemView : MusicEntityAbstractLockupView <MPUTextDrawingCacheInvalidationObserver, MusicEntityContentDescriptorViewConfiguring> {
-    MPButton *_contextualActionsButton;
+    UIButton *_contextualActionsButton;
     <MusicEntityTracklistItemViewDelegate> *_delegate;
     struct { 
         unsigned int didSelectContextualActionsButton : 1; 
@@ -54,9 +54,9 @@
 - (id)contextualActionsButton;
 - (void)dealloc;
 - (id)delegate;
-- (void)layoutMarginsDidChange;
 - (void)layoutSubviews;
 - (float)leadingTextColumnWidth;
+- (void)music_inheritedLayoutInsetsDidChange;
 - (void)setBackgroundColor:(id)arg1;
 - (void)setContentDescriptor:(id)arg1;
 - (void)setDelegate:(id)arg1;

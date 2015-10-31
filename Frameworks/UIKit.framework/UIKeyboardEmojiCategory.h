@@ -17,12 +17,21 @@
 
 + (id)categories;
 + (id)categoryForType:(int)arg1;
++ (unsigned int)categoryIndexForCategoryType:(int)arg1;
++ (int)categoryTypeForCategoryIndex:(unsigned int)arg1;
++ (id)computeEmojiFlagsSortedByLanguage;
 + (id)displayName:(int)arg1;
 + (id)emojiRecentsFromPreferences;
 + (BOOL)emojiString:(id)arg1 inGroup:(unsigned int*)arg2 withGroupCount:(int)arg3;
++ (id)enabledCategoryIndexes;
++ (id)fallbackDisplayName:(int)arg1;
++ (id)flagEmojiCountryCodesCommon;
++ (id)flagEmojiCountryCodesReadyToUse;
 + (unsigned int)hasVariantsForEmoji:(id)arg1;
++ (id)loadPrecomputedEmojiFlagCategory;
 + (id)localizedStringForKey:(id)arg1;
 + (int)numberOfCategories;
++ (id)stringToRegionalIndicatorString:(id)arg1;
 
 - (int)categoryType;
 - (void)dealloc;

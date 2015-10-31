@@ -7,10 +7,12 @@
 }
 
 @property (getter=isActivityContinuationEnabled, nonatomic, readonly) BOOL activityContinuationEnabled;
+@property (nonatomic, retain) NSDate *dateWhenUserLastSawWelcomeScreen;
 @property (nonatomic, readonly) int eqPreset;
 @property (getter=isGeniusUserEnabled, nonatomic) BOOL geniusUserEnabled;
 @property (getter=isGroupByAlbumArtistEnabled, nonatomic, readonly) BOOL groupByAlbumArtistEnabled;
-@property (nonatomic) BOOL hasUserAcknowledgedWelcomeScreen;
+@property (nonatomic, readonly) BOOL hasSetVersionOfNoThanksOption;
+@property (nonatomic, readonly) BOOL hasSetVersionOfNotNowOption;
 @property (nonatomic) BOOL hasUserBeenNotifiedThatAudioBooksHaveMoved;
 @property (nonatomic) BOOL hasUserRequestedSubscriptionHidden;
 @property (getter=isInternalInstall, nonatomic) BOOL internalInstall;
@@ -27,20 +29,22 @@
 @property (nonatomic, copy) NSString *selectedLibraryViewIdentifier;
 @property (nonatomic, copy) NSString *selectedPlaylistsOverviewFilter;
 @property (getter=isShakeToShuffleEnabled, nonatomic, readonly) BOOL shakeToShuffleEnabled;
-@property (nonatomic, readonly) BOOL shouldForceShowingSubscriberTabs;
-@property (nonatomic, readonly) BOOL shouldSkipConnectStoreBagCheck;
 @property (getter=isShowCloudMediaEnabled, nonatomic) BOOL showCloudMediaEnabled;
 @property (nonatomic) unsigned int shuffleType;
 @property (getter=isSortByArtistEnabled, nonatomic, readonly) BOOL sortByArtistEnabled;
 @property (getter=isSoundCheckEnabled, nonatomic, readonly) BOOL soundCheckEnabled;
 @property (nonatomic, copy) NSArray *tabBarOrdering;
+@property (nonatomic) int versionOfNoThanksOptionWhenUserLastSawWelcomeScreen;
+@property (nonatomic) int versionOfNotNowOptionWhenUserLastSawWelcomeScreen;
 
 + (id)sharedDefaults;
 
 - (void)beginObservingDefaultsChanges;
+- (id)dateWhenUserLastSawWelcomeScreen;
 - (void)ensureInvertedDefaultPlaybackSpeedHackIsInPlace;
 - (int)eqPreset;
-- (BOOL)hasUserAcknowledgedWelcomeScreen;
+- (BOOL)hasSetVersionOfNoThanksOption;
+- (BOOL)hasSetVersionOfNotNowOption;
 - (BOOL)hasUserBeenNotifiedThatAudioBooksHaveMoved;
 - (BOOL)hasUserRequestedSubscriptionHidden;
 - (BOOL)isActivityContinuationEnabled;
@@ -64,8 +68,8 @@
 - (BOOL)searchShouldDefaultToMyMusic;
 - (id)selectedLibraryViewIdentifier;
 - (id)selectedPlaylistsOverviewFilter;
+- (void)setDateWhenUserLastSawWelcomeScreen:(id)arg1;
 - (void)setGeniusUserEnabled:(BOOL)arg1;
-- (void)setHasUserAcknowledgedWelcomeScreen:(BOOL)arg1;
 - (void)setHasUserBeenNotifiedThatAudioBooksHaveMoved:(BOOL)arg1;
 - (void)setHasUserRequestedSubscriptionHidden:(BOOL)arg1;
 - (void)setInternalInstall:(BOOL)arg1;
@@ -83,9 +87,11 @@
 - (void)setShowCloudMediaEnabled:(BOOL)arg1;
 - (void)setShuffleType:(unsigned int)arg1;
 - (void)setTabBarOrdering:(id)arg1;
-- (BOOL)shouldForceShowingSubscriberTabs;
-- (BOOL)shouldSkipConnectStoreBagCheck;
+- (void)setVersionOfNoThanksOptionWhenUserLastSawWelcomeScreen:(int)arg1;
+- (void)setVersionOfNotNowOptionWhenUserLastSawWelcomeScreen:(int)arg1;
 - (unsigned int)shuffleType;
 - (id)tabBarOrdering;
+- (int)versionOfNoThanksOptionWhenUserLastSawWelcomeScreen;
+- (int)versionOfNotNowOptionWhenUserLastSawWelcomeScreen;
 
 @end

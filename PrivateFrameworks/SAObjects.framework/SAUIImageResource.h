@@ -15,6 +15,8 @@
 @property (nonatomic, copy) NSURL *resourceUrl;
 @property (nonatomic) double scaleFactor;
 @property (readonly) Class superclass;
+@property (nonatomic, copy) NSString *urlFormatString;
+@property (nonatomic, copy) NSString *userAgent;
 
 + (id)imageResource;
 + (id)imageResourceWithDictionary:(id)arg1 context:(id)arg2;
@@ -35,5 +37,9 @@
 - (void)setPointWidth:(double)arg1;
 - (void)setResourceUrl:(id)arg1;
 - (void)setScaleFactor:(double)arg1;
+- (void)setUrlFormatString:(id)arg1;
+- (void)setUserAgent:(id)arg1;
+- (id)urlFormatString;
+- (id)userAgent;
 
 @end

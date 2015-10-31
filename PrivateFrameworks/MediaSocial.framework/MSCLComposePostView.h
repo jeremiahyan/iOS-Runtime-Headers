@@ -2,30 +2,21 @@
    Image: /System/Library/PrivateFrameworks/MediaSocial.framework/MediaSocial
  */
 
-@interface MSCLComposePostView : UIView <NSLayoutManagerDelegate, UITextViewDelegate> {
+@interface MSCLComposePostView : UIScrollView <NSLayoutManagerDelegate, UITextViewDelegate> {
     int _allowedCharacterCount;
     UIButton *_attachmentButton;
     NSMutableArray *_attachmentViews;
     UILabel *_characterCountLabel;
-    UIScrollView *_containerScrollView;
     <MSCLComposePostViewDataSource> *_dataSource;
-    <MSCLComposePostViewDelegate> *_delegate;
     NSArray *_footerViews;
     NSArray *_headerViews;
-    struct CGRect { 
-        struct CGPoint { 
-            float x; 
-            float y; 
-        } origin; 
-        struct CGSize { 
-            float width; 
-            float height; 
-        } size; 
-    } _keyboardFrame;
     int _numberOfAttachments;
+    struct CGPoint { 
+        float x; 
+        float y; 
+    } _preCompletionContentOffset;
     NSArray *_scrollableHeaderViews;
     UITapGestureRecognizer *_tapRecognizer;
-    float _textCompletionEntryHeight;
     UIViewController *_textCompletionViewController;
     MSCLTokenTextView *_textView;
 }
@@ -47,7 +38,6 @@
 @property (nonatomic, readonly, copy) NSString *text;
 
 - (void).cxx_destruct;
-- (id)_attributedStringWithTag:(id)arg1;
 - (void)_keyboardHideNotification:(id)arg1;
 - (void)_keyboardWillChangeNotification:(id)arg1;
 - (void)_reloadCharacterCountLabel;
@@ -61,7 +51,6 @@
 - (BOOL)becomeFirstResponder;
 - (id)dataSource;
 - (void)dealloc;
-- (id)delegate;
 - (id)footerViews;
 - (id)headerViews;
 - (void)hideTextCompletionViewControllerAnimated:(BOOL)arg1 completion:(id /* block */)arg2;
@@ -70,12 +59,10 @@
 - (void)layoutManager:(id)arg1 didCompleteLayoutForTextContainer:(id)arg2 atEnd:(BOOL)arg3;
 - (void)layoutSubviews;
 - (BOOL)resignFirstResponder;
-- (void)scrollAttachmentViewToVisible:(id)arg1 animated:(BOOL)arg2;
 - (id)scrollableHeaderViews;
 - (void)setAllowedCharacterCount:(int)arg1;
 - (void)setAttachmentViews:(id)arg1;
 - (void)setDataSource:(id)arg1;
-- (void)setDelegate:(id)arg1;
 - (void)setFooterViews:(id)arg1;
 - (void)setHeaderViews:(id)arg1;
 - (void)setScrollableHeaderViews:(id)arg1;

@@ -10,6 +10,7 @@
     NSMutableDictionary *_progressByRequestIdentifier;
     id /* block */ _progressChangeHandler;
     int _requestType;
+    BOOL _shouldTreatLivePhotosAsStills;
 }
 
 @property (getter=_isDownloadCanceled, setter=_setDownloadCanceled:, nonatomic) BOOL _downloadCanceled;
@@ -17,6 +18,7 @@
 @property (nonatomic) double progress;
 @property (nonatomic, copy) id /* block */ progressChangeHandler;
 @property (readonly) int requestType;
+@property (nonatomic) BOOL shouldTreatLivePhotosAsStills;
 
 - (void).cxx_destruct;
 - (void)_didFinishDownloadWithSuccess:(BOOL)arg1 error:(id)arg2;
@@ -32,10 +34,13 @@
 - (void)cancelDownloadRequest;
 - (void)downloadRequiredResourcesWithCompletionHandler:(id /* block */)arg1;
 - (void)fetchIsDownloadRequiredWithHandler:(id /* block */)arg1;
+- (id)init;
 - (id)initWithAsset:(id)arg1 requestType:(int)arg2;
 - (double)progress;
 - (id /* block */)progressChangeHandler;
 - (int)requestType;
 - (void)setProgressChangeHandler:(id /* block */)arg1;
+- (void)setShouldTreatLivePhotosAsStills:(BOOL)arg1;
+- (BOOL)shouldTreatLivePhotosAsStills;
 
 @end

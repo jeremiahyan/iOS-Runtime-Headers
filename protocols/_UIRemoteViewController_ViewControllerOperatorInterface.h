@@ -11,14 +11,15 @@
 - (void)__setSupportedInterfaceOrientations:(NSArray *)arg1;
 - (void)__setViewServiceIsDisplayingPopover:(BOOL)arg1;
 - (void)__showServiceForText:(void *)arg1 type:(void *)arg2 fromRectValue:(void *)arg3 replyHandler:(void *)arg4; // needs 4 arg types, found 13: NSString *, int, NSValue *, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, id, void*, inout unsigned short, void*, const const out const void*, void*
+- (void)__trampolineButtonPressData:(NSData *)arg1 canceled:(BOOL)arg2;
 - (void)__viewServiceDidPromoteFirstResponder;
 - (void)__viewServiceDidRegisterScrollToTopView;
 - (void)__viewServiceDidUnregisterScrollToTopView;
-- (void)__viewServiceDidUpdatePreferredStatusBarStyle:(int)arg1 hidden:(BOOL)arg2;
+- (void)__viewServiceDidUpdatePreferredStatusBarStyle:(int)arg1 hidden:(BOOL)arg2 updateAnimation:(int)arg3;
 - (void)__viewServiceDidUpdateTintColor:(UIColor *)arg1 duration:(double)arg2;
-- (void)__viewServiceInstrinsicContentSizeDidChange:(struct CGSize { float x1; float x2; })arg1 fenceSendRight:(_UIViewServiceXPCMachSendRight *)arg2;
-- (void)__viewServicePopoverDidChangeContentSize:(void *)arg1 animated:(void *)arg2 fenceSendRight:(void *)arg3 withReplyHandler:(void *)arg4; // needs 4 arg types, found 9: struct CGSize { float x1; float x2; }, BOOL, _UIViewServiceXPCMachSendRight *, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, struct CGSize { float x1; float x2; }, void*
+- (void)__viewServiceInstrinsicContentSizeDidChange:(struct CGSize { float x1; float x2; })arg1 fence:(BKSAnimationFenceHandle *)arg2;
+- (void)__viewServicePopoverDidChangeContentSize:(void *)arg1 animated:(void *)arg2 fence:(void *)arg3 withReplyHandler:(void *)arg4; // needs 4 arg types, found 9: struct CGSize { float x1; float x2; }, BOOL, BKSAnimationFenceHandle *, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, struct CGSize { float x1; float x2; }, void*
 - (void)__viewServicePopoverDidSetUseToolbarShine:(BOOL)arg1;
-- (void)__viewServicePreferredContentSizeDidChange:(struct CGSize { float x1; float x2; })arg1 fenceSendRight:(_UIViewServiceXPCMachSendRight *)arg2;
+- (void)__viewServicePreferredContentSizeDidChange:(struct CGSize { float x1; float x2; })arg1 fence:(BKSAnimationFenceHandle *)arg2;
 
 @end

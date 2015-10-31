@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@interface UIButton : UIControl <ABText, NSCoding> {
+@interface UIButton : UIControl <ABText, NSCoding, UIGestureRecognizerDelegate, _UIFloatingContentViewDelegate> {
     UIImageView *_backgroundView;
     struct { 
         unsigned int reversesTitleShadowWhenHighlighted : 1; 
@@ -15,7 +15,12 @@
         unsigned int shouldHandleScrollerMouseEvent : 1; 
         unsigned int titleFrozen : 1; 
         unsigned int resendTraitToImageViews : 2; 
+        unsigned int animateNextHighlightChange : 1; 
+        unsigned int blurEnabled : 1; 
+        unsigned int visualEffectViewEnabled : 1; 
+        unsigned int suppressAccessibilityUnderline : 1; 
     } _buttonFlags;
+    UIVisualEffectView *_contentBackdropView;
     NSArray *_contentConstraints;
     struct UIEdgeInsets { 
         float top; 
@@ -24,7 +29,9 @@
         float right; 
     } _contentEdgeInsets;
     struct __CFDictionary { } *_contentLookup;
+    UIView *_effectiveContentView;
     unsigned int _externalFlatEdge;
+    _UIFloatingContentView *_floatingContentView;
     struct UIEdgeInsets { 
         float top; 
         float left; 
@@ -57,32 +64,34 @@
 @property (nonatomic, readonly, retain) UIColor *_currentImageColor;
 @property (setter=_setExternalFlatEdge:) unsigned int _externalFlatEdge;
 @property (setter=_setInternalTitlePaddingInsets:, nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } _internalTitlePaddingInsets;
+@property (setter=_setWantsAccessibilityUnderline:, nonatomic) BOOL _wantsAccessibilityUnderline;
 @property (nonatomic, copy) NSString *ab_text;
 @property (nonatomic, copy) NSDictionary *ab_textAttributes;
 @property (nonatomic) BOOL adjustsImageWhenDisabled;
 @property (nonatomic) BOOL adjustsImageWhenHighlighted;
 @property (nonatomic, readonly) int buttonType;
 @property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } contentEdgeInsets;
-@property (nonatomic, readonly, retain) NSAttributedString *currentAttributedTitle;
-@property (nonatomic, readonly, retain) UIImage *currentBackgroundImage;
-@property (nonatomic, readonly, retain) UIImage *currentImage;
-@property (nonatomic, readonly, retain) NSString *currentTitle;
-@property (nonatomic, readonly, retain) UIColor *currentTitleColor;
-@property (nonatomic, readonly, retain) UIColor *currentTitleShadowColor;
+@property (nonatomic, readonly) NSAttributedString *currentAttributedTitle;
+@property (nonatomic, readonly) UIImage *currentBackgroundImage;
+@property (nonatomic, readonly) UIImage *currentImage;
+@property (nonatomic, readonly) NSString *currentTitle;
+@property (nonatomic, readonly) UIColor *currentTitleColor;
+@property (nonatomic, readonly) UIColor *currentTitleShadowColor;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned int hash;
 @property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } imageEdgeInsets;
-@property (nonatomic, readonly, retain) UIImageView *imageView;
+@property (nonatomic, readonly) UIImageView *imageView;
 @property (nonatomic) BOOL reversesTitleShadowWhenHighlighted;
 @property (nonatomic) BOOL showsTouchWhenHighlighted;
 @property (readonly) Class superclass;
 @property (nonatomic, retain) UIColor *tintColor;
 @property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } titleEdgeInsets;
-@property (nonatomic, readonly, retain) UILabel *titleLabel;
+@property (nonatomic, readonly) UILabel *titleLabel;
 
 // Image: /System/Library/Frameworks/UIKit.framework/UIKit
 
++ (BOOL)_buttonTypeIsModernUI:(int)arg1;
 + (id)_checkmarkImage;
 + (id)_defaultBackgroundImageForType:(int)arg1 andState:(unsigned int)arg2;
 + (id)_defaultImageColorForState:(unsigned int)arg1 button:(id)arg2;
@@ -103,30 +112,39 @@
 + (id)_xImage;
 + (id)buttonWithType:(int)arg1;
 
+- (void).cxx_destruct;
 - (BOOL)_alwaysHandleScrollerMouseEvent;
 - (void)_applyAppropriateChargeForButtonType;
 - (id)_archivableContent:(id*)arg1;
 - (id)_attributedTitleForState:(unsigned int)arg1;
+- (float)_autolayoutSpacingAtEdge:(int)arg1 inContainer:(id)arg2;
+- (float)_autolayoutSpacingAtEdge:(int)arg1 nextToNeighbor:(id)arg2;
 - (id)_backgroundForState:(unsigned int)arg1 usesBackgroundForNormalState:(BOOL*)arg2;
 - (id)_backgroundView;
 - (void)_beginTitleAnimation;
+- (BOOL)_blurEnabled;
 - (id)_borderColorForState:(unsigned int)arg1;
 - (float)_borderWidthForState:(unsigned int)arg1 bounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2;
 - (int)_buttonType;
 - (BOOL)_canHaveTitle;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_clippedHighlightBounds;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })_combinedContentPaddingInsets;
+- (id)_contentBackdropView;
 - (id)_contentConstraints;
 - (id)_contentForState:(unsigned int)arg1;
 - (BOOL)_contentHuggingDefault_isUsuallyFixedHeight;
 - (BOOL)_contentHuggingDefault_isUsuallyFixedWidth;
+- (unsigned int)_controlEventsForActionTriggered;
 - (id)_createPreparedImageViewWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (id)_currentImageColor;
 - (void)_didChangeFromIdiom:(int)arg1 onScreen:(id)arg2 traverseHierarchy:(BOOL)arg3;
+- (void)_didUpdateFocusInContext:(id)arg1 withAnimationCoordinator:(id)arg2;
 - (float)_drawingStrokeForState:(unsigned int)arg1;
 - (float)_drawingStrokeForStyle:(int)arg1;
 - (int)_drawingStyleForState:(unsigned int)arg1;
 - (int)_drawingStyleForStroke:(float)arg1;
+- (id)_effectiveContentView;
+- (id)_encodableSubviews;
 - (id)_externalBorderColorForState:(unsigned int)arg1;
 - (int)_externalDrawingStyleForState:(unsigned int)arg1;
 - (unsigned int)_externalFlatEdge;
@@ -135,7 +153,9 @@
 - (id)_externalTitleColorForState:(unsigned int)arg1;
 - (id)_externalUnfocusedBorderColor;
 - (id)_fadeOutAnimationWithKeyPath:(id)arg1;
+- (id)_floatingContentView;
 - (id)_font;
+- (BOOL)_hasCustomAutolayoutNeighborSpacing;
 - (BOOL)_hasDrawingStyle;
 - (BOOL)_hasHighlightColor;
 - (BOOL)_hasImageForProperty:(id)arg1;
@@ -159,6 +179,7 @@
 - (BOOL)_isModernButton;
 - (BOOL)_isTitleFrozen;
 - (void)_layoutBackgroundImageView;
+- (void)_layoutContentBackdropView;
 - (id)_layoutDebuggingTitle;
 - (void)_layoutImageView;
 - (void)_layoutTitleView;
@@ -171,6 +192,7 @@
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })_pathImageEdgeInsets;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })_pathTitleEdgeInsets;
 - (void)_populateArchivedSubviews:(id)arg1;
+- (id)_preferredConfigurationForFocusAnimation:(int)arg1 inContext:(id)arg2;
 - (void)_prepareMaskAnimationViewIfNecessary;
 - (id)_scriptingInfo;
 - (void)_selectGestureChanged:(id)arg1;
@@ -180,6 +202,7 @@
 - (void)_sendSetNeedsLayoutToSuperviewOnTitleAnimationCompletionIfNecessary;
 - (void)_setAttributedTitle:(id)arg1 forStates:(unsigned int)arg2;
 - (void)_setBackground:(id)arg1 forStates:(unsigned int)arg2;
+- (void)_setBlurEnabled:(BOOL)arg1;
 - (void)_setButtonType:(int)arg1;
 - (void)_setContent:(id)arg1 forState:(unsigned int)arg2;
 - (void)_setContentConstraints:(id)arg1;
@@ -189,6 +212,7 @@
 - (void)_setExternalFlatEdge:(unsigned int)arg1;
 - (void)_setFont:(id)arg1;
 - (void)_setFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 deferLayout:(BOOL)arg2;
+- (void)_setHighlighted:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)_setImage:(id)arg1 forStates:(unsigned int)arg2;
 - (void)_setImageColor:(id)arg1 forState:(unsigned int)arg2;
 - (void)_setImageColor:(id)arg1 forStates:(unsigned int)arg2;
@@ -201,6 +225,8 @@
 - (void)_setTitleColor:(id)arg1 forStates:(unsigned int)arg2;
 - (void)_setTitleFrozen:(BOOL)arg1;
 - (void)_setTitleShadowOffset:(struct CGSize { float x1; float x2; })arg1;
+- (void)_setVisualEffectViewEnabled:(BOOL)arg1 backgroundColor:(id)arg2;
+- (void)_setWantsAccessibilityUnderline:(BOOL)arg1;
 - (id)_setupBackgroundView;
 - (void)_setupDrawingStyleForState:(unsigned int)arg1;
 - (void)_setupImageView;
@@ -209,6 +235,7 @@
 - (void)_setupTitleViewRequestingLayout:(BOOL)arg1;
 - (id)_shadowColorForState:(unsigned int)arg1;
 - (BOOL)_shouldDefaultToTemplatesForImageViewBackground:(BOOL)arg1;
+- (BOOL)_shouldHaveFloatingAppearance;
 - (BOOL)_shouldUpdatePressedness;
 - (void)_takeContentFromArchivableContent:(id)arg1;
 - (BOOL)_textNeedsCompositingModeWhenSelected;
@@ -222,11 +249,15 @@
 - (id)_transitionAnimationWithKeyPath:(id)arg1;
 - (void)_uninstallSelectGestureRecognizer;
 - (void)_updateBackgroundImageView;
+- (void)_updateContentBackdropView;
 - (void)_updateEffectsForImageView:(id)arg1 background:(BOOL)arg2;
 - (void)_updateImageView;
 - (void)_updateMaskState;
 - (void)_updateSelectionViewForState:(unsigned int)arg1;
 - (void)_updateTitleView;
+- (BOOL)_visualEffectViewEnabled;
+- (BOOL)_wantsAccessibilityUnderline;
+- (BOOL)_wantsContentBackdropView;
 - (void)_willMoveToWindow:(id)arg1;
 - (BOOL)adjustsImageWhenDisabled;
 - (BOOL)adjustsImageWhenHighlighted;
@@ -235,6 +266,7 @@
 - (BOOL)autosizesToFit;
 - (id)backgroundImageForState:(unsigned int)arg1;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })backgroundRectForBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (BOOL)beginTrackingWithTouch:(id)arg1 withEvent:(id)arg2;
 - (int)buttonType;
 - (BOOL)canBecomeFocused;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })contentEdgeInsets;
@@ -249,7 +281,7 @@
 - (void)dealloc;
 - (unsigned long long)defaultAccessibilityTraits;
 - (void)encodeWithCoder:(id)arg1;
-- (void)focusedViewDidChange;
+- (void)floatingContentView:(id)arg1 isTransitioningFromState:(unsigned int)arg2 toState:(unsigned int)arg3;
 - (id)font;
 - (BOOL)gestureRecognizerShouldBegin:(id)arg1;
 - (id)image;
@@ -259,12 +291,14 @@
 - (id)imageView;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (void)interactionTintColorDidChange;
 - (void)invalidateIntrinsicContentSize;
 - (BOOL)isAccessibilityElementByDefault;
 - (BOOL)isElementAccessibilityExposedToInterfaceBuilder;
 - (void)layoutSubviews;
 - (int)lineBreakMode;
 - (struct CGPoint { float x1; float x2; })pressFeedbackPosition;
+- (void)pressesBegan:(id)arg1 withEvent:(id)arg2;
 - (BOOL)reversesTitleShadowWhenHighlighted;
 - (void)setAdjustsImageWhenDisabled:(BOOL)arg1;
 - (void)setAdjustsImageWhenHighlighted:(BOOL)arg1;
@@ -287,6 +321,7 @@
 - (void)setLineBreakMode:(int)arg1;
 - (void)setReversesTitleShadowWhenHighlighted:(BOOL)arg1;
 - (void)setSelected:(BOOL)arg1;
+- (void)setSemanticContentAttribute:(int)arg1;
 - (void)setShowPressFeedback:(BOOL)arg1;
 - (void)setShowsTouchWhenHighlighted:(BOOL)arg1;
 - (void)setTintColor:(id)arg1;
@@ -312,11 +347,14 @@
 - (struct CGSize { float x1; float x2; })titleShadowOffset;
 - (void)traitCollectionDidChange:(id)arg1;
 - (void)updateConstraints;
-- (id)viewForBaselineLayout;
+- (id)viewForLastBaselineLayout;
 
 // Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
 
 - (void)ab_addConferenceIcon;
+
+// Image: /System/Library/Frameworks/ContactsUI.framework/ContactsUI
+
 - (id)ab_text;
 - (id)ab_textAttributes;
 - (void)setAb_text:(id)arg1;
@@ -325,6 +363,11 @@
 // Image: /System/Library/Frameworks/MapKit.framework/MapKit
 
 - (id)_mapkit_accessoryControlToExtendWithCallout;
+
+// Image: /System/Library/Frameworks/PassKit.framework/PassKit
+
+- (void)pk_applyAppearance:(struct _PKAppearanceSpecifier { BOOL x1; id x2; id x3; id x4; id x5; id x6; id x7; id x8; id x9; id x10; id x11; id x12; id x13; /* Warning: Unrecognized filer type: '' using 'void*' */ void*x14; void*x15; void*x16; void*x17; void*x18; void*x19; void*x20; void*x21; void*x22; void*x23; void*x24; void*x25; void*x26; void*x27; void*x28; void*x29; void*x30; void*x31; void*x32; void*x33; void*x34; void*x35; void*x36; void*x37; void*x38; void*x39; void*x40; void*x41; void*x42; void*x43; void*x44; void*x45; void*x46; void*x47; void*x48; void*x49; void*x50; void*x51; void*x52; void*x53; void*x54; void*x55; void*x56; void*x57; void*x58; void*x59; void*x60; unsigned short x61; void*x62; short x63; void*x64; void*x65; void*x66; void*x67; unsigned long x68; int x69; unsigned int x70/* : ? */; const void*x71; const void*x72; void*x73; void*x74; const int x75; void x76; void*x77; void*x78; void*x79; void*x80; const void*x81; void*x82; void*x83; void*x84; out const void*x85; short x86; void*x87; void*x88; void*x89; double x90; int x91; out void*x92; float x93; const void*x94; void*x95; void*x96; void*x97; out const void*x98; void*x99; void*x100; void*x101; double x102; int x103; out void*x104; void*x105; void*x106; void*x107; void*x108; void*x109; void*x110; void*x111; void*x112; void*x113; void*x114; void*x115; void*x116; void*x117; void*x118; void*x119; void*x120; void*x121; void*x122; void*x123; void*x124; void*x125; void*x126; void*x127; void*x128; void*x129; void*x130; double x131; int x132; out void*x133; void*x134; const void*x135; short x136; unsigned char x137; void*x138; void*x139; BOOL x140; void*x141; void*x142; void*x143; long long x144; void*x145; void*x146; short x147; void*x148; void*x149; void*x150; void*x151; void*x152; void*x153; void*x154; void*x155; void*x156; void*x157; void*x158; out unsigned char x159; void*x160; void*x161; out unsigned char x162; void*x163; void*x164; out unsigned char x165; void*x166; void*x167; void*x168; void*x169; void*x170; void*x171; void*x172; void*x173; void*x174; void*x175; void*x176; void*x177; void*x178; void*x179; void*x180; void*x181; void*x182; void*x183; }*)arg1;
+- (id)pk_childrenForAppearance;
 
 // Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
 

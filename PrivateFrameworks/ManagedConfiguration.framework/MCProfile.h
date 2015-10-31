@@ -87,12 +87,15 @@
 - (void).cxx_destruct;
 - (id)UUID;
 - (id)appAccessibilityParameters;
+- (BOOL)containsOnlyPayloadsOfClasses:(id)arg1;
 - (BOOL)containsPayloadOfClass:(Class)arg1;
 - (struct __SecCertificate { }*)copyCertificateFromPayloadWithUUID:(id)arg1;
 - (struct __SecCertificate { }*)copyCertificateWithPersistentID:(id)arg1;
 - (unsigned int)countOfPayloadsOfClass:(Class)arg1;
 - (id)description;
 - (id)displayName;
+- (BOOL)doesSigningAllowReplacementWithProfile:(id)arg1;
+- (BOOL)doesSigningAllowReplacementWithProfile:(id)arg1 useOriginalCheck:(BOOL)arg2;
 - (id)earliestCertificateExpiryDate;
 - (void)evaluateSignerTrust;
 - (void)evaluateSignerTrustAsynchronouslyWithCompletion:(id /* block */)arg1;

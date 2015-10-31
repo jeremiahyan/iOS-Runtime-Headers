@@ -3,13 +3,16 @@
  */
 
 @interface MusicEntityViewContentDescriptor : NSObject <NSCopying> {
-    NSSet *_allPropertiesToPrefetch;
+    NSSet *_allPropertiesToLoadAsynchronously;
+    NSSet *_allPropertiesToPrefetchSynchronously;
     BOOL _allowsDeletionWithoutEditingMode;
     MusicEntityViewContentArtworkDescriptor *_artworkDescriptor;
+    int _artworkVerticalAlignment;
     UIColor *_backgroundColor;
     UIColor *_customSelectionTintColor;
     UIColor *_customSeparatorColor;
     NSString *_explicitBadgeProperty;
+    BOOL _hasValidAllPropertiesToLoadAsynchronously;
     UIColor *_keepLocalDeviceColor;
     NSString *_keepLocalPreferenceProperty;
     UIColor *_keepLocalSashColor;
@@ -31,9 +34,11 @@
     NSString *_wantsPlayButtonProperty;
 }
 
-@property (nonatomic, readonly) NSSet *allPropertiesToPrefetch;
+@property (nonatomic, readonly) NSSet *allPropertiesToLoadAsynchronously;
+@property (nonatomic, readonly) NSSet *allPropertiesToPrefetchSynchronously;
 @property (nonatomic) BOOL allowsDeletionWithoutEditingMode;
 @property (nonatomic, retain) MusicEntityViewContentArtworkDescriptor *artworkDescriptor;
+@property (nonatomic) int artworkVerticalAlignment;
 @property (nonatomic, copy) UIColor *backgroundColor;
 @property (nonatomic, retain) UIColor *customSelectionTintColor;
 @property (nonatomic, retain) UIColor *customSeparatorColor;
@@ -65,10 +70,13 @@
 - (void).cxx_destruct;
 - (void)_handleArtworkDescriptorDidInvalidateNotification:(id)arg1;
 - (void)_handleTextDescriptorDidInvalidateNotification:(id)arg1;
-- (void)_invalidateAllPropertiesToPrefetch;
-- (id)allPropertiesToPrefetch;
+- (void)_invalidateAllPropertiesToLoadAsynchronously;
+- (void)_invalidateAllPropertiesToPrefetchSynchronously;
+- (id)allPropertiesToLoadAsynchronously;
+- (id)allPropertiesToPrefetchSynchronously;
 - (BOOL)allowsDeletionWithoutEditingMode;
 - (id)artworkDescriptor;
+- (int)artworkVerticalAlignment;
 - (id)backgroundColor;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)customSelectionTintColor;
@@ -85,6 +93,7 @@
 - (int)selectionStyle;
 - (void)setAllowsDeletionWithoutEditingMode:(BOOL)arg1;
 - (void)setArtworkDescriptor:(id)arg1;
+- (void)setArtworkVerticalAlignment:(int)arg1;
 - (void)setBackgroundColor:(id)arg1;
 - (void)setCustomSelectionTintColor:(id)arg1;
 - (void)setCustomSeparatorColor:(id)arg1;

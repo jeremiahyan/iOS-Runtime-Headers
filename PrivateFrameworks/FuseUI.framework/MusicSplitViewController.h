@@ -35,11 +35,13 @@
 
 - (void).cxx_destruct;
 - (void)_applyContentInsetsForChildViewControllers;
+- (struct { struct CGRect { struct CGPoint { float x_1_2_1; float x_1_2_2; } x_1_1_1; struct CGSize { float x_2_2_1; float x_2_2_2; } x_1_1_2; } x1; struct CGRect { struct CGPoint { float x_1_2_1; float x_1_2_2; } x_2_1_1; struct CGSize { float x_2_2_1; float x_2_2_2; } x_2_1_2; } x2; struct CGRect { struct CGPoint { float x_1_2_1; float x_1_2_2; } x_3_1_1; struct CGSize { float x_2_2_1; float x_2_2_2; } x_3_1_2; } x3; })_childrenLayoutResultsForBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (id)_detailViewController;
 - (id)_detailViewControllerOverrideTraitCollection;
 - (void)_didChangeDetailViewController;
 - (void)_didChangePrimaryViewController;
-- (float)_preferredPrimaryWColumnWidthWhenWithDetailForWidth:(float)arg1;
+- (void)_handleDetailViewController:(id)arg1;
+- (float)_preferredPrimaryColumnWidthWhenWithDetailForWidth:(float)arg1;
 - (id)_primaryViewControllerOverrideTraitCollection;
 - (void)_requestInitialStateDetailViewController;
 - (void)_setDetailViewController:(id)arg1 shouldChangeParents:(BOOL)arg2;
@@ -47,13 +49,16 @@
 - (void)_updateHorizontallyCompactState;
 - (void)_willChangeDetailViewController:(id)arg1;
 - (void)_willChangePrimaryViewController:(id)arg1;
+- (void)clearDetailViewController;
 - (id)contentScrollView;
 - (void)dealloc;
+- (void)encodeRestorableStateWithCoder:(id)arg1;
 - (id)primaryViewController;
 - (void)scrollViewDidChangeContentInset:(id)arg1;
 - (void)setPrimaryViewController:(id)arg1;
 - (void)setStaticPrimaryColumnWidth:(float)arg1;
 - (void)showDetailViewController:(id)arg1 sender:(id)arg2;
+- (struct CGSize { float x1; float x2; })sizeForChildContentContainer:(id)arg1 withParentContainerSize:(struct CGSize { float x1; float x2; })arg2;
 - (float)staticPrimaryColumnWidth;
 - (id)targetViewControllerForAction:(SEL)arg1 sender:(id)arg2;
 - (void)traitCollectionDidChange:(id)arg1;

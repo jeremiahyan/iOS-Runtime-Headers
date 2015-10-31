@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/PassKit.framework/PassKit
  */
 
-@interface PKServiceAddPassesViewController : UIViewController <PKGroupsControllerDelegate, PKPassGroupStackViewDatasource, PKPassGroupStackViewDelegate, PKServiceAddPassesViewControllerProtocol, UIScrollViewDelegate> {
+@interface PKServiceAddPassesViewController : PKNavigationController <PKGroupsControllerDelegate, PKPassGroupStackViewDatasource, PKPassGroupStackViewDelegate, PKPaymentSetupViewControllerDelegate, PKServiceAddPassesViewControllerProtocol, UIScrollViewDelegate> {
     BOOL _allowsPassIngestion;
     BOOL _alreadyAdding;
     PKPassGroupStackView *_cardStackView;
@@ -11,15 +11,12 @@
     NSURLConnection *_downloadPassURLConnection;
     int _groupLoadState;
     PKGroupsController *_groupsController;
-    BOOL _haveStartedCardAnimation;
     id /* block */ _loadedGroupsCallback;
     NSArray *_localPassDatas;
     NSMutableArray *_localPasses;
     NSMutableArray *_minimumCardHeightFromHereToTop;
-    UINavigationBar *_navigationBar;
-    int _presentationState;
     UIProgressView *_progressView;
-    BOOL _viewAppeared;
+    BOOL _showAutomaticSelection;
 }
 
 @property (nonatomic, retain) PKPassGroupStackView *cardStackView;
@@ -27,23 +24,20 @@
 @property (readonly, copy) NSString *description;
 @property (nonatomic, retain) PKGroupsController *groupsController;
 @property (readonly) unsigned int hash;
-@property (nonatomic) BOOL haveStartedCardAnimation;
 @property (nonatomic, retain) NSArray *localPassDatas;
 @property (nonatomic, retain) NSMutableArray *localPasses;
 @property (nonatomic, retain) NSMutableArray *minimumCardHeightFromHereToTop;
-@property (retain) UINavigationBar *navigationBar;
-@property (nonatomic) int presentationState;
 @property (nonatomic, retain) UIProgressView *progressView;
 @property (readonly) Class superclass;
-@property (nonatomic) BOOL viewAppeared;
 
 + (id)_exportedInterface;
 + (BOOL)_preventsAppearanceProxyCustomization;
 + (id)_remoteViewControllerInterface;
 
 - (void)_acceptCard:(id)arg1;
+- (void)_addPassesToLibraryWithCompletion:(id /* block */)arg1;
 - (void)acceptCard:(id)arg1;
-- (void)animateInCardIfNeeded;
+- (id)addPassViewController;
 - (void)cancelCard:(id)arg1;
 - (id)cardStackView;
 - (void)connection:(id)arg1 didFailWithError:(id)arg2;
@@ -61,35 +55,30 @@
 - (void)groupsController:(id)arg1 didInsertGroup:(id)arg2 atIndex:(unsigned int)arg3;
 - (void)groupsController:(id)arg1 didMoveGroup:(id)arg2 fromIndex:(unsigned int)arg3 toIndex:(unsigned int)arg4;
 - (void)groupsController:(id)arg1 didRemoveGroup:(id)arg2 atIndex:(unsigned int)arg3;
-- (BOOL)haveStartedCardAnimation;
 - (unsigned int)indexOfGroup:(id)arg1;
 - (unsigned int)indexOfSeparationGroup;
 - (void)ingestCardAtURL:(id)arg1;
 - (void)ingestPasses:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
-- (void)loadGroups;
 - (void)loadView;
 - (id)localPassDatas;
 - (id)localPasses;
 - (id)minimumCardHeightFromHereToTop;
-- (id)navigationBar;
 - (unsigned int)numberOfGroups;
 - (BOOL)passesGrowWhenFlipped;
-- (int)presentationState;
+- (int)preferredStatusBarStyle;
+- (BOOL)prefersStatusBarHidden;
 - (id)progressView;
 - (void)setAllowsPassIngestion:(BOOL)arg1;
 - (void)setCardStackView:(id)arg1;
 - (void)setDisplayPropertiesWithScreenSize:(struct CGSize { float x1; float x2; })arg1 scale:(float)arg2;
 - (void)setGroupsController:(id)arg1;
-- (void)setHaveStartedCardAnimation:(BOOL)arg1;
 - (void)setLocalPassDatas:(id)arg1;
 - (void)setLocalPasses:(id)arg1;
 - (void)setMinimumCardHeightFromHereToTop:(id)arg1;
-- (void)setNavigationBar:(id)arg1;
-- (void)setPresentationState:(int)arg1;
 - (void)setProgressView:(id)arg1;
-- (void)setViewAppeared:(BOOL)arg1;
 - (BOOL)shouldAutorotate;
+- (void)showAutomaticSelectionController:(id)arg1;
 - (void)showDownloadingPassUI;
 - (id)styleTitleUsingPass:(id)arg1 count:(unsigned int)arg2;
 - (unsigned int)supportedInterfaceOrientations;
@@ -100,7 +89,7 @@
 - (void)updateAddButtonAndSettings;
 - (void)updateCancelButton;
 - (void)updateNavTitle;
-- (BOOL)viewAppeared;
+- (void)viewControllerDidTerminateSetupFlow:(id)arg1;
 - (void)viewDidAppear:(BOOL)arg1;
 - (void)viewDidDisappear:(BOOL)arg1;
 - (void)viewWillLayoutSubviews;
